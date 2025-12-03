@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Database } from '../lib/supabase';
 
-type Project = Database['public']['Tables']['projects']['Row'];
+type Project = Database['public']['Tables']['projects']['Row'] & {
+  total_lots?: number;
+  sold_lots?: number;
+  reserved_lots?: number;
+  available_lots?: number;
+  total_revenue?: number;
+};
 
 export function useProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -14,15 +20,41 @@ export function useProjects() {
 
     async function fetchProjects() {
       try {
-        const { data, error: fetchError } = await supabase
+        const { data: projectsData, error: fetchError } = await supabase
           .from('projects')
           .select('*')
           .order('created_at', { ascending: false });
 
         if (fetchError) throw fetchError;
 
+        const projectsWithStats = await Promise.all(
+          (projectsData || []).map(async (project) => {
+            const { data: lots } = await supabase
+              .from('lots')
+              .select('id, status, price_vat')
+              .eq('project_id', project.id);
+
+            const totalLots = lots?.length || 0;
+            const soldLots = lots?.filter(l => l.status === 'SOLD').length || 0;
+            const reservedLots = lots?.filter(l => l.status === 'RESERVED').length || 0;
+            const availableLots = lots?.filter(l => l.status === 'AVAILABLE').length || 0;
+            const totalRevenue = lots
+              ?.filter(l => l.status === 'SOLD')
+              .reduce((sum, l) => sum + (l.price_vat || 0), 0) || 0;
+
+            return {
+              ...project,
+              total_lots: totalLots,
+              sold_lots: soldLots,
+              reserved_lots: reservedLots,
+              available_lots: availableLots,
+              total_revenue: totalRevenue,
+            };
+          })
+        );
+
         if (isMounted) {
-          setProjects(data || []);
+          setProjects(projectsWithStats);
           setLoading(false);
         }
       } catch (err) {

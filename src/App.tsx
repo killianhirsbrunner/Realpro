@@ -13,6 +13,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { ProjectsList } from './pages/ProjectsList';
+import { ProjectOverview } from './pages/ProjectOverview';
 import { ProjectCockpit } from './pages/ProjectCockpit';
 import { ProjectCockpitDashboard } from './pages/ProjectCockpitDashboard';
 import { ProjectPlanning } from './pages/ProjectPlanning';
@@ -70,6 +71,7 @@ function App() {
 
                     <Route path="/projects" element={<ProjectsList />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />
+                    <Route path="/projects/:projectId/overview" element={<ProjectOverview />} />
                     <Route path="/projects/:projectId/dashboard" element={<ProjectCockpitDashboard />} />
                     <Route path="/projects/:projectId/planning" element={<ProjectPlanning />} />
                     <Route path="/projects/:projectId/setup" element={<ProjectSetupWizard />} />
