@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "lots": "Lots",
+    "crm": "CRM",
+    "finance": "Finance",
+    "documents": "Documents",
+    "construction": "Construction",
+    "settings": "Settings",
+    "billing": "Billing",
+    "templates": "Templates",
+    "tasks": "Tasks",
+    "planning": "Planning",
+    "submissions": "Tenders",
+    "materials": "Materials",
+    "reporting": "Reporting",
+    "brokers": "Brokers",
+    "notary": "Notary",
+    "buyers": "Buyers",
+    "logout": "Log out"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "view": "View",
+    "details": "Details"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "required": "Required",
+    "optional": "Optional",
+    "all": "All",
+    "none": "None",
+    "other": "Other",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "date": "Date",
+    "time": "Time",
+    "name": "Name",
+    "description": "Description",
+    "status": "Status",
+    "type": "Type",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "amount": "Amount",
+    "comment": "Comment",
+    "note": "Note"
+  },
+  "project": {
+    "label": "Project",
+    "status": {
+      "PLANNING": "Planning",
+      "SALES": "For Sale",
+      "CONSTRUCTION": "Under Construction",
+      "DELIVERED": "Delivered",
+      "ARCHIVED": "Archived"
+    },
+    "type": {
+      "PPE": "Condominium",
+      "QPT": "QPT",
+      "LOCATIF": "Rental",
+      "MIXTE": "Mixed"
+    }
+  },
+  "lot": {
+    "label": "Lot",
+    "status": {
+      "AVAILABLE": "Available",
+      "RESERVED": "Reserved",
+      "OPTION": "Option",
+      "SOLD": "Sold",
+      "BLOCKED": "Blocked"
+    },
+    "number": "Lot number",
+    "floor": "Floor",
+    "rooms": "Rooms",
+    "surface": "Surface",
+    "price": "Price",
+    "priceWithVAT": "Price incl. VAT",
+    "buyer": "Buyer"
+  },
+  "buyer": {
+    "label": "Buyer",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "No notifications",
+    "materialChoice": {
+      "late": {
+        "title": "Material choices overdue – Lot {{lotNumber}}",
+        "body": "Material choices for lot {{lotNumber}} (project {{projectName}}) are overdue."
+      }
+    },
+    "payment": {
+      "late": {
+        "title": "Payment overdue – {{invoiceNumber}}",
+        "body": "Payment {{invoiceNumber}} for lot {{lotNumber}} is overdue."
+      }
+    },
+    "submission": {
+      "clarifications": {
+        "title": "Open clarifications – {{title}}",
+        "body": "There are pending clarifications for tender \"{{title}}\"."
+      }
+    },
+    "planning": {
+      "phaseLate": {
+        "title": "Phase delayed – {{phaseName}}",
+        "body": "Phase \"{{phaseName}}\" of project {{projectName}} is delayed compared to schedule."
+      }
+    },
+    "generic": {
+      "title": "Notification",
+      "body": "You have a new notification."
+    }
+  },
+  "tasks": {
+    "title": "Tasks",
+    "create": "Create task",
+    "assignedTo": "Assigned to",
+    "dueDate": "Due date",
+    "priority": "Priority",
+    "status": {
+      "OPEN": "Open",
+      "IN_PROGRESS": "In progress",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    },
+    "type": {
+      "MATERIAL_CHOICE": "Material choice",
+      "PAYMENT": "Payment",
+      "SUBMISSION": "Tender",
+      "PLANNING": "Planning",
+      "GENERIC": "Generic"
+    }
+  },
+  "finance": {
+    "budget": "Budget",
+    "engaged": "Committed",
+    "invoiced": "Invoiced",
+    "paid": "Paid",
+    "remaining": "Remaining",
+    "invoice": "Invoice",
+    "payment": "Payment",
+    "dueDate": "Due date"
+  },
+  "materials": {
+    "catalog": "Catalogue",
+    "choice": "Choice",
+    "choices": "Choices",
+    "category": "Category",
+    "option": "Option",
+    "standardPrice": "Standard price",
+    "supplement": "Supplement",
+    "totalSupplement": "Total supplements",
+    "deadline": "Deadline",
+    "changeRequest": "Change request"
+  },
+  "planning": {
+    "phase": "Phase",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "plannedStart": "Planned start",
+    "plannedEnd": "Planned end",
+    "actualStart": "Actual start",
+    "actualEnd": "Actual end",
+    "progress": "Progress",
+    "status": {
+      "NOT_STARTED": "Not started",
+      "IN_PROGRESS": "In progress",
+      "COMPLETED": "Completed",
+      "DELAYED": "Delayed"
+    }
+  },
+  "submissions": {
+    "title": "Tenders",
+    "create": "Create tender",
+    "offers": "Offers",
+    "clarifications": "Clarifications",
+    "adjudicated": "Awarded",
+    "status": {
+      "DRAFT": "Draft",
+      "PUBLISHED": "Published",
+      "CLOSED": "Closed",
+      "ADJUDICATED": "Awarded"
+    }
+  },
+  "errors": {
+    "genericError": "An error occurred",
+    "notFound": "Item not found",
+    "unauthorized": "Unauthorized access",
+    "forbidden": "Action forbidden",
+    "validationError": "Validation error",
+    "networkError": "Network error"
+  },
+  "auth": {
+    "login": "Log in",
+    "logout": "Log out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset password"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "language": "Language",
+    "notifications": "Notifications",
+    "security": "Security",
+    "preferences": "Preferences"
+  }
+}

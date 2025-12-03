@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Progetti",
+    "lots": "Lotti",
+    "crm": "CRM",
+    "finance": "Finanze",
+    "documents": "Documenti",
+    "construction": "Cantiere",
+    "settings": "Impostazioni",
+    "billing": "Fatturazione",
+    "templates": "Modelli",
+    "tasks": "Compiti",
+    "planning": "Pianificazione",
+    "submissions": "Gare d'appalto",
+    "materials": "Materiali",
+    "reporting": "Rapporti",
+    "brokers": "Mediatori",
+    "notary": "Notaio",
+    "buyers": "Acquirenti",
+    "logout": "Disconnetti"
+  },
+  "actions": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "add": "Aggiungi",
+    "create": "Crea",
+    "update": "Aggiorna",
+    "close": "Chiudi",
+    "confirm": "Conferma",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "export": "Esporta",
+    "import": "Importa",
+    "download": "Scarica",
+    "upload": "Carica",
+    "view": "Visualizza",
+    "details": "Dettagli"
+  },
+  "common": {
+    "yes": "Sì",
+    "no": "No",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "warning": "Avviso",
+    "info": "Informazione",
+    "required": "Richiesto",
+    "optional": "Opzionale",
+    "all": "Tutti",
+    "none": "Nessuno",
+    "other": "Altro",
+    "total": "Totale",
+    "subtotal": "Subtotale",
+    "date": "Data",
+    "time": "Ora",
+    "name": "Nome",
+    "description": "Descrizione",
+    "status": "Stato",
+    "type": "Tipo",
+    "category": "Categoria",
+    "price": "Prezzo",
+    "quantity": "Quantità",
+    "amount": "Importo",
+    "comment": "Commento",
+    "note": "Nota"
+  },
+  "project": {
+    "label": "Progetto",
+    "status": {
+      "PLANNING": "Pianificazione",
+      "SALES": "In vendita",
+      "CONSTRUCTION": "In costruzione",
+      "DELIVERED": "Consegnato",
+      "ARCHIVED": "Archiviato"
+    },
+    "type": {
+      "PPE": "PPE",
+      "QPT": "QPT",
+      "LOCATIF": "Affitto",
+      "MIXTE": "Misto"
+    }
+  },
+  "lot": {
+    "label": "Lotto",
+    "status": {
+      "AVAILABLE": "Disponibile",
+      "RESERVED": "Riservato",
+      "OPTION": "Opzione",
+      "SOLD": "Venduto",
+      "BLOCKED": "Bloccato"
+    },
+    "number": "Numero lotto",
+    "floor": "Piano",
+    "rooms": "Locali",
+    "surface": "Superficie",
+    "price": "Prezzo",
+    "priceWithVAT": "Prezzo IVA incl.",
+    "buyer": "Acquirente"
+  },
+  "buyer": {
+    "label": "Acquirente",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "address": "Indirizzo"
+  },
+  "notifications": {
+    "title": "Notifiche",
+    "markAllRead": "Segna tutto come letto",
+    "noNotifications": "Nessuna notifica",
+    "materialChoice": {
+      "late": {
+        "title": "Scelta materiali in ritardo – Lotto {{lotNumber}}",
+        "body": "Le scelte dei materiali per il lotto {{lotNumber}} (progetto {{projectName}}) sono in ritardo."
+      }
+    },
+    "payment": {
+      "late": {
+        "title": "Acconto in ritardo – {{invoiceNumber}}",
+        "body": "L'acconto {{invoiceNumber}} per il lotto {{lotNumber}} è in ritardo."
+      }
+    },
+    "submission": {
+      "clarifications": {
+        "title": "Chiarimenti aperti – {{title}}",
+        "body": "Ci sono chiarimenti in attesa sulla gara d'appalto \"{{title}}\"."
+      }
+    },
+    "planning": {
+      "phaseLate": {
+        "title": "Fase in ritardo – {{phaseName}}",
+        "body": "La fase \"{{phaseName}}\" del progetto {{projectName}} è in ritardo rispetto alla pianificazione."
+      }
+    },
+    "generic": {
+      "title": "Notifica",
+      "body": "Hai una nuova notifica."
+    }
+  },
+  "tasks": {
+    "title": "Compiti",
+    "create": "Crea compito",
+    "assignedTo": "Assegnato a",
+    "dueDate": "Data di scadenza",
+    "priority": "Priorità",
+    "status": {
+      "OPEN": "Aperto",
+      "IN_PROGRESS": "In corso",
+      "COMPLETED": "Completato",
+      "CANCELLED": "Annullato"
+    },
+    "type": {
+      "MATERIAL_CHOICE": "Scelta materiali",
+      "PAYMENT": "Pagamento",
+      "SUBMISSION": "Gara d'appalto",
+      "PLANNING": "Pianificazione",
+      "GENERIC": "Generico"
+    }
+  },
+  "finance": {
+    "budget": "Budget",
+    "engaged": "Impegnato",
+    "invoiced": "Fatturato",
+    "paid": "Pagato",
+    "remaining": "Rimanente",
+    "invoice": "Fattura",
+    "payment": "Pagamento",
+    "dueDate": "Data di scadenza"
+  },
+  "materials": {
+    "catalog": "Catalogo",
+    "choice": "Scelta",
+    "choices": "Scelte",
+    "category": "Categoria",
+    "option": "Opzione",
+    "standardPrice": "Prezzo standard",
+    "supplement": "Supplemento",
+    "totalSupplement": "Totale supplementi",
+    "deadline": "Scadenza",
+    "changeRequest": "Richiesta di modifica"
+  },
+  "planning": {
+    "phase": "Fase",
+    "startDate": "Data inizio",
+    "endDate": "Data fine",
+    "plannedStart": "Inizio previsto",
+    "plannedEnd": "Fine prevista",
+    "actualStart": "Inizio effettivo",
+    "actualEnd": "Fine effettiva",
+    "progress": "Avanzamento",
+    "status": {
+      "NOT_STARTED": "Non iniziato",
+      "IN_PROGRESS": "In corso",
+      "COMPLETED": "Completato",
+      "DELAYED": "In ritardo"
+    }
+  },
+  "submissions": {
+    "title": "Gare d'appalto",
+    "create": "Crea gara d'appalto",
+    "offers": "Offerte",
+    "clarifications": "Chiarimenti",
+    "adjudicated": "Aggiudicata",
+    "status": {
+      "DRAFT": "Bozza",
+      "PUBLISHED": "Pubblicata",
+      "CLOSED": "Chiusa",
+      "ADJUDICATED": "Aggiudicata"
+    }
+  },
+  "errors": {
+    "genericError": "Si è verificato un errore",
+    "notFound": "Elemento non trovato",
+    "unauthorized": "Accesso non autorizzato",
+    "forbidden": "Azione vietata",
+    "validationError": "Errore di convalida",
+    "networkError": "Errore di rete"
+  },
+  "auth": {
+    "login": "Accedi",
+    "logout": "Disconnetti",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Password dimenticata?",
+    "resetPassword": "Reimposta password"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "profile": "Profilo",
+    "language": "Lingua",
+    "notifications": "Notifiche",
+    "security": "Sicurezza",
+    "preferences": "Preferenze"
+  }
+}

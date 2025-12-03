@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Projekte",
+    "lots": "Lose",
+    "crm": "CRM",
+    "finance": "Finanzen",
+    "documents": "Dokumente",
+    "construction": "Baustelle",
+    "settings": "Einstellungen",
+    "billing": "Abrechnung",
+    "templates": "Vorlagen",
+    "tasks": "Aufgaben",
+    "planning": "Planung",
+    "submissions": "Ausschreibungen",
+    "materials": "Materialien",
+    "reporting": "Berichte",
+    "brokers": "Makler",
+    "notary": "Notar",
+    "buyers": "Käufer",
+    "logout": "Abmelden"
+  },
+  "actions": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "add": "Hinzufügen",
+    "create": "Erstellen",
+    "update": "Aktualisieren",
+    "close": "Schliessen",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "export": "Exportieren",
+    "import": "Importieren",
+    "download": "Herunterladen",
+    "upload": "Hochladen",
+    "view": "Ansehen",
+    "details": "Details"
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "Nein",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "warning": "Warnung",
+    "info": "Information",
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "all": "Alle",
+    "none": "Keine",
+    "other": "Andere",
+    "total": "Gesamt",
+    "subtotal": "Zwischensumme",
+    "date": "Datum",
+    "time": "Zeit",
+    "name": "Name",
+    "description": "Beschreibung",
+    "status": "Status",
+    "type": "Typ",
+    "category": "Kategorie",
+    "price": "Preis",
+    "quantity": "Menge",
+    "amount": "Betrag",
+    "comment": "Kommentar",
+    "note": "Notiz"
+  },
+  "project": {
+    "label": "Projekt",
+    "status": {
+      "PLANNING": "Planung",
+      "SALES": "Verkauf",
+      "CONSTRUCTION": "Bau",
+      "DELIVERED": "Geliefert",
+      "ARCHIVED": "Archiviert"
+    },
+    "type": {
+      "PPE": "WEG",
+      "QPT": "QPT",
+      "LOCATIF": "Mietobjekt",
+      "MIXTE": "Gemischt"
+    }
+  },
+  "lot": {
+    "label": "Los",
+    "status": {
+      "AVAILABLE": "Verfügbar",
+      "RESERVED": "Reserviert",
+      "OPTION": "Option",
+      "SOLD": "Verkauft",
+      "BLOCKED": "Blockiert"
+    },
+    "number": "Los-Nummer",
+    "floor": "Etage",
+    "rooms": "Zimmer",
+    "surface": "Fläche",
+    "price": "Preis",
+    "priceWithVAT": "Preis inkl. MwSt.",
+    "buyer": "Käufer"
+  },
+  "buyer": {
+    "label": "Käufer",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Adresse"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "markAllRead": "Alle als gelesen markieren",
+    "noNotifications": "Keine Benachrichtigungen",
+    "materialChoice": {
+      "late": {
+        "title": "Materialauswahl verspätet – Los {{lotNumber}}",
+        "body": "Die Materialauswahl für Los {{lotNumber}} (Projekt {{projectName}}) ist verspätet."
+      }
+    },
+    "payment": {
+      "late": {
+        "title": "Zahlung überfällig – {{invoiceNumber}}",
+        "body": "Die Zahlung {{invoiceNumber}} für Los {{lotNumber}} ist überfällig."
+      }
+    },
+    "submission": {
+      "clarifications": {
+        "title": "Offene Klärungen – {{title}}",
+        "body": "Es gibt offene Klärungen zur Ausschreibung \"{{title}}\"."
+      }
+    },
+    "planning": {
+      "phaseLate": {
+        "title": "Phase verspätet – {{phaseName}}",
+        "body": "Die Phase \"{{phaseName}}\" des Projekts {{projectName}} ist gegenüber dem Plan verspätet."
+      }
+    },
+    "generic": {
+      "title": "Benachrichtigung",
+      "body": "Sie haben eine neue Benachrichtigung."
+    }
+  },
+  "tasks": {
+    "title": "Aufgaben",
+    "create": "Aufgabe erstellen",
+    "assignedTo": "Zugewiesen an",
+    "dueDate": "Fälligkeitsdatum",
+    "priority": "Priorität",
+    "status": {
+      "OPEN": "Offen",
+      "IN_PROGRESS": "In Bearbeitung",
+      "COMPLETED": "Abgeschlossen",
+      "CANCELLED": "Abgebrochen"
+    },
+    "type": {
+      "MATERIAL_CHOICE": "Materialauswahl",
+      "PAYMENT": "Zahlung",
+      "SUBMISSION": "Ausschreibung",
+      "PLANNING": "Planung",
+      "GENERIC": "Allgemein"
+    }
+  },
+  "finance": {
+    "budget": "Budget",
+    "engaged": "Gebunden",
+    "invoiced": "Fakturiert",
+    "paid": "Bezahlt",
+    "remaining": "Verbleibend",
+    "invoice": "Rechnung",
+    "payment": "Zahlung",
+    "dueDate": "Fälligkeitsdatum"
+  },
+  "materials": {
+    "catalog": "Katalog",
+    "choice": "Auswahl",
+    "choices": "Auswahlmöglichkeiten",
+    "category": "Kategorie",
+    "option": "Option",
+    "standardPrice": "Standardpreis",
+    "supplement": "Aufpreis",
+    "totalSupplement": "Gesamtaufpreis",
+    "deadline": "Frist",
+    "changeRequest": "Änderungsantrag"
+  },
+  "planning": {
+    "phase": "Phase",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum",
+    "plannedStart": "Geplanter Start",
+    "plannedEnd": "Geplantes Ende",
+    "actualStart": "Tatsächlicher Start",
+    "actualEnd": "Tatsächliches Ende",
+    "progress": "Fortschritt",
+    "status": {
+      "NOT_STARTED": "Nicht begonnen",
+      "IN_PROGRESS": "In Bearbeitung",
+      "COMPLETED": "Abgeschlossen",
+      "DELAYED": "Verspätet"
+    }
+  },
+  "submissions": {
+    "title": "Ausschreibungen",
+    "create": "Ausschreibung erstellen",
+    "offers": "Angebote",
+    "clarifications": "Klärungen",
+    "adjudicated": "Vergeben",
+    "status": {
+      "DRAFT": "Entwurf",
+      "PUBLISHED": "Veröffentlicht",
+      "CLOSED": "Geschlossen",
+      "ADJUDICATED": "Vergeben"
+    }
+  },
+  "errors": {
+    "genericError": "Ein Fehler ist aufgetreten",
+    "notFound": "Element nicht gefunden",
+    "unauthorized": "Zugriff nicht autorisiert",
+    "forbidden": "Aktion verboten",
+    "validationError": "Validierungsfehler",
+    "networkError": "Netzwerkfehler"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "resetPassword": "Passwort zurücksetzen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "profile": "Profil",
+    "language": "Sprache",
+    "notifications": "Benachrichtigungen",
+    "security": "Sicherheit",
+    "preferences": "Einstellungen"
+  }
+}

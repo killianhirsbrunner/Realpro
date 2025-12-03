@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "projects": "Projets",
+    "lots": "Lots",
+    "crm": "CRM",
+    "finance": "Finance",
+    "documents": "Documents",
+    "construction": "Chantier",
+    "settings": "Paramètres",
+    "billing": "Facturation",
+    "templates": "Templates",
+    "tasks": "Tâches",
+    "planning": "Planning",
+    "submissions": "Soumissions",
+    "materials": "Matériaux",
+    "reporting": "Reporting",
+    "brokers": "Courtiers",
+    "notary": "Notaire",
+    "buyers": "Acquéreurs",
+    "logout": "Se déconnecter"
+  },
+  "actions": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "add": "Ajouter",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "export": "Exporter",
+    "import": "Importer",
+    "download": "Télécharger",
+    "upload": "Uploader",
+    "view": "Voir",
+    "details": "Détails"
+  },
+  "common": {
+    "yes": "Oui",
+    "no": "Non",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Avertissement",
+    "info": "Information",
+    "required": "Requis",
+    "optional": "Optionnel",
+    "all": "Tous",
+    "none": "Aucun",
+    "other": "Autre",
+    "total": "Total",
+    "subtotal": "Sous-total",
+    "date": "Date",
+    "time": "Heure",
+    "name": "Nom",
+    "description": "Description",
+    "status": "Statut",
+    "type": "Type",
+    "category": "Catégorie",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "amount": "Montant",
+    "comment": "Commentaire",
+    "note": "Note"
+  },
+  "project": {
+    "label": "Projet",
+    "status": {
+      "PLANNING": "Planification",
+      "SALES": "En vente",
+      "CONSTRUCTION": "En chantier",
+      "DELIVERED": "Livré",
+      "ARCHIVED": "Archivé"
+    },
+    "type": {
+      "PPE": "PPE",
+      "QPT": "QPT",
+      "LOCATIF": "Locatif",
+      "MIXTE": "Mixte"
+    }
+  },
+  "lot": {
+    "label": "Lot",
+    "status": {
+      "AVAILABLE": "Disponible",
+      "RESERVED": "Réservé",
+      "OPTION": "Option",
+      "SOLD": "Vendu",
+      "BLOCKED": "Bloqué"
+    },
+    "number": "Numéro de lot",
+    "floor": "Étage",
+    "rooms": "Pièces",
+    "surface": "Surface",
+    "price": "Prix",
+    "priceWithVAT": "Prix TTC",
+    "buyer": "Acquéreur"
+  },
+  "buyer": {
+    "label": "Acquéreur",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Tout marquer comme lu",
+    "noNotifications": "Aucune notification",
+    "materialChoice": {
+      "late": {
+        "title": "Choix matériaux en retard – Lot {{lotNumber}}",
+        "body": "Les choix matériaux pour le lot {{lotNumber}} (projet {{projectName}}) sont en retard."
+      }
+    },
+    "payment": {
+      "late": {
+        "title": "Acompte en retard – {{invoiceNumber}}",
+        "body": "L'acompte {{invoiceNumber}} pour le lot {{lotNumber}} est en retard."
+      }
+    },
+    "submission": {
+      "clarifications": {
+        "title": "Clarifications ouvertes – {{title}}",
+        "body": "Des clarifications sont en attente sur la soumission \"{{title}}\"."
+      }
+    },
+    "planning": {
+      "phaseLate": {
+        "title": "Phase en retard – {{phaseName}}",
+        "body": "La phase \"{{phaseName}}\" du projet {{projectName}} est en retard par rapport au planning."
+      }
+    },
+    "generic": {
+      "title": "Notification",
+      "body": "Vous avez une nouvelle notification."
+    }
+  },
+  "tasks": {
+    "title": "Tâches",
+    "create": "Créer une tâche",
+    "assignedTo": "Assigné à",
+    "dueDate": "Date d'échéance",
+    "priority": "Priorité",
+    "status": {
+      "OPEN": "Ouverte",
+      "IN_PROGRESS": "En cours",
+      "COMPLETED": "Terminée",
+      "CANCELLED": "Annulée"
+    },
+    "type": {
+      "MATERIAL_CHOICE": "Choix matériaux",
+      "PAYMENT": "Paiement",
+      "SUBMISSION": "Soumission",
+      "PLANNING": "Planning",
+      "GENERIC": "Générique"
+    }
+  },
+  "finance": {
+    "budget": "Budget",
+    "engaged": "Engagé",
+    "invoiced": "Facturé",
+    "paid": "Payé",
+    "remaining": "Restant",
+    "invoice": "Facture",
+    "payment": "Paiement",
+    "dueDate": "Date d'échéance"
+  },
+  "materials": {
+    "catalog": "Catalogue",
+    "choice": "Choix",
+    "choices": "Choix",
+    "category": "Catégorie",
+    "option": "Option",
+    "standardPrice": "Prix standard",
+    "supplement": "Supplément",
+    "totalSupplement": "Total suppléments",
+    "deadline": "Date limite",
+    "changeRequest": "Demande de modification"
+  },
+  "planning": {
+    "phase": "Phase",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "plannedStart": "Début prévu",
+    "plannedEnd": "Fin prévue",
+    "actualStart": "Début réel",
+    "actualEnd": "Fin réelle",
+    "progress": "Avancement",
+    "status": {
+      "NOT_STARTED": "Non débuté",
+      "IN_PROGRESS": "En cours",
+      "COMPLETED": "Terminé",
+      "DELAYED": "En retard"
+    }
+  },
+  "submissions": {
+    "title": "Soumissions",
+    "create": "Créer une soumission",
+    "offers": "Offres",
+    "clarifications": "Clarifications",
+    "adjudicated": "Adjudiquée",
+    "status": {
+      "DRAFT": "Brouillon",
+      "PUBLISHED": "Publiée",
+      "CLOSED": "Clôturée",
+      "ADJUDICATED": "Adjudiquée"
+    }
+  },
+  "errors": {
+    "genericError": "Une erreur est survenue",
+    "notFound": "Élément introuvable",
+    "unauthorized": "Accès non autorisé",
+    "forbidden": "Action interdite",
+    "validationError": "Erreur de validation",
+    "networkError": "Erreur réseau"
+  },
+  "auth": {
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "resetPassword": "Réinitialiser le mot de passe"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "profile": "Profil",
+    "language": "Langue",
+    "notifications": "Notifications",
+    "security": "Sécurité",
+    "preferences": "Préférences"
+  }
+}

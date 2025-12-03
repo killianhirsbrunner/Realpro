@@ -1,44 +1,21 @@
-import { useState, useEffect } from 'react';
-import fr from './locales/fr.json';
-import de from './locales/de.json';
-import en from './locales/en.json';
-import it from './locales/it.json';
+import { useTranslation } from 'react-i18next';
+import i18n, { locales, defaultLocale, localeLabels } from './config';
+import type { Locale } from './config';
 
-export type LanguageCode = 'FR' | 'DE' | 'EN' | 'IT';
-
-const translations = { fr, de, en, it };
+export { i18n, locales, defaultLocale, localeLabels };
+export type { Locale };
 
 export function useI18n() {
-  const [language, setLanguage] = useState<LanguageCode>(() => {
-    const stored = localStorage.getItem('language');
-    return (stored as LanguageCode) || 'FR';
-  });
+  const { t, i18n: i18nInstance } = useTranslation();
 
-  useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
+  const language = i18nInstance.language as Locale;
 
-  const t = (key: string): string => {
-    const keys = key.split('.');
-    let value: any = translations[language.toLowerCase() as 'fr' | 'de' | 'en' | 'it'];
-
-    for (const k of keys) {
-      value = value?.[k];
-    }
-
-    return value || key;
+  const setLanguage = async (newLang: Locale) => {
+    await i18nInstance.changeLanguage(newLang);
+    localStorage.setItem('preferredLanguage', newLang);
   };
 
   return { language, setLanguage, t };
 }
 
-export function getTranslation(key: string, lang: LanguageCode): string {
-  const keys = key.split('.');
-  let value: any = translations[lang.toLowerCase() as 'fr' | 'de' | 'en' | 'it'];
-
-  for (const k of keys) {
-    value = value?.[k];
-  }
-
-  return value || key;
-}
+export * from './helpers';
