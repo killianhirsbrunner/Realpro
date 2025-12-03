@@ -129,8 +129,60 @@ export function ProjectCockpit() {
         ?.filter(l => l.status === 'SOLD')
         .reduce((sum, l) => sum + (l.price_vat || 0), 0) || 0;
 
-      // TODO: Fetch real data from other tables
-      // For now, using mock data structure
+      // Fetch notary files statistics
+      const { data: notaryFiles } = await supabase
+        .from('notary_files')
+        .select('status, appointment_date, buyers(first_name, last_name), lots(lot_number)')
+        .eq('project_id', id);
+
+      const readyFiles = notaryFiles?.filter(f => f.status === 'READY').length || 0;
+      const signedFiles = notaryFiles?.filter(f => f.status === 'SIGNED').length || 0;
+      const incompleteFiles = notaryFiles?.filter(f => f.status === 'INCOMPLETE' || f.status === 'IN_PROGRESS').length || 0;
+
+      const upcomingSignatures = (notaryFiles || [])
+        .filter(f => f.appointment_date && f.status === 'READY')
+        .sort((a, b) => new Date(a.appointment_date!).getTime() - new Date(b.appointment_date!).getTime())
+        .slice(0, 5)
+        .map(f => ({
+          buyer_name: `${f.buyers?.first_name || ''} ${f.buyers?.last_name || ''}`.trim(),
+          lot_number: f.lots?.lot_number || '',
+          date: f.appointment_date!,
+        }));
+
+      // Fetch CFC budgets
+      const { data: cfcBudgets } = await supabase
+        .from('cfc_budgets')
+        .select('cfc_code, label, budget_initial, budget_revised, engagement_total, invoiced_total, paid_total')
+        .eq('project_id', id)
+        .order('budget_revised', { ascending: false })
+        .limit(5);
+
+      const cfcTotal = (cfcBudgets || []).reduce((acc, cfc) => ({
+        budget: acc.budget + (cfc.budget_initial || 0),
+        engagement: acc.engagement + (cfc.engagement_total || 0),
+        invoiced: acc.invoiced + (cfc.invoiced_total || 0),
+        paid: acc.paid + (cfc.paid_total || 0),
+      }), { budget: 0, engagement: 0, invoiced: 0, paid: 0 });
+
+      // Fetch construction phases
+      const { data: phases } = await supabase
+        .from('project_phases')
+        .select('name, planned_end_date, actual_end_date, status, progress_percent')
+        .eq('project_id', id)
+        .order('order_index');
+
+      const overallProgress = phases && phases.length > 0
+        ? phases.reduce((sum, p) => sum + (p.progress_percent || 0), 0) / phases.length
+        : 0;
+
+      // Fetch submissions statistics
+      const { data: submissions } = await supabase
+        .from('submissions')
+        .select('id, title, cfc_code, status, submission_offers(count)')
+        .eq('project_id', id);
+
+      const submissionsInProgress = submissions?.filter(s => s.status === 'PUBLISHED').length || 0;
+      const submissionsAdjudicated = submissions?.filter(s => s.status === 'ADJUDICATED').length || 0;
 
       const dashboardData: ProjectCockpitData = {
         project: {
@@ -146,27 +198,45 @@ export function ProjectCockpit() {
           total_revenue: totalRevenue,
         },
         notary: {
-          ready_files: 5,
-          signed_files: soldLots,
-          incomplete_files: 3,
-          upcoming_signatures: [],
+          ready_files: readyFiles,
+          signed_files: signedFiles,
+          incomplete_files: incompleteFiles,
+          upcoming_signatures: upcomingSignatures,
         },
         finance: {
-          cfc_budget: 12500000,
-          cfc_engagement: 10800000,
-          cfc_invoiced: 6200000,
-          cfc_paid: 4900000,
-          top_cfc_lines: [],
+          cfc_budget: cfcTotal.budget,
+          cfc_engagement: cfcTotal.engagement,
+          cfc_invoiced: cfcTotal.invoiced,
+          cfc_paid: cfcTotal.paid,
+          top_cfc_lines: (cfcBudgets || []).map(cfc => ({
+            code: cfc.cfc_code,
+            label: cfc.label || '',
+            budget: cfc.budget_revised || cfc.budget_initial || 0,
+            engagement: cfc.engagement_total || 0,
+            invoiced: cfc.invoiced_total || 0,
+            paid: cfc.paid_total || 0,
+          })),
         },
         construction: {
-          overall_progress: 62,
-          phases: [],
+          overall_progress: Math.round(overallProgress),
+          phases: (phases || []).map(p => ({
+            name: p.name,
+            planned_end: p.planned_end_date || '',
+            actual_end: p.actual_end_date,
+            status: p.status,
+          })),
         },
         submissions: {
-          in_progress: 4,
-          adjudicated: 12,
-          open_clarifications: 3,
-          recent: [],
+          in_progress: submissionsInProgress,
+          adjudicated: submissionsAdjudicated,
+          open_clarifications: 0,
+          recent: (submissions || []).slice(0, 5).map(s => ({
+            id: s.id,
+            title: s.title,
+            cfc_code: s.cfc_code || '',
+            offers_count: (s.submission_offers as any)?.length || 0,
+            status: s.status,
+          })),
         },
         activities: [],
       };
@@ -323,12 +393,15 @@ export function ProjectCockpit() {
           </Card>
         </div>
 
-        {notary.upcoming_signatures.length > 0 && (
-          <Card>
-            <Card.Header>
-              <Card.Title>Signatures à venir</Card.Title>
-            </Card.Header>
-            <Card.Content>
+        <Card>
+          <Card.Header>
+            <Card.Title>Signatures à venir</Card.Title>
+            <Card.Description>
+              Prochains rendez-vous de signature planifiés
+            </Card.Description>
+          </Card.Header>
+          <Card.Content>
+            {notary.upcoming_signatures.length > 0 ? (
               <Table>
                 <Table.Header>
                   <Table.Row>
@@ -351,9 +424,22 @@ export function ProjectCockpit() {
                   ))}
                 </Table.Body>
               </Table>
-            </Card.Content>
-          </Card>
-        )}
+            ) : (
+              <p className="text-sm text-gray-500 text-center py-4">
+                Aucune signature planifiée cette semaine.
+              </p>
+            )}
+          </Card.Content>
+        </Card>
+
+        <div className="mt-4">
+          <a
+            href={`/projects/${project.id}/notary`}
+            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+          >
+            Voir tous les dossiers notaire →
+          </a>
+        </div>
       </section>
 
       {/* Block 3: CFC & Finance */}
@@ -386,47 +472,59 @@ export function ProjectCockpit() {
           </Card>
         </div>
 
-        {finance.top_cfc_lines.length > 0 && (
-          <Card>
-            <Card.Content>
-              <Table>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.Head>CFC</Table.Head>
-                    <Table.Head>Budget révisé</Table.Head>
-                    <Table.Head>Engagé</Table.Head>
-                    <Table.Head>Facturé</Table.Head>
-                    <Table.Head>Payé</Table.Head>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                  {finance.top_cfc_lines.map(line => (
-                    <Table.Row key={line.code}>
-                      <Table.Cell>
-                        <div>
-                          <div className="font-medium">{line.code}</div>
-                          <div className="text-xs text-gray-500">{line.label}</div>
-                        </div>
-                      </Table.Cell>
-                      <Table.Cell className="font-mono">{formatCHF(line.budget)}</Table.Cell>
-                      <Table.Cell className="font-mono">{formatCHF(line.engagement)}</Table.Cell>
-                      <Table.Cell className="font-mono">{formatCHF(line.invoiced)}</Table.Cell>
-                      <Table.Cell className="font-mono">{formatCHF(line.paid)}</Table.Cell>
+        <Card>
+          <Card.Header>
+            <Card.Title>Détail par poste CFC</Card.Title>
+            <Card.Description>
+              Top 5 des postes les plus importants
+            </Card.Description>
+          </Card.Header>
+          <Card.Content>
+            {finance.top_cfc_lines.length > 0 ? (
+              <>
+                <Table>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.Head>CFC</Table.Head>
+                      <Table.Head className="text-right">Budget révisé</Table.Head>
+                      <Table.Head className="text-right">Engagé</Table.Head>
+                      <Table.Head className="text-right">Facturé</Table.Head>
+                      <Table.Head className="text-right">Payé</Table.Head>
                     </Table.Row>
-                  ))}
-                </Table.Body>
-              </Table>
-              <div className="mt-4 flex items-center justify-between text-sm">
-                <a href={`/projects/${project.id}/cfc`} className="text-blue-600 hover:text-blue-700 font-medium">
-                  Voir le détail CFC →
-                </a>
-                <a href={`/projects/${project.id}/contracts`} className="text-blue-600 hover:text-blue-700 font-medium">
-                  Voir les contrats entreprises →
-                </a>
-              </div>
-            </Card.Content>
-          </Card>
-        )}
+                  </Table.Header>
+                  <Table.Body>
+                    {finance.top_cfc_lines.map(line => (
+                      <Table.Row key={line.code}>
+                        <Table.Cell>
+                          <div>
+                            <div className="font-medium text-sm">{line.code}</div>
+                            <div className="text-xs text-gray-500">{line.label}</div>
+                          </div>
+                        </Table.Cell>
+                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.budget)}</Table.Cell>
+                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.engagement)}</Table.Cell>
+                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.invoiced)}</Table.Cell>
+                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.paid)}</Table.Cell>
+                      </Table.Row>
+                    ))}
+                  </Table.Body>
+                </Table>
+                <div className="mt-4 flex flex-wrap gap-4 text-sm">
+                  <a href={`/projects/${project.id}/cfc`} className="text-blue-600 hover:text-blue-700 font-medium">
+                    Voir le détail CFC →
+                  </a>
+                  <a href={`/projects/${project.id}/contracts`} className="text-blue-600 hover:text-blue-700 font-medium">
+                    Voir les contrats entreprises →
+                  </a>
+                </div>
+              </>
+            ) : (
+              <p className="text-sm text-gray-500 text-center py-4">
+                Aucun budget CFC n'a été saisi pour ce projet.
+              </p>
+            )}
+          </Card.Content>
+        </Card>
       </section>
 
       {/* Block 4: Construction */}
