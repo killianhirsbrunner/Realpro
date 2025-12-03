@@ -13,6 +13,7 @@ import {
 import { Card } from '../components/ui/Card';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Badge } from '../components/ui/Badge';
+import ProjectExportPanel from '../components/ProjectExportPanel';
 
 type ProjectCockpit = {
   project: {
@@ -327,6 +328,10 @@ export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardPr
             </div>
           </div>
         </Card>
+      </section>
+
+      <section>
+        <ProjectExportPanel projectId={projectId} />
       </section>
     </div>
   );
