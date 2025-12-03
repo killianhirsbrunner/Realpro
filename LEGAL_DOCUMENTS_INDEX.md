@@ -399,7 +399,75 @@ Toutes les pages légales incluent des liens vers les autres pages dans leur foo
 
 ---
 
-## 10. RÉCAPITULATIF PAR CATÉGORIE
+## 10. VERSIONS RÉSUMÉES (LECTURE RAPIDE)
+
+Pour faciliter la compréhension et l'adhésion des clients, des **versions résumées** ont été créées pour les documents les plus complexes.
+
+### 10.1 DPA Résumé
+**Fichier :** `DPA_RESUME.md`
+**Type :** Version condensée de l'accord de traitement des données
+**Statut :** ✅ Créé
+
+**Contenu (11 sections vs 15 articles complets) :**
+- Rôles simplifiés (Responsable vs Sous-traitant)
+- Types de données traités (tableau)
+- Obligations Realpro SA (sécurité, confidentialité, sous-traitants)
+- Obligations du Client
+- Sort des données (30 jours export)
+- Notification data breach (72h)
+- Tableau des sous-traitants avec conformité
+
+**Utilisé pour :** Présentation commerciale, onboarding rapide
+
+### 10.2 SLA Résumé
+**Fichier :** `SLA_RESUME.md`
+**Type :** Version condensée des engagements de service
+**Statut :** ✅ Créé
+
+**Contenu (12 sections vs 14 sections complètes) :**
+- Disponibilité par formule (tableau : 99,5% à 99,9%)
+- Performance (temps de réponse cibles)
+- Support technique (tableaux comparatifs)
+- Sauvegardes (quotidiennes/hebdomadaires/mensuelles)
+- Sécurité (WAF, DDoS, IDS/IPS)
+- Compensation (crédits de service 5-20%)
+- RPO/RTO (objectifs de reprise)
+
+**Utilisé pour :** Propositions commerciales, comparaison formules
+
+### 10.3 EULA Résumé
+**Fichier :** `EULA_RESUME.md`
+**Type :** Version condensée de la licence utilisateur final
+**Statut :** ✅ Créé
+
+**Contenu (15 sections vs 15 sections complètes, mais condensées) :**
+- Licence accordée (non exclusif, non transférable, limité au rôle)
+- Interdictions strictes (tableau ✅/❌)
+- Accès et sécurité (responsabilités utilisateur)
+- Traçabilité (logs d'audit)
+- Suspension du compte (cas de figure)
+- Limitations de garantie ("tel quel")
+- Propriété intellectuelle (Realpro SA)
+
+**Utilisé pour :** Modal d'acceptation lors de la création de compte
+
+### 10.4 Charte de Sécurité Résumé
+**Fichier :** `CHARTE_SECURITE_RESUME.md`
+**Type :** Version condensée de la politique de sécurité
+**Statut :** ✅ Créé
+
+**Contenu (9 sections vs 15 sections complètes) :**
+- Engagements Realpro SA (infrastructure, sauvegardes, contrôles, surveillance)
+- Bonnes pratiques clients (authentification, gestion accès, vigilance)
+- Protocoles en cas d'incident (notification 72h)
+- Conformité LPD/RGPD (responsabilités partagées)
+- Tableau résumé ✅ À FAIRE / ❌ À NE PAS FAIRE
+
+**Utilisé pour :** Formation utilisateurs, sensibilisation à la sécurité
+
+---
+
+## 11. RÉCAPITULATIF PAR CATÉGORIE
 
 ### Documents de base (2)
 - ✅ COPYRIGHT
@@ -411,32 +479,32 @@ Toutes les pages légales incluent des liens vers les autres pages dans leur foo
 - ✅ Mentions Légales (page web)
 - ✅ Politique de Confidentialité (page web)
 
-### Contrats B2B (3)
+### Contrats B2B (3 + 2 résumés)
 - ✅ Contrat SaaS B2B complet
-- ✅ DPA (Data Processing Agreement)
-- ✅ SLA (Service Level Agreement)
+- ✅ DPA (Data Processing Agreement) + version résumé
+- ✅ SLA (Service Level Agreement) + version résumé
 
 ### Contrats développeurs (1)
 - ✅ Contrat de Développement et Cession de Droits
 
-### Licences utilisateur (1)
-- ✅ EULA (End User License Agreement)
+### Licences utilisateur (1 + 1 résumé)
+- ✅ EULA (End User License Agreement) + version résumé
 
-### Politiques de sécurité (1)
-- ✅ Charte de Sécurité
+### Politiques de sécurité (1 + 1 résumé)
+- ✅ Charte de Sécurité + version résumé
 
 ### Documentation (3)
 - ✅ LEGAL_IMPLEMENTATION_SUMMARY.md
 - ✅ CGV_INTEGRATION_SUMMARY.md
 - ✅ LEGAL_DOCUMENTS_INDEX.md (ce document)
 
-**TOTAL : 15 documents juridiques complets**
+**TOTAL : 19 documents juridiques (15 complets + 4 résumés)**
 
 ---
 
-## 11. CHECKLIST DE MISE EN PRODUCTION
+## 12. CHECKLIST DE MISE EN PRODUCTION
 
-### 11.1 Informations à compléter
+### 12.1 Informations à compléter
 
 **Dans tous les documents :**
 - [ ] Numéro IDE : CHE-XXX.XXX.XXX
@@ -451,7 +519,7 @@ Toutes les pages légales incluent des liens vers les autres pages dans leur foo
 - [ ] Définir les tarifs exacts pour chaque formule (Basic, Professional, Enterprise)
 - [ ] Définir les options additionnelles et leurs tarifs
 
-### 11.2 Validations juridiques
+### 12.2 Validations juridiques
 
 - [ ] Faire valider **tous les documents** par un avocat suisse spécialisé en droit commercial et propriété intellectuelle
 - [ ] Vérifier la conformité LPD avec le PFPDT (préposé fédéral)
