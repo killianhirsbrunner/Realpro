@@ -44,6 +44,8 @@ export interface SalesContractDto {
   project_id: string;
   lot_id: string;
   buyer_id: string;
+  buyer_file_id: string | null;
+  notary_file_id: string | null;
   signed_at: string | null;
   effective_at: string | null;
   document_id: string | null;
@@ -68,6 +70,24 @@ export interface SalesContractDto {
     name: string;
     file_url: string | null;
   };
+  buyer_file?: {
+    id: string;
+    name: string;
+    status: string;
+  };
+  notary_file?: {
+    id: string;
+    status: string;
+    notary_id: string | null;
+  };
+}
+
+export interface BuyerOption {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string | null;
+  phone: string | null;
 }
 
 export interface ReservationDto {
@@ -352,11 +372,68 @@ export async function createSalesContract(
         notes: notes,
         created_by_id: user.id,
       })
-      .select()
+      .select(`
+        *,
+        lot:lots(code, type, price_total),
+        buyer:buyers(first_name, last_name, email),
+        project:projects(name, code),
+        buyer_file:buyer_files(id, name, status),
+        notary_file:notary_files(id, status, notary_id)
+      `)
       .single();
 
     if (error) throw error;
     return { success: true, data };
+  } catch (e: any) {
+    return { success: false, error: e.message };
+  }
+}
+
+export async function getSalesContract(
+  salesContractId: string
+): Promise<{ success: boolean; data?: SalesContractDto; error?: string }> {
+  try {
+    const { data, error } = await supabase
+      .from('sales_contracts')
+      .select(`
+        *,
+        lot:lots(code, type, price_total),
+        buyer:buyers(first_name, last_name, email),
+        project:projects(name, code),
+        document:documents(name, file_url),
+        buyer_file:buyer_files(id, name, status),
+        notary_file:notary_files(id, status, notary_id)
+      `)
+      .eq('id', salesContractId)
+      .single();
+
+    if (error) throw error;
+    return { success: true, data: data as SalesContractDto };
+  } catch (e: any) {
+    return { success: false, error: e.message };
+  }
+}
+
+export async function getBuyersForLot(
+  lotId: string
+): Promise<{ success: boolean; data?: BuyerOption[]; error?: string }> {
+  try {
+    const { data: lot, error: lotError } = await supabase
+      .from('lots')
+      .select('project_id')
+      .eq('id', lotId)
+      .single();
+
+    if (lotError) throw lotError;
+
+    const { data, error } = await supabase
+      .from('buyers')
+      .select('id, first_name, last_name, email, phone')
+      .eq('project_id', lot.project_id)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return { success: true, data: data as BuyerOption[] };
   } catch (e: any) {
     return { success: false, error: e.message };
   }
