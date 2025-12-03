@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronDown, LogOut, User, Globe } from 'lucide-react';
 import { useI18n, type LanguageCode } from '../../lib/i18n';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { SearchBar } from '../ui/SearchBar';
 import clsx from 'clsx';
 
 export function Topbar() {
@@ -18,11 +19,9 @@ export function Topbar() {
   ];
 
   return (
-    <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
-      <div className="flex items-center space-x-4">
-        <h1 className="text-lg font-semibold text-gray-900">
-          {t('dashboard.welcome')}
-        </h1>
+    <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between gap-4 px-6">
+      <div className="flex items-center space-x-4 flex-1">
+        <SearchBar placeholder="Rechercher un projet, lot, acheteur, entreprise..." />
       </div>
 
       <div className="flex items-center space-x-4">
