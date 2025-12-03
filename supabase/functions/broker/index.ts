@@ -64,6 +64,14 @@ Deno.serve(async (req: Request) => {
       return jsonResponse(contract);
     }
 
+    if (method === 'GET' && pathSegments[0] === 'projects' && pathSegments[2] === 'lots' && pathSegments[4] === 'deal') {
+      const projectId = pathSegments[1];
+      const lotId = pathSegments[3];
+      const body = await req.json().catch(() => ({}));
+      const deal = await getLotDealDetails(supabase, projectId, lotId, body.userId);
+      return jsonResponse(deal);
+    }
+
     return jsonResponse({ error: 'Route introuvable' }, 404);
 
   } catch (error) {
@@ -430,5 +438,161 @@ async function getSalesContractDetail(supabase: any, contractId: string) {
       notaryContact: contract.buyer_file.notary_contact,
     } : null,
     document: contract.document,
+  };
+}
+
+async function getLotDealDetails(supabase: any, projectId: string, lotId: string, userId: string) {
+  await ensureBrokerAccess(supabase, userId, projectId);
+
+  const { data: lot, error: lotError } = await supabase
+    .from('lots')
+    .select(`
+      id,
+      lot_number,
+      rooms_label,
+      surface_habitable,
+      status,
+      price_vat,
+      price_qpt,
+      buyer_id,
+      building:buildings(id, name),
+      floor:floors(id, label),
+      buyer:buyers!lots_buyer_id_fkey(id, first_name, last_name, email, phone)
+    `)
+    .eq('id', lotId)
+    .eq('project_id', projectId)
+    .maybeSingle();
+
+  if (lotError) throw lotError;
+  if (!lot) throw new Error('Lot introuvable dans ce projet');
+
+  const { data: reservation } = await supabase
+    .from('reservations')
+    .select('id, start_date, end_date, signed_at, status')
+    .eq('lot_id', lotId)
+    .order('start_date', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const { data: salesContract } = await supabase
+    .from('sales_contracts')
+    .select(`
+      id,
+      signed_at,
+      effective_at,
+      document:documents(id, filename, file_path, file_size, mime_type)
+    `)
+    .eq('lot_id', lotId)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  let buyerFile = null;
+  let notaryFile = null;
+
+  if (lot.buyer_id) {
+    const { data: bfData } = await supabase
+      .from('buyer_files')
+      .select('id, status, notary_name, notary_contact')
+      .eq('buyer_id', lot.buyer_id)
+      .eq('project_id', projectId)
+      .maybeSingle();
+
+    buyerFile = bfData;
+  }
+
+  if (salesContract) {
+    const { data: nfData } = await supabase
+      .from('notary_files')
+      .select(`
+        id,
+        status,
+        notary_name,
+        notary_contact
+      `)
+      .eq('sales_contract_id', salesContract.id)
+      .maybeSingle();
+
+    if (nfData) {
+      const { data: acts } = await supabase
+        .from('notary_acts')
+        .select(`
+          id,
+          act_type,
+          created_at,
+          document:documents(id, filename, file_path)
+        `)
+        .eq('notary_file_id', nfData.id)
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      const { data: appointments } = await supabase
+        .from('notary_appointments')
+        .select('id, date, location, notes')
+        .eq('notary_file_id', nfData.id)
+        .order('date', { ascending: false })
+        .limit(1);
+
+      notaryFile = {
+        ...nfData,
+        lastAct: acts && acts.length > 0 ? acts[0] : null,
+        lastAppointment: appointments && appointments.length > 0 ? appointments[0] : null,
+      };
+    }
+  }
+
+  return {
+    lot: {
+      id: lot.id,
+      lotNumber: lot.lot_number,
+      roomsLabel: lot.rooms_label,
+      surfaceHabitable: lot.surface_habitable,
+      status: lot.status,
+      building: lot.building?.name || null,
+      floor: lot.floor?.label || null,
+      priceVat: lot.price_vat,
+      priceQpt: lot.price_qpt,
+    },
+    buyer: lot.buyer ? {
+      id: lot.buyer.id,
+      firstName: lot.buyer.first_name,
+      lastName: lot.buyer.last_name,
+      email: lot.buyer.email,
+      phone: lot.buyer.phone,
+    } : null,
+    reservation: reservation ? {
+      id: reservation.id,
+      startDate: reservation.start_date,
+      endDate: reservation.end_date,
+      signedAt: reservation.signed_at,
+      status: reservation.status,
+    } : null,
+    salesContract: salesContract ? {
+      id: salesContract.id,
+      signedAt: salesContract.signed_at,
+      effectiveAt: salesContract.effective_at,
+      document: salesContract.document ? {
+        id: salesContract.document.id,
+        name: salesContract.document.filename,
+        downloadUrl: `/documents/${salesContract.document.id}/download`,
+      } : null,
+      notary: notaryFile ? {
+        status: notaryFile.status,
+        notaryName: notaryFile.notary_name,
+        notaryContact: notaryFile.notary_contact,
+        lastAct: notaryFile.lastAct ? {
+          id: notaryFile.lastAct.document.id,
+          name: notaryFile.lastAct.document.filename,
+          downloadUrl: `/documents/${notaryFile.lastAct.document.id}/download`,
+        } : null,
+        lastAppointment: notaryFile.lastAppointment || null,
+      } : null,
+    } : null,
+    buyerFile: buyerFile ? {
+      id: buyerFile.id,
+      status: buyerFile.status,
+      notaryName: buyerFile.notary_name,
+      notaryContact: buyerFile.notary_contact,
+    } : null,
   };
 }
