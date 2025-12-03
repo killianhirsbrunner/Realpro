@@ -87,6 +87,59 @@ Tous les modules demandés ont été créés et adaptés pour votre stack **Reac
 
 ---
 
+### 4. Module Choix Matériaux 🎨
+
+**Edge Function**: `supabase/functions/materials/index.ts` (515 lignes)
+
+**9 Routes API**:
+- `GET /projects/:projectId/catalog` - Catalogue complet
+- `POST /projects/:projectId/categories` - Créer catégorie
+- `PATCH /categories/:categoryId` - Modifier catégorie
+- `POST /options` - Créer option matériau
+- `PATCH /options/:optionId` - Modifier option
+- `POST /options/:optionId/restrictions` - Restrictions
+- `GET /buyers/:buyerId/lots/:lotId` - Choix acquéreur
+- `POST /buyers/:buyerId/choices` - Sauvegarder choix
+- `POST /buyers/:buyerId/change-requests` - Demande modification
+
+**Page React**:
+- `src/pages/buyer/BuyerMaterialChoices.tsx` (485 lignes) - Sélection matériaux
+
+**Features**:
+- ✅ Catalogue par catégories (sols, murs, sanitaires)
+- ✅ Options standard vs payantes
+- ✅ Sélection multiple acquéreur
+- ✅ Calcul temps réel des suppléments
+- ✅ Demandes de modifications spéciales
+- ✅ Historique avec statuts (en attente, accepté, refusé)
+- ✅ Design interactif avec checkboxes
+
+---
+
+### 5. Module Planning Chantier 📅
+
+**Edge Function**: `supabase/functions/planning/index.ts` (210 lignes)
+
+**3 Routes API**:
+- `GET /projects/:projectId` - Planning complet
+- `POST /projects/:projectId/phases` - Créer phase
+- `PATCH /phases/:phaseId` - Modifier phase
+
+**Page React**:
+- `src/pages/ProjectPlanning.tsx` (430 lignes) - Diagramme Gantt
+
+**Features**:
+- ✅ Diagramme de Gantt visuel
+- ✅ 4 KPIs (avancement, terminées, en cours, en retard)
+- ✅ Barre de progression globale
+- ✅ Phases colorées par statut
+- ✅ Marqueurs temporels (mois)
+- ✅ Liste détaillée des phases
+- ✅ Calcul automatique durées
+- ✅ Responsive et moderne
+
+---
+
 ## 📂 Structure des Fichiers
 
 ```
@@ -95,14 +148,20 @@ supabase/functions/
 │   └── index.ts           (599 lignes) ← 7 routes courtiers
 ├── exports/
 │   └── index.ts           (255 lignes) ← 4 exports CSV/JSON
-└── reporting/
-    └── index.ts           (280 lignes) ← 2 routes reporting
+├── reporting/
+│   └── index.ts           (280 lignes) ← 2 routes reporting
+├── materials/
+│   └── index.ts           (515 lignes) ← 9 routes matériaux
+└── planning/
+    └── index.ts           (210 lignes) ← 3 routes planning
 
 src/pages/
-├── BrokerLots.tsx         (292 lignes) ← Liste lots courtier
-├── BrokerSalesContracts.tsx (435 lignes) ← Contrats vente
-├── BrokerLotDetail.tsx    (565 lignes) ← Vue 360° lot
-└── ReportingOverview.tsx  (310 lignes) ← Dashboard direction
+├── BrokerLots.tsx                     (292 lignes) ← Liste lots courtier
+├── BrokerSalesContracts.tsx           (435 lignes) ← Contrats vente
+├── BrokerLotDetail.tsx                (565 lignes) ← Vue 360° lot
+├── ReportingOverview.tsx              (310 lignes) ← Dashboard direction
+├── ProjectPlanning.tsx                (430 lignes) ← Gantt planning
+└── buyer/BuyerMaterialChoices.tsx     (485 lignes) ← Choix matériaux
 
 Documentation/
 ├── BROKER_AND_EXPORTS_MODULES.md      (750+ lignes)
@@ -336,33 +395,40 @@ Edge Functions:
   broker/index.ts      → 599 lignes
   exports/index.ts     → 255 lignes
   reporting/index.ts   → 280 lignes
-  TOTAL BACKEND        → 1'134 lignes
+  materials/index.ts   → 515 lignes
+  planning/index.ts    → 210 lignes
+  TOTAL BACKEND        → 1'859 lignes
 
 Pages React:
-  BrokerLots.tsx               → 292 lignes
-  BrokerSalesContracts.tsx     → 435 lignes
-  BrokerLotDetail.tsx          → 565 lignes
-  ReportingOverview.tsx        → 310 lignes
-  TOTAL FRONTEND               → 1'602 lignes
+  BrokerLots.tsx                  → 292 lignes
+  BrokerSalesContracts.tsx        → 435 lignes
+  BrokerLotDetail.tsx             → 565 lignes
+  ReportingOverview.tsx           → 310 lignes
+  ProjectPlanning.tsx             → 430 lignes
+  BuyerMaterialChoices.tsx        → 485 lignes
+  TOTAL FRONTEND                  → 2'517 lignes
 
 Documentation:
   BROKER_AND_EXPORTS_MODULES.md        → 750+ lignes
   BROKER_DETAIL_AND_REPORTING.md       → 850+ lignes
-  MODULES_COMPLETE_SUMMARY.md          → 400+ lignes
-  TOTAL DOCUMENTATION                  → 2'000+ lignes
+  MATERIALS_AND_PLANNING_MODULES.md    → 950+ lignes
+  MODULES_COMPLETE_SUMMARY.md          → 450+ lignes
+  TOTAL DOCUMENTATION                  → 3'000+ lignes
 
-TOTAL GÉNÉRAL → 4'736+ lignes
+TOTAL GÉNÉRAL → 7'376+ lignes
 ```
 
 ### Fonctionnalités
 
-- ✅ **13 routes API** créées (7 broker, 4 exports, 2 reporting)
-- ✅ **4 pages React** complètes et fonctionnelles
-- ✅ **3 Edge Functions** déployables
+- ✅ **25 routes API** créées (7 broker, 4 exports, 2 reporting, 9 materials, 3 planning)
+- ✅ **6 pages React** complètes et fonctionnelles
+- ✅ **5 Edge Functions** déployables
 - ✅ **4 formats d'export** (CSV, JSON)
-- ✅ **20+ tables** de base de données utilisées
-- ✅ **3 logs d'audit** automatiques
+- ✅ **26+ tables** de base de données utilisées
+- ✅ **6+ logs d'audit** automatiques
 - ✅ **100% TypeScript** type-safe
+- ✅ **Diagramme Gantt** interactif
+- ✅ **Catalogue matériaux** personnalisable
 
 ---
 
@@ -514,4 +580,24 @@ npm run build
 ✅ **Build production** sans erreurs
 ✅ **Architecture Supabase** scalable et moderne
 
-**Total**: 4'736+ lignes de code production-ready adaptées pour React/Vite/Supabase! 🚀🇨🇭
+**Total**: 7'376+ lignes de code production-ready adaptées pour React/Vite/Supabase! 🚀🇨🇭
+
+## 🎯 Modules SaaS Avancés
+
+Les deux derniers modules ajoutés représentent des fonctionnalités de niveau SaaS professionnel:
+
+### Module Choix Matériaux
+- Interface acquéreur intuitive
+- Catalogue organisé par catégories
+- Calcul temps réel des suppléments
+- Workflow de demandes de modifications
+- Historique et suivi statuts
+
+### Module Planning Gantt
+- Visualisation type Microsoft Project
+- Diagramme interactif coloré
+- KPIs de suivi chantier
+- Marqueurs temporels intelligents
+- Responsive et performant
+
+Ces modules complètent parfaitement votre plateforme de gestion immobilière pour en faire une solution complète et professionnelle! 🏗️✨
