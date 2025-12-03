@@ -53,6 +53,39 @@
     "portfolio": "Portefeuille de projets",
     "portfolioDescription": "Vue synthétique des projets, des ventes et des budgets"
   },
+  "signature": {
+    "title": "Signature électronique",
+    "request": "Demander une signature",
+    "send": "Envoyer",
+    "signerEmail": "Email du signataire",
+    "signerName": "Nom du signataire (optionnel)",
+    "noRequests": "Aucune demande de signature",
+    "status": {
+      "pending": "En attente",
+      "sent": "Envoyé",
+      "signed": "Signé",
+      "failed": "Échoué",
+      "cancelled": "Annulé"
+    }
+  },
+  "annotations": {
+    "title": "Annotations",
+    "promptComment": "Commentaire sur ce point du plan ?",
+    "confirmDelete": "Supprimer cette annotation ?",
+    "help": "Cliquez sur le plan pour ajouter une annotation.",
+    "count": "annotation(s)"
+  },
+  "notary": {
+    "checklistTitle": "Préparation acte notarié",
+    "ready": "Dossier prêt",
+    "incomplete": "Dossier incomplet",
+    "missing": "Manquants"
+  },
+  "documents": {
+    "generateQr": "Générer un QR code",
+    "qrCode": "QR code du document",
+    "classify": "Classifier automatiquement"
+  },
   "nav": {
     "dashboard": "Tableau de bord",
     "projects": "Projets",

@@ -1,8 +1,26 @@
 # Fonctionnalités avancées implémentées
 
-## ✅ Statut : 3 fonctionnalités core implémentées
+## ✅ Statut : 8 fonctionnalités core implémentées
 
-Ce document décrit les **3 fonctionnalités prioritaires** qui ont été implémentées avec l'architecture Supabase actuelle.
+Ce document décrit les **8 fonctionnalités prioritaires** qui ont été implémentées avec l'architecture Supabase actuelle.
+
+### Batch 1 (3 fonctionnalités)
+1. Simulateur financier dynamique
+2. Portail investisseurs / banques
+3. Infrastructure pour pages publiques projets
+
+### Batch 2 (5 fonctionnalités)
+4. Signature électronique
+5. Annotations sur plans
+6. QR codes sur documents
+7. Classification automatique des documents
+8. Vérifications automatiques avant notaire
+
+---
+
+# Batch 1 - Détails
+
+
 
 ---
 
@@ -155,26 +173,27 @@ Pour compléter cette fonctionnalité :
 
 ---
 
-## 📊 Récapitulatif technique
+## 📊 Récapitulatif technique (Batch 1 + Batch 2)
 
 ### Database
-- **9 nouvelles tables** créées
-- **20+ RLS policies** ajoutées
+- **11 nouvelles tables** créées (9 batch 1 + 2 batch 2)
+- **30+ RLS policies** ajoutées
 - **1 nouveau rôle** : INVESTOR
-- **Total : 84 tables** dans le système
+- **Total : 86 tables** dans le système
 
 ### Code
-- **1 nouveau hook** : `useFinancialScenarios`
-- **1 nouvelle edge function** : `financial`
+- **3 nouveaux hooks** : `useFinancialScenarios`, `useSignatures`, `useAnnotations`
+- **5 nouvelles edge functions** : `financial`, `signatures`, `annotations`, `document-utils`, `notary-checklist`
 - **2 nouvelles pages** : `FinancialSimulator`, `InvestorPortfolio`
-- **30+ nouvelles clés i18n** (français)
+- **3 nouveaux composants** : `DocumentSignature`, `PlanAnnotations`, `NotaryChecklist`
+- **70+ nouvelles clés i18n** (français)
 
 ### Build
 ```
-✓ built in 7.13s
+✓ built in 8.29s
 dist/index.html                   0.69 kB │ gzip:   0.39 kB
-dist/assets/index-CQ9g3NSV.css   35.61 kB │ gzip:   6.32 kB
-dist/assets/index-C0Mm-MV-.js   640.29 kB │ gzip: 166.16 kB
+dist/assets/index-CEYEQ13D.css   37.67 kB │ gzip:   6.56 kB
+dist/assets/index-CvoJ3ZOl.js   640.29 kB │ gzip: 166.16 kB
 ```
 
 ---
@@ -253,14 +272,28 @@ import { InvestorPortfolio } from './pages/InvestorPortfolio';
 
 ---
 
+---
+
+# Batch 2 - Détails
+
+Pour les détails complets des 5 fonctionnalités du Batch 2, voir **ADVANCED_FEATURES_BATCH_2.md** :
+
+4. **Signature électronique** - Demandes de signature avec Swisscom/Skribble/Test
+5. **Annotations sur plans** - Annotations interactives sur images de plans
+6. **QR codes sur documents** - Génération automatique de QR codes
+7. **Classification automatique** - Classification intelligente basée sur le nom
+8. **Vérifications notaire** - Checklist automatique avant acte notarié
+
+---
+
 ## ✅ Conclusion
 
-**3 fonctionnalités prioritaires** sont maintenant opérationnelles avec :
+**8 fonctionnalités avancées** (3 batch 1 + 5 batch 2) sont maintenant opérationnelles avec :
 - Infrastructure database complète et sécurisée (RLS)
-- Hooks React réutilisables
-- Edge functions Deno performantes
-- UI moderne avec dark mode
-- i18n français (extensible aux 3 autres langues)
+- 3 hooks React réutilisables
+- 5 edge functions Deno performantes
+- 2 pages + 3 composants UI modernes avec dark mode
+- 70+ clés i18n français (extensible aux 3 autres langues)
 - Build validé ✓
 
-Les 15 autres fonctionnalités suivent le même pattern et peuvent être implémentées progressivement selon les priorités business.
+Les 10 autres fonctionnalités suivent le même pattern et peuvent être implémentées progressivement selon les priorités business.
