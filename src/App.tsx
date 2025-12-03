@@ -46,6 +46,10 @@ import { TasksManager } from './pages/TasksManager';
 import { TemplatesManager } from './pages/TemplatesManager';
 import AdminOrganizationsPage from './pages/AdminOrganizations';
 
+import CGU from './pages/legal/CGU';
+import MentionsLegales from './pages/legal/MentionsLegales';
+import Privacy from './pages/legal/Privacy';
+
 function App() {
   return (
     <ThemeProvider>
@@ -94,6 +98,10 @@ function App() {
             <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
 
             <Route path="/chantier" element={<ChantierHome />} />
+
+            <Route path="/legal/cgu" element={<CGU />} />
+            <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/legal/privacy" element={<Privacy />} />
           </Routes>
         </AppShell>
       </BrowserRouter>

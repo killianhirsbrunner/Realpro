@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
+import Footer from './Footer';
 
 interface AppShellProps {
   children: ReactNode;
@@ -19,6 +20,8 @@ export function AppShell({ children }: AppShellProps) {
         <main className="flex-1 overflow-y-auto p-6">
           {children}
         </main>
+
+        <Footer />
       </div>
     </div>
   );
