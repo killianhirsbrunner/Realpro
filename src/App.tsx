@@ -1,11 +1,14 @@
 import { AppShell } from './components/layout/AppShell';
 import { Dashboard } from './pages/Dashboard';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   return (
-    <AppShell>
-      <Dashboard />
-    </AppShell>
+    <ThemeProvider>
+      <AppShell>
+        <Dashboard />
+      </AppShell>
+    </ThemeProvider>
   );
 }
 
