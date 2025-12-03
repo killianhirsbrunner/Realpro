@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Plus, Calendar, Clock, Users, Trash2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
-import Badge from '../components/ui/Badge';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
-import Input from '../components/ui/Input';
-import Select from '../components/ui/Select';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Badge } from '../components/ui/Badge';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { Input } from '../components/ui/Input';
+import { Select } from '../components/ui/Select';
 
 interface TimeSlot {
   id: string;

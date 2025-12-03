@@ -154,7 +154,7 @@ export function BuyerChoices() {
                 <p className="mt-1 text-xs text-gray-500">
                   {cr.extra_price != null
                     ? `Impact estimé : ${formatCHF(cr.extra_price)}`
-                    : 'Impact financier en cours d'estimation.'}
+                    : 'Impact financier en cours d\'estimation.'}
                 </p>
               </div>
             ))}
@@ -171,7 +171,7 @@ function ChangeRequestStatusPill({ status }: { status: string }) {
   let styles = 'bg-gray-100 text-gray-700';
 
   if (s === 'REQUESTED' || s === 'PENDING') {
-    label = 'En cours d'étude';
+    label = 'En cours d\'étude';
     styles = 'bg-slate-50 text-slate-700';
   } else if (s === 'UNDER_REVIEW') {
     label = 'En examen';

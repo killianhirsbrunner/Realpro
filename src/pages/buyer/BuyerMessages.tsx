@@ -107,7 +107,7 @@ export function BuyerMessages() {
       setBody('');
     } catch (err: any) {
       console.error('Error sending message:', err);
-      setError(err.message || 'Impossible d'envoyer votre message pour le moment.');
+      setError(err.message || 'Impossible d\'envoyer votre message pour le moment.');
     } finally {
       setSending(false);
     }

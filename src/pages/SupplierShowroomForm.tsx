@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Save } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useCurrentUser } from '../hooks/useCurrentUser';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
-import Input from '../components/ui/Input';
-import Textarea from '../components/ui/Textarea';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
+import { Textarea } from '../components/ui/Textarea';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 
 const CATEGORIES = [
   { value: 'KITCHEN', label: 'Cuisines' },
