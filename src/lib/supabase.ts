@@ -1,3 +1,7 @@
+/**
+ * Realpro Suite | © 2024-2025 Realpro SA. Tous droits réservés.
+ */
+
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;

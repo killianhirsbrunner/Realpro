@@ -1,0 +1,193 @@
+LICENCE D'UTILISATION PROPRIÉTAIRE
+REALPRO SUITE
+
+Copyright © 2024-2025 Realpro SA. Tous droits réservés.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+1. DÉFINITIONS
+
+"Logiciel" désigne la plateforme logicielle Realpro Suite, incluant :
+  - l'ensemble du code source et du code compilé
+  - les schémas et structures de base de données
+  - les interfaces utilisateur (UI/UX)
+  - la documentation technique et utilisateur
+  - les spécifications fonctionnelles
+  - les ressources graphiques, textes et contenus
+  - toute mise à jour, correction ou évolution ultérieure
+
+"Realpro SA" désigne la société propriétaire et éditrice du Logiciel.
+
+"Client" désigne toute personne physique ou morale ayant souscrit un contrat
+d'abonnement ou de licence avec Realpro SA.
+
+"Utilisateur Autorisé" désigne toute personne habilitée par le Client à utiliser
+le Logiciel dans le cadre du contrat.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+2. PROPRIÉTÉ INTELLECTUELLE
+
+Le Logiciel et l'ensemble de ses composants sont et demeurent la propriété
+exclusive de Realpro SA.
+
+Aucun droit de propriété intellectuelle n'est transféré dans le cadre de
+l'utilisation du Logiciel.
+
+Les marques "Realpro", "Realpro SA", "Realpro Suite" et les logos associés sont
+des signes distinctifs appartenant à Realpro SA. Toute utilisation sans
+autorisation écrite est interdite.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+3. CONCESSION DE LICENCE
+
+Sous réserve du respect des présentes conditions et du paiement des
+redevances applicables, Realpro SA concède au Client une licence :
+
+  ✓ NON EXCLUSIVE : d'autres clients peuvent utiliser le Logiciel
+  ✓ NON TRANSFÉRABLE : le Client ne peut céder cette licence à un tiers
+  ✓ LIMITÉE : strictement aux fonctionnalités et modules souscrits
+  ✓ RÉVOCABLE : en cas de non-respect des conditions contractuelles
+
+Cette licence est valable pour la durée du contrat d'abonnement ou de licence
+signé entre le Client et Realpro SA.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+4. RESTRICTIONS D'UTILISATION
+
+Le Client et les Utilisateurs Autorisés s'interdisent formellement de :
+
+  ✗ Copier, reproduire ou dupliquer le Logiciel (hors usage normal)
+  ✗ Modifier, adapter, traduire ou créer des œuvres dérivées
+  ✗ Décompiler, désassembler ou procéder à l'ingénierie inverse
+  ✗ Louer, prêter, sous-licencier ou distribuer le Logiciel à des tiers
+  ✗ Supprimer ou altérer les mentions de copyright et de propriété
+  ✗ Utiliser le Logiciel pour développer un produit concurrent
+  ✗ Accéder au Logiciel pour créer un produit ou service similaire
+  ✗ Publier, diffuser ou communiquer des benchmarks ou analyses comparatives
+    sans autorisation écrite préalable
+
+═══════════════════════════════════════════════════════════════════════════════
+
+5. CODE SOURCE
+
+Le code source du Logiciel n'est jamais fourni au Client et reste confidentiel.
+
+En aucun cas le Client ne peut demander, obtenir ou tenter d'obtenir l'accès au
+code source, sauf accord écrit spécifique et distinct (escrow agreement).
+
+═══════════════════════════════════════════════════════════════════════════════
+
+6. DONNÉES CLIENT
+
+Les données saisies et stockées par le Client dans le Logiciel restent la
+propriété du Client.
+
+Realpro SA s'engage à ne pas utiliser ces données à des fins commerciales
+ou les communiquer à des tiers, sauf obligation légale ou accord du Client.
+
+Le Client conserve le droit d'exporter ses données selon les fonctionnalités
+d'export prévues dans le Logiciel.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+7. MISES À JOUR ET ÉVOLUTIONS
+
+Realpro SA peut, à sa discrétion, publier des mises à jour, corrections ou
+nouvelles versions du Logiciel.
+
+Ces évolutions sont fournies dans le cadre du contrat d'abonnement ou de
+maintenance, sans transfert de droits de propriété intellectuelle additionnels.
+
+Le Client n'a pas le droit de refuser les mises à jour de sécurité critiques.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+8. GARANTIES LIMITÉES
+
+Le Logiciel est fourni "EN L'ÉTAT", avec les garanties prévues au contrat
+d'abonnement ou de licence.
+
+Realpro SA garantit que le Logiciel est conforme aux spécifications
+fonctionnelles documentées à la date de souscription.
+
+Realpro SA ne garantit pas que le Logiciel sera exempt d'erreurs ou
+fonctionnera sans interruption.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+9. LIMITATION DE RESPONSABILITÉ
+
+Dans les limites autorisées par la loi applicable :
+
+Realpro SA ne sera en aucun cas responsable des dommages indirects,
+accessoires, spéciaux ou consécutifs, incluant notamment :
+  - perte de profits ou de revenus
+  - perte de données ou d'informations
+  - interruption d'activité
+  - coût de substitution
+
+La responsabilité totale de Realpro SA est limitée aux montants effectivement
+payés par le Client au cours des 12 derniers mois précédant l'événement
+générateur de responsabilité.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+10. RÉSILIATION
+
+En cas de violation des présentes conditions, Realpro SA peut résilier
+immédiatement la licence sans préavis ni remboursement.
+
+À la résiliation, le Client doit cesser toute utilisation du Logiciel et
+détruire toute copie en sa possession.
+
+Les clauses relatives à la propriété intellectuelle, à la confidentialité et
+aux restrictions d'utilisation survivent à la résiliation.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+11. LOI APPLICABLE ET JURIDICTION
+
+La présente licence est régie par le droit suisse.
+
+Tout litige relatif à la présente licence sera soumis à la compétence exclusive
+des tribunaux du canton de [Canton à compléter], Suisse.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+12. DISPOSITIONS GÉNÉRALES
+
+Si une disposition de cette licence est jugée invalide ou inapplicable, les
+autres dispositions restent pleinement en vigueur.
+
+Toute modification de cette licence doit être effectuée par écrit et signée
+par Realpro SA.
+
+Le fait pour Realpro SA de ne pas exercer un droit prévu par cette licence
+ne constitue pas une renonciation à ce droit.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CONTACT
+
+Pour toute question concernant cette licence :
+
+Realpro SA
+[Adresse à compléter]
+[Code postal et ville]
+Suisse
+
+Email: legal@realpro.ch
+Web: https://www.realpro.ch
+
+═══════════════════════════════════════════════════════════════════════════════
+
+EN UTILISANT CE LOGICIEL, VOUS ACCEPTEZ D'ÊTRE LIÉ PAR LES TERMES
+DE CETTE LICENCE.
+
+SI VOUS N'ACCEPTEZ PAS CES TERMES, VOUS N'ÊTES PAS AUTORISÉ À UTILISER
+LE LOGICIEL.
+
+═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,54 @@
+Copyright © 2024-2025 Realpro SA. Tous droits réservés.
+
+═══════════════════════════════════════════════════════════════════════════════
+                              REALPRO SUITE
+              Plateforme SaaS de Gestion de Projets Immobiliers
+═══════════════════════════════════════════════════════════════════════════════
+
+PROPRIÉTÉ INTELLECTUELLE
+
+Tout le code source, la conception, les interfaces utilisateur, les schémas de
+base de données, la documentation technique et utilisateur, les textes, les
+graphismes, les logos et toute autre création incluse dans ce dépôt sont la
+propriété exclusive de REALPRO SA, sauf indication contraire explicite.
+
+RESTRICTION D'UTILISATION
+
+Aucune partie de ce logiciel ne peut être :
+  - copiée, reproduite ou dupliquée
+  - modifiée, adaptée ou traduite
+  - distribuée, commercialisée ou louée
+  - décompilée, désassemblée ou reverse-engineered
+  - réutilisée dans d'autres projets
+
+sans l'autorisation écrite préalable de Realpro SA, sauf disposition contraire
+des licences associées aux composants tiers open source utilisés dans ce projet.
+
+COMPOSANTS TIERS
+
+Ce logiciel utilise des bibliothèques et composants open source dont les licences
+respectives sont spécifiées dans leurs propres fichiers de licence et dans le
+fichier package.json. L'utilisation de ces composants tiers est soumise à leurs
+licences respectives (MIT, Apache, BSD, etc.).
+
+Les composants tiers n'affectent en rien la propriété intellectuelle de Realpro SA
+sur le logiciel Realpro Suite dans son ensemble, son architecture, ses
+fonctionnalités spécifiques et son implémentation.
+
+COORDONNÉES
+
+Realpro SA
+[Adresse à compléter]
+[Code postal et ville]
+Suisse
+
+Contact: [email@realpro.ch]
+Site web: [https://www.realpro.ch]
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Ce logiciel est protégé par les lois suisses et internationales sur le droit
+d'auteur et la propriété intellectuelle.
+
+Toute reproduction ou utilisation non autorisée est strictement interdite et
+fera l'objet de poursuites judiciaires.

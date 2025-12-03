@@ -1,7 +1,10 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "realpro-suite",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Plateforme SaaS de gestion de projets immobiliers suisses",
+  "author": "Realpro SA <contact@realpro.ch>",
+  "license": "PROPRIETARY",
   "type": "module",
   "scripts": {
     "dev": "vite",

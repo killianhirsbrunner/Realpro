@@ -1,11 +1,25 @@
-# 🏗️ PropTech SaaS - Plateforme de gestion de projets immobiliers
+# 🏗️ Realpro Suite
 
-> Architecture SaaS B2B multi-tenant de niveau enterprise pour la gestion de projets immobiliers complexes (PPE/QPT) en Suisse.
+> Plateforme SaaS de gestion de projets immobiliers suisses (PPE/QPT)
+
+**© 2024-2025 Realpro SA. Tous droits réservés.**
 
 ![React](https://img.shields.io/badge/React-18-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue)
 ![Supabase](https://img.shields.io/badge/Supabase-Ready-green)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-cyan)
+![License](https://img.shields.io/badge/License-Proprietary-red)
+
+---
+
+## ⚠️ Propriété Intellectuelle
+
+**Realpro Suite** est un logiciel propriétaire développé et édité par **Realpro SA**.
+
+- ✓ Tous les droits sont réservés
+- ✓ Le code source reste confidentiel
+- ✓ Utilisation soumise à licence commerciale
+- ✓ Voir fichiers `LICENSE` et `COPYRIGHT` pour détails
 
 ---
 
@@ -384,34 +398,41 @@ Répéter pour `de.json`, `en.json`, `it.json`.
 
 ---
 
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Merci de :
-
-1. Fork le projet
-2. Créer une branche feature (`git checkout -b feature/amazing`)
-3. Commit vos changements (`git commit -m 'Add amazing feature'`)
-4. Push vers la branche (`git push origin feature/amazing`)
-5. Ouvrir une Pull Request
-
----
-
 ## 📄 Licence
 
-Propriétaire - Tous droits réservés
+**Licence Propriétaire** - © Realpro SA. Tous droits réservés.
+
+Ce logiciel est protégé par le droit d'auteur et les lois internationales sur la propriété intellectuelle. Toute utilisation, reproduction, modification ou distribution non autorisée est strictement interdite.
+
+Voir le fichier [LICENSE](./LICENSE) pour les conditions complètes.
 
 ---
 
-## 📞 Support
+## 📞 Contact & Support
 
-Pour toute question ou support :
+**Realpro SA**
+[Adresse à compléter]
+[Code postal et ville]
+Suisse
 
-- 📖 Consulter [ARCHITECTURE.md](./ARCHITECTURE.md)
-- 🐛 Ouvrir une issue sur GitHub
-- 📧 Contact : support@example.com
+- 📧 Email: contact@realpro.ch
+- 🌐 Web: https://www.realpro.ch
+- 📖 Documentation: [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 ---
 
-**Construit avec ❤️ en Suisse**
+## 🔒 Confidentialité & Sécurité
 
-*Dernière mise à jour : Décembre 2024*
+Ce dépôt contient un code source propriétaire et confidentiel appartenant à Realpro SA.
+
+**Restrictions:**
+- ❌ Accès limité aux employés et partenaires autorisés de Realpro SA
+- ❌ Interdiction de copier, modifier ou redistribuer sans autorisation
+- ❌ Interdiction de décompiler ou faire de l'ingénierie inverse
+- ❌ Toute violation fera l'objet de poursuites judiciaires
+
+---
+
+**Développé avec ❤️ en Suisse par Realpro SA**
+
+*Version: 1.0.0 | Dernière mise à jour : Décembre 2024*

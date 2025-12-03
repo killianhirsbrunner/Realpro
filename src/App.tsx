@@ -1,3 +1,10 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Realpro Suite – Plateforme SaaS de Gestion de Projets Immobiliers
+ * © 2024-2025 Realpro SA. Tous droits réservés.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
 import { ThemeProvider } from './contexts/ThemeContext';
