@@ -17,12 +17,12 @@ export function EmptyState({ icon: Icon, title, description, action, children }:
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4">
       {Icon && (
-        <div className="mb-4 rounded-full bg-gray-100 p-3">
-          <Icon className="h-8 w-8 text-gray-400" />
+        <div className="mb-4 rounded-full bg-gray-100 p-3 dark:bg-gray-800">
+          <Icon className="h-8 w-8 text-gray-400 dark:text-gray-500" />
         </div>
       )}
-      <h3 className="text-lg font-semibold text-gray-900 mb-1">{title}</h3>
-      <p className="text-sm text-gray-500 text-center max-w-sm mb-6">{description}</p>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-50 mb-1">{title}</h3>
+      <p className="text-sm text-gray-500 dark:text-gray-400 text-center max-w-sm mb-6">{description}</p>
       {action && (
         <Button onClick={action.onClick}>
           {action.label}

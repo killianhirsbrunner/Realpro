@@ -238,5 +238,230 @@
     "notifications": "Notifications",
     "security": "Sécurité",
     "preferences": "Préférences"
+  },
+  "wizard": {
+    "project": {
+      "title": "Assistant de configuration",
+      "subtitle": "Quelques étapes guidées pour préparer votre projet immobilier",
+      "steps": {
+        "1": "Informations",
+        "2": "Structure",
+        "3": "Finance",
+        "4": "Acteurs",
+        "5": "Récapitulatif"
+      },
+      "step1": {
+        "heading": "Informations générales",
+        "description": "Commençons par les informations de base du projet",
+        "projectName": "Nom du projet",
+        "projectNamePlaceholder": "Les Terrasses du Lac",
+        "city": "Localité",
+        "cityPlaceholder": "Genève",
+        "canton": "Canton",
+        "cantonPlaceholder": "GE",
+        "type": "Type de projet",
+        "types": {
+          "PPE": "PPE (Propriété par étages)",
+          "RENTAL": "Locatif",
+          "MIXED": "Mixte"
+        }
+      },
+      "step2": {
+        "heading": "Structure du projet",
+        "description": "Définissez les bâtiments. Les lots et étages pourront être ajoutés ensuite.",
+        "buildingLabel": "Bâtiment",
+        "buildingPlaceholder": "Bâtiment A",
+        "addBuilding": "Ajouter un bâtiment",
+        "removeBuilding": "Retirer"
+      },
+      "step3": {
+        "heading": "Paramètres financiers",
+        "description": "Configuration des taux et modes de vente",
+        "vat": "Taux de TVA (%)",
+        "vatHint": "Taux habituel en Suisse : 7.7%",
+        "saleMode": "Mode de vente",
+        "saleModes": {
+          "PPE": "PPE (Propriété par étages)",
+          "QPT": "QPT (Qua Pars Totalis)",
+          "MIXED": "Mixte"
+        }
+      },
+      "step4": {
+        "heading": "Acteurs du projet",
+        "description": "Vous pourrez ajouter les entreprises, courtiers et autres acteurs après la configuration",
+        "notes": "Notes (optionnel)",
+        "notesPlaceholder": "Informations complémentaires sur le projet..."
+      },
+      "step5": {
+        "heading": "Récapitulatif",
+        "description": "Votre projet est maintenant configuré et prêt à être utilisé",
+        "completedTitle": "Configuration terminée",
+        "completedDescription": "Vous pourrez maintenant ajouter des lots, gérer les ventes et suivre l'avancement du projet.",
+        "nextSteps": "Prochaines étapes :",
+        "nextStepsList": {
+          "1": "Importer ou créer les lots",
+          "2": "Ajouter les documents (plans, descriptifs)",
+          "3": "Inviter les courtiers et partenaires",
+          "4": "Configurer les paramètres spécifiques"
+        },
+        "complete": "Terminer la configuration"
+      },
+      "saving": "Enregistrement...",
+      "finalizing": "Finalisation..."
+    }
+  },
+  "admin": {
+    "title": "Administration SaaS",
+    "subtitle": "Gestion des organisations et abonnements",
+    "organizations": "Organisations",
+    "plan": "Plan",
+    "currentPlan": "Plan actuel",
+    "planSlug": "Code du plan",
+    "subscriptionStatus": "Statut",
+    "billingCycle": "Cycle de facturation",
+    "projects": "Projets",
+    "users": "Utilisateurs",
+    "language": "Langue",
+    "createdAt": "Créé le",
+    "changePlan": "Changer de plan",
+    "selectPlan": "Changer de plan...",
+    "stats": {
+      "organizations": "Organisations",
+      "projects": "Projets",
+      "users": "Utilisateurs",
+      "activeSubscriptions": "Abonnements actifs"
+    },
+    "subscription": {
+      "TRIAL": "Essai",
+      "ACTIVE": "Actif",
+      "PAST_DUE": "En retard",
+      "CANCELLED": "Annulé",
+      "SUSPENDED": "Suspendu"
+    },
+    "billing": {
+      "MONTHLY": "Mensuel",
+      "YEARLY": "Annuel"
+    }
+  },
+  "sav": {
+    "title": "Service après-vente",
+    "ticket": "Ticket SAV",
+    "tickets": "Tickets SAV",
+    "createTicket": "Créer un ticket",
+    "reserve": "Réserve",
+    "reserves": "Réserves",
+    "createReserve": "Créer une réserve",
+    "inspection": "Inspection",
+    "inspections": "Inspections",
+    "scheduleInspection": "Planifier une inspection",
+    "type": {
+      "RESERVE": "Réserve",
+      "DEFECT": "Défaut",
+      "MAINTENANCE": "Entretien",
+      "WARRANTY": "Garantie"
+    },
+    "status": {
+      "OPEN": "Ouvert",
+      "IN_PROGRESS": "En cours",
+      "WAITING_PARTS": "Attente pièces",
+      "WAITING_VALIDATION": "Attente validation",
+      "RESOLVED": "Résolu",
+      "CLOSED": "Fermé",
+      "REJECTED": "Rejeté"
+    },
+    "priority": {
+      "LOW": "Basse",
+      "MEDIUM": "Moyenne",
+      "HIGH": "Haute",
+      "URGENT": "Urgente"
+    },
+    "category": {
+      "PLUMBING": "Plomberie",
+      "ELECTRICAL": "Électricité",
+      "HVAC": "Chauffage/Ventilation",
+      "CARPENTRY": "Menuiserie",
+      "PAINTING": "Peinture",
+      "FLOORING": "Revêtements",
+      "OTHER": "Autre"
+    },
+    "description": "Description",
+    "location": "Emplacement",
+    "reportedBy": "Signalé par",
+    "reportedAt": "Signalé le",
+    "assignedTo": "Assigné à",
+    "dueDate": "Date d'échéance",
+    "resolvedAt": "Résolu le",
+    "closedAt": "Fermé le",
+    "resolution": "Résolution",
+    "attachments": "Pièces jointes",
+    "comments": "Commentaires",
+    "addComment": "Ajouter un commentaire",
+    "noTickets": "Aucun ticket SAV pour le moment",
+    "noReserves": "Aucune réserve pour le moment",
+    "noInspections": "Aucune inspection planifiée"
+  },
+  "search": {
+    "placeholder": "Rechercher...",
+    "placeholderExtended": "Rechercher projets, lots, acquéreurs, documents...",
+    "noResults": "Aucun résultat trouvé",
+    "searching": "Recherche en cours...",
+    "sections": {
+      "projects": "Projets",
+      "lots": "Lots",
+      "buyers": "Acquéreurs",
+      "documents": "Documents",
+      "companies": "Entreprises",
+      "brokers": "Courtiers"
+    },
+    "viewAll": "Voir tous les résultats",
+    "recentSearches": "Recherches récentes"
+  },
+  "emptyState": {
+    "projects": {
+      "title": "Aucun projet",
+      "description": "Commencez par créer votre premier projet immobilier",
+      "action": "Créer un projet"
+    },
+    "lots": {
+      "title": "Aucun lot",
+      "description": "Ajoutez des lots à votre projet pour commencer les ventes",
+      "action": "Ajouter des lots"
+    },
+    "tickets": {
+      "title": "Aucun ticket SAV",
+      "description": "Vous n'avez pas encore de ticket SAV ouvert",
+      "action": "Créer un ticket"
+    },
+    "appointments": {
+      "title": "Aucun rendez-vous",
+      "description": "Aucun rendez-vous fournisseur pour l'instant",
+      "action": "Planifier un rendez-vous"
+    },
+    "generic": {
+      "title": "Aucune donnée",
+      "description": "Il n'y a pas encore de données à afficher"
+    }
+  },
+  "errorState": {
+    "title": "Erreur de chargement",
+    "description": "Une erreur est survenue lors du chargement des données",
+    "action": "Réessayer",
+    "contactSupport": "Contacter le support"
+  },
+  "featureGate": {
+    "unavailable": "Fonctionnalité non disponible",
+    "upgradeRequired": "Cette fonctionnalité n'est pas incluse dans votre plan actuel. Contactez-nous pour mettre à niveau.",
+    "contactUs": "Nous contacter"
+  },
+  "branding": {
+    "title": "Personnalisation",
+    "logo": "Logo",
+    "colors": "Couleurs",
+    "primaryColor": "Couleur principale",
+    "secondaryColor": "Couleur secondaire",
+    "accentColor": "Couleur d'accent",
+    "uploadLogo": "Uploader un logo",
+    "preview": "Aperçu",
+    "resetToDefault": "Réinitialiser par défaut"
   }
 }

@@ -59,6 +59,15 @@ function jsonResponse(data: any, status = 200) {
   });
 }
 
+function mapToDatatransLang(locale: string | null): string {
+  if (!locale) return 'fr';
+  const l = locale.toLowerCase();
+  if (l.startsWith('de')) return 'de';
+  if (l.startsWith('it')) return 'it';
+  if (l.startsWith('en')) return 'en';
+  return 'fr';
+}
+
 async function getOverview(supabase: any, organizationId: string) {
   const { data: organization, error: orgError } = await supabase
     .from('organizations')

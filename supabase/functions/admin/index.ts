@@ -28,6 +28,16 @@ Deno.serve(async (req: Request) => {
       return jsonResponse({ error: 'Non autorisé' }, 401);
     }
 
+    const { data: userData } = await supabase
+      .from('users')
+      .select('is_super_admin')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (!userData || !userData.is_super_admin) {
+      return jsonResponse({ error: 'Accès réservé aux super administrateurs' }, 403);
+    }
+
     const url = new URL(req.url);
     const method = req.method;
     const path = url.pathname.replace('/admin', '');
