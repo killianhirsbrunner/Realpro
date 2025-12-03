@@ -1,0 +1,157 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "export": "Exportieren",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Projekte",
+    "lots": "Einheiten",
+    "crm": "CRM",
+    "submissions": "Ausschreibungen",
+    "finance": "Finanzen",
+    "documents": "Dokumente",
+    "construction": "Baustelle",
+    "settings": "Einstellungen",
+    "billing": "Abrechnung"
+  },
+  "auth": {
+    "login": "Anmeldung",
+    "logout": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "forgotPassword": "Passwort vergessen?",
+    "welcome": "Willkommen"
+  },
+  "projects": {
+    "title": "Projekte",
+    "create": "Neues Projekt",
+    "name": "Projektname",
+    "code": "Code",
+    "status": "Status",
+    "city": "Stadt",
+    "surface": "Gesamtfläche",
+    "statuses": {
+      "PLANNING": "Planung",
+      "CONSTRUCTION": "Im Bau",
+      "SELLING": "Verkauf",
+      "COMPLETED": "Abgeschlossen",
+      "ARCHIVED": "Archiviert"
+    }
+  },
+  "lots": {
+    "title": "Einheiten",
+    "available": "Verfügbar",
+    "reserved": "Reserviert",
+    "sold": "Verkauft",
+    "code": "Einheit",
+    "type": "Typ",
+    "rooms": "Zimmer",
+    "surface": "Fläche",
+    "price": "Preis",
+    "status": "Status",
+    "floor": "Stockwerk",
+    "orientation": "Ausrichtung",
+    "types": {
+      "APARTMENT": "Wohnung",
+      "COMMERCIAL": "Gewerbe",
+      "PARKING": "Parkplatz",
+      "STORAGE": "Keller",
+      "VILLA": "Villa",
+      "HOUSE": "Haus"
+    },
+    "statuses": {
+      "AVAILABLE": "Verfügbar",
+      "RESERVED": "Reserviert",
+      "OPTION": "Option",
+      "SOLD": "Verkauft",
+      "DELIVERED": "Übergeben"
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "prospects": "Interessenten",
+    "pipeline": "Pipeline",
+    "buyers": "Käufer",
+    "newProspect": "Neuer Interessent",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "status": "Status",
+    "source": "Quelle",
+    "budget": "Budget",
+    "statuses": {
+      "NEW": "Neu",
+      "CONTACTED": "Kontaktiert",
+      "QUALIFIED": "Qualifiziert",
+      "VISIT_SCHEDULED": "Besichtigung geplant",
+      "VISIT_DONE": "Besichtigung erfolgt",
+      "OFFER_SENT": "Angebot gesendet",
+      "RESERVED": "Reserviert",
+      "LOST": "Verloren"
+    }
+  },
+  "billing": {
+    "title": "Abrechnung",
+    "subscription": "Abonnement",
+    "currentPlan": "Aktueller Plan",
+    "changePlan": "Plan ändern",
+    "billing": "Abrechnung",
+    "paymentMethods": "Zahlungsmethoden",
+    "invoices": "Rechnungen",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "chfPerMonth": "CHF / Monat",
+    "chfPerYear": "CHF / Jahr",
+    "billedMonthly": "Monatlich abgerechnet",
+    "billedYearly": "Jährlich abgerechnet",
+    "trialEndsOn": "Testversion endet am",
+    "nextBilling": "Nächste Abrechnung am",
+    "addPaymentMethod": "Zahlungsmethode hinzufügen",
+    "noPaymentMethod": "Keine Zahlungsmethode hinterlegt",
+    "plans": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "status": {
+      "TRIAL": "Testversion",
+      "ACTIVE": "Aktiv",
+      "PAST_DUE": "Überfällig",
+      "CANCELLED": "Gekündigt",
+      "EXPIRED": "Abgelaufen"
+    }
+  },
+  "dashboard": {
+    "welcome": "Willkommen",
+    "overview": "Übersicht",
+    "stats": {
+      "totalLots": "Einheiten gesamt",
+      "available": "Verfügbar",
+      "reserved": "Reserviert",
+      "sold": "Verkauft",
+      "salesRate": "Verkaufsquote",
+      "totalRevenue": "Umsatz",
+      "activeProspects": "Aktive Interessenten",
+      "pendingTasks": "Offene Aufgaben"
+    },
+    "recentActivity": "Letzte Aktivitäten",
+    "quickActions": "Schnellaktionen"
+  }
+}

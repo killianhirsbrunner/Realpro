@@ -1,0 +1,157 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "save": "Salvare",
+    "cancel": "Annulla",
+    "delete": "Eliminare",
+    "edit": "Modificare",
+    "create": "Creare",
+    "search": "Cercare",
+    "filter": "Filtrare",
+    "export": "Esportare",
+    "back": "Indietro",
+    "next": "Prossimo",
+    "previous": "Precedente",
+    "close": "Chiudere",
+    "confirm": "Confermare",
+    "yes": "Sì",
+    "no": "No"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Progetti",
+    "lots": "Unità",
+    "crm": "CRM",
+    "submissions": "Offerte",
+    "finance": "Finanza",
+    "documents": "Documenti",
+    "construction": "Cantiere",
+    "settings": "Impostazioni",
+    "billing": "Fatturazione"
+  },
+  "auth": {
+    "login": "Accesso",
+    "logout": "Disconnetti",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Accedi",
+    "forgotPassword": "Password dimenticata?",
+    "welcome": "Benvenuto"
+  },
+  "projects": {
+    "title": "Progetti",
+    "create": "Nuovo progetto",
+    "name": "Nome del progetto",
+    "code": "Codice",
+    "status": "Stato",
+    "city": "Città",
+    "surface": "Superficie totale",
+    "statuses": {
+      "PLANNING": "Pianificazione",
+      "CONSTRUCTION": "In costruzione",
+      "SELLING": "In vendita",
+      "COMPLETED": "Completato",
+      "ARCHIVED": "Archiviato"
+    }
+  },
+  "lots": {
+    "title": "Unità",
+    "available": "Disponibile",
+    "reserved": "Riservato",
+    "sold": "Venduto",
+    "code": "Unità",
+    "type": "Tipo",
+    "rooms": "Camere",
+    "surface": "Superficie",
+    "price": "Prezzo",
+    "status": "Stato",
+    "floor": "Piano",
+    "orientation": "Orientamento",
+    "types": {
+      "APARTMENT": "Appartamento",
+      "COMMERCIAL": "Commerciale",
+      "PARKING": "Parcheggio",
+      "STORAGE": "Cantina",
+      "VILLA": "Villa",
+      "HOUSE": "Casa"
+    },
+    "statuses": {
+      "AVAILABLE": "Disponibile",
+      "RESERVED": "Riservato",
+      "OPTION": "Opzione",
+      "SOLD": "Venduto",
+      "DELIVERED": "Consegnato"
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "prospects": "Prospect",
+    "pipeline": "Pipeline",
+    "buyers": "Acquirenti",
+    "newProspect": "Nuovo prospect",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "status": "Stato",
+    "source": "Origine",
+    "budget": "Budget",
+    "statuses": {
+      "NEW": "Nuovo",
+      "CONTACTED": "Contattato",
+      "QUALIFIED": "Qualificato",
+      "VISIT_SCHEDULED": "Visita programmata",
+      "VISIT_DONE": "Visita effettuata",
+      "OFFER_SENT": "Offerta inviata",
+      "RESERVED": "Riservato",
+      "LOST": "Perso"
+    }
+  },
+  "billing": {
+    "title": "Fatturazione",
+    "subscription": "Abbonamento",
+    "currentPlan": "Piano attuale",
+    "changePlan": "Cambia piano",
+    "billing": "Fatturazione",
+    "paymentMethods": "Metodi di pagamento",
+    "invoices": "Fatture",
+    "monthly": "Mensile",
+    "yearly": "Annuale",
+    "chfPerMonth": "CHF / mese",
+    "chfPerYear": "CHF / anno",
+    "billedMonthly": "Fatturato mensilmente",
+    "billedYearly": "Fatturato annualmente",
+    "trialEndsOn": "Prova fino al",
+    "nextBilling": "Prossima fatturazione il",
+    "addPaymentMethod": "Aggiungi metodo di pagamento",
+    "noPaymentMethod": "Nessun metodo di pagamento salvato",
+    "plans": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "status": {
+      "TRIAL": "Prova",
+      "ACTIVE": "Attivo",
+      "PAST_DUE": "Scaduto",
+      "CANCELLED": "Annullato",
+      "EXPIRED": "Scaduto"
+    }
+  },
+  "dashboard": {
+    "welcome": "Benvenuto",
+    "overview": "Panoramica",
+    "stats": {
+      "totalLots": "Unità totali",
+      "available": "Disponibili",
+      "reserved": "Riservate",
+      "sold": "Vendute",
+      "salesRate": "Tasso di vendita",
+      "totalRevenue": "Fatturato totale",
+      "activeProspects": "Prospect attivi",
+      "pendingTasks": "Compiti in sospeso"
+    },
+    "recentActivity": "Attività recente",
+    "quickActions": "Azioni rapide"
+  }
+}

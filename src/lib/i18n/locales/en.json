@@ -1,0 +1,157 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "lots": "Units",
+    "crm": "CRM",
+    "submissions": "Bids",
+    "finance": "Finance",
+    "documents": "Documents",
+    "construction": "Construction",
+    "settings": "Settings",
+    "billing": "Billing"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "forgotPassword": "Forgot password?",
+    "welcome": "Welcome"
+  },
+  "projects": {
+    "title": "Projects",
+    "create": "New project",
+    "name": "Project name",
+    "code": "Code",
+    "status": "Status",
+    "city": "City",
+    "surface": "Total surface",
+    "statuses": {
+      "PLANNING": "Planning",
+      "CONSTRUCTION": "Under construction",
+      "SELLING": "For sale",
+      "COMPLETED": "Completed",
+      "ARCHIVED": "Archived"
+    }
+  },
+  "lots": {
+    "title": "Units",
+    "available": "Available",
+    "reserved": "Reserved",
+    "sold": "Sold",
+    "code": "Unit",
+    "type": "Type",
+    "rooms": "Rooms",
+    "surface": "Surface",
+    "price": "Price",
+    "status": "Status",
+    "floor": "Floor",
+    "orientation": "Orientation",
+    "types": {
+      "APARTMENT": "Apartment",
+      "COMMERCIAL": "Commercial",
+      "PARKING": "Parking",
+      "STORAGE": "Storage",
+      "VILLA": "Villa",
+      "HOUSE": "House"
+    },
+    "statuses": {
+      "AVAILABLE": "Available",
+      "RESERVED": "Reserved",
+      "OPTION": "Option",
+      "SOLD": "Sold",
+      "DELIVERED": "Delivered"
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "prospects": "Prospects",
+    "pipeline": "Pipeline",
+    "buyers": "Buyers",
+    "newProspect": "New prospect",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "status": "Status",
+    "source": "Source",
+    "budget": "Budget",
+    "statuses": {
+      "NEW": "New",
+      "CONTACTED": "Contacted",
+      "QUALIFIED": "Qualified",
+      "VISIT_SCHEDULED": "Visit scheduled",
+      "VISIT_DONE": "Visit done",
+      "OFFER_SENT": "Offer sent",
+      "RESERVED": "Reserved",
+      "LOST": "Lost"
+    }
+  },
+  "billing": {
+    "title": "Billing",
+    "subscription": "Subscription",
+    "currentPlan": "Current plan",
+    "changePlan": "Change plan",
+    "billing": "Billing",
+    "paymentMethods": "Payment methods",
+    "invoices": "Invoices",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "chfPerMonth": "CHF / month",
+    "chfPerYear": "CHF / year",
+    "billedMonthly": "Billed monthly",
+    "billedYearly": "Billed yearly",
+    "trialEndsOn": "Trial ends on",
+    "nextBilling": "Next billing on",
+    "addPaymentMethod": "Add payment method",
+    "noPaymentMethod": "No payment method saved",
+    "plans": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "status": {
+      "TRIAL": "Trial",
+      "ACTIVE": "Active",
+      "PAST_DUE": "Past due",
+      "CANCELLED": "Cancelled",
+      "EXPIRED": "Expired"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "overview": "Overview",
+    "stats": {
+      "totalLots": "Total units",
+      "available": "Available",
+      "reserved": "Reserved",
+      "sold": "Sold",
+      "salesRate": "Sales rate",
+      "totalRevenue": "Total revenue",
+      "activeProspects": "Active prospects",
+      "pendingTasks": "Pending tasks"
+    },
+    "recentActivity": "Recent activity",
+    "quickActions": "Quick actions"
+  }
+}

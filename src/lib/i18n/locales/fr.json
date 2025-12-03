@@ -1,0 +1,157 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "export": "Exporter",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "projects": "Projets",
+    "lots": "Lots",
+    "crm": "CRM",
+    "submissions": "Soumissions",
+    "finance": "Finance",
+    "documents": "Documents",
+    "construction": "Chantier",
+    "settings": "Paramètres",
+    "billing": "Facturation"
+  },
+  "auth": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?",
+    "welcome": "Bienvenue"
+  },
+  "projects": {
+    "title": "Projets",
+    "create": "Nouveau projet",
+    "name": "Nom du projet",
+    "code": "Code",
+    "status": "Statut",
+    "city": "Ville",
+    "surface": "Surface totale",
+    "statuses": {
+      "PLANNING": "Planification",
+      "CONSTRUCTION": "En construction",
+      "SELLING": "En commercialisation",
+      "COMPLETED": "Terminé",
+      "ARCHIVED": "Archivé"
+    }
+  },
+  "lots": {
+    "title": "Lots",
+    "available": "Disponible",
+    "reserved": "Réservé",
+    "sold": "Vendu",
+    "code": "Lot",
+    "type": "Type",
+    "rooms": "Pièces",
+    "surface": "Surface",
+    "price": "Prix",
+    "status": "Statut",
+    "floor": "Étage",
+    "orientation": "Orientation",
+    "types": {
+      "APARTMENT": "Appartement",
+      "COMMERCIAL": "Commercial",
+      "PARKING": "Parking",
+      "STORAGE": "Cave",
+      "VILLA": "Villa",
+      "HOUSE": "Maison"
+    },
+    "statuses": {
+      "AVAILABLE": "Disponible",
+      "RESERVED": "Réservé",
+      "OPTION": "Option",
+      "SOLD": "Vendu",
+      "DELIVERED": "Livré"
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "prospects": "Prospects",
+    "pipeline": "Pipeline",
+    "buyers": "Acheteurs",
+    "newProspect": "Nouveau prospect",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "status": "Statut",
+    "source": "Origine",
+    "budget": "Budget",
+    "statuses": {
+      "NEW": "Nouveau",
+      "CONTACTED": "Contacté",
+      "QUALIFIED": "Qualifié",
+      "VISIT_SCHEDULED": "Visite planifiée",
+      "VISIT_DONE": "Visite effectuée",
+      "OFFER_SENT": "Offre envoyée",
+      "RESERVED": "Réservé",
+      "LOST": "Perdu"
+    }
+  },
+  "billing": {
+    "title": "Facturation",
+    "subscription": "Abonnement",
+    "currentPlan": "Plan actuel",
+    "changePlan": "Changer de plan",
+    "billing": "Facturation",
+    "paymentMethods": "Moyens de paiement",
+    "invoices": "Factures",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "chfPerMonth": "CHF / mois",
+    "chfPerYear": "CHF / an",
+    "billedMonthly": "Facturé mensuellement",
+    "billedYearly": "Facturé annuellement",
+    "trialEndsOn": "Essai jusqu'au",
+    "nextBilling": "Prochaine facturation le",
+    "addPaymentMethod": "Ajouter un moyen de paiement",
+    "noPaymentMethod": "Aucun moyen de paiement enregistré",
+    "plans": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "enterprise": "Enterprise"
+    },
+    "status": {
+      "TRIAL": "Essai",
+      "ACTIVE": "Actif",
+      "PAST_DUE": "En retard",
+      "CANCELLED": "Annulé",
+      "EXPIRED": "Expiré"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bienvenue",
+    "overview": "Vue d'ensemble",
+    "stats": {
+      "totalLots": "Total lots",
+      "available": "Disponibles",
+      "reserved": "Réservés",
+      "sold": "Vendus",
+      "salesRate": "Taux de vente",
+      "totalRevenue": "Chiffre d'affaires",
+      "activeProspects": "Prospects actifs",
+      "pendingTasks": "Tâches en attente"
+    },
+    "recentActivity": "Activité récente",
+    "quickActions": "Actions rapides"
+  }
+}
