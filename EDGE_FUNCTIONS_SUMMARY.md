@@ -2,10 +2,12 @@
 
 ## ✅ Fonctions Déployées
 
-Vous disposez maintenant de **2 Edge Functions** Supabase pour votre plateforme immobilière:
+Vous disposez maintenant de **4 Edge Functions** Supabase pour votre plateforme immobilière:
 
 1. **buyer-portal** - Espace Acheteur (7 endpoints)
 2. **project-dashboard** - Dashboard Projet (1 endpoint)
+3. **contracts-finance** - Contrats & Finance (7 endpoints)
+4. **submissions** - Appels d'Offres (9 endpoints)
 
 ---
 
@@ -15,11 +17,15 @@ Vous disposez maintenant de **2 Edge Functions** Supabase pour votre plateforme 
 supabase/functions/
 ├── buyer-portal/
 │   └── index.ts          ✅ 544 lignes, 7 endpoints
-└── project-dashboard/
-    └── index.ts          ✅ 245 lignes, 1 endpoint
+├── project-dashboard/
+│   └── index.ts          ✅ 245 lignes, 1 endpoint
+├── contracts-finance/
+│   └── index.ts          ✅ 414 lignes, 7 endpoints
+└── submissions/
+    └── index.ts          ✅ 550 lignes, 9 endpoints
 ```
 
-**Total**: 2 fonctions, 8 endpoints API, 100% TypeScript, 0 erreur
+**Total**: 4 fonctions, 24 endpoints API, 100% TypeScript, 0 erreur
 
 ---
 
@@ -149,6 +155,96 @@ audit_logs
 
 ---
 
+## 💰 3. Contracts & Finance (Contrats & Finance)
+
+**URL Base**: `https://[PROJET].supabase.co/functions/v1/contracts-finance`
+
+### Endpoints
+
+| Méthode | Route | Description |
+|---------|-------|-------------|
+| GET | `/contracts/:id` | Détail contrat complet |
+| GET | `/projects/:projectId/contracts` | Liste contrats projet |
+| POST | `/projects/:projectId/contracts` | Créer contrat + allocations CFC |
+| POST | `/contracts/:id/change-orders` | Ajouter avenant |
+| POST | `/contracts/:id/progress` | Ajouter situation travaux |
+| POST | `/contracts/:id/invoices` | Créer facture |
+| POST | `/contracts/invoices/:invoiceId/payments` | Enregistrer paiement |
+
+### Fonctionnalités
+
+- **Calcul automatique CFC** (engagement, facturé, payé)
+- Gestion contrats EG + sous-traitants
+- Situations de travaux + validation
+- Factures avec TVA 7.7% + rétention
+- Paiements partiels supportés
+
+### Tables Utilisées
+
+```
+contracts, companies
+contract_cfc_allocations, cfc_budgets
+contract_change_orders
+contract_work_progresses
+contract_invoices, contract_payments
+```
+
+### Documentation
+
+📄 **CONTRACTS_FINANCE_API.md** (900+ lignes)
+- API complète avec exemples
+- Calcul automatique CFC détaillé
+- Standards suisses (SIA 118, TVA, rétention)
+- Workflows complets
+
+---
+
+## 📋 4. Submissions (Appels d'Offres)
+
+**URL Base**: `https://[PROJET].supabase.co/functions/v1/submissions`
+
+### Endpoints
+
+| Méthode | Route | Description |
+|---------|-------|-------------|
+| GET | `/project/:projectId` | Liste soumissions projet |
+| GET | `/:id` | Détail soumission complète |
+| POST | `/project/:projectId` | Créer soumission |
+| POST | `/:id/invite` | Inviter des entreprises |
+| POST | `/:id/offers` | Déposer offre (entreprise) |
+| POST | `/:id/status` | Mettre à jour statut |
+| POST | `/:id/adjudicate` | Adjudiquer offre gagnante |
+| POST | `/:id/clarifications` | Ajouter clarification |
+| GET | `/:id/comparison` | Comparatif des offres |
+
+### Fonctionnalités
+
+- **Création contrat automatique** lors de l'adjudication
+- Comparatif offres poste par poste
+- Gestion clarifications + deadlines
+- Invitation entreprises avec anti-doublons
+- Bordereau détaillé par offre
+
+### Tables Utilisées
+
+```
+submissions
+submission_invites, submission_offers
+submission_offer_items
+contracts (création automatique)
+audit_logs
+```
+
+### Documentation
+
+📄 **SUBMISSIONS_API.md** (900+ lignes)
+- 9 endpoints détaillés
+- Workflow complet appel d'offres
+- Normes SIA suisses
+- Comparatif et adjudication
+
+---
+
 ## 🔐 Sécurité
 
 ### État Actuel (Développement)
@@ -239,6 +335,8 @@ const response = await fetch(apiUrl, {
 | Buyer Payments | ~200ms |
 | Buyer Messages | ~250ms |
 | Project Dashboard | ~500ms |
+| Contract Detail | ~250ms |
+| Submissions Comparison | ~300ms |
 
 ### Recommendations Cache
 
@@ -523,12 +621,22 @@ jobs:
    - Calculs KPIs
    - Optimisations
 
-5. **EDGE_FUNCTIONS_SUMMARY.md** (ce fichier)
+5. **CONTRACTS_FINANCE_API.md** (900+ lignes)
+   - Documentation API contrats & finance
+   - Calcul automatique CFC
+   - Standards suisses
+
+6. **SUBMISSIONS_API.md** (900+ lignes)
+   - Documentation API soumissions
+   - Workflow appel d'offres
+   - Comparatif adjudication
+
+7. **EDGE_FUNCTIONS_SUMMARY.md** (ce fichier)
    - Récapitulatif global
    - Guides déploiement
    - Maintenance
 
-**Total**: 3000+ lignes de documentation technique!
+**Total**: 5200+ lignes de documentation technique!
 
 ---
 
@@ -573,15 +681,16 @@ npm run dev      # Lancer frontend
 - ✅ 0 erreur TypeScript
 
 ### Backend
-- ✅ 2 Edge Functions déployées
-- ✅ 8 endpoints API fonctionnels
+- ✅ 4 Edge Functions déployées
+- ✅ 24 endpoints API fonctionnels
 - ✅ CORS configuré
 - ✅ Error handling en français
 - ✅ Optimisations performance
+- ✅ Calcul automatique CFC
 
 ### Documentation
-- ✅ 5 fichiers docs créés
-- ✅ 3000+ lignes documentation
+- ✅ 7 fichiers docs créés
+- ✅ 5200+ lignes documentation
 - ✅ Exemples complets
 - ✅ Guides déploiement
 - ✅ Checklists production
@@ -611,6 +720,18 @@ npm run dev      # Lancer frontend
    - Budget CFC
    - Activité temps réel
 
+3. **Contrats & Finance** 💰
+   - Gestion contrats EG + sous-traitants
+   - Calcul automatique CFC
+   - Factures + paiements
+   - Situations de travaux
+
+4. **Appels d'Offres** 📋
+   - Création soumissions
+   - Invitation entreprises
+   - Comparatif offres
+   - Adjudication automatique
+
 **Architecture moderne**:
 - ✅ Supabase Edge Functions (Deno)
 - ✅ TypeScript strict
@@ -626,5 +747,7 @@ npm run dev      # Lancer frontend
 URL Functions:
 - Buyer Portal: `https://[PROJET].supabase.co/functions/v1/buyer-portal`
 - Project Dashboard: `https://[PROJET].supabase.co/functions/v1/project-dashboard`
+- Contracts & Finance: `https://[PROJET].supabase.co/functions/v1/contracts-finance`
+- Submissions: `https://[PROJET].supabase.co/functions/v1/submissions`
 
 Consultez les fichiers `*_API.md` pour la documentation complète de chaque API.
