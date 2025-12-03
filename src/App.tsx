@@ -9,6 +9,7 @@ import { ProjectCockpitDashboard } from './pages/ProjectCockpitDashboard';
 import { ProjectPlanning } from './pages/ProjectPlanning';
 import ProjectSetupWizard from './pages/ProjectSetupWizard';
 import { PromoterDashboard } from './pages/PromoterDashboard';
+import { ChantierHome } from './pages/ChantierHome';
 
 import { BrokerDashboard } from './pages/BrokerDashboard';
 import { BrokerLots } from './pages/BrokerLots';
@@ -84,6 +85,8 @@ function App() {
             <Route path="/templates" element={<TemplatesManager />} />
 
             <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
+
+            <Route path="/chantier" element={<ChantierHome />} />
           </Routes>
         </AppShell>
       </BrowserRouter>
