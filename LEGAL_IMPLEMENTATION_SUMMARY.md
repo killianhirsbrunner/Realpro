@@ -40,6 +40,19 @@ Document exhaustif de **16 articles** couvrant :
 - ✅ Licence propriétaire conforme au droit suisse
 - ✅ Restrictions d'utilisation claires
 
+### 4. CGV Complètes (`CGV_REALPRO_SA.md`)
+
+Document commercial exhaustif de **16 articles** couvrant :
+
+- ✅ Types d'abonnements (Basic, Professional, Enterprise, Custom)
+- ✅ Tarifs et périodicité (mensuel, annuel)
+- ✅ Paiement via Datatrans (Visa, Mastercard, TWINT, PostFinance)
+- ✅ Facturation conforme aux normes suisses
+- ✅ Procédures de résiliation détaillées
+- ✅ Niveaux de support selon formule
+- ✅ Garanties et limitations de responsabilité
+- ✅ Juridiction : Tribunaux du Jura-Nord vaudois
+
 ---
 
 ## Pages web créées
@@ -54,7 +67,21 @@ Interface complète et professionnelle affichant :
 - Design responsive et accessible
 - Support dark mode
 
-### 2. Page Mentions légales (`/legal/mentions-legales`)
+### 2. Page CGV (`/legal/cgv`)
+
+**Composant :** `src/pages/legal/CGV.tsx`
+
+Interface commerciale détaillée affichant :
+- Types d'abonnements avec grilles tarifaires
+- Procédures de paiement et facturation
+- Tableau comparatif des niveaux de support
+- Procédures de résiliation
+- Garanties et limitations de responsabilité
+- Navigation vers les autres pages légales
+- Design responsive et accessible
+- Support dark mode
+
+### 3. Page Mentions légales (`/legal/mentions-legales`)
 
 **Composant :** `src/pages/legal/MentionsLegales.tsx`
 
@@ -90,7 +117,7 @@ Conforme LPD et RGPD :
 
 Affiche :
 - © 2025 Realpro SA, Yverdon-les-Bains (VD), Suisse
-- Liens vers CGU, Mentions légales, Confidentialité
+- Liens vers CGU, CGV, Mentions légales, Confidentialité
 - Contact email
 - Version du logiciel
 
@@ -104,6 +131,7 @@ Dans `src/App.tsx` :
 
 ```tsx
 <Route path="/legal/cgu" element={<CGU />} />
+<Route path="/legal/cgv" element={<CGV />} />
 <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
 <Route path="/legal/privacy" element={<Privacy />} />
 ```
@@ -167,6 +195,7 @@ Dans `src/App.tsx` :
 ```
 /project
 ├── CGU_REALPRO_SA.md                      # Document CGU complet
+├── CGV_REALPRO_SA.md                      # Document CGV complet
 ├── COPYRIGHT                               # Mentions de copyright
 ├── LICENSE                                 # Licence propriétaire
 ├── LEGAL_IMPLEMENTATION_SUMMARY.md         # Ce document
@@ -180,6 +209,7 @@ Dans `src/App.tsx` :
     │
     └── pages/legal/
         ├── CGU.tsx                        # Page CGU
+        ├── CGV.tsx                        # Page CGV
         ├── MentionsLegales.tsx            # Page mentions légales
         └── Privacy.tsx                    # Page confidentialité
 ```
@@ -191,9 +221,11 @@ Dans `src/App.tsx` :
 | Fichier | Action | Status |
 |---------|--------|--------|
 | `CGU_REALPRO_SA.md` | Créé | ✅ |
+| `CGV_REALPRO_SA.md` | Créé | ✅ |
 | `COPYRIGHT` | Mis à jour (Yverdon) | ✅ |
 | `LICENSE` | Mis à jour (Yverdon) | ✅ |
 | `src/pages/legal/CGU.tsx` | Créé | ✅ |
+| `src/pages/legal/CGV.tsx` | Créé | ✅ |
 | `src/pages/legal/MentionsLegales.tsx` | Créé | ✅ |
 | `src/pages/legal/Privacy.tsx` | Créé | ✅ |
 | `src/components/layout/Footer.tsx` | Créé | ✅ |

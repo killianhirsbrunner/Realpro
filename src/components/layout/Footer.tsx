@@ -13,7 +13,13 @@ export default function Footer() {
               to="/legal/cgu"
               className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              Conditions Générales
+              CGU
+            </Link>
+            <Link
+              to="/legal/cgv"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              CGV
             </Link>
             <Link
               to="/legal/mentions-legales"

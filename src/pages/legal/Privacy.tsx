@@ -323,6 +323,13 @@ export default function Privacy() {
               </a>
               {' · '}
               <a
+                href="/legal/cgv"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Conditions Générales de Vente
+              </a>
+              {' · '}
+              <a
                 href="/legal/mentions-legales"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >

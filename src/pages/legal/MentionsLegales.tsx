@@ -181,6 +181,13 @@ export default function MentionsLegales() {
               </a>
               {' · '}
               <a
+                href="/legal/cgv"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Conditions Générales de Vente
+              </a>
+              {' · '}
+              <a
                 href="/legal/privacy"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >

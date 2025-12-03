@@ -293,6 +293,13 @@ export default function CGU() {
           <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <p className="text-center text-sm text-gray-600 dark:text-gray-400">
               <a
+                href="/legal/cgv"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Conditions Générales de Vente
+              </a>
+              {' · '}
+              <a
                 href="/legal/mentions-legales"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >

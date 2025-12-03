@@ -47,6 +47,7 @@ import { TemplatesManager } from './pages/TemplatesManager';
 import AdminOrganizationsPage from './pages/AdminOrganizations';
 
 import CGU from './pages/legal/CGU';
+import CGV from './pages/legal/CGV';
 import MentionsLegales from './pages/legal/MentionsLegales';
 import Privacy from './pages/legal/Privacy';
 
@@ -100,6 +101,7 @@ function App() {
             <Route path="/chantier" element={<ChantierHome />} />
 
             <Route path="/legal/cgu" element={<CGU />} />
+            <Route path="/legal/cgv" element={<CGV />} />
             <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
             <Route path="/legal/privacy" element={<Privacy />} />
           </Routes>
