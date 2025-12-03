@@ -204,6 +204,21 @@ async function getProjectDashboard(supabase: any, projectId: string) {
       e.description || buildActivityDescription(e),
   }));
 
+  const cfcTotal = cfcBudgets.reduce(
+    (acc, b: any) => ({
+      budgetInitial: acc.budgetInitial + Number(b.budget_initial ?? 0),
+      budgetRevised: acc.budgetRevised + Number(b.budget_revised ?? 0),
+      engagementTotal: acc.engagementTotal + Number(b.engagement_total ?? 0),
+      invoicedTotal: acc.invoicedTotal + Number(b.invoiced_total ?? 0),
+      paidTotal: acc.paidTotal + Number(b.paid_total ?? 0),
+    }),
+    { budgetInitial: 0, budgetRevised: 0, engagementTotal: 0, invoicedTotal: 0, paidTotal: 0 }
+  );
+
+  const nextMilestone = phases.find((p: any) =>
+    p.status === 'NOT_STARTED' || p.status === 'IN_PROGRESS'
+  );
+
   return {
     project: {
       id: project.id,
@@ -212,30 +227,40 @@ async function getProjectDashboard(supabase: any, projectId: string) {
       city: project.city,
       canton: project.canton,
       status: project.status,
-      lotsCount: totalLots,
     },
     sales: {
-      lots: {
-        total: totalLots,
-        sold,
-        reserved,
-        free,
-        soldRatio,
-      },
-      buyerFiles: {
-        readyForNotary: buyerFilesReady,
-        signed: buyerFilesSigned,
-      },
-      notary: {
-        open: notaryOpen,
-        signed: notarySigned,
-      },
+      lotsTotal: totalLots,
+      lotsSold: sold,
+      lotsReserved: reserved,
+      lotsFree: free,
+    },
+    finance: {
+      cfcBudget: cfcTotal.budgetRevised || cfcTotal.budgetInitial,
+      cfcEngaged: cfcTotal.engagementTotal,
+      cfcInvoiced: cfcTotal.invoicedTotal,
+      cfcPaid: cfcTotal.paidTotal,
+    },
+    planning: {
+      progressPct: snapshot?.progress_pct ?? 0,
+      nextMilestone: nextMilestone ? {
+        name: nextMilestone.name,
+        plannedEnd: nextMilestone.planned_end_date,
+      } : null,
+    },
+    notary: {
+      buyerFilesTotal: buyerFiles.length,
+      readyForNotary: buyerFilesReady,
+      signed: buyerFilesSigned,
+    },
+    submissions: {
+      open: submissions.filter((s: any) => s.status !== 'ADJUDICATED').length,
+      adjudicated: submissions.filter((s: any) => s.status === 'ADJUDICATED').length,
     },
     contracts: {
       egCount,
       subcontractorCount,
     },
-    cfc: cfcBudgets.map((b: any) => ({
+    cfcDetails: cfcBudgets.map((b: any) => ({
       cfcCode: b.cfc_code,
       label: b.label,
       budgetInitial: Number(b.budget_initial ?? 0),
@@ -245,7 +270,6 @@ async function getProjectDashboard(supabase: any, projectId: string) {
       paidTotal: Number(b.paid_total ?? 0),
     })),
     construction,
-    submissions: submissionsSummary,
     activity,
   };
 }
