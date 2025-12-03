@@ -2,12 +2,13 @@
 
 ## ✅ Fonctions Déployées
 
-Vous disposez maintenant de **4 Edge Functions** Supabase pour votre plateforme immobilière:
+Vous disposez maintenant de **5 Edge Functions** Supabase pour votre plateforme immobilière:
 
 1. **buyer-portal** - Espace Acheteur (7 endpoints)
 2. **project-dashboard** - Dashboard Projet (1 endpoint)
 3. **contracts-finance** - Contrats & Finance (7 endpoints)
 4. **submissions** - Appels d'Offres (9 endpoints)
+5. **billing** - Facturation SaaS (4 endpoints)
 
 ---
 
@@ -21,11 +22,13 @@ supabase/functions/
 │   └── index.ts          ✅ 245 lignes, 1 endpoint
 ├── contracts-finance/
 │   └── index.ts          ✅ 414 lignes, 7 endpoints
-└── submissions/
-    └── index.ts          ✅ 550 lignes, 9 endpoints
+├── submissions/
+│   └── index.ts          ✅ 550 lignes, 9 endpoints
+└── billing/
+    └── index.ts          ✅ 350 lignes, 4 endpoints
 ```
 
-**Total**: 4 fonctions, 24 endpoints API, 100% TypeScript, 0 erreur
+**Total**: 5 fonctions, 28 endpoints API, 100% TypeScript, 0 erreur
 
 ---
 
@@ -242,6 +245,47 @@ audit_logs
 - Workflow complet appel d'offres
 - Normes SIA suisses
 - Comparatif et adjudication
+
+---
+
+## 💳 5. Billing (Facturation SaaS)
+
+**URL Base**: `https://[PROJET].supabase.co/functions/v1/billing`
+
+### Endpoints
+
+| Méthode | Route | Description |
+|---------|-------|-------------|
+| GET | `/overview` | Vue d'ensemble abonnement |
+| POST | `/change-plan` | Changer de plan |
+| POST | `/payment-methods/init` | Initialiser moyen paiement |
+| POST | `/webhooks/datatrans` | Webhook Datatrans |
+
+### Fonctionnalités
+
+- **3 plans SaaS**: BASIC, PRO, ENTERPRISE
+- Facturation automatique mensuelle
+- Intégration Datatrans pour paiements
+- Calcul prorata lors changement plan
+- Gestion impayés et suspensions
+
+### Tables Utilisées
+
+```
+billing_plans
+subscriptions, subscription_invoices
+datatrans_customers
+datatrans_transactions
+datatrans_webhook_events
+```
+
+### Documentation
+
+📄 **BILLING_API.md** (1000+ lignes)
+- 4 endpoints détaillés
+- Intégration Datatrans complète
+- Facturation automatique
+- Métriques MRR & churn
 
 ---
 
@@ -631,12 +675,17 @@ jobs:
    - Workflow appel d'offres
    - Comparatif adjudication
 
-7. **EDGE_FUNCTIONS_SUMMARY.md** (ce fichier)
+7. **BILLING_API.md** (1000+ lignes)
+   - Documentation API billing
+   - Intégration Datatrans
+   - Facturation automatique
+
+8. **EDGE_FUNCTIONS_SUMMARY.md** (ce fichier)
    - Récapitulatif global
    - Guides déploiement
    - Maintenance
 
-**Total**: 5200+ lignes de documentation technique!
+**Total**: 6200+ lignes de documentation technique!
 
 ---
 
@@ -681,16 +730,17 @@ npm run dev      # Lancer frontend
 - ✅ 0 erreur TypeScript
 
 ### Backend
-- ✅ 4 Edge Functions déployées
-- ✅ 24 endpoints API fonctionnels
+- ✅ 5 Edge Functions déployées
+- ✅ 28 endpoints API fonctionnels
 - ✅ CORS configuré
 - ✅ Error handling en français
 - ✅ Optimisations performance
 - ✅ Calcul automatique CFC
+- ✅ Billing SaaS + Datatrans
 
 ### Documentation
-- ✅ 7 fichiers docs créés
-- ✅ 5200+ lignes documentation
+- ✅ 8 fichiers docs créés
+- ✅ 6200+ lignes documentation
 - ✅ Exemples complets
 - ✅ Guides déploiement
 - ✅ Checklists production
@@ -732,6 +782,12 @@ npm run dev      # Lancer frontend
    - Comparatif offres
    - Adjudication automatique
 
+5. **Facturation SaaS** 💳
+   - Plans BASIC/PRO/ENTERPRISE
+   - Paiements Datatrans
+   - Facturation automatique
+   - Métriques MRR
+
 **Architecture moderne**:
 - ✅ Supabase Edge Functions (Deno)
 - ✅ TypeScript strict
@@ -749,5 +805,6 @@ URL Functions:
 - Project Dashboard: `https://[PROJET].supabase.co/functions/v1/project-dashboard`
 - Contracts & Finance: `https://[PROJET].supabase.co/functions/v1/contracts-finance`
 - Submissions: `https://[PROJET].supabase.co/functions/v1/submissions`
+- Billing: `https://[PROJET].supabase.co/functions/v1/billing`
 
 Consultez les fichiers `*_API.md` pour la documentation complète de chaque API.
