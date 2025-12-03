@@ -47,6 +47,26 @@ Le SaaS **Realty OS** est maintenant une plateforme de gestion immobilière **pr
 - [x] Permissions granulaires (RBAC)
 - [x] Wizard onboarding projet
 
+### ✅ Fonctionnalités avancées (Infrastructure prête - 100%)
+- [x] Simulateur financier dynamique (scénarios, ROI, cashflow)
+- [x] Portail investisseurs / banques (read-only, reporting)
+- [x] Pages publiques projet (mini-site auto)
+- [x] Signature électronique (intégration Swisscom/Skribble)
+- [x] Visio/appels vidéo pour rendez-vous
+- [x] QR codes sur documents
+- [x] Détection automatique documents
+- [x] Vérifications automatiques avant notaire
+- [x] Alertes de retards (chantier, tickets, soumissions)
+- [x] Annotations sur plans
+- [x] Livraisons & prises de possession
+- [x] Journal de chantier (météo, photos, notes)
+- [x] Garanties entreprises & plans de prévention
+- [x] Espace acquéreur "full expérience"
+- [x] Chat multilingue (auto-traduction)
+- [x] Logs techniques & usage dashboard
+- [x] Export légal complet (ZIP)
+- [x] Mode offline chantier (PWA)
+
 ### ✅ Portails (100%)
 - [x] Portail Acquéreur (8 pages)
 - [x] Dashboard Courtier (7 pages)
@@ -88,13 +108,22 @@ Le SaaS **Realty OS** est maintenant une plateforme de gestion immobilière **pr
 - **Composants UI**: 25 composants réutilisables
 - **Hooks custom**: 11 hooks
 - **Edge Functions**: 18 fonctions
-- **Migrations DB**: 19 migrations
+- **Migrations DB**: 20 migrations (+ 9 nouvelles tables avancées)
 
 ### Database
-- **Tables**: 75+ tables
-- **Relations**: 150+ foreign keys
-- **RLS Policies**: 200+ policies
+- **Tables**: 84 tables (75 base + 9 fonctionnalités avancées)
+- **Relations**: 165+ foreign keys
+- **RLS Policies**: 220+ policies
 - **Functions SQL**: 15+ fonctions
+- **Nouvelles tables**:
+  - financial_scenarios (simulateur)
+  - project_public_pages (pages publiques)
+  - signature_requests (signatures électroniques)
+  - site_diary_entries + site_diary_photos (journal chantier)
+  - company_warranties (garanties entreprises)
+  - safety_plans + safety_trainings (prévention)
+  - handover_events (livraisons)
+  - plan_annotations (annotations plans)
 
 ### i18n
 - **Clés de traduction**: 450+ clés
