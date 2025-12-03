@@ -2,6 +2,7 @@
   "common": {
     "loading": "Chargement...",
     "save": "Enregistrer",
+    "saving": "Enregistrement...",
     "cancel": "Annuler",
     "delete": "Supprimer",
     "edit": "Modifier",
@@ -15,7 +16,42 @@
     "close": "Fermer",
     "confirm": "Confirmer",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "lots": "Lots",
+    "status": "Statut",
+    "budget": "Budget"
+  },
+  "financial": {
+    "simulator": "Simulateur financier",
+    "simulatorDescription": "Ajustez vos hypothèses de prix et de coûts pour analyser les marges et le cashflow du projet",
+    "assumptions": "Hypothèses",
+    "results": "Résultats",
+    "scenario": "Scénario",
+    "priceMultiplier": "Multiplicateur de prix",
+    "priceMultiplierHelp": "1.0 = prix de base, 1.05 = +5%",
+    "costMultiplier": "Multiplicateur de coûts",
+    "costMultiplierHelp": "1.0 = coûts CFC de base, 1.1 = +10%",
+    "vacancyRate": "Taux de vacance",
+    "vacancyRateHelp": "0.0 à 1.0 (ex: 0.05 = 5%)",
+    "interestRate": "Taux d'intérêt",
+    "interestRateHelp": "0.0 à 1.0 (ex: 0.02 = 2%)",
+    "calculate": "Calculer",
+    "calculating": "Calcul en cours...",
+    "saveScenario": "Enregistrer le scénario",
+    "adjustedRevenue": "Revenus ajustés",
+    "adjustedCost": "Coûts ajustés",
+    "margin": "Marge",
+    "marginPercent": "Marge %",
+    "cashflow": "Cashflow par année",
+    "noResults": "Aucun résultat",
+    "runSimulation": "Lancez une simulation pour voir les résultats",
+    "savedScenarios": "Scénarios enregistrés",
+    "noSavedScenarios": "Aucun scénario enregistré",
+    "saveYourFirstScenario": "Enregistrez votre premier scénario après une simulation"
+  },
+  "investor": {
+    "portfolio": "Portefeuille de projets",
+    "portfolioDescription": "Vue synthétique des projets, des ventes et des budgets"
   },
   "nav": {
     "dashboard": "Tableau de bord",
