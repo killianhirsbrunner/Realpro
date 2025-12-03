@@ -4,6 +4,8 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Badge } from '../components/ui/Badge';
+import { supabase } from '../lib/supabase';
+import { useCurrentUser } from '../hooks/useCurrentUser';
 
 type BillingOverviewResponse = {
   organization: {
@@ -11,19 +13,27 @@ type BillingOverviewResponse = {
     name: string;
   };
   currentSubscription: {
-    planCode: string;
+    planSlug: string;
     planName: string;
     status: string;
+    billingCycle: string;
     currentPeriodStart: string;
     currentPeriodEnd: string;
+    trialStart: string | null;
+    trialEnd: string | null;
+    features: any[];
+    limits: Record<string, any>;
   } | null;
   availablePlans: {
-    code: string;
+    slug: string;
     name: string;
-    priceCents: number;
+    description: Record<string, string>;
+    priceMonthly: number;
+    priceYearly: number;
     currency: string;
-    interval: string;
-    features?: Record<string, any>;
+    features: any[];
+    limits: Record<string, any>;
+    trialDays: number;
   }[];
   usage: {
     projectsCount: number;
@@ -32,33 +42,42 @@ type BillingOverviewResponse = {
 };
 
 export function BillingPage() {
+  const { organization } = useCurrentUser();
   const [data, setData] = useState<BillingOverviewResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const [loadingPayment, setLoadingPayment] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [billingCycle, setBillingCycle] = useState<'MONTHLY' | 'YEARLY'>('MONTHLY');
 
   useEffect(() => {
-    fetchBillingOverview();
-  }, []);
+    if (organization?.id) {
+      fetchBillingOverview();
+    }
+  }, [organization?.id]);
 
   const fetchBillingOverview = async () => {
+    if (!organization?.id) return;
+
     try {
       setLoading(true);
       setError(null);
 
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/billing`;
+      const session = await supabase.auth.getSession();
+      const token = session.data.session?.access_token;
 
-      const response = await fetch(`${apiUrl}/overview`, {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const apiUrl = `${supabaseUrl}/functions/v1/billing/overview`;
+
+      const response = await fetch(apiUrl, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          organizationId: '10000000-0000-0000-0000-000000000001'
+          organizationId: organization.id
         }),
       });
 
@@ -68,6 +87,10 @@ export function BillingPage() {
 
       const result = await response.json();
       setData(result);
+
+      if (result.currentSubscription?.billingCycle) {
+        setBillingCycle(result.currentSubscription.billingCycle);
+      }
     } catch (err: any) {
       setError(err.message || 'Impossible de charger les informations de facturation');
     } finally {
@@ -75,24 +98,30 @@ export function BillingPage() {
     }
   };
 
-  const handleChangePlan = async (planCode: string) => {
+  const handleChangePlan = async (planSlug: string) => {
+    if (!organization?.id) return;
+
     setError(null);
     setMessage(null);
-    setLoadingPlan(planCode);
+    setLoadingPlan(planSlug);
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/billing`;
+      const session = await supabase.auth.getSession();
+      const token = session.data.session?.access_token;
 
-      const response = await fetch(`${apiUrl}/change-plan`, {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const apiUrl = `${supabaseUrl}/functions/v1/billing/change-plan`;
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          organizationId: '10000000-0000-0000-0000-000000000001',
-          planCode,
+          organizationId: organization.id,
+          planSlug,
+          billingCycle,
         }),
       });
 
@@ -111,22 +140,27 @@ export function BillingPage() {
   };
 
   const handleInitPaymentMethod = async () => {
+    if (!organization?.id) return;
+
     setError(null);
     setMessage(null);
     setLoadingPayment(true);
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/billing`;
+      const session = await supabase.auth.getSession();
+      const token = session.data.session?.access_token;
 
-      const response = await fetch(`${apiUrl}/payment-methods/init`, {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const apiUrl = `${supabaseUrl}/functions/v1/billing/payment-methods/init`;
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          organizationId: '10000000-0000-0000-0000-000000000001',
+          organizationId: organization.id,
         }),
       });
 
@@ -232,16 +266,24 @@ export function BillingPage() {
                   <div className="mt-2 space-y-1">
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-medium text-gray-900">
-                        {current.planName} ({current.planCode})
+                        {current.planName}
                       </p>
                       <Badge variant={getStatusVariant(current.status)}>
                         {renderSubStatus(current.status)}
+                      </Badge>
+                      <Badge variant="default">
+                        {current.billingCycle === 'YEARLY' ? 'Annuel' : 'Mensuel'}
                       </Badge>
                     </div>
                     <p className="text-xs text-gray-500">
                       Période du {formatDate(current.currentPeriodStart)} au{' '}
                       {formatDate(current.currentPeriodEnd)}
                     </p>
+                    {current.trialEnd && new Date(current.trialEnd) > new Date() && (
+                      <p className="text-xs text-blue-600 font-medium">
+                        Période d'essai jusqu'au {formatDate(current.trialEnd)}
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <p className="mt-2 text-sm text-gray-500">
@@ -298,16 +340,38 @@ export function BillingPage() {
           </p>
         </div>
 
+        <div className="flex items-center justify-center space-x-4 py-4">
+          <button
+            onClick={() => setBillingCycle('MONTHLY')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              billingCycle === 'MONTHLY'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+            }`}
+          >
+            Mensuel
+          </button>
+          <button
+            onClick={() => setBillingCycle('YEARLY')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              billingCycle === 'YEARLY'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+            }`}
+          >
+            Annuel <span className="text-green-600 font-bold ml-1">(-17%)</span>
+          </button>
+        </div>
+
         <div className="grid gap-6 sm:grid-cols-3">
           {plans.map((plan) => {
-            const isCurrent = current?.planCode === plan.code;
-            const price = plan.priceCents / 100;
-            const periodLabel = plan.interval === 'year' ? 'par an' : 'par mois';
-            const features = getPlanFeatures(plan);
+            const isCurrent = current?.planSlug === plan.slug && current?.billingCycle === billingCycle;
+            const price = billingCycle === 'YEARLY' ? plan.priceYearly : plan.priceMonthly;
+            const periodLabel = billingCycle === 'YEARLY' ? 'par an' : 'par mois';
 
             return (
               <Card
-                key={plan.code}
+                key={plan.slug}
                 className={`flex flex-col ${
                   isCurrent ? 'ring-2 ring-blue-500 border-blue-500' : ''
                 }`}
@@ -318,32 +382,55 @@ export function BillingPage() {
                       <p className="text-sm font-semibold text-gray-900">
                         {plan.name}
                       </p>
-                      {plan.code === 'PRO' && (
+                      {plan.slug === 'professional' && (
                         <Badge variant="success">Recommandé</Badge>
                       )}
                     </div>
-                    <p className="text-xs uppercase tracking-wide text-gray-400">
-                      {plan.code}
+                    <p className="text-xs text-gray-500 mt-1">
+                      {plan.description?.fr || ''}
                     </p>
                   </div>
 
                   <div>
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold text-gray-900">
+                      <span className="text-3xl font-bold text-gray-900 dark:text-white">
                         {formatCurrency(price)}
                       </span>
                     </div>
                     <p className="text-xs text-gray-500 mt-1">{periodLabel}</p>
+                    {plan.trialDays > 0 && (
+                      <p className="text-xs text-blue-600 font-medium mt-1">
+                        {plan.trialDays} jours d'essai gratuit
+                      </p>
+                    )}
                   </div>
 
-                  {features.length > 0 && (
+                  {plan.features && Array.isArray(plan.features) && plan.features.length > 0 && (
                     <div className="space-y-2">
-                      {features.map((feature, idx) => (
+                      {plan.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2">
                           <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-xs text-gray-600">{feature}</span>
+                          <span className="text-xs text-gray-600 dark:text-gray-400">{feature}</span>
                         </div>
                       ))}
+                    </div>
+                  )}
+
+                  {plan.limits && (
+                    <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400 border-t pt-3">
+                      {plan.limits.projects_max === -1 ? (
+                        <div>Projets illimités</div>
+                      ) : (
+                        <div>Jusqu'à {plan.limits.projects_max} projets</div>
+                      )}
+                      {plan.limits.users_max === -1 ? (
+                        <div>Utilisateurs illimités</div>
+                      ) : (
+                        <div>Jusqu'à {plan.limits.users_max} utilisateurs</div>
+                      )}
+                      {plan.limits.storage_gb && (
+                        <div>{plan.limits.storage_gb} GB stockage</div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -357,12 +444,12 @@ export function BillingPage() {
                     </div>
                   ) : (
                     <Button
-                      onClick={() => handleChangePlan(plan.code)}
-                      disabled={loadingPlan === plan.code}
-                      variant={plan.code === 'PRO' ? 'primary' : 'secondary'}
+                      onClick={() => handleChangePlan(plan.slug)}
+                      disabled={loadingPlan === plan.slug}
+                      variant={plan.slug === 'professional' ? 'primary' : 'secondary'}
                       className="w-full"
                     >
-                      {loadingPlan === plan.code
+                      {loadingPlan === plan.slug
                         ? 'Mise à jour…'
                         : 'Choisir ce plan'}
                     </Button>
@@ -377,59 +464,15 @@ export function BillingPage() {
   );
 }
 
-function getPlanFeatures(plan: BillingOverviewResponse['availablePlans'][0]): string[] {
-  if (!plan.features) return [];
-
-  const features: string[] = [];
-  const f = plan.features;
-
-  if (f.maxProjects !== undefined) {
-    features.push(
-      f.maxProjects === 999
-        ? 'Projets illimités'
-        : `Jusqu'à ${f.maxProjects} projets`
-    );
-  }
-  if (f.maxUsers !== undefined) {
-    features.push(
-      f.maxUsers === 999
-        ? 'Utilisateurs illimités'
-        : `Jusqu'à ${f.maxUsers} utilisateurs`
-    );
-  }
-  if (f.maxStorageGb !== undefined) {
-    features.push(`${f.maxStorageGb} Go de stockage`);
-  }
-  if (f.support) {
-    const supportLabels: Record<string, string> = {
-      email: 'Support par email',
-      priority: 'Support prioritaire',
-      dedicated: 'Support dédié',
-    };
-    features.push(supportLabels[f.support] || f.support);
-  }
-  if (f.customBranding) {
-    features.push('Personnalisation branding');
-  }
-  if (f.whiteLabel) {
-    features.push('Marque blanche');
-  }
-  if (f.apiAccess) {
-    features.push('Accès API complet');
-  }
-
-  return features;
-}
-
 function getStatusVariant(
   status: string
-): 'default' | 'success' | 'warning' | 'danger' {
-  const map: Record<string, 'default' | 'success' | 'warning' | 'danger'> = {
+): 'default' | 'success' | 'yellow' | 'red' | 'gray' {
+  const map: Record<string, 'default' | 'success' | 'yellow' | 'red' | 'gray'> = {
     ACTIVE: 'success',
-    TRIALING: 'default',
-    PAST_DUE: 'danger',
-    CANCELLED: 'default',
-    SUSPENDED: 'danger',
+    TRIAL: 'yellow',
+    PAST_DUE: 'red',
+    CANCELLED: 'gray',
+    EXPIRED: 'gray',
   };
   return map[status] || 'default';
 }
@@ -437,10 +480,10 @@ function getStatusVariant(
 function renderSubStatus(status: string): string {
   const labels: Record<string, string> = {
     ACTIVE: 'Actif',
-    TRIALING: 'Période d\'essai',
+    TRIAL: 'Période d\'essai',
     PAST_DUE: 'Paiement en retard',
     CANCELLED: 'Résilié',
-    SUSPENDED: 'Suspendu',
+    EXPIRED: 'Expiré',
   };
   return labels[status] || status;
 }

@@ -74,16 +74,20 @@ async function getOverview(supabase: any, organizationId: string) {
     .select(`
       id,
       status,
+      billing_cycle,
       current_period_start,
       current_period_end,
-      plan:billing_plans(
+      trial_start,
+      trial_end,
+      plan:plans(
         id,
-        code,
+        slug,
         name,
-        price_cents,
+        price_monthly,
+        price_yearly,
         currency,
-        interval,
-        features
+        features,
+        limits
       )
     `)
     .eq('organization_id', organizationId)
@@ -92,10 +96,10 @@ async function getOverview(supabase: any, organizationId: string) {
   if (subError) throw subError;
 
   const { data: plans, error: plansError } = await supabase
-    .from('billing_plans')
-    .select('id, code, name, price_cents, currency, interval, features')
-    .eq('active', true)
-    .order('price_cents', { ascending: true });
+    .from('plans')
+    .select('id, slug, name, description, price_monthly, price_yearly, currency, features, limits, trial_days')
+    .eq('is_active', true)
+    .order('sort_order', { ascending: true });
 
   if (plansError) throw plansError;
 
@@ -116,20 +120,28 @@ async function getOverview(supabase: any, organizationId: string) {
     },
     currentSubscription: subscription
       ? {
-          planCode: subscription.plan.code,
+          planSlug: subscription.plan.slug,
           planName: subscription.plan.name,
           status: subscription.status,
+          billingCycle: subscription.billing_cycle,
           currentPeriodStart: subscription.current_period_start,
           currentPeriodEnd: subscription.current_period_end,
+          trialStart: subscription.trial_start,
+          trialEnd: subscription.trial_end,
+          features: subscription.plan.features,
+          limits: subscription.plan.limits,
         }
       : null,
     availablePlans: plans.map((p: any) => ({
-      code: p.code,
+      slug: p.slug,
       name: p.name,
-      priceCents: p.price_cents,
+      description: p.description,
+      priceMonthly: p.price_monthly,
+      priceYearly: p.price_yearly,
       currency: p.currency,
-      interval: p.interval,
       features: p.features,
+      limits: p.limits,
+      trialDays: p.trial_days,
     })),
     usage: {
       projectsCount: projectsCount || 0,
@@ -140,18 +152,21 @@ async function getOverview(supabase: any, organizationId: string) {
 
 async function changePlan(supabase: any, organizationId: string, body: any) {
   const { data: plan, error: planError } = await supabase
-    .from('billing_plans')
-    .select('id, code, name, price_cents, currency, interval, active')
-    .eq('code', body.planCode)
+    .from('plans')
+    .select('id, slug, name, price_monthly, price_yearly, currency, is_active, trial_days')
+    .eq('slug', body.planSlug)
     .maybeSingle();
 
   if (planError) throw planError;
-  if (!plan || !plan.active) {
+  if (!plan || !plan.is_active) {
     throw new Error('Plan inconnu ou inactif');
   }
 
+  const billingCycle = body.billingCycle || 'MONTHLY';
+  const price = billingCycle === 'YEARLY' ? plan.price_yearly : plan.price_monthly;
+
   const now = new Date().toISOString();
-  const nextPeriodEnd = addInterval(now, plan.interval);
+  const nextPeriodEnd = addInterval(now, billingCycle);
 
   const { data: existingSub } = await supabase
     .from('subscriptions')
@@ -162,14 +177,19 @@ async function changePlan(supabase: any, organizationId: string, body: any) {
   let subscription;
 
   if (!existingSub) {
+    const trialEnd = plan.trial_days > 0 ? addDays(now, plan.trial_days) : null;
+
     const { data: newSub, error: createError } = await supabase
       .from('subscriptions')
       .insert({
         organization_id: organizationId,
         plan_id: plan.id,
-        status: 'ACTIVE',
+        status: plan.trial_days > 0 ? 'TRIAL' : 'ACTIVE',
+        billing_cycle: billingCycle,
         current_period_start: now,
         current_period_end: nextPeriodEnd,
+        trial_start: plan.trial_days > 0 ? now : null,
+        trial_end: trialEnd,
       })
       .select()
       .single();
@@ -182,6 +202,7 @@ async function changePlan(supabase: any, organizationId: string, body: any) {
       .update({
         plan_id: plan.id,
         status: 'ACTIVE',
+        billing_cycle: billingCycle,
         current_period_start: now,
         current_period_end: nextPeriodEnd,
       })
@@ -197,20 +218,26 @@ async function changePlan(supabase: any, organizationId: string, body: any) {
     supabase,
     subscription.id,
     organizationId,
-    plan.price_cents,
+    price,
     plan.currency
   );
 
   return subscription;
 }
 
-function addInterval(dateStr: string, interval: string): string {
+function addInterval(dateStr: string, cycle: string): string {
   const date = new Date(dateStr);
-  if (interval === 'month') {
+  if (cycle === 'MONTHLY') {
     date.setMonth(date.getMonth() + 1);
-  } else if (interval === 'year') {
+  } else if (cycle === 'YEARLY') {
     date.setFullYear(date.getFullYear() + 1);
   }
+  return date.toISOString();
+}
+
+function addDays(dateStr: string, days: number): string {
+  const date = new Date(dateStr);
+  date.setDate(date.getDate() + days);
   return date.toISOString();
 }
 
@@ -218,29 +245,37 @@ async function createSubscriptionInvoice(
   supabase: any,
   subscriptionId: string,
   organizationId: string,
-  amountCents: number,
+  amount: number,
   currency: string
 ) {
+  const { data: subscription } = await supabase
+    .from('subscriptions')
+    .select('current_period_start, current_period_end')
+    .eq('id', subscriptionId)
+    .single();
+
   const { count } = await supabase
     .from('subscription_invoices')
-    .select('id', { count: 'exact', head: true })
-    .eq('subscription_id', subscriptionId);
+    .select('id', { count: 'exact', head: true });
 
-  const invoiceNumber = `SUB-${organizationId.slice(0, 6).toUpperCase()}-${String(
+  const invoiceNumber = `INV-${new Date().getFullYear()}-${String(
     (count || 0) + 1
-  ).padStart(3, '0')}`;
+  ).padStart(5, '0')}`;
 
   const now = new Date().toISOString();
-  const dueDate = addInterval(now, 'month');
+  const dueDate = addDays(now, 30);
 
   await supabase.from('subscription_invoices').insert({
     subscription_id: subscriptionId,
+    organization_id: organizationId,
     invoice_number: invoiceNumber,
-    amount_cents: amountCents,
+    amount: amount,
     currency: currency,
+    status: 'PENDING',
     issued_at: now,
     due_at: dueDate,
-    status: 'OPEN',
+    period_start: subscription?.current_period_start || now,
+    period_end: subscription?.current_period_end || addInterval(now, 'MONTHLY'),
   });
 }
 
