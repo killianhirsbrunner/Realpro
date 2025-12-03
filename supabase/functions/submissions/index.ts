@@ -428,7 +428,7 @@ async function adjudicateOffer(supabase: any, submissionId: string, body: any) {
       type: 'SUBCONTRACTOR',
       title: contractTitle,
       amount_initial: offer.total_incl_vat,
-      vat_rate: project.tva_rate || 7.7,
+      vat_rate: project.tva_rate || 8.1,
       cfc_main_code: submission.cfc_code || null,
       status: 'DRAFT',
     })

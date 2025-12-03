@@ -49,7 +49,7 @@ GET https://[PROJET].supabase.co/functions/v1/contracts-finance/contracts/600000
   "title": "Contrat entreprise générale",
   "cfc_main_code": "200",
   "amount_initial": 3100000,
-  "vat_rate": 7.7,
+  "vat_rate": 8.1,
   "status": "ACTIVE",
   "created_at": "2024-11-01T10:00:00Z",
 
@@ -248,7 +248,7 @@ Crée un contrat avec allocations CFC automatiques.
   "title": "Contrat entreprise générale",
   "type": "EG",
   "amountInitial": 3100000,
-  "vatRate": 7.7,
+  "vatRate": 8.1,
   "cfcMainCode": "200",
   "allocations": [
     {
@@ -278,7 +278,7 @@ Crée un contrat avec allocations CFC automatiques.
   "type": "EG",
   "title": "Contrat entreprise générale",
   "amount_initial": 3100000,
-  "vat_rate": 7.7,
+  "vat_rate": 8.1,
   "cfc_main_code": "200",
   "status": "DRAFT",
   "created_at": "2024-11-01T10:00:00Z"
@@ -439,9 +439,9 @@ Crée une facture EG avec TVA et rétention de garantie.
 **Calculs TVA Suisse**:
 ```typescript
 const amountExclVat = 150000;
-const vatRate = 7.7; // %
-const vatAmount = amountExclVat * (vatRate / 100); // 11'550 CHF
-const amountInclVat = amountExclVat + vatAmount; // 161'550 CHF
+const vatRate = 8.1; // %
+const vatAmount = amountExclVat * (vatRate / 100); // 12'150 CHF
+const amountInclVat = amountExclVat + vatAmount; // 162'150 CHF
 ```
 
 **Rétention de garantie**:
@@ -901,7 +901,7 @@ psql $DATABASE_URL -f supabase/seed.sql
 
 - **Norme SIA 118**: Conditions générales pour travaux de construction
 - **Code CFC**: Code des frais de construction suisse
-- **TVA**: Taux 7.7% (construction neuve)
+- **TVA**: Taux 8.1% (construction neuve, depuis 2024)
 - **Rétention de garantie**: Typiquement 5-10%
 
 ### Documentation
@@ -919,7 +919,7 @@ psql $DATABASE_URL -f supabase/seed.sql
 ✅ **Calcul automatique CFC** (engagement, facturé, payé)
 ✅ **Gestion complète** cycle contrat → facture → paiement
 ✅ **Rétention garantie** support natif
-✅ **TVA suisse** 7.7%
+✅ **TVA suisse** 8.1%
 ✅ **Multi-projets** avec isolation
 
 ### Fichiers Créés

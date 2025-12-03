@@ -395,9 +395,9 @@ Une entreprise dépose son offre avec bordereau détaillé.
 
 ```typescript
 const totalExclVat = 245000;
-const vatRate = 7.7; // %
-const vatAmount = totalExclVat * (vatRate / 100); // 18'865 CHF
-const totalInclVat = totalExclVat + vatAmount; // 263'865 CHF
+const vatRate = 8.1; // %
+const vatAmount = totalExclVat * (vatRate / 100); // 19'845 CHF
+const totalInclVat = totalExclVat + vatAmount; // 264'845 CHF
 ```
 
 ---
@@ -813,9 +813,9 @@ const typicalDeadlines = {
 
 ```typescript
 const vatRates = {
-  newConstruction: 7.7,    // Construction neuve
-  renovation: 7.7,         // Rénovation > 5 ans
-  maintenance: 7.7,        // Entretien courant
+  newConstruction: 8.1,    // Construction neuve
+  renovation: 8.1,         // Rénovation > 5 ans
+  maintenance: 8.1,        // Entretien courant
 };
 ```
 

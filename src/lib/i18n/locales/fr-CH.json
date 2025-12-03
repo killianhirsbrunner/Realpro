@@ -278,7 +278,7 @@
         "heading": "Paramètres financiers",
         "description": "Configuration des taux et modes de vente",
         "vat": "Taux de TVA (%)",
-        "vatHint": "Taux habituel en Suisse : 7.7%",
+        "vatHint": "Taux habituel en Suisse : 8.1%",
         "saleMode": "Mode de vente",
         "saleModes": {
           "PPE": "PPE (Propriété par étages)",

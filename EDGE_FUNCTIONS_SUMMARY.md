@@ -179,7 +179,7 @@ audit_logs
 - **Calcul automatique CFC** (engagement, facturé, payé)
 - Gestion contrats EG + sous-traitants
 - Situations de travaux + validation
-- Factures avec TVA 7.7% + rétention
+- Factures avec TVA 8.1% + rétention
 - Paiements partiels supportés
 
 ### Tables Utilisées

@@ -53,7 +53,7 @@ Routes disponibles:
 - Création automatique dans la table `buildings`
 
 **Étape 3: Paramètres financiers**
-- Taux de TVA (défaut: 7.7%)
+- Taux de TVA (défaut: 8.1%)
 - Mode de vente (PPE, QPT, Mixte)
 - Mise à jour de la table `projects`
 

@@ -144,7 +144,7 @@ async function createContract(supabase: any, projectId: string, body: any) {
       title: body.title,
       type: body.type || 'EG',
       amount_initial: body.amountInitial || 0,
-      vat_rate: body.vatRate || 7.7,
+      vat_rate: body.vatRate || 8.1,
       cfc_main_code: body.cfcMainCode || null,
       status: 'DRAFT',
     })

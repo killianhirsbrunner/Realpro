@@ -102,7 +102,7 @@ ON CONFLICT (id) DO NOTHING;
 -- ============================================================================
 
 INSERT INTO contracts (id, organization_id, project_id, company_id, type, title, cfc_main_code, amount_initial, vat_rate, status)
-VALUES ('60000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', '30000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', 'EG', 'Contrat entreprise générale', '200', 3100000, 7.7, 'ACTIVE')
+VALUES ('60000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', '30000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', 'EG', 'Contrat entreprise générale', '200', 3100000, 8.1, 'ACTIVE')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO contract_cfc_allocations (contract_id, cfc_budget_id, amount) VALUES

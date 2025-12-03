@@ -66,15 +66,15 @@ formatSurface(125.5) // => "125.5 m²"
 
 ### 1.4 TVA (Taxe sur la Valeur Ajoutée)
 
-**Taux standards**:
-- Taux normal: **7.7%**
-- Taux réduit: **2.5%** (pour locations)
-- Taux spécial: **3.7%** (hébergement)
+**Taux standards** (en vigueur depuis le 1er janvier 2024):
+- Taux normal: **8.1%**
+- Taux réduit: **2.6%** (pour locations)
+- Taux spécial: **3.8%** (hébergement)
 
 **Paramétrage par projet**:
 ```typescript
 interface Project {
-  vat_rate: number; // Ex: 7.7, 2.5, 3.7
+  vat_rate: number; // Ex: 8.1, 2.6, 3.8
   vat_included: boolean; // TVA incluse ou non
 }
 ```
@@ -766,7 +766,7 @@ code_cfc,libelle,budget_initial
 
 ### 12.2 Validations métier
 
-- [ ] Calcul TVA correct (7.7%, 2.5%)
+- [ ] Calcul TVA correct (8.1%, 2.6%)
 - [ ] Formats CHF partout
 - [ ] Dates au format suisse
 - [ ] Cantons dans les listes déroulantes

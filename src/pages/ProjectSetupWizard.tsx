@@ -471,7 +471,7 @@ function Step3Form({
   onPrevious: () => void;
   saving: boolean;
 }) {
-  const [vatRate, setVatRate] = useState(initial?.vatRate ?? 7.7);
+  const [vatRate, setVatRate] = useState(initial?.vatRate ?? 8.1);
   const [saleMode, setSaleMode] = useState(initial?.saleMode || 'PPE');
 
   return (
@@ -506,7 +506,7 @@ function Step3Form({
             onChange={(e) => setVatRate(e.target.value)}
           />
           <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            Taux habituel en Suisse : 7.7%
+            Taux habituel en Suisse : 8.1%
           </p>
         </div>
 
