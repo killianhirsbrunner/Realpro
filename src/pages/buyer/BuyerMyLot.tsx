@@ -1,26 +1,28 @@
 import { useEffect, useState } from 'react';
-import { Home, Download, FileText } from 'lucide-react';
-import { Card } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
-import { Button } from '../../components/ui/Button';
+import { useParams } from 'react-router-dom';
+import { Home } from 'lucide-react';
 import { LoadingState } from '../../components/ui/LoadingSpinner';
 import { ErrorState } from '../../components/ui/ErrorState';
 import { supabase } from '../../lib/supabase';
 import { formatCHF, formatDateCH, formatSurface } from '../../lib/utils/format';
 import { getStatusLabel } from '../../lib/constants/status-labels';
 
-interface BuyerLotData {
+interface BuyerOverviewData {
   buyer: {
     id: string;
     first_name: string;
     last_name: string;
+    email: string;
   };
   project: {
+    id: string;
     name: string;
     city: string;
+    canton: string;
     expected_delivery: string;
   };
   lot: {
+    id: string;
     lot_number: string;
     type: string;
     floor: number;
@@ -32,46 +34,47 @@ interface BuyerLotData {
   };
   buyer_file: {
     status: string;
-    signature_date: string | null;
   };
-  documents: Array<{
-    id: string;
-    name: string;
-    type: string;
-  }>;
+  sale: {
+    contract_signed_at: string | null;
+    reservation_signed_at: string | null;
+    sale_type: string;
+  };
 }
 
 export function BuyerMyLot() {
-  const [data, setData] = useState<BuyerLotData | null>(null);
+  const { buyerId } = useParams<{ buyerId: string }>();
+  const [data, setData] = useState<BuyerOverviewData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchBuyerData();
-  }, []);
+    if (buyerId) {
+      fetchBuyerOverview(buyerId);
+    }
+  }, [buyerId]);
 
-  async function fetchBuyerData() {
+  async function fetchBuyerOverview(id: string) {
     try {
       setLoading(true);
       setError(null);
 
-      // Get current user
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error('Non authentifié');
-
-      // Fetch buyer info with project and lot
       const { data: buyer, error: buyerError } = await supabase
         .from('buyers')
         .select(`
           id,
           first_name,
           last_name,
+          email,
           projects (
+            id,
             name,
             city,
+            canton,
             expected_delivery
           ),
           lots (
+            id,
             lot_number,
             type,
             floor,
@@ -82,31 +85,37 @@ export function BuyerMyLot() {
             status
           ),
           buyer_files (
-            status,
-            signature_date
+            status
+          ),
+          sales_contracts (
+            contract_signed_at,
+            reservation_signed_at,
+            sale_type
           )
         `)
-        .eq('user_id', user.id)
+        .eq('id', id)
         .single();
 
       if (buyerError) throw buyerError;
-
-      // TODO: Fetch documents
-      const documents: any[] = [];
 
       setData({
         buyer: {
           id: buyer.id,
           first_name: buyer.first_name,
           last_name: buyer.last_name,
+          email: buyer.email || '',
         },
-        project: buyer.projects,
-        lot: buyer.lots,
-        buyer_file: buyer.buyer_files?.[0] || { status: 'INCOMPLETE', signature_date: null },
-        documents,
+        project: buyer.projects || {},
+        lot: buyer.lots || {},
+        buyer_file: buyer.buyer_files?.[0] || { status: 'INCOMPLETE' },
+        sale: buyer.sales_contracts?.[0] || {
+          contract_signed_at: null,
+          reservation_signed_at: null,
+          sale_type: 'PPE',
+        },
       });
     } catch (err: any) {
-      console.error('Error fetching buyer data:', err);
+      console.error('Error fetching buyer overview:', err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -114,177 +123,182 @@ export function BuyerMyLot() {
   }
 
   if (loading) return <LoadingState message="Chargement..." />;
-  if (error) return <ErrorState message={error} retry={fetchBuyerData} />;
+  if (error) return <ErrorState message={error} retry={() => fetchBuyerOverview(buyerId!)} />;
   if (!data) return <ErrorState message="Aucune donnée disponible" />;
 
-  const { buyer, project, lot, buyer_file, documents } = data;
+  const { buyer, project, lot, sale } = data;
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Votre appartement</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Toutes les informations sur votre futur logement
+    <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
+      {/* Header */}
+      <header className="space-y-2">
+        <p className="text-xs uppercase tracking-wide text-gray-400">
+          Espace acquéreur
         </p>
-      </div>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
+          Bonjour {buyer.first_name} {buyer.last_name}
+        </h1>
+        <p className="text-sm text-gray-500">
+          Projet : {project.name}
+          {project.city ? ` · ${project.city}` : ''}
+          {project.canton ? ` (${project.canton})` : ''}
+        </p>
+      </header>
 
-      {/* Main Info Card */}
-      <Card>
-        <Card.Content>
-          <div className="flex items-start gap-6">
-            <div className="flex-shrink-0 p-4 bg-blue-50 rounded-xl">
-              <Home className="h-12 w-12 text-blue-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                {project.name} – {project.city}
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                <div>
-                  <p className="text-xs text-gray-500">Lot</p>
-                  <p className="text-lg font-semibold text-gray-900">{lot.lot_number}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-500">Pièces</p>
-                  <p className="text-lg font-semibold text-gray-900">{lot.rooms}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-500">Surface</p>
-                  <p className="text-lg font-semibold text-gray-900">{formatSurface(lot.surface_habitable)}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-500">Étage</p>
-                  <p className="text-lg font-semibold text-gray-900">{lot.floor}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Badge variant={lot.status === 'SOLD' ? 'success' : 'warning'}>
-                  {getStatusLabel('lot', lot.status)}
-                </Badge>
-                <span className="text-sm text-gray-500">
-                  Prix: <span className="font-semibold text-gray-900">{formatCHF(lot.price_vat)}</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </Card.Content>
-      </Card>
-
-      {/* Status Card */}
-      {buyer_file.signature_date && (
-        <Card className="bg-green-50 border-green-200">
-          <Card.Content>
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-2xl">✓</span>
-              </div>
-              <div>
-                <h3 className="font-semibold text-green-900 mb-1">Félicitations !</h3>
-                <p className="text-sm text-green-800">
-                  Votre acte de vente a été signé le {formatDateCH(buyer_file.signature_date)}.
-                  <br />
-                  Nous vous tiendrons informé des prochaines étapes.
-                </p>
-              </div>
-            </div>
-          </Card.Content>
-        </Card>
-      )}
-
-      {/* Delivery Info */}
-      <Card>
-        <Card.Header>
-          <Card.Title>Remise des clés</Card.Title>
-        </Card.Header>
-        <Card.Content>
-          <div className="flex items-center justify-between">
+      {/* Lot Card */}
+      <section className="space-y-3">
+        <h2 className="text-base font-semibold text-gray-900">Votre lot</h2>
+        <div className="rounded-2xl border bg-white px-4 py-4 space-y-3">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm text-gray-500 mb-1">Date de remise prévue</p>
-              <p className="text-xl font-semibold text-gray-900">
-                {formatDateCH(project.expected_delivery)}
+              <p className="text-sm font-medium text-gray-900">
+                Appartement {lot.lot_number}
+              </p>
+              <p className="text-sm text-gray-500">
+                {lot.rooms} pièces · {formatSurface(lot.surface_habitable)}
               </p>
             </div>
-            <div className="p-3 bg-blue-50 rounded-xl">
-              <Home className="h-8 w-8 text-blue-600" />
+            <span
+              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                lot.status === 'SOLD'
+                  ? 'bg-emerald-50 text-emerald-700'
+                  : lot.status === 'RESERVED'
+                  ? 'bg-amber-50 text-amber-700'
+                  : 'bg-slate-50 text-slate-700'
+              }`}
+            >
+              {getStatusLabel('lot', lot.status)}
+            </span>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3 text-sm">
+            <div>
+              <p className="text-xs uppercase tracking-wide text-gray-400">
+                Type de vente
+              </p>
+              <p className="mt-1 text-gray-900">{sale.sale_type || 'PPE'}</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-gray-400">
+                Prix total
+              </p>
+              <p className="mt-1 text-gray-900">{formatCHF(lot.price_vat)}</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-gray-400">
+                Remise des clés prévue
+              </p>
+              <p className="mt-1 text-gray-900">
+                {project.expected_delivery
+                  ? formatDateCH(project.expected_delivery)
+                  : 'À préciser'}
+              </p>
             </div>
           </div>
-        </Card.Content>
-      </Card>
+        </div>
+      </section>
 
-      {/* Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-          <Card.Content>
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-gray-100 rounded-xl">
-                <FileText className="h-6 w-6 text-gray-600" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-medium text-gray-900">Plan de votre lot</h3>
-                <p className="text-sm text-gray-500">Télécharger le plan détaillé</p>
-              </div>
-              <Download className="h-5 w-5 text-gray-400" />
-            </div>
-          </Card.Content>
-        </Card>
+      {/* Contract Status */}
+      <section className="space-y-3">
+        <h2 className="text-base font-semibold text-gray-900">
+          Situation de votre contrat
+        </h2>
+        <div className="rounded-2xl border bg-white px-4 py-4 space-y-3">
+          {sale.contract_signed_at ? (
+            <>
+              <p className="text-sm text-gray-900">
+                Votre acte de vente a été signé le{' '}
+                <span className="font-semibold">
+                  {formatDateCH(sale.contract_signed_at)}
+                </span>
+                .
+              </p>
+              <p className="text-sm text-gray-500">
+                Nous vous informerons des prochaines étapes et des échéances de
+                paiement au fur et à mesure.
+              </p>
+            </>
+          ) : sale.reservation_signed_at ? (
+            <>
+              <p className="text-sm text-gray-900">
+                Votre réservation a été signée le{' '}
+                <span className="font-semibold">
+                  {formatDateCH(sale.reservation_signed_at)}
+                </span>
+                .
+              </p>
+              <p className="text-sm text-gray-500">
+                Le dossier est en cours de finalisation pour la signature de
+                l'acte chez le notaire.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-sm text-gray-900">
+                Votre dossier est en cours de préparation.
+              </p>
+              <p className="text-sm text-gray-500">
+                Vous serez informé dès que votre réservation ou votre acte sera
+                prêt pour signature.
+              </p>
+            </>
+          )}
+        </div>
+      </section>
 
-        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-          <Card.Content>
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-gray-100 rounded-xl">
-                <FileText className="h-6 w-6 text-gray-600" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-medium text-gray-900">Contrat de vente</h3>
-                <p className="text-sm text-gray-500">Télécharger votre contrat</p>
-              </div>
-              <Download className="h-5 w-5 text-gray-400" />
-            </div>
-          </Card.Content>
-        </Card>
-      </div>
+      {/* Navigation Links */}
+      <section className="space-y-3">
+        <h2 className="text-base font-semibold text-gray-900">
+          Accéder à vos informations
+        </h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <a
+            href={`/buyers/${buyer.id}/progress`}
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+          >
+            <p className="text-sm font-semibold text-gray-900">
+              Avancement du projet
+            </p>
+            <p className="mt-1 text-xs text-gray-500">
+              Suivez l'avancement du chantier et les grandes étapes jusqu'à la
+              remise des clés.
+            </p>
+          </a>
 
-      {/* Property Details */}
-      <Card>
-        <Card.Header>
-          <Card.Title>Détails du bien</Card.Title>
-        </Card.Header>
-        <Card.Content>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-3">Surfaces</h4>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Surface habitable</span>
-                  <span className="text-sm font-medium text-gray-900">{formatSurface(lot.surface_habitable)}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Surface PPE</span>
-                  <span className="text-sm font-medium text-gray-900">{formatSurface(lot.surface_ppe)}</span>
-                </div>
-              </div>
-            </div>
+          <a
+            href={`/buyers/${buyer.id}/documents`}
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+          >
+            <p className="text-sm font-semibold text-gray-900">Mes documents</p>
+            <p className="mt-1 text-xs text-gray-500">
+              Consultez et téléchargez votre contrat, vos plans et vos avenants.
+            </p>
+          </a>
 
-            <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-3">Informations</h4>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Type</span>
-                  <span className="text-sm font-medium text-gray-900">{lot.type}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Étage</span>
-                  <span className="text-sm font-medium text-gray-900">{lot.floor}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Nombre de pièces</span>
-                  <span className="text-sm font-medium text-gray-900">{lot.rooms}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card.Content>
-      </Card>
+          <a
+            href={`/buyers/${buyer.id}/choices`}
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+          >
+            <p className="text-sm font-semibold text-gray-900">
+              Mes choix & modifications
+            </p>
+            <p className="mt-1 text-xs text-gray-500">
+              Choisissez vos finitions et suivez vos demandes de modifications.
+            </p>
+          </a>
+
+          <a
+            href={`/buyers/${buyer.id}/payments`}
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+          >
+            <p className="text-sm font-semibold text-gray-900">Mes paiements</p>
+            <p className="mt-1 text-xs text-gray-500">
+              Visualisez les échéances, les montants déjà payés et le solde
+              restant.
+            </p>
+          </a>
+        </div>
+      </section>
     </div>
   );
 }
