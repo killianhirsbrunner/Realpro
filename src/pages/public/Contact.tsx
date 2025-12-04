@@ -91,7 +91,7 @@ export function Contact() {
       <section className="max-w-6xl mx-auto px-6 lg:px-8 pt-16 pb-12 md:pt-20 md:pb-16 text-center">
         <ScrollReveal>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white leading-[1.1] tracking-tight mb-6">
-            Parlons de votre <span className="bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent">projet</span>
+            Parlons de votre <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 bg-clip-text text-transparent">projet</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed">
             Une question ? Besoin d'une démo ? Notre équipe est là pour vous aider.
@@ -102,11 +102,11 @@ export function Contact() {
       <section className="max-w-6xl mx-auto px-6 lg:px-8 pb-16 md:pb-24">
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           <ScrollReveal>
-            <div className="group p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500">
-                <Mail className="w-6 h-6 text-white" />
+            <div className="group p-8 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center h-full flex flex-col">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500 flex-shrink-0">
+                <Mail className="w-7 h-7 text-white" />
               </div>
-              <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-3 text-lg">
                 Email
               </h3>
               <a
@@ -119,11 +119,11 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="group p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500">
-                <Phone className="w-6 h-6 text-white" />
+            <div className="group p-8 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center h-full flex flex-col">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500 flex-shrink-0">
+                <Phone className="w-7 h-7 text-white" />
               </div>
-              <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-3 text-lg">
                 Téléphone
               </h3>
               <a
@@ -136,11 +136,11 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="group p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500">
-                <MapPin className="w-6 h-6 text-white" />
+            <div className="group p-8 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 text-center h-full flex flex-col">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500 flex-shrink-0">
+                <MapPin className="w-7 h-7 text-white" />
               </div>
-              <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-3 text-lg">
                 Adresse
               </h3>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm">

@@ -176,16 +176,16 @@ export function SubmissionComparison() {
           </p>
         </Card>
 
-        <Card className="p-6 bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-900/20 dark:to-secondary-800/20 border-secondary-200 dark:border-secondary-800 hover:shadow-xl transition-shadow">
+        <Card className="p-6 bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 border-brand-200 dark:border-brand-800 hover:shadow-xl transition-shadow">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-secondary-600 shadow-lg">
+            <div className="p-2 rounded-lg bg-brand-600 shadow-lg">
               <TrendingUp className="h-5 w-5 text-white" />
             </div>
             <h3 className="font-semibold text-neutral-900 dark:text-white">
               Offre la plus haute
             </h3>
           </div>
-          <p className="text-3xl font-bold text-secondary-700 dark:text-secondary-400 mb-1">
+          <p className="text-3xl font-bold text-brand-700 dark:text-brand-400 mb-1">
             {formatCurrency(highestOffer?.totalInclVat || 0)}
           </p>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -280,7 +280,7 @@ export function SubmissionComparison() {
                         </Badge>
                       ) : (
                         <span className={`text-sm font-medium ${
-                          percentDiff > 10 ? 'text-red-600 dark:text-red-400' : 'text-secondary-600 dark:text-secondary-400'
+                          percentDiff > 10 ? 'text-red-600 dark:text-red-400' : 'text-brand-600 dark:text-brand-400'
                         }`}>
                           +{percentDiff.toFixed(1)}%
                         </span>

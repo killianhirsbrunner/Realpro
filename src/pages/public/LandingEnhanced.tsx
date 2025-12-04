@@ -66,7 +66,7 @@ export function LandingEnhanced() {
       title: 'Finances & CFC',
       description: 'Budgets CFC, factures acheteurs, QR-factures suisses et suivi des paiements. Compatibilité bancaire complète.',
       image: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg',
-      color: 'from-secondary-600 to-secondary-700'
+      color: 'from-brand-600 to-brand-700'
     },
     {
       icon: FileCheck,

@@ -60,22 +60,22 @@ export default function ProjectPlanningPage() {
       </div>
 
       {alerts.length > 0 && (
-        <Card className="p-4 bg-secondary-50 border-secondary-200">
+        <Card className="p-4 bg-brand-50 border-brand-200">
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-secondary-600 flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h3 className="font-semibold text-secondary-900 mb-1">
+              <h3 className="font-semibold text-brand-900 mb-1">
                 {alerts.length} alerte{alerts.length > 1 ? 's' : ''} active{alerts.length > 1 ? 's' : ''}
               </h3>
               <ul className="space-y-1">
                 {alerts.slice(0, 3).map(alert => (
-                  <li key={alert.id} className="text-sm text-secondary-800">
+                  <li key={alert.id} className="text-sm text-brand-800">
                     • {alert.message}
                   </li>
                 ))}
               </ul>
               {alerts.length > 3 && (
-                <p className="text-sm text-secondary-700 mt-2">
+                <p className="text-sm text-brand-700 mt-2">
                   +{alerts.length - 3} autre{alerts.length > 4 ? 's' : ''} alerte{alerts.length > 4 ? 's' : ''}
                 </p>
               )}

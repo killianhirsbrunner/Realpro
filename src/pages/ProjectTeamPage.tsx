@@ -79,7 +79,7 @@ export default function ProjectTeamPage() {
 
         <div className="p-6 bg-white rounded-xl border border-gray-200">
           <div className="flex items-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-secondary-600" />
+            <Users className="w-6 h-6 text-brand-600" />
             <p className="text-sm font-medium text-gray-600">Entreprises</p>
           </div>
           <p className="text-3xl font-bold text-gray-900">

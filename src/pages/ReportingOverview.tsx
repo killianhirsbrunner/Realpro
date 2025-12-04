@@ -159,7 +159,7 @@ export function ReportingOverview() {
           helper={`${buyerFilesSummary.readyForNotary} prêts pour notaire`}
         />
         <KpiCard
-          icon={<Users className="w-5 h-5 text-secondary-600" />}
+          icon={<Users className="w-5 h-5 text-brand-600" />}
           label="Soumissions"
           value={submissionsSummary.inProgress}
           helper={`${submissionsSummary.adjudicated} adjudiquées`}

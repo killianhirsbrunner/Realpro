@@ -157,7 +157,7 @@ export function ReportingCFC() {
                     <td className="py-3 px-4 text-sm text-right text-neutral-900 dark:text-white">
                       CHF {(item.budget / 1000).toFixed(0)}k
                     </td>
-                    <td className="py-3 px-4 text-sm text-right text-secondary-600">
+                    <td className="py-3 px-4 text-sm text-right text-brand-600">
                       CHF {(item.engaged / 1000).toFixed(0)}k
                     </td>
                     <td className="py-3 px-4 text-sm text-right text-green-600">

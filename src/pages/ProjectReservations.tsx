@@ -170,7 +170,7 @@ export default function ProjectReservations() {
                       {new Date(reservation.expires_at).toLocaleDateString('fr-CH')}
                     </div>
                     {isExpiringSoon(reservation.expires_at) && reservation.status !== 'EXPIRED' && (
-                      <div className="text-xs text-secondary-600 dark:text-secondary-400 font-medium mt-1">
+                      <div className="text-xs text-brand-600 dark:text-brand-400 font-medium mt-1">
                         <AlertTriangle className="w-3 h-3 inline mr-1" />
                         Expire bientôt
                       </div>
