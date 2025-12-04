@@ -23,6 +23,10 @@ import ProjectPlanningPhotos from './pages/ProjectPlanningPhotos';
 import ProjectPlanningReports from './pages/ProjectPlanningReports';
 import ProjectPlanningBuyersProgress from './pages/ProjectPlanningBuyersProgress';
 import ProjectSetupWizard from './pages/ProjectSetupWizard';
+import ProjectMaterialsPage from './pages/ProjectMaterialsPage';
+import ProjectMaterialsCatalog from './pages/ProjectMaterialsCatalog';
+import ProjectMaterialsSuppliers from './pages/ProjectMaterialsSuppliers';
+import ProjectMaterialsSupplierAgenda from './pages/ProjectMaterialsSupplierAgenda';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
 
@@ -100,6 +104,10 @@ function App() {
                     <Route path="/projects/:projectId/planning/photos" element={<ProjectPlanningPhotos />} />
                     <Route path="/projects/:projectId/planning/reports" element={<ProjectPlanningReports />} />
                     <Route path="/projects/:projectId/planning/buyers" element={<ProjectPlanningBuyersProgress />} />
+                    <Route path="/projects/:projectId/materials" element={<ProjectMaterialsPage />} />
+                    <Route path="/projects/:projectId/materials/catalog" element={<ProjectMaterialsCatalog />} />
+                    <Route path="/projects/:projectId/materials/suppliers" element={<ProjectMaterialsSuppliers />} />
+                    <Route path="/projects/:projectId/materials/suppliers/:supplierId" element={<ProjectMaterialsSupplierAgenda />} />
                     <Route path="/projects/:projectId/setup" element={<ProjectSetupWizard />} />
                     <Route path="/projects/:projectId/lots" element={<ProjectLots />} />
                     <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetail />} />
