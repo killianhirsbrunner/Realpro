@@ -47,6 +47,10 @@ import ProjectMaterialsAppointments from './pages/ProjectMaterialsAppointments';
 import ProjectMessages from './pages/ProjectMessages';
 import ProjectNotary from './pages/ProjectNotary';
 import ProjectNotaryDetail from './pages/ProjectNotaryDetail';
+import ProjectCRMPipeline from './pages/ProjectCRMPipeline';
+import ProjectCRMProspects from './pages/ProjectCRMProspects';
+import ProjectCRMProspectDetail from './pages/ProjectCRMProspectDetail';
+import ProjectCRMBuyers from './pages/ProjectCRMBuyers';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
 
@@ -184,6 +188,10 @@ function App() {
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
                     <Route path="/projects/:projectId/notary" element={<ProjectNotary />} />
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
+                    <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipeline />} />
+                    <Route path="/projects/:projectId/crm/prospects" element={<ProjectCRMProspects />} />
+                    <Route path="/projects/:projectId/crm/prospects/:prospectId" element={<ProjectCRMProspectDetail />} />
+                    <Route path="/projects/:projectId/crm/buyers" element={<ProjectCRMBuyers />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
                     <Route path="/promoter" element={<PromoterDashboard />} />
