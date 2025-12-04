@@ -10,9 +10,20 @@ import { AppShell } from './components/layout/AppShell';
 import { AuthGuard } from './components/AuthGuard';
 import { ThemeProvider } from './contexts/ThemeContext';
 
+import { Landing } from './pages/public/Landing';
+import { Pricing } from './pages/public/Pricing';
+import { Features } from './pages/public/Features';
+import { Contact } from './pages/public/Contact';
+
 import { Login } from './pages/Login';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
+import { Register } from './pages/auth/Register';
+import { ChoosePlan } from './pages/auth/ChoosePlan';
+import { Checkout } from './pages/auth/Checkout';
+import { Success } from './pages/auth/Success';
+
+import { DashboardGlobal } from './pages/DashboardGlobal';
 import { Dashboard } from './pages/Dashboard';
 import { ProjectsList } from './pages/ProjectsList';
 import { ProjectOverview } from './pages/ProjectOverview';
@@ -85,17 +96,33 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/contact" element={<Contact />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/choose-plan" element={<ChoosePlan />} />
+          <Route path="/auth/checkout" element={<Checkout />} />
+          <Route path="/auth/success" element={<Success />} />
+
+          <Route path="/legal/cgu" element={<CGU />} />
+          <Route path="/legal/cgv" element={<CGV />} />
+          <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/legal/privacy" element={<Privacy />} />
+
           <Route
             path="/*"
             element={
               <AuthGuard>
                 <AppShell>
                   <Routes>
-                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<DashboardGlobal />} />
+                    <Route path="/dashboard-old" element={<Dashboard />} />
 
                     <Route path="/projects" element={<ProjectsList />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />
@@ -161,11 +188,6 @@ function App() {
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
 
                     <Route path="/chantier" element={<ChantierHome />} />
-
-                    <Route path="/legal/cgu" element={<CGU />} />
-                    <Route path="/legal/cgv" element={<CGV />} />
-                    <Route path="/legal/mentions-legales" element={<MentionsLegales />} />
-                    <Route path="/legal/privacy" element={<Privacy />} />
                   </Routes>
                 </AppShell>
               </AuthGuard>
