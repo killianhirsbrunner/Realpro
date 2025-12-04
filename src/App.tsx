@@ -50,6 +50,7 @@ import { NewSubmission } from './pages/NewSubmission';
 import { SubmissionDetail } from './pages/SubmissionDetail';
 import { SubmissionComparison } from './pages/SubmissionComparison';
 import { ProjectCFC } from './pages/ProjectCFC';
+import { CfcDetail } from './pages/CfcDetail';
 import { ProjectFinance } from './pages/ProjectFinance';
 import { ProjectSAV } from './pages/ProjectSAV';
 import { ProjectSettings } from './pages/ProjectSettings';
@@ -105,6 +106,7 @@ function App() {
                     <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetail />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
+                    <Route path="/projects/:projectId/cfc/:cfcId" element={<CfcDetail />} />
                     <Route path="/projects/:projectId/finance" element={<ProjectFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
