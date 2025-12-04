@@ -176,6 +176,219 @@ export function Landing() {
         </div>
       </section>
 
+      {/* Section Stats */}
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <div className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
+              360°
+            </div>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Vision complète
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
+              5+
+            </div>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Acteurs connectés
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
+              1
+            </div>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Seule plateforme
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
+              100%
+            </div>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Centralisé
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Use Case */}
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-24 md:py-32">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-xs font-medium mb-6">
+              <MessageSquare className="w-3.5 h-3.5" />
+              Centralisation totale
+            </div>
+            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6 tracking-tight leading-tight">
+              Tous vos acteurs.<br />Une seule plateforme.
+            </h2>
+            <p className="text-base text-neutral-600 dark:text-neutral-400 mb-8 leading-relaxed">
+              Fini les emails perdus, les fichiers Excel dispersés et les informations manquantes. RealPro connecte architectes, courtiers, clients, fournisseurs et notaires en temps réel.
+            </p>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                </div>
+                <div>
+                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
+                    Communication unifiée
+                  </p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    Échangez avec tous vos partenaires depuis une seule interface
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                </div>
+                <div>
+                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
+                    Données synchronisées
+                  </p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    Toutes les informations mises à jour en temps réel
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                </div>
+                <div>
+                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
+                    Traçabilité complète
+                  </p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    Historique de toutes les décisions et validations
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-200/50 to-blue-200/50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-3xl blur-3xl"></div>
+            <div className="relative bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                  <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Architecte</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Plans validés</p>
+                  </div>
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                  <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Courtier</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Contrat signé</p>
+                  </div>
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                  <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Fournisseur</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Offre validée</p>
+                  </div>
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                  <div className="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Client</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Choix confirmés</p>
+                  </div>
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Benefits */}
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-20">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20 rounded-3xl p-8 border border-blue-200/50 dark:border-blue-800/50">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+                  Gagnez du temps
+                </h3>
+                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  Plus besoin de jongler entre 10 outils différents. Tout est centralisé dans RealPro. Nos clients économisent en moyenne 15h par semaine.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-950/30 dark:to-green-900/20 rounded-3xl p-8 border border-green-200/50 dark:border-green-800/50">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center flex-shrink-0">
+                <Check className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+                  Zéro erreur
+                </h3>
+                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  Les informations sont synchronisées automatiquement. Plus de risque d'oublier une validation ou de perdre un document important.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-950/30 dark:to-purple-900/20 rounded-3xl p-8 border border-purple-200/50 dark:border-purple-800/50">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center flex-shrink-0">
+                <MessageSquare className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+                  Communication fluide
+                </h3>
+                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  Échangez avec tous vos partenaires depuis la même interface. Historique complet de toutes les conversations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 rounded-3xl p-8 border border-orange-200/50 dark:border-orange-800/50">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-orange-600 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+                  Décisions rapides
+                </h3>
+                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  Validez les offres fournisseurs, gérez les modifications clients et approuvez les documents en quelques clics.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -206,6 +419,102 @@ export function Landing() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Workflow */}
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-24 md:py-32 bg-neutral-50 dark:bg-neutral-900/30">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-xs font-medium mb-6">
+            <Clock className="w-3.5 h-3.5" />
+            Flux de travail simplifié
+          </div>
+          <h2 className="text-3xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight leading-tight">
+            De la conception à la livraison
+          </h2>
+          <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            Suivez chaque étape de vos projets avec une visibilité totale
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+              Phase Conception
+            </h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
+              Collaborez avec vos architectes sur les plans. Gérez les demandes de modifications clients en temps réel.
+            </p>
+            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                Plans partagés
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                Modifications validées
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                Historique complet
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-6">
+              <TrendingUp className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+              Phase Commercialisation
+            </h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
+              Travaillez avec vos courtiers pour gérer les acheteurs. Centralisez contrats et signatures.
+            </p>
+            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                Infos acheteurs
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                Contrats centralisés
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                Suivi paiements
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-6">
+              <Building2 className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
+              Phase Réalisation
+            </h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
+              Gérez les choix clients et validez les offres fournisseurs. Plus-values et moins-values en un clic.
+            </p>
+            <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                Choix matériaux
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                Offres fournisseurs
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                Validation rapide
+              </li>
+            </ul>
           </div>
         </div>
       </section>
