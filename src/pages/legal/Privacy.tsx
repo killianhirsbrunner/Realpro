@@ -103,7 +103,7 @@ export default function Privacy() {
             <div className="text-gray-700 dark:text-gray-300">
               <p className="mb-3">Les données sont collectées pour :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Fournir l'accès et l'utilisation du logiciel Realpro Suite</li>
+                <li>Fournir l'accès et l'utilisation du logiciel RealPro</li>
                 <li>Gérer les comptes utilisateurs et les abonnements</li>
                 <li>Traiter les paiements et générer les factures</li>
                 <li>Assurer le support technique et client</li>
@@ -235,7 +235,7 @@ export default function Privacy() {
               11. Cookies et technologies similaires
             </h3>
             <div className="text-gray-700 dark:text-gray-300">
-              <p className="mb-3">Realpro Suite utilise des cookies strictement nécessaires au fonctionnement du service :</p>
+              <p className="mb-3">RealPro utilise des cookies strictement nécessaires au fonctionnement du service :</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Cookie de session (authentification)</li>
                 <li>Cookie de préférence (thème clair/sombre, langue)</li>

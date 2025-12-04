@@ -114,5 +114,5 @@ function getPageTitle(pathname: string): string {
   if (pathname === '/dashboard') return 'Dashboard';
   if (pathname === '/billing') return 'Facturation';
   if (pathname === '/chantier') return 'Chantier';
-  return 'Realpro Suite';
+  return 'RealPro';
 }

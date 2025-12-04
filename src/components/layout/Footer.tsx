@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
 
           <div className="text-xs text-gray-400 dark:text-gray-500">
-            © {currentYear} Realpro SA, Yverdon-les-Bains, Suisse · Realpro Suite v1.0
+            © {currentYear} Realpro SA, Yverdon-les-Bains, Suisse · RealPro v1.0
           </div>
         </div>
       </div>

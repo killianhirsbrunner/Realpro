@@ -49,7 +49,7 @@ export function Login() {
             <RealProLogo width={220} height={220} />
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">
-            Realpro Suite
+            RealPro
           </h1>
           <p className="text-neutral-600 dark:text-neutral-400">
             {isSignUp ? 'Créer un compte' : 'Connexion à votre espace'}

@@ -15,7 +15,7 @@ export default function CGU() {
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 space-y-8">
           <div className="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Realpro Suite
+              RealPro
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               Édité par <strong>Realpro SA</strong>, société anonyme de droit suisse
@@ -37,7 +37,7 @@ export default function CGU() {
                 <strong>« Realpro SA »</strong> : l'éditeur du logiciel, société anonyme suisse dont le siège est à Yverdon-les-Bains, canton de Vaud.
               </p>
               <p>
-                <strong>« Logiciel » ou « Realpro Suite »</strong> : la plateforme SaaS de gestion de projets immobiliers développée et exploitée par Realpro SA.
+                <strong>« Logiciel » ou « RealPro »</strong> : la plateforme SaaS de gestion de projets immobiliers développée et exploitée par Realpro SA.
               </p>
               <p>
                 <strong>« Client »</strong> : toute entreprise, entité ou personne morale ayant souscrit un abonnement SaaS auprès de Realpro SA.
@@ -49,7 +49,7 @@ export default function CGU() {
                 <strong>« Abonnement »</strong> : la formule commerciale donnant accès au Logiciel.
               </p>
               <p>
-                <strong>« Projet immobilier »</strong> : toute opération immobilière gérée à travers Realpro Suite.
+                <strong>« Projet immobilier »</strong> : toute opération immobilière gérée à travers RealPro.
               </p>
               <p>
                 <strong>« Données du Client »</strong> : informations, documents, fichiers, plans, contrats, factures, photos, données techniques et données personnelles importées dans le Logiciel.
@@ -74,7 +74,7 @@ export default function CGU() {
               Les présentes CGU régissent :
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
-              <li>l'accès au Logiciel Realpro Suite,</li>
+              <li>l'accès au Logiciel RealPro,</li>
               <li>les droits et obligations des Clients et Utilisateurs,</li>
               <li>les conditions d'abonnement,</li>
               <li>la gestion des données,</li>
@@ -174,7 +174,7 @@ export default function CGU() {
               5. Modules financiers – Acomptes, Factures QR et EG
             </h3>
             <div className="space-y-4 text-gray-700 dark:text-gray-300">
-              <p>Realpro Suite permet :</p>
+              <p>RealPro permet :</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>la génération de factures QR pour les acheteurs,</li>
                 <li>le suivi des acomptes et paiements,</li>
@@ -210,7 +210,7 @@ export default function CGU() {
             <div className="space-y-4 text-gray-700 dark:text-gray-300">
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-2">10.1 Logiciel</h4>
-                <p className="mb-2">Le Logiciel Realpro Suite est la propriété exclusive de :</p>
+                <p className="mb-2">Le Logiciel RealPro est la propriété exclusive de :</p>
                 <p className="font-bold text-gray-900 dark:text-white">
                   Realpro SA<br />
                   Yverdon-les-Bains<br />
@@ -239,7 +239,7 @@ export default function CGU() {
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Realpro,</li>
                   <li>Realpro SA,</li>
-                  <li>Realpro Suite,</li>
+                  <li>RealPro,</li>
                   <li>les logos associés</li>
                 </ul>
                 <p className="font-semibold mt-2">sont des marques protégées.</p>
@@ -286,7 +286,7 @@ export default function CGU() {
               16. Acceptation
             </h3>
             <p className="text-gray-900 dark:text-white font-semibold">
-              En utilisant Realpro Suite, le Client et les Utilisateurs déclarent accepter sans réserve les présentes CGU.
+              En utilisant RealPro, le Client et les Utilisateurs déclarent accepter sans réserve les présentes CGU.
             </p>
           </section>
 

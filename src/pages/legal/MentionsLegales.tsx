@@ -75,7 +75,7 @@ export default function MentionsLegales() {
             </h3>
             <div className="space-y-3 text-gray-700 dark:text-gray-300">
               <p>
-                Le logiciel <strong>Realpro Suite</strong> et l'ensemble de ses composants sont la propriété exclusive de <strong>Realpro SA</strong>, sous réserve des composants open source utilisés conformément à leurs licences respectives.
+                Le logiciel <strong>RealPro</strong> et l'ensemble de ses composants sont la propriété exclusive de <strong>Realpro SA</strong>, sous réserve des composants open source utilisés conformément à leurs licences respectives.
               </p>
               <p>
                 Toute reproduction, distribution, modification, ou exploitation non autorisée du logiciel ou de sa documentation est interdite sans l'autorisation écrite préalable de Realpro SA.
@@ -100,7 +100,7 @@ export default function MentionsLegales() {
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li><strong>Realpro</strong></li>
                 <li><strong>Realpro SA</strong></li>
-                <li><strong>Realpro Suite</strong></li>
+                <li><strong>RealPro</strong></li>
                 <li>Logos et éléments graphiques associés</li>
               </ul>
               <p className="mt-3 font-semibold text-gray-900 dark:text-white">

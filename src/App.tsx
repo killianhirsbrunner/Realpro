@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * Realpro Suite – Plateforme SaaS de Gestion de Projets Immobiliers
+ * RealPro – Plateforme SaaS de Gestion de Projets Immobiliers
  * © 2024-2025 Realpro SA. Tous droits réservés.
  * ═══════════════════════════════════════════════════════════════════════════
  */

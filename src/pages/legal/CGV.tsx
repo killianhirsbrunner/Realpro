@@ -15,7 +15,7 @@ export default function CGV() {
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 space-y-8">
           <div className="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Realpro Suite
+              RealPro
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               Édité par <strong>Realpro SA</strong>, société anonyme de droit suisse
@@ -348,7 +348,7 @@ export default function CGV() {
               16. Acceptation
             </h3>
             <p className="text-gray-900 dark:text-white font-semibold">
-              En souscrivant un abonnement à Realpro Suite, le Client déclare avoir lu, compris et accepté sans réserve les présentes Conditions Générales de Vente ainsi que les Conditions Générales d'Utilisation.
+              En souscrivant un abonnement à RealPro, le Client déclare avoir lu, compris et accepté sans réserve les présentes Conditions Générales de Vente ainsi que les Conditions Générales d'Utilisation.
             </p>
           </section>
 
