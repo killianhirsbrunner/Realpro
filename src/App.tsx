@@ -36,6 +36,11 @@ import ProjectPlanningPhotos from './pages/ProjectPlanningPhotos';
 import ProjectPlanningReports from './pages/ProjectPlanningReports';
 import ProjectPlanningBuyersProgress from './pages/ProjectPlanningBuyersProgress';
 import ProjectSetupWizard from './pages/ProjectSetupWizard';
+import ProjectStructurePage from './pages/ProjectStructurePage';
+import ProjectTeamPage from './pages/ProjectTeamPage';
+import ProjectActivityPage from './pages/ProjectActivityPage';
+import ProjectHealthPage from './pages/ProjectHealthPage';
+import ProjectTimelinePage from './pages/ProjectTimelinePage';
 import ProjectMaterialsPage from './pages/ProjectMaterialsPage';
 import ProjectMaterialsCatalog from './pages/ProjectMaterialsCatalog';
 import ProjectMaterialsSuppliers from './pages/ProjectMaterialsSuppliers';
@@ -192,6 +197,11 @@ function App() {
                     <Route path="/projects/:projectId/crm/prospects" element={<ProjectCRMProspects />} />
                     <Route path="/projects/:projectId/crm/prospects/:prospectId" element={<ProjectCRMProspectDetail />} />
                     <Route path="/projects/:projectId/crm/buyers" element={<ProjectCRMBuyers />} />
+                    <Route path="/projects/:projectId/structure" element={<ProjectStructurePage />} />
+                    <Route path="/projects/:projectId/team" element={<ProjectTeamPage />} />
+                    <Route path="/projects/:projectId/activity" element={<ProjectActivityPage />} />
+                    <Route path="/projects/:projectId/health" element={<ProjectHealthPage />} />
+                    <Route path="/projects/:projectId/timeline" element={<ProjectTimelinePage />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
                     <Route path="/promoter" element={<PromoterDashboard />} />
