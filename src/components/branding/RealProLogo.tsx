@@ -32,7 +32,7 @@ export function RealProLogo({ className = '', size = 'md', showIcon = true }: Re
       )}
       <div className={`flex items-baseline ${sizes.text} font-extrabold tracking-tight`}>
         <span className="text-neutral-900 dark:text-white" style={{ letterSpacing: '-0.02em' }}>Real</span>
-        <span className="text-brand-600 dark:text-brand-400 bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 bg-clip-text" style={{ letterSpacing: '-0.02em' }}>Pro</span>
+        <span className="bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 bg-clip-text text-transparent" style={{ letterSpacing: '-0.02em' }}>Pro</span>
       </div>
     </div>
   );
