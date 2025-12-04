@@ -39,6 +39,15 @@ import { BuyerMessages } from './pages/buyer/BuyerMessages';
 import { BuyerPayments } from './pages/buyer/BuyerPayments';
 import { BuyerChoices } from './pages/buyer/BuyerChoices';
 
+import { ProjectLots } from './pages/ProjectLots';
+import { ProjectBuyers } from './pages/ProjectBuyers';
+import { ProjectDocuments } from './pages/ProjectDocuments';
+import { ProjectSubmissions } from './pages/ProjectSubmissions';
+import { ProjectCFC } from './pages/ProjectCFC';
+import { ProjectFinance } from './pages/ProjectFinance';
+import { ProjectSAV } from './pages/ProjectSAV';
+import { ProjectSettings } from './pages/ProjectSettings';
+
 import SupplierShowrooms from './pages/SupplierShowrooms';
 import SupplierShowroomForm from './pages/SupplierShowroomForm';
 import SupplierTimeSlots from './pages/SupplierTimeSlots';
@@ -79,6 +88,14 @@ function App() {
                     <Route path="/projects/:projectId/dashboard" element={<ProjectCockpitDashboard />} />
                     <Route path="/projects/:projectId/planning" element={<ProjectPlanning />} />
                     <Route path="/projects/:projectId/setup" element={<ProjectSetupWizard />} />
+                    <Route path="/projects/:projectId/lots" element={<ProjectLots />} />
+                    <Route path="/projects/:projectId/buyers" element={<ProjectBuyers />} />
+                    <Route path="/projects/:projectId/documents" element={<ProjectDocuments />} />
+                    <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
+                    <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
+                    <Route path="/projects/:projectId/finance" element={<ProjectFinance />} />
+                    <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
+                    <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
                     <Route path="/promoter" element={<PromoterDashboard />} />
 

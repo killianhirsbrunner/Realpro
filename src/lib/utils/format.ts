@@ -157,3 +157,8 @@ export function formatRelativeTime(date: Date | string | null | undefined): stri
 
   return formatDateCH(d);
 }
+
+/**
+ * Alias for formatDateCH (for convenience)
+ */
+export const formatDate = formatDateCH;
