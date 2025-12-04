@@ -9,72 +9,15 @@ import {
   AlertCircle,
   CheckCircle,
   TrendingUp,
+  Lock,
+  Clock,
 } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Badge } from '../components/ui/Badge';
 import { useOrganizationDashboard } from '../hooks/useOrganizationData';
-
-const PLANS = [
-  {
-    id: 'starter',
-    name: 'Starter',
-    price: 99,
-    billingPeriod: 'mois',
-    yearlyPrice: 990,
-    features: [
-      '5 projets actifs',
-      '10 utilisateurs',
-      '50 GB de stockage',
-      'Support email',
-      'Exports PDF',
-    ],
-    maxProjects: 5,
-    maxUsers: 10,
-    storageGb: 50,
-  },
-  {
-    id: 'business',
-    name: 'Business',
-    price: 299,
-    billingPeriod: 'mois',
-    yearlyPrice: 2990,
-    features: [
-      '20 projets actifs',
-      '50 utilisateurs',
-      '500 GB de stockage',
-      'Support prioritaire',
-      'Exports avancés',
-      'API access',
-      'Intégrations tierces',
-    ],
-    maxProjects: 20,
-    maxUsers: 50,
-    storageGb: 500,
-    popular: true,
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    price: 799,
-    billingPeriod: 'mois',
-    yearlyPrice: 7990,
-    features: [
-      'Projets illimités',
-      'Utilisateurs illimités',
-      'Stockage illimité',
-      'Support 24/7',
-      'Gestionnaire de compte dédié',
-      'SLA garanti',
-      'Branding personnalisé',
-      'Formation sur site',
-    ],
-    maxProjects: -1,
-    maxUsers: -1,
-    storageGb: -1,
-  },
-];
+import { PLANS, validatePlanChange, formatDowngradeWaitMessage } from '../lib/subscription';
 
 export default function SubscriptionManagement() {
   const { data, loading } = useOrganizationDashboard();
@@ -91,8 +34,16 @@ export default function SubscriptionManagement() {
 
   const currentPlan = data?.subscription?.plan_name?.toLowerCase() || data?.organization?.plan?.toLowerCase() || 'starter';
   const subscription = data?.subscription;
+  const lastPlanChange = subscription?.last_plan_change || subscription?.created_at || new Date().toISOString();
 
-  const handleUpgrade = async (planId: string) => {
+  const handlePlanChange = async (planId: string) => {
+    const validation = validatePlanChange(currentPlan, planId, lastPlanChange);
+
+    if (!validation.allowed) {
+      alert(validation.reason || 'Changement de plan non autorisé');
+      return;
+    }
+
     setProcessingPlan(planId);
 
     try {
@@ -234,6 +185,7 @@ export default function SubscriptionManagement() {
             const isCurrentPlan = currentPlan === plan.id;
             const price = billingPeriod === 'yearly' ? plan.yearlyPrice : plan.price;
             const period = billingPeriod === 'yearly' ? 'an' : 'mois';
+            const validation = validatePlanChange(currentPlan, plan.id, lastPlanChange);
 
             return (
               <div
@@ -302,11 +254,11 @@ export default function SubscriptionManagement() {
                     <CheckCircle className="w-4 h-4 mr-2" />
                     Forfait actuel
                   </Button>
-                ) : (
+                ) : validation.allowed ? (
                   <Button
                     variant={plan.popular ? 'primary' : 'secondary'}
                     className="w-full"
-                    onClick={() => handleUpgrade(plan.id)}
+                    onClick={() => handlePlanChange(plan.id)}
                     disabled={processingPlan === plan.id}
                   >
                     {processingPlan === plan.id ? (
@@ -316,31 +268,70 @@ export default function SubscriptionManagement() {
                       </>
                     ) : (
                       <>
-                        <TrendingUp className="w-4 h-4 mr-2" />
-                        {currentPlan === 'starter' || plan.id === 'enterprise' ? 'Passer à' : 'Changer pour'} {plan.name}
+                        {validation.isUpgrade ? (
+                          <TrendingUp className="w-4 h-4 mr-2" />
+                        ) : (
+                          <ArrowRight className="w-4 h-4 mr-2" />
+                        )}
+                        {validation.isUpgrade ? 'Passer à' : 'Changer pour'} {plan.name}
                       </>
                     )}
                   </Button>
+                ) : (
+                  <div className="space-y-2">
+                    <Button
+                      variant="secondary"
+                      className="w-full"
+                      disabled
+                    >
+                      <Lock className="w-4 h-4 mr-2" />
+                      Downgrade bloqué
+                    </Button>
+                    <div className="text-xs text-center text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 rounded-lg p-2 flex items-start gap-2">
+                      <Clock className="w-3 h-3 flex-shrink-0 mt-0.5" />
+                      <span>{formatDowngradeWaitMessage(lastPlanChange)}</span>
+                    </div>
+                  </div>
                 )}
               </div>
             );
           })}
         </div>
 
-        <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-            <div>
-              <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">
-                Paiement sécurisé par Datatrans
-              </h4>
-              <p className="text-sm text-blue-700 dark:text-blue-300">
-                Les paiements des abonnements RealPro sont traités de manière sécurisée par Datatrans,
-                leader suisse du paiement en ligne. Vos données bancaires ne sont jamais stockées sur nos serveurs.
-              </p>
+        <div className="grid gap-5 md:grid-cols-2">
+          <Card className="bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
+            <div className="flex items-start gap-3">
+              <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-1">
+                  Règle de changement de forfait
+                </h4>
+                <p className="text-sm text-amber-700 dark:text-amber-300 mb-2">
+                  Les <strong>upgrades sont disponibles immédiatement</strong> à tout moment. Les downgrades sont
+                  autorisés uniquement <strong>6 mois après votre dernier changement de forfait</strong>.
+                </p>
+                <p className="text-xs text-amber-600 dark:text-amber-400">
+                  Dernier changement : {new Date(lastPlanChange).toLocaleDateString('fr-CH')}
+                </p>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+
+          <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                  Paiement sécurisé par Datatrans
+                </h4>
+                <p className="text-sm text-blue-700 dark:text-blue-300">
+                  Les paiements des abonnements RealPro sont traités de manière sécurisée par Datatrans,
+                  leader suisse du paiement en ligne. Vos données bancaires ne sont jamais stockées sur nos serveurs.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
     </div>
   );

@@ -159,6 +159,33 @@ async function getOverview(supabase: any, organizationId: string) {
   };
 }
 
+async function checkIsUpgrade(supabase: any, currentPlanSlug: string, targetPlanSlug: string): Promise<boolean> {
+  const { data, error } = await supabase.rpc('is_upgrade', {
+    current_plan: currentPlanSlug,
+    new_plan: targetPlanSlug,
+  });
+
+  if (error) {
+    console.error('Error checking upgrade:', error);
+    return false;
+  }
+
+  return data;
+}
+
+async function checkCanDowngrade(supabase: any, subscriptionId: string): Promise<boolean> {
+  const { data, error } = await supabase.rpc('can_downgrade', {
+    subscription_id: subscriptionId,
+  });
+
+  if (error) {
+    console.error('Error checking downgrade:', error);
+    return false;
+  }
+
+  return data;
+}
+
 async function changePlan(supabase: any, organizationId: string, body: any) {
   const { data: plan, error: planError } = await supabase
     .from('plans')
@@ -179,9 +206,30 @@ async function changePlan(supabase: any, organizationId: string, body: any) {
 
   const { data: existingSub } = await supabase
     .from('subscriptions')
-    .select('id')
+    .select('id, plan_id, last_plan_change, plans(slug)')
     .eq('organization_id', organizationId)
     .maybeSingle();
+
+  if (existingSub) {
+    const currentPlanSlug = existingSub.plans?.slug;
+    const targetPlanSlug = plan.slug;
+
+    const isUpgrade = await checkIsUpgrade(supabase, currentPlanSlug, targetPlanSlug);
+
+    if (!isUpgrade) {
+      const canDowngrade = await checkCanDowngrade(supabase, existingSub.id);
+
+      if (!canDowngrade) {
+        const lastChange = existingSub.last_plan_change || existingSub.created_at;
+        const nextDowngradeDate = new Date(lastChange);
+        nextDowngradeDate.setMonth(nextDowngradeDate.getMonth() + 6);
+
+        throw new Error(
+          `Le downgrade n'est possible qu'après 6 mois. Prochain downgrade disponible le ${nextDowngradeDate.toLocaleDateString('fr-CH')}`
+        );
+      }
+    }
+  }
 
   let subscription;
 
