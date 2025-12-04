@@ -1,111 +1,15 @@
-import { useEffect, useState } from 'react';
-import { Bell, Check, CheckCheck, X } from 'lucide-react';
-import { Card } from './ui/Card';
+import { useState } from 'react';
+import { Bell, Check, CheckCheck, X, ExternalLink } from 'lucide-react';
 import { Badge } from './ui/Badge';
-
-type Notification = {
-  id: string;
-  type: string;
-  title: string;
-  body?: string | null;
-  linkUrl?: string | null;
-  projectId?: string | null;
-  readAt?: string | null;
-  createdAt: string;
-};
-
-type NotifResponse = {
-  unreadCount: number;
-  notifications: Notification[];
-};
+import { useNotifications } from '../hooks/useNotifications';
+import { useNavigate } from 'react-router-dom';
 
 export function NotificationBell() {
-  const [data, setData] = useState<NotifResponse | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { notifications, unreadCount, loading, markAsRead, markAllAsRead } = useNotifications();
 
-  const userId = '20000000-0000-0000-0000-000000000001';
-
-  const load = async () => {
-    try {
-      setLoading(true);
-
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/notifications`;
-
-      const response = await fetch(`${apiUrl}/me`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId }),
-      });
-
-      if (!response.ok) throw new Error('Erreur lors du chargement');
-
-      const json = await response.json();
-      setData(json);
-    } catch (err) {
-      console.error('Error loading notifications:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    load();
-    const interval = setInterval(load, 30000);
-    return () => clearInterval(interval);
-  }, [userId]);
-
-  const handleMarkAsRead = async (notificationIds: string[]) => {
-    try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/notifications`;
-
-      const response = await fetch(`${apiUrl}/read`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId, notificationIds }),
-      });
-
-      if (!response.ok) throw new Error('Erreur');
-
-      const json = await response.json();
-      setData(json);
-    } catch (err) {
-      console.error('Error marking as read:', err);
-    }
-  };
-
-  const handleMarkAllAsRead = async () => {
-    try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/notifications`;
-
-      const response = await fetch(`${apiUrl}/read-all`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId }),
-      });
-
-      if (!response.ok) throw new Error('Erreur');
-
-      const json = await response.json();
-      setData(json);
-    } catch (err) {
-      console.error('Error marking all as read:', err);
-    }
-  };
-
-  const unread = data?.unreadCount ?? 0;
+  const navigate = useNavigate();
+  const unread = unreadCount;
 
   return (
     <div className="relative">
@@ -146,7 +50,7 @@ export function NotificationBell() {
                 {unread > 0 && (
                   <button
                     type="button"
-                    onClick={handleMarkAllAsRead}
+                    onClick={markAllAsRead}
                     className="p-1.5 rounded-lg hover:bg-gray-200 transition-colors"
                     title="Tout marquer comme lu"
                   >
@@ -168,7 +72,7 @@ export function NotificationBell() {
                 <div className="px-4 py-8 text-center text-sm text-gray-500">
                   Chargement...
                 </div>
-              ) : !data || data.notifications.length === 0 ? (
+              ) : notifications.length === 0 ? (
                 <div className="px-4 py-8 text-center">
                   <Bell className="w-12 h-12 text-gray-300 mx-auto mb-3" />
                   <p className="text-sm text-gray-500">
@@ -177,11 +81,17 @@ export function NotificationBell() {
                 </div>
               ) : (
                 <div className="divide-y divide-gray-100">
-                  {data.notifications.map((notif) => (
+                  {notifications.map((notif) => (
                     <NotificationItem
                       key={notif.id}
                       notification={notif}
-                      onMarkAsRead={() => handleMarkAsRead([notif.id])}
+                      onMarkAsRead={() => markAsRead(notif.id)}
+                      onClick={() => {
+                        if (notif.link_url) {
+                          navigate(notif.link_url);
+                          setIsOpen(false);
+                        }
+                      }}
                     />
                   ))}
                 </div>
@@ -197,11 +107,13 @@ export function NotificationBell() {
 function NotificationItem({
   notification,
   onMarkAsRead,
+  onClick,
 }: {
-  notification: Notification;
+  notification: any;
   onMarkAsRead: () => void;
+  onClick?: () => void;
 }) {
-  const isUnread = !notification.readAt;
+  const isUnread = !notification.is_read;
 
   const getTypeIcon = (type: string) => {
     switch (type.toUpperCase()) {
@@ -222,9 +134,10 @@ function NotificationItem({
 
   return (
     <div
-      className={`px-4 py-3 hover:bg-gray-50 transition-colors ${
+      className={`px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer ${
         isUnread ? 'bg-brand-50' : ''
       }`}
+      onClick={onClick}
     >
       <div className="flex items-start gap-3">
         <span className="text-xl mt-0.5">{getTypeIcon(notification.type)}</span>
@@ -232,25 +145,33 @@ function NotificationItem({
           <p className={`text-sm ${isUnread ? 'font-semibold' : 'font-medium'} text-gray-900`}>
             {notification.title}
           </p>
-          {notification.body && (
+          {notification.message && (
             <p className="text-xs text-gray-600 mt-1 line-clamp-2">
-              {notification.body}
+              {notification.message}
             </p>
           )}
           <p className="text-xs text-gray-400 mt-1">
-            {formatDate(notification.createdAt)}
+            {formatDate(notification.created_at)}
           </p>
         </div>
-        {isUnread && (
-          <button
-            type="button"
-            onClick={onMarkAsRead}
-            className="p-1 rounded-lg hover:bg-white transition-colors"
-            title="Marquer comme lu"
-          >
-            <Check className="w-4 h-4 text-brand-600" />
-          </button>
-        )}
+        <div className="flex items-center gap-1">
+          {notification.link_url && (
+            <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
+          )}
+          {isUnread && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onMarkAsRead();
+              }}
+              className="p-1 rounded-lg hover:bg-white transition-colors"
+              title="Marquer comme lu"
+            >
+              <Check className="w-4 h-4 text-brand-600" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

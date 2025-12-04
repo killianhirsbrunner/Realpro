@@ -8,10 +8,13 @@ export interface Notification {
   title: string;
   message: string | null;
   link_url: string | null;
+  action_url: string | null;
   is_read: boolean;
   read_at: string | null;
   created_at: string;
   priority: string;
+  i18n_key: string | null;
+  i18n_params: Record<string, any> | null;
 }
 
 export function useNotifications() {

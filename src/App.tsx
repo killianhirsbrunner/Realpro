@@ -26,6 +26,7 @@ import { Success } from './pages/auth/Success';
 
 import { DashboardGlobal } from './pages/DashboardGlobal';
 import { Dashboard } from './pages/Dashboard';
+import { Notifications } from './pages/Notifications';
 import { ProjectsList } from './pages/ProjectsList';
 import { ProjectOverview } from './pages/ProjectOverview';
 import { ProjectCockpit } from './pages/ProjectCockpit';
@@ -146,6 +147,7 @@ function App() {
                   <Routes>
                     <Route path="/dashboard" element={<DashboardGlobal />} />
                     <Route path="/dashboard-old" element={<Dashboard />} />
+                    <Route path="/notifications" element={<Notifications />} />
 
                     <Route path="/projects" element={<ProjectsList />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronDown, LogOut, User, Search, Bell } from 'lucide-react';
+import { ChevronDown, LogOut, User, Search } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { ThemeToggle } from '../ThemeToggle';
+import { NotificationBell } from '../NotificationBell';
 import { supabase } from '../../lib/supabase';
 import clsx from 'clsx';
 
@@ -53,9 +54,7 @@ export function Topbar() {
       </div>
 
       <div className="flex items-center gap-2">
-        <button className="h-9 w-9 rounded-lg hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 flex items-center justify-center transition-all duration-150 hover:scale-105 active:scale-95">
-          <Bell className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-        </button>
+        <NotificationBell />
 
         <ThemeToggle />
         <LanguageSwitcher />
