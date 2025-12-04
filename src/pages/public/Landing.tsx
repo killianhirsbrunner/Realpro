@@ -176,42 +176,162 @@ export function Landing() {
             </span>
           </div>
 
-          <div className="relative max-w-5xl mx-auto mt-16">
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none" />
-            <div className="relative rounded-2xl border border-neutral-200/50 dark:border-neutral-800/50 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden">
-              <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-8 md:p-12">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 bg-white dark:bg-neutral-800 rounded-xl p-4 shadow-sm animate-in fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
-                    <div className="w-12 h-12 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                      <Building2 className="w-6 h-6 text-blue-600" />
+          <div className="relative max-w-6xl mx-auto mt-16">
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none h-32 bottom-0 top-auto" />
+
+            <div className="relative perspective-1000">
+              <div className="relative rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
+
+                <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-700">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="px-4 py-1 bg-white dark:bg-neutral-700 rounded-md border border-neutral-200 dark:border-neutral-600 text-[10px] text-neutral-600 dark:text-neutral-400 max-w-xs truncate">
+                      realpro.ch/dashboard
                     </div>
-                    <div className="flex-1 text-left">
-                      <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-3/4 mb-2" />
-                      <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded w-1/2" />
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 p-6 md:p-8">
+
+                  <div className="mb-6 flex items-center justify-between animate-in fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+                        <Building2 className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-32 mb-1.5" />
+                        <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded w-20" />
+                      </div>
                     </div>
-                    <div className="w-20 h-8 bg-blue-600/10 rounded-lg" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-600/20 flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                      </div>
+                      <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-4 bg-white dark:bg-neutral-800 rounded-xl p-4 shadow-sm animate-in fade-in" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
-                    <div className="w-12 h-12 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                      <BarChart3 className="w-6 h-6 text-blue-600" />
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl p-4 border border-blue-200/50 dark:border-blue-800/50 animate-in fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="text-[10px] font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wide">Projets actifs</div>
+                        <TrendingUp className="w-3 h-3 text-blue-600" />
+                      </div>
+                      <div className="text-2xl font-bold text-blue-900 dark:text-blue-300 mb-1">12</div>
+                      <div className="flex items-center gap-1">
+                        <div className="text-[9px] text-blue-600 dark:text-blue-400">+3 ce mois</div>
+                      </div>
                     </div>
-                    <div className="flex-1 text-left">
-                      <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-2/3 mb-2" />
-                      <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded w-1/3" />
+
+                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="text-[10px] font-semibold text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Ventes</div>
+                        <Users className="w-3 h-3 text-neutral-500" />
+                      </div>
+                      <div className="text-2xl font-bold text-neutral-900 dark:text-white mb-1">87%</div>
+                      <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
+                        <div className="bg-green-600 h-full rounded-full" style={{ width: '87%' }}></div>
+                      </div>
                     </div>
-                    <div className="w-20 h-8 bg-neutral-100 dark:bg-neutral-700 rounded-lg" />
+
+                    <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-4 border border-green-200/50 dark:border-green-800/50 animate-in fade-in" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="text-[10px] font-semibold text-green-700 dark:text-green-400 uppercase tracking-wide">Revenu</div>
+                        <BarChart3 className="w-3 h-3 text-green-600" />
+                      </div>
+                      <div className="text-lg font-bold text-green-900 dark:text-green-300 mb-1">CHF 12.4M</div>
+                      <div className="text-[9px] text-green-600 dark:text-green-400">+18% vs mois dernier</div>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-4 bg-white dark:bg-neutral-800 rounded-xl p-4 shadow-sm animate-in fade-in" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
-                    <div className="w-12 h-12 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                      <Users className="w-6 h-6 text-blue-600" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-5 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '500ms', animationFillMode: 'both' }}>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-xs font-semibold text-neutral-900 dark:text-white">Activité récente</div>
+                        <div className="text-[9px] text-neutral-500">Aujourd'hui</div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-blue-600/10 flex items-center justify-center flex-shrink-0">
+                            <FileText className="w-4 h-4 text-blue-600" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-full mb-1.5" />
+                            <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded w-2/3" />
+                          </div>
+                          <div className="text-[8px] text-neutral-500">2h</div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-green-600/10 flex items-center justify-center flex-shrink-0">
+                            <Check className="w-4 h-4 text-green-600" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-4/5 mb-1.5" />
+                            <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded w-1/2" />
+                          </div>
+                          <div className="text-[8px] text-neutral-500">5h</div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-orange-600/10 flex items-center justify-center flex-shrink-0">
+                            <MessageSquare className="w-4 h-4 text-orange-600" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-3/4 mb-1.5" />
+                            <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded w-1/3" />
+                          </div>
+                          <div className="text-[8px] text-neutral-500">1j</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1 text-left">
-                      <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-4/5 mb-2" />
-                      <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded w-2/5" />
+
+                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-5 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-xs font-semibold text-neutral-900 dark:text-white">Performance</div>
+                        <div className="text-[9px] text-blue-600 font-medium">+12%</div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-[10px]">
+                          <span className="text-neutral-600 dark:text-neutral-400">Taux de conversion</span>
+                          <span className="font-semibold text-neutral-900 dark:text-white">73%</span>
+                        </div>
+                        <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
+                          <div className="bg-blue-600 h-full rounded-full" style={{ width: '73%' }}></div>
+                        </div>
+                        <div className="flex items-center justify-between text-[10px] mt-3">
+                          <span className="text-neutral-600 dark:text-neutral-400">Délai moyen signature</span>
+                          <span className="font-semibold text-neutral-900 dark:text-white">12j</span>
+                        </div>
+                        <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
+                          <div className="bg-green-600 h-full rounded-full" style={{ width: '85%' }}></div>
+                        </div>
+                        <div className="flex items-center justify-between text-[10px] mt-3">
+                          <span className="text-neutral-600 dark:text-neutral-400">Satisfaction client</span>
+                          <span className="font-semibold text-neutral-900 dark:text-white">4.8/5</span>
+                        </div>
+                        <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
+                          <div className="bg-yellow-500 h-full rounded-full" style={{ width: '96%' }}></div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="w-20 h-8 bg-neutral-100 dark:bg-neutral-700 rounded-lg" />
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3 animate-in fade-in" style={{ animationDelay: '700ms', animationFillMode: 'both' }}>
+                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
+                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">156</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Lots vendus</div>
+                    </div>
+                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
+                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">23</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Courtiers actifs</div>
+                    </div>
+                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
+                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">8</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">En construction</div>
+                    </div>
                   </div>
                 </div>
               </div>
