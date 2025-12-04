@@ -21,72 +21,40 @@ export function RealProLogo({ className = '', size = 'md', showIcon = true }: Re
           <div className={`${sizes.icon} rounded-2xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 flex items-center justify-center shadow-xl shadow-brand-600/40 relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-brand-600/50 transition-all duration-300`}>
             <svg
               className={`${sizes.iconSize} text-white relative z-10`}
-              viewBox="0 0 32 32"
+              viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M6 28L16 4L26 28"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.2"
-              />
-              <rect
-                x="8"
-                y="14"
-                width="6"
-                height="14"
-                rx="1"
+                d="M20 8L32 20L20 32L8 20L20 8Z"
                 fill="currentColor"
                 opacity="0.9"
               />
-              <rect
-                x="18"
-                y="10"
-                width="6"
-                height="18"
-                rx="1"
+              <path
+                d="M20 12L28 20L20 28L12 20L20 12Z"
                 fill="currentColor"
-                opacity="1"
-              />
-              <rect
-                x="13"
-                y="17"
-                width="3"
-                height="11"
-                rx="0.5"
-                fill="currentColor"
-                opacity="0.7"
+                opacity="0.3"
               />
               <circle
-                cx="16"
-                cy="7"
-                r="2.5"
+                cx="20"
+                cy="20"
+                r="5"
                 fill="currentColor"
-                opacity="1"
+                opacity="0.95"
               />
               <path
-                d="M7 25H25"
+                d="M20 8L20 4M32 20L36 20M20 32L20 36M8 20L4 20"
                 stroke="currentColor"
                 strokeWidth="2.5"
                 strokeLinecap="round"
-                opacity="0.35"
+                opacity="0.6"
               />
               <circle
-                cx="11"
+                cx="20"
                 cy="20"
-                r="1.2"
+                r="2"
                 fill="currentColor"
-                opacity="0.5"
-              />
-              <circle
-                cx="21"
-                cy="16"
-                r="1.2"
-                fill="currentColor"
-                opacity="0.5"
+                opacity="0.4"
               />
             </svg>
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-white/5 to-transparent"></div>
