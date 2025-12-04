@@ -44,6 +44,7 @@ import { ProjectLotDetail } from './pages/ProjectLotDetail';
 import { ProjectBuyers } from './pages/ProjectBuyers';
 import { BuyerDetail } from './pages/BuyerDetail';
 import { ProjectDocuments } from './pages/ProjectDocuments';
+import { DocumentViewer } from './pages/DocumentViewer';
 import { ProjectSubmissions } from './pages/ProjectSubmissions';
 import { ProjectCFC } from './pages/ProjectCFC';
 import { ProjectFinance } from './pages/ProjectFinance';
@@ -95,6 +96,7 @@ function App() {
                     <Route path="/projects/:projectId/buyers" element={<ProjectBuyers />} />
                     <Route path="/projects/:projectId/buyers/:buyerId" element={<BuyerDetail />} />
                     <Route path="/projects/:projectId/documents" element={<ProjectDocuments />} />
+                    <Route path="/projects/:projectId/documents/:documentId" element={<DocumentViewer />} />
                     <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
                     <Route path="/projects/:projectId/finance" element={<ProjectFinance />} />
