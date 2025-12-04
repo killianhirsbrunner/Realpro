@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Settings, FileText, Download } from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
+import { useParams } from 'react-router-dom';
 import { Breadcrumbs } from '../components/ui/Breadcrumbs';
 import { LoadingState } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
+import { ProjectHeader } from '../components/project/ProjectHeader';
 import { ProjectKPIs } from '../components/project/ProjectKPIs';
 import { ProjectTimeline } from '../components/project/ProjectTimeline';
+import { ProjectLotsCard } from '../components/project/ProjectLotsCard';
+import { ProjectSoumissionsCard } from '../components/project/ProjectSoumissionsCard';
+import { ProjectDocumentsCard } from '../components/project/ProjectDocumentsCard';
+import { ProjectMessagesCard } from '../components/project/ProjectMessagesCard';
+import { ProjectFinanceCard } from '../components/project/ProjectFinanceCard';
 import { ProjectQuickActions } from '../components/project/ProjectQuickActions';
 import { supabase } from '../lib/supabase';
-import { getStatusLabel } from '../lib/constants/status-labels';
 
 interface ProjectOverviewData {
   project: {
@@ -18,9 +20,13 @@ interface ProjectOverviewData {
     name: string;
     city: string;
     canton: string;
+    postal_code?: string;
+    address?: string | null;
     status: string;
     type: string;
     description?: string | null;
+    start_date?: string | null;
+    end_date?: string | null;
   };
   sales: {
     total_lots: number;
@@ -51,6 +57,33 @@ interface ProjectOverviewData {
       progress_percent?: number;
     }>;
   };
+  submissions: Array<{
+    id: string;
+    title: string;
+    cfc_code?: string;
+    status: string;
+    deadline?: string | null;
+    offers_count: number;
+    estimated_amount?: number;
+  }>;
+  documents: Array<{
+    id: string;
+    name: string;
+    type: string;
+    size?: number;
+    uploaded_at: string;
+    uploaded_by?: string;
+    category?: string;
+  }>;
+  messages: Array<{
+    id: string;
+    content: string;
+    author_name: string;
+    author_role?: string;
+    created_at: string;
+    is_unread?: boolean;
+    priority?: 'high' | 'normal' | 'low';
+  }>;
 }
 
 export function ProjectOverview() {
@@ -72,7 +105,7 @@ export function ProjectOverview() {
 
       const { data: project, error: projectError } = await supabase
         .from('projects')
-        .select('id, name, city, canton, status, type, description')
+        .select('id, name, city, canton, postal_code, address, status, type, description, start_date, end_date')
         .eq('id', id)
         .maybeSingle();
 
@@ -125,6 +158,27 @@ export function ProjectOverview() {
         ? phases.reduce((sum, p) => sum + (p.progress_percent || 0), 0) / phases.length
         : 0;
 
+      const { data: submissions } = await supabase
+        .from('submissions')
+        .select('id, title, cfc_code, status, deadline, estimated_amount')
+        .eq('project_id', id)
+        .order('created_at', { ascending: false })
+        .limit(10);
+
+      const { data: documents } = await supabase
+        .from('project_documents')
+        .select('id, name, file_type, file_size, uploaded_at, uploaded_by_name, category')
+        .eq('project_id', id)
+        .order('uploaded_at', { ascending: false })
+        .limit(10);
+
+      const { data: messages } = await supabase
+        .from('project_messages')
+        .select('id, content, author_name, author_role, created_at, is_read, priority')
+        .eq('project_id', id)
+        .order('created_at', { ascending: false })
+        .limit(10);
+
       const projectData: ProjectOverviewData = {
         project: {
           ...project,
@@ -158,6 +212,33 @@ export function ProjectOverview() {
             progress_percent: p.progress_percent || undefined,
           })),
         },
+        submissions: (submissions || []).map(s => ({
+          id: s.id,
+          title: s.title,
+          cfc_code: s.cfc_code || undefined,
+          status: s.status,
+          deadline: s.deadline || null,
+          offers_count: 0,
+          estimated_amount: s.estimated_amount || undefined,
+        })),
+        documents: (documents || []).map(d => ({
+          id: d.id,
+          name: d.name,
+          type: d.file_type || 'application/pdf',
+          size: d.file_size || undefined,
+          uploaded_at: d.uploaded_at,
+          uploaded_by: d.uploaded_by_name || undefined,
+          category: d.category || undefined,
+        })),
+        messages: (messages || []).map(m => ({
+          id: m.id,
+          content: m.content,
+          author_name: m.author_name,
+          author_role: m.author_role || undefined,
+          created_at: m.created_at,
+          is_unread: !m.is_read,
+          priority: m.priority as 'high' | 'normal' | 'low' | undefined,
+        })),
       };
 
       setData(projectData);
@@ -173,10 +254,28 @@ export function ProjectOverview() {
   if (error) return <ErrorState message={error} retry={() => projectId && fetchProjectData(projectId)} />;
   if (!data) return <ErrorState message="Projet introuvable" />;
 
-  const { project, sales, notary, finance, construction } = data;
+  const { project, sales, notary, finance, construction, documents, messages, submissions } = data;
+
+  const lotsData = {
+    total: sales.total_lots,
+    available: sales.available_lots,
+    reserved: sales.reserved_lots,
+    sold: sales.sold_lots,
+    totalRevenue: sales.total_revenue,
+    averagePrice: sales.total_lots > 0 ? sales.total_revenue / sales.sold_lots : 0,
+  };
+
+  const financeData = {
+    cfc_budget: finance.cfc_budget,
+    cfc_engagement: finance.cfc_engagement,
+    cfc_invoiced: finance.cfc_invoiced,
+    cfc_paid: finance.cfc_paid,
+    sales_revenue: sales.total_revenue,
+    pending_payments: 0,
+  };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <Breadcrumbs
         items={[
           { label: 'Projets', href: '/projects' },
@@ -184,59 +283,10 @@ export function ProjectOverview() {
         ]}
       />
 
-      <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-2">
-            <Link to="/projects">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                Retour
-              </Button>
-            </Link>
-          </div>
-
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            {project.name}
-          </h1>
-
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <span>{project.type || 'PPE'}</span>
-            <span>•</span>
-            <span>{project.city} ({project.canton})</span>
-            {project.description && (
-              <>
-                <span>•</span>
-                <span className="line-clamp-1">{project.description}</span>
-              </>
-            )}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Badge variant="info" className="text-sm px-3 py-1.5">
-            {getStatusLabel('project', project.status)}
-          </Badge>
-
-          <Link to={`/projects/${project.id}/documents`}>
-            <Button variant="outline" className="gap-2">
-              <FileText className="w-4 h-4" />
-              Documents
-            </Button>
-          </Link>
-
-          <Button variant="outline" className="gap-2">
-            <Download className="w-4 h-4" />
-            Exporter
-          </Button>
-
-          <Link to={`/projects/${project.id}/settings`}>
-            <Button variant="secondary" className="gap-2">
-              <Settings className="w-4 h-4" />
-              Paramètres
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <ProjectHeader
+        project={project}
+        progress={construction.overall_progress}
+      />
 
       <ProjectKPIs
         sales={sales}
@@ -245,12 +295,47 @@ export function ProjectOverview() {
         construction={construction}
       />
 
-      {construction.phases.length > 0 && (
-        <section>
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Planning & phases</h2>
-          <ProjectTimeline phases={construction.phases} />
-        </section>
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {construction.phases.length > 0 && (
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Avancement chantier</h2>
+            <ProjectTimeline phases={construction.phases} />
+          </div>
+        )}
+
+        <ProjectLotsCard
+          projectId={project.id}
+          lots={lotsData}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <ProjectSoumissionsCard
+          projectId={project.id}
+          soumissions={submissions}
+          stats={{
+            published: submissions.filter(s => s.status === 'PUBLISHED').length,
+            adjudicated: submissions.filter(s => s.status === 'ADJUDICATED').length,
+          }}
+        />
+
+        <ProjectDocumentsCard
+          projectId={project.id}
+          documents={documents}
+          totalCount={documents.length}
+        />
+      </div>
+
+      <ProjectMessagesCard
+        projectId={project.id}
+        messages={messages}
+        unreadCount={messages.filter(m => m.is_unread).length}
+      />
+
+      <ProjectFinanceCard
+        projectId={project.id}
+        finance={financeData}
+      />
 
       <ProjectQuickActions projectId={project.id} />
     </div>
