@@ -31,6 +31,7 @@ import { ProjectsList } from './pages/ProjectsList';
 import { ProjectOverview } from './pages/ProjectOverview';
 import { ProjectCockpit } from './pages/ProjectCockpit';
 import { ProjectCockpitDashboard } from './pages/ProjectCockpitDashboard';
+import ProjectCockpitDashboardIntegrated from './pages/ProjectCockpitDashboardIntegrated';
 import ProjectPlanningPage from './pages/ProjectPlanningPage';
 import ProjectPlanningPhotos from './pages/ProjectPlanningPhotos';
 import ProjectPlanningReports from './pages/ProjectPlanningReports';
@@ -161,7 +162,8 @@ function App() {
                     <Route path="/projects" element={<ProjectsList />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />
                     <Route path="/projects/:projectId/overview" element={<ProjectOverview />} />
-                    <Route path="/projects/:projectId/dashboard" element={<ProjectCockpitDashboard />} />
+                    <Route path="/projects/:projectId/dashboard" element={<ProjectCockpitDashboardIntegrated />} />
+                    <Route path="/projects/:projectId/dashboard-classic" element={<ProjectCockpitDashboard />} />
                     <Route path="/projects/:projectId/planning" element={<ProjectPlanningPage />} />
                     <Route path="/projects/:projectId/planning/photos" element={<ProjectPlanningPhotos />} />
                     <Route path="/projects/:projectId/planning/reports" element={<ProjectPlanningReports />} />
