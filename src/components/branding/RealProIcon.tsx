@@ -1,24 +1,21 @@
-import { useTheme } from '../../contexts/ThemeContext';
-
 interface RealProIconProps {
   className?: string;
-  size?: number;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export function RealProIcon({ className = '', size = 48 }: RealProIconProps) {
-  const { actualTheme } = useTheme();
-  const isDark = actualTheme === 'dark';
+const sizeClasses = {
+  sm: 'w-8 h-8 text-xs',
+  md: 'w-10 h-10 text-sm',
+  lg: 'w-12 h-12 text-base',
+  xl: 'w-16 h-16 text-xl'
+};
 
-  const iconSrc = isDark ? '/logos/6.svg' : '/logos/7.svg';
-
+export function RealProIcon({ className = '', size = 'md' }: RealProIconProps) {
   return (
-    <img
-      src={iconSrc}
-      alt="RealPro Icon"
-      width={size}
-      height={size}
-      className={className}
-      style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
-    />
+    <div
+      className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-bold text-white shadow-lg ${className}`}
+    >
+      RP
+    </div>
   );
 }

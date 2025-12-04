@@ -8,7 +8,7 @@ export function Success() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 flex items-center justify-center px-6">
       <div className="max-w-2xl w-full text-center">
         <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-          <RealProLogo width={140} height={42} />
+          <RealProLogo size="lg" />
         </Link>
 
         <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-12 shadow-xl">

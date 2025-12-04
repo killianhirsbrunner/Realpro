@@ -1,21 +1,20 @@
 interface RealProLogoProps {
   className?: string;
-  width?: number;
-  height?: number;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export function RealProLogo({ className = '', width = 120, height = 36 }: RealProLogoProps) {
+const sizeClasses = {
+  sm: 'text-lg',
+  md: 'text-2xl',
+  lg: 'text-3xl',
+  xl: 'text-4xl'
+};
+
+export function RealProLogo({ className = '', size = 'md' }: RealProLogoProps) {
   return (
-    <img
-      src="/logos/realpro_bleu copy.svg"
-      alt="RealPro"
-      className={`realpro-logo ${className}`}
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-        objectFit: 'contain',
-        display: 'block'
-      }}
-    />
+    <div className={`flex items-center gap-0.5 ${sizeClasses[size]} font-bold ${className}`}>
+      <span className="text-neutral-900 dark:text-white">Real</span>
+      <span className="text-blue-600">Pro</span>
+    </div>
   );
 }

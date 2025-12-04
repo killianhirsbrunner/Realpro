@@ -89,7 +89,7 @@ export function Pricing() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
             <ArrowLeft className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
-            <RealProLogo width={120} height={36} />
+            <RealProLogo size="md" />
           </Link>
 
           <div className="flex items-center gap-4">

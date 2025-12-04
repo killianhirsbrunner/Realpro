@@ -94,7 +94,7 @@ export function Register() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-            <RealProLogo width={140} height={42} className="mx-auto" />
+            <RealProLogo size="lg" className="mx-auto" />
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Créer votre compte
