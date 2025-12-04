@@ -189,3 +189,75 @@ export function useOrganizationStats() {
 
   return { stats, loading, error, refresh: loadStats };
 }
+
+export function useOrganizationDashboard() {
+  const { currentOrganization } = useOrganizationContext();
+  const [dashboardData, setDashboardData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    if (!currentOrganization) {
+      setDashboardData(null);
+      setLoading(false);
+      return;
+    }
+
+    loadDashboardData();
+  }, [currentOrganization]);
+
+  async function loadDashboardData() {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const [
+        projectsResult,
+        usersResult,
+        subscriptionResult,
+        invoicesResult,
+      ] = await Promise.all([
+        supabase
+          .from('projects')
+          .select('id')
+          .eq('organization_id', currentOrganization!.id),
+        supabase
+          .from('organization_members')
+          .select('id')
+          .eq('organization_id', currentOrganization!.id),
+        supabase
+          .from('subscriptions')
+          .select('*')
+          .eq('organization_id', currentOrganization!.id)
+          .eq('status', 'ACTIVE')
+          .maybeSingle(),
+        supabase
+          .from('invoices')
+          .select('*')
+          .eq('organization_id', currentOrganization!.id)
+          .order('date', { ascending: false })
+          .limit(10),
+      ]);
+
+      setDashboardData({
+        organization: currentOrganization,
+        stats: {
+          projectsUsed: projectsResult.data?.length || 0,
+          projectsLimit: currentOrganization.max_projects || 5,
+          usersCount: usersResult.data?.length || 0,
+          usersLimit: currentOrganization.max_users || 10,
+          storageUsed: 0,
+          storageLimit: currentOrganization.storage_gb || 50,
+        },
+        subscription: subscriptionResult.data,
+        invoices: invoicesResult.data || [],
+      });
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return { data: dashboardData, loading, error, refresh: loadDashboardData };
+}
