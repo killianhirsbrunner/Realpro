@@ -17,10 +17,10 @@ export function ThemeToggle() {
   const Icon = currentTheme.icon;
 
   return (
-    <div className="relative">
+    <div className="relative z-[60]">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+        className="flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors relative z-[60]"
         aria-label="Changer le thème"
       >
         <Icon className="w-4 h-4 text-gray-600 dark:text-gray-300" />
@@ -29,10 +29,10 @@ export function ThemeToggle() {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[58]"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
+          <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-[60]">
             {themes.map((t) => {
               const ThemeIcon = t.icon;
               return (

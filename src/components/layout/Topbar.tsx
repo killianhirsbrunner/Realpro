@@ -34,7 +34,7 @@ export function Topbar() {
   };
 
   return (
-    <header className="h-14 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl flex items-center justify-between px-6">
+    <header className="h-14 border-b border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl flex items-center justify-between px-6 relative z-50">
       <div className="flex items-center gap-8 flex-1">
         <h1 className="text-base font-semibold tracking-tight text-neutral-900 dark:text-white">
           {pageTitle}
