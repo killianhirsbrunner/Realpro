@@ -92,6 +92,10 @@ import { ProjectCFC } from './pages/ProjectCFC';
 import { CfcDetail } from './pages/CfcDetail';
 import { ProjectFinance } from './pages/ProjectFinance';
 import { BuyerFinance } from './pages/BuyerFinance';
+import { ProjectFinancesDashboard } from './pages/ProjectFinancesDashboard';
+import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
+import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
+import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
 import { ProjectSAV } from './pages/ProjectSAV';
 import { ProjectSettings } from './pages/ProjectSettings';
 
@@ -190,7 +194,11 @@ function App() {
                     <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
                     <Route path="/projects/:projectId/cfc/:cfcId" element={<CfcDetail />} />
-                    <Route path="/projects/:projectId/finance" element={<ProjectFinance />} />
+                    <Route path="/projects/:projectId/finance" element={<ProjectFinancesDashboard />} />
+                    <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboard />} />
+                    <Route path="/projects/:projectId/finances/cfc" element={<ProjectFinancesCFC />} />
+                    <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
+                    <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
