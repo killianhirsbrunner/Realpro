@@ -21,58 +21,72 @@ export function RealProLogo({ className = '', size = 'md', showIcon = true }: Re
           <div className={`${sizes.icon} rounded-2xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 flex items-center justify-center shadow-xl shadow-brand-600/40 relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-brand-600/50 transition-all duration-300`}>
             <svg
               className={`${sizes.iconSize} text-white relative z-10`}
-              viewBox="0 0 24 24"
+              viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M3 21L12 3L21 21"
+                d="M6 28L16 4L26 28"
                 stroke="currentColor"
-                strokeWidth="2.5"
+                strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                opacity="0.25"
+                opacity="0.2"
               />
               <rect
-                x="7"
-                y="12"
-                width="4"
-                height="9"
-                rx="0.5"
-                fill="currentColor"
-                opacity="0.95"
-              />
-              <rect
-                x="13"
-                y="8"
-                width="4"
-                height="13"
-                rx="0.5"
-                fill="currentColor"
-                opacity="0.85"
-              />
-              <rect
-                x="10"
+                x="8"
                 y="14"
-                width="2"
-                height="7"
-                rx="0.25"
-                fill="currentColor"
-                opacity="0.6"
-              />
-              <circle
-                cx="12"
-                cy="6"
-                r="1.8"
+                width="6"
+                height="14"
+                rx="1"
                 fill="currentColor"
                 opacity="0.9"
               />
+              <rect
+                x="18"
+                y="10"
+                width="6"
+                height="18"
+                rx="1"
+                fill="currentColor"
+                opacity="1"
+              />
+              <rect
+                x="13"
+                y="17"
+                width="3"
+                height="11"
+                rx="0.5"
+                fill="currentColor"
+                opacity="0.7"
+              />
+              <circle
+                cx="16"
+                cy="7"
+                r="2.5"
+                fill="currentColor"
+                opacity="1"
+              />
               <path
-                d="M5 18H19"
+                d="M7 25H25"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
-                opacity="0.3"
+                opacity="0.35"
+              />
+              <circle
+                cx="11"
+                cy="20"
+                r="1.2"
+                fill="currentColor"
+                opacity="0.5"
+              />
+              <circle
+                cx="21"
+                cy="16"
+                r="1.2"
+                fill="currentColor"
+                opacity="0.5"
               />
             </svg>
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-white/5 to-transparent"></div>
