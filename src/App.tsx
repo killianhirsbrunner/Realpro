@@ -102,6 +102,10 @@ import { BrandingSettings } from './pages/settings/BrandingSettings';
 import { SecuritySettings } from './pages/settings/SecuritySettings';
 import { SuppliersSettings } from './pages/settings/SuppliersSettings';
 
+import { SelectOrganization } from './pages/SelectOrganization';
+import { OrganizationOnboarding } from './pages/OrganizationOnboarding';
+import { RealProAdminDashboard } from './pages/admin/RealProAdminDashboard';
+
 import CGU from './pages/legal/CGU';
 import CGV from './pages/legal/CGV';
 import MentionsLegales from './pages/legal/MentionsLegales';
@@ -125,6 +129,8 @@ function App() {
           <Route path="/auth/choose-plan" element={<ChoosePlan />} />
           <Route path="/auth/checkout" element={<Checkout />} />
           <Route path="/auth/success" element={<Success />} />
+          <Route path="/auth/onboarding" element={<OrganizationOnboarding />} />
+          <Route path="/auth/select-organization" element={<SelectOrganization />} />
 
           <Route path="/legal/cgu" element={<CGU />} />
           <Route path="/legal/cgv" element={<CGV />} />
@@ -216,6 +222,7 @@ function App() {
 
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
                     <Route path="/admin/super" element={<SuperAdminDashboard />} />
+                    <Route path="/admin/realpro" element={<RealProAdminDashboard />} />
 
                     <Route path="/organization/settings" element={<OrganizationSettings />} />
 
