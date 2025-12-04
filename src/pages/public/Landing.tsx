@@ -68,9 +68,9 @@ export function Landing() {
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       <header className="sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-2xl">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <RealProLogo width={220} height={66} />
+            <RealProLogo width={280} height={84} />
           </Link>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
