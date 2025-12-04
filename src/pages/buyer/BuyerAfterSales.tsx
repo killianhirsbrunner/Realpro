@@ -116,7 +116,7 @@ export default function BuyerAfterSales({
       <header className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <AlertCircle className="h-6 w-6 text-orange-600" />
+            <AlertCircle className="h-6 w-6 text-secondary-600" />
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">
               Service Après-Vente
             </h1>

@@ -150,8 +150,8 @@ export function ReportingDashboard() {
         <Link to={`/projects/${projectId}/reporting/cfc`} className="block">
           <div className="p-6 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:shadow-lg transition cursor-pointer">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/20">
-                <Building className="w-5 h-5 text-purple-600" />
+              <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900/20">
+                <Building className="w-5 h-5 text-brand-600" />
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-white">CFC & Budget</h3>
             </div>

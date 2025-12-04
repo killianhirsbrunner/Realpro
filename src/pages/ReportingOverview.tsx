@@ -153,13 +153,13 @@ export function ReportingOverview() {
           helper={`Total ventes ≈ ${formatCurrency(salesSummary.totalSalesChf)}`}
         />
         <KpiCard
-          icon={<FileText className="w-5 h-5 text-purple-600" />}
+          icon={<FileText className="w-5 h-5 text-brand-600" />}
           label="Dossiers notaire"
           value={`${buyerFilesSummary.signed}/${buyerFilesSummary.total}`}
           helper={`${buyerFilesSummary.readyForNotary} prêts pour notaire`}
         />
         <KpiCard
-          icon={<Users className="w-5 h-5 text-orange-600" />}
+          icon={<Users className="w-5 h-5 text-secondary-600" />}
           label="Soumissions"
           value={submissionsSummary.inProgress}
           helper={`${submissionsSummary.adjudicated} adjudiquées`}

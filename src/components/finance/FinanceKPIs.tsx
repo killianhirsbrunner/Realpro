@@ -35,7 +35,7 @@ export function FinanceKPIs({ data }: FinanceKPIsProps) {
       value: `${data.engaged.toFixed(1)}%`,
       subtitle: formatCurrency(data.totalEngagements),
       icon: TrendingUp,
-      color: 'bg-orange-600'
+      color: 'bg-secondary-600'
     },
     {
       label: 'Facturé',

@@ -21,7 +21,7 @@ const phaseColors: Record<string, string> = {
   gros_oeuvre: 'from-brand-500 to-brand-600',
   second_oeuvre: 'from-blue-500 to-blue-600',
   finitions: 'from-green-500 to-green-600',
-  livraison: 'from-orange-500 to-orange-600',
+  livraison: 'from-secondary-500 to-secondary-600',
 };
 
 export function PlanningPhaseCard({ phase, tasks }: PlanningPhaseCardProps) {

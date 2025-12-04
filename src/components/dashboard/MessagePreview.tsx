@@ -52,9 +52,9 @@ export function MessagePreview({ message, projectId }: MessagePreviewProps) {
     const roleMap: Record<string, string> = {
       admin: 'from-red-500 to-red-600',
       promoteur: 'from-brand-500 to-brand-600',
-      architect: 'from-purple-500 to-purple-600',
+      architect: 'from-brand-500 to-brand-600',
       eg: 'from-green-500 to-green-600',
-      courtier: 'from-orange-500 to-orange-600',
+      courtier: 'from-secondary-500 to-secondary-600',
       acheteur: 'from-pink-500 to-pink-600',
     };
     return roleMap[role.toLowerCase()] || 'from-neutral-400 to-neutral-500';

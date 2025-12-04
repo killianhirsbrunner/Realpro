@@ -27,8 +27,8 @@ export default function ProjectSubmissionsSummaryCard({ projectId }: ProjectSubm
     <div className="bg-white rounded-xl border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center">
-            <ClipboardList className="w-5 h-5 text-orange-600" />
+          <div className="w-10 h-10 bg-secondary-50 rounded-lg flex items-center justify-center">
+            <ClipboardList className="w-5 h-5 text-secondary-600" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900">Soumissions</h3>
@@ -37,7 +37,7 @@ export default function ProjectSubmissionsSummaryCard({ projectId }: ProjectSubm
         </div>
         <Link
           to={`/projects/${projectId}/submissions`}
-          className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+          className="text-sm text-secondary-600 hover:text-secondary-700 font-medium"
         >
           Voir tous →
         </Link>

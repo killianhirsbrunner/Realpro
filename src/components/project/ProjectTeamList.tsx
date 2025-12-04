@@ -18,8 +18,8 @@ interface ProjectTeamListProps {
 
 const roleColors: Record<string, { bg: string; text: string }> = {
   PROMOTER: { bg: 'bg-blue-100', text: 'text-blue-700' },
-  ARCHITECT: { bg: 'bg-purple-100', text: 'text-purple-700' },
-  CONTRACTOR: { bg: 'bg-orange-100', text: 'text-orange-700' },
+  ARCHITECT: { bg: 'bg-brand-100', text: 'text-brand-700' },
+  CONTRACTOR: { bg: 'bg-secondary-100', text: 'text-secondary-700' },
   ENGINEER: { bg: 'bg-green-100', text: 'text-green-700' },
   NOTARY: { bg: 'bg-gray-100', text: 'text-gray-700' },
   BROKER: { bg: 'bg-yellow-100', text: 'text-yellow-700' },

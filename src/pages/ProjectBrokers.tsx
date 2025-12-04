@@ -102,8 +102,8 @@ export function ProjectBrokers() {
 
           <RealProCard className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-xl bg-orange-600/10 dark:bg-orange-600/20 flex items-center justify-center">
-                <FileText className="w-6 h-6 text-orange-600" />
+              <div className="w-12 h-12 rounded-xl bg-secondary-600/10 dark:bg-secondary-600/20 flex items-center justify-center">
+                <FileText className="w-6 h-6 text-secondary-600" />
               </div>
             </div>
             <div className="space-y-1">
@@ -116,8 +116,8 @@ export function ProjectBrokers() {
 
           <RealProCard className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-xl bg-purple-600/10 dark:bg-purple-600/20 flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-purple-600" />
+              <div className="w-12 h-12 rounded-xl bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center">
+                <DollarSign className="w-6 h-6 text-brand-600" />
               </div>
             </div>
             <div className="space-y-1">

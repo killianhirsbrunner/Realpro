@@ -10,16 +10,16 @@ interface KpiCardProps {
     value: number;
     isPositive: boolean;
   };
-  color?: 'blue' | 'green' | 'orange' | 'red' | 'purple';
+  color?: 'blue' | 'green' | 'orange' | 'red' | 'brand';
 }
 
 export function KpiCard({ title, value, subtitle, icon: Icon, trend, color = 'blue' }: KpiCardProps) {
   const colorClasses = {
     blue: 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400',
     green: 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400',
-    orange: 'bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400',
+    orange: 'bg-secondary-100 dark:bg-secondary-900/20 text-secondary-600 dark:text-secondary-400',
     red: 'bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400',
-    purple: 'bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
+    brand: 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400',
   };
 
   return (

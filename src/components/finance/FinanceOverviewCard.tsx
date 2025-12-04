@@ -62,12 +62,12 @@ export function FinanceOverviewCard({ summary }: FinanceOverviewCardProps) {
 
       <Card className="p-6">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-            <TrendingDown className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+          <div className="p-2 rounded-lg bg-secondary-100 dark:bg-secondary-900">
+            <TrendingDown className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
           </div>
           <div className="flex-1">
             <p className="text-xs text-neutral-500 dark:text-neutral-400">Restant dû</p>
-            <p className="text-xl font-semibold text-orange-600 dark:text-orange-400">
+            <p className="text-xl font-semibold text-secondary-600 dark:text-secondary-400">
               CHF {summary.totalDue.toLocaleString()}
             </p>
           </div>

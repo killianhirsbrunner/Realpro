@@ -23,7 +23,7 @@ export function SAVTable({ tickets }: SAVTableProps) {
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
       new: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
-      in_progress: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+      in_progress: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
       resolved: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
       closed: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
     };
@@ -34,7 +34,7 @@ export function SAVTable({ tickets }: SAVTableProps) {
     const colors: Record<string, string> = {
       low: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
       medium: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-      high: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+      high: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
       urgent: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
     };
     return colors[priority] || colors.medium;
@@ -66,7 +66,7 @@ export function SAVTable({ tickets }: SAVTableProps) {
       case 'closed':
         return <CheckCircle className="h-4 w-4 text-green-600" />;
       case 'in_progress':
-        return <Clock className="h-4 w-4 text-orange-600" />;
+        return <Clock className="h-4 w-4 text-secondary-600" />;
       default:
         return <AlertCircle className="h-4 w-4 text-brand-600" />;
     }

@@ -161,7 +161,7 @@ export default function ProjectTimelinePage() {
             {timeline.milestones.map((milestone) => (
               <div
                 key={milestone.id}
-                className="p-4 bg-purple-50 border border-purple-200 rounded-xl"
+                className="p-4 bg-brand-50 border border-brand-200 rounded-xl"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-2xl">🎯</span>

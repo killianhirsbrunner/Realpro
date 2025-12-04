@@ -36,8 +36,8 @@ export function BuyersTable({ buyers }: BuyersTableProps) {
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
       prospect: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
-      reservation: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-      contract_signed: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+      reservation: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
+      contract_signed: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       financing: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
       notary: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
       completed: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
@@ -148,8 +148,8 @@ export function BuyersTable({ buyers }: BuyersTableProps) {
                         </>
                       ) : (
                         <>
-                          <XCircle className="h-4 w-4 text-orange-600" />
-                          <span className="text-sm text-orange-600">Manquant</span>
+                          <XCircle className="h-4 w-4 text-secondary-600" />
+                          <span className="text-sm text-secondary-600">Manquant</span>
                         </>
                       )}
                     </div>

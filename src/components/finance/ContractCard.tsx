@@ -48,7 +48,7 @@ export function ContractCard({ contract, onClick }: ContractCardProps) {
       case 'COMPLETED':
         return 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300';
       case 'DRAFT':
-        return 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400';
+        return 'bg-secondary-100 text-secondary-700 dark:bg-secondary-900/30 dark:text-secondary-400';
       default:
         return 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300';
     }

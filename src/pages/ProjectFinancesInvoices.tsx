@@ -112,17 +112,17 @@ export function ProjectFinancesInvoices() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20 border border-orange-200/50 dark:border-orange-800/50 rounded-xl p-6 shadow-sm">
+          <div className="bg-gradient-to-br from-secondary-50 to-secondary-100/50 dark:from-secondary-900/20 dark:to-secondary-800/20 border border-secondary-200/50 dark:border-secondary-800/50 rounded-xl p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-3 h-3 rounded-full bg-orange-600"></div>
+              <div className="w-3 h-3 rounded-full bg-secondary-600"></div>
             </div>
-            <p className="text-sm text-orange-700 dark:text-orange-400 font-medium mb-1">
+            <p className="text-sm text-secondary-700 dark:text-secondary-400 font-medium mb-1">
               En attente
             </p>
-            <p className="text-2xl font-bold text-orange-900 dark:text-orange-300">
+            <p className="text-2xl font-bold text-secondary-900 dark:text-secondary-300">
               {formatCurrency(pendingAmount)}
             </p>
-            <p className="text-xs text-orange-600 dark:text-orange-500 mt-1">
+            <p className="text-xs text-secondary-600 dark:text-secondary-500 mt-1">
               {data.invoices.length - paidCount} facture{data.invoices.length - paidCount > 1 ? 's' : ''}
             </p>
           </div>

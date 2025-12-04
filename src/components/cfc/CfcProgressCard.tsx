@@ -51,7 +51,7 @@ export function CfcProgressCard({ cfc }: CfcProgressCardProps) {
             <p className="text-lg font-semibold text-neutral-900 dark:text-white">
               CHF {cfc.engaged.toLocaleString()}
             </p>
-            <p className="text-xs text-orange-600 mt-1">
+            <p className="text-xs text-secondary-600 mt-1">
               {percentEngaged.toFixed(1)}% du budget
             </p>
           </div>
@@ -61,7 +61,7 @@ export function CfcProgressCard({ cfc }: CfcProgressCardProps) {
             <p className="text-lg font-semibold text-neutral-900 dark:text-white">
               CHF {cfc.invoiced.toLocaleString()}
             </p>
-            <p className="text-xs text-purple-600 mt-1">
+            <p className="text-xs text-brand-600 mt-1">
               {percentInvoiced.toFixed(1)}% du budget
             </p>
           </div>

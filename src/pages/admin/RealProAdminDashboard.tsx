@@ -227,8 +227,8 @@ export function RealProAdminDashboard() {
 
           <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-card p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
-                <Building2 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              <div className="w-12 h-12 bg-brand-100 dark:bg-brand-900/30 rounded-xl flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-brand-600 dark:text-brand-400" />
               </div>
             </div>
             <div className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">

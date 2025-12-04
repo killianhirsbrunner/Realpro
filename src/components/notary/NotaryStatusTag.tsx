@@ -22,7 +22,7 @@ const statusConfig = {
   },
   final: {
     label: 'Acte final',
-    color: 'bg-purple-100 text-purple-700 border-purple-200'
+    color: 'bg-brand-100 text-brand-700 border-brand-200'
   },
   signed: {
     label: 'Signé',

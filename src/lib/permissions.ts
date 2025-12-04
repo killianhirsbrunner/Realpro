@@ -194,7 +194,7 @@ export function getRoleDisplayName(role: UserRole | string): string {
 export function getRoleColor(role: UserRole | string): string {
   const colors: Record<string, string> = {
     [UserRole.PROMOTEUR]: 'text-brand-600 bg-brand-100 dark:text-brand-400 dark:bg-brand-900/30',
-    [UserRole.EG]: 'text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-900/30',
+    [UserRole.EG]: 'text-brand-600 bg-brand-100 dark:text-brand-400 dark:bg-brand-900/30',
     [UserRole.ARCHITECTE]: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
     [UserRole.NOTAIRE]: 'text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/30',
     [UserRole.COURTIER]: 'text-cyan-600 bg-cyan-100 dark:text-cyan-400 dark:bg-cyan-900/30',

@@ -51,8 +51,8 @@ export function ReportingCFC() {
         </Link>
 
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-900">
-            <Building className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+          <div className="p-3 rounded-xl bg-brand-100 dark:bg-brand-900">
+            <Building className="h-6 w-6 text-brand-600 dark:text-brand-400" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
@@ -157,13 +157,13 @@ export function ReportingCFC() {
                     <td className="py-3 px-4 text-sm text-right text-neutral-900 dark:text-white">
                       CHF {(item.budget / 1000).toFixed(0)}k
                     </td>
-                    <td className="py-3 px-4 text-sm text-right text-orange-600">
+                    <td className="py-3 px-4 text-sm text-right text-secondary-600">
                       CHF {(item.engaged / 1000).toFixed(0)}k
                     </td>
                     <td className="py-3 px-4 text-sm text-right text-green-600">
                       CHF {(item.invoiced / 1000).toFixed(0)}k
                     </td>
-                    <td className="py-3 px-4 text-sm text-right text-purple-600">
+                    <td className="py-3 px-4 text-sm text-right text-brand-600">
                       CHF {(item.paid / 1000).toFixed(0)}k
                     </td>
                     <td className={`py-3 px-4 text-sm text-right font-medium ${

@@ -99,7 +99,7 @@ export default function ProjectFinancesPayments() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-xl p-6 border border-orange-200 dark:border-orange-800">
+        <div className="bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-900/20 dark:to-secondary-800/20 rounded-xl p-6 border border-secondary-200 dark:border-secondary-800">
           <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-1">
             {pendingInvoices.length}
           </div>

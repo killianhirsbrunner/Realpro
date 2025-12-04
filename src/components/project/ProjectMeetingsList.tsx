@@ -19,9 +19,9 @@ interface ProjectMeetingsListProps {
 }
 
 const typeColors = {
-  chantier: { bg: 'bg-orange-100', text: 'text-orange-700', label: 'Chantier' },
+  chantier: { bg: 'bg-secondary-100', text: 'text-secondary-700', label: 'Chantier' },
   coordination: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Coordination' },
-  pilotage: { bg: 'bg-purple-100', text: 'text-purple-700', label: 'Pilotage' },
+  pilotage: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'Pilotage' },
   bureau: { bg: 'bg-green-100', text: 'text-green-700', label: 'Bureau' },
   autre: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'Autre' },
 };

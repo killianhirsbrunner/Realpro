@@ -116,12 +116,12 @@ export default function ProjectStructureTree({
                               onClick={() => onSelectFloor?.(floor.id)}
                               className="w-full flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors"
                             >
-                              <Layers className="w-4 h-4 text-purple-600" />
+                              <Layers className="w-4 h-4 text-brand-600" />
                               <div className="flex-1 text-left">
                                 <p className="text-sm font-medium text-gray-900">{floor.name}</p>
                                 <p className="text-xs text-gray-500">Niveau {floor.level}</p>
                               </div>
-                              <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs">
+                              <span className="px-2 py-1 bg-brand-100 text-brand-700 rounded text-xs">
                                 {floor.lotsCount} lots
                               </span>
                             </button>

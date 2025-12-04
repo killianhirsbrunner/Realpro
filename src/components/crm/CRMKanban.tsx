@@ -57,9 +57,9 @@ export default function CRMKanban({ pipeline, projectId }: CRMKanbanProps) {
       key: 'in_progress' as keyof PipelineData,
       title: 'Vente en cours',
       icon: FileCheck,
-      color: 'bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20',
-      badgeColor: 'bg-gradient-to-r from-orange-600 to-orange-700',
-      borderColor: 'border-orange-200 dark:border-orange-800'
+      color: 'bg-gradient-to-br from-secondary-50 to-secondary-100/50 dark:from-secondary-900/20 dark:to-secondary-800/20',
+      badgeColor: 'bg-gradient-to-r from-secondary-600 to-secondary-700',
+      borderColor: 'border-secondary-200 dark:border-secondary-800'
     },
     {
       key: 'signed' as keyof PipelineData,

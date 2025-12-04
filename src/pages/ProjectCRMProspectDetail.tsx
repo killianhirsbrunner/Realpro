@@ -129,7 +129,7 @@ export default function ProjectCRMProspectDetail() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-2xl p-6 border border-purple-200 dark:border-purple-800">
+        <div className="bg-gradient-to-r from-brand-50 to-indigo-50 dark:from-brand-900/20 dark:to-indigo-900/20 rounded-2xl p-6 border border-brand-200 dark:border-brand-800">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Source</p>

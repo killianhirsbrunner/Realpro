@@ -22,8 +22,8 @@ export function BuyerPipeline({ buyers }: BuyerPipelineProps) {
 
   const stages = [
     { id: 'PROSPECT', label: 'Prospects', color: 'bg-brand-100 dark:bg-brand-900' },
-    { id: 'RESERVED', label: 'Réservés', color: 'bg-orange-100 dark:bg-orange-900' },
-    { id: 'IN_PROGRESS', label: 'En cours', color: 'bg-purple-100 dark:bg-purple-900' },
+    { id: 'RESERVED', label: 'Réservés', color: 'bg-secondary-100 dark:bg-secondary-900' },
+    { id: 'IN_PROGRESS', label: 'En cours', color: 'bg-brand-100 dark:bg-brand-900' },
     { id: 'SIGNED', label: 'Signés', color: 'bg-green-100 dark:bg-green-900' },
   ];
 

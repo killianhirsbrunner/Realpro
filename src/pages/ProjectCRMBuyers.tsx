@@ -97,7 +97,7 @@ export default function ProjectCRMBuyers() {
           onClick={() => setStatusFilter('NOTARY_IN_PROGRESS')}
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'NOTARY_IN_PROGRESS'
-              ? 'bg-purple-600 text-white'
+              ? 'bg-brand-600 text-white'
               : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
           }`}
         >

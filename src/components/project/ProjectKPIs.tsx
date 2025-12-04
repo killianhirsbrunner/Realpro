@@ -161,7 +161,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
             <Card>
               <Card.Content>
                 <p className="text-xs text-gray-500 mb-1">Facturé</p>
-                <p className="text-lg font-semibold text-orange-600">{formatCHF(finance.cfc_invoiced)}</p>
+                <p className="text-lg font-semibold text-secondary-600">{formatCHF(finance.cfc_invoiced)}</p>
                 <p className="text-xs text-gray-500 mt-1">
                   {formatPercent((finance.cfc_invoiced / finance.cfc_budget) * 100)} du budget
                 </p>

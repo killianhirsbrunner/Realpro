@@ -14,7 +14,7 @@ export function CfcTable({ cfcLines, projectId }: CfcTableProps) {
   const getVarianceColor = (line: CFCLine) => {
     const variance = line.budget_current - line.engaged;
     if (variance < 0) return 'text-red-600 dark:text-red-400';
-    if (variance < line.budget_current * 0.1) return 'text-orange-600 dark:text-orange-400';
+    if (variance < line.budget_current * 0.1) return 'text-secondary-600 dark:text-secondary-400';
     return 'text-green-600 dark:text-green-400';
   };
 

@@ -152,7 +152,7 @@ export function Features() {
       <section className="max-w-6xl mx-auto px-6 lg:px-8 pt-16 pb-24 md:pt-20 md:pb-28 text-center">
         <ScrollReveal>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 dark:text-white leading-[1.1] tracking-tight mb-6">
-            Une suite <span className="bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent">complète et puissante</span>
+            Une suite <span className="bg-gradient-to-r from-brand-600 via-brand-700 to-secondary-600 bg-clip-text text-transparent">complète et puissante</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed">
             12 modules professionnels conçus pour gérer l'intégralité de vos projets immobiliers
@@ -163,10 +163,14 @@ export function Features() {
       <section className="bg-gradient-to-br from-neutral-50 via-neutral-100/50 to-neutral-50 dark:from-neutral-900/50 dark:via-neutral-900 dark:to-neutral-900/50 py-16 md:py-24 border-y border-neutral-200/50 dark:border-neutral-800/50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {modules.map((module) => (
+            {modules.map((module, index) => (
               <ScrollReveal key={module.title}>
                 <div className="group p-6 md:p-8 rounded-2xl bg-white dark:bg-neutral-800/50 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 cursor-pointer backdrop-blur-sm h-full flex flex-col min-h-[280px]">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500 flex-shrink-0">
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-all duration-500 flex-shrink-0 ${
+                    index % 2 === 0
+                      ? 'bg-gradient-to-br from-brand-600 to-brand-700 shadow-brand-600/20 group-hover:shadow-brand-600/40'
+                      : 'bg-gradient-to-br from-secondary-600 to-secondary-700 shadow-secondary-600/20 group-hover:shadow-secondary-600/40'
+                  }`}>
                     <module.icon className="w-5 h-5 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3 flex-shrink-0">

@@ -125,7 +125,7 @@ export function ProspectQuickActions({ prospect, projectId, onStatusChange }: Pr
             size="sm"
             onClick={handleScheduleCallback}
             disabled={loading}
-            className="text-purple-600 hover:text-purple-700 border-purple-300 hover:border-purple-400"
+            className="text-brand-600 hover:text-brand-700 border-brand-300 hover:border-brand-400"
           >
             <Calendar className="h-4 w-4 mr-2" />
             Planifier rappel

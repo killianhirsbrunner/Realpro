@@ -160,7 +160,7 @@ export function BrokerDashboard() {
                 icon={FileText}
                 label="Contrats signés"
                 value={stats.signedContracts}
-                color="bg-purple-600"
+                color="bg-brand-600"
               />
             </div>
 

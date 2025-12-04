@@ -29,7 +29,7 @@ export function FinanceTable({ finances, summary }: FinanceTableProps) {
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
       paid: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-      pending: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+      pending: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
       overdue: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
     };
     return colors[status] || colors.pending;
@@ -51,7 +51,7 @@ export function FinanceTable({ finances, summary }: FinanceTableProps) {
       case 'overdue':
         return <XCircle className="h-4 w-4 text-red-600" />;
       default:
-        return <Clock className="h-4 w-4 text-orange-600" />;
+        return <Clock className="h-4 w-4 text-secondary-600" />;
     }
   };
 
@@ -70,7 +70,7 @@ export function FinanceTable({ finances, summary }: FinanceTableProps) {
 
         <Card className="p-6">
           <p className="text-sm text-neutral-500 dark:text-neutral-400">En attente</p>
-          <p className="text-2xl font-semibold mt-2 text-orange-600">{formatCHF(summary.total_pending)}</p>
+          <p className="text-2xl font-semibold mt-2 text-secondary-600">{formatCHF(summary.total_pending)}</p>
         </Card>
 
         <Card className="p-6">

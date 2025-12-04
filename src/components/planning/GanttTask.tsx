@@ -26,7 +26,7 @@ export function GanttTask({ task, projectStart, zoom, onClick }: GanttTaskProps)
       case 'delayed':
         return 'bg-red-500';
       case 'blocked':
-        return 'bg-orange-500';
+        return 'bg-secondary-500';
       default:
         return 'bg-neutral-400';
     }
@@ -49,7 +49,7 @@ export function GanttTask({ task, projectStart, zoom, onClick }: GanttTaskProps)
     if (task.progress === 100) return 'bg-green-600';
     if (task.progress >= 75) return 'bg-brand-500';
     if (task.progress >= 50) return 'bg-yellow-500';
-    return 'bg-orange-500';
+    return 'bg-secondary-500';
   };
 
   return (

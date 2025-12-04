@@ -99,7 +99,7 @@ export function BuyerFinance() {
 
             <div>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Restant dû</p>
-              <p className="text-lg font-semibold text-orange-600">
+              <p className="text-lg font-semibold text-secondary-600">
                 CHF {buyerFinance.totalRemaining.toLocaleString()}
               </p>
             </div>

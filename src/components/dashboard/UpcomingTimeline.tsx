@@ -44,9 +44,9 @@ export function UpcomingTimeline({ items }: UpcomingTimelineProps) {
         iconColor: 'text-brand-600 dark:text-brand-400',
       },
       today: {
-        badge: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300',
+        badge: 'bg-secondary-100 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-300',
         icon: AlertCircle,
-        iconColor: 'text-orange-600 dark:text-orange-400',
+        iconColor: 'text-secondary-600 dark:text-secondary-400',
       },
       overdue: {
         badge: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
@@ -79,7 +79,7 @@ export function UpcomingTimeline({ items }: UpcomingTimelineProps) {
   return (
     <div className="p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center">
           <Calendar className="w-5 h-5 text-white" />
         </div>
         <div>

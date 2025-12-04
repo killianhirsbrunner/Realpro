@@ -28,8 +28,8 @@ export function CfcSummaryCard({ summary }: CfcSummaryCardProps) {
 
       <Card className="p-6">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-            <TrendingUp className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+          <div className="p-2 rounded-lg bg-secondary-100 dark:bg-secondary-900">
+            <TrendingUp className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
           </div>
           <div className="flex-1">
             <p className="text-xs text-neutral-500 dark:text-neutral-400">Engagé</p>
@@ -45,8 +45,8 @@ export function CfcSummaryCard({ summary }: CfcSummaryCardProps) {
 
       <Card className="p-6">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-            <FileText className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+          <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+            <FileText className="h-5 w-5 text-brand-600 dark:text-brand-400" />
           </div>
           <div className="flex-1">
             <p className="text-xs text-neutral-500 dark:text-neutral-400">Facturé</p>
@@ -100,7 +100,7 @@ export function CfcSummaryCard({ summary }: CfcSummaryCardProps) {
               </div>
               <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-orange-600 transition-all"
+                  className="h-full bg-secondary-600 transition-all"
                   style={{ width: `${Math.min(summary.percentEngaged, 100)}%` }}
                 />
               </div>
@@ -115,7 +115,7 @@ export function CfcSummaryCard({ summary }: CfcSummaryCardProps) {
               </div>
               <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-purple-600 transition-all"
+                  className="h-full bg-brand-600 transition-all"
                   style={{ width: `${Math.min(summary.percentInvoiced, 100)}%` }}
                 />
               </div>

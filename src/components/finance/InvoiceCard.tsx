@@ -71,8 +71,8 @@ export function InvoiceCard({ invoice }: InvoiceCardProps) {
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-              <FileText className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+              <FileText className="h-5 w-5 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
               <h3 className="font-semibold text-neutral-900 dark:text-white">

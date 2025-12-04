@@ -53,7 +53,7 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
       },
       NOTARY_IN_PROGRESS: {
         label: 'Chez notaire',
-        color: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+        color: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
         icon: AlertCircle,
       },
       COMPLETED: {

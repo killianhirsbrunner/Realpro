@@ -136,7 +136,7 @@ export function Landing() {
           }}
         >
           <div className="absolute top-20 left-10 w-72 h-72 bg-brand-600/10 dark:bg-brand-600/5 rounded-full blur-3xl" />
-          <div className="absolute top-40 right-10 w-96 h-96 bg-brand-600/10 dark:bg-brand-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-40 right-10 w-96 h-96 bg-secondary-600/10 dark:bg-secondary-600/5 rounded-full blur-3xl" />
         </div>
 
         <FadeIn delay={100}>
@@ -148,7 +148,7 @@ export function Landing() {
 
         <FadeIn delay={200}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 dark:text-white leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
-            Pilotez vos promotions avec une <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 bg-clip-text text-transparent">précision absolue</span>
+            Pilotez vos promotions avec une <span className="bg-gradient-to-r from-brand-600 via-brand-700 to-secondary-600 bg-clip-text text-transparent">précision absolue</span>
           </h1>
         </FadeIn>
 
@@ -250,13 +250,13 @@ export function Landing() {
                       <div className="text-[9px] text-brand-600 dark:text-brand-400 mt-auto">+2 ce mois</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20 rounded-xl p-3 border border-orange-200/50 dark:border-orange-800/50 h-24 flex flex-col">
+                    <div className="bg-gradient-to-br from-secondary-50 to-secondary-100/50 dark:from-secondary-900/20 dark:to-secondary-800/20 rounded-xl p-3 border border-secondary-200/50 dark:border-secondary-800/50 h-24 flex flex-col">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="text-[9px] font-semibold text-orange-700 dark:text-orange-400 uppercase tracking-wide">Taux de vente</div>
-                        <Users className="w-3 h-3 text-orange-600 flex-shrink-0" />
+                        <div className="text-[9px] font-semibold text-secondary-700 dark:text-secondary-400 uppercase tracking-wide">Taux de vente</div>
+                        <Users className="w-3 h-3 text-secondary-600 flex-shrink-0" />
                       </div>
-                      <div className="text-2xl font-bold text-orange-900 dark:text-orange-300 leading-none">87%</div>
-                      <div className="text-[9px] text-orange-600 dark:text-orange-400 mt-auto">234/268 lots</div>
+                      <div className="text-2xl font-bold text-secondary-900 dark:text-secondary-300 leading-none">87%</div>
+                      <div className="text-[9px] text-secondary-600 dark:text-secondary-400 mt-auto">234/268 lots</div>
                     </div>
 
                     <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-3 border border-green-200/50 dark:border-green-800/50 h-24 flex flex-col">
@@ -309,7 +309,7 @@ export function Landing() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
-                          <div className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+                          <div className="w-2 h-2 rounded-full bg-secondary-500 flex-shrink-0"></div>
                           <div className="flex-1 min-w-0">
                             <div className="text-[10px] font-medium text-neutral-900 dark:text-white truncate">Résidence Panorama</div>
                             <div className="text-[8px] text-neutral-500">28 lots • 67% vendus</div>
@@ -360,7 +360,7 @@ export function Landing() {
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4 tracking-tight leading-tight">
                 Tout ce dont vous avez besoin.<br />
-                <span className="bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent">Rien de superflu.</span>
+                <span className="bg-gradient-to-r from-brand-600 via-brand-700 to-secondary-600 bg-clip-text text-transparent">Rien de superflu.</span>
               </h2>
               <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
                 Chaque module conçu avec des promoteurs pour répondre aux défis réels du terrain.
@@ -372,7 +372,11 @@ export function Landing() {
             {features.map((feature, index) => (
               <ScrollReveal key={feature.title}>
                 <div className="group p-6 md:p-8 rounded-2xl bg-white dark:bg-neutral-800/50 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 cursor-pointer backdrop-blur-sm">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500">
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-all duration-500 ${
+                    index % 2 === 0
+                      ? 'bg-gradient-to-br from-brand-600 to-brand-700 shadow-brand-600/20 group-hover:shadow-brand-600/40'
+                      : 'bg-gradient-to-br from-secondary-600 to-secondary-700 shadow-secondary-600/20 group-hover:shadow-secondary-600/40'
+                  }`}>
                     <feature.icon className="w-5 h-5 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3">

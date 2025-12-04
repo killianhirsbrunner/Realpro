@@ -18,7 +18,7 @@ export function SettingCard({ title, description, icon: Icon, link, badge }: Set
             <Icon className="w-6 h-6 text-brand-600 dark:text-brand-400" />
           </div>
           {badge && (
-            <span className="px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-lg">
+            <span className="px-2 py-1 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-400 text-xs font-medium rounded-lg">
               {badge}
             </span>
           )}

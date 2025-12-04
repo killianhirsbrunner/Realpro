@@ -26,13 +26,13 @@ export function QuickActions({ projectId }: QuickActionsProps) {
       label: 'Créer une réservation',
       icon: Building2,
       href: projectId ? `/projects/${projectId}/lots` : '/projects',
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-brand-500 to-brand-600',
     },
     {
       label: 'Nouveau projet',
       icon: Plus,
       href: '/projects/new',
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-secondary-500 to-secondary-600',
     },
     {
       label: 'Ajouter un acheteur',

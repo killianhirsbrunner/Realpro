@@ -38,9 +38,9 @@ export function DeadlineCard({ deadline }: DeadlineCardProps) {
         };
       case 'urgent':
         return {
-          border: 'border-orange-200 dark:border-orange-800',
-          bg: 'bg-orange-50 dark:bg-orange-950/30',
-          text: 'text-orange-700 dark:text-orange-400',
+          border: 'border-secondary-200 dark:border-secondary-800',
+          bg: 'bg-secondary-50 dark:bg-secondary-950/30',
+          text: 'text-secondary-700 dark:text-secondary-400',
           icon: Clock,
         };
       default:

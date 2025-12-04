@@ -27,8 +27,8 @@ export default function ProjectCRMSummaryCard({ projectId }: ProjectCRMSummaryCa
     <div className="bg-white rounded-xl border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
-            <Users className="w-5 h-5 text-purple-600" />
+          <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center">
+            <Users className="w-5 h-5 text-brand-600" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900">CRM & Ventes</h3>
@@ -37,7 +37,7 @@ export default function ProjectCRMSummaryCard({ projectId }: ProjectCRMSummaryCa
         </div>
         <Link
           to={`/projects/${projectId}/crm/prospects`}
-          className="text-sm text-purple-600 hover:text-purple-700 font-medium"
+          className="text-sm text-brand-600 hover:text-brand-700 font-medium"
         >
           Voir pipeline →
         </Link>

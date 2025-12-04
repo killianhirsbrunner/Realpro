@@ -74,8 +74,8 @@ export function CfcInvoicesCard({ invoices }: CfcInvoicesCardProps) {
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-3 flex-1">
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-                      <FileText className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                    <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+                      <FileText className="h-4 w-4 text-brand-600 dark:text-brand-400" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium text-neutral-900 dark:text-white">

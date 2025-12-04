@@ -152,15 +152,15 @@ export function ProjectLots() {
           <p className="text-xs text-red-700 dark:text-red-300 mt-1">Taux: {salesRate}%</p>
         </div>
 
-        <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border border-purple-200 dark:border-purple-800">
+        <div className="p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 border border-brand-200 dark:border-brand-800">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-purple-900 dark:text-purple-100">Valeur Totale</p>
-            <Download className="w-8 h-8 text-purple-600 dark:text-purple-400 opacity-50" />
+            <p className="text-sm font-medium text-brand-900 dark:text-brand-100">Valeur Totale</p>
+            <Download className="w-8 h-8 text-brand-600 dark:text-brand-400 opacity-50" />
           </div>
-          <p className="text-2xl font-bold text-purple-900 dark:text-purple-100">
+          <p className="text-2xl font-bold text-brand-900 dark:text-brand-100">
             CHF {(totalValue / 1000000).toFixed(1)}M
           </p>
-          <p className="text-xs text-purple-700 dark:text-purple-300 mt-1">
+          <p className="text-xs text-brand-700 dark:text-brand-300 mt-1">
             Vendu: CHF {(soldValue / 1000000).toFixed(1)}M
           </p>
         </div>

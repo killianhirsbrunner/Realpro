@@ -65,7 +65,7 @@ export function SubmissionCompaniesCard({ companies = [], onInvite }: Submission
                   <CheckCircle className="h-4 w-4 text-green-600" title="Offre reçue" />
                 )}
                 {company.status === 'pending' && (
-                  <Clock className="h-4 w-4 text-orange-600" title="En attente" />
+                  <Clock className="h-4 w-4 text-secondary-600" title="En attente" />
                 )}
               </li>
             ))}

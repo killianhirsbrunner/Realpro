@@ -136,7 +136,7 @@ export function ProjectLotDetail() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-brand-50 to-purple-50 dark:from-brand-900/20 dark:to-purple-900/20 rounded-2xl p-6 border border-brand-200 dark:border-brand-800">
+        <div className="bg-gradient-to-r from-brand-50 to-brand-50 dark:from-brand-900/20 dark:to-brand-900/20 rounded-2xl p-6 border border-brand-200 dark:border-brand-800">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Prix total</p>

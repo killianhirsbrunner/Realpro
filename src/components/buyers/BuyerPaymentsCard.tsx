@@ -20,7 +20,7 @@ export function BuyerPaymentsCard({ buyer }: BuyerPaymentsCardProps) {
       case 'PAID':
         return <CheckCircle className="h-4 w-4 text-green-600" />;
       case 'PENDING':
-        return <Clock className="h-4 w-4 text-orange-600" />;
+        return <Clock className="h-4 w-4 text-secondary-600" />;
       case 'OVERDUE':
         return <AlertCircle className="h-4 w-4 text-red-600" />;
       default:
