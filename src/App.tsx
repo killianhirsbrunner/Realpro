@@ -63,7 +63,6 @@ import SupplierAppointments from './pages/SupplierAppointments';
 
 import { BillingPage } from './pages/BillingPage';
 import { ReportingOverview } from './pages/ReportingOverview';
-import { SubmissionComparison } from './pages/SubmissionComparison';
 import { TasksManager } from './pages/TasksManager';
 import { TemplatesManager } from './pages/TemplatesManager';
 import AdminOrganizationsPage from './pages/AdminOrganizations';
