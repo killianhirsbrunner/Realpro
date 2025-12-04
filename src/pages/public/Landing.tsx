@@ -82,7 +82,7 @@ export function Landing() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center transition-opacity hover:opacity-70 flex-shrink-0">
-              <RealProLogo width={180} height={54} />
+              <RealProLogo width={234} height={70} />
             </Link>
 
             <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
