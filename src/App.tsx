@@ -44,6 +44,8 @@ import ProjectMaterialsCatalogManager from './pages/ProjectMaterialsCatalogManag
 import ProjectMaterialsLotChoices from './pages/ProjectMaterialsLotChoices';
 import ProjectMaterialsAppointments from './pages/ProjectMaterialsAppointments';
 import ProjectMessages from './pages/ProjectMessages';
+import ProjectNotary from './pages/ProjectNotary';
+import ProjectNotaryDetail from './pages/ProjectNotaryDetail';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
 
@@ -166,6 +168,8 @@ function App() {
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
+                    <Route path="/projects/:projectId/notary" element={<ProjectNotary />} />
+                    <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
                     <Route path="/promoter" element={<PromoterDashboard />} />
