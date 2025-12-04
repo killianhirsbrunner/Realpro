@@ -257,9 +257,9 @@ export function DesignSystemShowcase() {
                 </RealProCard>
 
                 <RealProCard>
-                  <div className="w-full h-24 rounded-xl bg-accent-green mb-4" />
+                  <div className="w-full h-24 rounded-xl bg-accent-blue mb-4" />
                   <p className="font-semibold">Success</p>
-                  <p className="text-sm text-neutral-500">#3BB273</p>
+                  <p className="text-sm text-neutral-500">#2563EB</p>
                 </RealProCard>
 
                 <RealProCard>

@@ -103,7 +103,7 @@ export function Landing() {
       </header>
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-32 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 text-[#3BB273] dark:text-[#3BB273] text-xs font-medium mb-8 border border-[#3BB273]/20">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-8 border border-blue-600/20">
           <Zap className="w-3.5 h-3.5" />
           Solution #1 pour les promoteurs suisses
         </div>
@@ -134,15 +134,15 @@ export function Landing() {
 
         <div className="flex items-center justify-center gap-6 text-xs text-neutral-500 dark:text-neutral-500 flex-wrap">
           <span className="flex items-center gap-1.5">
-            <Check className="w-3.5 h-3.5 text-[#3BB273]" />
+            <Check className="w-3.5 h-3.5 text-blue-600" />
             14 jours gratuits
           </span>
           <span className="flex items-center gap-1.5">
-            <Check className="w-3.5 h-3.5 text-[#3BB273]" />
+            <Check className="w-3.5 h-3.5 text-blue-600" />
             Sans engagement
           </span>
           <span className="flex items-center gap-1.5">
-            <Check className="w-3.5 h-3.5 text-[#3BB273]" />
+            <Check className="w-3.5 h-3.5 text-blue-600" />
             Données en Suisse
           </span>
         </div>
@@ -164,7 +164,7 @@ export function Landing() {
               key={feature.title}
               className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 hover:bg-white dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition-all duration-300"
             >
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#3BB273] to-[#35a066] flex items-center justify-center mb-5 shadow-lg shadow-[#3BB273]/20">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center mb-5 shadow-lg shadow-blue-600/20">
                 <feature.icon className="w-5 h-5 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -218,7 +218,7 @@ export function Landing() {
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 text-[#3BB273] text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-6">
               <MessageSquare className="w-3.5 h-3.5" />
               Centralisation totale
             </div>
@@ -230,8 +230,8 @@ export function Landing() {
             </p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-[#3BB273]" />
+                <div className="w-6 h-6 rounded-full bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-blue-600" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -243,8 +243,8 @@ export function Landing() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-[#3BB273]" />
+                <div className="w-6 h-6 rounded-full bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-blue-600" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -256,8 +256,8 @@ export function Landing() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-[#3BB273]" />
+                <div className="w-6 h-6 rounded-full bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-blue-600" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -271,48 +271,48 @@ export function Landing() {
             </ul>
           </div>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#3BB273]/20 to-[#3BB273]/10 rounded-3xl blur-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-600/10 rounded-3xl blur-3xl"></div>
             <div className="relative bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700">
               <div className="space-y-4">
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-[#3BB273]/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-[#3BB273]" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-blue-600" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Architecte</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Plans validés</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-[#3BB273]/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-[#3BB273]" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-blue-600" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Courtier</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Contrat signé</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-[#3BB273]/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-[#3BB273]" />
+                  <div className="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-blue-600" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Fournisseur</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Offre validée</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-[#F5A623]/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-[#F5A623]" />
+                  <div className="w-10 h-10 rounded-lg bg-neutral-700/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-neutral-700 dark:text-neutral-400" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Client</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Choix confirmés</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
                 </div>
               </div>
             </div>
@@ -322,9 +322,9 @@ export function Landing() {
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-16">
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-[#3BB273]/5 to-[#3BB273]/10 dark:from-[#3BB273]/10 dark:to-[#3BB273]/5 rounded-3xl p-8 border border-[#3BB273]/20">
+          <div className="bg-gradient-to-br from-blue-600/5 to-blue-600/10 dark:from-blue-600/10 dark:to-blue-600/5 rounded-3xl p-8 border border-blue-600/20">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#3BB273] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
                 <Zap className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -391,7 +391,7 @@ export function Landing() {
       <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/30">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 text-[#3BB273] text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-6">
               <Clock className="w-3.5 h-3.5" />
               Flux de travail simplifié
             </div>
@@ -405,7 +405,7 @@ export function Landing() {
 
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3BB273] to-[#35a066] flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center mb-6">
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -416,15 +416,15 @@ export function Landing() {
               </p>
               <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
                   Plans partagés
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
                   Modifications validées
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#3BB273]"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
                   Historique complet
                 </li>
               </ul>
@@ -521,7 +521,7 @@ export function Landing() {
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 rounded-[2.5rem] p-12 md:p-20 text-center text-white">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#3BB273]/20 via-transparent to-[#3BB273]/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-blue-600/10"></div>
           <div className="relative">
             <h2 className="text-3xl md:text-5xl font-semibold mb-5 tracking-tight leading-tight max-w-3xl mx-auto">
               Prêt à transformer votre gestion de projets ?

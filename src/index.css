@@ -34,8 +34,8 @@
     --color-secondary-hover: 71 85 105;
 
     /* Accent Colors */
-    --color-success: 59 178 115;       /* #3BB273 - Green validation */
-    --color-success-light: 220 252 231;
+    --color-success: 37 99 235;        /* #2563EB - Blue validation */
+    --color-success-light: 219 234 254;
 
     --color-warning: 245 166 35;       /* #F5A623 - Orange warnings */
     --color-warning-light: 254 243 199;
@@ -104,8 +104,8 @@
     --color-secondary-hover: 148 163 184;
 
     /* Accent Colors (adjusted) */
-    --color-success: 70 201 130;       /* #46C982 - Brighter green */
-    --color-success-light: 20 83 45;
+    --color-success: 96 165 250;       /* #60A5FA - Brighter blue */
+    --color-success-light: 30 58 138;
 
     --color-warning: 255 182 85;       /* #FFB655 - Brighter orange */
     --color-warning-light: 120 53 15;

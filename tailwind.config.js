@@ -19,7 +19,7 @@ export default {
           950: '#0d0d0d',
         },
         accent: {
-          green: '#3BB273',
+          blue: '#2563EB',
           orange: '#F5A623',
           warm: '#eeede9',
         },
@@ -51,7 +51,7 @@ export default {
         'soft': '0 4px 12px rgba(0, 0, 0, 0.08)',
         'card': '0 8px 18px rgba(0, 0, 0, 0.12)',
         'panel': '0 12px 35px rgba(0, 0, 0, 0.18)',
-        'glow': '0 0 20px rgba(59, 178, 115, 0.3)',
+        'glow': '0 0 20px rgba(37, 99, 235, 0.3)',
       },
       letterSpacing: {
         'tighter': '-0.02em',
