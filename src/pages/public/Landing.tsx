@@ -70,7 +70,7 @@ export function Landing() {
       <header className="sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <RealProLogo width={160} height={48} />
+            <RealProLogo width={220} height={66} />
           </Link>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
@@ -553,7 +553,7 @@ export function Landing() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <RealProLogo width={140} height={42} />
+              <RealProLogo width={200} height={60} />
               <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-4 max-w-xs leading-relaxed">
                 La solution complète pour les promoteurs immobiliers suisses
               </p>
