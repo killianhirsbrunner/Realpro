@@ -39,6 +39,10 @@ import ProjectMaterialsPage from './pages/ProjectMaterialsPage';
 import ProjectMaterialsCatalog from './pages/ProjectMaterialsCatalog';
 import ProjectMaterialsSuppliers from './pages/ProjectMaterialsSuppliers';
 import ProjectMaterialsSupplierAgenda from './pages/ProjectMaterialsSupplierAgenda';
+import ProjectMaterialsSelections from './pages/ProjectMaterialsSelections';
+import ProjectMaterialsCatalogManager from './pages/ProjectMaterialsCatalogManager';
+import ProjectMaterialsLotChoices from './pages/ProjectMaterialsLotChoices';
+import ProjectMaterialsAppointments from './pages/ProjectMaterialsAppointments';
 import ProjectMessages from './pages/ProjectMessages';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
@@ -137,7 +141,10 @@ function App() {
                     <Route path="/projects/:projectId/planning/photos" element={<ProjectPlanningPhotos />} />
                     <Route path="/projects/:projectId/planning/reports" element={<ProjectPlanningReports />} />
                     <Route path="/projects/:projectId/planning/buyers" element={<ProjectPlanningBuyersProgress />} />
-                    <Route path="/projects/:projectId/materials" element={<ProjectMaterialsPage />} />
+                    <Route path="/projects/:projectId/materials" element={<ProjectMaterialsSelections />} />
+                    <Route path="/projects/:projectId/materials/catalogue" element={<ProjectMaterialsCatalogManager />} />
+                    <Route path="/projects/:projectId/materials/lots/:lotId" element={<ProjectMaterialsLotChoices />} />
+                    <Route path="/projects/:projectId/materials/lots/:lotId/appointments" element={<ProjectMaterialsAppointments />} />
                     <Route path="/projects/:projectId/materials/catalog" element={<ProjectMaterialsCatalog />} />
                     <Route path="/projects/:projectId/materials/suppliers" element={<ProjectMaterialsSuppliers />} />
                     <Route path="/projects/:projectId/materials/suppliers/:supplierId" element={<ProjectMaterialsSupplierAgenda />} />
