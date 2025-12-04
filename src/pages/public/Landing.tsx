@@ -93,7 +93,7 @@ export function Landing() {
                 </Button>
               </Link>
               <Link to="/auth/register">
-                <Button size="sm" className="rounded-full h-9 bg-[#3BB273] hover:bg-[#35a066] border-0 text-white">
+                <Button size="sm" className="rounded-full h-9 bg-blue-600 hover:bg-blue-700 border-0 text-white">
                   Essai gratuit
                 </Button>
               </Link>
@@ -120,7 +120,7 @@ export function Landing() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <Link to="/auth/register">
-            <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-xl transition-all bg-[#3BB273] hover:bg-[#35a066] border-0 text-white">
+            <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-xl transition-all bg-blue-600 hover:bg-blue-700 border-0 text-white">
               Commencer gratuitement
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -532,7 +532,7 @@ export function Landing() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/auth/register">
-                <Button size="lg" className="bg-[#3BB273] text-white hover:bg-[#35a066] border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl">
+                <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700 border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl">
                   Commencer gratuitement
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
