@@ -47,6 +47,39 @@ export default {
         '150': '150ms',
         '200': '200ms',
       },
+      boxShadow: {
+        'soft': '0 4px 12px rgba(0, 0, 0, 0.08)',
+        'card': '0 8px 18px rgba(0, 0, 0, 0.12)',
+        'panel': '0 12px 35px rgba(0, 0, 0, 0.18)',
+        'glow': '0 0 20px rgba(59, 178, 115, 0.3)',
+      },
+      letterSpacing: {
+        'tighter': '-0.02em',
+      },
+      animation: {
+        'slideLeft': 'slideLeft 0.3s ease-out',
+        'slideRight': 'slideRight 0.3s ease-out',
+        'fadeIn': 'fadeIn 0.2s ease-out',
+        'scaleIn': 'scaleIn 0.2s ease-out',
+      },
+      keyframes: {
+        slideLeft: {
+          '0%': { transform: 'translateX(100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        slideRight: {
+          '0%': { transform: 'translateX(-100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.95)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+      },
     },
   },
   plugins: [],
