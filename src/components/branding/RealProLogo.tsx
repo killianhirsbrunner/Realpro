@@ -7,10 +7,10 @@ interface RealProLogoProps {
 }
 
 const sizeClasses = {
-  sm: { text: 'text-lg', icon: 'w-6 h-6', gap: 'gap-2.5', iconSize: 'w-3.5 h-3.5' },
-  md: { text: 'text-2xl', icon: 'w-8 h-8', gap: 'gap-3', iconSize: 'w-4 h-4' },
-  lg: { text: 'text-3xl', icon: 'w-10 h-10', gap: 'gap-3.5', iconSize: 'w-5 h-5' },
-  xl: { text: 'text-4xl', icon: 'w-12 h-12', gap: 'gap-4', iconSize: 'w-6 h-6' }
+  sm: { text: 'text-base', icon: 'w-5 h-5', gap: 'gap-1.5', iconSize: 'w-3 h-3' },
+  md: { text: 'text-xl', icon: 'w-7 h-7', gap: 'gap-2', iconSize: 'w-3.5 h-3.5' },
+  lg: { text: 'text-2xl', icon: 'w-8 h-8', gap: 'gap-2.5', iconSize: 'w-4 h-4' },
+  xl: { text: 'text-3xl', icon: 'w-10 h-10', gap: 'gap-3', iconSize: 'w-5 h-5' }
 };
 
 export function RealProLogo({ className = '', size = 'md', showIcon = true }: RealProLogoProps) {

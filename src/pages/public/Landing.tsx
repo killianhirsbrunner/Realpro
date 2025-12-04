@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '../../components/ui/Button';
 import { RealProLogo } from '../../components/branding/RealProLogo';
+import { ThemeToggle } from '../../components/ThemeToggle';
+import { ScrollReveal, FadeIn } from '../../components/ui/PageTransition';
 import {
   Building2,
   Users,
@@ -14,137 +16,155 @@ import {
   Check,
   BarChart3,
   Shield,
-  Sparkles
+  Sparkles,
+  Menu,
+  X
 } from 'lucide-react';
 
 export function Landing() {
   const [scrollY, setScrollY] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const features = [
     {
       icon: Building2,
       title: 'Vision 360° en temps réel',
-      description: 'Pilotez l\'ensemble de vos promotions depuis un tableau de bord unique. KPIs, alertes et métriques critiques actualisés en continu pour une prise de décision éclairée.'
+      description: 'Pilotez l\'ensemble de vos promotions depuis un tableau de bord unique. KPIs, alertes et métriques critiques actualisés en continu.'
     },
     {
       icon: Users,
       title: 'Gestion commerciale complète',
-      description: 'CRM intégré pour vos courtiers et acheteurs. Pipeline de ventes, réservations, contrats de vente et suivi des paiements dans un seul système centralisé.'
+      description: 'CRM intégré pour vos courtiers et acheteurs. Pipeline de ventes, réservations, contrats et suivi des paiements.'
     },
     {
       icon: FileText,
       title: 'Collaboration architecturale',
-      description: 'Partagez et annotez les plans en temps réel avec vos architectes. Validez les modifications clients et gérez l\'impact budgétaire instantanément.'
+      description: 'Partagez et annotez les plans en temps réel. Validez les modifications clients et gérez l\'impact budgétaire.'
     },
     {
       icon: TrendingUp,
       title: 'Soumissions & Fournisseurs',
-      description: 'Centralisez les offres et gérez les appels d\'offres. Analyse automatique des plus-values et moins-values selon les choix de chaque acheteur.'
+      description: 'Centralisez les offres et appels d\'offres. Analyse automatique des plus-values et moins-values.'
     },
     {
       icon: MessageSquare,
-      title: 'Hub de communication centralisé',
-      description: 'Tous vos interlocuteurs sur une seule plateforme. Conversations, documents et décisions tracés et organisés par projet, lot et phase.'
+      title: 'Hub de communication',
+      description: 'Tous vos interlocuteurs sur une plateforme. Conversations et documents tracés par projet et lot.'
     },
     {
       icon: Clock,
       title: 'Automatisation intelligente',
-      description: 'Workflows automatisés du premier contact à la remise des clés. Notifications intelligentes, rappels automatiques et validation par étapes.'
-    }
-  ];
-
-  const testimonials = [
-    {
-      quote: "RealPro a révolutionné notre façon de travailler. Tous nos acteurs connectés en temps réel : architectes, courtiers, acheteurs, fournisseurs et notaires. Nous avons divisé notre temps administratif par 3.",
-      author: "Jean Dupont",
-      role: "Directeur, Promotions Genevoises SA"
-    },
-    {
-      quote: "La gestion des modifications et des choix de matériaux est devenue fluide et transparente. Les acheteurs adorent pouvoir suivre l'avancement en direct. Notre taux de satisfaction a bondi à 4.9/5.",
-      author: "Marie Schmidt",
-      role: "Gérante, Schmidt Développement Immobilier"
-    },
-    {
-      quote: "Nous gérons 15 projets simultanément avec une équipe réduite. Le dashboard 360° nous permet de piloter l'ensemble en un coup d'œil. ROI atteint en moins de 2 mois.",
-      author: "Pierre Rossi",
-      role: "CEO, Immobilière Rossi & Partners"
+      description: 'Workflows automatisés du premier contact à la remise des clés. Notifications et rappels intelligents.'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <header className="sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-2xl">
+    <div className="min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300">
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-20 flex items-center justify-between">
-            <Link to="/" className="flex items-center transition-opacity hover:opacity-70 flex-shrink-0">
-              <RealProLogo size="xl" />
+          <div className="h-16 flex items-center justify-between">
+            <Link to="/" className="flex items-center transition-opacity hover:opacity-70">
+              <RealProLogo size="lg" />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
-              <Link to="/features" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+              <Link to="/features" className="text-neutral-700 dark:text-neutral-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                 Fonctionnalités
               </Link>
-              <Link to="/pricing" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              <Link to="/pricing" className="text-neutral-700 dark:text-neutral-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                 Tarifs
               </Link>
-              <Link to="/contact" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              <Link to="/contact" className="text-neutral-700 dark:text-neutral-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                 Contact
               </Link>
             </nav>
 
-            <div className="flex items-center gap-3 flex-shrink-0">
-              <Link to="/login">
-                <Button variant="outline" size="sm" className="rounded-full h-9">
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <Link to="/login" className="hidden sm:block">
+                <Button variant="outline" size="sm" className="rounded-full">
                   Connexion
                 </Button>
               </Link>
               <Link to="/auth/register">
-                <Button size="sm" className="rounded-full h-9 bg-brand-600 hover:bg-brand-700 border-0 text-white">
+                <Button size="sm" className="rounded-full bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 border-0 text-white shadow-lg shadow-brand-600/30">
                   Essai gratuit
                 </Button>
               </Link>
+              <button
+                className="md:hidden p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 py-4 px-6 animate-in fade-in slide-in-from-top-2">
+            <nav className="flex flex-col gap-3">
+              <Link to="/features" className="text-neutral-700 dark:text-neutral-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors py-2">
+                Fonctionnalités
+              </Link>
+              <Link to="/pricing" className="text-neutral-700 dark:text-neutral-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors py-2">
+                Tarifs
+              </Link>
+              <Link to="/contact" className="text-neutral-700 dark:text-neutral-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors py-2">
+                Contact
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
-      <section className="relative max-w-6xl mx-auto px-6 lg:px-8 pt-20 pb-32 md:pt-32 md:pb-40 text-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative max-w-6xl mx-auto px-6 lg:px-8 pt-16 pb-24 md:pt-24 md:pb-32 text-center overflow-hidden">
         <div
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0 -z-10 transition-all duration-300"
           style={{
             transform: `translateY(${scrollY * 0.5}px)`,
             opacity: Math.max(1 - scrollY / 500, 0)
           }}
         >
-          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-600/5 rounded-full blur-3xl" />
-          <div className="absolute top-40 right-10 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-600/10 dark:bg-brand-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-40 right-10 w-96 h-96 bg-brand-600/10 dark:bg-brand-600/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="animate-in fade-in slide-in-from-top-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-8 border border-brand-600/20 hover:bg-brand-600/15 transition-colors">
+        <FadeIn delay={100}>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-semibold mb-6 border border-brand-600/20 hover:bg-brand-600/15 transition-colors cursor-pointer">
             <Sparkles className="w-3.5 h-3.5" />
             Solution #1 pour les promoteurs suisses
           </div>
+        </FadeIn>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 dark:text-neutral-100 leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
-            Pilotez vos promotions immobilières avec une <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 bg-clip-text text-transparent">précision absolue</span>
+        <FadeIn delay={200}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 dark:text-white leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
+            Pilotez vos promotions avec une <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 bg-clip-text text-transparent">précision absolue</span>
           </h1>
+        </FadeIn>
 
-          <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            La seule plateforme qui centralise 100% de vos opérations immobilières en un seul endroit.
-            <span className="text-neutral-900 dark:text-neutral-300 font-medium"> Architectes, courtiers, acheteurs, fournisseurs et notaires</span> : tous connectés, toutes les informations synchronisées en temps réel.
+        <FadeIn delay={300}>
+          <p className="text-base sm:text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-8 leading-relaxed px-4">
+            La seule plateforme qui centralise 100% de vos opérations immobilières.
+            <span className="text-neutral-900 dark:text-white font-medium"> Architectes, courtiers, acheteurs, fournisseurs et notaires</span> : tous connectés en temps réel.
           </p>
+        </FadeIn>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <FadeIn delay={400}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
             <Link to="/auth/register">
               <Button
                 size="lg"
-                className="group rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-2xl transition-all duration-300 bg-brand-600 hover:bg-brand-700 hover:scale-105 border-0 text-white"
+                className="group rounded-full px-8 h-12 text-base font-medium shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 hover:scale-105 border-0 text-white"
               >
                 Commencer gratuitement
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -160,8 +180,10 @@ export function Landing() {
               </Button>
             </Link>
           </div>
+        </FadeIn>
 
-          <div className="flex items-center justify-center gap-6 text-xs text-neutral-500 dark:text-neutral-500 flex-wrap mb-16">
+        <FadeIn delay={500}>
+          <div className="flex items-center justify-center gap-4 sm:gap-6 text-xs text-neutral-500 flex-wrap mb-12">
             <span className="flex items-center gap-1.5">
               <Check className="w-3.5 h-3.5 text-brand-600" />
               14 jours gratuits
@@ -175,665 +197,141 @@ export function Landing() {
               Données en Suisse
             </span>
           </div>
+        </FadeIn>
 
-          <div className="relative max-w-6xl mx-auto mt-16">
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none h-32 bottom-0 top-auto" />
-
-            <div className="relative perspective-1000">
-              <div className="relative rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
-
-                <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-700">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                  </div>
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="px-4 py-1 bg-white dark:bg-neutral-700 rounded-md border border-neutral-200 dark:border-neutral-600 text-[10px] text-neutral-600 dark:text-neutral-400 max-w-xs truncate">
-                      realpro.ch/dashboard
-                    </div>
+        <FadeIn delay={600}>
+          <div className="relative max-w-6xl mx-auto mt-12">
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none h-24 bottom-0 top-auto" />
+            <div className="relative rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
+              <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-700">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="px-4 py-1 bg-white dark:bg-neutral-700 rounded-md border border-neutral-200 dark:border-neutral-600 text-[10px] text-neutral-600 dark:text-neutral-400 max-w-xs truncate">
+                    realpro.ch/dashboard
                   </div>
                 </div>
+              </div>
 
-                <div className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 p-6 md:p-8">
-
-                  <div className="mb-6 flex items-center justify-between animate-in fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-md">
-                        <Building2 className="w-4 h-4 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-neutral-900 dark:text-white mb-0.5">Tableau de bord</div>
-                        <div className="text-[10px] text-neutral-500">Vue d'ensemble</div>
-                      </div>
+              <div className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 p-4 sm:p-6 md:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+                  <div className="bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl p-4 border border-brand-200/50 dark:border-brand-800/50">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-[10px] font-semibold text-brand-700 dark:text-brand-400 uppercase tracking-wide">Projets actifs</div>
+                      <TrendingUp className="w-3 h-3 text-brand-600" />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="relative w-6 h-6 rounded-full bg-brand-600/20 flex items-center justify-center cursor-pointer hover:bg-brand-600/30 transition-colors">
-                        <div className="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></div>
-                        <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-red-500 border border-white dark:border-neutral-900"></div>
-                      </div>
-                      <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center text-[8px] font-semibold text-neutral-600 dark:text-neutral-400">DP</div>
-                    </div>
+                    <div className="text-2xl font-bold text-brand-900 dark:text-brand-300">12</div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div className="bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl p-4 border border-brand-200/50 dark:border-brand-800/50 animate-in fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-[10px] font-semibold text-brand-700 dark:text-brand-400 uppercase tracking-wide">Projets actifs</div>
-                        <TrendingUp className="w-3 h-3 text-brand-600" />
-                      </div>
-                      <div className="text-2xl font-bold text-brand-900 dark:text-brand-300 mb-1">12</div>
-                      <div className="flex items-center gap-1">
-                        <div className="text-[9px] text-brand-600 dark:text-brand-400">+3 ce mois</div>
-                      </div>
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20 rounded-xl p-4 border border-orange-200/50 dark:border-orange-800/50">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-[10px] font-semibold text-orange-700 dark:text-orange-400 uppercase tracking-wide">Ventes</div>
+                      <Users className="w-3 h-3 text-orange-600" />
                     </div>
-
-                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-[10px] font-semibold text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Ventes</div>
-                        <Users className="w-3 h-3 text-neutral-500" />
-                      </div>
-                      <div className="text-2xl font-bold text-neutral-900 dark:text-white mb-1">87%</div>
-                      <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
-                        <div className="bg-green-600 h-full rounded-full" style={{ width: '87%' }}></div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-4 border border-green-200/50 dark:border-green-800/50 animate-in fade-in" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-[10px] font-semibold text-green-700 dark:text-green-400 uppercase tracking-wide">Revenu</div>
-                        <BarChart3 className="w-3 h-3 text-green-600" />
-                      </div>
-                      <div className="text-lg font-bold text-green-900 dark:text-green-300 mb-1">CHF 12.4M</div>
-                      <div className="text-[9px] text-green-600 dark:text-green-400">+18% vs mois dernier</div>
-                    </div>
+                    <div className="text-2xl font-bold text-orange-900 dark:text-orange-300">87%</div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-5 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '500ms', animationFillMode: 'both' }}>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="text-xs font-semibold text-neutral-900 dark:text-white">Activité récente</div>
-                        <div className="text-[9px] text-neutral-500">Aujourd'hui</div>
-                      </div>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-brand-600/10 flex items-center justify-center flex-shrink-0">
-                            <FileText className="w-4 h-4 text-brand-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-full mb-1.5" />
-                            <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded w-2/3" />
-                          </div>
-                          <div className="text-[8px] text-neutral-500">2h</div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-green-600/10 flex items-center justify-center flex-shrink-0">
-                            <Check className="w-4 h-4 text-green-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-4/5 mb-1.5" />
-                            <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded w-1/2" />
-                          </div>
-                          <div className="text-[8px] text-neutral-500">5h</div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-orange-600/10 flex items-center justify-center flex-shrink-0">
-                            <MessageSquare className="w-4 h-4 text-orange-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-3/4 mb-1.5" />
-                            <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded w-1/3" />
-                          </div>
-                          <div className="text-[8px] text-neutral-500">1j</div>
-                        </div>
-                      </div>
+                  <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-4 border border-green-200/50 dark:border-green-800/50">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-[10px] font-semibold text-green-700 dark:text-green-400 uppercase tracking-wide">Revenu</div>
+                      <BarChart3 className="w-3 h-3 text-green-600" />
                     </div>
-
-                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-5 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="text-xs font-semibold text-neutral-900 dark:text-white">Performance</div>
-                        <div className="text-[9px] text-brand-600 font-medium">+12%</div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-[10px]">
-                          <span className="text-neutral-600 dark:text-neutral-400">Taux de conversion</span>
-                          <span className="font-semibold text-neutral-900 dark:text-white">73%</span>
-                        </div>
-                        <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-brand-600 h-full rounded-full" style={{ width: '73%' }}></div>
-                        </div>
-                        <div className="flex items-center justify-between text-[10px] mt-3">
-                          <span className="text-neutral-600 dark:text-neutral-400">Délai moyen signature</span>
-                          <span className="font-semibold text-neutral-900 dark:text-white">12j</span>
-                        </div>
-                        <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-green-600 h-full rounded-full" style={{ width: '85%' }}></div>
-                        </div>
-                        <div className="flex items-center justify-between text-[10px] mt-3">
-                          <span className="text-neutral-600 dark:text-neutral-400">Satisfaction client</span>
-                          <span className="font-semibold text-neutral-900 dark:text-white">4.8/5</span>
-                        </div>
-                        <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-yellow-500 h-full rounded-full" style={{ width: '96%' }}></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 animate-in fade-in" style={{ animationDelay: '700ms', animationFillMode: 'both' }}>
-                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-green-600 dark:text-green-400 mb-1">156</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">Lots vendus</div>
-                    </div>
-                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-1">8</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">En construction</div>
-                    </div>
-                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-brand-600 dark:text-brand-400 mb-1">12</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">Projets en cours</div>
-                    </div>
-                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">24</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">Projets terminés</div>
-                    </div>
+                    <div className="text-lg font-bold text-green-900 dark:text-green-300">CHF 12.4M</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight leading-tight">
-            Tout ce dont vous avez besoin.<br />
-            <span className="bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent">Rien de superflu.</span>
-          </h2>
-          <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Chaque module a été conçu avec des promoteurs immobiliers pour répondre aux défis réels du terrain. Une solution complète qui s'adapte à votre workflow.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 hover:bg-white dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer"
-              style={{
-                animation: 'fadeIn 0.5s ease-out',
-                animationDelay: `${index * 100}ms`,
-                animationFillMode: 'both'
-              }}
-            >
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/30 group-hover:scale-110 transition-all duration-300">
-                <feature.icon className="w-5 h-5 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="relative max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-600/5 to-transparent rounded-3xl -z-10" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
-              360°
-            </div>
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-              Vision complète
-            </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-              de vos projets
-            </p>
-          </div>
-          <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
-              5+
-            </div>
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-              Acteurs connectés
-            </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-              en temps réel
-            </p>
-          </div>
-          <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
-              1
-            </div>
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-              Seule plateforme
-            </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-              tout en un
-            </p>
-          </div>
-          <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
-              100%
-            </div>
-            <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
-              Centralisé
-            </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-              et sécurisé
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-6">
-              <MessageSquare className="w-3.5 h-3.5" />
-              Centralisation totale
-            </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6 tracking-tight leading-tight">
-              Tous vos acteurs.<br />Une seule plateforme.
-            </h2>
-            <p className="text-base text-neutral-600 dark:text-neutral-400 mb-8 leading-relaxed">
-              Fini les emails perdus, les fichiers Excel dispersés et les informations manquantes. RealPro connecte architectes, courtiers, clients, fournisseurs et notaires en temps réel.
-            </p>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-brand-600" />
-                </div>
-                <div>
-                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
-                    Communication unifiée
-                  </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Échangez avec tous vos partenaires depuis une seule interface
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-brand-600" />
-                </div>
-                <div>
-                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
-                    Données synchronisées
-                  </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Toutes les informations mises à jour en temps réel
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-brand-600" />
-                </div>
-                <div>
-                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
-                    Traçabilité complète
-                  </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Historique de toutes les décisions et validations
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-600/20 to-brand-600/10 rounded-3xl blur-3xl"></div>
-            <div className="relative bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-brand-600/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-brand-600" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Architecte</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Plans validés</p>
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
-                </div>
-                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-brand-600/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-brand-600" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Courtier</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Contrat signé</p>
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
-                </div>
-                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-brand-600/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-brand-600" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Fournisseur</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Offre validée</p>
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
-                </div>
-                <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-neutral-700/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-neutral-700 dark:text-neutral-400" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Client</p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Choix confirmés</p>
-                  </div>
-                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-28">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight">
-            Pourquoi choisir RealPro ?
-          </h2>
-          <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            Des avantages concrets pour votre quotidien
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="group bg-gradient-to-br from-brand-600/5 to-brand-600/10 dark:from-brand-600/10 dark:to-brand-600/5 rounded-3xl p-8 border border-brand-600/20 hover:border-brand-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-brand-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                  Gagnez du temps
-                </h3>
-                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                  Plus besoin de jongler entre 10 outils différents. Tout est centralisé dans RealPro.
-                </p>
-                <p className="text-sm font-semibold text-brand-600 mt-2">
-                  15h économisées par semaine en moyenne
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="group bg-gradient-to-br from-neutral-50 to-neutral-100/50 dark:from-neutral-900/50 dark:to-neutral-800/30 rounded-3xl p-8 border border-neutral-200/50 dark:border-neutral-700/50 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-neutral-700 dark:bg-neutral-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                  Zéro erreur
-                </h3>
-                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                  Les informations sont synchronisées automatiquement. Plus de risque d'oublier une validation ou de perdre un document important.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="group bg-gradient-to-br from-[#F5A623]/5 to-[#F5A623]/10 dark:from-[#F5A623]/10 dark:to-[#F5A623]/5 rounded-3xl p-8 border border-[#F5A623]/20 hover:border-[#F5A623]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#F5A623] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <MessageSquare className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                  Communication fluide
-                </h3>
-                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                  Échangez avec tous vos partenaires depuis la même interface. Historique complet de toutes les conversations.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="group bg-gradient-to-br from-neutral-50 to-neutral-100/50 dark:from-neutral-900/50 dark:to-neutral-800/30 rounded-3xl p-8 border border-neutral-200/50 dark:border-neutral-700/50 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-neutral-700 dark:bg-neutral-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                  Décisions rapides
-                </h3>
-                <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                  Validez les offres fournisseurs, gérez les modifications clients et approuvez les documents en quelques clics.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/30">
+      {/* Features Section - Background Color */}
+      <section className="bg-gradient-to-br from-neutral-50 via-neutral-100/50 to-neutral-50 dark:from-neutral-900/50 dark:via-neutral-900 dark:to-neutral-900/50 py-16 md:py-24 border-y border-neutral-200/50 dark:border-neutral-800/50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-6">
-              <Clock className="w-3.5 h-3.5" />
-              Flux de travail simplifié
-            </div>
-            <h2 className="text-3xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight leading-tight">
-              De la conception à la livraison
-            </h2>
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              Suivez chaque étape de vos projets avec une visibilité totale
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-6">
-                <FileText className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                Phase Conception
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
-                Collaborez avec vos architectes sur les plans. Gérez les demandes de modifications clients en temps réel.
+          <ScrollReveal>
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4 tracking-tight leading-tight">
+                Tout ce dont vous avez besoin.<br />
+                <span className="bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent">Rien de superflu.</span>
+              </h2>
+              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                Chaque module conçu avec des promoteurs pour répondre aux défis réels du terrain.
               </p>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600"></div>
-                  Plans partagés
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600"></div>
-                  Modifications validées
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600"></div>
-                  Historique complet
-                </li>
-              </ul>
             </div>
+          </ScrollReveal>
 
-            <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F5A623] to-[#e09520] flex items-center justify-center mb-6">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                Phase Commercialisation
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
-                Travaillez avec vos courtiers pour gérer les acheteurs. Centralisez contrats et signatures.
-              </p>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#F5A623]"></div>
-                  Infos acheteurs
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#F5A623]"></div>
-                  Contrats centralisés
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#F5A623]"></div>
-                  Suivi paiements
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center mb-6">
-                <Building2 className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
-                Phase Réalisation
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
-                Gérez les choix clients et validez les offres fournisseurs. Plus-values et moins-values en un clic.
-              </p>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
-                  Choix matériaux
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
-                  Offres fournisseurs
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
-                  Validation rapide
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight">
-              Ils nous font confiance
-            </h2>
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              Des promoteurs qui gagnent du temps chaque jour
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="group p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
-                style={{
-                  animation: 'fadeIn 0.5s ease-out',
-                  animationDelay: `${index * 150}ms`,
-                  animationFillMode: 'both'
-                }}
-              >
-                <div className="mb-6">
-                  <svg className="w-8 h-8 text-brand-600/20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                </div>
-                <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed">
-                  {testimonial.quote}
-                </p>
-                <div className="border-t border-neutral-200 dark:border-neutral-800 pt-4">
-                  <p className="font-semibold text-neutral-900 dark:text-neutral-100 text-sm">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-                    {testimonial.role}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <ScrollReveal key={feature.title}>
+                <div className="group p-6 md:p-8 rounded-2xl bg-white dark:bg-neutral-800/50 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 cursor-pointer backdrop-blur-sm">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500">
+                    <feature.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    {feature.description}
                   </p>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-6">
-              <Shield className="w-3.5 h-3.5" />
-              Sécurité & Conformité
-            </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight">
-              Vos données en sécurité
-            </h2>
-            <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              Conformité RGPD et hébergement en Suisse
-            </p>
+      {/* Stats Section */}
+      <section className="relative max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-600/5 dark:via-brand-600/10 to-transparent rounded-3xl -z-10" />
+        <ScrollReveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {[
+              { value: '360°', label: 'Vision complète', sublabel: 'de vos projets' },
+              { value: '5+', label: 'Acteurs connectés', sublabel: 'en temps réel' },
+              { value: '1', label: 'Seule plateforme', sublabel: 'tout en un' },
+              { value: '100%', label: 'Centralisé', sublabel: 'et sécurisé' }
+            ].map((stat, index) => (
+              <div key={index} className="text-center group hover:scale-105 transition-transform duration-300">
+                <div className="text-4xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
+                  {stat.value}
+                </div>
+                <p className="text-sm font-semibold text-neutral-900 dark:text-white">
+                  {stat.label}
+                </p>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                  {stat.sublabel}
+                </p>
+              </div>
+            ))}
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-brand-600/10 flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-6 h-6 text-brand-600" />
-              </div>
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
-                Données cryptées
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Chiffrement de bout en bout pour toutes vos données sensibles
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-brand-600/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🇨🇭</span>
-              </div>
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
-                Hébergé en Suisse
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Vos données restent en Suisse, conformément aux lois locales
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-brand-600/10 flex items-center justify-center mx-auto mb-4">
-                <Check className="w-6 h-6 text-brand-600" />
-              </div>
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
-                Conforme RGPD
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Respect total de la réglementation européenne
-              </p>
-            </div>
-          </div>
-        </div>
+        </ScrollReveal>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
-        <div className="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 rounded-[2.5rem] p-12 md:p-20 text-center text-white shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-600/20 via-transparent to-brand-600/10"></div>
-          <div className="absolute top-0 left-0 w-full h-full opacity-30">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-brand-600 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-10 right-10 w-40 h-40 bg-brand-600 rounded-full blur-3xl"></div>
-          </div>
+      {/* CTA Section - Background Color */}
+      <section className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 py-16 md:py-24 border-y border-neutral-800 dark:border-neutral-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-600/20 via-transparent to-brand-600/10"></div>
+        <div className="absolute top-0 left-0 w-full h-full opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-brand-600 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-brand-600 rounded-full blur-3xl"></div>
+        </div>
 
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/20 border border-brand-600/30 text-brand-300 text-xs font-medium mb-6">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+          <ScrollReveal>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/20 border border-brand-600/30 text-brand-300 text-xs font-semibold mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               Démarrez en 5 minutes
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-semibold mb-5 tracking-tight leading-tight max-w-3xl mx-auto">
-              Prêt à transformer votre gestion de projets ?
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-tight">
+              Prêt à transformer votre gestion ?
             </h2>
-            <p className="text-base md:text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Rejoignez les promoteurs immobiliers qui économisent <span className="text-brand-400 font-semibold">15h par semaine</span> avec RealPro.
-              Testez gratuitement pendant 14 jours.
+            <p className="text-base md:text-lg text-neutral-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Rejoignez les promoteurs qui économisent <span className="text-brand-400 font-semibold">15h par semaine</span> avec RealPro.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/auth/register">
                 <Button
                   size="lg"
@@ -847,74 +345,59 @@ export function Landing() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white bg-white/10 hover:bg-white hover:text-neutral-900 rounded-full px-8 h-12 text-base font-medium backdrop-blur-md shadow-lg shadow-black/20 transition-all duration-300 hover:scale-105"
+                  className="border-2 border-white text-white bg-white/10 hover:bg-white hover:text-neutral-900 rounded-full px-8 h-12 text-base font-medium backdrop-blur-md transition-all duration-300 hover:scale-105"
                 >
                   Demander une démo
                 </Button>
               </Link>
             </div>
-
-            <div className="flex items-center justify-center gap-6 text-xs text-neutral-400">
-              <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-brand-400" />
-                Sans carte bancaire
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-brand-400" />
-                Sans engagement
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-brand-400" />
-                Support inclus
-              </span>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <footer className="border-t border-neutral-200/50 dark:border-neutral-800/50 py-16 bg-neutral-50/50 dark:bg-neutral-900/20">
+      {/* Footer */}
+      <footer className="border-t border-neutral-200/50 dark:border-neutral-800/50 py-12 md:py-16 bg-neutral-50/50 dark:bg-neutral-900/20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="grid md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
             <div className="md:col-span-1">
-              <div className="mb-6">
-                <RealProLogo size="xl" />
+              <div className="mb-4">
+                <RealProLogo size="lg" />
               </div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-4 max-w-xs leading-relaxed">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4 max-w-xs leading-relaxed">
                 La solution complète pour les promoteurs immobiliers suisses
               </p>
             </div>
 
             <div>
-              <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-4 text-sm">Produit</h3>
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-4 text-sm">Produit</h3>
               <ul className="space-y-3 text-xs text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/features" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Fonctionnalités</Link></li>
-                <li><Link to="/pricing" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Tarifs</Link></li>
+                <li><Link to="/features" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Fonctionnalités</Link></li>
+                <li><Link to="/pricing" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Tarifs</Link></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-4 text-sm">Entreprise</h3>
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-4 text-sm">Entreprise</h3>
               <ul className="space-y-3 text-xs text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/about" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">À propos</Link></li>
-                <li><Link to="/contact" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Contact</Link></li>
+                <li><Link to="/contact" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</Link></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-4 text-sm">Légal</h3>
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-4 text-sm">Légal</h3>
               <ul className="space-y-3 text-xs text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/legal/cgu" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">CGU</Link></li>
-                <li><Link to="/legal/cgv" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">CGV</Link></li>
-                <li><Link to="/legal/privacy" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Confidentialité</Link></li>
+                <li><Link to="/legal/cgu" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">CGU</Link></li>
+                <li><Link to="/legal/cgv" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">CGV</Link></li>
+                <li><Link to="/legal/privacy" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Confidentialité</Link></li>
               </ul>
             </div>
           </div>
 
           <div className="pt-8 border-t border-neutral-200/50 dark:border-neutral-800/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-neutral-500 dark:text-neutral-500 text-center sm:text-left">
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
               © 2024-2025 Realpro SA. Tous droits réservés.
             </p>
-            <div className="flex items-center gap-1 text-xs text-neutral-400 dark:text-neutral-600">
+            <div className="flex items-center gap-1 text-xs text-neutral-400">
               <span>Made in</span>
               <span className="text-red-500">🇨🇭</span>
               <span>Switzerland</span>
