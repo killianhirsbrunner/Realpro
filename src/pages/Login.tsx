@@ -104,6 +104,17 @@ export function Login() {
             </button>
           </form>
 
+          {!isSignUp && (
+            <div className="mt-4 text-center">
+              <a
+                href="/forgot-password"
+                className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              >
+                Mot de passe oublié ?
+              </a>
+            </div>
+          )}
+
           <div className="mt-6 text-center">
             <button
               type="button"
