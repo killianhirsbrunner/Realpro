@@ -6,7 +6,8 @@ import {
   Users,
   FileText,
   TrendingUp,
-  Shield,
+  MessageSquare,
+  Clock,
   Zap,
   ArrowRight,
   Check
@@ -16,51 +17,51 @@ export function Landing() {
   const features = [
     {
       icon: Building2,
-      title: 'Gestion de projets PPE/QPT',
-      description: 'Pilotez vos programmes de A à Z : lots, bâtiments, planification, et avancement. Vision 360° en temps réel sur tous vos chantiers.'
+      title: 'Vue 360° de vos projets',
+      description: 'Centralisez toutes les informations de vos promotions dans un seul outil. Vision globale en temps réel de tous vos projets immobiliers.'
     },
     {
       icon: Users,
-      title: 'CRM & Pipeline de vente',
-      description: 'Transformez vos prospects en acheteurs : réservations, contrats, courtiers, signatures notariées. Accélérez vos ventes avec un suivi précis.'
+      title: 'Courtiers & Acheteurs',
+      description: 'Gérez les informations des acheteurs avec vos courtiers à titre. Suivi des réservations, signatures et paiements centralisés.'
     },
     {
       icon: FileText,
-      title: 'GED & Dossiers notariés',
-      description: 'Centralisez tous vos documents : plans, contrats, actes notariés. Versioning automatique, accès sécurisés, zéro perte de temps.'
+      title: 'Plans & Modifications',
+      description: 'Collaborez avec vos architectes sur les plans. Gérez les demandes de modifications des clients et validez les adaptations.'
     },
     {
       icon: TrendingUp,
-      title: 'Finance & Comptabilité CFC',
-      description: 'Maîtrisez votre budget : soumissions, devis, factures, acomptes acheteurs. Comptabilité analytique intégrée selon normes CFC suisses.'
+      title: 'Offres Fournisseurs',
+      description: 'Centralisez les offres selon les choix clients. Gérez plus-values, moins-values et validations d\'offres en un seul endroit.'
     },
     {
-      icon: Shield,
-      title: 'Sécurité & Conformité Suisse',
-      description: 'Vos données hébergées en Suisse, conformité RGPD garantie, isolation multi-tenant absolue. Sécurité maximale pour votre activité.'
+      icon: MessageSquare,
+      title: 'Communication unifiée',
+      description: 'Un seul canal pour tous : architectes, courtiers, clients, fournisseurs, notaires. Fini les emails perdus, tout est centralisé.'
     },
     {
-      icon: Zap,
-      title: 'Interface professionnelle',
-      description: 'Plateforme ultra-rapide, design moderne et intuitif. Vos équipes adoptent RealPro en quelques minutes, pas en plusieurs semaines.'
+      icon: Clock,
+      title: 'Documents & Workflows',
+      description: 'Tous vos documents accessibles instantanément. Workflows automatisés de la réservation à la livraison des clés.'
     }
   ];
 
   const testimonials = [
     {
-      quote: "Nous avons divisé par 2 le temps passé sur la gestion administrative. RealPro centralise tout : lots, acheteurs, documents, finances. Notre équipe gagne plus de 15 heures par semaine.",
+      quote: "Enfin une vraie vision 360° ! Architectes, courtiers, clients, fournisseurs : tout le monde sur la même plateforme. Plus d'emails perdus, tout est centralisé.",
       author: "Jean Dupont",
       role: "Directeur, Promotions Genevoises SA"
     },
     {
-      quote: "Enfin un logiciel pensé pour les promoteurs suisses. L'intégration avec les notaires et courtiers est impeccable. Nos projets avancent plus vite et avec beaucoup moins d'erreurs.",
+      quote: "La gestion des modifications de plans avec les architectes et la validation des offres fournisseurs selon les choix clients est devenue un jeu d'enfant. Gain de temps incroyable.",
       author: "Marie Schmidt",
       role: "Gérante, Schmidt Développement Immobilier"
     },
     {
-      quote: "Le suivi financier en temps réel et la comptabilité CFC intégrée nous ont permis d'optimiser notre trésorerie et d'anticiper les écarts budgétaires. Un gain de productivité considérable.",
+      quote: "Centraliser toutes les informations projets au même endroit a transformé notre efficacité. On pilote tous nos projets en temps réel depuis une seule interface.",
       author: "Pierre Rossi",
-      role: "CFO, Immobilière Rossi & Partners"
+      role: "CEO, Immobilière Rossi & Partners"
     }
   ];
 
@@ -110,9 +111,9 @@ export function Landing() {
         </h1>
 
         <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-          De la première réservation à la livraison finale. Centralisez vos ventes, documents,
-          finances et chantiers dans une plateforme intuitive. Gagnez du temps,
-          réduisez les erreurs, augmentez votre rentabilité.
+          La plateforme 360° qui centralise toute l'information de vos projets immobiliers.
+          Architectes, courtiers, clients, fournisseurs, notaires : communiquez et gérez tout depuis un seul outil.
+          Une vision globale, un contrôle total.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -217,8 +218,8 @@ export function Landing() {
               Prêt à transformer votre gestion de projets ?
             </h2>
             <p className="text-base md:text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Testez RealPro gratuitement pendant 14 jours. Sans engagement,
-              sans carte bancaire. Configuration en 5 minutes.
+              Une plateforme. Tous vos acteurs. Toutes vos informations.
+              Testez gratuitement pendant 14 jours. Sans engagement, sans carte bancaire.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/auth/register">
