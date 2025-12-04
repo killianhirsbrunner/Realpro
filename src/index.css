@@ -2,15 +2,235 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================================================
+   REALPRO SUITE DESIGN SYSTEM
+   Premium Color Palette & Typography System
+   Inspired by Apple, Linear, and Swiss Design Principles
+   ============================================================================= */
+
 @layer base {
-  * {
+  /* ===== Color Palette - Light Mode ===== */
+  :root {
+    /* Background & Surface */
+    --color-bg: 246 247 249;           /* #F6F7F9 - Main background */
+    --color-surface: 255 255 255;      /* #FFFFFF - Cards, panels */
+    --color-elevated: 255 255 255;     /* #FFFFFF - Elevated surfaces */
+
+    /* Text Colors */
+    --color-text-primary: 26 26 26;    /* #1A1A1A - Primary text */
+    --color-text-secondary: 100 116 139; /* #64748B - Secondary text */
+    --color-text-tertiary: 148 163 184; /* #94A3B8 - Tertiary text */
+
+    /* Border & Divider */
+    --color-border: 230 231 235;       /* #E6E7EB - Borders */
+    --color-divider: 241 245 249;      /* #F1F5F9 - Dividers */
+
+    /* Brand Colors */
+    --color-primary: 58 110 165;       /* #3A6EA5 - Swiss blue premium */
+    --color-primary-hover: 46 88 132;  /* Darker primary */
+    --color-primary-light: 219 234 254; /* Light primary bg */
+
+    --color-secondary: 100 116 139;    /* #64748B - Gray blue elegant */
+    --color-secondary-hover: 71 85 105;
+
+    /* Accent Colors */
+    --color-success: 59 178 115;       /* #3BB273 - Green validation */
+    --color-success-light: 220 252 231;
+
+    --color-warning: 245 166 35;       /* #F5A623 - Orange warnings */
+    --color-warning-light: 254 243 199;
+
+    --color-danger: 228 88 88;         /* #E45858 - Red errors */
+    --color-danger-light: 254 226 226;
+
+    --color-info: 59 130 246;          /* #3B82F6 - Blue info */
+    --color-info-light: 219 234 254;
+
+    /* Neutral Palette (extended) */
+    --color-neutral-50: 248 250 252;
+    --color-neutral-100: 241 245 249;
+    --color-neutral-200: 226 232 240;
+    --color-neutral-300: 203 213 225;
+    --color-neutral-400: 148 163 184;
+    --color-neutral-500: 100 116 139;
+    --color-neutral-600: 71 85 105;
+    --color-neutral-700: 51 65 85;
+    --color-neutral-800: 30 41 59;
+    --color-neutral-900: 15 23 42;
+
+    /* Shadow System */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+    /* Border Radius */
+    --radius-sm: 0.375rem;  /* 6px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 0.75rem;   /* 12px */
+    --radius-xl: 1rem;      /* 16px */
+
+    /* Spacing System (8px base) */
+    --spacing-xs: 0.5rem;   /* 8px */
+    --spacing-sm: 0.75rem;  /* 12px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 1.5rem;   /* 24px */
+    --spacing-xl: 2rem;     /* 32px */
+    --spacing-2xl: 3rem;    /* 48px */
+  }
+
+  /* ===== Color Palette - Dark Mode ===== */
+  .dark {
+    /* Background & Surface */
+    --color-bg: 10 10 10;              /* #0A0A0A - Main background */
+    --color-surface: 18 18 18;         /* #121212 - Cards, panels */
+    --color-elevated: 24 24 24;        /* #181818 - Elevated surfaces */
+
+    /* Text Colors */
+    --color-text-primary: 241 241 241; /* #F1F1F1 - Primary text */
+    --color-text-secondary: 163 163 163; /* #A3A3A3 - Secondary text */
+    --color-text-tertiary: 115 115 115; /* #737373 - Tertiary text */
+
+    /* Border & Divider */
+    --color-border: 42 42 42;          /* #2A2A2A - Borders */
+    --color-divider: 38 38 38;         /* #262626 - Dividers */
+
+    /* Brand Colors (adjusted for dark mode) */
+    --color-primary: 75 140 217;       /* #4B8CD9 - Brighter blue */
+    --color-primary-hover: 96 165 250;
+    --color-primary-light: 30 58 138;
+
+    --color-secondary: 125 138 153;    /* #7D8A99 - Lighter gray blue */
+    --color-secondary-hover: 148 163 184;
+
+    /* Accent Colors (adjusted) */
+    --color-success: 70 201 130;       /* #46C982 - Brighter green */
+    --color-success-light: 20 83 45;
+
+    --color-warning: 255 182 85;       /* #FFB655 - Brighter orange */
+    --color-warning-light: 120 53 15;
+
+    --color-danger: 255 112 112;       /* #FF7070 - Brighter red */
+    --color-danger-light: 127 29 29;
+
+    --color-info: 96 165 250;          /* #60A5FA - Brighter info */
+    --color-info-light: 30 58 138;
+
+    /* Neutral Palette (inverted) */
+    --color-neutral-50: 15 23 42;
+    --color-neutral-100: 30 41 59;
+    --color-neutral-200: 51 65 85;
+    --color-neutral-300: 71 85 105;
+    --color-neutral-400: 100 116 139;
+    --color-neutral-500: 148 163 184;
+    --color-neutral-600: 203 213 225;
+    --color-neutral-700: 226 232 240;
+    --color-neutral-800: 241 245 249;
+    --color-neutral-900: 248 250 252;
+
+    /* Shadow System (more prominent in dark) */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
+  }
+
+  /* ===== Typography System ===== */
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     @apply scroll-smooth;
   }
 
   body {
-    @apply antialiased;
+    @apply bg-gray-50 text-gray-900 dark:bg-[#0A0A0A] dark:text-gray-50 antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
   }
 
+  /* Typography Scale */
+  .text-display-xl {
+    font-size: 42px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .text-title-1 {
+    font-size: 32px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .text-title-2 {
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  .text-subtitle {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  .text-body {
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .text-small {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .text-caption {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ===== Smooth Transitions ===== */
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  /* ===== Scrollbar Styling ===== */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-neutral-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-neutral-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-neutral-600;
+  }
+
+  /* ===== Selection Styling ===== */
+  ::selection {
+    @apply bg-blue-200 dark:bg-blue-900 text-gray-900 dark:text-gray-100;
+  }
+
+  /* ===== Focus Visible (Accessibility) ===== */
+  :focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900;
+  }
+
+  /* Remove search input decorations */
   input[type="search"]::-webkit-search-decoration,
   input[type="search"]::-webkit-search-cancel-button,
   input[type="search"]::-webkit-search-results-button,
@@ -19,7 +239,39 @@
   }
 }
 
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+
 @layer utilities {
+  /* Glassmorphism Effect */
+  .glass {
+    @apply bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl;
+  }
+
+  .glass-strong {
+    @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl;
+  }
+
+  /* Premium Card */
+  .card-premium {
+    @apply bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm;
+  }
+
+  .card-premium-hover {
+    @apply card-premium hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200;
+  }
+
+  /* Text Gradients */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-success {
+    @apply bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent;
+  }
+
+  /* Animations */
   .animate-in {
     animation-duration: 150ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -32,6 +284,10 @@
 
   .slide-in-from-top-2 {
     animation-name: slideInFromTop;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
   }
 
   @keyframes fadeIn {
@@ -54,6 +310,36 @@
     }
   }
 
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Layout Utilities */
+  .content-wrapper {
+    @apply max-w-7xl mx-auto px-6 py-8;
+  }
+
+  .section-spacing {
+    @apply space-y-8;
+  }
+
+  /* Interactive States */
+  .interactive {
+    @apply cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-150;
+  }
+
+  .interactive-subtle {
+    @apply cursor-pointer hover:opacity-80 active:opacity-60 transition-opacity duration-150;
+  }
+
+  /* Text Utilities */
   .text-balance {
     text-wrap: balance;
   }

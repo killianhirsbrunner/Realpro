@@ -35,6 +35,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
       root.classList.remove('light', 'dark');
       root.classList.add(applied);
+      root.style.colorScheme = applied;
     };
 
     updateTheme();
