@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Building2,
   DollarSign,
@@ -9,90 +9,26 @@ import {
   Grid3x3,
   ArrowRight,
   AlertCircle,
+  MessageSquare,
+  FolderOpen,
+  ExternalLink,
 } from 'lucide-react';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 import { Card } from '../components/ui/Card';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Badge } from '../components/ui/Badge';
 import ProjectExportPanel from '../components/ProjectExportPanel';
-
-type ProjectCockpit = {
-  project: {
-    id: string;
-    name: string;
-    type: string;
-    city?: string;
-    canton?: string;
-    status: string;
-  };
-  sales: {
-    lotsTotal: number;
-    lotsSold: number;
-    lotsReserved: number;
-    lotsFree: number;
-  };
-  finance: {
-    cfcBudget: number;
-    cfcEngaged: number;
-    cfcInvoiced: number;
-    cfcPaid: number;
-  };
-  planning: {
-    progressPct: number;
-    nextMilestone?: {
-      name: string;
-      plannedEnd: string;
-    } | null;
-  };
-  notary: {
-    buyerFilesTotal: number;
-    readyForNotary: number;
-    signed: number;
-  };
-  submissions: {
-    open: number;
-    adjudicated: number;
-  };
-};
+import { DeadlineCard } from '../components/dashboard/DeadlineCard';
+import { QuickActions } from '../components/dashboard/QuickActions';
+import { useProjectDashboard } from '../hooks/useProjectDashboard';
 
 interface ProjectCockpitDashboardProps {
   projectId: string;
 }
 
 export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardProps) {
-  const [data, setData] = useState<ProjectCockpit | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    loadData();
-  }, [projectId]);
-
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/project-dashboard`;
-
-      const response = await fetch(`${apiUrl}/projects/${projectId}/dashboard`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) throw new Error('Erreur lors du chargement');
-
-      const json = await response.json();
-      setData(json);
-    } catch (err: any) {
-      setError(err.message || 'Impossible de charger le cockpit projet');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data, loading, error } = useProjectDashboard(projectId);
 
   if (loading) {
     return (
@@ -105,234 +41,353 @@ export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardPr
   if (error || !data) {
     return (
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <Card className="bg-red-50 border-red-200">
-          <div className="flex items-center gap-3 text-red-700">
+        <Card className="bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800">
+          <div className="flex items-center gap-3 text-red-700 dark:text-red-400">
             <AlertCircle className="w-5 h-5" />
-            <p className="text-sm">{error || 'Données introuvables'}</p>
+            <p className="text-sm">{error?.message || 'Données introuvables'}</p>
           </div>
         </Card>
       </div>
     );
   }
 
-  const { project, sales, finance, planning, notary, submissions } = data;
+  const { project, sales, finance, planning, notary, submissions, deadlines, recentDocuments, recentMessages } = data;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
-      <header className="space-y-2">
-        <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-gray-400">
-          <Building2 className="w-4 h-4" />
-          <span>Cockpit Projet</span>
-        </div>
-        <div className="flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-semibold text-gray-900">
-              {project.name}
-            </h1>
-            <div className="flex items-center gap-3 mt-2 text-sm text-gray-500">
-              <span>{project.city || '—'}</span>
-              <span>·</span>
-              <span>{project.canton || '—'}</span>
-              <span>·</span>
-              <Badge variant={getStatusVariant(project.status)}>
-                {formatStatus(project.status)}
-              </Badge>
-              <span>·</span>
-              <span>{project.type}</span>
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+      <div className="mx-auto max-w-7xl px-6 py-8 space-y-8">
+        <header className="space-y-3">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-neutral-400 dark:text-neutral-600">
+            <Building2 className="w-4 h-4" />
+            <span>Cockpit Projet</span>
+          </div>
+          <div className="flex items-start justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+                {project.name}
+              </h1>
+              <div className="flex items-center gap-3 text-sm text-neutral-600 dark:text-neutral-400">
+                <span>{project.city || '—'}</span>
+                <span>·</span>
+                <span>{project.canton || '—'}</span>
+                <span>·</span>
+                <Badge variant={getStatusVariant(project.status)}>
+                  {formatStatus(project.status)}
+                </Badge>
+                {project.type && (
+                  <>
+                    <span>·</span>
+                    <span>{project.type}</span>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <KpiCard
-          icon={<Grid3x3 className="w-5 h-5" />}
-          label="Ventes"
-          value={`${sales.lotsSold}/${sales.lotsTotal}`}
-          helper={`${sales.lotsReserved} réservés · ${sales.lotsFree} disponibles`}
-          variant="default"
-        />
-        <KpiCard
-          icon={<DollarSign className="w-5 h-5" />}
-          label="Budget CFC"
-          value={formatCurrency(finance.cfcBudget)}
-          helper={`Engagé: ${formatCurrency(finance.cfcEngaged)}`}
-          variant="success"
-        />
-        <KpiCard
-          icon={<TrendingUp className="w-5 h-5" />}
-          label="Avancement"
-          value={`${planning.progressPct}%`}
-          helper={
-            planning.nextMilestone
-              ? `Prochaine étape: ${planning.nextMilestone.name}`
-              : 'Aucune étape planifiée'
-          }
-          variant="warning"
-        />
-        <KpiCard
-          icon={<FileText className="w-5 h-5" />}
-          label="Dossiers notaire"
-          value={`${notary.signed}/${notary.buyerFilesTotal}`}
-          helper={`${notary.readyForNotary} prêts pour signature`}
-          variant="default"
-        />
-      </section>
+        <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <KpiCard
+            icon={<Grid3x3 className="w-5 h-5" />}
+            label="Ventes"
+            value={`${sales.lotsSold}/${sales.lotsTotal}`}
+            helper={`${sales.lotsReserved} réservés · ${sales.lotsFree} disponibles`}
+            variant="default"
+          />
+          <KpiCard
+            icon={<DollarSign className="w-5 h-5" />}
+            label="Budget CFC"
+            value={formatCurrency(finance.cfcBudget)}
+            helper={`Engagé: ${formatCurrency(finance.cfcEngaged)}`}
+            variant="success"
+          />
+          <KpiCard
+            icon={<TrendingUp className="w-5 h-5" />}
+            label="Avancement"
+            value={`${planning.progressPct}%`}
+            helper={
+              planning.nextMilestone
+                ? `Prochaine étape: ${planning.nextMilestone.name}`
+                : 'Aucune étape planifiée'
+            }
+            variant="warning"
+          />
+          <KpiCard
+            icon={<FileText className="w-5 h-5" />}
+            label="Dossiers notaire"
+            value={`${notary.signed}/${notary.buyerFilesTotal}`}
+            helper={`${notary.readyForNotary} prêts pour signature`}
+            variant="default"
+          />
+        </section>
 
-      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <ModuleCard
-          title="Ventes & lots"
-          description="Suivi des lots, réservations et ventes signées"
-          icon={<Grid3x3 className="w-5 h-5" />}
-          link={`/projects/${project.id}/broker/lots`}
-          stats={[
-            { label: 'Vendus', value: sales.lotsSold },
-            { label: 'Réservés', value: sales.lotsReserved },
-            { label: 'Libres', value: sales.lotsFree },
-          ]}
-        />
+        <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <ModuleCard
+            title="Ventes & lots"
+            description="Suivi des lots, réservations et ventes signées"
+            icon={<Grid3x3 className="w-5 h-5" />}
+            link={`/projects/${project.id}/lots`}
+            stats={[
+              { label: 'Vendus', value: sales.lotsSold },
+              { label: 'Réservés', value: sales.lotsReserved },
+              { label: 'Libres', value: sales.lotsFree },
+            ]}
+          />
 
-        <ModuleCard
-          title="Finance & CFC"
-          description="Budget, engagements, facturation et paiements"
-          icon={<DollarSign className="w-5 h-5" />}
-          link={`/projects/${project.id}/finance`}
-          stats={[
-            { label: 'Facturé', value: formatCurrency(finance.cfcInvoiced) },
-            { label: 'Payé', value: formatCurrency(finance.cfcPaid) },
-          ]}
-        />
+          <ModuleCard
+            title="Finance & CFC"
+            description="Budget, engagements, facturation et paiements"
+            icon={<DollarSign className="w-5 h-5" />}
+            link={`/projects/${project.id}/finance`}
+            stats={[
+              { label: 'Facturé', value: formatCurrency(finance.cfcInvoiced) },
+              { label: 'Payé', value: formatCurrency(finance.cfcPaid) },
+            ]}
+          />
 
-        <ModuleCard
-          title="Planning chantier"
-          description="Phases du chantier, jalons et suivi avancement"
-          icon={<Calendar className="w-5 h-5" />}
-          link={`/projects/${project.id}/planning`}
-          stats={[
-            { label: 'Avancement', value: `${planning.progressPct}%` },
-          ]}
-        />
+          <ModuleCard
+            title="Planning chantier"
+            description="Phases du chantier, jalons et suivi avancement"
+            icon={<Calendar className="w-5 h-5" />}
+            link={`/projects/${project.id}/planning`}
+            stats={[
+              { label: 'Avancement', value: `${planning.progressPct}%` },
+            ]}
+          />
 
-        <ModuleCard
-          title="Notaire & acquéreurs"
-          description="Dossiers acheteurs, actes et rendez-vous"
-          icon={<Users className="w-5 h-5" />}
-          link={`/projects/${project.id}/notary`}
-          stats={[
-            { label: 'Prêts', value: notary.readyForNotary },
-            { label: 'Signés', value: notary.signed },
-          ]}
-        />
+          <ModuleCard
+            title="Acheteurs"
+            description="Dossiers acheteurs, documents et historique"
+            icon={<Users className="w-5 h-5" />}
+            link={`/projects/${project.id}/buyers`}
+            stats={[
+              { label: 'Prêts', value: notary.readyForNotary },
+              { label: 'Signés', value: notary.signed },
+            ]}
+          />
 
-        <ModuleCard
-          title="Soumissions"
-          description="Appels d'offres, comparatifs et adjudications"
-          icon={<FileText className="w-5 h-5" />}
-          link={`/projects/${project.id}/submissions`}
-          stats={[
-            { label: 'En cours', value: submissions.open },
-            { label: 'Adjudiquées', value: submissions.adjudicated },
-          ]}
-        />
+          <ModuleCard
+            title="Soumissions"
+            description="Appels d'offres, comparatifs et adjudications"
+            icon={<FileText className="w-5 h-5" />}
+            link={`/projects/${project.id}/submissions`}
+            stats={[
+              { label: 'En cours', value: submissions.open },
+              { label: 'Adjudiquées', value: submissions.adjudicated },
+            ]}
+          />
 
-        <ModuleCard
-          title="Choix matériaux"
-          description="Suivi des choix acquéreurs et demandes"
-          icon={<Building2 className="w-5 h-5" />}
-          link={`/projects/${project.id}/materials`}
-          stats={[
-            { label: 'Catalogue', value: '—' },
-          ]}
-        />
-      </section>
+          <ModuleCard
+            title="Choix matériaux"
+            description="Suivi des choix acquéreurs et rendez-vous"
+            icon={<Building2 className="w-5 h-5" />}
+            link={`/projects/${project.id}/materials`}
+            stats={[]}
+          />
+        </section>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <Card>
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-gray-900">
-              Progression ventes
-            </h3>
-          </div>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Lots vendus</span>
-              <span className="font-semibold text-gray-900">
-                {sales.lotsSold} / {sales.lotsTotal}
+        {deadlines.length > 0 && (
+          <section>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
+                Échéances importantes
+              </h2>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                {deadlines.length} échéance{deadlines.length > 1 ? 's' : ''}
               </span>
             </div>
-            <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-green-600 rounded-full transition-all"
-                style={{
-                  width: `${sales.lotsTotal > 0 ? (sales.lotsSold / sales.lotsTotal) * 100 : 0}%`,
-                }}
-              />
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {deadlines.slice(0, 8).map((deadline) => (
+                <DeadlineCard key={deadline.id} deadline={deadline} />
+              ))}
             </div>
-            <div className="grid grid-cols-3 gap-2 pt-2">
-              <div className="text-center">
-                <div className="text-xs text-gray-500">Vendus</div>
-                <div className="text-lg font-semibold text-green-600">{sales.lotsSold}</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xs text-gray-500">Réservés</div>
-                <div className="text-lg font-semibold text-amber-600">{sales.lotsReserved}</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xs text-gray-500">Libres</div>
-                <div className="text-lg font-semibold text-gray-600">{sales.lotsFree}</div>
-              </div>
-            </div>
-          </div>
-        </Card>
+          </section>
+        )}
 
-        <Card>
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-gray-900">
-              Budget CFC
-            </h3>
-          </div>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Payé</span>
-              <span className="font-semibold text-gray-900">
-                {formatCurrency(finance.cfcPaid)} / {formatCurrency(finance.cfcBudget)}
-              </span>
+        <section className="grid gap-5 lg:grid-cols-2">
+          <Card>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                Progression ventes
+              </h3>
             </div>
-            <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-blue-600 rounded-full transition-all"
-                style={{
-                  width: `${finance.cfcBudget > 0 ? (finance.cfcPaid / finance.cfcBudget) * 100 : 0}%`,
-                }}
-              />
-            </div>
-            <div className="grid grid-cols-3 gap-2 pt-2">
-              <div className="text-center">
-                <div className="text-xs text-gray-500">Engagé</div>
-                <div className="text-sm font-semibold text-gray-900">
-                  {formatCurrency(finance.cfcEngaged)}
-                </div>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-neutral-600 dark:text-neutral-400">Lots vendus</span>
+                <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+                  {sales.lotsSold} / {sales.lotsTotal}
+                </span>
               </div>
-              <div className="text-center">
-                <div className="text-xs text-gray-500">Facturé</div>
-                <div className="text-sm font-semibold text-gray-900">
-                  {formatCurrency(finance.cfcInvoiced)}
-                </div>
+              <div className="w-full h-4 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full transition-all"
+                  style={{
+                    width: `${sales.lotsTotal > 0 ? (sales.lotsSold / sales.lotsTotal) * 100 : 0}%`,
+                  }}
+                />
               </div>
-              <div className="text-center">
-                <div className="text-xs text-gray-500">Payé</div>
-                <div className="text-sm font-semibold text-blue-600">
-                  {formatCurrency(finance.cfcPaid)}
+              <div className="grid grid-cols-3 gap-3 pt-3">
+                <div className="text-center p-3 rounded-lg bg-green-50 dark:bg-green-950/30">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Vendus</div>
+                  <div className="text-2xl font-bold text-green-600 dark:text-green-400">{sales.lotsSold}</div>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Réservés</div>
+                  <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">{sales.lotsReserved}</div>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Libres</div>
+                  <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">{sales.lotsFree}</div>
                 </div>
               </div>
             </div>
-          </div>
-        </Card>
-      </section>
+          </Card>
 
-      <section>
+          <Card>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                Budget CFC
+              </h3>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-neutral-600 dark:text-neutral-400">Payé</span>
+                <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+                  {formatCurrency(finance.cfcPaid)} / {formatCurrency(finance.cfcBudget)}
+                </span>
+              </div>
+              <div className="w-full h-4 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all"
+                  style={{
+                    width: `${finance.cfcBudget > 0 ? (finance.cfcPaid / finance.cfcBudget) * 100 : 0}%`,
+                  }}
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-3 pt-3">
+                <div className="text-center p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Engagé</div>
+                  <div className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+                    {formatCurrency(finance.cfcEngaged)}
+                  </div>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Facturé</div>
+                  <div className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+                    {formatCurrency(finance.cfcInvoiced)}
+                  </div>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Payé</div>
+                  <div className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                    {formatCurrency(finance.cfcPaid)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        <section className="grid gap-5 lg:grid-cols-2">
+          <Card>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                  Documents récents
+                </h3>
+              </div>
+              <Link
+                to={`/projects/${project.id}/documents`}
+                className="text-sm text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1"
+              >
+                Voir tout
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {recentDocuments.length > 0 ? (
+                recentDocuments.map((doc) => (
+                  <Link
+                    key={doc.id}
+                    to={`/projects/${project.id}/documents/${doc.id}`}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                      <FileText className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
+                        {doc.name}
+                      </p>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-500">
+                        {format(new Date(doc.uploaded_at), 'dd MMM yyyy', { locale: fr })}
+                      </p>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-neutral-400 flex-shrink-0" />
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-neutral-500 dark:text-neutral-500 text-center py-8">
+                  Aucun document récent
+                </p>
+              )}
+            </div>
+          </Card>
+
+          <Card>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <MessageSquare className="w-5 h-5 text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                  Messages récents
+                </h3>
+              </div>
+              <Link
+                to={`/projects/${project.id}/messages`}
+                className="text-sm text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1"
+              >
+                Voir tout
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {recentMessages.length > 0 ? (
+                recentMessages.map((msg) => (
+                  <Link
+                    key={msg.id}
+                    to={`/projects/${project.id}/messages?thread=${msg.thread_id}`}
+                    className="block p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                  >
+                    <div className="flex items-start justify-between mb-1">
+                      <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                        {msg.sender_name}
+                      </p>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-500">
+                        {format(new Date(msg.created_at), 'dd MMM', { locale: fr })}
+                      </p>
+                    </div>
+                    <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2">
+                      {msg.content}
+                    </p>
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-neutral-500 dark:text-neutral-500 text-center py-8">
+                  Aucun message récent
+                </p>
+              )}
+            </div>
+          </Card>
+        </section>
+
+        <QuickActions projectId={project.id} />
+
         <ProjectExportPanel projectId={projectId} />
-      </section>
+      </div>
     </div>
   );
 }
@@ -351,36 +406,36 @@ function KpiCard({
   variant?: 'default' | 'success' | 'warning' | 'danger';
 }) {
   const bgColors = {
-    default: 'bg-gray-50',
-    success: 'bg-green-50',
-    warning: 'bg-amber-50',
-    danger: 'bg-red-50',
+    default: 'bg-neutral-50 dark:bg-neutral-900',
+    success: 'bg-green-50 dark:bg-green-950/30',
+    warning: 'bg-amber-50 dark:bg-amber-950/30',
+    danger: 'bg-red-50 dark:bg-red-950/30',
   };
 
   const iconColors = {
-    default: 'text-gray-600',
-    success: 'text-green-600',
-    warning: 'text-amber-600',
-    danger: 'text-red-600',
+    default: 'text-neutral-600 dark:text-neutral-400',
+    success: 'text-green-600 dark:text-green-400',
+    warning: 'text-amber-600 dark:text-amber-400',
+    danger: 'text-red-600 dark:text-red-400',
   };
 
   return (
     <Card>
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <div className={`p-2 rounded-lg ${bgColors[variant]}`}>
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`p-2.5 rounded-xl ${bgColors[variant]}`}>
               <div className={iconColors[variant]}>{icon}</div>
             </div>
-            <p className="text-xs uppercase tracking-wide text-gray-500 font-medium">
+            <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400 font-medium">
               {label}
             </p>
           </div>
-          <p className="text-2xl font-semibold text-gray-900 tabular-nums mt-2">
+          <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 tabular-nums mb-1">
             {value}
           </p>
           {helper && (
-            <p className="text-xs text-gray-500 mt-1">{helper}</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-500">{helper}</p>
           )}
         </div>
       </div>
@@ -402,42 +457,42 @@ function ModuleCard({
   stats: { label: string; value: string | number }[];
 }) {
   return (
-    <a
-      href={link}
-      className="group block rounded-2xl border border-gray-200 bg-white p-4 hover:border-blue-300 hover:bg-blue-50/30 transition-all"
+    <Link
+      to={link}
+      className="group block rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-xl transition-all duration-200"
     >
-      <div className="flex items-start justify-between mb-3">
+      <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gray-50 text-gray-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors">
+          <div className="p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
             {icon}
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+            <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
               {title}
             </h3>
-            <p className="text-xs text-gray-500 mt-0.5">{description}</p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-0.5">{description}</p>
           </div>
         </div>
-        <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
+        <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 group-hover:translate-x-1 transition-all flex-shrink-0" />
       </div>
       {stats.length > 0 && (
-        <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gray-100">
+        <div className="flex items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
           {stats.map((stat, idx) => (
             <div key={idx} className="text-xs">
-              <span className="text-gray-500">{stat.label}: </span>
-              <span className="font-semibold text-gray-900">{stat.value}</span>
+              <span className="text-neutral-500 dark:text-neutral-500">{stat.label}: </span>
+              <span className="font-semibold text-neutral-900 dark:text-neutral-100">{stat.value}</span>
             </div>
           ))}
         </div>
       )}
-    </a>
+    </Link>
   );
 }
 
 function getStatusVariant(status: string): 'default' | 'success' | 'warning' | 'danger' {
   const s = status.toUpperCase();
-  if (s === 'DELIVERED') return 'success';
-  if (s === 'CONSTRUCTION') return 'warning';
+  if (s === 'DELIVERED' || s === 'COMPLETED') return 'success';
+  if (s === 'CONSTRUCTION' || s === 'SELLING') return 'warning';
   if (s === 'PLANNING') return 'default';
   return 'default';
 }
@@ -445,9 +500,9 @@ function getStatusVariant(status: string): 'default' | 'success' | 'warning' | '
 function formatStatus(status: string): string {
   const s = status.toUpperCase();
   if (s === 'PLANNING') return 'Planification';
-  if (s === 'SALES') return 'En vente';
+  if (s === 'SALES' || s === 'SELLING') return 'En vente';
   if (s === 'CONSTRUCTION') return 'En chantier';
-  if (s === 'DELIVERED') return 'Livré';
+  if (s === 'DELIVERED' || s === 'COMPLETED') return 'Livré';
   return status;
 }
 
