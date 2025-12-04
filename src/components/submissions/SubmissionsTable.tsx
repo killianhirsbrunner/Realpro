@@ -1,22 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { FileText, Calendar, Users } from 'lucide-react';
+import { FileText, Calendar, Users, DollarSign } from 'lucide-react';
 import { formatDate } from '../../lib/utils/format';
-
-interface Submission {
-  id: string;
-  label: string;
-  description?: string;
-  deadline: string;
-  status: string;
-  offers_count?: number;
-}
+import type { Submission } from '../../hooks/useSubmissions';
 
 interface SubmissionsTableProps {
   submissions: Submission[];
+  projectId: string;
 }
 
-export function SubmissionsTable({ submissions }: SubmissionsTableProps) {
+export function SubmissionsTable({ submissions, projectId }: SubmissionsTableProps) {
+  const navigate = useNavigate();
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
       draft: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
@@ -48,14 +43,25 @@ export function SubmissionsTable({ submissions }: SubmissionsTableProps) {
         </Card>
       ) : (
         submissions.map((submission) => (
-          <Card key={submission.id} className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+          <Card
+            key={submission.id}
+            className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate(`/projects/${projectId}/submissions/${submission.id}`)}
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-                  {submission.label}
-                </h3>
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
+                    {submission.label}
+                  </h3>
+                  {submission.cfc_code && (
+                    <span className="text-xs px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
+                      {submission.cfc_code}
+                    </span>
+                  )}
+                </div>
                 {submission.description && (
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
                     {submission.description}
                   </p>
                 )}
@@ -74,6 +80,12 @@ export function SubmissionsTable({ submissions }: SubmissionsTableProps) {
                 <Users className="h-4 w-4" />
                 <span>{submission.offers_count || 0} offre{(submission.offers_count || 0) > 1 ? 's' : ''}</span>
               </div>
+              {submission.budget_estimate && (
+                <div className="flex items-center gap-2">
+                  <DollarSign className="h-4 w-4" />
+                  <span>CHF {submission.budget_estimate.toLocaleString()}</span>
+                </div>
+              )}
             </div>
           </Card>
         ))

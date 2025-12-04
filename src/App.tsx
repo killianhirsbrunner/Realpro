@@ -46,6 +46,9 @@ import { BuyerDetail } from './pages/BuyerDetail';
 import { ProjectDocuments } from './pages/ProjectDocuments';
 import { DocumentViewer } from './pages/DocumentViewer';
 import { ProjectSubmissions } from './pages/ProjectSubmissions';
+import { NewSubmission } from './pages/NewSubmission';
+import { SubmissionDetail } from './pages/SubmissionDetail';
+import { SubmissionComparison } from './pages/SubmissionComparison';
 import { ProjectCFC } from './pages/ProjectCFC';
 import { ProjectFinance } from './pages/ProjectFinance';
 import { ProjectSAV } from './pages/ProjectSAV';
@@ -98,6 +101,9 @@ function App() {
                     <Route path="/projects/:projectId/documents" element={<ProjectDocuments />} />
                     <Route path="/projects/:projectId/documents/:documentId" element={<DocumentViewer />} />
                     <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
+                    <Route path="/projects/:projectId/submissions/new" element={<NewSubmission />} />
+                    <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetail />} />
+                    <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
                     <Route path="/projects/:projectId/finance" element={<ProjectFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
