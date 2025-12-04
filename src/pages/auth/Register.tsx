@@ -93,8 +93,8 @@ export function Register() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link to="/">
-            <RealProLogo width={160} height={50} className="mx-auto mb-6" />
+          <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
+            <RealProLogo width={140} height={42} className="mx-auto" />
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Créer votre compte

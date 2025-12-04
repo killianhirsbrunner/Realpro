@@ -38,9 +38,9 @@ export function Sidebar() {
 
   return (
     <aside className="w-64 h-full border-r border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl flex flex-col">
-      <div className="p-4 flex justify-center">
-        <Link to="/dashboard" className="block">
-          <RealProLogo width={160} height={50} />
+      <div className="p-6 flex justify-center border-b border-neutral-200/50 dark:border-neutral-800/50">
+        <Link to="/dashboard" className="block transition-opacity hover:opacity-80">
+          <RealProLogo width={140} height={42} />
         </Link>
       </div>
 

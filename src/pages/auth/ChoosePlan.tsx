@@ -95,9 +95,9 @@ export function ChoosePlan() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 py-12 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-block mb-6">
-            <RealProLogo width={160} height={50} />
+        <div className="text-center mb-12">
+          <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
+            <RealProLogo width={140} height={42} />
           </Link>
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Choisissez votre plan

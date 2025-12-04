@@ -31,9 +31,9 @@ export function Contact() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       <header className="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
             <ArrowLeft className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
-            <RealProLogo width={140} height={45} />
+            <RealProLogo width={120} height={36} />
           </Link>
 
           <div className="flex items-center gap-4">

@@ -45,8 +45,8 @@ export function Login() {
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-100 dark:from-neutral-950 dark:via-primary-950/20 dark:to-neutral-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <div className="mb-6 flex justify-center">
-            <RealProLogo width={200} height={60} />
+          <div className="mb-8 flex justify-center">
+            <RealProLogo width={160} height={48} />
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">
             Plateforme de gestion immobilière

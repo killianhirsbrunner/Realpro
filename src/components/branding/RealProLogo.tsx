@@ -1,23 +1,21 @@
-import { useTheme } from '../../contexts/ThemeContext';
-
 interface RealProLogoProps {
   className?: string;
   width?: number;
   height?: number;
 }
 
-export function RealProLogo({ className = '', width = 200, height = 200 }: RealProLogoProps) {
-  const { actualTheme } = useTheme();
-  const isDark = actualTheme === 'dark';
-
-  const logoSrc = isDark ? '/logos/9.svg' : '/logos/8.svg';
-
+export function RealProLogo({ className = '', width = 120, height = 36 }: RealProLogoProps) {
   return (
     <img
-      src={logoSrc}
+      src="/logos/realpro_bleu copy.svg"
       alt="RealPro"
       className={`realpro-logo ${className}`}
-      style={{ width: `${width}px`, height: `${height}px`, objectFit: 'contain' }}
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        objectFit: 'contain',
+        display: 'block'
+      }}
     />
   );
 }
