@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useOrganization } from '../hooks/useOrganization';
 import { useGlobalDashboard } from '../hooks/useGlobalDashboard';
+import { useEnhancedDashboard } from '../hooks/useEnhancedDashboard';
 import { useI18n } from '../lib/i18n';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
@@ -8,6 +9,9 @@ import { Button } from '../components/ui/Button';
 import { GlobalKpiCard } from '../components/global-dashboard/GlobalKpiCard';
 import { GlobalProjectCard } from '../components/global-dashboard/GlobalProjectCard';
 import { ActivityFeedItem } from '../components/global-dashboard/ActivityFeedItem';
+import { GlobalAnalyticsChart } from '../components/dashboard/GlobalAnalyticsChart';
+import { FinancialOverview } from '../components/dashboard/FinancialOverview';
+import { UpcomingDeadlines } from '../components/dashboard/UpcomingDeadlines';
 import {
   Building2,
   Plus,
@@ -24,6 +28,7 @@ export function DashboardGlobal() {
   const { user } = useCurrentUser();
   const { organization, subscription, canCreateProject, projectsCount, loading: orgLoading } = useOrganization();
   const { data: dashboardData, loading: dashboardLoading } = useGlobalDashboard();
+  const { data: enhancedData, loading: enhancedLoading } = useEnhancedDashboard(organization?.id || '');
 
   const loading = orgLoading || dashboardLoading;
 
@@ -147,6 +152,21 @@ export function DashboardGlobal() {
             subtitle="Ventes réalisées"
           />
         </div>
+      )}
+
+      {/* Analytics and Financial Overview */}
+      {enhancedData && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <GlobalAnalyticsChart data={enhancedData.analyticsData} />
+          <div className="space-y-6">
+            <FinancialOverview data={enhancedData.financialData} />
+          </div>
+        </div>
+      )}
+
+      {/* Upcoming Deadlines */}
+      {enhancedData && enhancedData.upcomingDeadlines.length > 0 && (
+        <UpcomingDeadlines deadlines={enhancedData.upcomingDeadlines} />
       )}
 
       {/* Projects Section */}
