@@ -10,7 +10,7 @@ export function RealProLogo({ className = '', width = 200, height = 200 }: RealP
   const { actualTheme } = useTheme();
   const isDark = actualTheme === 'dark';
 
-  const logoSrc = isDark ? '/logos/9.svg' : '/logos/8 copy.svg';
+  const logoSrc = isDark ? '/logos/9.svg' : '/logos/8.svg';
 
   return (
     <img

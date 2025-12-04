@@ -46,7 +46,7 @@ export function Login() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="mb-6 flex justify-center">
-            <RealProLogo size="xl" />
+            <RealProLogo width={200} height={60} />
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">
             Plateforme de gestion immobilière
