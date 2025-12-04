@@ -1,15 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
-import { ChevronLeft, DollarSign, Plus } from 'lucide-react';
+import { ChevronLeft, Wallet, Plus, Download } from 'lucide-react';
 import { useI18n } from '../lib/i18n';
 import { useFinance } from '../hooks/useFinance';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
-import { FinanceTable } from '../components/finance/FinanceTable';
+import { FinanceOverviewCard } from '../components/finance/FinanceOverviewCard';
+import { BuyerFinanceTable } from '../components/finance/BuyerFinanceTable';
 import { Button } from '../components/ui/Button';
 
 export function ProjectFinance() {
   const { t } = useI18n();
   const { projectId } = useParams<{ projectId: string }>();
-  const { finances, loading, error, summary } = useFinance(projectId);
+  const { summary, buyers, loading, error } = useFinance(projectId);
 
   if (loading) {
     return (
@@ -43,24 +44,68 @@ export function ProjectFinance() {
           Retour au projet
         </Link>
 
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white flex items-center gap-3">
-              <DollarSign className="h-8 w-8 text-primary-600" />
+        <div className="flex items-center gap-3">
+          <div className="p-3 rounded-xl bg-green-100 dark:bg-green-900">
+            <Wallet className="h-6 w-6 text-green-600 dark:text-green-400" />
+          </div>
+          <div className="flex-1">
+            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
               Finances & Acomptes
             </h1>
             <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-              Gestion des paiements et acomptes
+              Gestion des paiements acheteurs et suivi des encaissements
             </p>
           </div>
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
-            Nouveau paiement
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline">
+              <Download className="h-4 w-4 mr-2" />
+              Export comptable
+            </Button>
+            <Button variant="outline">
+              <Plus className="h-4 w-4 mr-2" />
+              Nouvelle facture
+            </Button>
+          </div>
         </div>
       </div>
 
-      <FinanceTable finances={finances} summary={summary} />
+      {summary && <FinanceOverviewCard summary={summary} />}
+
+      <div>
+        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+          Finances par acheteur
+        </h2>
+        <BuyerFinanceTable buyers={buyers} projectId={projectId || ''} />
+      </div>
+
+      <div className="bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div>
+            <p className="font-medium text-neutral-900 dark:text-white mb-1">
+              QR-factures suisses
+            </p>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              Génération automatique de QR-factures conformes aux normes bancaires suisses avec IBAN QR.
+            </p>
+          </div>
+          <div>
+            <p className="font-medium text-neutral-900 dark:text-white mb-1">
+              Paiement en ligne
+            </p>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              Intégration Datatrans pour encaissement immédiat par carte bancaire avec sécurité 3D Secure.
+            </p>
+          </div>
+          <div>
+            <p className="font-medium text-neutral-900 dark:text-white mb-1">
+              Export comptable
+            </p>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              Exportation vers Winbiz, Crésus, Bexio, FIDES pour intégration automatique en comptabilité.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
