@@ -46,10 +46,10 @@ export function Login() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="mb-6 flex justify-center">
-            <RealProLogo width={220} height={220} />
+            <RealProLogo size="xl" />
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">
-            RealPro
+            Plateforme de gestion immobilière
           </h1>
           <p className="text-neutral-600 dark:text-neutral-400">
             {isSignUp ? 'Créer un compte' : 'Connexion à votre espace'}

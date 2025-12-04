@@ -97,7 +97,7 @@ export function ChoosePlan() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <Link to="/" className="inline-block mb-6">
-            <RealProLogo width={160} height={45} />
+            <RealProLogo size="lg" />
           </Link>
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Choisissez votre plan
