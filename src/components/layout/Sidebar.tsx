@@ -14,6 +14,7 @@ import {
   Wrench,
 } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
+import { RealProLogo } from '../branding/RealProLogo';
 import clsx from 'clsx';
 
 export function Sidebar() {
@@ -36,14 +37,9 @@ export function Sidebar() {
   return (
     <aside className="w-64 h-full border-r border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl flex flex-col">
       <div className="p-6">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-xl font-semibold tracking-tight text-neutral-900 dark:text-white">
-            Realpro Suite
-          </span>
-        </div>
+        <Link to="/dashboard" className="block">
+          <RealProLogo width={140} height={46} />
+        </Link>
       </div>
 
       <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">

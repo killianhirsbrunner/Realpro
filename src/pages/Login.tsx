@@ -1,8 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Building2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { Input } from '../components/ui/Input';
+import { RealProLogo } from '../components/branding/RealProLogo';
 
 export function Login() {
   const navigate = useNavigate();
@@ -45,8 +45,8 @@ export function Login() {
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-100 dark:from-neutral-950 dark:via-primary-950/20 dark:to-neutral-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 mb-4 shadow-lg">
-            <Building2 className="w-8 h-8 text-white" />
+          <div className="mb-6 flex justify-center">
+            <RealProLogo width={200} height={66} />
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-2">
             Realpro Suite
