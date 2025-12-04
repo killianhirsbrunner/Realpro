@@ -66,115 +66,108 @@ export function Landing() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <header className="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Link to="/" className="flex items-center">
-            <RealProLogo width={200} height={60} />
+      <header className="sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-2xl">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
+            <RealProLogo width={160} height={48} />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm">
-            <Link to="/pricing" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition">
-              Tarifs
-            </Link>
-            <Link to="/features" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition">
+          <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
+            <Link to="/features" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
               Fonctionnalités
             </Link>
-            <Link to="/contact" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition">
+            <Link to="/pricing" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              Tarifs
+            </Link>
+            <Link to="/contact" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
               Contact
             </Link>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Link to="/login">
-              <Button variant="outline" size="sm">
-                Se connecter
+              <Button variant="outline" size="sm" className="rounded-full">
+                Connexion
               </Button>
             </Link>
             <Link to="/auth/register">
-              <Button size="sm">
-                Essayer gratuitement
+              <Button size="sm" className="rounded-full">
+                Essai gratuit
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      <section className="max-w-7xl mx-auto px-6 py-24 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300 text-sm font-medium mb-6">
-          <Zap className="w-4 h-4" />
-          Solution #1 pour les promoteurs immobiliers suisses
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-32 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800/50 text-neutral-700 dark:text-neutral-300 text-xs font-medium mb-8 border border-neutral-200 dark:border-neutral-700">
+          <Zap className="w-3.5 h-3.5" />
+          Solution #1 pour les promoteurs suisses
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold text-neutral-900 dark:text-neutral-100 leading-tight mb-6">
-          Pilotez vos projets<br />
-          immobiliers avec<br />
-          <span className="bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">précision et efficacité</span>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-100 leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
+          Pilotez vos projets immobiliers avec précision
         </h1>
 
-        <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-4xl mx-auto mb-10 leading-relaxed">
-          De la première réservation à la livraison finale : centralisez vos ventes, documents, finances,
-          notaires et chantiers dans une plateforme intuitive et sécurisée.
-          <strong className="text-neutral-900 dark:text-neutral-100"> Gagnez du temps, réduisez les erreurs, augmentez votre rentabilité.</strong>
+        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+          De la première réservation à la livraison finale. Centralisez vos ventes, documents,
+          finances et chantiers dans une plateforme intuitive. Gagnez du temps,
+          réduisez les erreurs, augmentez votre rentabilité.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <Link to="/auth/register">
-            <Button size="lg" className="gap-2 px-8 py-6 text-lg">
+            <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-xl transition-all">
               Commencer gratuitement
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
           <Link to="/pricing">
-            <Button size="lg" variant="outline" className="px-8 py-6 text-lg">
+            <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base font-medium">
               Voir les tarifs
             </Button>
           </Link>
         </div>
 
-        <div className="flex items-center justify-center gap-8 mt-8 flex-wrap">
-          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
-            <span className="text-sm font-medium">14 jours gratuits</span>
-          </div>
-          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
-            <span className="text-sm font-medium">Sans engagement</span>
-          </div>
-          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
-            <span className="text-sm font-medium">Support en français</span>
-          </div>
-          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
-            <span className="text-sm font-medium">Données en Suisse</span>
-          </div>
+        <div className="flex items-center justify-center gap-6 text-xs text-neutral-500 dark:text-neutral-500 flex-wrap">
+          <span className="flex items-center gap-1.5">
+            <Check className="w-3.5 h-3.5" />
+            14 jours gratuits
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Check className="w-3.5 h-3.5" />
+            Sans engagement
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Check className="w-3.5 h-3.5" />
+            Données en Suisse
+          </span>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
-            Toutes les fonctionnalités dont vous avez<br />réellement besoin, rien de superflu
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-24 md:py-32">
+        <div className="text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight leading-tight">
+            Conçu pour les professionnels.<br />Simple par nature.
           </h2>
-          <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-            Conçu par des professionnels de l'immobilier suisse, pour des professionnels.
-            Chaque module répond à un besoin concret de votre quotidien.
+          <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto font-normal">
+            Chaque fonctionnalité répond à un besoin réel. Rien de superflu, tout l'essentiel.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-lg transition-shadow"
+              className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 hover:bg-white dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/20 flex items-center justify-center mb-4">
-                <feature.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-5 shadow-lg shadow-primary-500/20">
+                <feature.icon className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
+              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 {feature.description}
               </p>
             </div>
@@ -182,31 +175,31 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="bg-neutral-50 dark:bg-neutral-900/50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
-              Des promoteurs suisses qui gagnent<br />du temps et de l'argent avec RealPro
+            <h2 className="text-3xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight">
+              Ils nous font confiance
             </h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mt-4">
-              Rejoignez les sociétés qui ont choisi l'efficacité et la modernité
+            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+              Des promoteurs qui gagnent du temps chaque jour
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900"
+                className="p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-neutral-800/50"
               >
-                <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-6">
+                <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed">
                   "{testimonial.quote}"
                 </p>
-                <div>
-                  <p className="font-semibold text-neutral-900 dark:text-neutral-100">
+                <div className="border-t border-neutral-200 dark:border-neutral-800 pt-4">
+                  <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
                     {testimonial.author}
                   </p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
                     {testimonial.role}
                   </p>
                 </div>
@@ -216,71 +209,71 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-blue-700 rounded-3xl p-12 md:p-20 text-center text-white shadow-2xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Arrêtez de perdre du temps avec des outils<br />qui ne sont pas faits pour vous
-          </h2>
-          <p className="text-xl md:text-2xl opacity-95 mb-10 max-w-3xl mx-auto">
-            RealPro est LA solution suisse pour gérer vos projets immobiliers de manière professionnelle.
-            Rejoignez-nous dès maintenant et testez gratuitement pendant 14 jours.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/auth/register">
-              <Button size="lg" className="bg-white text-primary-700 hover:bg-neutral-100 border-0 px-10 py-7 text-lg font-semibold shadow-xl">
-                Démarrer l'essai gratuit
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 px-10 py-7 text-lg">
-                Demander une démo
-              </Button>
-            </Link>
+      <section className="max-w-6xl mx-auto px-6 lg:px-8 py-24 md:py-32">
+        <div className="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 rounded-[2.5rem] p-12 md:p-20 text-center text-white">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/20 via-transparent to-blue-600/20"></div>
+          <div className="relative">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-5 tracking-tight leading-tight max-w-3xl mx-auto">
+              Prêt à transformer votre gestion de projets ?
+            </h2>
+            <p className="text-base md:text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Testez RealPro gratuitement pendant 14 jours. Sans engagement,
+              sans carte bancaire. Configuration en 5 minutes.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/auth/register">
+                <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100 border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl">
+                  Commencer gratuitement
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="border border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-12 text-base font-medium backdrop-blur-sm">
+                  Demander une démo
+                </Button>
+              </Link>
+            </div>
           </div>
-          <p className="text-sm opacity-80 mt-6">
-            Sans engagement • Sans carte bancaire • Configuration en 5 minutes
-          </p>
         </div>
       </section>
 
-      <footer className="border-t border-neutral-200 dark:border-neutral-800 py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+      <footer className="border-t border-neutral-200/50 dark:border-neutral-800/50 py-16 bg-neutral-50/50 dark:bg-neutral-900/20">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <RealProLogo width={180} height={55} />
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 max-w-xs">
-                La solution de gestion complète pour les promoteurs immobiliers suisses
+              <RealProLogo width={140} height={42} />
+              <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-4 max-w-xs leading-relaxed">
+                La solution complète pour les promoteurs immobiliers suisses
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Produit</h3>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/features" className="hover:text-neutral-900 dark:hover:text-neutral-100">Fonctionnalités</Link></li>
-                <li><Link to="/pricing" className="hover:text-neutral-900 dark:hover:text-neutral-100">Tarifs</Link></li>
+              <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-4 text-sm">Produit</h3>
+              <ul className="space-y-3 text-xs text-neutral-600 dark:text-neutral-400">
+                <li><Link to="/features" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Fonctionnalités</Link></li>
+                <li><Link to="/pricing" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Tarifs</Link></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Entreprise</h3>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/about" className="hover:text-neutral-900 dark:hover:text-neutral-100">À propos</Link></li>
-                <li><Link to="/contact" className="hover:text-neutral-900 dark:hover:text-neutral-100">Contact</Link></li>
+              <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-4 text-sm">Entreprise</h3>
+              <ul className="space-y-3 text-xs text-neutral-600 dark:text-neutral-400">
+                <li><Link to="/about" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">À propos</Link></li>
+                <li><Link to="/contact" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Contact</Link></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Légal</h3>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/legal/cgu" className="hover:text-neutral-900 dark:hover:text-neutral-100">CGU</Link></li>
-                <li><Link to="/legal/cgv" className="hover:text-neutral-900 dark:hover:text-neutral-100">CGV</Link></li>
-                <li><Link to="/legal/privacy" className="hover:text-neutral-900 dark:hover:text-neutral-100">Confidentialité</Link></li>
+              <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-4 text-sm">Légal</h3>
+              <ul className="space-y-3 text-xs text-neutral-600 dark:text-neutral-400">
+                <li><Link to="/legal/cgu" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">CGU</Link></li>
+                <li><Link to="/legal/cgv" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">CGV</Link></li>
+                <li><Link to="/legal/privacy" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Confidentialité</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="pt-8 border-t border-neutral-200/50 dark:border-neutral-800/50 text-center text-xs text-neutral-500 dark:text-neutral-500">
             © 2024-2025 Realpro SA. Tous droits réservés.
           </div>
         </div>
