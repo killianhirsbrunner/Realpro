@@ -841,7 +841,7 @@ export function Landing() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 rounded-full px-8 h-12 text-base font-medium backdrop-blur-sm transition-all duration-300"
+                  className="border-2 border-white/60 text-white hover:bg-white/20 hover:border-white rounded-full px-8 h-12 text-base font-medium backdrop-blur-sm transition-all duration-300"
                 >
                   Demander une démo
                 </Button>
