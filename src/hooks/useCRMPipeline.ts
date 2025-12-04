@@ -30,77 +30,112 @@ export function useCRMPipeline(projectId: string) {
       setLoading(true);
       setError(null);
 
-      // Fetch prospects
-      const { data: prospectsData, error: prospectsError } = await supabase
-        .from('crm_prospects')
-        .select('*')
-        .eq('project_id', projectId)
-        .eq('status', 'ACTIVE');
+      const [prospectsResult, reservationsResult, buyersResult] = await Promise.all([
+        supabase
+          .from('prospects')
+          .select(`
+            id,
+            first_name,
+            last_name,
+            email,
+            phone,
+            status,
+            interested_lots,
+            created_at
+          `)
+          .eq('project_id', projectId)
+          .in('status', ['NEW', 'CONTACTED', 'QUALIFIED', 'VISIT_SCHEDULED', 'VISIT_DONE', 'OFFER_SENT'])
+          .order('created_at', { ascending: false }),
 
-      if (prospectsError) throw prospectsError;
+        supabase
+          .from('reservations')
+          .select(`
+            id,
+            buyer_first_name,
+            buyer_last_name,
+            buyer_email,
+            buyer_phone,
+            status,
+            lot:lots(lot_number),
+            reserved_at
+          `)
+          .eq('project_id', projectId)
+          .in('status', ['PENDING', 'CONFIRMED'])
+          .order('reserved_at', { ascending: false }),
 
-      // Fetch buyers with different stages
-      const { data: buyersData, error: buyersError } = await supabase
-        .from('buyers')
-        .select(`
-          *,
-          lots:lot_id (
-            lot_number
-          )
-        `)
-        .eq('project_id', projectId);
+        supabase
+          .from('buyers')
+          .select(`
+            id,
+            first_name,
+            last_name,
+            email,
+            phone,
+            status,
+            lot:lots(lot_number, id),
+            created_at
+          `)
+          .eq('project_id', projectId)
+          .order('created_at', { ascending: false })
+      ]);
 
-      if (buyersError) throw buyersError;
+      if (prospectsResult.error) throw prospectsResult.error;
+      if (reservationsResult.error) throw reservationsResult.error;
+      if (buyersResult.error) throw buyersResult.error;
 
-      // Transform data into pipeline structure
-      const pipelineData: PipelineData = {
-        prospect: (prospectsData || []).map((p: any) => ({
-          id: p.id,
-          name: `${p.first_name} ${p.last_name}`,
-          email: p.email,
-          phone: p.phone,
-          lotNumber: p.target_lot,
-          status: 'prospect',
-          daysInStage: p.created_at ? Math.floor((Date.now() - new Date(p.created_at).getTime()) / (1000 * 60 * 60 * 24)) : undefined,
-        })),
-        reserved: (buyersData || [])
-          .filter((b: any) => b.status === 'RESERVED')
-          .map((b: any) => ({
-            id: b.id,
-            name: `${b.first_name} ${b.last_name}`,
-            email: b.email,
-            phone: b.phone,
-            lotNumber: b.lots?.lot_number,
-            lotId: b.lot_id,
-            status: b.status,
-            daysInStage: b.reservation_date ? Math.floor((Date.now() - new Date(b.reservation_date).getTime()) / (1000 * 60 * 60 * 24)) : undefined,
-          })),
-        in_progress: (buyersData || [])
-          .filter((b: any) => ['CONTRACT_SIGNED', 'NOTARY_IN_PROGRESS'].includes(b.status))
-          .map((b: any) => ({
-            id: b.id,
-            name: `${b.first_name} ${b.last_name}`,
-            email: b.email,
-            phone: b.phone,
-            lotNumber: b.lots?.lot_number,
-            lotId: b.lot_id,
-            status: b.status,
-            daysInStage: b.contract_date ? Math.floor((Date.now() - new Date(b.contract_date).getTime()) / (1000 * 60 * 60 * 24)) : undefined,
-          })),
-        signed: (buyersData || [])
-          .filter((b: any) => b.status === 'COMPLETED')
-          .map((b: any) => ({
-            id: b.id,
-            name: `${b.first_name} ${b.last_name}`,
-            email: b.email,
-            phone: b.phone,
-            lotNumber: b.lots?.lot_number,
-            lotId: b.lot_id,
-            status: b.status,
-          })),
-      };
+      const prospects = (prospectsResult.data || []).map((p: any) => ({
+        id: p.id,
+        name: `${p.first_name} ${p.last_name}`,
+        email: p.email,
+        phone: p.phone || undefined,
+        status: p.status,
+        daysInStage: Math.floor((Date.now() - new Date(p.created_at).getTime()) / (1000 * 60 * 60 * 24))
+      }));
 
-      setPipeline(pipelineData);
+      const reserved = (reservationsResult.data || []).map((r: any) => ({
+        id: r.id,
+        name: `${r.buyer_first_name} ${r.buyer_last_name}`,
+        email: r.buyer_email,
+        phone: r.buyer_phone || undefined,
+        lotNumber: r.lot?.lot_number,
+        status: r.status,
+        daysInStage: Math.floor((Date.now() - new Date(r.reserved_at).getTime()) / (1000 * 60 * 60 * 24))
+      }));
+
+      const buyersData = buyersResult.data || [];
+      const inProgress = buyersData
+        .filter((b: any) => ['ACTIVE', 'DOCUMENTS_PENDING', 'READY_FOR_SIGNING'].includes(b.status))
+        .map((b: any) => ({
+          id: b.id,
+          name: `${b.first_name} ${b.last_name}`,
+          email: b.email,
+          phone: b.phone || undefined,
+          lotNumber: b.lot?.lot_number,
+          lotId: b.lot?.id,
+          status: b.status,
+          daysInStage: Math.floor((Date.now() - new Date(b.created_at).getTime()) / (1000 * 60 * 60 * 24))
+        }));
+
+      const signed = buyersData
+        .filter((b: any) => ['SIGNED', 'COMPLETED'].includes(b.status))
+        .map((b: any) => ({
+          id: b.id,
+          name: `${b.first_name} ${b.last_name}`,
+          email: b.email,
+          phone: b.phone || undefined,
+          lotNumber: b.lot?.lot_number,
+          lotId: b.lot?.id,
+          status: b.status,
+          daysInStage: Math.floor((Date.now() - new Date(b.created_at).getTime()) / (1000 * 60 * 60 * 24))
+        }));
+
+      setPipeline({
+        prospect: prospects,
+        reserved,
+        in_progress: inProgress,
+        signed
+      });
+
     } catch (err) {
       console.error('Error fetching CRM pipeline:', err);
       setError(err instanceof Error ? err.message : 'Une erreur est survenue');

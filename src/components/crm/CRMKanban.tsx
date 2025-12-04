@@ -41,29 +41,33 @@ export default function CRMKanban({ pipeline, projectId }: CRMKanbanProps) {
       key: 'prospect' as keyof PipelineData,
       title: 'Prospects',
       icon: User,
-      color: 'bg-gray-100 dark:bg-gray-800',
-      badgeColor: 'bg-gray-600'
+      color: 'bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800',
+      badgeColor: 'bg-gradient-to-r from-neutral-600 to-neutral-700',
+      borderColor: 'border-neutral-200 dark:border-neutral-700'
     },
     {
       key: 'reserved' as keyof PipelineData,
       title: 'Réservé',
       icon: Clock,
-      color: 'bg-yellow-50 dark:bg-yellow-950',
-      badgeColor: 'bg-yellow-600'
+      color: 'bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20',
+      badgeColor: 'bg-gradient-to-r from-brand-600 to-brand-700',
+      borderColor: 'border-brand-200 dark:border-brand-800'
     },
     {
       key: 'in_progress' as keyof PipelineData,
       title: 'Vente en cours',
       icon: FileCheck,
-      color: 'bg-blue-50 dark:bg-blue-950',
-      badgeColor: 'bg-blue-600'
+      color: 'bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20',
+      badgeColor: 'bg-gradient-to-r from-orange-600 to-orange-700',
+      borderColor: 'border-orange-200 dark:border-orange-800'
     },
     {
       key: 'signed' as keyof PipelineData,
       title: 'Acte signé',
       icon: CheckCircle2,
-      color: 'bg-green-50 dark:bg-green-950',
-      badgeColor: 'bg-green-600'
+      color: 'bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20',
+      badgeColor: 'bg-gradient-to-r from-green-600 to-green-700',
+      borderColor: 'border-green-200 dark:border-green-800'
     },
   ];
 
@@ -76,22 +80,24 @@ export default function CRMKanban({ pipeline, projectId }: CRMKanbanProps) {
         return (
           <div key={col.key} className="flex flex-col">
             {/* Column Header */}
-            <div className={`p-4 rounded-t-xl ${col.color} border-b-2 border-gray-200 dark:border-gray-700`}>
+            <div className={`p-4 rounded-t-xl ${col.color} border-b-2 ${col.borderColor}`}>
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                <div className="flex items-center gap-2.5">
+                  <div className={`p-1.5 rounded-lg ${col.badgeColor.replace('bg-gradient-to-r', 'bg-gradient-to-br')} shadow-sm`}>
+                    <Icon className="w-4 h-4 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 dark:text-white">
                     {col.title}
                   </h3>
                 </div>
-                <span className={`${col.badgeColor} text-white text-xs px-2 py-1 rounded-full font-medium`}>
+                <span className={`${col.badgeColor} text-white text-xs px-2.5 py-1 rounded-full font-semibold shadow-md`}>
                   {items.length}
                 </span>
               </div>
             </div>
 
             {/* Column Content */}
-            <div className={`flex-1 p-4 ${col.color} rounded-b-xl space-y-3 min-h-[400px]`}>
+            <div className={`flex-1 p-4 ${col.color} rounded-b-xl space-y-3 min-h-[500px] border-l border-r border-b ${col.borderColor}`}>
               {items.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -105,36 +111,38 @@ export default function CRMKanban({ pipeline, projectId }: CRMKanbanProps) {
                     to={`/projects/${projectId}/crm/${col.key === 'prospect' ? 'prospects' : 'buyers'}/${item.id}`}
                     className="block"
                   >
-                    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div className="p-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-lg hover:border-brand-500 dark:hover:border-brand-600 transition-all cursor-pointer group">
                       {/* Contact Name */}
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-gray-900 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                          <h4 className="font-semibold text-neutral-900 dark:text-white truncate group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                             {item.name}
                           </h4>
                           {item.lotNumber && (
-                            <div className="flex items-center gap-1 mt-1">
-                              <Home className="w-3 h-3 text-gray-500" />
-                              <p className="text-xs text-gray-600 dark:text-gray-400">
+                            <div className="flex items-center gap-1.5 mt-1.5">
+                              <div className="p-1 rounded bg-brand-100 dark:bg-brand-900/30">
+                                <Home className="w-3 h-3 text-brand-600 dark:text-brand-400" />
+                              </div>
+                              <p className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
                                 Lot {item.lotNumber}
                               </p>
                             </div>
                           )}
                         </div>
-                        <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                          <MoreVertical className="w-4 h-4 text-gray-500" />
+                        <button className="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg opacity-0 group-hover:opacity-100 transition-all">
+                          <MoreVertical className="w-4 h-4 text-neutral-500" />
                         </button>
                       </div>
 
                       {/* Contact Info */}
-                      <div className="space-y-1.5">
-                        <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                          <Mail className="w-3 h-3 flex-shrink-0" />
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400">
+                          <Mail className="w-3.5 h-3.5 flex-shrink-0 text-neutral-500" />
                           <span className="truncate">{item.email}</span>
                         </div>
                         {item.phone && (
-                          <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                            <Phone className="w-3 h-3 flex-shrink-0" />
+                          <div className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400">
+                            <Phone className="w-3.5 h-3.5 flex-shrink-0 text-neutral-500" />
                             <span>{item.phone}</span>
                           </div>
                         )}
@@ -142,9 +150,10 @@ export default function CRMKanban({ pipeline, projectId }: CRMKanbanProps) {
 
                       {/* Footer Info */}
                       {item.daysInStage && (
-                        <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
-                            {item.daysInStage} jours dans cette étape
+                        <div className="mt-3 pt-3 border-t border-neutral-100 dark:border-neutral-700">
+                          <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
+                            <Clock className="w-3 h-3 inline mr-1" />
+                            {item.daysInStage} {item.daysInStage === 1 ? 'jour' : 'jours'} dans cette étape
                           </p>
                         </div>
                       )}
