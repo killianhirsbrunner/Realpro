@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Input } from '../ui/Input';
@@ -22,6 +23,8 @@ interface LotsTableProps {
 }
 
 export function LotsTable({ lots }: LotsTableProps) {
+  const navigate = useNavigate();
+  const { projectId } = useParams<{ projectId: string }>();
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
 
@@ -126,6 +129,7 @@ export function LotsTable({ lots }: LotsTableProps) {
               filtered.map((lot) => (
                 <tr
                   key={lot.id}
+                  onClick={() => navigate(`/projects/${projectId}/lots/${lot.id}`)}
                   className="hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
