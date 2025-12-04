@@ -70,7 +70,7 @@ export function Landing() {
       <header className="sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-24 flex items-center justify-between">
           <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <RealProLogo width={219} height={58} />
+            <RealProLogo width={186} height={49} />
           </Link>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
