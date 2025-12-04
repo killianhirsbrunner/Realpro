@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppShell } from './components/layout/AppShell';
 import { AuthGuard } from './components/AuthGuard';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { OrganizationProvider } from './contexts/OrganizationContext';
 
 import { Landing } from './pages/public/Landing';
 import { Pricing } from './pages/public/Pricing';
@@ -85,6 +86,8 @@ import { ReportingOverview } from './pages/ReportingOverview';
 import { TasksManager } from './pages/TasksManager';
 import { TemplatesManager } from './pages/TemplatesManager';
 import AdminOrganizationsPage from './pages/AdminOrganizations';
+import { SuperAdminDashboard } from './pages/admin/SuperAdminDashboard';
+import { OrganizationSettings } from './pages/OrganizationSettings';
 
 import CGU from './pages/legal/CGU';
 import CGV from './pages/legal/CGV';
@@ -119,7 +122,8 @@ function App() {
             path="/*"
             element={
               <AuthGuard>
-                <AppShell>
+                <OrganizationProvider>
+                  <AppShell>
                   <Routes>
                     <Route path="/dashboard" element={<DashboardGlobal />} />
                     <Route path="/dashboard-old" element={<Dashboard />} />
@@ -186,10 +190,14 @@ function App() {
                     <Route path="/templates" element={<TemplatesManager />} />
 
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
+                    <Route path="/admin/super" element={<SuperAdminDashboard />} />
+
+                    <Route path="/organization/settings" element={<OrganizationSettings />} />
 
                     <Route path="/chantier" element={<ChantierHome />} />
                   </Routes>
                 </AppShell>
+                </OrganizationProvider>
               </AuthGuard>
             }
           />

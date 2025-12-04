@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 import { RealProLogo } from '../branding/RealProLogo';
+import { OrganizationSelector } from '../OrganizationSelector';
+import { ProjectSelector } from '../ProjectSelector';
 import clsx from 'clsx';
 
 export function Sidebar() {
@@ -40,6 +42,11 @@ export function Sidebar() {
         <Link to="/dashboard" className="block">
           <RealProLogo width={160} height={160} />
         </Link>
+      </div>
+
+      <div className="px-3 space-y-3 mb-4">
+        <OrganizationSelector />
+        <ProjectSelector />
       </div>
 
       <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
