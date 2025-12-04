@@ -2,24 +2,22 @@ import { useTheme } from '../../contexts/ThemeContext';
 
 interface RealProLogoProps {
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  width?: number;
+  height?: number;
 }
 
-export function RealProLogo({ className = '', size = 'md' }: RealProLogoProps) {
+export function RealProLogo({ className = '', width = 200, height = 200 }: RealProLogoProps) {
   const { actualTheme } = useTheme();
   const isDark = actualTheme === 'dark';
 
-  const sizeClasses = {
-    sm: 'text-2xl',
-    md: 'text-3xl',
-    lg: 'text-4xl',
-    xl: 'text-5xl'
-  };
+  const logoSrc = isDark ? '/logos/9.svg' : '/logos/8 copy.svg';
 
   return (
-    <div className={`font-bold ${sizeClasses[size]} ${className}`}>
-      <span className={isDark ? 'text-white' : 'text-neutral-900'}>Real</span>
-      <span className="text-blue-600">Pro</span>
-    </div>
+    <img
+      src={logoSrc}
+      alt="RealPro"
+      className={`realpro-logo ${className}`}
+      style={{ width: `${width}px`, height: `${height}px`, objectFit: 'contain' }}
+    />
   );
 }
