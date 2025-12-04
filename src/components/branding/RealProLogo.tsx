@@ -17,7 +17,7 @@ export function RealProLogo({ className = '', width = 200, height = 200 }: RealP
       src={logoSrc}
       alt="RealPro"
       className={className}
-      style={{ width: `${width}px`, height: `${height}px`, objectFit: 'contain' }}
+      style={{ width: `${width}px`, height: `${height}px`, objectFit: 'cover' }}
     />
   );
 }
