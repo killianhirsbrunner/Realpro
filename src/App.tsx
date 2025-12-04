@@ -27,6 +27,7 @@ import ProjectMaterialsPage from './pages/ProjectMaterialsPage';
 import ProjectMaterialsCatalog from './pages/ProjectMaterialsCatalog';
 import ProjectMaterialsSuppliers from './pages/ProjectMaterialsSuppliers';
 import ProjectMaterialsSupplierAgenda from './pages/ProjectMaterialsSupplierAgenda';
+import ProjectMessages from './pages/ProjectMessages';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
 
@@ -108,6 +109,7 @@ function App() {
                     <Route path="/projects/:projectId/materials/catalog" element={<ProjectMaterialsCatalog />} />
                     <Route path="/projects/:projectId/materials/suppliers" element={<ProjectMaterialsSuppliers />} />
                     <Route path="/projects/:projectId/materials/suppliers/:supplierId" element={<ProjectMaterialsSupplierAgenda />} />
+                    <Route path="/projects/:projectId/messages" element={<ProjectMessages />} />
                     <Route path="/projects/:projectId/setup" element={<ProjectSetupWizard />} />
                     <Route path="/projects/:projectId/lots" element={<ProjectLots />} />
                     <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetail />} />
