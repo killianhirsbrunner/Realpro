@@ -96,6 +96,12 @@ import AdminOrganizationsPage from './pages/AdminOrganizations';
 import { SuperAdminDashboard } from './pages/admin/SuperAdminDashboard';
 import { OrganizationSettings } from './pages/OrganizationSettings';
 
+import { Settings } from './pages/Settings';
+import { LocalizationSettings } from './pages/settings/LocalizationSettings';
+import { BrandingSettings } from './pages/settings/BrandingSettings';
+import { SecuritySettings } from './pages/settings/SecuritySettings';
+import { SuppliersSettings } from './pages/settings/SuppliersSettings';
+
 import CGU from './pages/legal/CGU';
 import CGV from './pages/legal/CGV';
 import MentionsLegales from './pages/legal/MentionsLegales';
@@ -201,6 +207,12 @@ function App() {
                     <Route path="/submissions" element={<SubmissionComparison />} />
                     <Route path="/tasks" element={<TasksManager />} />
                     <Route path="/templates" element={<TemplatesManager />} />
+
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/settings/localization" element={<LocalizationSettings />} />
+                    <Route path="/settings/branding" element={<BrandingSettings />} />
+                    <Route path="/settings/security" element={<SecuritySettings />} />
+                    <Route path="/settings/suppliers" element={<SuppliersSettings />} />
 
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
                     <Route path="/admin/super" element={<SuperAdminDashboard />} />
