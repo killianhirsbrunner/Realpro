@@ -6,11 +6,11 @@ interface RealProLogoProps {
   height?: number;
 }
 
-export function RealProLogo({ className = '', width = 180, height = 60 }: RealProLogoProps) {
+export function RealProLogo({ className = '', width = 200, height = 200 }: RealProLogoProps) {
   const { actualTheme } = useTheme();
   const isDark = actualTheme === 'dark';
 
-  const logoSrc = isDark ? '/logos/5.svg' : '/logos/8.svg';
+  const logoSrc = isDark ? '/logos/9.svg' : '/logos/8 copy.svg';
 
   return (
     <img
