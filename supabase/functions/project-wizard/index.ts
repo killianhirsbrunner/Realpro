@@ -16,69 +16,30 @@ Deno.serve(async (req: Request) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader) {
-      return jsonResponse({ error: 'Non authentifié' }, 401);
-    }
-
-    const token = authHeader.replace('Bearer ', '');
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-
-    if (authError || !user) {
-      return jsonResponse({ error: 'Non autorisé' }, 401);
-    }
-
-    const url = new URL(req.url);
-    const method = req.method;
-    const path = url.pathname.replace('/project-wizard', '');
-
-    const projectIdMatch = path.match(/^\/projects\/([^/]+)/);
-    if (!projectIdMatch) {
-      return jsonResponse({ error: 'ID projet manquant' }, 400);
-    }
-
-    const projectId = projectIdMatch[1];
-
-    const { data: project } = await supabase
-      .from('projects')
-      .select('id, organization_id')
-      .eq('id', projectId)
-      .maybeSingle();
-
-    if (!project) {
-      return jsonResponse({ error: 'Projet introuvable' }, 404);
-    }
-
-    const { data: membership } = await supabase
-      .from('user_organizations')
-      .select('role')
-      .eq('user_id', user.id)
-      .eq('organization_id', project.organization_id)
-      .maybeSingle();
-
-    if (!membership) {
-      return jsonResponse({ error: 'Accès non autorisé' }, 403);
-    }
-
-    if (method === 'GET' && path.endsWith('/wizard')) {
-      const result = await getWizardState(supabase, projectId);
-      return jsonResponse(result);
-    }
-
-    if (method === 'POST' && path.match(/\/wizard\/step\/\d+$/)) {
-      const stepMatch = path.match(/\/step\/(\d+)$/);
-      const stepIndex = parseInt(stepMatch![1]);
+    if (req.method === 'POST') {
       const body = await req.json();
-      const result = await updateWizardStep(supabase, projectId, stepIndex, body);
+      const { organizationId, userId, projectData } = body;
+
+      if (!organizationId || !userId || !projectData) {
+        return jsonResponse({ error: 'Données manquantes' }, 400);
+      }
+
+      const { data: membership } = await supabase
+        .from('user_organizations')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('organization_id', organizationId)
+        .maybeSingle();
+
+      if (!membership) {
+        return jsonResponse({ error: 'Accès non autorisé' }, 403);
+      }
+
+      const result = await createCompleteProject(supabase, organizationId, userId, projectData);
       return jsonResponse(result);
     }
 
-    if (method === 'POST' && path.endsWith('/wizard/complete')) {
-      const result = await completeWizard(supabase, projectId);
-      return jsonResponse(result);
-    }
-
-    return jsonResponse({ error: 'Route non trouvée' }, 404);
+    return jsonResponse({ error: 'Méthode non supportée' }, 405);
 
   } catch (error) {
     console.error('Error:', error);
@@ -93,175 +54,162 @@ function jsonResponse(data: any, status = 200) {
   });
 }
 
-async function getWizardState(supabase: any, projectId: string) {
-  let { data: state, error } = await supabase
-    .from('project_setup_wizard_states')
-    .select('*')
-    .eq('project_id', projectId)
-    .maybeSingle();
-
-  if (error) throw error;
-
-  if (!state) {
-    const { data: newState, error: createError } = await supabase
-      .from('project_setup_wizard_states')
-      .insert({
-        project_id: projectId,
-        current_step: 1,
-        completed: false,
-        data: {},
-      })
-      .select()
-      .single();
-
-    if (createError) throw createError;
-    state = newState;
-  }
-
-  return {
-    projectId: state.project_id,
-    currentStep: state.current_step,
-    completed: state.completed,
-    data: state.data || {},
-    updatedAt: state.updated_at,
-  };
-}
-
-async function updateWizardStep(supabase: any, projectId: string, stepIndex: number, stepData: any) {
-  const { data: state } = await supabase
-    .from('project_setup_wizard_states')
-    .select('*')
-    .eq('project_id', projectId)
-    .maybeSingle();
-
-  if (!state) {
-    throw new Error('État du wizard non trouvé');
-  }
-
-  const wizardData = state.data || {};
-
-  if (stepIndex === 1) {
-    wizardData.step1 = { ...(wizardData.step1 || {}), ...stepData };
-
-    await supabase
-      .from('projects')
-      .update({
-        name: stepData.name || wizardData.step1.name,
-        city: stepData.city || wizardData.step1.city || null,
-        language: stepData.language || wizardData.step1.language || null,
-      })
-      .eq('id', projectId);
-  }
-
-  if (stepIndex === 2) {
-    wizardData.step2 = { ...(wizardData.step2 || {}), ...stepData };
-
-    if (stepData.buildings && Array.isArray(stepData.buildings)) {
-      for (const building of stepData.buildings) {
-        if (building.name && building.name.trim()) {
-          await supabase
-            .from('buildings')
-            .upsert({
-              project_id: projectId,
-              name: building.name,
-            }, {
-              onConflict: 'project_id,name',
-            });
-        }
-      }
-    }
-  }
-
-  if (stepIndex === 3) {
-    wizardData.step3 = { ...(wizardData.step3 || {}), ...stepData };
-
-    const updateData: any = {};
-    if (stepData.vatRate !== undefined) updateData.vat_rate = stepData.vatRate;
-    if (stepData.saleMode) updateData.sale_mode = stepData.saleMode;
-
-    if (Object.keys(updateData).length > 0) {
-      await supabase
-        .from('projects')
-        .update(updateData)
-        .eq('id', projectId);
-    }
-  }
-
-  if (stepIndex === 4) {
-    wizardData.step4 = { ...(wizardData.step4 || {}), ...stepData };
-  }
-
-  if (stepIndex === 5) {
-    wizardData.step5 = { ...(wizardData.step5 || {}), ...stepData };
-  }
-
-  const nextStep = Math.max(state.current_step, stepIndex + 1);
-
-  const { data: updatedState, error: updateError } = await supabase
-    .from('project_setup_wizard_states')
-    .update({
-      data: wizardData,
-      current_step: nextStep,
-    })
-    .eq('project_id', projectId)
-    .select()
-    .single();
-
-  if (updateError) throw updateError;
-
-  return {
-    projectId: updatedState.project_id,
-    currentStep: updatedState.current_step,
-    completed: updatedState.completed,
-    data: updatedState.data || {},
-    updatedAt: updatedState.updated_at,
-  };
-}
-
-async function completeWizard(supabase: any, projectId: string) {
-  const { data: state } = await supabase
-    .from('project_setup_wizard_states')
-    .select('*')
-    .eq('project_id', projectId)
-    .maybeSingle();
-
-  if (!state) {
-    throw new Error('État du wizard non trouvé');
-  }
-
-  if (state.completed) {
-    return {
-      projectId: state.project_id,
-      currentStep: state.current_step,
-      completed: true,
-      data: state.data || {},
-      updatedAt: state.updated_at,
-    };
-  }
-
-  const { data: updatedState, error } = await supabase
-    .from('project_setup_wizard_states')
-    .update({
-      completed: true,
-    })
-    .eq('project_id', projectId)
-    .select()
-    .single();
-
-  if (error) throw error;
-
-  await supabase
+async function createCompleteProject(
+  supabase: any,
+  organizationId: string,
+  userId: string,
+  projectData: any
+) {
+  const { data: project, error: projectError } = await supabase
     .from('projects')
-    .update({
+    .insert({
+      organization_id: organizationId,
+      name: projectData.name,
+      address: projectData.address,
+      city: projectData.city,
+      canton: projectData.canton,
+      type: projectData.type || 'PPE',
       status: 'ACTIVE',
+      language: projectData.defaultLanguage || 'fr',
+      vat_rate: parseFloat(projectData.vatRate || '8.1'),
+      description: projectData.description || null,
+      start_date: projectData.startDate || null,
+      end_date: projectData.endDate || null,
     })
-    .eq('id', projectId);
+    .select()
+    .single();
+
+  if (projectError) throw projectError;
+
+  await createDocumentFolders(supabase, project.id);
+
+  if (projectData.lots && projectData.lots.length > 0) {
+    await createLots(supabase, project.id, projectData.lots);
+  }
+
+  if (projectData.actors && projectData.actors.length > 0) {
+    await inviteActors(supabase, project.id, organizationId, projectData.actors);
+  }
+
+  if (projectData.totalBudget) {
+    await createBudgets(supabase, project.id, parseFloat(projectData.totalBudget));
+  }
+
+  if (projectData.startDate && projectData.endDate) {
+    await createPlanningPhases(supabase, project.id, projectData.startDate, projectData.endDate);
+  }
 
   return {
-    projectId: updatedState.project_id,
-    currentStep: updatedState.current_step,
-    completed: true,
-    data: updatedState.data || {},
-    updatedAt: updatedState.updated_at,
+    projectId: project.id,
+    success: true,
   };
+}
+
+async function createDocumentFolders(supabase: any, projectId: string) {
+  const folders = [
+    '01 - Juridique',
+    '02 - Plans',
+    '03 - Contrats',
+    '04 - Soumissions',
+    '05 - Commercial',
+    '06 - Dossiers acheteurs',
+    '07 - Chantier / PV',
+    '08 - Factures & Finances',
+  ];
+
+  for (const folderName of folders) {
+    await supabase.from('document_folders').insert({
+      project_id: projectId,
+      name: folderName,
+      parent_id: null,
+    });
+  }
+}
+
+async function createLots(supabase: any, projectId: string, lots: any[]) {
+  const lotsToInsert = lots.map((lot) => ({
+    project_id: projectId,
+    number: lot.number || '',
+    type: lot.type || 'APPARTEMENT',
+    floor: lot.floor || '1',
+    surface: parseFloat(lot.surface) || 0,
+    price: parseFloat(lot.price) || 0,
+    status: 'AVAILABLE',
+  }));
+
+  await supabase.from('lots').insert(lotsToInsert);
+}
+
+async function inviteActors(supabase: any, projectId: string, organizationId: string, actors: any[]) {
+  for (const actor of actors) {
+    if (!actor.email || !actor.sendInvite) continue;
+
+    const { data: existingUser } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', actor.email)
+      .maybeSingle();
+
+    if (existingUser) {
+      await supabase.from('project_participants').insert({
+        project_id: projectId,
+        user_id: existingUser.id,
+        role: actor.role || 'VIEWER',
+      });
+    }
+  }
+}
+
+async function createBudgets(supabase: any, projectId: string, totalBudget: number) {
+  const cfcCategories = [
+    { code: '0', name: 'Terrain', percent: 0 },
+    { code: '1', name: 'Travaux préparatoires', percent: 5 },
+    { code: '2', name: 'Bâtiment', percent: 60 },
+    { code: '3', name: 'Équipements d\'exploitation', percent: 10 },
+    { code: '4', name: 'Aménagements extérieurs', percent: 10 },
+    { code: '5', name: 'Frais annexes', percent: 15 },
+  ];
+
+  for (const cfc of cfcCategories) {
+    const amount = (totalBudget * cfc.percent) / 100;
+
+    await supabase.from('cfc_budgets').insert({
+      project_id: projectId,
+      code: cfc.code,
+      name: cfc.name,
+      budgeted_amount: amount,
+      spent_amount: 0,
+    });
+  }
+}
+
+async function createPlanningPhases(supabase: any, projectId: string, startDate: string, endDate: string) {
+  const phases = [
+    { name: 'Travaux préparatoires', duration: 30, order: 1 },
+    { name: 'Gros œuvre', duration: 180, order: 2 },
+    { name: 'Second œuvre', duration: 120, order: 3 },
+    { name: 'Finitions', duration: 90, order: 4 },
+    { name: 'Aménagements extérieurs', duration: 60, order: 5 },
+    { name: 'Réception', duration: 30, order: 6 },
+  ];
+
+  const start = new Date(startDate);
+  let currentStart = new Date(start);
+
+  for (const phase of phases) {
+    const phaseEnd = new Date(currentStart);
+    phaseEnd.setDate(phaseEnd.getDate() + phase.duration);
+
+    await supabase.from('planning_phases').insert({
+      project_id: projectId,
+      name: phase.name,
+      start_date: currentStart.toISOString(),
+      end_date: phaseEnd.toISOString(),
+      status: 'NOT_STARTED',
+      progress: 0,
+      sort_order: phase.order,
+    });
+
+    currentStart = new Date(phaseEnd);
+  }
 }
