@@ -58,7 +58,7 @@ export function useBuyers(projectId: string | undefined) {
             email: contract.buyers.email,
             phone: contract.buyers.phone,
             lot_number: contract.lots?.number,
-            status: contract.status || 'prospect',
+            status: contract.status || 'PROSPECT',
             documents_complete: false
           }));
 
