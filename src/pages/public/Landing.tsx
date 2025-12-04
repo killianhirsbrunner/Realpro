@@ -28,49 +28,49 @@ export function Landing() {
   const features = [
     {
       icon: Building2,
-      title: 'Vue 360° de vos projets',
-      description: 'Centralisez toutes les informations de vos promotions dans un seul outil. Vision globale en temps réel de tous vos projets immobiliers.'
+      title: 'Vision 360° en temps réel',
+      description: 'Pilotez l\'ensemble de vos promotions depuis un tableau de bord unique. KPIs, alertes et métriques critiques actualisés en continu pour une prise de décision éclairée.'
     },
     {
       icon: Users,
-      title: 'Courtiers & Acheteurs',
-      description: 'Gérez les informations des acheteurs avec vos courtiers à titre. Suivi des réservations, signatures et paiements centralisés.'
+      title: 'Gestion commerciale complète',
+      description: 'CRM intégré pour vos courtiers et acheteurs. Pipeline de ventes, réservations, contrats de vente et suivi des paiements dans un seul système centralisé.'
     },
     {
       icon: FileText,
-      title: 'Plans & Modifications',
-      description: 'Collaborez avec vos architectes sur les plans. Gérez les demandes de modifications des clients et validez les adaptations.'
+      title: 'Collaboration architecturale',
+      description: 'Partagez et annotez les plans en temps réel avec vos architectes. Validez les modifications clients et gérez l\'impact budgétaire instantanément.'
     },
     {
       icon: TrendingUp,
-      title: 'Offres Fournisseurs',
-      description: 'Centralisez les offres selon les choix clients. Gérez plus-values, moins-values et validations d\'offres en un seul endroit.'
+      title: 'Soumissions & Fournisseurs',
+      description: 'Centralisez les offres et gérez les appels d\'offres. Analyse automatique des plus-values et moins-values selon les choix de chaque acheteur.'
     },
     {
       icon: MessageSquare,
-      title: 'Communication unifiée',
-      description: 'Un seul canal pour tous : architectes, courtiers, clients, fournisseurs, notaires. Fini les emails perdus, tout est centralisé.'
+      title: 'Hub de communication centralisé',
+      description: 'Tous vos interlocuteurs sur une seule plateforme. Conversations, documents et décisions tracés et organisés par projet, lot et phase.'
     },
     {
       icon: Clock,
-      title: 'Documents & Workflows',
-      description: 'Tous vos documents accessibles instantanément. Workflows automatisés de la réservation à la livraison des clés.'
+      title: 'Automatisation intelligente',
+      description: 'Workflows automatisés du premier contact à la remise des clés. Notifications intelligentes, rappels automatiques et validation par étapes.'
     }
   ];
 
   const testimonials = [
     {
-      quote: "Enfin une vraie vision 360° ! Architectes, courtiers, clients, fournisseurs : tout le monde sur la même plateforme. Plus d'emails perdus, tout est centralisé.",
+      quote: "RealPro a révolutionné notre façon de travailler. Tous nos acteurs connectés en temps réel : architectes, courtiers, acheteurs, fournisseurs et notaires. Nous avons divisé notre temps administratif par 3.",
       author: "Jean Dupont",
       role: "Directeur, Promotions Genevoises SA"
     },
     {
-      quote: "La gestion des modifications de plans avec les architectes et la validation des offres fournisseurs selon les choix clients est devenue un jeu d'enfant. Gain de temps incroyable.",
+      quote: "La gestion des modifications et des choix de matériaux est devenue fluide et transparente. Les acheteurs adorent pouvoir suivre l'avancement en direct. Notre taux de satisfaction a bondi à 4.9/5.",
       author: "Marie Schmidt",
       role: "Gérante, Schmidt Développement Immobilier"
     },
     {
-      quote: "Centraliser toutes les informations projets au même endroit a transformé notre efficacité. On pilote tous nos projets en temps réel depuis une seule interface.",
+      quote: "Nous gérons 15 projets simultanément avec une équipe réduite. Le dashboard 360° nous permet de piloter l'ensemble en un coup d'œil. ROI atteint en moins de 2 mois.",
       author: "Pierre Rossi",
       role: "CEO, Immobilière Rossi & Partners"
     }
@@ -131,13 +131,13 @@ export function Landing() {
             Solution #1 pour les promoteurs suisses
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-100 leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
-            Pilotez vos projets immobiliers avec <span className="text-brand-600">précision</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-900 dark:text-neutral-100 leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
+            Pilotez vos promotions immobilières avec une <span className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 bg-clip-text text-transparent">précision absolue</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-            La plateforme 360° qui centralise toute l'information de vos projets immobiliers.
-            Architectes, courtiers, clients, fournisseurs, notaires : communiquez et gérez tout depuis un seul outil.
+          <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+            La seule plateforme qui centralise 100% de vos opérations immobilières en un seul endroit.
+            <span className="text-neutral-900 dark:text-neutral-300 font-medium"> Architectes, courtiers, acheteurs, fournisseurs et notaires</span> : tous connectés, toutes les informations synchronisées en temps réel.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -199,19 +199,20 @@ export function Landing() {
 
                   <div className="mb-6 flex items-center justify-between animate-in fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-md">
                         <Building2 className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-32 mb-1.5" />
-                        <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded w-20" />
+                        <div className="text-xs font-semibold text-neutral-900 dark:text-white mb-0.5">Tableau de bord</div>
+                        <div className="text-[10px] text-neutral-500">Vue d'ensemble</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-brand-600/20 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-brand-600"></div>
+                      <div className="relative w-6 h-6 rounded-full bg-brand-600/20 flex items-center justify-center cursor-pointer hover:bg-brand-600/30 transition-colors">
+                        <div className="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></div>
+                        <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-red-500 border border-white dark:border-neutral-900"></div>
                       </div>
-                      <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
+                      <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center text-[8px] font-semibold text-neutral-600 dark:text-neutral-400">DP</div>
                     </div>
                   </div>
 
@@ -319,18 +320,22 @@ export function Landing() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3 animate-in fade-in" style={{ animationDelay: '700ms', animationFillMode: 'both' }}>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 animate-in fade-in" style={{ animationDelay: '700ms', animationFillMode: 'both' }}>
                     <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">156</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Lots vendus</div>
+                      <div className="text-xl font-bold text-green-600 dark:text-green-400 mb-1">156</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">Lots vendus</div>
                     </div>
                     <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">23</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Courtiers actifs</div>
+                      <div className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-1">8</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">En construction</div>
                     </div>
                     <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
-                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">8</div>
-                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">En construction</div>
+                      <div className="text-xl font-bold text-brand-600 dark:text-brand-400 mb-1">12</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">Projets en cours</div>
+                    </div>
+                    <div className="bg-white dark:bg-neutral-800 rounded-lg p-3 border border-neutral-200 dark:border-neutral-700 text-center hover:shadow-md transition-shadow">
+                      <div className="text-xl font-bold text-neutral-900 dark:text-white mb-1">24</div>
+                      <div className="text-[9px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wide font-medium">Projets terminés</div>
                     </div>
                   </div>
                 </div>
@@ -342,11 +347,12 @@ export function Landing() {
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight leading-tight">
-            Conçu pour les professionnels.<br />Simple par nature.
+          <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-4 tracking-tight leading-tight">
+            Tout ce dont vous avez besoin.<br />
+            <span className="bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent">Rien de superflu.</span>
           </h2>
-          <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto font-normal">
-            Chaque fonctionnalité répond à un besoin réel. Rien de superflu, tout l'essentiel.
+          <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            Chaque module a été conçu avec des promoteurs immobiliers pour répondre aux défis réels du terrain. Une solution complète qui s'adapte à votre workflow.
           </p>
         </div>
 
@@ -841,7 +847,7 @@ export function Landing() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/60 text-white hover:bg-white/20 hover:border-white rounded-full px-8 h-12 text-base font-medium backdrop-blur-sm transition-all duration-300"
+                  className="border-2 border-white text-white bg-white/10 hover:bg-white hover:text-neutral-900 rounded-full px-8 h-12 text-base font-medium backdrop-blur-md shadow-lg shadow-black/20 transition-all duration-300 hover:scale-105"
                 >
                   Demander une démo
                 </Button>
