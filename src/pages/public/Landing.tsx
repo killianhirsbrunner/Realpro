@@ -68,40 +68,42 @@ export function Landing() {
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       <header className="sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-2xl">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-24 flex items-center justify-between">
-          <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
-            <RealProLogo width={186} height={49} />
-          </Link>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-20 flex items-center justify-between">
+            <Link to="/" className="flex items-center transition-opacity hover:opacity-80 flex-shrink-0">
+              <RealProLogo width={186} height={49} />
+            </Link>
 
-          <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
-            <Link to="/features" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
-              Fonctionnalités
-            </Link>
-            <Link to="/pricing" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
-              Tarifs
-            </Link>
-            <Link to="/contact" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
-              Contact
-            </Link>
-          </nav>
+            <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
+              <Link to="/features" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+                Fonctionnalités
+              </Link>
+              <Link to="/pricing" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+                Tarifs
+              </Link>
+              <Link to="/contact" className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+                Contact
+              </Link>
+            </nav>
 
-          <div className="flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="outline" size="sm" className="rounded-full">
-                Connexion
-              </Button>
-            </Link>
-            <Link to="/auth/register">
-              <Button size="sm" className="rounded-full">
-                Essai gratuit
-              </Button>
-            </Link>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <Link to="/login">
+                <Button variant="outline" size="sm" className="rounded-full h-9">
+                  Connexion
+                </Button>
+              </Link>
+              <Link to="/auth/register">
+                <Button size="sm" className="rounded-full h-9 bg-[#3BB273] hover:bg-[#35a066] border-0 text-white">
+                  Essai gratuit
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-32 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-800/50 text-neutral-700 dark:text-neutral-300 text-xs font-medium mb-8 border border-neutral-200 dark:border-neutral-700">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 text-[#3BB273] dark:text-[#3BB273] text-xs font-medium mb-8 border border-[#3BB273]/20">
           <Zap className="w-3.5 h-3.5" />
           Solution #1 pour les promoteurs suisses
         </div>
@@ -118,7 +120,7 @@ export function Landing() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <Link to="/auth/register">
-            <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-xl transition-all">
+            <Button size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-xl transition-all bg-[#3BB273] hover:bg-[#35a066] border-0 text-white">
               Commencer gratuitement
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -132,15 +134,15 @@ export function Landing() {
 
         <div className="flex items-center justify-center gap-6 text-xs text-neutral-500 dark:text-neutral-500 flex-wrap">
           <span className="flex items-center gap-1.5">
-            <Check className="w-3.5 h-3.5" />
+            <Check className="w-3.5 h-3.5 text-[#3BB273]" />
             14 jours gratuits
           </span>
           <span className="flex items-center gap-1.5">
-            <Check className="w-3.5 h-3.5" />
+            <Check className="w-3.5 h-3.5 text-[#3BB273]" />
             Sans engagement
           </span>
           <span className="flex items-center gap-1.5">
-            <Check className="w-3.5 h-3.5" />
+            <Check className="w-3.5 h-3.5 text-[#3BB273]" />
             Données en Suisse
           </span>
         </div>
@@ -162,7 +164,7 @@ export function Landing() {
               key={feature.title}
               className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/50 hover:bg-white dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 transition-all duration-300"
             >
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-5 shadow-lg shadow-primary-500/20">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#3BB273] to-[#35a066] flex items-center justify-center mb-5 shadow-lg shadow-[#3BB273]/20">
                 <feature.icon className="w-5 h-5 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -176,7 +178,6 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Section Stats */}
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
@@ -214,11 +215,10 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Section Use Case */}
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 text-[#3BB273] text-xs font-medium mb-6">
               <MessageSquare className="w-3.5 h-3.5" />
               Centralisation totale
             </div>
@@ -230,8 +230,8 @@ export function Landing() {
             </p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                <div className="w-6 h-6 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-[#3BB273]" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -243,8 +243,8 @@ export function Landing() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                <div className="w-6 h-6 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-[#3BB273]" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -256,8 +256,8 @@ export function Landing() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                <div className="w-6 h-6 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-[#3BB273]" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -271,48 +271,48 @@ export function Landing() {
             </ul>
           </div>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-200/50 to-blue-200/50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-3xl blur-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3BB273]/20 to-[#3BB273]/10 rounded-3xl blur-3xl"></div>
             <div className="relative bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700">
               <div className="space-y-4">
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <div className="w-10 h-10 rounded-lg bg-[#3BB273]/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#3BB273]" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Architecte</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Plans validés</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  <div className="w-10 h-10 rounded-lg bg-[#3BB273]/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#3BB273]" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Courtier</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Contrat signé</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
+                  <div className="w-10 h-10 rounded-lg bg-[#3BB273]/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#3BB273]" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Fournisseur</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Offre validée</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                  <div className="w-10 h-10 rounded-lg bg-[#F5A623]/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#F5A623]" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Client</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Choix confirmés</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#3BB273]"></div>
                 </div>
               </div>
             </div>
@@ -320,12 +320,11 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Section Benefits */}
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-12 md:py-16">
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20 rounded-3xl p-8 border border-blue-200/50 dark:border-blue-800/50">
+          <div className="bg-gradient-to-br from-[#3BB273]/5 to-[#3BB273]/10 dark:from-[#3BB273]/10 dark:to-[#3BB273]/5 rounded-3xl p-8 border border-[#3BB273]/20">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#3BB273] flex items-center justify-center flex-shrink-0">
                 <Zap className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -339,9 +338,9 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-950/30 dark:to-green-900/20 rounded-3xl p-8 border border-green-200/50 dark:border-green-800/50">
+          <div className="bg-gradient-to-br from-neutral-50 to-neutral-100/50 dark:from-neutral-900/50 dark:to-neutral-800/30 rounded-3xl p-8 border border-neutral-200/50 dark:border-neutral-700/50">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-neutral-700 dark:bg-neutral-600 flex items-center justify-center flex-shrink-0">
                 <Check className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -355,9 +354,9 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-950/30 dark:to-purple-900/20 rounded-3xl p-8 border border-purple-200/50 dark:border-purple-800/50">
+          <div className="bg-gradient-to-br from-[#F5A623]/5 to-[#F5A623]/10 dark:from-[#F5A623]/10 dark:to-[#F5A623]/5 rounded-3xl p-8 border border-[#F5A623]/20">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#F5A623] flex items-center justify-center flex-shrink-0">
                 <MessageSquare className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -371,9 +370,9 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-950/30 dark:to-orange-900/20 rounded-3xl p-8 border border-orange-200/50 dark:border-orange-800/50">
+          <div className="bg-gradient-to-br from-neutral-50 to-neutral-100/50 dark:from-neutral-900/50 dark:to-neutral-800/30 rounded-3xl p-8 border border-neutral-200/50 dark:border-neutral-700/50">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-orange-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-neutral-700 dark:bg-neutral-600 flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -389,11 +388,10 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Section Workflow */}
       <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/30">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#3BB273]/10 dark:bg-[#3BB273]/20 text-[#3BB273] text-xs font-medium mb-6">
               <Clock className="w-3.5 h-3.5" />
               Flux de travail simplifié
             </div>
@@ -407,7 +405,7 @@ export function Landing() {
 
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3BB273] to-[#35a066] flex items-center justify-center mb-6">
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -418,22 +416,22 @@ export function Landing() {
               </p>
               <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#3BB273]"></div>
                   Plans partagés
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#3BB273]"></div>
                   Modifications validées
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#3BB273]"></div>
                   Historique complet
                 </li>
               </ul>
             </div>
 
             <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F5A623] to-[#e09520] flex items-center justify-center mb-6">
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -444,22 +442,22 @@ export function Landing() {
               </p>
               <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#F5A623]"></div>
                   Infos acheteurs
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#F5A623]"></div>
                   Contrats centralisés
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#F5A623]"></div>
                   Suivi paiements
                 </li>
               </ul>
             </div>
 
             <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center mb-6">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -470,15 +468,15 @@ export function Landing() {
               </p>
               <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
                   Choix matériaux
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
                   Offres fournisseurs
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-700"></div>
                   Validation rapide
                 </li>
               </ul>
@@ -523,7 +521,7 @@ export function Landing() {
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 rounded-[2.5rem] p-12 md:p-20 text-center text-white">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/20 via-transparent to-blue-600/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#3BB273]/20 via-transparent to-[#3BB273]/10"></div>
           <div className="relative">
             <h2 className="text-3xl md:text-5xl font-semibold mb-5 tracking-tight leading-tight max-w-3xl mx-auto">
               Prêt à transformer votre gestion de projets ?
@@ -534,7 +532,7 @@ export function Landing() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/auth/register">
-                <Button size="lg" className="bg-white text-neutral-900 hover:bg-neutral-100 border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl">
+                <Button size="lg" className="bg-[#3BB273] text-white hover:bg-[#35a066] border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl">
                   Commencer gratuitement
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -552,8 +550,10 @@ export function Landing() {
       <footer className="border-t border-neutral-200/50 dark:border-neutral-800/50 py-16 bg-neutral-50/50 dark:bg-neutral-900/20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div>
-              <RealProLogo width={280} height={80} />
+            <div className="md:col-span-1">
+              <div className="mb-4">
+                <RealProLogo width={186} height={49} />
+              </div>
               <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-4 max-w-xs leading-relaxed">
                 La solution complète pour les promoteurs immobiliers suisses
               </p>
@@ -585,8 +585,15 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-neutral-200/50 dark:border-neutral-800/50 text-center text-xs text-neutral-500 dark:text-neutral-500">
-            © 2024-2025 Realpro SA. Tous droits réservés.
+          <div className="pt-8 border-t border-neutral-200/50 dark:border-neutral-800/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-neutral-500 dark:text-neutral-500 text-center sm:text-left">
+              © 2024-2025 Realpro SA. Tous droits réservés.
+            </p>
+            <div className="flex items-center gap-1 text-xs text-neutral-400 dark:text-neutral-600">
+              <span>Made in</span>
+              <span className="text-red-500">🇨🇭</span>
+              <span>Switzerland</span>
+            </div>
           </div>
         </div>
       </footer>
