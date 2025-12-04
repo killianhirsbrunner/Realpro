@@ -30,62 +30,62 @@ export function Features() {
     {
       icon: Building2,
       title: 'Gestion de projets',
-      description: 'Créez et gérez vos projets PPE/QPT avec bâtiments, étages et lots. Vue d\'ensemble complète de l\'avancement.'
+      description: 'Structurez et orchestrez vos opérations immobilières PPE/QPT avec une architecture modulaire complète. Organisez bâtiments, étages et lots avec une vue d\'ensemble en temps réel sur l\'avancement de chaque programme.'
     },
     {
       icon: Users,
       title: 'CRM Acquéreurs',
-      description: 'Pipeline complet de la prospection à la livraison. Gérez vos prospects, réservations et acheteurs.'
+      description: 'Pipeline commercial intégré de bout en bout, de la première prise de contact à la remise des clés. Pilotez efficacement votre cycle de vente avec gestion avancée des prospects, réservations, signatures et suivi relationnel.'
     },
     {
       icon: FileText,
       title: 'Documents & GED',
-      description: 'Gestion documentaire complète avec versioning, arborescence projet et dossiers notariés.'
+      description: 'Système de Gestion Électronique des Documents professionnel avec versioning automatique, arborescence contextualisée par projet et constitution intelligente des dossiers notariés. Traçabilité et sécurité maximales garanties.'
     },
     {
       icon: TrendingUp,
       title: 'Finance & CFC',
-      description: 'Budgets CFC, factures, acomptes et comptabilité analytique pour un suivi financier précis.'
+      description: 'Plateforme financière complète pour la gestion des Comptes de Frais de Construction. Suivi budgétaire en temps réel, gestion des factures et acomptes, comptabilité analytique intégrée pour un contrôle financier rigoureux.'
     },
     {
       icon: ClipboardCheck,
       title: 'Soumissions',
-      description: 'Gérez vos appels d\'offres, comparez les offres et adjudiquez aux entreprises.'
+      description: 'Module d\'appels d\'offres professionnel pour centraliser et comparer vos consultations. Analysez objectivement les propositions, négociez en toute transparence et adjudiquez aux entreprises en quelques clics avec traçabilité complète.'
     },
     {
       icon: Package,
       title: 'Choix matériaux',
-      description: 'Catalogue de matériaux personnalisable, choix acheteurs et rendez-vous fournisseurs.'
+      description: 'Catalogue de finitions et équipements entièrement personnalisable par projet. Gérez les choix de vos acquéreurs, planifiez automatiquement les rendez-vous showroom et maîtrisez l\'impact financier de chaque option.'
     },
     {
       icon: Hammer,
       title: 'Planning & Chantier',
-      description: 'Planification phases, suivi travaux, photos chantier et journal de chantier.'
+      description: 'Outil de planification et suivi de chantier avec gestion des phases de construction. Diagramme de Gantt interactif, reportage photographique géolocalisé et journal de chantier numérique pour un pilotage opérationnel optimal.'
     },
     {
       icon: Calendar,
       title: 'Rendez-vous fournisseurs',
-      description: 'Agenda partagé pour les rendez-vous showroom avec les acheteurs.'
+      description: 'Système de prise de rendez-vous synchronisé pour coordonner les visites showroom de vos acquéreurs. Agenda partagé temps réel, notifications automatiques et gestion des disponibilités pour une expérience client premium.'
     },
     {
       icon: MessageSquare,
       title: 'Communication',
-      description: 'Messagerie interne, notifications et historique des échanges par projet.'
+      description: 'Hub de communication centralisé avec messagerie contextuelle par projet et lot. Notifications intelligentes, historique complet des échanges et traçabilité des décisions pour une collaboration fluide entre tous les intervenants.'
     },
     {
       icon: Wrench,
       title: 'SAV Post-livraison',
-      description: 'Gestion des garanties, réclamations et interventions après livraison.'
+      description: 'Module de gestion du Service Après-Vente avec suivi des garanties légales et constructeurs. Centralisation des réclamations, planification des interventions et gestion du cycle complet des levées de réserves jusqu\'à l\'achèvement.'
     },
     {
       icon: BarChart3,
       title: 'Reporting & Analytics',
-      description: 'Dashboards et rapports personnalisables pour piloter votre activité.'
+      description: 'Suite d\'analyse décisionnelle avec tableaux de bord personnalisables et KPI temps réel. Rapports automatisés multi-projets, indicateurs de performance commerciale et financière pour un pilotage stratégique basé sur la data.'
     },
     {
       icon: Shield,
       title: 'Sécurité & Conformité',
-      description: 'Multi-tenant, RBAC, audit log et conformité RGPD.'
+      description: 'Architecture multi-tenant sécurisée avec contrôle d\'accès granulaire (RBAC) et audit trail complet. Conformité RGPD native, hébergement en Suisse et chiffrement de bout en bout pour protéger vos données stratégiques.'
     }
   ];
 
@@ -165,14 +165,14 @@ export function Features() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {modules.map((module) => (
               <ScrollReveal key={module.title}>
-                <div className="group p-6 md:p-8 rounded-2xl bg-white dark:bg-neutral-800/50 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 cursor-pointer backdrop-blur-sm">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500">
+                <div className="group p-6 md:p-8 rounded-2xl bg-white dark:bg-neutral-800/50 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 cursor-pointer backdrop-blur-sm h-full flex flex-col min-h-[280px]">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/40 group-hover:scale-110 transition-all duration-500 flex-shrink-0">
                     <module.icon className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3">
+                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-3 flex-shrink-0">
                     {module.title}
                   </h3>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">
                     {module.description}
                   </p>
                 </div>
@@ -190,20 +190,20 @@ export function Features() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
-              'Hébergement de vos données en Suisse',
-              'Conformité RGPD et sécurité maximale',
-              'Support client en français',
-              'Mises à jour régulières incluses',
-              'Formation de votre équipe',
-              'API complète pour vos intégrations'
+              'Hébergement souverain de vos données en Suisse',
+              'Conformité RGPD native et sécurité de niveau bancaire',
+              'Support client réactif en français et expertise métier',
+              'Mises à jour continues incluses sans surcoût',
+              'Formation complète et accompagnement de vos équipes',
+              'API REST documentée pour vos intégrations tierces'
             ].map((benefit, index) => (
-              <div key={index} className="flex items-start gap-3">
+              <div key={index} className="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-neutral-800/30 border border-neutral-200/50 dark:border-neutral-700/50 hover:border-brand-600/50 dark:hover:border-brand-600/50 transition-all duration-300 min-h-[72px]">
                 <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-3.5 h-3.5 text-white" />
                 </div>
-                <span className="text-base text-neutral-700 dark:text-neutral-300">{benefit}</span>
+                <span className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed flex-1">{benefit}</span>
               </div>
             ))}
           </div>
