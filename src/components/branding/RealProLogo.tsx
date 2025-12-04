@@ -16,10 +16,8 @@ export function RealProLogo({ className = '', width = 180, height = 60 }: RealPr
     <img
       src={logoSrc}
       alt="RealPro"
-      width={width}
-      height={height}
       className={className}
-      style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
+      style={{ width: `${width}px`, height: `${height}px`, objectFit: 'contain' }}
     />
   );
 }
