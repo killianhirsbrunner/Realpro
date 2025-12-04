@@ -32,7 +32,7 @@ export function QuickActions({ projectId }: QuickActionsProps) {
       label: 'Nouveau projet',
       icon: Plus,
       href: '/projects/new',
-      color: 'from-secondary-500 to-secondary-600',
+      color: 'from-brand-500 to-brand-600',
     },
     {
       label: 'Ajouter un acheteur',

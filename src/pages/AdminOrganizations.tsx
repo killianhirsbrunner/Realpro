@@ -181,8 +181,8 @@ export default function AdminOrganizationsPage() {
 
           <Card className="p-4">
             <div className="flex items-center gap-3">
-              <div className="rounded-full bg-secondary-100 p-2 dark:bg-secondary-900">
-                <TrendingUp className="h-5 w-5 text-secondary-600 dark:text-secondary-400" />
+              <div className="rounded-full bg-brand-100 p-2 dark:bg-brand-900">
+                <TrendingUp className="h-5 w-5 text-brand-600 dark:text-brand-400" />
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Abonnements actifs</p>

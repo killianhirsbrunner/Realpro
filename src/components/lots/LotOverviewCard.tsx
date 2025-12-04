@@ -23,7 +23,7 @@ export function LotOverviewCard({ lot }: LotOverviewCardProps) {
 
   const statusColors: Record<string, string> = {
     AVAILABLE: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    RESERVED: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
+    RESERVED: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
     SOLD: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
     BLOCKED: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
   };

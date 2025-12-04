@@ -43,8 +43,8 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
     {
       label: 'Facturé',
       value: formatCHF(finance.cfc_invoiced),
-      color: 'text-secondary-600',
-      bg: 'bg-secondary-50',
+      color: 'text-brand-600',
+      bg: 'bg-brand-50',
       percent: finance.cfc_budget > 0 ? (finance.cfc_invoiced / finance.cfc_budget) * 100 : 0,
     },
     {
@@ -137,7 +137,7 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
           {finance.pending_payments > 0 && (
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-600">Paiements en attente</span>
-              <span className="text-base font-semibold text-secondary-600">
+              <span className="text-base font-semibold text-brand-600">
                 {formatCHF(finance.pending_payments)}
               </span>
             </div>

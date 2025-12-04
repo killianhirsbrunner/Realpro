@@ -34,8 +34,8 @@ export default function OverviewCards({ stats }: OverviewCardsProps) {
       label: 'Documents en attente',
       value: stats.pendingDocuments,
       icon: FileText,
-      color: 'text-secondary-600',
-      bgColor: 'bg-secondary-50 dark:bg-secondary-950',
+      color: 'text-brand-600',
+      bgColor: 'bg-brand-50 dark:bg-brand-950',
     },
     {
       label: 'Alertes & Retards',

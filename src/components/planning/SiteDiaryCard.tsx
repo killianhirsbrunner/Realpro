@@ -42,7 +42,7 @@ export function SiteDiaryCard({ entry, onClick }: SiteDiaryCardProps) {
             </div>
           )}
           {issuesCount > 0 && (
-            <div className="flex items-center gap-1 px-2 py-1 bg-secondary-50 text-secondary-700 rounded text-sm">
+            <div className="flex items-center gap-1 px-2 py-1 bg-brand-50 text-brand-700 rounded text-sm">
               <AlertTriangle className="w-4 h-4" />
               {issuesCount}
             </div>
@@ -79,7 +79,7 @@ export function SiteDiaryCard({ entry, onClick }: SiteDiaryCardProps) {
       {Array.isArray(entry.issues) && entry.issues.length > 0 && (
         <div className="mt-4 pt-4 border-t border-neutral-200">
           <p className="text-xs text-neutral-600 font-medium mb-2 flex items-center gap-1">
-            <AlertTriangle className="w-3 h-3 text-secondary-600" />
+            <AlertTriangle className="w-3 h-3 text-brand-600" />
             Problèmes signalés :
           </p>
           <ul className="text-sm text-neutral-700 space-y-1">

@@ -39,7 +39,7 @@ export function PlanningAlerts({ alerts, onResolve }: PlanningAlertsProps) {
       case 'critical':
         return 'border-red-500 bg-red-50 dark:bg-red-950/20';
       case 'warning':
-        return 'border-secondary-500 bg-secondary-50 dark:bg-secondary-950/20';
+        return 'border-brand-500 bg-brand-50 dark:bg-brand-950/20';
       default:
         return 'border-blue-500 bg-blue-50 dark:bg-blue-950/20';
     }
@@ -50,7 +50,7 @@ export function PlanningAlerts({ alerts, onResolve }: PlanningAlertsProps) {
       case 'critical':
         return 'text-red-600';
       case 'warning':
-        return 'text-secondary-600';
+        return 'text-brand-600';
       default:
         return 'text-blue-600';
     }
@@ -99,7 +99,7 @@ export function PlanningAlerts({ alerts, onResolve }: PlanningAlertsProps) {
                     <span className={`
                       inline-block px-2 py-0.5 rounded-md text-xs font-medium mb-2
                       ${alert.severity === 'critical' ? 'bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300' : ''}
-                      ${alert.severity === 'warning' ? 'bg-secondary-100 text-secondary-700 dark:bg-secondary-900/50 dark:text-secondary-300' : ''}
+                      ${alert.severity === 'warning' ? 'bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300' : ''}
                       ${alert.severity === 'info' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300' : ''}
                     `}>
                       {getAlertTypeLabel(alert.alert_type)}

@@ -117,7 +117,7 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
       green: { bg: 'bg-green-50', text: 'text-green-600', hover: 'hover:bg-green-100 hover:border-green-300', border: 'border-green-200' },
       purple: { bg: 'bg-brand-50', text: 'text-brand-600', hover: 'hover:bg-brand-100 hover:border-brand-300', border: 'border-brand-200' },
       yellow: { bg: 'bg-yellow-50', text: 'text-yellow-600', hover: 'hover:bg-yellow-100 hover:border-yellow-300', border: 'border-yellow-200' },
-      orange: { bg: 'bg-secondary-50', text: 'text-secondary-600', hover: 'hover:bg-secondary-100 hover:border-secondary-300', border: 'border-secondary-200' },
+      orange: { bg: 'bg-brand-50', text: 'text-brand-600', hover: 'hover:bg-brand-100 hover:border-brand-300', border: 'border-brand-200' },
       indigo: { bg: 'bg-indigo-50', text: 'text-indigo-600', hover: 'hover:bg-indigo-100 hover:border-indigo-300', border: 'border-indigo-200' },
       pink: { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100 hover:border-pink-300', border: 'border-pink-200' },
       teal: { bg: 'bg-teal-50', text: 'text-teal-600', hover: 'hover:bg-teal-100 hover:border-teal-300', border: 'border-teal-200' },

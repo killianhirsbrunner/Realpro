@@ -35,7 +35,7 @@ export default function IssuesOverviewCard({ issues }: IssuesOverviewCardProps) 
       case 'high':
         return 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200';
       case 'medium':
-        return 'bg-secondary-50 dark:bg-secondary-950 border-secondary-200 dark:border-secondary-800 text-secondary-800 dark:text-secondary-200';
+        return 'bg-brand-50 dark:bg-brand-950 border-brand-200 dark:border-brand-800 text-brand-800 dark:text-brand-200';
       case 'low':
         return 'bg-yellow-50 dark:bg-yellow-950 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-200';
       default:

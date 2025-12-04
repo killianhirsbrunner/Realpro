@@ -44,9 +44,9 @@ export function UpcomingTimeline({ items }: UpcomingTimelineProps) {
         iconColor: 'text-brand-600 dark:text-brand-400',
       },
       today: {
-        badge: 'bg-secondary-100 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-300',
+        badge: 'bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300',
         icon: AlertCircle,
-        iconColor: 'text-secondary-600 dark:text-secondary-400',
+        iconColor: 'text-brand-600 dark:text-brand-400',
       },
       overdue: {
         badge: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',

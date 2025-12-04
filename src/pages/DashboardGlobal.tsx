@@ -102,18 +102,18 @@ export function DashboardGlobal() {
 
       {/* Warning if limit reached */}
       {!canCreateProject && (
-        <div className="rounded-xl border border-secondary-200 dark:border-secondary-800 bg-secondary-50 dark:bg-secondary-900/10 p-4 flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-secondary-600 dark:text-secondary-400 flex-shrink-0 mt-0.5" />
+        <div className="rounded-xl border border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-900/10 p-4 flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-brand-600 dark:text-brand-400 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <p className="font-medium text-secondary-900 dark:text-secondary-100">
+            <p className="font-medium text-brand-900 dark:text-brand-100">
               Limite de projets atteinte
             </p>
-            <p className="text-sm text-secondary-700 dark:text-secondary-300 mt-1">
+            <p className="text-sm text-brand-700 dark:text-brand-300 mt-1">
               Vous avez atteint la limite de {subscription?.plan.limits.projects_max} projets pour votre plan {subscription?.plan.name}.
               Passez à un plan supérieur pour créer plus de projets.
             </p>
             <Link to="/billing" className="inline-block mt-2">
-              <Button size="sm" variant="outline" className="text-secondary-700 dark:text-secondary-300 border-secondary-300 dark:border-secondary-700">
+              <Button size="sm" variant="outline" className="text-brand-700 dark:text-brand-300 border-brand-300 dark:border-brand-700">
                 Mettre à niveau
               </Button>
             </Link>

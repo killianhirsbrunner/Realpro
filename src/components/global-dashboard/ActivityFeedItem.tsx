@@ -29,7 +29,7 @@ const activityIcons: Record<string, typeof FileText> = {
 const activityColors: Record<string, string> = {
   LOT_SOLD: 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20',
   DOC_SIGNED: 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20',
-  ISSUE_CREATED: 'text-secondary-600 dark:text-secondary-400 bg-secondary-50 dark:bg-secondary-900/20',
+  ISSUE_CREATED: 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20',
   ISSUE_RESOLVED: 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20',
   MATERIAL_CHOSEN: 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20',
   USER_ADDED: 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20',

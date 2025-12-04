@@ -23,7 +23,7 @@ export function KpiCard({ title, value, icon: Icon, trend, variant = 'default', 
           'border-neutral-200 dark:border-neutral-800': variant === 'default',
           'border-primary-200 dark:border-primary-900/30 bg-primary-50/30 dark:bg-primary-950/20': variant === 'primary',
           'border-green-200 dark:border-green-900/30 bg-green-50/30 dark:bg-green-950/20': variant === 'success',
-          'border-secondary-200 dark:border-secondary-900/30 bg-secondary-50/30 dark:bg-secondary-950/20': variant === 'warning',
+          'border-brand-200 dark:border-brand-900/30 bg-brand-50/30 dark:bg-brand-950/20': variant === 'warning',
         },
         className
       )}
@@ -56,7 +56,7 @@ export function KpiCard({ title, value, icon: Icon, trend, variant = 'default', 
               'bg-neutral-100 dark:bg-neutral-800': variant === 'default',
               'bg-primary-100 dark:bg-primary-900/40': variant === 'primary',
               'bg-green-100 dark:bg-green-900/40': variant === 'success',
-              'bg-secondary-100 dark:bg-secondary-900/40': variant === 'warning',
+              'bg-brand-100 dark:bg-brand-900/40': variant === 'warning',
             }
           )}
         >
@@ -65,7 +65,7 @@ export function KpiCard({ title, value, icon: Icon, trend, variant = 'default', 
               'text-neutral-600 dark:text-neutral-400': variant === 'default',
               'text-primary-600 dark:text-primary-400': variant === 'primary',
               'text-green-600 dark:text-green-400': variant === 'success',
-              'text-secondary-600 dark:text-secondary-400': variant === 'warning',
+              'text-brand-600 dark:text-brand-400': variant === 'warning',
             })}
           />
         </div>

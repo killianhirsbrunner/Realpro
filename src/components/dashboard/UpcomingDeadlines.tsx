@@ -35,7 +35,7 @@ export function UpcomingDeadlines({ deadlines }: UpcomingDeadlinesProps) {
     const daysUntil = differenceInDays(date, new Date());
 
     if (isPast(date)) return 'text-red-600 bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900/30';
-    if (daysUntil <= 7) return 'text-secondary-600 bg-secondary-50 dark:bg-secondary-950/20 border-secondary-200 dark:border-secondary-900/30';
+    if (daysUntil <= 7) return 'text-brand-600 bg-brand-50 dark:bg-brand-950/20 border-brand-200 dark:border-brand-900/30';
     return 'text-brand-600 bg-brand-50 dark:bg-brand-950/20 border-brand-200 dark:border-brand-900/30';
   };
 

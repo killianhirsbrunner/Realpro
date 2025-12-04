@@ -27,7 +27,7 @@ const MODULES = [
 
 const PERMISSION_LEVELS = [
   { id: 'read', name: 'Lecture', icon: Eye, color: 'text-brand-600' },
-  { id: 'write', name: 'Écriture', icon: Edit, color: 'text-secondary-600' },
+  { id: 'write', name: 'Écriture', icon: Edit, color: 'text-brand-600' },
   { id: 'admin', name: 'Admin', icon: Shield, color: 'text-red-600' },
 ];
 

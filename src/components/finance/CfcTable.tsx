@@ -98,7 +98,7 @@ export function CfcTable({ lines, totals, onUpdateLine }: CfcTableProps) {
   const getProgressColor = (spent: number, budget: number) => {
     const percentage = budget > 0 ? (spent / budget) * 100 : 0;
     if (percentage > 100) return 'text-red-600';
-    if (percentage > 90) return 'text-secondary-600';
+    if (percentage > 90) return 'text-brand-600';
     return 'text-green-600';
   };
 

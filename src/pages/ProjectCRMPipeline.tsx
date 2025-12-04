@@ -61,9 +61,9 @@ export default function ProjectCRMPipeline() {
             {pipeline.reserved?.length || 0}
           </p>
         </div>
-        <div className="p-5 bg-gradient-to-br from-secondary-50 to-secondary-100/50 dark:from-secondary-900/20 dark:to-secondary-800/20 rounded-xl border border-secondary-200 dark:border-secondary-800 shadow-sm hover:shadow-md transition-all">
-          <p className="text-sm font-medium text-secondary-700 dark:text-secondary-400">En cours</p>
-          <p className="text-3xl font-bold text-secondary-900 dark:text-secondary-300 mt-2">
+        <div className="p-5 bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl border border-brand-200 dark:border-brand-800 shadow-sm hover:shadow-md transition-all">
+          <p className="text-sm font-medium text-brand-700 dark:text-brand-400">En cours</p>
+          <p className="text-3xl font-bold text-brand-900 dark:text-brand-300 mt-2">
             {pipeline.in_progress?.length || 0}
           </p>
         </div>

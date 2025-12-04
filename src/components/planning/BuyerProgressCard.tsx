@@ -9,7 +9,7 @@ interface BuyerProgressCardProps {
 
 export function BuyerProgressCard({ progress, onClick }: BuyerProgressCardProps) {
   const phases = [
-    { label: 'Gros œuvre', value: progress.gros_oeuvre_progress, color: 'bg-secondary-500' },
+    { label: 'Gros œuvre', value: progress.gros_oeuvre_progress, color: 'bg-brand-500' },
     { label: 'Second œuvre', value: progress.second_oeuvre_progress, color: 'bg-brand-500' },
     { label: 'Finitions', value: progress.finitions_progress, color: 'bg-green-500' },
   ];

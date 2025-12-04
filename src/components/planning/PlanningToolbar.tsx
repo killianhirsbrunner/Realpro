@@ -72,7 +72,7 @@ export function PlanningToolbar({
                   }}
                   className="w-full px-4 py-2.5 rounded-lg text-left hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center gap-3"
                 >
-                  <Flag className="w-4 h-4 text-secondary-600" />
+                  <Flag className="w-4 h-4 text-brand-600" />
                   <div>
                     <div className="font-medium text-neutral-900 dark:text-white">
                       Nouveau jalon

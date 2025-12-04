@@ -461,7 +461,7 @@ export function ProjectCockpit() {
           <Card>
             <Card.Content>
               <p className="text-xs text-gray-500 mb-1">Facturé</p>
-              <p className="text-lg font-semibold text-secondary-600">{formatCHF(finance.cfc_invoiced)}</p>
+              <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_invoiced)}</p>
             </Card.Content>
           </Card>
           <Card>

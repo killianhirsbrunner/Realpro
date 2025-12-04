@@ -57,7 +57,7 @@ export function InvoiceTable({ invoices, projectId }: InvoiceTableProps) {
 
     if (invoice.status === 'sent') {
       return (
-        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-secondary-100 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-400">
+        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400">
           En attente
         </span>
       );

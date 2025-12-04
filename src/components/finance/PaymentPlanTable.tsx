@@ -62,7 +62,7 @@ export function PaymentPlanTable({ invoices, onDownloadQR, onMarkAsPaid }: Payme
     }
 
     return (
-      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-secondary-100 text-secondary-700 dark:bg-secondary-900/30 dark:text-secondary-400">
+      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400">
         <Clock className="w-3.5 h-3.5" />
         En attente
       </span>

@@ -106,11 +106,11 @@ export function BrokerCommissionsTable({ commissions }: BrokerCommissionsTablePr
               {formatCurrency(paidCommissions)}
             </p>
           </div>
-          <div className="bg-secondary-50 dark:bg-secondary-900/20 rounded-lg p-4">
-            <p className="text-xs text-secondary-700 dark:text-secondary-400 mb-1">
+          <div className="bg-brand-50 dark:bg-brand-900/20 rounded-lg p-4">
+            <p className="text-xs text-brand-700 dark:text-brand-400 mb-1">
               En attente
             </p>
-            <p className="text-xl font-semibold text-secondary-900 dark:text-secondary-300">
+            <p className="text-xl font-semibold text-brand-900 dark:text-brand-300">
               {formatCurrency(pendingCommissions)}
             </p>
           </div>

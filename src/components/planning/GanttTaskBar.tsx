@@ -14,13 +14,13 @@ export function GanttTaskBar({ task, position, onUpdate }: GanttTaskBarProps) {
     if (task.status === 'completed') return 'bg-green-500 hover:bg-green-600';
     if (task.status === 'delayed') return 'bg-red-500 hover:bg-red-600';
     if (task.status === 'in_progress') return 'bg-brand-500 hover:bg-brand-600';
-    if (task.status === 'blocked') return 'bg-secondary-500 hover:bg-secondary-600';
+    if (task.status === 'blocked') return 'bg-brand-500 hover:bg-brand-600';
     return 'bg-neutral-400 hover:bg-neutral-500';
   };
 
   const getPriorityBorder = () => {
     if (task.priority === 'critical') return 'border-2 border-red-600';
-    if (task.priority === 'high') return 'border-2 border-secondary-500';
+    if (task.priority === 'high') return 'border-2 border-brand-500';
     return '';
   };
 

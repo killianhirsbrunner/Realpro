@@ -52,9 +52,9 @@ export default function ProjectFinances() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-900/20 dark:to-secondary-800/20 rounded-2xl p-6 border border-secondary-200 dark:border-secondary-800">
+        <div className="bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 rounded-2xl p-6 border border-brand-200 dark:border-brand-800">
           <div className="flex items-center justify-between mb-3">
-            <div className="p-2 bg-secondary-500 rounded-lg">
+            <div className="p-2 bg-brand-500 rounded-lg">
               <FileText className="w-5 h-5 text-white" />
             </div>
           </div>
@@ -126,8 +126,8 @@ export default function ProjectFinances() {
           className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-200"
         >
           <div className="flex items-start justify-between mb-4">
-            <div className="p-3 bg-secondary-50 dark:bg-secondary-900/20 rounded-xl">
-              <Users className="w-6 h-6 text-secondary-600 dark:text-secondary-400" />
+            <div className="p-3 bg-brand-50 dark:bg-brand-900/20 rounded-xl">
+              <Users className="w-6 h-6 text-brand-600 dark:text-brand-400" />
             </div>
             <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all" />
           </div>

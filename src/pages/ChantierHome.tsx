@@ -117,7 +117,7 @@ export function ChantierHome() {
             to="/chantier/sav"
             className="flex flex-col items-center gap-3 p-6 bg-gray-800 rounded-2xl hover:bg-gray-750 transition-colors"
           >
-            <Hammer className="h-10 w-10 text-secondary-400" />
+            <Hammer className="h-10 w-10 text-brand-400" />
             <span className="text-sm font-medium text-center">Tickets SAV</span>
           </Link>
 

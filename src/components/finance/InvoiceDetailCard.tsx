@@ -45,7 +45,7 @@ export function InvoiceDetailCard({ invoice }: InvoiceDetailCardProps) {
     if (invoice.paid) {
       return <CheckCircle className="w-5 h-5 text-green-600" />;
     }
-    return <Clock className="w-5 h-5 text-secondary-600" />;
+    return <Clock className="w-5 h-5 text-brand-600" />;
   };
 
   const getStatusText = () => {
@@ -58,7 +58,7 @@ export function InvoiceDetailCard({ invoice }: InvoiceDetailCardProps) {
       );
     }
     return (
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-secondary-100 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-400">
+      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400">
         <Clock className="w-4 h-4" />
         En attente
         </span>

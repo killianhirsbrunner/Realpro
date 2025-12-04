@@ -33,7 +33,7 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
       website: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
       phone: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
       email: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
-      referral: 'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
+      referral: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       broker: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
     };
 

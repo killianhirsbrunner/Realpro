@@ -111,7 +111,7 @@ export function BuyerFinanceTable({ buyers, projectId }: BuyerFinanceTableProps)
                       </div>
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-right font-semibold text-secondary-600 dark:text-secondary-400">
+                  <td className="py-3 px-4 text-right font-semibold text-brand-600 dark:text-brand-400">
                     CHF {buyer.remaining.toLocaleString()}
                   </td>
                   <td className="py-3 px-4 text-center">

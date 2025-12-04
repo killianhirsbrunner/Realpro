@@ -91,16 +91,16 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
               </p>
             </div>
 
-            <div className="bg-secondary-50 dark:bg-secondary-950/20 rounded-xl p-3 border border-secondary-200 dark:border-secondary-900/30">
+            <div className="bg-brand-50 dark:bg-brand-950/20 rounded-xl p-3 border border-brand-200 dark:border-brand-900/30">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-secondary-900 dark:text-secondary-100">
+                <span className="text-sm font-medium text-brand-900 dark:text-brand-100">
                   Engagé (non payé)
                 </span>
-                <span className="text-xs font-semibold text-secondary-600 dark:text-secondary-400">
+                <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">
                   {engagementRate}%
                 </span>
               </div>
-              <p className="text-lg font-semibold text-secondary-900 dark:text-secondary-100">
+              <p className="text-lg font-semibold text-brand-900 dark:text-brand-100">
                 CHF {(data.engaged - data.paid).toLocaleString()}
               </p>
             </div>

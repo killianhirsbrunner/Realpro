@@ -59,8 +59,8 @@ export function MaterialsSummaryCard({ overview }: MaterialsSummaryCardProps) {
 
         <div className="text-center">
           <div className="flex justify-center mb-2">
-            <div className="p-3 bg-secondary-100 rounded-lg">
-              <FileEdit className="w-6 h-6 text-secondary-600" />
+            <div className="p-3 bg-brand-100 rounded-lg">
+              <FileEdit className="w-6 h-6 text-brand-600" />
             </div>
           </div>
           <p className="text-xs text-neutral-500 mb-1">Modifications</p>
@@ -68,7 +68,7 @@ export function MaterialsSummaryCard({ overview }: MaterialsSummaryCardProps) {
             {overview.pendingRequests}
           </p>
           {overview.pendingRequests > 0 && (
-            <p className="text-xs text-secondary-600 mt-1">en attente</p>
+            <p className="text-xs text-brand-600 mt-1">en attente</p>
           )}
         </div>
       </div>

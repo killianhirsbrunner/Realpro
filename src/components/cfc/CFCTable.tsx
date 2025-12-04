@@ -35,7 +35,7 @@ export function CFCTable({ data }: CFCTableProps) {
 
         <Card className="p-6">
           <p className="text-sm text-neutral-500 dark:text-neutral-400">Dépensé</p>
-          <p className="text-2xl font-semibold mt-2 text-secondary-600">{formatCHF(totalSpent)}</p>
+          <p className="text-2xl font-semibold mt-2 text-brand-600">{formatCHF(totalSpent)}</p>
           <p className="text-xs text-neutral-500 mt-1">
             {calculatePercentage(totalSpent, totalBudget)}% du budget
           </p>
@@ -118,7 +118,7 @@ export function CFCTable({ data }: CFCTableProps) {
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
-                        <span className="text-sm font-medium text-secondary-600">
+                        <span className="text-sm font-medium text-brand-600">
                           {formatCHF(item.spent || 0)}
                         </span>
                       </td>

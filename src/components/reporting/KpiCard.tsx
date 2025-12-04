@@ -17,7 +17,7 @@ export function KpiCard({ title, value, subtitle, icon: Icon, trend, color = 'bl
   const colorClasses = {
     blue: 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400',
     green: 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400',
-    orange: 'bg-secondary-100 dark:bg-secondary-900/20 text-secondary-600 dark:text-secondary-400',
+    orange: 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400',
     red: 'bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400',
     brand: 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400',
   };
