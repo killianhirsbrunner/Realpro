@@ -49,6 +49,7 @@ import { BrokerLotDetail } from './pages/BrokerLotDetail';
 import { BrokerSalesContracts } from './pages/BrokerSalesContracts';
 import { BrokerSalesContractDetail } from './pages/BrokerSalesContractDetail';
 import { BrokerNewSalesContract } from './pages/BrokerNewSalesContract';
+import { ProjectBrokers } from './pages/ProjectBrokers';
 
 import { BuyerMyLot } from './pages/buyer/BuyerMyLot';
 import { BuyerMaterialChoices } from './pages/buyer/BuyerMaterialChoices';
@@ -157,6 +158,7 @@ function App() {
                     <Route path="/projects/:projectId/finance" element={<ProjectFinance />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
+                    <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
                     <Route path="/promoter" element={<PromoterDashboard />} />
