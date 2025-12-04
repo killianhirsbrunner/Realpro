@@ -51,7 +51,7 @@ export function MessagePreview({ message, projectId }: MessagePreviewProps) {
     if (!role) return 'from-neutral-400 to-neutral-500';
     const roleMap: Record<string, string> = {
       admin: 'from-red-500 to-red-600',
-      promoteur: 'from-blue-500 to-blue-600',
+      promoteur: 'from-brand-500 to-brand-600',
       architect: 'from-purple-500 to-purple-600',
       eg: 'from-green-500 to-green-600',
       courtier: 'from-orange-500 to-orange-600',

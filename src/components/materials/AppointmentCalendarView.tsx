@@ -85,9 +85,9 @@ export function AppointmentCalendarView({
                     disabled={!slot.available}
                     className={`p-4 rounded-xl border transition-all ${
                       isSelected
-                        ? 'bg-blue-600 dark:bg-blue-500 text-white border-blue-600 dark:border-blue-500'
+                        ? 'bg-brand-600 dark:bg-brand-500 text-white border-brand-600 dark:border-brand-500'
                         : slot.available
-                        ? 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 hover:border-blue-600 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/20'
+                        ? 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 hover:border-brand-600 dark:hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/20'
                         : 'bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 opacity-50 cursor-not-allowed'
                     }`}
                   >

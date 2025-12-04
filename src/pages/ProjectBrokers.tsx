@@ -74,8 +74,8 @@ export function ProjectBrokers() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <RealProCard className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center">
-                <Users className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-xl bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center">
+                <Users className="w-6 h-6 text-brand-600" />
               </div>
             </div>
             <div className="space-y-1">
@@ -216,7 +216,7 @@ function BrokerCard({
     <RealProCard className="p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center text-white font-semibold">
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center text-white font-semibold">
             {broker.name?.charAt(0)?.toUpperCase() || 'C'}
           </div>
           <div>
@@ -466,7 +466,7 @@ function AssignLotsModal({
                       setSelectedLots(selectedLots.filter(id => id !== lot.id));
                     }
                   }}
-                  className="rounded border-neutral-300 text-blue-600 focus:ring-blue-500"
+                  className="rounded border-neutral-300 text-brand-600 focus:ring-brand-500"
                 />
                 <div className="flex-1">
                   <p className="font-medium text-neutral-900 dark:text-white">

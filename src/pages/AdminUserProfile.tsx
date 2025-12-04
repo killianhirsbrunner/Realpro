@@ -89,8 +89,8 @@ export function AdminUserProfile() {
 
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900">
-              <User className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            <div className="p-3 rounded-xl bg-brand-100 dark:bg-brand-900">
+              <User className="h-8 w-8 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
               <div className="flex items-center gap-3">
@@ -142,7 +142,7 @@ export function AdminUserProfile() {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center gap-2 py-4 border-b-2 transition ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-blue-600'
+                    ? 'border-brand-600 text-brand-600'
                     : 'border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                 }`}
               >

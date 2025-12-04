@@ -156,7 +156,7 @@ export function TemplatesManager() {
                   onClick={() => handleSelect(template)}
                   className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm transition-colors ${
                     selected?.id === template.id
-                      ? 'bg-blue-50 text-blue-700 font-medium'
+                      ? 'bg-brand-50 text-brand-700 font-medium'
                       : 'hover:bg-gray-50 text-gray-700'
                   }`}
                 >
@@ -173,10 +173,10 @@ export function TemplatesManager() {
           </div>
         </Card>
 
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-brand-50 border-brand-200">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <Code className="w-4 h-4 text-blue-600" />
+              <Code className="w-4 h-4 text-brand-600" />
               <p className="text-xs font-semibold text-gray-900">
                 Variables disponibles
               </p>
@@ -237,7 +237,7 @@ export function TemplatesManager() {
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                     value={selected.name}
                     onChange={(e) =>
                       setSelected({ ...selected, name: e.target.value })
@@ -250,7 +250,7 @@ export function TemplatesManager() {
                     Langue
                   </label>
                   <select
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                     value={selected.language}
                     onChange={(e) =>
                       setSelected({ ...selected, language: e.target.value })
@@ -300,7 +300,7 @@ export function TemplatesManager() {
                   pour insérer des données dynamiques
                 </p>
                 <textarea
-                  className="w-full h-[28rem] rounded-lg border border-gray-300 px-3 py-3 text-sm font-mono focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none"
+                  className="w-full h-[28rem] rounded-lg border border-gray-300 px-3 py-3 text-sm font-mono focus:border-brand-500 focus:ring-1 focus:ring-brand-500 resize-none"
                   value={selected.content}
                   onChange={(e) =>
                     setSelected({ ...selected, content: e.target.value })

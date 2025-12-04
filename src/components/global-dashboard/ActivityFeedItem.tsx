@@ -28,11 +28,11 @@ const activityIcons: Record<string, typeof FileText> = {
 
 const activityColors: Record<string, string> = {
   LOT_SOLD: 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20',
-  DOC_SIGNED: 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20',
+  DOC_SIGNED: 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20',
   ISSUE_CREATED: 'text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20',
   ISSUE_RESOLVED: 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20',
   MATERIAL_CHOSEN: 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20',
-  USER_ADDED: 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20',
+  USER_ADDED: 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/20',
   WORK_COMPLETED: 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20',
 };
 

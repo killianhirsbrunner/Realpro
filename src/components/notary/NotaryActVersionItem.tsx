@@ -15,8 +15,8 @@ export default function NotaryActVersionItem({ version }: NotaryActVersionItemPr
     <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-soft">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-            <FileText className="w-6 h-6 text-blue-600" />
+          <div className="w-12 h-12 rounded-lg bg-brand-100 flex items-center justify-center">
+            <FileText className="w-6 h-6 text-brand-600" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-neutral-900">
@@ -30,7 +30,7 @@ export default function NotaryActVersionItem({ version }: NotaryActVersionItemPr
           href={version.file_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition text-sm font-medium"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition text-sm font-medium"
         >
           <Download className="w-4 h-4" />
           Télécharger

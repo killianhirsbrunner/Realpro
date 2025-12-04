@@ -36,11 +36,11 @@ export function ProjectHeader({ project, progress = 0, teamSize }: ProjectHeader
 
   return (
     <Card className="overflow-hidden">
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 p-8">
+      <div className="bg-gradient-to-br from-brand-50 to-indigo-50 dark:from-brand-950 dark:to-indigo-950 p-8">
         <div className="flex items-start justify-between mb-6">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">
-              <Building2 className="h-8 w-8 text-blue-600" />
+              <Building2 className="h-8 w-8 text-brand-600" />
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
                 {project.name}
               </h1>
@@ -105,7 +105,7 @@ export function ProjectHeader({ project, progress = 0, teamSize }: ProjectHeader
 
           <div className="relative w-full bg-white/50 dark:bg-gray-800/50 h-4 rounded-full overflow-hidden backdrop-blur-sm">
             <div
-              className="absolute inset-y-0 left-0 bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-700 ease-out"
+              className="absolute inset-y-0 left-0 bg-gradient-to-r from-brand-500 to-indigo-600 transition-all duration-700 ease-out"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute inset-0 bg-white/20 animate-pulse" />

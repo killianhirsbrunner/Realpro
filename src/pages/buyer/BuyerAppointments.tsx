@@ -229,11 +229,11 @@ export function BuyerAppointments() {
                     )}
 
                     {appointment.notes_buyer && (
-                      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
-                        <p className="text-xs font-medium text-blue-900 dark:text-blue-300 mb-1">
+                      <div className="bg-brand-50 dark:bg-brand-900/20 rounded-lg p-3">
+                        <p className="text-xs font-medium text-brand-900 dark:text-brand-300 mb-1">
                           Votre message:
                         </p>
-                        <p className="text-sm text-blue-800 dark:text-blue-200">
+                        <p className="text-sm text-brand-800 dark:text-brand-200">
                           {appointment.notes_buyer}
                         </p>
                       </div>

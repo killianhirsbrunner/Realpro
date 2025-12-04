@@ -92,10 +92,10 @@ export default function Step6Summary({ data, onPrev, onSubmit }: Step6SummaryPro
           </div>
         </Card>
 
-        <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
+        <Card className="bg-brand-50 dark:bg-brand-950/30 border-brand-200 dark:border-brand-800">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl">
-              <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            <div className="p-3 bg-brand-100 dark:bg-brand-900/30 rounded-xl">
+              <Users className="w-6 h-6 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">Intervenants</p>

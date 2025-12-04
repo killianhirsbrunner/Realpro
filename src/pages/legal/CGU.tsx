@@ -6,7 +6,7 @@ export default function CGU() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="flex items-center gap-3 mb-8">
-          <FileText className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+          <FileText className="w-8 h-8 text-brand-600 dark:text-brand-400" />
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Conditions Générales d'Utilisation & de Service
           </h1>
@@ -294,21 +294,21 @@ export default function CGU() {
             <p className="text-center text-sm text-gray-600 dark:text-gray-400">
               <a
                 href="/legal/cgv"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Conditions Générales de Vente
               </a>
               {' · '}
               <a
                 href="/legal/mentions-legales"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Mentions légales
               </a>
               {' · '}
               <a
                 href="/legal/privacy"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Politique de confidentialité
               </a>

@@ -26,7 +26,7 @@ export function FileItem({ file, onView, onEdit, onDelete }: FileItemProps) {
     if (!file.file_type) return <File className="w-8 h-8 text-neutral-400" />;
 
     if (file.file_type.startsWith('image/')) {
-      return <ImageIcon className="w-8 h-8 text-blue-500" />;
+      return <ImageIcon className="w-8 h-8 text-brand-500" />;
     }
 
     if (file.file_type.includes('pdf')) {
@@ -155,7 +155,7 @@ export function FileItem({ file, onView, onEdit, onDelete }: FileItemProps) {
               {Object.keys(file.tags).slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded"
+                  className="px-2 py-0.5 text-xs bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 rounded"
                 >
                   {tag}
                 </span>

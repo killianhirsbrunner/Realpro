@@ -87,8 +87,8 @@ export function SubmissionDetail() {
               className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-primary-600 dark:hover:border-primary-400 transition-colors group"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                  <Package className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+                  <Package className="h-5 w-5 text-brand-600 dark:text-brand-400" />
                 </div>
                 <h3 className="font-semibold text-neutral-900 dark:text-white">
                   Comparatif

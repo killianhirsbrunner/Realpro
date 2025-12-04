@@ -161,7 +161,7 @@ export function BuyerPayments() {
                           href={i.invoice_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:underline"
                         >
                           <Download className="h-3 w-3" />
                           Télécharger

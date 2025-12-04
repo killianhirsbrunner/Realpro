@@ -151,7 +151,7 @@ export function PaymentPlanTable({ invoices, onDownloadQR, onMarkAsPaid }: Payme
                       {invoice.qr_pdf_url && onDownloadQR && (
                         <button
                           onClick={() => onDownloadQR(invoice)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                          className="p-2 text-brand-600 hover:bg-brand-50 dark:hover:bg-brand-900/20 rounded-lg transition-colors"
                           title="Télécharger QR-facture"
                         >
                           <Download className="w-4 h-4" />

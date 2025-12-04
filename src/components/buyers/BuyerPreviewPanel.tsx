@@ -50,7 +50,7 @@ export function BuyerPreviewPanel({ buyer, projectId, onClose }: BuyerPreviewPan
   };
 
   const statusColors: Record<string, string> = {
-    PROSPECT: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
+    PROSPECT: 'bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300',
     RESERVED: 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
     IN_PROGRESS: 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
     SIGNED: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'

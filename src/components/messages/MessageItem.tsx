@@ -39,8 +39,8 @@ export function MessageItem({ message, showAvatar = true, onReply }: MessageItem
               className="w-10 h-10 rounded-full object-cover"
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-              <User className="w-5 h-5 text-blue-600 dark:text-blue-300" />
+            <div className="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900 flex items-center justify-center">
+              <User className="w-5 h-5 text-brand-600 dark:text-brand-300" />
             </div>
           )}
         </div>
@@ -92,7 +92,7 @@ export function MessageItem({ message, showAvatar = true, onReply }: MessageItem
             {message.mentions.map((mention: any, index: number) => (
               <span
                 key={index}
-                className="px-2 py-1 text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded"
+                className="px-2 py-1 text-xs bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 rounded"
               >
                 @{mention.name}
               </span>

@@ -196,7 +196,7 @@ export function ReportingCFC() {
                     ? 'bg-red-50 dark:bg-red-900/20'
                     : item.status === 'under_budget'
                     ? 'bg-green-50 dark:bg-green-900/20'
-                    : 'bg-blue-50 dark:bg-blue-900/20'
+                    : 'bg-brand-50 dark:bg-brand-900/20'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -208,7 +208,7 @@ export function ReportingCFC() {
                       ? 'text-red-600'
                       : item.status === 'under_budget'
                       ? 'text-green-600'
-                      : 'text-blue-600'
+                      : 'text-brand-600'
                   }`}>
                     {item.variance >= 0 ? '+' : ''}CHF {(item.variance / 1000).toFixed(0)}k
                   </span>

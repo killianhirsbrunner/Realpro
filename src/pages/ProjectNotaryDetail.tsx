@@ -94,8 +94,8 @@ export default function ProjectNotaryDetail() {
       <RealProCard>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-              <User className="w-5 h-5 text-blue-600" />
+            <div className="w-10 h-10 rounded-lg bg-brand-100 flex items-center justify-center flex-shrink-0">
+              <User className="w-5 h-5 text-brand-600" />
             </div>
             <div>
               <p className="text-sm text-neutral-500">Acheteur</p>
@@ -203,8 +203,8 @@ export default function ProjectNotaryDetail() {
                 ) : (
                   messages.map((message) => (
                     <div key={message.id} className="flex gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                        <User className="w-4 h-4 text-blue-600" />
+                      <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0">
+                        <User className="w-4 h-4 text-brand-600" />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-baseline gap-2 mb-1">
@@ -229,7 +229,7 @@ export default function ProjectNotaryDetail() {
                   onChange={(e) => setMessageText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder="Écrire un message..."
-                  className="flex-1 px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
                 />
                 <RealProButton
                   variant="primary"

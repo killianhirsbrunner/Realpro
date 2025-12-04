@@ -104,7 +104,7 @@ export function Landing() {
                 </Button>
               </Link>
               <Link to="/auth/register">
-                <Button size="sm" className="rounded-full h-9 bg-blue-600 hover:bg-blue-700 border-0 text-white">
+                <Button size="sm" className="rounded-full h-9 bg-brand-600 hover:bg-brand-700 border-0 text-white">
                   Essai gratuit
                 </Button>
               </Link>
@@ -121,18 +121,18 @@ export function Landing() {
             opacity: Math.max(1 - scrollY / 500, 0)
           }}
         >
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/5 rounded-full blur-3xl" />
-          <div className="absolute top-40 right-10 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-40 right-10 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
         </div>
 
         <div className="animate-in fade-in slide-in-from-top-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-8 border border-blue-600/20 hover:bg-blue-600/15 transition-colors">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-8 border border-brand-600/20 hover:bg-brand-600/15 transition-colors">
             <Sparkles className="w-3.5 h-3.5" />
             Solution #1 pour les promoteurs suisses
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold text-neutral-900 dark:text-neutral-100 leading-[1.1] tracking-tight mb-6 max-w-5xl mx-auto">
-            Pilotez vos projets immobiliers avec <span className="text-blue-600">précision</span>
+            Pilotez vos projets immobiliers avec <span className="text-brand-600">précision</span>
           </h1>
 
           <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
@@ -144,7 +144,7 @@ export function Landing() {
             <Link to="/auth/register">
               <Button
                 size="lg"
-                className="group rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-2xl transition-all duration-300 bg-blue-600 hover:bg-blue-700 hover:scale-105 border-0 text-white"
+                className="group rounded-full px-8 h-12 text-base font-medium shadow-lg hover:shadow-2xl transition-all duration-300 bg-brand-600 hover:bg-brand-700 hover:scale-105 border-0 text-white"
               >
                 Commencer gratuitement
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -163,15 +163,15 @@ export function Landing() {
 
           <div className="flex items-center justify-center gap-6 text-xs text-neutral-500 dark:text-neutral-500 flex-wrap mb-16">
             <span className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-blue-600" />
+              <Check className="w-3.5 h-3.5 text-brand-600" />
               14 jours gratuits
             </span>
             <span className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-blue-600" />
+              <Check className="w-3.5 h-3.5 text-brand-600" />
               Sans engagement
             </span>
             <span className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-blue-600" />
+              <Check className="w-3.5 h-3.5 text-brand-600" />
               Données en Suisse
             </span>
           </div>
@@ -199,7 +199,7 @@ export function Landing() {
 
                   <div className="mb-6 flex items-center justify-between animate-in fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center">
                         <Building2 className="w-4 h-4 text-white" />
                       </div>
                       <div>
@@ -208,22 +208,22 @@ export function Landing() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-blue-600/20 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                      <div className="w-6 h-6 rounded-full bg-brand-600/20 flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                       </div>
                       <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl p-4 border border-blue-200/50 dark:border-blue-800/50 animate-in fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
+                    <div className="bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl p-4 border border-brand-200/50 dark:border-brand-800/50 animate-in fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
                       <div className="flex items-center justify-between mb-3">
-                        <div className="text-[10px] font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wide">Projets actifs</div>
-                        <TrendingUp className="w-3 h-3 text-blue-600" />
+                        <div className="text-[10px] font-semibold text-brand-700 dark:text-brand-400 uppercase tracking-wide">Projets actifs</div>
+                        <TrendingUp className="w-3 h-3 text-brand-600" />
                       </div>
-                      <div className="text-2xl font-bold text-blue-900 dark:text-blue-300 mb-1">12</div>
+                      <div className="text-2xl font-bold text-brand-900 dark:text-brand-300 mb-1">12</div>
                       <div className="flex items-center gap-1">
-                        <div className="text-[9px] text-blue-600 dark:text-blue-400">+3 ce mois</div>
+                        <div className="text-[9px] text-brand-600 dark:text-brand-400">+3 ce mois</div>
                       </div>
                     </div>
 
@@ -256,8 +256,8 @@ export function Landing() {
                       </div>
                       <div className="space-y-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-blue-600/10 flex items-center justify-center flex-shrink-0">
-                            <FileText className="w-4 h-4 text-blue-600" />
+                          <div className="w-8 h-8 rounded-lg bg-brand-600/10 flex items-center justify-center flex-shrink-0">
+                            <FileText className="w-4 h-4 text-brand-600" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded w-full mb-1.5" />
@@ -291,7 +291,7 @@ export function Landing() {
                     <div className="bg-white dark:bg-neutral-800 rounded-xl p-5 border border-neutral-200 dark:border-neutral-700 shadow-sm animate-in fade-in" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
                       <div className="flex items-center justify-between mb-4">
                         <div className="text-xs font-semibold text-neutral-900 dark:text-white">Performance</div>
-                        <div className="text-[9px] text-blue-600 font-medium">+12%</div>
+                        <div className="text-[9px] text-brand-600 font-medium">+12%</div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-[10px]">
@@ -299,7 +299,7 @@ export function Landing() {
                           <span className="font-semibold text-neutral-900 dark:text-white">73%</span>
                         </div>
                         <div className="w-full bg-neutral-100 dark:bg-neutral-700 rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-blue-600 h-full rounded-full" style={{ width: '73%' }}></div>
+                          <div className="bg-brand-600 h-full rounded-full" style={{ width: '73%' }}></div>
                         </div>
                         <div className="flex items-center justify-between text-[10px] mt-3">
                           <span className="text-neutral-600 dark:text-neutral-400">Délai moyen signature</span>
@@ -361,7 +361,7 @@ export function Landing() {
                 animationFillMode: 'both'
               }}
             >
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center mb-5 shadow-lg shadow-blue-600/20 group-hover:shadow-blue-600/30 group-hover:scale-110 transition-all duration-300">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-5 shadow-lg shadow-brand-600/20 group-hover:shadow-brand-600/30 group-hover:scale-110 transition-all duration-300">
                 <feature.icon className="w-5 h-5 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -376,10 +376,10 @@ export function Landing() {
       </section>
 
       <section className="relative max-w-6xl mx-auto px-6 lg:px-8 py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-600/5 to-transparent rounded-3xl -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-600/5 to-transparent rounded-3xl -z-10" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
+            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
               360°
             </div>
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -390,7 +390,7 @@ export function Landing() {
             </p>
           </div>
           <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
+            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
               5+
             </div>
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -401,7 +401,7 @@ export function Landing() {
             </p>
           </div>
           <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
+            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
               1
             </div>
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -412,7 +412,7 @@ export function Landing() {
             </p>
           </div>
           <div className="text-center group hover:scale-105 transition-transform duration-300">
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
+            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-brand-600 to-brand-700 bg-clip-text text-transparent mb-3">
               100%
             </div>
             <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -428,7 +428,7 @@ export function Landing() {
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-6">
               <MessageSquare className="w-3.5 h-3.5" />
               Centralisation totale
             </div>
@@ -440,8 +440,8 @@ export function Landing() {
             </p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-blue-600" />
+                <div className="w-6 h-6 rounded-full bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-brand-600" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -453,8 +453,8 @@ export function Landing() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-blue-600" />
+                <div className="w-6 h-6 rounded-full bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-brand-600" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -466,8 +466,8 @@ export function Landing() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-600/10 dark:bg-blue-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-blue-600" />
+                <div className="w-6 h-6 rounded-full bg-brand-600/10 dark:bg-brand-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-brand-600" />
                 </div>
                 <div>
                   <p className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
@@ -481,38 +481,38 @@ export function Landing() {
             </ul>
           </div>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-600/10 rounded-3xl blur-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-600/20 to-brand-600/10 rounded-3xl blur-3xl"></div>
             <div className="relative bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 rounded-3xl p-8 border border-neutral-200 dark:border-neutral-700">
               <div className="space-y-4">
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 rounded-lg bg-brand-600/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-brand-600" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Architecte</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Plans validés</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 rounded-lg bg-brand-600/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-brand-600" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Courtier</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Contrat signé</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                  <div className="w-10 h-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-blue-600" />
+                  <div className="w-10 h-10 rounded-lg bg-brand-600/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-brand-600" />
                   </div>
                   <div className="flex-1">
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Fournisseur</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Offre validée</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                 </div>
                 <div className="flex items-center gap-3 bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
                   <div className="w-10 h-10 rounded-lg bg-neutral-700/10 flex items-center justify-center">
@@ -522,7 +522,7 @@ export function Landing() {
                     <p className="text-xs font-medium text-neutral-900 dark:text-neutral-100">Client</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400">Choix confirmés</p>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                 </div>
               </div>
             </div>
@@ -541,9 +541,9 @@ export function Landing() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="group bg-gradient-to-br from-blue-600/5 to-blue-600/10 dark:from-blue-600/10 dark:to-blue-600/5 rounded-3xl p-8 border border-blue-600/20 hover:border-blue-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+          <div className="group bg-gradient-to-br from-brand-600/5 to-brand-600/10 dark:from-brand-600/10 dark:to-brand-600/5 rounded-3xl p-8 border border-brand-600/20 hover:border-brand-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-brand-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                 <Zap className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -553,7 +553,7 @@ export function Landing() {
                 <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
                   Plus besoin de jongler entre 10 outils différents. Tout est centralisé dans RealPro.
                 </p>
-                <p className="text-sm font-semibold text-blue-600 mt-2">
+                <p className="text-sm font-semibold text-brand-600 mt-2">
                   15h économisées par semaine en moyenne
                 </p>
               </div>
@@ -613,7 +613,7 @@ export function Landing() {
       <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/30">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-6">
               <Clock className="w-3.5 h-3.5" />
               Flux de travail simplifié
             </div>
@@ -627,7 +627,7 @@ export function Landing() {
 
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white dark:bg-neutral-900 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-800">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mb-6">
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-3">
@@ -638,15 +638,15 @@ export function Landing() {
               </p>
               <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600"></div>
                   Plans partagés
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600"></div>
                   Modifications validées
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-600"></div>
                   Historique complet
                 </li>
               </ul>
@@ -722,7 +722,7 @@ export function Landing() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="group p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-blue-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+                className="group p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
                 style={{
                   animation: 'fadeIn 0.5s ease-out',
                   animationDelay: `${index * 150}ms`,
@@ -730,7 +730,7 @@ export function Landing() {
                 }}
               >
                 <div className="mb-6">
-                  <svg className="w-8 h-8 text-blue-600/20" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 text-brand-600/20" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
                 </div>
@@ -754,7 +754,7 @@ export function Landing() {
       <section className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/10 dark:bg-brand-600/20 text-brand-600 dark:text-brand-400 text-xs font-medium mb-6">
               <Shield className="w-3.5 h-3.5" />
               Sécurité & Conformité
             </div>
@@ -767,9 +767,9 @@ export function Landing() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-blue-600/30 transition-all duration-300 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-6 h-6 text-blue-600" />
+            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-brand-600/10 flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-6 h-6 text-brand-600" />
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
                 Données cryptées
@@ -779,8 +779,8 @@ export function Landing() {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-blue-600/30 transition-all duration-300 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center mx-auto mb-4">
+            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-brand-600/10 flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🇨🇭</span>
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
@@ -791,9 +791,9 @@ export function Landing() {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-blue-600/30 transition-all duration-300 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center mx-auto mb-4">
-                <Check className="w-6 h-6 text-blue-600" />
+            <div className="text-center p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-brand-600/30 transition-all duration-300 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-brand-600/10 flex items-center justify-center mx-auto mb-4">
+                <Check className="w-6 h-6 text-brand-600" />
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
                 Conforme RGPD
@@ -808,14 +808,14 @@ export function Landing() {
 
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 rounded-[2.5rem] p-12 md:p-20 text-center text-white shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-blue-600/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-600/20 via-transparent to-brand-600/10"></div>
           <div className="absolute top-0 left-0 w-full h-full opacity-30">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-blue-600 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-600 rounded-full blur-3xl"></div>
+            <div className="absolute top-10 left-10 w-32 h-32 bg-brand-600 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-40 h-40 bg-brand-600 rounded-full blur-3xl"></div>
           </div>
 
           <div className="relative">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/20 border border-blue-600/30 text-blue-300 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-600/20 border border-brand-600/30 text-brand-300 text-xs font-medium mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               Démarrez en 5 minutes
             </div>
@@ -824,14 +824,14 @@ export function Landing() {
               Prêt à transformer votre gestion de projets ?
             </h2>
             <p className="text-base md:text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Rejoignez les promoteurs immobiliers qui économisent <span className="text-blue-400 font-semibold">15h par semaine</span> avec RealPro.
+              Rejoignez les promoteurs immobiliers qui économisent <span className="text-brand-400 font-semibold">15h par semaine</span> avec RealPro.
               Testez gratuitement pendant 14 jours.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Link to="/auth/register">
                 <Button
                   size="lg"
-                  className="group bg-blue-600 text-white hover:bg-blue-700 border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl hover:shadow-blue-600/50 transition-all duration-300 hover:scale-105"
+                  className="group bg-brand-600 text-white hover:bg-brand-700 border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl hover:shadow-brand-600/50 transition-all duration-300 hover:scale-105"
                 >
                   Commencer gratuitement
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -850,15 +850,15 @@ export function Landing() {
 
             <div className="flex items-center justify-center gap-6 text-xs text-neutral-400">
               <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-blue-400" />
+                <Check className="w-3.5 h-3.5 text-brand-400" />
                 Sans carte bancaire
               </span>
               <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-blue-400" />
+                <Check className="w-3.5 h-3.5 text-brand-400" />
                 Sans engagement
               </span>
               <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-blue-400" />
+                <Check className="w-3.5 h-3.5 text-brand-400" />
                 Support inclus
               </span>
             </div>

@@ -156,14 +156,14 @@ export default function Step5Planning({ data, onUpdate, onNext, onPrev }: Step5P
         </div>
       </Card>
 
-      <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
+      <Card className="bg-brand-50 dark:bg-brand-950/30 border-brand-200 dark:border-brand-800">
         <div className="flex items-start gap-3">
-          <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+          <Calendar className="w-5 h-5 text-brand-600 dark:text-brand-400 flex-shrink-0 mt-0.5" />
           <div className="text-sm">
-            <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
+            <h4 className="font-semibold text-brand-900 dark:text-brand-100 mb-1">
               Planning Gantt interactif
             </h4>
-            <p className="text-blue-700 dark:text-blue-300">
+            <p className="text-brand-700 dark:text-brand-300">
               Un planning Gantt détaillé sera généré automatiquement avec toutes les phases et tâches.
               Vous pourrez le modifier, ajouter des dépendances et suivre l'avancement en temps réel.
             </p>

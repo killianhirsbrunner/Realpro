@@ -96,7 +96,7 @@ export function Chat({ threadId }: ChatProps) {
                   <div
                     className={`px-4 py-3 rounded-2xl ${
                       isOwn
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-brand-600 text-white'
                         : 'bg-gray-100 text-gray-900'
                     }`}
                   >
@@ -114,7 +114,7 @@ export function Chat({ threadId }: ChatProps) {
                     <button
                       onClick={() => handleTranslate(message.id, message.body, message.body_lang)}
                       disabled={translating[message.id]}
-                      className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 disabled:opacity-50"
+                      className="flex items-center gap-1 text-xs text-brand-600 hover:text-brand-700 disabled:opacity-50"
                     >
                       <Languages className="h-3 w-3" />
                       {translating[message.id] ? 'Traduction...' : 'Traduire'}
@@ -147,13 +147,13 @@ export function Chat({ threadId }: ChatProps) {
               }
             }}
             placeholder="Tapez votre message... (Entrée pour envoyer)"
-            className="flex-1 resize-none rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px] max-h-[120px]"
+            className="flex-1 resize-none rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 min-h-[44px] max-h-[120px]"
             rows={1}
           />
           <button
             onClick={handleSend}
             disabled={!newMessage.trim() || sending}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {sending ? (
               <span className="text-sm">...</span>

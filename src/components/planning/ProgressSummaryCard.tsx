@@ -16,7 +16,7 @@ export function ProgressSummaryCard({ summary }: ProgressSummaryCardProps) {
           </div>
           <div className="mt-2 w-full bg-neutral-200 rounded-full h-2">
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all"
+              className="bg-brand-600 h-2 rounded-full transition-all"
               style={{ width: `${summary.globalProgress}%` }}
             />
           </div>
@@ -34,7 +34,7 @@ export function ProgressSummaryCard({ summary }: ProgressSummaryCardProps) {
 
         <div>
           <p className="text-xs text-neutral-500 mb-1">En cours</p>
-          <p className="text-2xl font-semibold text-blue-600">
+          <p className="text-2xl font-semibold text-brand-600">
             {summary.inProgress}
           </p>
           <p className="text-xs text-neutral-500 mt-1">

@@ -257,7 +257,7 @@ export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardPr
               </div>
               <div className="w-full h-4 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all"
+                  className="h-full bg-gradient-to-r from-brand-500 to-brand-600 rounded-full transition-all"
                   style={{
                     width: `${finance.cfcBudget > 0 ? (finance.cfcPaid / finance.cfcBudget) * 100 : 0}%`,
                   }}
@@ -276,9 +276,9 @@ export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardPr
                     {formatCurrency(finance.cfcInvoiced)}
                   </div>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30">
+                <div className="text-center p-3 rounded-lg bg-brand-50 dark:bg-brand-950/30">
                   <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">Payé</div>
-                  <div className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                  <div className="text-sm font-bold text-brand-600 dark:text-brand-400">
                     {formatCurrency(finance.cfcPaid)}
                   </div>
                 </div>
@@ -291,8 +291,8 @@ export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardPr
           <Card>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  <FolderOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div className="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-brand-600 dark:text-brand-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                   Documents récents

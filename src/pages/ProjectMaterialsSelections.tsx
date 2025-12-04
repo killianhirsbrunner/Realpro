@@ -25,7 +25,7 @@ export default function ProjectMaterialsSelections() {
       case 'Validé':
         return <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-500" />;
       case 'En cours':
-        return <Clock className="w-5 h-5 text-blue-600 dark:text-blue-500" />;
+        return <Clock className="w-5 h-5 text-brand-600 dark:text-brand-500" />;
       default:
         return <AlertCircle className="w-5 h-5 text-neutral-400" />;
     }
@@ -69,7 +69,7 @@ export default function ProjectMaterialsSelections() {
               <RealProCard className="h-full hover:shadow-card transition-all group">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-500 transition-colors">
+                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
                       Lot {lot.number}
                     </h3>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
@@ -103,7 +103,7 @@ export default function ProjectMaterialsSelections() {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-800">
-                  <p className="text-sm text-blue-600 dark:text-blue-500 font-medium group-hover:underline">
+                  <p className="text-sm text-brand-600 dark:text-brand-500 font-medium group-hover:underline">
                     Voir les choix →
                   </p>
                 </div>

@@ -57,8 +57,8 @@ export function AdminUsers() {
     <div className="space-y-8 max-w-7xl mx-auto">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900">
-            <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          <div className="p-3 rounded-xl bg-brand-100 dark:bg-brand-900">
+            <Users className="h-6 w-6 text-brand-600 dark:text-brand-400" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">

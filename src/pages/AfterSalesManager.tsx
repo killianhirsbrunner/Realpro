@@ -279,7 +279,7 @@ function StatCard({
   color: 'blue' | 'amber' | 'emerald' | 'red';
 }) {
   const colorClasses = {
-    blue: 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400',
+    blue: 'bg-brand-50 text-brand-600 dark:bg-brand-900/20 dark:text-brand-400',
     amber: 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
     emerald: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400',
     red: 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400',

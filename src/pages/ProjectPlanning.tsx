@@ -105,8 +105,8 @@ export function ProjectPlanning() {
       <div className="grid gap-4 sm:grid-cols-4">
         <Card>
           <div className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-blue-50">
-              <TrendingUp className="w-5 h-5 text-blue-600" />
+            <div className="p-2 rounded-lg bg-brand-50">
+              <TrendingUp className="w-5 h-5 text-brand-600" />
             </div>
             <div>
               <p className="text-xs text-gray-500">Avancement</p>
@@ -171,7 +171,7 @@ export function ProjectPlanning() {
         </div>
         <div className="h-3 rounded-full bg-gray-100 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+            className="h-full bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-500"
             style={{ width: `${Math.min(100, Math.max(0, progressPct))}%` }}
           />
         </div>
@@ -291,7 +291,7 @@ function GanttChart({
             const right = toPct(phase.plannedEnd);
             const width = Math.max(2, right - left);
 
-            let barColor = 'bg-blue-500';
+            let barColor = 'bg-brand-500';
             if (phase.status === 'COMPLETED') barColor = 'bg-green-500';
             else if (phase.status === 'LATE') barColor = 'bg-red-500';
             else if (phase.status === 'IN_PROGRESS') barColor = 'bg-amber-500';
@@ -352,8 +352,8 @@ function GanttChart({
 function PhaseRow({ phase, index }: { phase: PhaseDto; index: number }) {
   return (
     <div className="flex items-center gap-4 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-        <span className="text-sm font-semibold text-blue-600">{index}</span>
+      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center">
+        <span className="text-sm font-semibold text-brand-600">{index}</span>
       </div>
       <div className="flex-1 min-w-0">
         <p className="font-medium text-gray-900 text-sm">{phase.name}</p>

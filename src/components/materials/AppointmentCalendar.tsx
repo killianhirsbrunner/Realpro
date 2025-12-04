@@ -71,14 +71,14 @@ export function AppointmentCalendar({
                       key={slot.id}
                       className={`p-4 transition ${
                         available
-                          ? 'cursor-pointer hover:shadow-lg hover:border-blue-300'
+                          ? 'cursor-pointer hover:shadow-lg hover:border-brand-300'
                           : 'opacity-50 cursor-not-allowed'
                       }`}
                       onClick={() => available && setSelectedSlot(slot)}
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4 text-blue-600" />
+                          <Clock className="w-4 h-4 text-brand-600" />
                           <span className="font-medium">
                             {new Date(slot.start_at).toLocaleTimeString('fr-CH', {
                               hour: '2-digit',

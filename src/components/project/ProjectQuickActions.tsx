@@ -113,7 +113,7 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { bg: string; text: string; hover: string; border: string }> = {
-      blue: { bg: 'bg-blue-50', text: 'text-blue-600', hover: 'hover:bg-blue-100 hover:border-blue-300', border: 'border-blue-200' },
+      blue: { bg: 'bg-brand-50', text: 'text-brand-600', hover: 'hover:bg-brand-100 hover:border-brand-300', border: 'border-brand-200' },
       green: { bg: 'bg-green-50', text: 'text-green-600', hover: 'hover:bg-green-100 hover:border-green-300', border: 'border-green-200' },
       purple: { bg: 'bg-purple-50', text: 'text-purple-600', hover: 'hover:bg-purple-100 hover:border-purple-300', border: 'border-purple-200' },
       yellow: { bg: 'bg-yellow-50', text: 'text-yellow-600', hover: 'hover:bg-yellow-100 hover:border-yellow-300', border: 'border-yellow-200' },
@@ -175,7 +175,7 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 text-sm mb-0.5 group-hover:text-blue-600 transition-colors">
+                        <h3 className="font-semibold text-gray-900 text-sm mb-0.5 group-hover:text-brand-600 transition-colors">
                           {action.label}
                         </h3>
                         <p className="text-xs text-gray-500">

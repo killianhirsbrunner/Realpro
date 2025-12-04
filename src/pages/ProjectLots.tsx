@@ -125,12 +125,12 @@ export function ProjectLots() {
 
       {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border border-blue-200 dark:border-blue-800">
+        <div className="p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 border border-brand-200 dark:border-brand-800">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-blue-900 dark:text-blue-100">Total Lots</p>
-            <Home className="w-8 h-8 text-blue-600 dark:text-blue-400 opacity-50" />
+            <p className="text-sm font-medium text-brand-900 dark:text-brand-100">Total Lots</p>
+            <Home className="w-8 h-8 text-brand-600 dark:text-brand-400 opacity-50" />
           </div>
-          <p className="text-3xl font-bold text-blue-900 dark:text-blue-100">{statusCounts.total}</p>
+          <p className="text-3xl font-bold text-brand-900 dark:text-brand-100">{statusCounts.total}</p>
         </div>
 
         <div className="p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border border-green-200 dark:border-green-800">

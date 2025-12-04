@@ -115,7 +115,7 @@ export default function BuyerSupplierAppointments({
     <div className="mx-auto max-w-5xl space-y-6 p-6">
       <header className="space-y-2">
         <div className="flex items-center gap-2">
-          <Calendar className="h-6 w-6 text-blue-600" />
+          <Calendar className="h-6 w-6 text-brand-600" />
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">
             Rendez-vous fournisseurs
           </h1>
@@ -133,7 +133,7 @@ export default function BuyerSupplierAppointments({
             className={[
               'rounded-full px-4 py-2 text-sm font-medium transition-colors',
               selectedCategory === cat.value
-                ? 'bg-blue-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700',
             ].join(' ')}
           >
@@ -285,11 +285,11 @@ export default function BuyerSupplierAppointments({
                   )}
 
                   {appointment.supplier_note && (
-                    <div className="rounded-lg bg-blue-50 p-2 text-xs dark:bg-blue-900/20">
-                      <p className="font-medium text-blue-700 dark:text-blue-300">
+                    <div className="rounded-lg bg-brand-50 p-2 text-xs dark:bg-brand-900/20">
+                      <p className="font-medium text-brand-700 dark:text-brand-300">
                         Message du fournisseur :
                       </p>
-                      <p className="mt-0.5 text-blue-600 dark:text-blue-400">
+                      <p className="mt-0.5 text-brand-600 dark:text-brand-400">
                         {appointment.supplier_note}
                       </p>
                     </div>

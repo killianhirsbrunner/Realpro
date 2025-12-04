@@ -77,10 +77,10 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
                     key={soumission.id}
                     to={`/projects/${projectId}/submissions/${soumission.id}`}
                   >
-                    <div className="group p-4 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50/50 transition-all cursor-pointer">
+                    <div className="group p-4 rounded-lg border border-gray-100 hover:border-brand-200 hover:bg-brand-50/50 transition-all cursor-pointer">
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors truncate">
+                          <h4 className="font-medium text-gray-900 group-hover:text-brand-600 transition-colors truncate">
                             {soumission.title}
                           </h4>
                           {soumission.cfc_code && (

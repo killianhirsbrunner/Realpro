@@ -14,11 +14,11 @@ const statusConfig = {
   },
   act_v1: {
     label: 'Projet d\'acte V1',
-    color: 'bg-blue-100 text-blue-700 border-blue-200'
+    color: 'bg-brand-100 text-brand-700 border-brand-200'
   },
   act_v2: {
     label: 'Projet d\'acte V2',
-    color: 'bg-blue-100 text-blue-700 border-blue-200'
+    color: 'bg-brand-100 text-brand-700 border-brand-200'
   },
   final: {
     label: 'Acte final',

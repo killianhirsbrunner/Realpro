@@ -31,7 +31,7 @@ export const designTokens = {
     soft: '0 4px 12px rgba(0, 0, 0, 0.08)',
     card: '0 8px 18px rgba(0, 0, 0, 0.12)',
     panel: '0 12px 35px rgba(0, 0, 0, 0.18)',
-    glow: '0 0 20px rgba(59, 178, 115, 0.3)',
+    glow: '0 0 20px rgba(158, 94, 239, 0.3)',
   },
 
   typography: {

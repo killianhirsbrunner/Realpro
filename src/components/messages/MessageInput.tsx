@@ -99,7 +99,7 @@ export function MessageInput({
             placeholder={placeholder}
             disabled={disabled || sending}
             rows={1}
-            className="w-full px-4 py-3 pr-12 border border-neutral-300 dark:border-neutral-600 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-800 dark:text-white disabled:opacity-50"
+            className="w-full px-4 py-3 pr-12 border border-neutral-300 dark:border-neutral-600 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-neutral-800 dark:text-white disabled:opacity-50"
             style={{ minHeight: '48px', maxHeight: '120px' }}
           />
 

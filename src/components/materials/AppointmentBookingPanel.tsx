@@ -110,9 +110,9 @@ export function AppointmentBookingPanel({
           </div>
 
           {selectedSlot && (
-            <div className="bg-blue-50 dark:bg-blue-950/20 rounded-2xl p-6">
+            <div className="bg-brand-50 dark:bg-brand-950/20 rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-500" />
+                <Calendar className="w-5 h-5 text-brand-600 dark:text-brand-500" />
                 <div>
                   <p className="font-semibold text-neutral-900 dark:text-neutral-100">
                     {format(new Date(selectedSlot), 'EEEE d MMMM yyyy', { locale: fr })}

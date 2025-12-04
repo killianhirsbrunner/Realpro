@@ -21,7 +21,7 @@ export function BuyerPipeline({ buyers }: BuyerPipelineProps) {
   const { projectId } = useParams<{ projectId: string }>();
 
   const stages = [
-    { id: 'PROSPECT', label: 'Prospects', color: 'bg-blue-100 dark:bg-blue-900' },
+    { id: 'PROSPECT', label: 'Prospects', color: 'bg-brand-100 dark:bg-brand-900' },
     { id: 'RESERVED', label: 'Réservés', color: 'bg-orange-100 dark:bg-orange-900' },
     { id: 'IN_PROGRESS', label: 'En cours', color: 'bg-purple-100 dark:bg-purple-900' },
     { id: 'SIGNED', label: 'Signés', color: 'bg-green-100 dark:bg-green-900' },

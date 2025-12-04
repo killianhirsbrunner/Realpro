@@ -66,7 +66,7 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
                       className={clsx(
                         'w-full text-left px-3 py-2 hover:bg-gray-50 transition-colors flex items-center justify-between',
                         {
-                          'bg-blue-50': currentProjectId === project.id,
+                          'bg-brand-50': currentProjectId === project.id,
                         }
                       )}
                     >
@@ -74,7 +74,7 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
                         <p className={clsx(
                           'text-sm font-medium truncate',
                           {
-                            'text-blue-700': currentProjectId === project.id,
+                            'text-brand-700': currentProjectId === project.id,
                             'text-gray-900': currentProjectId !== project.id,
                           }
                         )}>
@@ -85,7 +85,7 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
                         </p>
                       </div>
                       {currentProjectId === project.id && (
-                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0 ml-2" />
+                        <Check className="w-4 h-4 text-brand-600 flex-shrink-0 ml-2" />
                       )}
                     </button>
                   ))}
@@ -126,14 +126,14 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
                     className={clsx(
                       'w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors flex items-center justify-between',
                       {
-                        'bg-blue-50 text-blue-700': language === lang.code,
+                        'bg-brand-50 text-brand-700': language === lang.code,
                         'text-gray-700': language !== lang.code,
                       }
                     )}
                   >
                     <span>{lang.label}</span>
                     {language === lang.code && (
-                      <Check className="w-4 h-4 text-blue-600" />
+                      <Check className="w-4 h-4 text-brand-600" />
                     )}
                   </button>
                 ))}
@@ -147,7 +147,7 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
             onClick={() => setShowUserMenu(!showUserMenu)}
             className="flex items-center space-x-2 px-2 py-2 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium text-sm">
+            <div className="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-medium text-sm">
               {user?.first_name?.[0]?.toUpperCase() || 'U'}
             </div>
             <div className="text-left hidden lg:block">

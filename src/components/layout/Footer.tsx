@@ -10,31 +10,31 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-6 gap-y-2 text-xs text-gray-500 dark:text-gray-400">
             <Link
               to="/legal/cgu"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
             >
               CGU
             </Link>
             <Link
               to="/legal/cgv"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
             >
               CGV
             </Link>
             <Link
               to="/legal/mentions-legales"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
             >
               Mentions légales
             </Link>
             <Link
               to="/legal/privacy"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
             >
               Confidentialité
             </Link>
             <a
               href="mailto:contact@realpro.ch"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
             >
               Contact
             </a>

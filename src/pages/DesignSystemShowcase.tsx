@@ -220,7 +220,7 @@ export function DesignSystemShowcase() {
                   title="Ventes mensuelles"
                   subtitle="Derniers 6 mois"
                   chart={
-                    <div className="h-48 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl flex items-center justify-center text-neutral-500">
+                    <div className="h-48 bg-gradient-to-r from-brand-100 to-brand-200 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl flex items-center justify-center text-neutral-500">
                       Chart placeholder
                     </div>
                   }

@@ -103,7 +103,7 @@ export function DynamicSidebar({
     <aside className="w-64 bg-white border-r border-gray-200 flex flex-col h-full">
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
+          <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-lg">
             R
           </div>
           <div>
@@ -125,7 +125,7 @@ export function DynamicSidebar({
               className={clsx(
                 'w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-150',
                 {
-                  'bg-blue-50 text-blue-700': isActive,
+                  'bg-brand-50 text-brand-700': isActive,
                   'text-gray-700 hover:bg-gray-50': !isActive,
                 }
               )}

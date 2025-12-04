@@ -317,14 +317,14 @@ export default function SubscriptionManagement() {
             </div>
           </Card>
 
-          <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
+          <Card className="bg-brand-50 dark:bg-brand-950/30 border-brand-200 dark:border-brand-800">
             <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-brand-600 dark:text-brand-400 flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                <h4 className="text-sm font-semibold text-brand-900 dark:text-brand-100 mb-1">
                   Paiement sécurisé par Datatrans
                 </h4>
-                <p className="text-sm text-blue-700 dark:text-blue-300">
+                <p className="text-sm text-brand-700 dark:text-brand-300">
                   Les paiements des abonnements RealPro sont traités de manière sécurisée par Datatrans,
                   leader suisse du paiement en ligne. Vos données bancaires ne sont jamais stockées sur nos serveurs.
                 </p>

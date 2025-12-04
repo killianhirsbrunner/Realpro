@@ -111,7 +111,7 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
         {/* Assumptions */}
         <Card>
           <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-blue-600 dark:text-blue-400">
+            <div className="flex items-center space-x-2 text-brand-600 dark:text-brand-400">
               <Calculator className="h-5 w-5" />
               <h2 className="text-lg font-medium">{t('financial.assumptions')}</h2>
             </div>
@@ -249,14 +249,14 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
                   trend={simulation.marginPercent > 15 ? 'positive' : simulation.marginPercent > 5 ? 'neutral' : 'negative'}
                 />
 
-                <div className="mt-4 rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
-                  <h3 className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                <div className="mt-4 rounded-lg bg-brand-50 p-3 dark:bg-brand-900/20">
+                  <h3 className="text-sm font-medium text-brand-900 dark:text-brand-100">
                     {t('financial.cashflow')}
                   </h3>
                   <div className="mt-2 space-y-2">
                     {simulation.cashflowByYear.map((cf) => (
                       <div key={cf.year} className="flex items-center justify-between text-xs">
-                        <span className="text-blue-700 dark:text-blue-300">{cf.year}</span>
+                        <span className="text-brand-700 dark:text-brand-300">{cf.year}</span>
                         <div className="flex gap-4">
                           <span className="text-green-600 dark:text-green-400">
                             +{cf.cashIn.toLocaleString('fr-CH')} CHF

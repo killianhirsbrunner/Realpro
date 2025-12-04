@@ -39,9 +39,9 @@ export function UpcomingTimeline({ items }: UpcomingTimelineProps) {
   const getStatusStyles = (status: string) => {
     const styles = {
       upcoming: {
-        badge: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
+        badge: 'bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300',
         icon: Clock,
-        iconColor: 'text-blue-600 dark:text-blue-400',
+        iconColor: 'text-brand-600 dark:text-brand-400',
       },
       today: {
         badge: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300',

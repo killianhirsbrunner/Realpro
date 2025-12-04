@@ -33,7 +33,7 @@ export function FolderTree({ folders }: FolderTreeProps) {
         to={`/projects/${projectId}/documents`}
         className={`flex items-center gap-2 px-3 py-2 rounded-lg transition ${
           !currentFolderId
-            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+            ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300'
             : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300'
         }`}
       >
@@ -79,7 +79,7 @@ function FolderItem({
       <div
         className={`flex items-center gap-2 px-3 py-2 rounded-lg transition cursor-pointer ${
           isActive
-            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+            ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300'
             : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300'
         }`}
         style={{ paddingLeft: `${12 + level * 16}px` }}

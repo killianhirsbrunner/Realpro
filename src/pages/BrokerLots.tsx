@@ -158,7 +158,7 @@ export function BrokerLots() {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
           >
             <option value="">Tous les statuts</option>
             <option value="FREE">Disponible</option>
@@ -240,7 +240,7 @@ export function BrokerLots() {
                         value={lot.status}
                         onChange={(e) => handleStatusChange(lot.id, e.target.value)}
                         disabled={saving === lot.id}
-                        className="text-xs rounded-lg border border-gray-300 px-2 py-1 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
+                        className="text-xs rounded-lg border border-gray-300 px-2 py-1 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 disabled:opacity-50"
                       >
                         <option value="FREE">Disponible</option>
                         <option value="RESERVED">Réservé</option>

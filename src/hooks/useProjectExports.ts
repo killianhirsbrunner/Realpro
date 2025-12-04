@@ -206,7 +206,7 @@ export function useProjectExports() {
   const getStatusColor = (status: ExportStatus): string => {
     const colors: Record<ExportStatus, string> = {
       PENDING: 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-800',
-      PROCESSING: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
+      PROCESSING: 'text-brand-600 bg-brand-100 dark:text-brand-400 dark:bg-brand-900/30',
       SUCCESS: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
       FAILED: 'text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30',
     };

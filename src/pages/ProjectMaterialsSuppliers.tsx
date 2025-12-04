@@ -85,7 +85,7 @@ export default function ProjectMaterialsSuppliers() {
               <Card className="p-6 hover:shadow-lg transition cursor-pointer group">
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-lg font-semibold">{showroom.name}</h3>
-                  <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-blue-600 transition flex-shrink-0" />
+                  <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-brand-600 transition flex-shrink-0" />
                 </div>
 
                 {(showroom.address || showroom.city) && (
@@ -121,7 +121,7 @@ export default function ProjectMaterialsSuppliers() {
                     {showroom.categories.map((cat, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full"
+                        className="px-2 py-1 bg-brand-50 text-brand-700 text-xs rounded-full"
                       >
                         {cat}
                       </span>

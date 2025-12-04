@@ -149,7 +149,7 @@ export function BuyerMessages() {
                   <div
                     className={`max-w-[80%] rounded-2xl px-3 py-2 ${
                       msg.author_type === 'BUYER'
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-brand-600 text-white'
                         : 'bg-gray-100 text-gray-900'
                     }`}
                   >
@@ -179,7 +179,7 @@ export function BuyerMessages() {
             Écrire un message
           </label>
           <textarea
-            className="w-full rounded-xl border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-xl border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-500"
             rows={3}
             value={body}
             onChange={(e) => setBody(e.target.value)}
@@ -189,7 +189,7 @@ export function BuyerMessages() {
             <button
               type="submit"
               disabled={sending || !body.trim()}
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-60 transition-colors"
             >
               {sending ? (
                 'Envoi…'

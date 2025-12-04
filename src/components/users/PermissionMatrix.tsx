@@ -26,7 +26,7 @@ const MODULES = [
 ];
 
 const PERMISSION_LEVELS = [
-  { id: 'read', name: 'Lecture', icon: Eye, color: 'text-blue-600' },
+  { id: 'read', name: 'Lecture', icon: Eye, color: 'text-brand-600' },
   { id: 'write', name: 'Écriture', icon: Edit, color: 'text-orange-600' },
   { id: 'admin', name: 'Admin', icon: Shield, color: 'text-red-600' },
 ];
@@ -131,7 +131,7 @@ export function PermissionMatrix({ permissions, onGrant, onRevoke }: PermissionM
                         onClick={() => handleTogglePermission(module.id, level.id as any)}
                         className={`p-2 rounded-lg transition ${
                           isCurrentLevel
-                            ? 'bg-blue-100 dark:bg-blue-900/20'
+                            ? 'bg-brand-100 dark:bg-brand-900/20'
                             : hasLevel
                             ? 'bg-neutral-100 dark:bg-neutral-800'
                             : 'hover:bg-neutral-50 dark:hover:bg-neutral-800/50'
@@ -140,7 +140,7 @@ export function PermissionMatrix({ permissions, onGrant, onRevoke }: PermissionM
                         {hasLevel ? (
                           <Check
                             className={`w-5 h-5 ${
-                              isCurrentLevel ? 'text-blue-600' : 'text-neutral-400'
+                              isCurrentLevel ? 'text-brand-600' : 'text-neutral-400'
                             }`}
                           />
                         ) : (
@@ -156,8 +156,8 @@ export function PermissionMatrix({ permissions, onGrant, onRevoke }: PermissionM
         </table>
       </div>
 
-      <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-        <p className="text-sm text-blue-900 dark:text-blue-100">
+      <div className="p-4 bg-brand-50 dark:bg-brand-900/20 rounded-lg">
+        <p className="text-sm text-brand-900 dark:text-brand-100">
           <strong>Note:</strong> Les permissions en cascade s'appliquent automatiquement.
           Par exemple, la permission "Admin" inclut automatiquement "Écriture" et "Lecture".
         </p>

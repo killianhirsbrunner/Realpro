@@ -59,7 +59,7 @@ export function ThreadList({ threads, currentThreadId }: ThreadListProps) {
             <Card
               className={`p-4 hover:shadow-md transition cursor-pointer ${
                 isActive
-                  ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
+                  ? 'bg-brand-50 dark:bg-brand-900/20 border-brand-200 dark:border-brand-800'
                   : 'hover:bg-neutral-50 dark:hover:bg-neutral-800'
               }`}
             >
@@ -68,7 +68,7 @@ export function ThreadList({ threads, currentThreadId }: ThreadListProps) {
                   <div
                     className={`p-2 rounded-lg ${
                       isActive
-                        ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300'
+                        ? 'bg-brand-100 dark:bg-brand-900 text-brand-600 dark:text-brand-300'
                         : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400'
                     }`}
                   >
@@ -99,7 +99,7 @@ export function ThreadList({ threads, currentThreadId }: ThreadListProps) {
 
                   {thread.unread_count && thread.unread_count > 0 && (
                     <div className="mt-2">
-                      <span className="inline-block px-2 py-0.5 text-xs font-medium bg-blue-600 text-white rounded-full">
+                      <span className="inline-block px-2 py-0.5 text-xs font-medium bg-brand-600 text-white rounded-full">
                         {thread.unread_count}
                       </span>
                     </div>

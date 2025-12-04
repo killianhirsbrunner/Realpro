@@ -115,8 +115,8 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
                     <p className="text-sm text-gray-500 mb-1">Dossiers signés</p>
                     <p className="text-3xl font-bold text-gray-900">{notary.signed_files}</p>
                   </div>
-                  <div className="p-3 bg-blue-50 rounded-xl">
-                    <FileText className="h-7 w-7 text-blue-600" />
+                  <div className="p-3 bg-brand-50 rounded-xl">
+                    <FileText className="h-7 w-7 text-brand-600" />
                   </div>
                 </div>
               </Card.Content>
@@ -152,7 +152,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
             <Card>
               <Card.Content>
                 <p className="text-xs text-gray-500 mb-1">Engagé</p>
-                <p className="text-lg font-semibold text-blue-600">{formatCHF(finance.cfc_engagement)}</p>
+                <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_engagement)}</p>
                 <p className="text-xs text-gray-500 mt-1">
                   {formatPercent((finance.cfc_engagement / finance.cfc_budget) * 100)} du budget
                 </p>
@@ -193,7 +193,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
               </div>
               <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden">
                 <div
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 h-4 rounded-full transition-all duration-700 relative"
+                  className="bg-gradient-to-r from-brand-500 to-brand-600 h-4 rounded-full transition-all duration-700 relative"
                   style={{ width: `${construction.overall_progress}%` }}
                 >
                   <div className="absolute inset-0 bg-white/20 animate-pulse" />

@@ -158,7 +158,7 @@ export function BrokerNewSalesContract() {
                     value={buyerId}
                     onChange={(e) => setBuyerId(e.target.value)}
                     required
-                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
                   >
                     <option value="">Sélectionner un acheteur...</option>
                     {buyers.map((buyer) => (
@@ -224,17 +224,17 @@ export function BrokerNewSalesContract() {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={4}
-                  className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
                   placeholder="Notes internes sur ce contrat de vente..."
                 />
               </div>
             </div>
 
-            <div className="rounded-lg bg-blue-50 border border-blue-200 p-4">
-              <h4 className="text-sm font-medium text-blue-900 mb-2">
+            <div className="rounded-lg bg-brand-50 border border-brand-200 p-4">
+              <h4 className="text-sm font-medium text-brand-900 mb-2">
                 Création automatique
               </h4>
-              <ul className="text-sm text-blue-800 space-y-1">
+              <ul className="text-sm text-brand-800 space-y-1">
                 <li>✓ Un dossier acheteur sera créé automatiquement si nécessaire</li>
                 <li>✓ Un dossier notaire sera créé et lié à ce contrat</li>
                 <li>✓ Le notaire pourra ensuite accéder au dossier pour finaliser l'acte</li>

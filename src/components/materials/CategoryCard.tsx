@@ -19,8 +19,8 @@ export function CategoryCard({ category, projectId }: CategoryCardProps) {
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Package className="w-5 h-5 text-blue-600" />
+              <div className="p-2 bg-brand-100 rounded-lg">
+                <Package className="w-5 h-5 text-brand-600" />
               </div>
               <h3 className="text-lg font-semibold">{category.name}</h3>
             </div>
@@ -38,7 +38,7 @@ export function CategoryCard({ category, projectId }: CategoryCardProps) {
             )}
           </div>
 
-          <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-blue-600 transition flex-shrink-0 mt-1" />
+          <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-brand-600 transition flex-shrink-0 mt-1" />
         </div>
       </Card>
     </Link>

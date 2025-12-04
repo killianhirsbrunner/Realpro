@@ -100,7 +100,7 @@ export function GlobalProjectCard({ project }: GlobalProjectCardProps) {
 
           <div>
             <div className="flex items-center gap-1.5 mb-1">
-              <Home className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <Home className="w-4 h-4 text-brand-600 dark:text-brand-400" />
               <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
                 Chantier
               </span>
@@ -135,7 +135,7 @@ export function GlobalProjectCard({ project }: GlobalProjectCardProps) {
             </div>
             <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-brand-500 to-brand-600 rounded-full transition-all duration-500"
                 style={{ width: `${project.constructionProgress}%` }}
               />
             </div>

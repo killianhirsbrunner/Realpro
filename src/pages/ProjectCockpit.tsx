@@ -337,7 +337,7 @@ export function ProjectCockpit() {
               </p>
               <a
                 href={`/projects/${project.id}/lots`}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                className="text-sm text-brand-600 hover:text-brand-700 font-medium"
               >
                 Voir le programme de vente →
               </a>
@@ -371,8 +371,8 @@ export function ProjectCockpit() {
                   <p className="text-sm text-gray-500">Dossiers signés</p>
                   <p className="text-2xl font-bold text-gray-900">{notary.signed_files}</p>
                 </div>
-                <div className="p-3 bg-blue-50 rounded-xl">
-                  <Users className="h-6 w-6 text-blue-600" />
+                <div className="p-3 bg-brand-50 rounded-xl">
+                  <Users className="h-6 w-6 text-brand-600" />
                 </div>
               </div>
             </Card.Content>
@@ -435,7 +435,7 @@ export function ProjectCockpit() {
         <div className="mt-4">
           <a
             href={`/projects/${project.id}/notary`}
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+            className="text-sm text-brand-600 hover:text-brand-700 font-medium"
           >
             Voir tous les dossiers notaire →
           </a>
@@ -455,7 +455,7 @@ export function ProjectCockpit() {
           <Card>
             <Card.Content>
               <p className="text-xs text-gray-500 mb-1">Engagé</p>
-              <p className="text-lg font-semibold text-blue-600">{formatCHF(finance.cfc_engagement)}</p>
+              <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_engagement)}</p>
             </Card.Content>
           </Card>
           <Card>
@@ -510,10 +510,10 @@ export function ProjectCockpit() {
                   </Table.Body>
                 </Table>
                 <div className="mt-4 flex flex-wrap gap-4 text-sm">
-                  <a href={`/projects/${project.id}/cfc`} className="text-blue-600 hover:text-blue-700 font-medium">
+                  <a href={`/projects/${project.id}/cfc`} className="text-brand-600 hover:text-brand-700 font-medium">
                     Voir le détail CFC →
                   </a>
-                  <a href={`/projects/${project.id}/contracts`} className="text-blue-600 hover:text-blue-700 font-medium">
+                  <a href={`/projects/${project.id}/contracts`} className="text-brand-600 hover:text-brand-700 font-medium">
                     Voir les contrats entreprises →
                   </a>
                 </div>
@@ -540,7 +540,7 @@ export function ProjectCockpit() {
             </div>
             <div className="w-full bg-gray-200 rounded-full h-3">
               <div
-                className="bg-blue-600 h-3 rounded-full transition-all"
+                className="bg-brand-600 h-3 rounded-full transition-all"
                 style={{ width: `${construction.overall_progress}%` }}
               />
             </div>
@@ -577,7 +577,7 @@ export function ProjectCockpit() {
               <div className="mt-4">
                 <a
                   href={`/projects/${project.id}/construction`}
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-sm text-brand-600 hover:text-brand-700 font-medium"
                 >
                   Voir le planning détaillé →
                 </a>
@@ -630,7 +630,7 @@ export function ProjectCockpit() {
               <div className="mt-4">
                 <a
                   href={`/projects/${project.id}/submissions`}
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-sm text-brand-600 hover:text-brand-700 font-medium"
                 >
                   Gérer les soumissions →
                 </a>
@@ -653,7 +653,7 @@ export function ProjectCockpit() {
               <div className="space-y-4">
                 {activities.map(activity => (
                   <div key={activity.id} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-600" />
+                    <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-brand-600" />
                     <div className="flex-1">
                       <p className="text-sm text-gray-900">{activity.action}</p>
                       <p className="text-xs text-gray-500 mt-1">
@@ -667,7 +667,7 @@ export function ProjectCockpit() {
             <div className="mt-6 pt-4 border-t border-gray-200">
               <a
                 href={`/projects/${project.id}/communication`}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                className="text-sm text-brand-600 hover:text-brand-700 font-medium"
               >
                 Voir tous les messages →
               </a>

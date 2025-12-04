@@ -280,7 +280,7 @@ export function BillingPage() {
                       {formatDate(current.currentPeriodEnd)}
                     </p>
                     {current.trialEnd && new Date(current.trialEnd) > new Date() && (
-                      <p className="text-xs text-blue-600 font-medium">
+                      <p className="text-xs text-brand-600 font-medium">
                         Période d'essai jusqu'au {formatDate(current.trialEnd)}
                       </p>
                     )}
@@ -345,7 +345,7 @@ export function BillingPage() {
             onClick={() => setBillingCycle('MONTHLY')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               billingCycle === 'MONTHLY'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
             }`}
           >
@@ -355,7 +355,7 @@ export function BillingPage() {
             onClick={() => setBillingCycle('YEARLY')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               billingCycle === 'YEARLY'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
             }`}
           >
@@ -373,7 +373,7 @@ export function BillingPage() {
               <Card
                 key={plan.slug}
                 className={`flex flex-col ${
-                  isCurrent ? 'ring-2 ring-blue-500 border-blue-500' : ''
+                  isCurrent ? 'ring-2 ring-brand-500 border-brand-500' : ''
                 }`}
               >
                 <div className="flex-1 space-y-4">
@@ -399,7 +399,7 @@ export function BillingPage() {
                     </div>
                     <p className="text-xs text-gray-500 mt-1">{periodLabel}</p>
                     {plan.trialDays > 0 && (
-                      <p className="text-xs text-blue-600 font-medium mt-1">
+                      <p className="text-xs text-brand-600 font-medium mt-1">
                         {plan.trialDays} jours d'essai gratuit
                       </p>
                     )}

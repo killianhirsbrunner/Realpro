@@ -14,7 +14,7 @@ export function QuickActions({ projectId }: QuickActionsProps) {
       label: 'Ajouter un document',
       icon: FileText,
       href: projectId ? `/projects/${projectId}/documents` : '/documents',
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-brand-500 to-brand-600',
     },
     {
       label: 'Envoyer un message',

@@ -61,7 +61,7 @@ export function SupplierCard({ supplier, onBookAppointment }: SupplierCardProps)
 
         <button
           onClick={() => onBookAppointment(supplier)}
-          className="w-full mt-4 px-4 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+          className="w-full mt-4 px-4 py-3 bg-brand-600 dark:bg-brand-500 text-white rounded-xl hover:bg-brand-700 dark:hover:bg-brand-600 transition-colors flex items-center justify-center gap-2"
         >
           <Calendar className="w-4 h-4" />
           Prendre rendez-vous

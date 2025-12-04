@@ -36,8 +36,8 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
     {
       label: 'Engagé',
       value: formatCHF(finance.cfc_engagement),
-      color: 'text-blue-600',
-      bg: 'bg-blue-50',
+      color: 'text-brand-600',
+      bg: 'bg-brand-50',
       percent: finance.cfc_budget > 0 ? (finance.cfc_engagement / finance.cfc_budget) * 100 : 0,
     },
     {

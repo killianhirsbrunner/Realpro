@@ -10,7 +10,7 @@ interface BuyerProgressCardProps {
 export function BuyerProgressCard({ progress, onClick }: BuyerProgressCardProps) {
   const phases = [
     { label: 'Gros œuvre', value: progress.gros_oeuvre_progress, color: 'bg-orange-500' },
-    { label: 'Second œuvre', value: progress.second_oeuvre_progress, color: 'bg-blue-500' },
+    { label: 'Second œuvre', value: progress.second_oeuvre_progress, color: 'bg-brand-500' },
     { label: 'Finitions', value: progress.finitions_progress, color: 'bg-green-500' },
   ];
 
@@ -31,7 +31,7 @@ export function BuyerProgressCard({ progress, onClick }: BuyerProgressCardProps)
         </div>
 
         <div className="text-right">
-          <div className="text-3xl font-bold text-blue-600">
+          <div className="text-3xl font-bold text-brand-600">
             {progress.global_progress}%
           </div>
           <p className="text-xs text-neutral-500">Progression</p>
@@ -56,7 +56,7 @@ export function BuyerProgressCard({ progress, onClick }: BuyerProgressCardProps)
       </div>
 
       {progress.current_phase && (
-        <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 text-blue-700 rounded text-sm">
+        <div className="flex items-center gap-2 px-3 py-2 bg-brand-50 text-brand-700 rounded text-sm">
           <TrendingUp className="w-4 h-4" />
           <span className="font-medium">Phase actuelle :</span>
           <span className="capitalize">{progress.current_phase.replace('_', ' ')}</span>

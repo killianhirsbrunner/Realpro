@@ -22,14 +22,14 @@ export function MaterialOptionCardChoice({ option, isSelected, onToggle }: Mater
     <RealProCard
       className={`cursor-pointer transition-all ${
         isSelected
-          ? 'ring-2 ring-blue-600 dark:ring-blue-500 bg-blue-50/50 dark:bg-blue-950/20'
+          ? 'ring-2 ring-brand-600 dark:ring-brand-500 bg-brand-50/50 dark:bg-brand-950/20'
           : 'hover:shadow-card'
       }`}
       onClick={onToggle}
     >
       <div className="relative">
         {isSelected && (
-          <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center">
+          <div className="absolute -top-2 -right-2 w-8 h-8 bg-brand-600 dark:bg-brand-500 rounded-full flex items-center justify-center">
             <Check className="w-5 h-5 text-white" />
           </div>
         )}
@@ -52,7 +52,7 @@ export function MaterialOptionCardChoice({ option, isSelected, onToggle }: Mater
 
         {option.price > 0 && (
           <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
-            <p className="text-lg font-semibold text-blue-600 dark:text-blue-500">
+            <p className="text-lg font-semibold text-brand-600 dark:text-brand-500">
               + CHF {option.price.toLocaleString('fr-CH')}
             </p>
             <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">

@@ -11,8 +11,8 @@ export function FinanceOverviewCard({ summary }: FinanceOverviewCardProps) {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <Card className="p-6">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-            <Wallet className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+          <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+            <Wallet className="h-5 w-5 text-brand-600 dark:text-brand-400" />
           </div>
           <div className="flex-1">
             <p className="text-xs text-neutral-500 dark:text-neutral-400">Total facturé</p>

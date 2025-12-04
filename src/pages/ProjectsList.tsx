@@ -152,7 +152,7 @@ export function ProjectsList() {
                     setStatusFilter('ALL');
                     setCantonFilter('ALL');
                   }}
-                  className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                  className="text-xs text-brand-600 hover:text-brand-700 font-medium"
                 >
                   Réinitialiser
                 </button>

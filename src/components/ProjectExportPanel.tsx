@@ -141,8 +141,8 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
     <Card className="p-6">
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-3">
-          <div className="rounded-lg bg-blue-50 p-2 dark:bg-blue-900/20">
-            <Archive className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+          <div className="rounded-lg bg-brand-50 p-2 dark:bg-brand-900/20">
+            <Archive className="h-5 w-5 text-brand-600 dark:text-brand-400" />
           </div>
           <div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
@@ -331,12 +331,12 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
         </div>
       )}
 
-      <div className="mt-6 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-        <h4 className="flex items-center gap-2 text-sm font-medium text-blue-900 dark:text-blue-100">
+      <div className="mt-6 rounded-lg bg-brand-50 p-4 dark:bg-brand-900/20">
+        <h4 className="flex items-center gap-2 text-sm font-medium text-brand-900 dark:text-brand-100">
           <FileArchive className="h-4 w-4" />
           Contenu de l'export
         </h4>
-        <ul className="mt-2 space-y-1 text-xs text-blue-800 dark:text-blue-200">
+        <ul className="mt-2 space-y-1 text-xs text-brand-800 dark:text-brand-200">
           <li>• Documents juridiques (contrats, actes notariaux)</li>
           <li>• Plans et documents techniques</li>
           <li>• Données projet (lots, acheteurs, budgets CFC)</li>
@@ -345,7 +345,7 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
           <li>• Audit log et journal de chantier</li>
           <li>• Résumé exécutif et statistiques</li>
         </ul>
-        <p className="mt-3 text-xs text-blue-700 dark:text-blue-300">
+        <p className="mt-3 text-xs text-brand-700 dark:text-brand-300">
           <strong>Conformité légale:</strong> Archive prête pour dépôt chez notaire, transmission
           à un nouveau propriétaire, ou archivage légal (10 ans minimum selon normes SIA).
         </p>

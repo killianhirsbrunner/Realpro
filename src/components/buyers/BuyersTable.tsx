@@ -35,7 +35,7 @@ export function BuyersTable({ buyers }: BuyersTableProps) {
 
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
-      prospect: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+      prospect: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       reservation: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
       contract_signed: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
       financing: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',

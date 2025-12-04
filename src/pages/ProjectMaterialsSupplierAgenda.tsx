@@ -76,7 +76,7 @@ export default function ProjectMaterialsSupplierAgenda() {
       <div className="text-center py-12">
         <p className="text-neutral-600">Showroom non trouvé</p>
         <Link to={`/projects/${projectId}/materials/suppliers`}>
-          <button className="mt-4 text-blue-600 hover:underline">
+          <button className="mt-4 text-brand-600 hover:underline">
             Retour aux fournisseurs
           </button>
         </Link>

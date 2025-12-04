@@ -15,7 +15,7 @@ interface StatCardProps {
 
 export function StatCard({ label, value, icon: Icon, trend, variant = 'default' }: StatCardProps) {
   const variantClasses = {
-    default: 'bg-blue-50 text-blue-600',
+    default: 'bg-brand-50 text-brand-600',
     success: 'bg-green-50 text-green-600',
     warning: 'bg-yellow-50 text-yellow-600',
     error: 'bg-red-50 text-red-600',

@@ -250,7 +250,7 @@ export function BrokerLotDetail() {
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <div className="flex items-start gap-3 mb-4">
-            <Home className="w-5 h-5 text-blue-600 mt-0.5" />
+            <Home className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
               <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
                 Informations lot
@@ -293,7 +293,7 @@ export function BrokerLotDetail() {
             <select
               value={statusValue}
               onChange={(e) => handleStatusChange(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
             >
               <option value="FREE">Disponible</option>
               <option value="RESERVED">Réservé</option>
@@ -305,7 +305,7 @@ export function BrokerLotDetail() {
 
         <Card>
           <div className="flex items-start gap-3">
-            <User className="w-5 h-5 text-blue-600 mt-0.5" />
+            <User className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
               <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
                 Acheteur
@@ -343,7 +343,7 @@ export function BrokerLotDetail() {
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <div className="flex items-start gap-3">
-            <Calendar className="w-5 h-5 text-blue-600 mt-0.5" />
+            <Calendar className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
               <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
                 Réservation
@@ -382,7 +382,7 @@ export function BrokerLotDetail() {
 
         <Card>
           <div className="flex items-start gap-3">
-            <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
+            <FileText className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
               <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
                 Acte de vente
@@ -468,7 +468,7 @@ export function BrokerLotDetail() {
                 <span className="text-gray-600">Contrat signé:</span>{' '}
                 <a
                   href={salesContract.document.downloadUrl}
-                  className="text-blue-600 hover:underline"
+                  className="text-brand-600 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -503,7 +503,7 @@ export function BrokerLotDetail() {
                     <span className="text-gray-600">Dernière version acte:</span>{' '}
                     <a
                       href={salesContract.notary.lastAct.downloadUrl}
-                      className="text-blue-600 hover:underline"
+                      className="text-brand-600 hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

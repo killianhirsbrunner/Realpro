@@ -29,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           'focus:outline-none focus:ring-2 focus:ring-offset-2',
           'disabled:opacity-50 disabled:cursor-not-allowed',
           {
-            'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500':
+            'bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500':
               variant === 'primary',
             'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500':
               variant === 'secondary',

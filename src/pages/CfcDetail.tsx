@@ -78,8 +78,8 @@ export function CfcDetail() {
         </Link>
 
         <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900">
-            <DollarSign className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          <div className="p-3 rounded-xl bg-brand-100 dark:bg-brand-900">
+            <DollarSign className="h-6 w-6 text-brand-600 dark:text-brand-400" />
           </div>
           <div>
             <div className="flex items-center gap-3">
@@ -104,8 +104,8 @@ export function CfcDetail() {
         <CfcInvoicesCard invoices={mockInvoices} />
       </div>
 
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
-        <p className="text-sm text-blue-800 dark:text-blue-200">
+      <div className="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-xl p-4">
+        <p className="text-sm text-brand-800 dark:text-brand-200">
           <strong>Note:</strong> Les engagements proviennent des adjudications de soumissions et des contrats
           signés avec les entreprises générales et sous-traitants. Les factures sont liées aux situations de
           travaux et acomptes validés.

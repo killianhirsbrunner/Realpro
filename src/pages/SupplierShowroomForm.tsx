@@ -149,7 +149,7 @@ export default function SupplierShowroomForm() {
                       type="checkbox"
                       checked={formData.categories.includes(cat.value)}
                       onChange={() => toggleCategory(cat.value)}
-                      className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                      className="w-4 h-4 text-brand-600 rounded focus:ring-brand-500"
                     />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
                       {cat.label}
@@ -235,7 +235,7 @@ export default function SupplierShowroomForm() {
                 id="is_active"
                 checked={formData.is_active}
                 onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                className="w-4 h-4 text-brand-600 rounded focus:ring-brand-500"
               />
               <label htmlFor="is_active" className="text-sm text-gray-700 dark:text-gray-300">
                 {t('supplier.showroom.active') || 'Showroom actif (visible par les acheteurs)'}

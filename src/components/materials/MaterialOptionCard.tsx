@@ -12,7 +12,7 @@ export function MaterialOptionCard({ option, selected, onSelect }: MaterialOptio
   return (
     <Card
       className={`overflow-hidden cursor-pointer transition ${
-        selected ? 'ring-2 ring-blue-600' : 'hover:shadow-lg'
+        selected ? 'ring-2 ring-brand-600' : 'hover:shadow-lg'
       } ${!option.available ? 'opacity-50 cursor-not-allowed' : ''}`}
       onClick={() => option.available && onSelect?.()}
     >
@@ -24,7 +24,7 @@ export function MaterialOptionCard({ option, selected, onSelect }: MaterialOptio
             className="w-full h-full object-cover"
           />
           {selected && (
-            <div className="absolute top-2 right-2 p-2 bg-blue-600 text-white rounded-full">
+            <div className="absolute top-2 right-2 p-2 bg-brand-600 text-white rounded-full">
               <Check className="w-5 h-5" />
             </div>
           )}
@@ -61,7 +61,7 @@ export function MaterialOptionCard({ option, selected, onSelect }: MaterialOptio
               Inclus
             </div>
           ) : (
-            <div className="text-blue-600 font-semibold">
+            <div className="text-brand-600 font-semibold">
               + CHF {option.price_delta.toLocaleString('fr-CH')}
             </div>
           )}

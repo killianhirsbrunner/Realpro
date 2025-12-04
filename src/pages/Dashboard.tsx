@@ -111,7 +111,7 @@ export function Dashboard() {
 
   return (
     <div className="space-y-8 pb-12">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 via-white to-blue-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-blue-900/20 border border-primary-100 dark:border-primary-900/30 p-8">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 via-white to-brand-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-brand-900/20 border border-primary-100 dark:border-primary-900/30 p-8">
         <div className="relative z-10">
           <div className="mb-4">
             <div className="flex items-center gap-3 mb-2">
@@ -135,7 +135,7 @@ export function Dashboard() {
           </div>
         </div>
 
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-200/20 to-blue-200/20 dark:from-primary-900/10 dark:to-blue-900/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-200/20 to-brand-200/20 dark:from-primary-900/10 dark:to-brand-900/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
       </div>
 
       <DashboardKpis kpis={data.kpis} />

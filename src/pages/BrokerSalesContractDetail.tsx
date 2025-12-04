@@ -203,7 +203,7 @@ export function BrokerSalesContractDetail() {
             <Card>
               <div className="p-6 border-b">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-blue-600" />
+                  <FileText className="h-5 w-5 text-brand-600" />
                   Informations du contrat
                 </h2>
               </div>
@@ -247,7 +247,7 @@ export function BrokerSalesContractDetail() {
                       href={contract.document.file_url || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800"
+                      className="mt-2 inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-800"
                     >
                       <FileText className="h-4 w-4" />
                       {contract.document.name}
@@ -263,7 +263,7 @@ export function BrokerSalesContractDetail() {
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     rows={4}
-                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
                     placeholder="Notes internes..."
                   />
                 </div>

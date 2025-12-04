@@ -101,8 +101,8 @@ export function SubmissionInfoCard({ submission }: SubmissionInfoCardProps) {
 
           {submission.deadline_questions && (
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                <Clock className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+                <Clock className="h-4 w-4 text-brand-600 dark:text-brand-400" />
               </div>
               <div>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">Questions / clarifications</p>

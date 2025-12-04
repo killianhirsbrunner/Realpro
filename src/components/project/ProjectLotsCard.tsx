@@ -25,7 +25,7 @@ export function ProjectLotsCard({ projectId, lots }: ProjectLotsCardProps) {
       label: 'Disponibles',
       value: lots.available,
       icon: Package,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-brand-600 bg-brand-50',
     },
     {
       label: 'Réservés',

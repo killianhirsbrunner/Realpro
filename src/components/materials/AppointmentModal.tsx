@@ -71,9 +71,9 @@ export function AppointmentModal({
         </div>
 
         <div className="p-6 space-y-4">
-          <div className="p-4 bg-blue-50 rounded-lg space-y-3">
+          <div className="p-4 bg-brand-50 rounded-lg space-y-3">
             <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-blue-600" />
+              <MapPin className="w-5 h-5 text-brand-600" />
               <div>
                 <p className="font-medium">{showroomName}</p>
                 {slot.showroom?.address && (
@@ -83,7 +83,7 @@ export function AppointmentModal({
             </div>
 
             <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-blue-600" />
+              <Calendar className="w-5 h-5 text-brand-600" />
               <span className="font-medium">
                 {new Date(slot.start_at).toLocaleDateString('fr-CH', {
                   weekday: 'long',
@@ -95,7 +95,7 @@ export function AppointmentModal({
             </div>
 
             <div className="flex items-center gap-3">
-              <Clock className="w-5 h-5 text-blue-600" />
+              <Clock className="w-5 h-5 text-brand-600" />
               <span className="font-medium">
                 {new Date(slot.start_at).toLocaleTimeString('fr-CH', {
                   hour: '2-digit',

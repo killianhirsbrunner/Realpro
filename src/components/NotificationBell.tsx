@@ -223,7 +223,7 @@ function NotificationItem({
   return (
     <div
       className={`px-4 py-3 hover:bg-gray-50 transition-colors ${
-        isUnread ? 'bg-blue-50' : ''
+        isUnread ? 'bg-brand-50' : ''
       }`}
     >
       <div className="flex items-start gap-3">
@@ -248,7 +248,7 @@ function NotificationItem({
             className="p-1 rounded-lg hover:bg-white transition-colors"
             title="Marquer comme lu"
           >
-            <Check className="w-4 h-4 text-blue-600" />
+            <Check className="w-4 h-4 text-brand-600" />
           </button>
         )}
       </div>

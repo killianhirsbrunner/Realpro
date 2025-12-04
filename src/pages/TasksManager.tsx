@@ -197,7 +197,7 @@ export function TasksManager() {
             onClick={() => setFilter('all')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'all'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
             }`}
           >
@@ -207,7 +207,7 @@ export function TasksManager() {
             onClick={() => setFilter('open')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'open'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
             }`}
           >
@@ -217,7 +217,7 @@ export function TasksManager() {
             onClick={() => setFilter('done')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'done'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-brand-600 text-white'
                 : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
             }`}
           >
@@ -232,7 +232,7 @@ export function TasksManager() {
       </div>
 
       {showNewTaskForm && (
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-brand-50 border-brand-200">
           <h3 className="text-sm font-semibold text-gray-900 mb-4">
             Créer une nouvelle tâche
           </h3>
@@ -243,7 +243,7 @@ export function TasksManager() {
               </label>
               <input
                 type="text"
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                 placeholder="Ex: Vérifier dossier notaire lot A101"
                 value={newTask.title}
                 onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
@@ -254,7 +254,7 @@ export function TasksManager() {
                 Description (optionnel)
               </label>
               <textarea
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                 rows={3}
                 placeholder="Détails supplémentaires..."
                 value={newTask.description}
@@ -268,7 +268,7 @@ export function TasksManager() {
                 </label>
                 <input
                   type="date"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                   value={newTask.dueDate}
                   onChange={(e) => setNewTask({ ...newTask, dueDate: e.target.value })}
                 />
@@ -278,7 +278,7 @@ export function TasksManager() {
                   Type
                 </label>
                 <select
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                   value={newTask.type}
                   onChange={(e) => setNewTask({ ...newTask, type: e.target.value })}
                 >
@@ -363,7 +363,7 @@ function TaskItem({
           {isDone ? (
             <CheckCircle className="w-5 h-5 text-green-600" />
           ) : (
-            <Circle className="w-5 h-5 text-gray-400 hover:text-blue-600 transition-colors" />
+            <Circle className="w-5 h-5 text-gray-400 hover:text-brand-600 transition-colors" />
           )}
         </button>
 

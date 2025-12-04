@@ -85,7 +85,7 @@ export function PromoterDashboard() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-blue-600 h-2 rounded-full transition-all"
+                          className="bg-brand-600 h-2 rounded-full transition-all"
                           style={{ width: `${project.sales.salesPercentage}%` }}
                         />
                       </div>
@@ -148,7 +148,7 @@ export function PromoterDashboard() {
                 <p className="text-sm text-gray-500 mb-6">
                   Commencez par créer votre premier projet immobilier
                 </p>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">
                   Créer un projet
                 </button>
               </div>

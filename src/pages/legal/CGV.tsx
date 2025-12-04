@@ -6,7 +6,7 @@ export default function CGV() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="flex items-center gap-3 mb-8">
-          <ShoppingCart className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+          <ShoppingCart className="w-8 h-8 text-brand-600 dark:text-brand-400" />
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Conditions Générales de Vente
           </h1>
@@ -43,7 +43,7 @@ export default function CGV() {
               </ul>
               <p className="font-semibold text-gray-900 dark:text-white mt-4">
                 Les présentes CGV complètent les{' '}
-                <a href="/legal/cgu" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <a href="/legal/cgu" className="text-brand-600 dark:text-brand-400 hover:underline">
                   CGU (Conditions Générales d'Utilisation)
                 </a>{' '}
                 qui régissent l'usage du Logiciel.
@@ -100,7 +100,7 @@ export default function CGV() {
                 </div>
               </div>
 
-              <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <div className="mt-4 p-4 bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-lg">
                 <p className="text-sm">
                   <strong>Tous les prix sont affichés en CHF hors TVA.</strong> La TVA suisse (8,1%) sera ajoutée selon le taux en vigueur.
                 </p>
@@ -222,7 +222,7 @@ export default function CGV() {
                 <p>La résiliation s'effectue :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
                   <li>Via l'<strong>espace Client</strong> (bouton « Résilier mon abonnement »), ou</li>
-                  <li>Par <strong>email</strong> à : <a href="mailto:contact@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">contact@realpro.ch</a></li>
+                  <li>Par <strong>email</strong> à : <a href="mailto:contact@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">contact@realpro.ch</a></li>
                 </ul>
                 <p className="mt-2">Un email de confirmation sera envoyé sous 48 heures.</p>
               </div>
@@ -337,9 +337,9 @@ export default function CGV() {
               15. Contact
             </h3>
             <div className="text-gray-700 dark:text-gray-300 space-y-2">
-              <p><strong>Email commercial :</strong> <a href="mailto:contact@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">contact@realpro.ch</a></p>
-              <p><strong>Email facturation :</strong> <a href="mailto:billing@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">billing@realpro.ch</a></p>
-              <p><strong>Email juridique :</strong> <a href="mailto:legal@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">legal@realpro.ch</a></p>
+              <p><strong>Email commercial :</strong> <a href="mailto:contact@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">contact@realpro.ch</a></p>
+              <p><strong>Email facturation :</strong> <a href="mailto:billing@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">billing@realpro.ch</a></p>
+              <p><strong>Email juridique :</strong> <a href="mailto:legal@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">legal@realpro.ch</a></p>
             </div>
           </section>
 
@@ -356,21 +356,21 @@ export default function CGV() {
             <p className="text-center text-sm text-gray-600 dark:text-gray-400">
               <a
                 href="/legal/cgu"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Conditions Générales d'Utilisation
               </a>
               {' · '}
               <a
                 href="/legal/mentions-legales"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Mentions légales
               </a>
               {' · '}
               <a
                 href="/legal/privacy"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Politique de confidentialité
               </a>

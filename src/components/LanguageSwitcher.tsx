@@ -54,14 +54,14 @@ export function LanguageSwitcher() {
                 className={clsx(
                   'w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors flex items-center justify-between',
                   {
-                    'bg-blue-50 text-blue-700': language === locale,
+                    'bg-brand-50 text-brand-700': language === locale,
                     'text-gray-700': language !== locale,
                   }
                 )}
               >
                 <span>{localeLabels[locale]}</span>
                 {language === locale && (
-                  <Check className="w-4 h-4 text-blue-600" />
+                  <Check className="w-4 h-4 text-brand-600" />
                 )}
               </button>
             ))}

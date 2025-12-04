@@ -77,12 +77,12 @@ export function ProjectDocumentsCard({ projectId, documents, totalCount }: Proje
                     to={`/projects/${projectId}/documents/${doc.id}`}
                   >
                     <div className="group flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                      <div className="flex-shrink-0 p-2 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition-colors">
-                        <Icon className="h-4 w-4 text-blue-600" />
+                      <div className="flex-shrink-0 p-2 bg-brand-50 rounded-lg group-hover:bg-brand-100 transition-colors">
+                        <Icon className="h-4 w-4 text-brand-600" />
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+                        <p className="text-sm font-medium text-gray-900 truncate group-hover:text-brand-600 transition-colors">
                           {doc.name}
                         </p>
                         <div className="flex items-center gap-2 text-xs text-gray-500 mt-0.5">

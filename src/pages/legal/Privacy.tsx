@@ -6,7 +6,7 @@ export default function Privacy() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="flex items-center gap-3 mb-8">
-          <Shield className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+          <Shield className="w-8 h-8 text-brand-600 dark:text-brand-400" />
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Politique de confidentialité
           </h1>
@@ -31,7 +31,7 @@ export default function Privacy() {
               <p>Yverdon-les-Bains</p>
               <p>Canton de Vaud, Suisse</p>
               <p className="mt-3">
-                Email : <a href="mailto:privacy@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@realpro.ch</a>
+                Email : <a href="mailto:privacy@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">privacy@realpro.ch</a>
               </p>
             </div>
           </section>
@@ -206,7 +206,7 @@ export default function Privacy() {
               </ul>
               <p className="mt-4">
                 Pour exercer vos droits, contactez-nous à :{' '}
-                <a href="mailto:privacy@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+                <a href="mailto:privacy@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline font-semibold">
                   privacy@realpro.ch
                 </a>
               </p>
@@ -285,7 +285,7 @@ export default function Privacy() {
                   href="https://www.edoeb.admin.ch"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-brand-600 dark:text-brand-400 hover:underline"
                 >
                   www.edoeb.admin.ch
                 </a>
@@ -306,7 +306,7 @@ export default function Privacy() {
               </p>
               <p className="mt-3">
                 Email :{' '}
-                <a href="mailto:privacy@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <a href="mailto:privacy@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">
                   privacy@realpro.ch
                 </a>
               </p>
@@ -317,21 +317,21 @@ export default function Privacy() {
             <p className="text-center text-sm text-gray-600 dark:text-gray-400">
               <a
                 href="/legal/cgu"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Conditions Générales d'Utilisation
               </a>
               {' · '}
               <a
                 href="/legal/cgv"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Conditions Générales de Vente
               </a>
               {' · '}
               <a
                 href="/legal/mentions-legales"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Mentions légales
               </a>

@@ -126,7 +126,7 @@ export function BrokerDashboard() {
               <select
                 value={selectedProjectId || ''}
                 onChange={(e) => setSelectedProjectId(e.target.value || undefined)}
-                className="block w-full max-w-md rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full max-w-md rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
               >
                 <option value="">Tous les projets</option>
                 {projects?.map((project: any) => (
@@ -154,7 +154,7 @@ export function BrokerDashboard() {
                 icon={FileText}
                 label="Lots vendus"
                 value={stats.soldLots}
-                color="bg-blue-600"
+                color="bg-brand-600"
               />
               <StatCard
                 icon={FileText}
@@ -261,7 +261,7 @@ export function BrokerDashboard() {
                                     <div className="text-xs">{formatDate(lot.reservation.signed_at)}</div>
                                   </div>
                                 ) : lot.sales_contract?.signed_at ? (
-                                  <div className="text-blue-600">
+                                  <div className="text-brand-600">
                                     ✓ Acte signé
                                     <div className="text-xs">{formatDate(lot.sales_contract.signed_at)}</div>
                                   </div>

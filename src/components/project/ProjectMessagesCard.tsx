@@ -27,7 +27,7 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
       case 'high':
         return 'bg-red-100 border-red-200';
       case 'normal':
-        return 'bg-blue-50 border-blue-100';
+        return 'bg-brand-50 border-brand-100';
       case 'low':
         return 'bg-gray-50 border-gray-100';
       default:
@@ -70,13 +70,13 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
                   key={message.id}
                   className={`p-4 rounded-lg border transition-all ${
                     message.is_unread
-                      ? 'bg-blue-50 border-blue-200 shadow-sm'
+                      ? 'bg-brand-50 border-brand-200 shadow-sm'
                       : getPriorityColor(message.priority)
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-indigo-600 flex items-center justify-center text-white font-semibold">
                         {message.author_name.charAt(0).toUpperCase()}
                       </div>
                     </div>

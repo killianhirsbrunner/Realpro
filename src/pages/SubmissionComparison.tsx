@@ -113,7 +113,7 @@ export function SubmissionComparison() {
 
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg shadow-blue-600/20">
+            <div className="p-3 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 shadow-lg shadow-brand-600/20">
               <BarChart3 className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -161,8 +161,8 @@ export function SubmissionComparison() {
 
         <Card className="p-6 hover:shadow-xl transition-shadow">
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-              <FileText className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900">
+              <FileText className="h-5 w-5 text-brand-600 dark:text-brand-400" />
             </div>
             <h3 className="font-semibold text-neutral-900 dark:text-white">
               Prix moyen
@@ -238,7 +238,7 @@ export function SubmissionComparison() {
                   <tr
                     key={offer.offerId}
                     className={`border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors ${
-                      selectedOffer === offer.offerId ? 'bg-blue-50 dark:bg-blue-900/20' : ''
+                      selectedOffer === offer.offerId ? 'bg-brand-50 dark:bg-brand-900/20' : ''
                     } ${isLowest ? 'bg-green-50/30 dark:bg-green-900/10' : ''}`}
                   >
                     <td className="px-6 py-4">
@@ -247,7 +247,7 @@ export function SubmissionComparison() {
                           type="radio"
                           checked={selectedOffer === offer.offerId}
                           onChange={() => setSelectedOffer(offer.offerId)}
-                          className="w-4 h-4 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                          className="w-4 h-4 text-brand-600 focus:ring-brand-500 cursor-pointer"
                         />
                         <div>
                           <p className="font-medium text-neutral-900 dark:text-white">
@@ -394,7 +394,7 @@ function OfferStatusPill({ status }: { status: string }) {
 
   if (s === 'SUBMITTED') {
     label = 'Reçue';
-    className = 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+    className = 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200';
   } else if (s === 'WINNER') {
     label = 'Adjugée';
     className = 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';

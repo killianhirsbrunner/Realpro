@@ -33,7 +33,7 @@ export function ProjectSelector() {
   }
 
   const statusColors: Record<string, string> = {
-    PLANNING: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400',
+    PLANNING: 'bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400',
     CONSTRUCTION: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400',
     SELLING: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400',
     COMPLETED: 'bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-400',

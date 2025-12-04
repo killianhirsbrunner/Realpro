@@ -23,7 +23,7 @@ export default function ProjectFinancesPayments() {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <RefreshCw className="w-8 h-8 animate-spin text-brand-600 mx-auto mb-4" />
           <p className="text-neutral-600 dark:text-neutral-400">Chargement des acomptes...</p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function ProjectFinancesPayments() {
             <Download className="w-4 h-4" />
             Exporter
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">
             <Plus className="w-4 h-4" />
             Nouvelle facture
           </button>
@@ -90,7 +90,7 @@ export default function ProjectFinancesPayments() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+        <div className="bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
           <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-1">
             {invoices.length}
           </div>
@@ -161,11 +161,11 @@ export default function ProjectFinancesPayments() {
         onMarkAsPaid={handleMarkAsPaid}
       />
 
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
+      <div className="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-brand-900 dark:text-brand-100 mb-2">
           Factures QR suisses
         </h3>
-        <p className="text-sm text-blue-800 dark:text-blue-200">
+        <p className="text-sm text-brand-800 dark:text-brand-200">
           Les factures QR suisses sont conformes aux exigences de SIX et PostFinance.
           Les acheteurs peuvent scanner le code QR pour effectuer le paiement directement depuis leur e-banking.
         </p>

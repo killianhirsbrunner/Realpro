@@ -277,7 +277,7 @@ export function BuyerMaterialChoices() {
             {categories.map((cat) => (
               <Card key={cat.id}>
                 <div className="flex items-center gap-3 mb-4">
-                  <Package className="w-5 h-5 text-blue-600" />
+                  <Package className="w-5 h-5 text-brand-600" />
                   <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                     {cat.name}
                   </h2>
@@ -291,7 +291,7 @@ export function BuyerMaterialChoices() {
                         key={opt.id}
                         className={`flex cursor-pointer flex-col rounded-xl border px-4 py-3 transition-all ${
                           isChecked
-                            ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200'
+                            ? 'border-brand-500 bg-brand-50 ring-2 ring-brand-200'
                             : 'border-gray-200 bg-white hover:border-gray-300'
                         }`}
                       >
@@ -308,7 +308,7 @@ export function BuyerMaterialChoices() {
                           </div>
                           <input
                             type="checkbox"
-                            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                             checked={isChecked}
                             onChange={() => toggleOption(cat.id, opt.id)}
                           />
@@ -386,12 +386,12 @@ export function BuyerMaterialChoices() {
         </div>
 
         {showChangeRequestForm && (
-          <Card className="bg-blue-50 border-blue-200">
+          <Card className="bg-brand-50 border-brand-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">
               Demander une modification spéciale
             </h3>
             <textarea
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
               rows={4}
               placeholder="Décrivez la modification souhaitée (par ex. déplacer une cloison, modifier un emplacement de prise, changer un type de matériau…)"
               value={newChangeRequest}

@@ -11,7 +11,7 @@ export default function ProjectFinancesCfc() {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <RefreshCw className="w-8 h-8 animate-spin text-brand-600 mx-auto mb-4" />
           <p className="text-neutral-600 dark:text-neutral-400">Chargement des données CFC...</p>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function ProjectFinancesCfc() {
             <RefreshCw className="w-4 h-4" />
             Actualiser
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">
             <Download className="w-4 h-4" />
             Exporter Excel
           </button>
@@ -82,7 +82,7 @@ export default function ProjectFinancesCfc() {
             <p className="text-neutral-600 dark:text-neutral-400 mb-6">
               Commencez par créer votre première ligne de budget CFC pour ce projet
             </p>
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            <button className="px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors font-medium">
               Créer la première ligne
             </button>
           </div>
@@ -95,11 +95,11 @@ export default function ProjectFinancesCfc() {
         />
       )}
 
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
+      <div className="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-brand-900 dark:text-brand-100 mb-2">
           À propos des codes CFC
         </h3>
-        <p className="text-sm text-blue-800 dark:text-blue-200">
+        <p className="text-sm text-brand-800 dark:text-brand-200">
           Les codes CFC (Codes de Frais de Construction) sont standardisés en Suisse pour la gestion des budgets de construction.
           Cliquez sur une cellule pour modifier les montants. Les totaux sont calculés automatiquement.
         </p>

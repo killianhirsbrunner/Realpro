@@ -14,7 +14,7 @@ export function RealProLogo({ className = '', size = 'md' }: RealProLogoProps) {
   return (
     <div className={`flex items-center gap-0.5 ${sizeClasses[size]} font-bold ${className}`}>
       <span className="text-neutral-900 dark:text-white">Real</span>
-      <span className="text-blue-600">Pro</span>
+      <span className="text-brand-600">Pro</span>
     </div>
   );
 }

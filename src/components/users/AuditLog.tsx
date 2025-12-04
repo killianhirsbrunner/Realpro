@@ -78,8 +78,8 @@ export function AuditLog({ activities }: AuditLogProps) {
             key={activity.id}
             className="flex items-start gap-4 p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
           >
-            <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/20">
-              <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="p-2 rounded-lg bg-brand-100 dark:bg-brand-900/20">
+              <Icon className="w-5 h-5 text-brand-600 dark:text-brand-400" />
             </div>
 
             <div className="flex-1 min-w-0">

@@ -21,8 +21,8 @@ export function MaterialsSummaryCard({ overview }: MaterialsSummaryCardProps) {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="text-center">
           <div className="flex justify-center mb-2">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <Layers className="w-6 h-6 text-blue-600" />
+            <div className="p-3 bg-brand-100 rounded-lg">
+              <Layers className="w-6 h-6 text-brand-600" />
             </div>
           </div>
           <p className="text-xs text-neutral-500 mb-1">Catégories</p>

@@ -112,7 +112,7 @@ export function MaterialOptionPanel({ category, options, onClose, onSave }: Mate
                 type="checkbox"
                 checked={option.is_standard}
                 onChange={(e) => updateOption(index, 'is_standard', e.target.checked)}
-                className="w-5 h-5 rounded border-neutral-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-500"
+                className="w-5 h-5 rounded border-neutral-300 dark:border-neutral-700 text-brand-600 focus:ring-brand-500"
               />
               <span className="text-sm text-neutral-700 dark:text-neutral-300">
                 Option standard incluse

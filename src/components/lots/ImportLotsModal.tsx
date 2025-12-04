@@ -73,12 +73,12 @@ A.02.01,DUPLEX,AVAILABLE,Bâtiment A,2,5.5,145.8,20.0,10.5,0,1350000,50000,Sud,O
       >
         <div className="space-y-6">
           {/* Instructions */}
-          <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-            <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
+          <div className="p-4 rounded-xl bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800">
+            <h4 className="font-semibold text-brand-900 dark:text-brand-100 mb-2 flex items-center gap-2">
               <AlertCircle className="w-5 h-5" />
               Instructions
             </h4>
-            <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1 list-disc list-inside">
+            <ul className="text-sm text-brand-800 dark:text-brand-200 space-y-1 list-disc list-inside">
               <li>Téléchargez le modèle Excel ci-dessous</li>
               <li>Remplissez les informations de vos lots</li>
               <li>Enregistrez le fichier au format CSV ou XLSX</li>

@@ -39,7 +39,7 @@ export default function ProjectMaterialsAppointments() {
       case 'cancelled':
         return <XCircle className="w-5 h-5 text-red-600 dark:text-red-500" />;
       default:
-        return <Clock className="w-5 h-5 text-blue-600 dark:text-blue-500" />;
+        return <Clock className="w-5 h-5 text-brand-600 dark:text-brand-500" />;
     }
   };
 

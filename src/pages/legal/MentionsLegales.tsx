@@ -6,7 +6,7 @@ export default function MentionsLegales() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="flex items-center gap-3 mb-8">
-          <Building2 className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+          <Building2 className="w-8 h-8 text-brand-600 dark:text-brand-400" />
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Mentions légales
           </h1>
@@ -24,13 +24,13 @@ export default function MentionsLegales() {
               <p>Canton de Vaud, Suisse</p>
               <p className="mt-4">
                 <span className="font-semibold">Email :</span>{' '}
-                <a href="mailto:contact@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <a href="mailto:contact@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">
                   contact@realpro.ch
                 </a>
               </p>
               <p>
                 <span className="font-semibold">Site web :</span>{' '}
-                <a href="https://www.realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline" target="_blank" rel="noopener noreferrer">
                   www.realpro.ch
                 </a>
               </p>
@@ -121,7 +121,7 @@ export default function MentionsLegales() {
                 Pour plus d'informations, consultez notre{' '}
                 <a
                   href="/legal/privacy"
-                  className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+                  className="text-brand-600 dark:text-brand-400 hover:underline font-semibold"
                 >
                   Politique de confidentialité
                 </a>.
@@ -157,7 +157,7 @@ export default function MentionsLegales() {
               <p>Pour toute question concernant ces mentions légales :</p>
               <p className="mt-3">
                 <strong>Email :</strong>{' '}
-                <a href="mailto:legal@realpro.ch" className="text-blue-600 dark:text-blue-400 hover:underline">
+                <a href="mailto:legal@realpro.ch" className="text-brand-600 dark:text-brand-400 hover:underline">
                   legal@realpro.ch
                 </a>
               </p>
@@ -175,21 +175,21 @@ export default function MentionsLegales() {
             <p className="text-center text-sm text-gray-600 dark:text-gray-400">
               <a
                 href="/legal/cgu"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Conditions Générales d'Utilisation
               </a>
               {' · '}
               <a
                 href="/legal/cgv"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Conditions Générales de Vente
               </a>
               {' · '}
               <a
                 href="/legal/privacy"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-brand-600 dark:text-brand-400 hover:underline"
               >
                 Politique de confidentialité
               </a>

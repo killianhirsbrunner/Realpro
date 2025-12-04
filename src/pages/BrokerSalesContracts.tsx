@@ -164,7 +164,7 @@ function CreateSalesContractModal({
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
             />
           </div>
 
@@ -388,7 +388,7 @@ export function BrokerSalesContracts() {
                             href={contract.document.file_url || '#'}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800"
+                            className="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-800"
                           >
                             <Download className="h-4 w-4" />
                             {contract.document.name}

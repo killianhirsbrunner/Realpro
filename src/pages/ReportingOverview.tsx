@@ -141,7 +141,7 @@ export function ReportingOverview() {
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <KpiCard
-          icon={<Building2 className="w-5 h-5 text-blue-600" />}
+          icon={<Building2 className="w-5 h-5 text-brand-600" />}
           label="Projets actifs"
           value={projectsSummary.totalProjects}
           helper={`${projectsSummary.byStatus.sales} en vente · ${projectsSummary.byStatus.construction} en chantier`}

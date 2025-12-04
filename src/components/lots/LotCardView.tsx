@@ -14,7 +14,7 @@ export default function LotCardView({ lot, onClick }: LotCardViewProps) {
       case 'RESERVED':
         return { type: 'warning' as const, label: 'Réservé', color: 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800' };
       case 'OPTION':
-        return { type: 'info' as const, label: 'Option', color: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' };
+        return { type: 'info' as const, label: 'Option', color: 'bg-brand-50 dark:bg-brand-900/20 border-brand-200 dark:border-brand-800' };
       case 'SOLD':
         return { type: 'danger' as const, label: 'Vendu', color: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800' };
       case 'DELIVERED':

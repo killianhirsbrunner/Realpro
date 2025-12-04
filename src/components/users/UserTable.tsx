@@ -84,7 +84,7 @@ export function UserTable({ users, onToggleStatus }: UserTableProps) {
                 <div className="flex items-center justify-end gap-2">
                   <Link
                     to={`/admin/users/${user.id}`}
-                    className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                    className="text-sm text-brand-600 hover:text-brand-700 dark:text-brand-400"
                   >
                     Voir
                   </Link>

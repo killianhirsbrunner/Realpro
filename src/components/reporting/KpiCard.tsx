@@ -15,7 +15,7 @@ interface KpiCardProps {
 
 export function KpiCard({ title, value, subtitle, icon: Icon, trend, color = 'blue' }: KpiCardProps) {
   const colorClasses = {
-    blue: 'bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
+    blue: 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400',
     green: 'bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400',
     orange: 'bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400',
     red: 'bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400',

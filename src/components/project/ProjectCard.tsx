@@ -70,7 +70,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="p-6 space-y-4">
           <div>
             <div className="flex items-start justify-between mb-2">
-              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-brand-600 transition-colors">
                 {project.name}
               </h3>
             </div>
@@ -139,7 +139,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <Link to={`/projects/${project.id}/overview`}>
               <Button
                 variant="outline"
-                className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all"
+                className="w-full group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 transition-all"
               >
                 Ouvrir le projet
               </Button>

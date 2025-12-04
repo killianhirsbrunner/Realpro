@@ -139,8 +139,8 @@ export default function AdminOrganizationsPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="p-4">
             <div className="flex items-center gap-3">
-              <div className="rounded-full bg-blue-100 p-2 dark:bg-blue-900">
-                <Building2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              <div className="rounded-full bg-brand-100 p-2 dark:bg-brand-900">
+                <Building2 className="h-5 w-5 text-brand-600 dark:text-brand-400" />
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Organisations</p>
@@ -244,7 +244,7 @@ export default function AdminOrganizationsPage() {
                           org.subscriptionStatus === 'ACTIVE'
                             ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300'
                             : org.subscriptionStatus === 'TRIAL'
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                            ? 'bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300'
                             : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
                         }`}
                       >

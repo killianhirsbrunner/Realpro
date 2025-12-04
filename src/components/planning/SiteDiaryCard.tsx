@@ -36,7 +36,7 @@ export function SiteDiaryCard({ entry, onClick }: SiteDiaryCardProps) {
 
         <div className="flex gap-2">
           {workforceCount > 0 && (
-            <div className="flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 rounded text-sm">
+            <div className="flex items-center gap-1 px-2 py-1 bg-brand-50 text-brand-700 rounded text-sm">
               <Users className="w-4 h-4" />
               {workforceCount}
             </div>

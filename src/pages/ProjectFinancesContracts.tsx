@@ -19,7 +19,7 @@ export default function ProjectFinancesContracts() {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <RefreshCw className="w-8 h-8 animate-spin text-brand-600 mx-auto mb-4" />
           <p className="text-neutral-600 dark:text-neutral-400">Chargement des contrats...</p>
         </div>
       </div>
@@ -67,7 +67,7 @@ export default function ProjectFinancesContracts() {
             <RefreshCw className="w-4 h-4" />
             Actualiser
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">
             <Plus className="w-4 h-4" />
             Nouveau contrat
           </button>
@@ -82,7 +82,7 @@ export default function ProjectFinancesContracts() {
             placeholder="Rechercher par nom, numéro ou entreprise..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
           />
         </div>
 
@@ -109,7 +109,7 @@ export default function ProjectFinancesContracts() {
               }
             </p>
             {!searchTerm && (
-              <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+              <button className="px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors font-medium">
                 Créer le premier contrat
               </button>
             )}

@@ -22,7 +22,7 @@ export function GanttTask({ task, projectStart, zoom, onClick }: GanttTaskProps)
       case 'completed':
         return 'bg-green-500';
       case 'in_progress':
-        return 'bg-blue-500';
+        return 'bg-brand-500';
       case 'delayed':
         return 'bg-red-500';
       case 'blocked':
@@ -47,7 +47,7 @@ export function GanttTask({ task, projectStart, zoom, onClick }: GanttTaskProps)
 
   const getProgressColor = () => {
     if (task.progress === 100) return 'bg-green-600';
-    if (task.progress >= 75) return 'bg-blue-500';
+    if (task.progress >= 75) return 'bg-brand-500';
     if (task.progress >= 50) return 'bg-yellow-500';
     return 'bg-orange-500';
   };

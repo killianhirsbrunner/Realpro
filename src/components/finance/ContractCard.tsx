@@ -44,7 +44,7 @@ export function ContractCard({ contract, onClick }: ContractCardProps) {
       case 'SIGNED':
         return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400';
       case 'ACTIVE':
-        return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400';
+        return 'bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400';
       case 'COMPLETED':
         return 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300';
       case 'DRAFT':
@@ -72,14 +72,14 @@ export function ContractCard({ contract, onClick }: ContractCardProps) {
       className={clsx(
         'bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800',
         'shadow-sm hover:shadow-md transition-all duration-200',
-        onClick && 'cursor-pointer hover:border-blue-300 dark:hover:border-blue-700'
+        onClick && 'cursor-pointer hover:border-brand-300 dark:hover:border-brand-700'
       )}
     >
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <Building2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="p-2 bg-brand-50 dark:bg-brand-900/20 rounded-lg">
+              <Building2 className="w-5 h-5 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
               <div className="text-sm text-neutral-500 dark:text-neutral-400 font-mono">

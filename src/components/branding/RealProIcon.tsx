@@ -13,7 +13,7 @@ const sizeClasses = {
 export function RealProIcon({ className = '', size = 'md' }: RealProIconProps) {
   return (
     <div
-      className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-bold text-white shadow-lg ${className}`}
+      className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center font-bold text-white shadow-lg ${className}`}
     >
       RP
     </div>

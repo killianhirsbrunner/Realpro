@@ -57,7 +57,7 @@ export function DocumentSignature({ documentId }: DocumentSignatureProps) {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <FileSignature className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <FileSignature className="h-5 w-5 text-brand-600 dark:text-brand-400" />
             <h3 className="font-medium text-gray-900 dark:text-gray-50">
               {t('signature.title')}
             </h3>
@@ -70,7 +70,7 @@ export function DocumentSignature({ documentId }: DocumentSignatureProps) {
         </div>
 
         {showForm && (
-          <div className="space-y-3 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
+          <div className="space-y-3 rounded-lg border border-brand-200 bg-brand-50 p-3 dark:border-brand-800 dark:bg-brand-900/20">
             <Input
               placeholder={t('signature.signerEmail')}
               type="email"

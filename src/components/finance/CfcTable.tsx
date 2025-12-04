@@ -61,7 +61,7 @@ export function CfcTable({ lines, totals, onUpdateLine }: CfcTableProps) {
             type="number"
             value={editValue}
             onChange={(e) => setEditValue(e.target.value)}
-            className="w-full px-3 py-1.5 border border-blue-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+            className="w-full px-3 py-1.5 border border-brand-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
             autoFocus
             onKeyDown={(e) => {
               if (e.key === 'Enter') saveEdit(line.id, field);

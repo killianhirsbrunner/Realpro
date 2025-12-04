@@ -22,7 +22,7 @@ interface SAVTableProps {
 export function SAVTable({ tickets }: SAVTableProps) {
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
-      new: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+      new: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       in_progress: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
       resolved: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
       closed: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
@@ -68,7 +68,7 @@ export function SAVTable({ tickets }: SAVTableProps) {
       case 'in_progress':
         return <Clock className="h-4 w-4 text-orange-600" />;
       default:
-        return <AlertCircle className="h-4 w-4 text-blue-600" />;
+        return <AlertCircle className="h-4 w-4 text-brand-600" />;
     }
   };
 

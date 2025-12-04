@@ -15,7 +15,7 @@ export function SubmissionsTable({ submissions, projectId }: SubmissionsTablePro
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
       draft: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
-      active: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+      active: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       closed: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
       awarded: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
       cancelled: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',

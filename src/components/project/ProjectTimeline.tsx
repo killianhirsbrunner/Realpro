@@ -35,7 +35,7 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
       case 'COMPLETED':
         return 'text-green-600 bg-green-50';
       case 'IN_PROGRESS':
-        return 'text-blue-600 bg-blue-50';
+        return 'text-brand-600 bg-brand-50';
       case 'DELAYED':
         return 'text-red-600 bg-red-50';
       default:
@@ -148,7 +148,7 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
                         </div>
                         <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
                           <div
-                            className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500"
+                            className="bg-gradient-to-r from-brand-500 to-brand-600 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${phase.progress_percent}%` }}
                           />
                         </div>

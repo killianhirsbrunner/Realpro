@@ -59,7 +59,7 @@ export function SubmissionCompaniesCard({ companies = [], onInvite }: Submission
                   </div>
                 </div>
                 {company.status === 'invited' && (
-                  <Mail className="h-4 w-4 text-blue-600" title="Invitation envoyée" />
+                  <Mail className="h-4 w-4 text-brand-600" title="Invitation envoyée" />
                 )}
                 {company.status === 'submitted' && (
                   <CheckCircle className="h-4 w-4 text-green-600" title="Offre reçue" />

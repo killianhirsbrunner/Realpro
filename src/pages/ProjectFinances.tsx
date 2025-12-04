@@ -35,9 +35,9 @@ export default function ProjectFinances() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-800">
+        <div className="bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20 rounded-2xl p-6 border border-brand-200 dark:border-brand-800">
           <div className="flex items-center justify-between mb-3">
-            <div className="p-2 bg-blue-500 rounded-lg">
+            <div className="p-2 bg-brand-500 rounded-lg">
               <DollarSign className="w-5 h-5 text-white" />
             </div>
             {!cfcLoading && cfcTotals.invoiced > cfcTotals.budget && (
@@ -98,13 +98,13 @@ export default function ProjectFinances() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Link
           to={`/projects/${projectId}/finances/cfc`}
-          className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
+          className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-200"
         >
           <div className="flex items-start justify-between mb-4">
-            <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-              <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            <div className="p-3 bg-brand-50 dark:bg-brand-900/20 rounded-xl">
+              <FileText className="w-6 h-6 text-brand-600 dark:text-brand-400" />
             </div>
-            <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all" />
           </div>
           <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
             Budgets & CFC
@@ -123,13 +123,13 @@ export default function ProjectFinances() {
 
         <Link
           to={`/projects/${projectId}/finances/contracts`}
-          className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
+          className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-200"
         >
           <div className="flex items-start justify-between mb-4">
             <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-xl">
               <Users className="w-6 h-6 text-orange-600 dark:text-orange-400" />
             </div>
-            <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all" />
           </div>
           <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
             Contrats Entreprises
@@ -150,13 +150,13 @@ export default function ProjectFinances() {
 
         <Link
           to={`/projects/${projectId}/finances/payments`}
-          className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
+          className="group bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-200"
         >
           <div className="flex items-start justify-between mb-4">
             <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded-xl">
               <Receipt className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
-            <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all" />
           </div>
           <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
             Acomptes Acheteurs
@@ -192,7 +192,7 @@ export default function ProjectFinances() {
               </div>
               <div className="h-2 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-500"
                   style={{
                     width: `${Math.min((cfcTotals.invoiced / cfcTotals.budget) * 100 || 0, 100)}%`
                   }}

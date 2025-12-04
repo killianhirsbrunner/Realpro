@@ -223,7 +223,7 @@ export default function Step2Structure({ data, onUpdate, onNext, onPrev }: Step2
       </Card>
 
       {lots.length > 0 && (
-        <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
+        <Card className="bg-brand-50 dark:bg-brand-950/30 border-brand-200 dark:border-brand-800">
           <div className="flex items-center gap-3">
             <Badge variant="primary">Récapitulatif</Badge>
             <div className="flex-1 grid grid-cols-3 gap-4 text-sm">

@@ -50,8 +50,8 @@ export default function ProjectNotary() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <RealProCard>
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-              <FileText className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center">
+              <FileText className="w-6 h-6 text-brand-600" />
             </div>
             <div>
               <p className="text-sm text-neutral-500">Total dossiers</p>
