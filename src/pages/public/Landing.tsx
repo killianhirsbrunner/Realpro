@@ -201,7 +201,7 @@ export function Landing() {
 
         <FadeIn delay={600}>
           <div className="relative max-w-6xl mx-auto mt-12">
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none h-24 bottom-0 top-auto" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none h-32 bottom-0 top-auto" />
             <div className="relative rounded-2xl border border-neutral-200/80 dark:border-neutral-700/80 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
               <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-700">
                 <div className="flex items-center gap-2">
@@ -216,30 +216,135 @@ export function Landing() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 p-4 sm:p-6 md:p-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-                  <div className="bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl p-4 border border-brand-200/50 dark:border-brand-800/50">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="text-[10px] font-semibold text-brand-700 dark:text-brand-400 uppercase tracking-wide">Projets actifs</div>
-                      <TrendingUp className="w-3 h-3 text-brand-600" />
+              <div className="flex bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
+                <div className="hidden md:flex flex-col w-16 bg-neutral-100 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 p-2 gap-2">
+                  <div className="w-10 h-10 rounded-lg bg-brand-600 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
+                  </div>
+                  <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
+                  </div>
+                  <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                    <BarChart3 className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
+                  </div>
+                </div>
+
+                <div className="flex-1 p-4 sm:p-6 md:p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Vue d'ensemble</h3>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">Dernière mise à jour : il y a 2 min</p>
                     </div>
-                    <div className="text-2xl font-bold text-brand-900 dark:text-brand-300">12</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20 rounded-xl p-4 border border-orange-200/50 dark:border-orange-800/50">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="text-[10px] font-semibold text-orange-700 dark:text-orange-400 uppercase tracking-wide">Ventes</div>
-                      <Users className="w-3 h-3 text-orange-600" />
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                    <div className="bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 rounded-xl p-3 border border-brand-200/50 dark:border-brand-800/50">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="text-[9px] font-semibold text-brand-700 dark:text-brand-400 uppercase tracking-wide">Projets actifs</div>
+                        <TrendingUp className="w-3 h-3 text-brand-600" />
+                      </div>
+                      <div className="text-2xl font-bold text-brand-900 dark:text-brand-300">12</div>
+                      <div className="text-[9px] text-brand-600 dark:text-brand-400 mt-1">+2 ce mois</div>
                     </div>
-                    <div className="text-2xl font-bold text-orange-900 dark:text-orange-300">87%</div>
+
+                    <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 dark:from-orange-900/20 dark:to-orange-800/20 rounded-xl p-3 border border-orange-200/50 dark:border-orange-800/50">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="text-[9px] font-semibold text-orange-700 dark:text-orange-400 uppercase tracking-wide">Taux de vente</div>
+                        <Users className="w-3 h-3 text-orange-600" />
+                      </div>
+                      <div className="text-2xl font-bold text-orange-900 dark:text-orange-300">87%</div>
+                      <div className="text-[9px] text-orange-600 dark:text-orange-400 mt-1">234/268 lots</div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-3 border border-green-200/50 dark:border-green-800/50">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="text-[9px] font-semibold text-green-700 dark:text-green-400 uppercase tracking-wide">Revenu total</div>
+                        <BarChart3 className="w-3 h-3 text-green-600" />
+                      </div>
+                      <div className="text-xl font-bold text-green-900 dark:text-green-300">CHF 12.4M</div>
+                      <div className="text-[9px] text-green-600 dark:text-green-400 mt-1">+8.2% vs. prévu</div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl p-3 border border-blue-200/50 dark:border-blue-800/50">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="text-[9px] font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wide">Prospects</div>
+                        <MessageSquare className="w-3 h-3 text-blue-600" />
+                      </div>
+                      <div className="text-2xl font-bold text-blue-900 dark:text-blue-300">142</div>
+                      <div className="text-[9px] text-blue-600 dark:text-blue-400 mt-1">18 nouveaux</div>
+                    </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-900/20 dark:to-green-800/20 rounded-xl p-4 border border-green-200/50 dark:border-green-800/50">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="text-[10px] font-semibold text-green-700 dark:text-green-400 uppercase tracking-wide">Revenu</div>
-                      <BarChart3 className="w-3 h-3 text-green-600" />
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-xs font-semibold text-neutral-900 dark:text-white">Évolution des ventes</h4>
+                        <span className="text-[9px] text-neutral-500">6 mois</span>
+                      </div>
+                      <div className="flex items-end gap-1 h-20">
+                        <div className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t" style={{height: '45%'}}></div>
+                        <div className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t" style={{height: '60%'}}></div>
+                        <div className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t" style={{height: '55%'}}></div>
+                        <div className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t" style={{height: '75%'}}></div>
+                        <div className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t" style={{height: '85%'}}></div>
+                        <div className="flex-1 bg-gradient-to-t from-brand-600 to-brand-400 rounded-t" style={{height: '100%'}}></div>
+                      </div>
+                      <div className="flex justify-between mt-2">
+                        <span className="text-[8px] text-neutral-500">Jan</span>
+                        <span className="text-[8px] text-neutral-500">Juin</span>
+                      </div>
                     </div>
-                    <div className="text-lg font-bold text-green-900 dark:text-green-300">CHF 12.4M</div>
+
+                    <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                      <h4 className="text-xs font-semibold text-neutral-900 dark:text-white mb-3">Projets récents</h4>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
+                          <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                          <div className="flex-1">
+                            <div className="text-[10px] font-medium text-neutral-900 dark:text-white">Les Jardins du Lac</div>
+                            <div className="text-[8px] text-neutral-500">42 lots • 89% vendus</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
+                          <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                          <div className="flex-1">
+                            <div className="text-[10px] font-medium text-neutral-900 dark:text-white">Résidence Panorama</div>
+                            <div className="text-[8px] text-neutral-500">28 lots • 67% vendus</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
+                          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                          <div className="flex-1">
+                            <div className="text-[10px] font-medium text-neutral-900 dark:text-white">Villa des Pins</div>
+                            <div className="text-[8px] text-neutral-500">15 lots • 45% vendus</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
+                      <div className="flex items-start gap-2">
+                        <Clock className="w-3 h-3 text-amber-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="text-[9px] font-semibold text-amber-900 dark:text-amber-300">3 échéances cette semaine</div>
+                          <div className="text-[8px] text-amber-700 dark:text-amber-400">CFC, signatures, RDV</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+                      <div className="flex items-start gap-2">
+                        <Check className="w-3 h-3 text-green-600 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="text-[9px] font-semibold text-green-900 dark:text-green-300">8 contrats signés ce mois</div>
+                          <div className="text-[8px] text-green-700 dark:text-green-400">CHF 2.1M encaissés</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
