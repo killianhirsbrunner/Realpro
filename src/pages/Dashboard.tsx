@@ -9,7 +9,6 @@ import { QuickActions } from '../components/dashboard/QuickActions';
 import { DocumentPreviewCard } from '../components/dashboard/DocumentPreviewCard';
 import { MessagePreview } from '../components/dashboard/MessagePreview';
 import { UpcomingTimeline } from '../components/dashboard/UpcomingTimeline';
-import { RealProLogo } from '../components/branding/RealProLogo';
 import { Sparkles, TrendingUp } from 'lucide-react';
 
 export function Dashboard() {
@@ -114,21 +113,16 @@ export function Dashboard() {
     <div className="space-y-8 pb-12">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 via-white to-blue-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-blue-900/20 border border-primary-100 dark:border-primary-900/30 p-8">
         <div className="relative z-10">
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <Sparkles className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-                <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white">
-                  {getGreeting()}, {user?.first_name || 'Utilisateur'}
-                </h1>
-              </div>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400">
-                Voici un aperçu de vos projets et activités
-              </p>
+          <div className="mb-4">
+            <div className="flex items-center gap-3 mb-2">
+              <Sparkles className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+              <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                {getGreeting()}, {user?.first_name || 'Utilisateur'}
+              </h1>
             </div>
-            <div className="hidden md:block">
-              <RealProLogo width={140} height={46} />
-            </div>
+            <p className="text-lg text-neutral-600 dark:text-neutral-400">
+              Voici un aperçu de vos projets et activités
+            </p>
           </div>
 
           <div className="flex items-center gap-6 mt-6">

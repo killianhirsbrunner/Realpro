@@ -30,7 +30,7 @@ export function DashboardKpis({ kpis }: DashboardKpisProps) {
       {items.map((item) => (
         <Card key={item.label} className="p-6">
           <p className="text-sm text-neutral-500 dark:text-neutral-400">{item.label}</p>
-          <p className="text-2xl font-semibold mt-2">{item.value}</p>
+          <p className="text-2xl font-semibold mt-2 text-neutral-900 dark:text-white">{item.value}</p>
         </Card>
       ))}
     </div>

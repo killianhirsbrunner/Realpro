@@ -12,7 +12,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={clsx(
-          'bg-white rounded-lg border border-gray-200 shadow-sm',
+          'bg-white dark:bg-neutral-900 rounded-lg border border-gray-200 dark:border-neutral-700 shadow-sm',
           {
             'hover:shadow-md transition-shadow duration-200': hover,
             'p-0': padding === 'none',
@@ -57,7 +57,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     return (
       <h3
         ref={ref}
-        className={clsx('text-lg font-semibold text-gray-900', className)}
+        className={clsx('text-lg font-semibold text-gray-900 dark:text-white', className)}
         {...props}
       >
         {children}
@@ -73,7 +73,7 @@ export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div ref={ref} className={clsx('text-gray-600', className)} {...props}>
+      <div ref={ref} className={clsx('text-gray-600 dark:text-neutral-400', className)} {...props}>
         {children}
       </div>
     );
