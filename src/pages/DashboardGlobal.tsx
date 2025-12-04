@@ -1,29 +1,33 @@
 import { Link } from 'react-router-dom';
 import { useOrganization } from '../hooks/useOrganization';
-import { useProjects } from '../hooks/useProjects';
+import { useGlobalDashboard } from '../hooks/useGlobalDashboard';
 import { useI18n } from '../lib/i18n';
+import { useCurrentUser } from '../hooks/useCurrentUser';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import { GlobalKpiCard } from '../components/global-dashboard/GlobalKpiCard';
+import { GlobalProjectCard } from '../components/global-dashboard/GlobalProjectCard';
+import { ActivityFeedItem } from '../components/global-dashboard/ActivityFeedItem';
 import {
   Building2,
   Plus,
   TrendingUp,
-  Users,
-  FileText,
-  AlertCircle,
   Home,
-  CheckCircle2,
-  Clock
+  DollarSign,
+  Sparkles,
+  AlertCircle,
+  ArrowRight
 } from 'lucide-react';
 
 export function DashboardGlobal() {
   const { t } = useI18n();
+  const { user } = useCurrentUser();
   const { organization, subscription, canCreateProject, projectsCount, loading: orgLoading } = useOrganization();
-  const { projects, loading: projectsLoading } = useProjects();
+  const { data: dashboardData, loading: dashboardLoading } = useGlobalDashboard();
 
-  if (orgLoading || projectsLoading) {
+  const loading = orgLoading || dashboardLoading;
+
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
@@ -34,235 +38,167 @@ export function DashboardGlobal() {
     );
   }
 
-  const totalLots = projects.reduce((sum, p) => sum + (p.total_lots || 0), 0);
-  const soldLots = projects.reduce((sum, p) => sum + (p.sold_lots || 0), 0);
-  const reservedLots = projects.reduce((sum, p) => sum + (p.reserved_lots || 0), 0);
-  const totalRevenue = projects.reduce((sum, p) => sum + (p.total_revenue || 0), 0);
-
-  const kpis = [
-    {
-      label: 'Projets actifs',
-      value: projects.filter(p => p.status !== 'ARCHIVED').length,
-      total: projectsCount,
-      icon: Building2,
-      color: 'text-blue-600 dark:text-blue-400',
-      bgColor: 'bg-blue-100 dark:bg-blue-900/20'
-    },
-    {
-      label: 'Lots vendus',
-      value: soldLots,
-      total: totalLots,
-      icon: CheckCircle2,
-      color: 'text-primary-600 dark:text-primary-400',
-      bgColor: 'bg-primary-100 dark:bg-primary-900/20'
-    },
-    {
-      label: 'Lots réservés',
-      value: reservedLots,
-      total: totalLots,
-      icon: Clock,
-      color: 'text-orange-600 dark:text-orange-400',
-      bgColor: 'bg-orange-100 dark:bg-orange-900/20'
-    },
-    {
-      label: 'Chiffre d\'affaires',
-      value: `CHF ${(totalRevenue / 1000000).toFixed(1)}M`,
-      total: null,
-      icon: TrendingUp,
-      color: 'text-primary-600 dark:text-primary-400',
-      bgColor: 'bg-primary-100 dark:bg-primary-900/20'
-    }
-  ];
-
-  const getProjectStatusBadge = (status: string) => {
-    const statusConfig: Record<string, { label: string; color: string }> = {
-      PLANNING: { label: 'Planification', color: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300' },
-      CONSTRUCTION: { label: 'En construction', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300' },
-      SELLING: { label: 'En vente', color: 'bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300' },
-      COMPLETED: { label: 'Terminé', color: 'bg-primary-100 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300' },
-      ARCHIVED: { label: 'Archivé', color: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400' }
-    };
-
-    const config = statusConfig[status] || statusConfig.PLANNING;
-    return <Badge className={config.color}>{config.label}</Badge>;
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Bonjour';
+    if (hour < 18) return 'Bon après-midi';
+    return 'Bonsoir';
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-            {organization?.name || 'Dashboard'}
-          </h1>
-          <p className="mt-1 text-neutral-600 dark:text-neutral-400">
-            Vue d'ensemble de tous vos projets immobiliers
-          </p>
-        </div>
-
-        {subscription && (
-          <div className="text-right">
-            <Badge className="mb-1">
-              {subscription.status === 'TRIAL' ? 'Essai gratuit' : subscription.plan.name}
-            </Badge>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400">
-              {subscription.plan.limits.projects_max === -1
-                ? 'Projets illimités'
-                : `${projectsCount} / ${subscription.plan.limits.projects_max} projets`}
-            </p>
-          </div>
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {kpis.map((kpi) => (
-          <Card key={kpi.label}>
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
-                    {kpi.label}
-                  </p>
-                  <div className="flex items-baseline gap-2">
-                    <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-                      {kpi.value}
-                    </p>
-                    {kpi.total !== null && (
-                      <p className="text-sm text-neutral-500 dark:text-neutral-500">
-                        / {kpi.total}
-                      </p>
-                    )}
-                  </div>
-                  {kpi.total !== null && (
-                    <div className="mt-2 w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-1.5">
-                      <div
-                        className={`h-1.5 rounded-full ${kpi.bgColor}`}
-                        style={{ width: `${(kpi.value / kpi.total) * 100}%` }}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className={`w-12 h-12 rounded-xl ${kpi.bgColor} flex items-center justify-center flex-shrink-0`}>
-                  <kpi.icon className={`w-6 h-6 ${kpi.color}`} />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
-          Vos projets
-        </h2>
-        <Link to="/projects/new">
-          <Button
-            className="gap-2"
-            disabled={!canCreateProject}
-            title={!canCreateProject ? 'Limite de projets atteinte pour votre plan' : ''}
-          >
-            <Plus className="w-4 h-4" />
-            Créer un projet
-          </Button>
-        </Link>
-      </div>
-
-      {!canCreateProject && (
-        <Card className="border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-900/10">
-          <CardContent className="p-4 flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+    <div className="space-y-8 pb-12">
+      {/* Hero Header */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-50 via-white to-blue-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-blue-900/20 border border-primary-100 dark:border-primary-900/30 p-8">
+        <div className="relative z-10">
+          <div className="flex items-start justify-between">
             <div>
-              <p className="font-medium text-orange-900 dark:text-orange-100">
-                Limite de projets atteinte
+              <div className="flex items-center gap-3 mb-2">
+                <Sparkles className="w-7 h-7 text-primary-600 dark:text-primary-400" />
+                <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                  {getGreeting()}, {user?.first_name || 'Utilisateur'}
+                </h1>
+              </div>
+              <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-6">
+                {organization?.name} - Vue d'ensemble de tous vos projets
               </p>
-              <p className="text-sm text-orange-700 dark:text-orange-300 mt-1">
-                Vous avez atteint la limite de {subscription?.plan.limits.projects_max} projets pour votre plan {subscription?.plan.name}.
-                Passez à un plan supérieur pour créer plus de projets.
-              </p>
-              <Link to="/billing" className="inline-block mt-2">
-                <Button size="sm" variant="outline" className="text-orange-700 dark:text-orange-300 border-orange-300 dark:border-orange-700">
-                  Mettre à niveau
+              <Link to="/projects/new">
+                <Button
+                  size="lg"
+                  className="gap-2 shadow-lg hover:shadow-xl transition-shadow"
+                  disabled={!canCreateProject}
+                  title={!canCreateProject ? 'Limite de projets atteinte pour votre plan' : ''}
+                >
+                  <Plus className="w-5 h-5" />
+                  Créer un nouveau projet
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
             </div>
-          </CardContent>
-        </Card>
+
+            {subscription && (
+              <div className="text-right bg-white/60 dark:bg-neutral-800/60 backdrop-blur-sm rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
+                  Votre abonnement
+                </p>
+                <p className="text-lg font-semibold text-neutral-900 dark:text-white">
+                  {subscription.status === 'TRIAL' ? 'Essai gratuit' : subscription.plan.name}
+                </p>
+                <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
+                  {subscription.plan.limits.projects_max === -1
+                    ? 'Projets illimités'
+                    : `${projectsCount} / ${subscription.plan.limits.projects_max} projets`}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-200/20 to-blue-200/20 dark:from-primary-900/10 dark:to-blue-900/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
+      </div>
+
+      {/* Warning if limit reached */}
+      {!canCreateProject && (
+        <div className="rounded-xl border border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-900/10 p-4 flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+          <div className="flex-1">
+            <p className="font-medium text-orange-900 dark:text-orange-100">
+              Limite de projets atteinte
+            </p>
+            <p className="text-sm text-orange-700 dark:text-orange-300 mt-1">
+              Vous avez atteint la limite de {subscription?.plan.limits.projects_max} projets pour votre plan {subscription?.plan.name}.
+              Passez à un plan supérieur pour créer plus de projets.
+            </p>
+            <Link to="/billing" className="inline-block mt-2">
+              <Button size="sm" variant="outline" className="text-orange-700 dark:text-orange-300 border-orange-300 dark:border-orange-700">
+                Mettre à niveau
+              </Button>
+            </Link>
+          </div>
+        </div>
       )}
 
-      {projects.length === 0 ? (
-        <Card>
-          <CardContent className="p-12 text-center">
+      {/* Global KPIs */}
+      {dashboardData && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <GlobalKpiCard
+            title="Projets actifs"
+            value={dashboardData.projectsCount}
+            icon={Building2}
+            subtitle={`${dashboardData.projectsCount} projet${dashboardData.projectsCount > 1 ? 's' : ''} en cours`}
+          />
+          <GlobalKpiCard
+            title="Lots totaux"
+            value={dashboardData.totalLots}
+            icon={Home}
+            subtitle="Tous projets confondus"
+          />
+          <GlobalKpiCard
+            title="Taux de vente global"
+            value={`${dashboardData.globalSalesProgress}%`}
+            icon={TrendingUp}
+            trend={{
+              value: 5,
+              isPositive: true
+            }}
+          />
+          <GlobalKpiCard
+            title="Chiffre d'affaires"
+            value={`CHF ${(dashboardData.totalRevenue / 1000000).toFixed(1)}M`}
+            icon={DollarSign}
+            subtitle="Ventes réalisées"
+          />
+        </div>
+      )}
+
+      {/* Projects Section */}
+      <div>
+        <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-6">
+          Vos projets ({dashboardData?.projectsCount || 0})
+        </h2>
+
+        {!dashboardData || dashboardData.projects.length === 0 ? (
+          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-12 text-center">
             <div className="w-16 h-16 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
               <Home className="w-8 h-8 text-neutral-400 dark:text-neutral-600" />
             </div>
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
               Aucun projet pour le moment
             </h3>
             <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-md mx-auto">
               Commencez par créer votre premier projet immobilier pour centraliser la gestion de vos lots, acheteurs et documents.
             </p>
             <Link to="/projects/new">
-              <Button className="gap-2">
-                <Plus className="w-4 h-4" />
+              <Button size="lg" className="gap-2">
+                <Plus className="w-5 h-5" />
                 Créer mon premier projet
               </Button>
             </Link>
-          </CardContent>
-        </Card>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link key={project.id} to={`/projects/${project.id}/dashboard`}>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
-                        {project.name}
-                      </h3>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                        {project.city}, {project.canton}
-                      </p>
-                    </div>
-                    {getProjectStatusBadge(project.status || 'PLANNING')}
-                  </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {dashboardData.projects.map((project) => (
+              <GlobalProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        )}
+      </div>
 
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-neutral-600 dark:text-neutral-400">Lots</span>
-                      <span className="font-medium text-neutral-900 dark:text-neutral-100">
-                        {project.total_lots || 0}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-neutral-600 dark:text-neutral-400">Vendus</span>
-                      <span className="font-medium text-primary-600 dark:text-primary-400">
-                        {project.sold_lots || 0} ({project.total_lots ? Math.round(((project.sold_lots || 0) / project.total_lots) * 100) : 0}%)
-                      </span>
-                    </div>
-
-                    <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full bg-primary-600 dark:bg-primary-500"
-                        style={{
-                          width: `${project.total_lots ? ((project.sold_lots || 0) / project.total_lots) * 100 : 0}%`
-                        }}
-                      />
-                    </div>
-
-                    {project.total_revenue && project.total_revenue > 0 && (
-                      <div className="flex items-center justify-between text-sm pt-2 border-t border-neutral-200 dark:border-neutral-800">
-                        <span className="text-neutral-600 dark:text-neutral-400">Volume</span>
-                        <span className="font-semibold text-neutral-900 dark:text-neutral-100">
-                          CHF {(project.total_revenue / 1000000).toFixed(2)}M
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+      {/* Recent Activity */}
+      {dashboardData && dashboardData.activities.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white">
+              Activité récente
+            </h2>
+            <Link to="/activity" className="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors flex items-center gap-1">
+              Voir tout
+              <ArrowRight className="w-4 h-4" />
             </Link>
-          ))}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {dashboardData.activities.slice(0, 6).map((activity) => (
+              <ActivityFeedItem key={activity.id} activity={activity} />
+            ))}
+          </div>
         </div>
       )}
     </div>
