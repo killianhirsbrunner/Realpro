@@ -36,7 +36,7 @@ export function Sidebar() {
 
   return (
     <aside className="w-64 h-full border-r border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl flex flex-col">
-      <div className="p-6">
+      <div className="p-4">
         <Link to="/dashboard" className="block">
           <RealProLogo width={200} height={66} />
         </Link>
