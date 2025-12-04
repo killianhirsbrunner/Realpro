@@ -12,11 +12,13 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { OrganizationProvider } from './contexts/OrganizationContext';
 
 import { Landing } from './pages/public/Landing';
+import { LandingEnhanced } from './pages/public/LandingEnhanced';
 import { Pricing } from './pages/public/Pricing';
 import { Features } from './pages/public/Features';
 import { Contact } from './pages/public/Contact';
 
 import { Login } from './pages/Login';
+import { LoginEnhanced } from './pages/LoginEnhanced';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
 import { Register } from './pages/auth/Register';
@@ -132,12 +134,12 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<LandingEnhanced />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/features" element={<Features />} />
           <Route path="/contact" element={<Contact />} />
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginEnhanced />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
 
