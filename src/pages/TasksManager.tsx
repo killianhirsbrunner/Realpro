@@ -1,467 +1,619 @@
 import { useEffect, useState } from 'react';
-import { CheckCircle, Circle, Clock, Plus, Trash2, Edit2, Calendar } from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import { useCurrentUser } from '../hooks/useCurrentUser';
+import { useOrganization } from '../hooks/useOrganization';
+import { supabase } from '../lib/supabase';
+import { ModernCard } from '../components/ui/ModernCard';
 import { Button } from '../components/ui/Button';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { MetricCard } from '../components/ui/MetricCard';
+import {
+  CheckCircle,
+  Circle,
+  Clock,
+  Plus,
+  Trash2,
+  Edit2,
+  Calendar,
+  User,
+  Flag,
+  Filter,
+  Search,
+  LayoutGrid,
+  List,
+  X,
+  Save,
+  AlertCircle,
+  CheckSquare
+} from 'lucide-react';
+import clsx from 'clsx';
+import { format, formatDistanceToNow, isPast, isToday, isTomorrow } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import { toast } from 'sonner';
 
-type Task = {
+type ViewMode = 'list' | 'kanban';
+type TaskStatus = 'TODO' | 'IN_PROGRESS' | 'DONE';
+type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT';
+
+interface Task {
   id: string;
-  organizationId: string;
-  projectId?: string | null;
-  project?: {
-    id: string;
-    name: string;
-  } | null;
   title: string;
-  description?: string | null;
-  type: string;
-  status: string;
-  dueDate?: string | null;
-  assignedToId?: string | null;
-  assignedTo?: {
-    id: string;
-    firstName: string;
-    lastName: string;
-  } | null;
-  completedAt?: string | null;
-  createdAt: string;
-};
+  description?: string;
+  status: TaskStatus;
+  priority: TaskPriority;
+  due_date?: string;
+  assigned_to_id?: string;
+  assigned_to?: {
+    first_name: string;
+    last_name: string;
+  };
+  project_id?: string;
+  project?: {
+    name: string;
+  };
+  created_at: string;
+  completed_at?: string;
+}
 
 export function TasksManager() {
+  const { user } = useCurrentUser();
+  const { currentOrganization } = useOrganization();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState<'all' | 'open' | 'done'>('open');
+  const [viewMode, setViewMode] = useState<ViewMode>('kanban');
+  const [filterStatus, setFilterStatus] = useState<TaskStatus | 'ALL'>('ALL');
+  const [filterPriority, setFilterPriority] = useState<TaskPriority | 'ALL'>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    dueDate: '',
-    type: 'GENERIC',
+    status: 'TODO' as TaskStatus,
+    priority: 'MEDIUM' as TaskPriority,
+    due_date: '',
+    assigned_to_id: ''
   });
 
-  const userId = '20000000-0000-0000-0000-000000000001';
-  const organizationId = '00000000-0000-0000-0000-000000000001';
-
   useEffect(() => {
-    loadTasks();
-  }, [userId]);
+    if (currentOrganization) {
+      loadTasks();
+    }
+  }, [currentOrganization]);
 
   const loadTasks = async () => {
+    if (!currentOrganization) return;
+
     try {
-      setLoading(true);
-      setError(null);
+      const { data, error } = await supabase
+        .from('tasks')
+        .select(`
+          *,
+          assigned_to:users!tasks_assigned_to_id_fkey(first_name, last_name),
+          project:projects(name)
+        `)
+        .eq('organization_id', currentOrganization.id)
+        .order('created_at', { ascending: false });
 
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/tasks`;
-
-      const response = await fetch(`${apiUrl}/me`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId }),
-      });
-
-      if (!response.ok) throw new Error('Erreur lors du chargement des tâches');
-
-      const json = await response.json();
-      setTasks(json);
-    } catch (err: any) {
-      setError(err.message || 'Impossible de charger les tâches');
+      if (error) throw error;
+      setTasks(data || []);
+    } catch (error: any) {
+      console.error('Error loading tasks:', error);
+      toast.error('Erreur lors du chargement des tâches');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleCreateTask = async () => {
-    if (!newTask.title.trim()) return;
+  const createTask = async () => {
+    if (!currentOrganization || !user) return;
+    if (!newTask.title.trim()) {
+      toast.error('Le titre est obligatoire');
+      return;
+    }
 
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/tasks`;
+      const { data, error } = await supabase
+        .from('tasks')
+        .insert({
+          ...newTask,
+          organization_id: currentOrganization.id,
+          created_by_id: user.id
+        })
+        .select(`
+          *,
+          assigned_to:users!tasks_assigned_to_id_fkey(first_name, last_name),
+          project:projects(name)
+        `)
+        .single();
 
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId,
-          organizationId,
-          title: newTask.title,
-          description: newTask.description || null,
-          dueDate: newTask.dueDate || null,
-          type: newTask.type,
-        }),
-      });
+      if (error) throw error;
 
-      if (!response.ok) throw new Error('Erreur lors de la création');
-
-      setNewTask({ title: '', description: '', dueDate: '', type: 'GENERIC' });
+      setTasks([data, ...tasks]);
       setShowNewTaskForm(false);
-      await loadTasks();
-    } catch (err: any) {
-      setError(err.message || 'Impossible de créer la tâche');
-    }
-  };
-
-  const handleCompleteTask = async (taskId: string) => {
-    try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/tasks`;
-
-      const response = await fetch(`${apiUrl}/${taskId}/complete`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({}),
+      setNewTask({
+        title: '',
+        description: '',
+        status: 'TODO',
+        priority: 'MEDIUM',
+        due_date: '',
+        assigned_to_id: ''
       });
-
-      if (!response.ok) throw new Error('Erreur');
-
-      await loadTasks();
-    } catch (err: any) {
-      setError(err.message || 'Impossible de compléter la tâche');
+      toast.success('Tâche créée avec succès');
+    } catch (error: any) {
+      console.error('Error creating task:', error);
+      toast.error('Erreur lors de la création de la tâche');
     }
   };
 
-  const handleDeleteTask = async (taskId: string) => {
-    if (!confirm('Supprimer cette tâche ?')) return;
-
+  const updateTask = async (taskId: string, updates: Partial<Task>) => {
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/tasks`;
+      const { data, error } = await supabase
+        .from('tasks')
+        .update(updates)
+        .eq('id', taskId)
+        .select(`
+          *,
+          assigned_to:users!tasks_assigned_to_id_fkey(first_name, last_name),
+          project:projects(name)
+        `)
+        .single();
 
-      const response = await fetch(`${apiUrl}/${taskId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      if (error) throw error;
 
-      if (!response.ok) throw new Error('Erreur');
-
-      await loadTasks();
-    } catch (err: any) {
-      setError(err.message || 'Impossible de supprimer la tâche');
+      setTasks(tasks.map(t => t.id === taskId ? data : t));
+      toast.success('Tâche mise à jour');
+    } catch (error: any) {
+      console.error('Error updating task:', error);
+      toast.error('Erreur lors de la mise à jour');
     }
   };
 
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === 'open') return task.status !== 'DONE' && task.status !== 'CANCELLED';
-    if (filter === 'done') return task.status === 'DONE';
+  const deleteTask = async (taskId: string) => {
+    try {
+      const { error } = await supabase
+        .from('tasks')
+        .delete()
+        .eq('id', taskId);
+
+      if (error) throw error;
+
+      setTasks(tasks.filter(t => t.id !== taskId));
+      toast.success('Tâche supprimée');
+    } catch (error: any) {
+      console.error('Error deleting task:', error);
+      toast.error('Erreur lors de la suppression');
+    }
+  };
+
+  const toggleTaskStatus = async (task: Task) => {
+    const newStatus: TaskStatus = task.status === 'DONE' ? 'TODO' :
+                                   task.status === 'TODO' ? 'IN_PROGRESS' : 'DONE';
+    const updates: any = { status: newStatus };
+    if (newStatus === 'DONE') {
+      updates.completed_at = new Date().toISOString();
+    } else {
+      updates.completed_at = null;
+    }
+    await updateTask(task.id, updates);
+  };
+
+  const filteredTasks = tasks.filter(task => {
+    if (filterStatus !== 'ALL' && task.status !== filterStatus) return false;
+    if (filterPriority !== 'ALL' && task.priority !== filterPriority) return false;
+    if (searchQuery && !task.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     return true;
   });
 
-  const openCount = tasks.filter(t => t.status !== 'DONE' && t.status !== 'CANCELLED').length;
-  const doneCount = tasks.filter(t => t.status === 'DONE').length;
+  const getPriorityColor = (priority: TaskPriority) => {
+    switch (priority) {
+      case 'URGENT':
+        return 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-300';
+      case 'HIGH':
+        return 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 border-orange-300';
+      case 'MEDIUM':
+        return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border-yellow-300';
+      case 'LOW':
+        return 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-300';
+    }
+  };
+
+  const getDueDateStatus = (dueDate?: string) => {
+    if (!dueDate) return null;
+    const date = new Date(dueDate);
+    if (isPast(date) && !isToday(date)) return 'overdue';
+    if (isToday(date)) return 'today';
+    if (isTomorrow(date)) return 'tomorrow';
+    return 'future';
+  };
+
+  const stats = {
+    total: tasks.length,
+    todo: tasks.filter(t => t.status === 'TODO').length,
+    inProgress: tasks.filter(t => t.status === 'IN_PROGRESS').length,
+    done: tasks.filter(t => t.status === 'DONE').length
+  };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center h-full">
         <LoadingSpinner size="lg" />
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8 space-y-6">
-      <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-gray-400">
-          Gestion · Tâches
-        </p>
-        <h1 className="text-2xl font-semibold text-gray-900">
-          Mes tâches
-        </h1>
-        <p className="text-sm text-gray-500">
-          Gérez vos tâches et celles de votre équipe
-        </p>
-      </header>
-
-      {error && (
-        <Card className="bg-red-50 border-red-200">
-          <p className="text-sm text-red-700">{error}</p>
-        </Card>
-      )}
-
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'all'
-                ? 'bg-brand-600 text-white'
-                : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            Toutes ({tasks.length})
-          </button>
-          <button
-            onClick={() => setFilter('open')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'open'
-                ? 'bg-brand-600 text-white'
-                : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            Ouvertes ({openCount})
-          </button>
-          <button
-            onClick={() => setFilter('done')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filter === 'done'
-                ? 'bg-brand-600 text-white'
-                : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            Terminées ({doneCount})
-          </button>
+    <div className="max-w-7xl mx-auto p-6 space-y-6">
+      {/* Header */}
+      <div className="flex items-start justify-between">
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg">
+              <CheckSquare className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                Gestionnaire de Tâches
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Organisez et suivez toutes vos tâches
+              </p>
+            </div>
+          </div>
         </div>
 
-        <Button onClick={() => setShowNewTaskForm(!showNewTaskForm)}>
-          <Plus className="w-4 h-4 mr-2" />
+        <Button onClick={() => setShowNewTaskForm(true)} className="gap-2">
+          <Plus className="w-4 h-4" />
           Nouvelle tâche
         </Button>
       </div>
 
-      {showNewTaskForm && (
-        <Card className="bg-brand-50 border-brand-200">
-          <h3 className="text-sm font-semibold text-gray-900 mb-4">
-            Créer une nouvelle tâche
-          </h3>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs font-medium text-gray-700 block mb-1">
-                Titre
-              </label>
-              <input
-                type="text"
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
-                placeholder="Ex: Vérifier dossier notaire lot A101"
-                value={newTask.title}
-                onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-gray-700 block mb-1">
-                Description (optionnel)
-              </label>
-              <textarea
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
-                rows={3}
-                placeholder="Détails supplémentaires..."
-                value={newTask.description}
-                onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-xs font-medium text-gray-700 block mb-1">
-                  Date d'échéance
-                </label>
-                <input
-                  type="date"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
-                  value={newTask.dueDate}
-                  onChange={(e) => setNewTask({ ...newTask, dueDate: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="text-xs font-medium text-gray-700 block mb-1">
-                  Type
-                </label>
-                <select
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
-                  value={newTask.type}
-                  onChange={(e) => setNewTask({ ...newTask, type: e.target.value })}
-                >
-                  <option value="GENERIC">Générique</option>
-                  <option value="BUYER_FILE">Dossier acquéreur</option>
-                  <option value="NOTARY">Notaire</option>
-                  <option value="SUBMISSION">Soumission</option>
-                  <option value="MATERIAL_CHOICE">Choix matériaux</option>
-                  <option value="PAYMENT">Paiement</option>
-                  <option value="PLANNING">Planning</option>
-                </select>
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <Button onClick={handleCreateTask}>
-                Créer la tâche
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setShowNewTaskForm(false);
-                  setNewTask({ title: '', description: '', dueDate: '', type: 'GENERIC' });
-                }}
-              >
-                Annuler
-              </Button>
-            </div>
-          </div>
-        </Card>
-      )}
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <MetricCard
+          title="Total"
+          value={stats.total}
+          icon={<CheckSquare className="w-5 h-5" />}
+          subtitle="Toutes les tâches"
+          color="turquoise"
+        />
+        <MetricCard
+          title="À faire"
+          value={stats.todo}
+          icon={<Circle className="w-5 h-5" />}
+          subtitle="Pas encore commencées"
+          color="blue"
+        />
+        <MetricCard
+          title="En cours"
+          value={stats.inProgress}
+          icon={<Clock className="w-5 h-5" />}
+          subtitle="En cours de traitement"
+          color="orange"
+        />
+        <MetricCard
+          title="Terminées"
+          value={stats.done}
+          icon={<CheckCircle className="w-5 h-5" />}
+          subtitle="Complétées"
+          color="green"
+        />
+      </div>
 
-      {filteredTasks.length === 0 ? (
-        <Card>
-          <div className="text-center py-12">
-            <CheckCircle className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {filter === 'done' ? 'Aucune tâche terminée' : 'Aucune tâche en cours'}
-            </h3>
-            <p className="text-sm text-gray-500">
-              {filter === 'done'
-                ? 'Les tâches terminées apparaîtront ici'
-                : 'Créez votre première tâche pour commencer'}
-            </p>
+      {/* Filters & Search */}
+      <div className="flex flex-wrap items-center gap-4">
+        {/* Search */}
+        <div className="flex-1 min-w-64">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Rechercher une tâche..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+            />
           </div>
-        </Card>
+        </div>
+
+        {/* Status Filter */}
+        <select
+          value={filterStatus}
+          onChange={(e) => setFilterStatus(e.target.value as any)}
+          className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+        >
+          <option value="ALL">Tous les statuts</option>
+          <option value="TODO">À faire</option>
+          <option value="IN_PROGRESS">En cours</option>
+          <option value="DONE">Terminé</option>
+        </select>
+
+        {/* Priority Filter */}
+        <select
+          value={filterPriority}
+          onChange={(e) => setFilterPriority(e.target.value as any)}
+          className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+        >
+          <option value="ALL">Toutes priorités</option>
+          <option value="URGENT">Urgent</option>
+          <option value="HIGH">Haute</option>
+          <option value="MEDIUM">Moyenne</option>
+          <option value="LOW">Basse</option>
+        </select>
+
+        {/* View Mode */}
+        <div className="flex gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-1">
+          <button
+            onClick={() => setViewMode('kanban')}
+            className={clsx(
+              'p-2 rounded',
+              viewMode === 'kanban' ? 'bg-realpro-turquoise text-white' : 'text-gray-600 dark:text-gray-400'
+            )}
+          >
+            <LayoutGrid className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={clsx(
+              'p-2 rounded',
+              viewMode === 'list' ? 'bg-realpro-turquoise text-white' : 'text-gray-600 dark:text-gray-400'
+            )}
+          >
+            <List className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Tasks Display */}
+      {viewMode === 'kanban' ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {(['TODO', 'IN_PROGRESS', 'DONE'] as TaskStatus[]).map(status => (
+            <div key={status} className="space-y-3">
+              <div className="flex items-center justify-between p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                <h3 className="font-semibold text-gray-900 dark:text-white">
+                  {status === 'TODO' && 'À faire'}
+                  {status === 'IN_PROGRESS' && 'En cours'}
+                  {status === 'DONE' && 'Terminé'}
+                </h3>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {filteredTasks.filter(t => t.status === status).length}
+                </span>
+              </div>
+
+              <div className="space-y-2">
+                {filteredTasks.filter(t => t.status === status).map(task => (
+                  <TaskCard
+                    key={task.id}
+                    task={task}
+                    onToggleStatus={() => toggleTaskStatus(task)}
+                    onEdit={() => setEditingTask(task)}
+                    onDelete={() => deleteTask(task.id)}
+                    getPriorityColor={getPriorityColor}
+                    getDueDateStatus={getDueDateStatus}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <div className="space-y-3">
-          {filteredTasks.map((task) => (
-            <TaskItem
+        <div className="space-y-2">
+          {filteredTasks.map(task => (
+            <TaskCard
               key={task.id}
               task={task}
-              onComplete={handleCompleteTask}
-              onDelete={handleDeleteTask}
+              onToggleStatus={() => toggleTaskStatus(task)}
+              onEdit={() => setEditingTask(task)}
+              onDelete={() => deleteTask(task.id)}
+              getPriorityColor={getPriorityColor}
+              getDueDateStatus={getDueDateStatus}
+              isListView
             />
           ))}
         </div>
+      )}
+
+      {/* New Task Modal */}
+      {showNewTaskForm && (
+        <TaskFormModal
+          title="Nouvelle tâche"
+          task={newTask}
+          onSave={createTask}
+          onCancel={() => setShowNewTaskForm(false)}
+          onChange={setNewTask}
+        />
       )}
     </div>
   );
 }
 
-function TaskItem({
-  task,
-  onComplete,
-  onDelete,
-}: {
+interface TaskCardProps {
   task: Task;
-  onComplete: (id: string) => void;
-  onDelete: (id: string) => void;
-}) {
-  const isDone = task.status === 'DONE';
-  const isOverdue = task.dueDate && new Date(task.dueDate) < new Date() && !isDone;
+  onToggleStatus: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
+  getPriorityColor: (priority: TaskPriority) => string;
+  getDueDateStatus: (dueDate?: string) => string | null;
+  isListView?: boolean;
+}
+
+function TaskCard({ task, onToggleStatus, onEdit, onDelete, getPriorityColor, getDueDateStatus, isListView }: TaskCardProps) {
+  const dueDateStatus = getDueDateStatus(task.due_date);
 
   return (
-    <Card className={isDone ? 'bg-gray-50' : ''}>
-      <div className="flex items-start gap-4">
+    <div className={clsx(
+      'group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-4 hover:shadow-lg transition-all',
+      task.status === 'DONE' && 'opacity-60'
+    )}>
+      <div className="flex items-start gap-3">
         <button
-          onClick={() => !isDone && onComplete(task.id)}
-          className={`flex-shrink-0 mt-1 ${isDone ? 'cursor-default' : 'cursor-pointer'}`}
-          disabled={isDone}
+          onClick={onToggleStatus}
+          className="mt-1 flex-shrink-0"
         >
-          {isDone ? (
-            <CheckCircle className="w-5 h-5 text-green-600" />
+          {task.status === 'DONE' ? (
+            <CheckCircle className="w-5 h-5 text-green-500" />
+          ) : task.status === 'IN_PROGRESS' ? (
+            <Clock className="w-5 h-5 text-orange-500" />
           ) : (
-            <Circle className="w-5 h-5 text-gray-400 hover:text-brand-600 transition-colors" />
+            <Circle className="w-5 h-5 text-gray-400 hover:text-realpro-turquoise" />
           )}
         </button>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-3 mb-2">
-            <h3 className={`text-sm font-medium ${isDone ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
+          <div className="flex items-start justify-between gap-2 mb-2">
+            <h4 className={clsx(
+              'font-medium text-gray-900 dark:text-white',
+              task.status === 'DONE' && 'line-through'
+            )}>
               {task.title}
-            </h3>
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <TaskTypeBadge type={task.type} />
-              <TaskStatusBadge status={task.status} />
-            </div>
+            </h4>
+            <span className={clsx(
+              'px-2 py-0.5 text-xs font-semibold rounded-full border flex-shrink-0',
+              getPriorityColor(task.priority)
+            )}>
+              {task.priority}
+            </span>
           </div>
 
           {task.description && (
-            <p className="text-xs text-gray-600 mb-2">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
               {task.description}
             </p>
           )}
 
-          <div className="flex items-center gap-4 text-xs text-gray-500">
-            {task.project && (
-              <span className="flex items-center gap-1">
-                📁 {task.project.name}
-              </span>
-            )}
-            {task.dueDate && (
-              <span className={`flex items-center gap-1 ${isOverdue ? 'text-red-600 font-medium' : ''}`}>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+            {task.due_date && (
+              <div className={clsx(
+                'flex items-center gap-1',
+                dueDateStatus === 'overdue' && 'text-red-600',
+                dueDateStatus === 'today' && 'text-orange-600',
+                dueDateStatus === 'tomorrow' && 'text-yellow-600'
+              )}>
                 <Calendar className="w-3 h-3" />
-                {formatDate(task.dueDate)}
-                {isOverdue && ' (En retard)'}
-              </span>
+                {format(new Date(task.due_date), 'dd MMM', { locale: fr })}
+              </div>
             )}
-            {task.assignedTo && (
-              <span>
-                Assignée à {task.assignedTo.firstName} {task.assignedTo.lastName}
-              </span>
+
+            {task.assigned_to && (
+              <div className="flex items-center gap-1">
+                <User className="w-3 h-3" />
+                {task.assigned_to.first_name} {task.assigned_to.last_name}
+              </div>
+            )}
+
+            {task.project && (
+              <div className="flex items-center gap-1">
+                📁 {task.project.name}
+              </div>
             )}
           </div>
         </div>
 
-        <button
-          onClick={() => onDelete(task.id)}
-          className="flex-shrink-0 p-1.5 rounded-lg hover:bg-red-50 transition-colors"
-          title="Supprimer"
-        >
-          <Trash2 className="w-4 h-4 text-gray-400 hover:text-red-600" />
-        </button>
+        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={onEdit}
+            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
+          >
+            <Edit2 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+          </button>
+          <button
+            onClick={onDelete}
+            className="p-1 hover:bg-red-50 dark:hover:bg-red-900/20 rounded"
+          >
+            <Trash2 className="w-4 h-4 text-red-600" />
+          </button>
+        </div>
       </div>
-    </Card>
+    </div>
   );
 }
 
-function TaskTypeBadge({ type }: { type: string }) {
-  const labels: Record<string, string> = {
-    GENERIC: 'Générique',
-    BUYER_FILE: 'Dossier',
-    NOTARY: 'Notaire',
-    SUBMISSION: 'Soumission',
-    MATERIAL_CHOICE: 'Matériaux',
-    PAYMENT: 'Paiement',
-    PLANNING: 'Planning',
-  };
+interface TaskFormModalProps {
+  title: string;
+  task: any;
+  onSave: () => void;
+  onCancel: () => void;
+  onChange: (task: any) => void;
+}
 
+function TaskFormModal({ title, task, onSave, onCancel, onChange }: TaskFormModalProps) {
   return (
-    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
-      {labels[type] || type}
-    </span>
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-2xl w-full p-6 shadow-2xl">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h2>
+          <button onClick={onCancel} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Titre *
+            </label>
+            <input
+              type="text"
+              value={task.title}
+              onChange={(e) => onChange({ ...task, title: e.target.value })}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              placeholder="Titre de la tâche"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Description
+            </label>
+            <textarea
+              value={task.description}
+              onChange={(e) => onChange({ ...task, description: e.target.value })}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              rows={3}
+              placeholder="Description détaillée..."
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Priorité
+              </label>
+              <select
+                value={task.priority}
+                onChange={(e) => onChange({ ...task, priority: e.target.value })}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              >
+                <option value="LOW">Basse</option>
+                <option value="MEDIUM">Moyenne</option>
+                <option value="HIGH">Haute</option>
+                <option value="URGENT">Urgente</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Date d'échéance
+              </label>
+              <input
+                type="date"
+                value={task.due_date}
+                onChange={(e) => onChange({ ...task, due_date: e.target.value })}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-2 mt-6">
+          <Button variant="outline" onClick={onCancel}>
+            Annuler
+          </Button>
+          <Button onClick={onSave} className="gap-2">
+            <Save className="w-4 h-4" />
+            Enregistrer
+          </Button>
+        </div>
+      </div>
+    </div>
   );
-}
-
-function TaskStatusBadge({ status }: { status: string }) {
-  const s = status.toUpperCase();
-  let variant: 'default' | 'success' | 'warning' | 'danger' = 'default';
-  let label = status;
-
-  if (s === 'OPEN') {
-    label = 'Ouvert';
-    variant = 'default';
-  } else if (s === 'IN_PROGRESS') {
-    label = 'En cours';
-    variant = 'warning';
-  } else if (s === 'DONE') {
-    label = 'Terminé';
-    variant = 'success';
-  } else if (s === 'CANCELLED') {
-    label = 'Annulé';
-    variant = 'danger';
-  }
-
-  return <Badge variant={variant}>{label}</Badge>;
-}
-
-function formatDate(iso: string): string {
-  const date = new Date(iso);
-  return date.toLocaleDateString('fr-CH', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  });
 }
