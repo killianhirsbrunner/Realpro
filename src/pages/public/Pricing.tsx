@@ -14,54 +14,67 @@ export function Pricing() {
       name: 'Starter',
       slug: 'starter',
       price: 199,
-      description: 'Pour débuter avec des projets de petite taille',
+      description: 'Idéal pour démarrer avec 1-2 petits projets',
       features: [
-        '3 projets maximum',
-        '5 utilisateurs',
-        '10 GB de stockage',
+        'Jusqu\'à 2 projets actifs',
+        '10 utilisateurs inclus',
+        'Stockage illimité',
         'Gestion de projets & lots',
         'CRM acquéreurs',
         'Documents & templates',
-        'Support email'
+        'Planning de base',
+        'Rapports standards',
+        'Support email 48h'
       ],
-      highlighted: false
+      highlighted: false,
+      badge: null
     },
     {
       name: 'Professional',
       slug: 'professional',
       price: 499,
-      description: 'Pour les promoteurs gérant plusieurs projets',
+      description: 'Pour les promoteurs gérant 3-5 projets simultanément',
       features: [
-        '15 projets maximum',
-        '25 utilisateurs',
-        '50 GB de stockage',
+        'Jusqu\'à 5 projets actifs',
+        'Utilisateurs illimités',
+        'Stockage illimité',
         'Toutes fonctionnalités Starter',
         'Soumissions & adjudications',
-        'Finance & CFC',
-        'Choix matériaux',
-        'Planning chantier',
-        'API access',
-        'Support prioritaire'
+        'Finance avancée & CFC',
+        'Choix matériaux personnalisables',
+        'Planning chantier détaillé',
+        'Exports PDF professionnels',
+        'API REST access',
+        'Branding personnalisé',
+        'Support prioritaire 24h'
       ],
-      highlighted: true
+      highlighted: true,
+      badge: 'Le plus populaire'
     },
     {
       name: 'Enterprise',
       slug: 'enterprise',
       price: 999,
-      description: 'Solution complète pour les grands promoteurs',
+      description: 'Pour les groupes immobiliers gérant jusqu\'à 10 projets',
       features: [
-        'Projets illimités',
+        'Jusqu\'à 10 projets actifs',
         'Utilisateurs illimités',
-        '200 GB de stockage',
-        'Toutes fonctionnalités Professional',
-        'Custom branding',
+        'Stockage illimité',
+        'Toutes fonctionnalités Pro',
+        'Multi-organisations',
+        'Workflow personnalisables',
+        'Analytics & BI avancés',
+        'API GraphQL',
+        'White-label complet',
         'Success manager dédié',
-        'Support 24/7',
-        'Formation équipe',
-        'SLA garanti'
+        'Support 24/7 téléphone',
+        'Formation sur site',
+        'SLA 99.9% garanti'
       ],
-      highlighted: false
+      highlighted: false,
+      badge: null,
+      customNote: 'Plus de 10 projets ?',
+      customLink: true
     }
   ];
 
@@ -205,6 +218,20 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
+
+                {plan.customNote && (
+                  <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                    <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                      {plan.customNote}
+                    </p>
+                    {plan.customLink && (
+                      <Link to="/contact" className="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium">
+                        Contactez-nous pour une offre sur mesure
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </ScrollReveal>
           ))}
