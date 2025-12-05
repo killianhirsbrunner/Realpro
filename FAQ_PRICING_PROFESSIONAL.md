@@ -1,8 +1,8 @@
 # ❓ FAQ PRICING - REALPRO SA
 
-**Version:** 2.0
+**Version:** 2.1
 **Date:** 2025-12-05
-**Contexte:** Questions fréquentes complètes pour la page Pricing
+**Contexte:** Questions fréquentes pour promoteurs immobiliers professionnels
 
 ---
 
@@ -833,119 +833,177 @@ Temps de réponse:
 
 ---
 
-### Q12: Proposez-vous des réductions pour organisations à but non lucratif ?
+### Q12: Puis-je gérer plusieurs projets simultanément ?
 
-**Réponse courte:** Oui, 30% de réduction pour associations reconnues.
+**Réponse courte:** Absolument. RealPro est conçu pour les promoteurs multi-projets.
 
 **Réponse détaillée:**
 
-**Éligibilité:**
+**Vue d'ensemble:**
 ```
-✅ ORGANISATIONS ÉLIGIBLES
-├─ Associations loi 1904 (France)
-├─ Associations CC art. 60+ (Suisse)
-├─ Fondations reconnues utilité publique
-├─ Coopératives à but social
-├─ ONG certifiées
-└─ Églises et communautés religieuses
-```
-
-**Réduction:**
-```
-🎉 -30% SUR TOUS LES PLANS
-├─ Starter: 199 → 139 CHF/mois
-├─ Professional: 499 → 349 CHF/mois
-└─ Enterprise: 999 → 699 CHF/mois
+📊 GESTION MULTI-PROJETS
+├─ Tableau de bord global consolidé
+├─ Vue financière inter-projets
+├─ Planning transversal
+├─ Rapports comparatifs
+└─ Ressources partagées
 ```
 
-**Documents requis:**
+**Tableau de bord global:**
 ```
-📋 DOSSIER À FOURNIR
-├─ Statuts de l'association
-├─ Extrait du registre du commerce (si applicable)
-├─ Attestation utilité publique
-├─ Numéro IDE/TVA
-└─ Lettre de motivation (optionnelle)
+🎯 DASHBOARD CONSOLIDÉ
+├─ KPIs agrégés de tous les projets
+├─ Performance comparée
+├─ Alertes centralisées
+├─ Vue d'ensemble financière
+├─ Statut des ventes par projet
+└─ Avancement planning global
+
+Disponible sur tous les plans !
 ```
 
-**Processus:**
+**Limites par plan:**
 ```
-1. Inscription normale avec essai gratuit
-2. Email à nonprofits@realpro.ch
-3. Envoi des documents justificatifs
-4. Validation sous 48-72h
-5. Application rétroactive du rabais
-6. Facture ajustée automatiquement
+STARTER:       2 projets actifs
+PROFESSIONAL:  5 projets actifs
+ENTERPRISE:    15 projets actifs
+CUSTOM:        Illimité
+
+Projets archivés: Illimités (tous plans)
 ```
 
-**Programmes additionnels:**
+**Fonctionnalités inter-projets:**
 ```
-🎓 ÉDUCATION
-├─ Écoles: -20%
-├─ Universités: -15%
-└─ Centres formation: -15%
+💰 FINANCES CONSOLIDÉES
+├─ Budget total portfolio
+├─ Trésorerie agrégée
+├─ Rentabilité comparée
+├─ Cash-flow prévisionnel global
+└─ Exports Excel consolidés
 
-🌱 STARTUPS
-├─ < 2 ans: -20%
-├─ Incubateurs: -15%
-└─ Accélérateurs: Négociable
+📅 PLANNING TRANSVERSAL
+├─ Vue Gantt multi-projets
+├─ Ressources partagées (équipes)
+├─ Dépendances inter-projets
+└─ Jalons critiques centralisés
 
-🏥 SANTÉ
-├─ Cliniques à but non lucratif: -25%
-├─ EMS: -20%
-└─ Hôpitaux publics: Sur devis
-```
-
-**Durée:**
-```
-⏰ VALIDITÉ
-├─ Réduction permanente
-├─ Tant que statut maintenu
-├─ Vérification annuelle
-└─ Renouvellement simple
+📊 RAPPORTS COMPARATIFS
+├─ Performance par projet
+├─ Taux de vente comparés
+├─ Rentabilité par projet
+├─ Délais vs prévisions
+└─ Export PDF professionnel
 ```
 
-**Limitations:**
+**Cas d'usage typique:**
 ```
-⚠️ CONDITIONS
-├─ Organisation suisse ou frontalière
-├─ Utilisation conforme à mission sociale
-├─ Pas de cumul avec autres promos
-└─ Un seul compte par organisation
+Promoteur avec 3 projets actifs:
+
+PROJET A: Résidence 12 lots (Genève)
+├─ Phase: Construction
+├─ Ventes: 8/12 vendus (67%)
+└─ Budget: 92% consommé
+
+PROJET B: Immeuble 24 appartements (Lausanne)
+├─ Phase: Commercialisation
+├─ Ventes: 18/24 réservés (75%)
+└─ Budget: 45% consommé
+
+PROJET C: Villa 6 lots (Montreux)
+├─ Phase: Études
+├─ Ventes: 2/6 réservés (33%)
+└─ Budget: 12% consommé
+
+DASHBOARD GLOBAL:
+├─ 42 lots totaux
+├─ 28 vendus/réservés (67%)
+├─ CHF 18.5M chiffre affaires
+├─ CHF 2.3M marge prévisionnelle
+└─ 3 alertes à traiter
 ```
 
-**Exemples:**
+**Gestion d'équipe:**
+```
+👥 RESSOURCES PARTAGÉES
+├─ Équipe assignée à plusieurs projets
+├─ Workload visible par personne
+├─ Planning capacité
+└─ Éviter surcharge
 
-**Cas 1: Association logement social**
-```
-Plan: Professional
-Prix public: 499 CHF/mois
-Réduction: -30%
-Prix final: 349 CHF/mois
-Économie annuelle: 1'800 CHF
-```
-
-**Cas 2: Fondation d'utilité publique**
-```
-Plan: Enterprise
-Prix public: 999 CHF/mois
-Réduction: -30%
-Prix final: 699 CHF/mois
-Économie annuelle: 3'600 CHF
+Exemple:
+Jean Dupont (Chef de projet):
+├─ Projet A: 50% temps
+├─ Projet B: 30% temps
+└─ Projet C: 20% temps
 ```
 
-**Autres avantages:**
+**Archivage intelligent:**
 ```
-✅ Support prioritaire même sur plans bas
-✅ Formation gratuite pour équipes
-✅ Visibilité dans notre réseau
-✅ Témoignage client (optionnel)
+📦 PROJETS ARCHIVÉS
+├─ Illimité sur tous les plans
+├─ Accès en lecture seule
+├─ Réactivation possible
+├─ Conserve historique complet
+└─ Export données à tout moment
+
+Utilité:
+- Libérer quota projets actifs
+- Garder historique complet
+- Reporting long terme
+- Conformité légale (10 ans)
+```
+
+**Workflow recommandé:**
+```
+NOUVEAU PROJET:
+1. Créer projet depuis template
+2. Définir structure (lots, phases)
+3. Assigner équipe
+4. Lier au dashboard global
+
+PROJET EN COURS:
+1. Suivre via dashboard consolidé
+2. Alertes automatiques
+3. Reports comparatifs mensuels
+
+PROJET TERMINÉ:
+1. Clôture comptable
+2. Archivage automatique
+3. Export documentation
+4. Libère quota pour nouveau projet
+```
+
+**Avantages multi-projets:**
+```
+✅ Vision d'ensemble portfolio
+✅ Décisions basées sur données
+✅ Optimisation ressources
+✅ Anticipation problèmes
+✅ Reporting investisseurs simplifié
+✅ Meilleure rentabilité globale
+```
+
+**Rapports pour investisseurs:**
+```
+📊 EXPORTS PROFESSIONNELS
+├─ Portfolio performance (PDF)
+├─ Financial summary (Excel)
+├─ Projets comparés (PowerPoint)
+├─ Cash-flow prévisionnel
+└─ Logos et branding personnalisés
+
+Parfait pour:
+- Comités d'investissement
+- Banques et financeurs
+- Conseils d'administration
+- Reporting trimestriel
 ```
 
 **Points clés:**
-- Réduction significative (30%)
-- Process simple et rapide
-- Engagement social RealPro
+- Dashboard global sur tous les plans
+- Gestion professionnelle portfolio
+- Optimisation multi-projets
+- Rapports consolidés inclus
 
 ---
 
@@ -959,9 +1017,6 @@ Prix final: 699 CHF/mois
 **Questions commerciales:**
 - 📧 Email: sales@realpro.ch
 - 📞 Téléphone: +41 XX XXX XX XX
-
-**Organisations non-profit:**
-- 📧 Email: nonprofits@realpro.ch
 
 ---
 
@@ -980,11 +1035,11 @@ Prix final: 699 CHF/mois
 | **Facture ?** | Oui, automatique, conforme norme suisse |
 | **Support ?** | Email 48h (Starter) → Téléphone 24/7 (Enterprise) |
 | **Annuel = économie ?** | Oui, ~17% (2 mois offerts) |
-| **Réduction non-profit ?** | Oui, 30% pour associations reconnues |
+| **Multi-projets ?** | Oui, dashboard global consolidé inclus |
 
 ---
 
 **RealPro SA - FAQ Pricing Professionnelle**
-**Version:** 2.0
+**Version:** 2.1
 **Date:** 2025-12-05
-**Statut:** ✅ Actif
+**Statut:** ✅ Actif - Focus Promoteurs Immobiliers

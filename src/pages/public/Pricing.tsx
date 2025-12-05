@@ -362,10 +362,10 @@ export function Pricing() {
               <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
                 <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
                   <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
-                  Proposez-vous des réductions pour organisations à but non lucratif ?
+                  Puis-je gérer plusieurs projets simultanément ?
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
-                  Oui, nous offrons 30% de réduction aux associations, fondations et coopératives reconnues d'utilité publique en Suisse. Contactez-nous avec vos documents officiels.
+                  Absolument. RealPro est conçu pour les promoteurs multi-projets. Tableau de bord global, vue consolidée des finances, planning inter-projets et rapports comparatifs inclus sur tous les plans.
                 </p>
               </div>
             </div>
