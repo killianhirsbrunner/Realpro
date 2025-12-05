@@ -15,15 +15,20 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
+    "@tanstack/react-table": "^8.21.3",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "framer-motion": "^10.18.0",
     "i18next": "^23.7.6",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.68.0",
     "react-i18next": "^13.5.0",
     "react-router-dom": "^6.20.1",
-    "recharts": "^3.5.1"
+    "recharts": "^2.15.4",
+    "sonner": "^1.7.4",
+    "zustand": "^4.5.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

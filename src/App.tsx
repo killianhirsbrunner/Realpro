@@ -10,6 +10,7 @@ import { AppShell } from './components/layout/AppShell';
 import { AuthGuard } from './components/AuthGuard';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { OrganizationProvider } from './contexts/OrganizationContext';
+import { RealProToaster } from './components/ui/Toast';
 
 import { Landing } from './pages/public/Landing';
 import { LandingEnhanced } from './pages/public/LandingEnhanced';
@@ -119,6 +120,9 @@ import { TasksManager } from './pages/TasksManager';
 import { TemplatesManager } from './pages/TemplatesManager';
 import AdminOrganizationsPage from './pages/AdminOrganizations';
 import { SuperAdminDashboard } from './pages/admin/SuperAdminDashboard';
+import { RealProAdminDashboard } from './pages/admin/RealProAdminDashboard';
+import { AuditLogs } from './pages/admin/AuditLogs';
+import { FeatureFlags } from './pages/admin/FeatureFlags';
 import { OrganizationSettings } from './pages/OrganizationSettings';
 
 import { Settings } from './pages/Settings';
@@ -272,6 +276,8 @@ function App() {
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
                     <Route path="/admin/super" element={<SuperAdminDashboard />} />
                     <Route path="/admin/realpro" element={<RealProAdminDashboard />} />
+                    <Route path="/admin/audit-logs" element={<AuditLogs />} />
+                    <Route path="/admin/feature-flags" element={<FeatureFlags />} />
 
                     <Route path="/organization/settings" element={<OrganizationSettings />} />
 
@@ -284,6 +290,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <RealProToaster />
     </ThemeProvider>
   );
 }

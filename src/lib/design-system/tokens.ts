@@ -1,5 +1,7 @@
+// RealPro Design System - Enhanced Premium Tokens
 export const designTokens = {
   colors: {
+    // Light Mode
     light: {
       background: '#eeede9',
       foreground: '#1b1b1b',
@@ -7,7 +9,24 @@ export const designTokens = {
       secondary: '#c9c8c3',
       accent: '#6b7280',
       border: '#d7d6d2',
+
+      // Brand colors
+      brand: '#2563eb',
+      brandLight: '#3b82f6',
+      brandDark: '#1e40af',
+
+      // Semantic colors
+      success: '#10b981',
+      successLight: '#34d399',
+      warning: '#f59e0b',
+      warningLight: '#fbbf24',
+      danger: '#ef4444',
+      dangerLight: '#f87171',
+      info: '#3b82f6',
+      infoLight: '#60a5fa',
     },
+
+    // Dark Mode
     dark: {
       background: '#1b1b1b',
       foreground: '#eeede9',
@@ -15,7 +34,56 @@ export const designTokens = {
       secondary: '#2a2a2a',
       accent: '#d1d5db',
       border: '#2e2e2e',
+
+      // Brand colors
+      brand: '#3b82f6',
+      brandLight: '#60a5fa',
+      brandDark: '#2563eb',
+
+      // Semantic colors
+      success: '#10b981',
+      successLight: '#34d399',
+      warning: '#f59e0b',
+      warningLight: '#fbbf24',
+      danger: '#ef4444',
+      dangerLight: '#f87171',
+      info: '#3b82f6',
+      infoLight: '#60a5fa',
     },
+
+    // Status colors (mode-independent)
+    status: {
+      // CRM Pipeline
+      prospect: '#8b5cf6',     // Purple
+      interested: '#06b6d4',   // Cyan
+      reserved: '#f59e0b',     // Amber
+      sold: '#10b981',         // Green
+      lost: '#ef4444',         // Red
+
+      // Lot Status
+      available: '#10b981',    // Green
+      lotReserved: '#f59e0b',  // Amber
+      lotSold: '#3b82f6',      // Blue
+      blocked: '#ef4444',      // Red
+
+      // Financial Status
+      paid: '#10b981',         // Green
+      pending: '#f59e0b',      // Amber
+      overdue: '#ef4444',      // Red
+      draft: '#6b7280',        // Gray
+    },
+
+    // Data Visualization (8 distinct colors for charts)
+    chart: [
+      '#2563eb', // Blue
+      '#10b981', // Green
+      '#f59e0b', // Amber
+      '#ef4444', // Red
+      '#8b5cf6', // Purple
+      '#06b6d4', // Cyan
+      '#ec4899', // Pink
+      '#f97316', // Orange
+    ],
   },
 
   radius: {
@@ -31,21 +99,21 @@ export const designTokens = {
     soft: '0 4px 12px rgba(0, 0, 0, 0.08)',
     card: '0 8px 18px rgba(0, 0, 0, 0.12)',
     panel: '0 12px 35px rgba(0, 0, 0, 0.18)',
-    glow: '0 0 20px rgba(158, 94, 239, 0.3)',
+    glow: '0 0 20px rgba(59, 130, 246, 0.3)',
   },
 
   typography: {
     fontFamily: 'Inter, SF Pro Display, system-ui, sans-serif',
     sizes: {
-      xs: '0.75rem',
-      sm: '0.875rem',
-      base: '1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
-      '5xl': '3rem',
+      xs: '0.75rem',    // 12px
+      sm: '0.875rem',   // 14px
+      base: '1rem',     // 16px
+      lg: '1.125rem',   // 18px
+      xl: '1.25rem',    // 20px
+      '2xl': '1.5rem',  // 24px
+      '3xl': '1.875rem',// 30px
+      '4xl': '2.25rem', // 36px
+      '5xl': '3rem',    // 48px
     },
     weights: {
       normal: '400',
@@ -61,13 +129,13 @@ export const designTokens = {
   },
 
   spacing: {
-    xs: '0.25rem',
-    sm: '0.5rem',
-    md: '1rem',
-    lg: '1.5rem',
-    xl: '2rem',
-    '2xl': '3rem',
-    '3xl': '4rem',
+    xs: '0.25rem',  // 4px
+    sm: '0.5rem',   // 8px
+    md: '1rem',     // 16px
+    lg: '1.5rem',   // 24px
+    xl: '2rem',     // 32px
+    '2xl': '3rem',  // 48px
+    '3xl': '4rem',  // 64px
   },
 
   transitions: {
@@ -75,6 +143,58 @@ export const designTokens = {
     normal: '200ms ease-out',
     slow: '300ms ease-out',
   },
+
+  // Animation durations
+  animation: {
+    fast: 150,
+    normal: 200,
+    slow: 300,
+  },
 } as const;
 
 export type DesignTokens = typeof designTokens;
+
+// Helper function to get status color
+export function getStatusColor(status: string, theme: 'light' | 'dark' = 'light'): string {
+  const statusColors = designTokens.colors.status;
+  const normalized = status.toLowerCase();
+
+  // CRM statuses
+  if (normalized.includes('prospect')) return statusColors.prospect;
+  if (normalized.includes('intéressé') || normalized.includes('interested')) return statusColors.interested;
+  if (normalized.includes('réservé') || normalized.includes('reserved')) return statusColors.reserved;
+  if (normalized.includes('vendu') || normalized.includes('sold')) return statusColors.sold;
+  if (normalized.includes('perdu') || normalized.includes('lost')) return statusColors.lost;
+
+  // Lot statuses
+  if (normalized.includes('disponible') || normalized.includes('available')) return statusColors.available;
+  if (normalized.includes('bloqué') || normalized.includes('blocked')) return statusColors.blocked;
+
+  // Financial statuses
+  if (normalized.includes('payé') || normalized.includes('paid')) return statusColors.paid;
+  if (normalized.includes('attente') || normalized.includes('pending')) return statusColors.pending;
+  if (normalized.includes('retard') || normalized.includes('overdue')) return statusColors.overdue;
+  if (normalized.includes('brouillon') || normalized.includes('draft')) return statusColors.draft;
+
+  // Default
+  return theme === 'light' ? designTokens.colors.light.accent : designTokens.colors.dark.accent;
+}
+
+// Helper to get semantic color
+export function getSemanticColor(type: 'success' | 'warning' | 'danger' | 'info', theme: 'light' | 'dark' = 'light', variant: 'base' | 'light' = 'base'): string {
+  const colors = theme === 'light' ? designTokens.colors.light : designTokens.colors.dark;
+
+  if (variant === 'light') {
+    return colors[`${type}Light` as keyof typeof colors] as string;
+  }
+
+  return colors[type as keyof typeof colors] as string;
+}
+
+// Export for easy access
+export const colors = designTokens.colors;
+export const spacing = designTokens.spacing;
+export const typography = designTokens.typography;
+export const radius = designTokens.radius;
+export const shadows = designTokens.shadows;
+export const transitions = designTokens.transitions;
