@@ -199,7 +199,7 @@ export function AvenantSignature() {
 
 function AvenantTypeBadge({ type }: { type: string }) {
   const config: Record<string, { label: string; className: string }> = {
-    simple: { label: 'Simple', className: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
+    simple: { label: 'Simple', className: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200' },
     detailed: { label: 'Détaillé', className: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200' },
     legal: { label: 'Juridique', className: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' },
   };

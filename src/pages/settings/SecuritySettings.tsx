@@ -199,11 +199,11 @@ export function SecuritySettings() {
             </Button>
           </div>
 
-          <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-900/30">
-            <p className="text-sm text-blue-900 dark:text-blue-100 font-medium mb-2">
+          <div className="p-4 bg-brand-50 dark:bg-blue-950/20 rounded-xl border border-brand-200 dark:border-brand-900/30">
+            <p className="text-sm text-brand-900 dark:text-brand-100 font-medium mb-2">
               Exigences de mot de passe
             </p>
-            <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+            <ul className="text-sm text-brand-700 dark:text-brand-300 space-y-1">
               <li className="flex items-center gap-2">
                 <Check className="w-4 h-4" />
                 Au moins 12 caractères

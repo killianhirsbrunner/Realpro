@@ -85,14 +85,14 @@ export function ProjectFinancesInvoices() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 border border-blue-200/50 dark:border-blue-800/50 rounded-xl p-6 shadow-sm">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 border border-brand-200/50 dark:border-brand-800/50 rounded-xl p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-3 h-3 rounded-full bg-blue-600"></div>
+              <div className="w-3 h-3 rounded-full bg-brand-600"></div>
             </div>
-            <p className="text-sm text-blue-700 dark:text-blue-400 font-medium mb-1">
+            <p className="text-sm text-brand-700 dark:text-brand-400 font-medium mb-1">
               Montant facturé
             </p>
-            <p className="text-2xl font-bold text-blue-900 dark:text-blue-300">
+            <p className="text-2xl font-bold text-brand-900 dark:text-brand-300">
               {formatCurrency(totalInvoiced)}
             </p>
           </div>

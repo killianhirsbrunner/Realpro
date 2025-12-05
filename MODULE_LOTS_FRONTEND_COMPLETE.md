@@ -196,7 +196,7 @@ src/components/lots/
 **Boutons avec couleurs** :
 - 🟢 **Libérer** → vert (border-green-300)
 - 🟡 **Réserver** → jaune (border-amber-300)
-- 🔵 **Vendre** → bleu (border-blue-300)
+- 🔵 **Vendre** → bleu (border-brand-300)
 - 🔴 **Bloquer** → rouge (border-red-300)
 
 **Fonctionnement** :
@@ -288,7 +288,7 @@ src/components/lots/
 ### Couleurs par Module
 
 ```
-🏢 Lots           → Bleu brand   (#1e40af)
+🏢 Lots           → Bleu brand   (#0e7490)
 👥 CRM            → Violet       (#8b5cf6)
 💰 Finances       → Vert         (#10b981)
 🎨 Modifications  → Indigo       (#6366f1)

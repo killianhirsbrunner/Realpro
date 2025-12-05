@@ -17,7 +17,7 @@ interface ProjectTeamListProps {
 }
 
 const roleColors: Record<string, { bg: string; text: string }> = {
-  PROMOTER: { bg: 'bg-blue-100', text: 'text-blue-700' },
+  PROMOTER: { bg: 'bg-brand-100', text: 'text-brand-700' },
   ARCHITECT: { bg: 'bg-brand-100', text: 'text-brand-700' },
   CONTRACTOR: { bg: 'bg-brand-100', text: 'text-brand-700' },
   ENGINEER: { bg: 'bg-green-100', text: 'text-green-700' },
@@ -37,7 +37,7 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
             className="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
           >
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold text-lg">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white font-semibold text-lg">
                 {member.avatar ? (
                   <img src={member.avatar} alt={member.name} className="w-full h-full rounded-full object-cover" />
                 ) : (
@@ -60,7 +60,7 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
             <div className="mt-4 space-y-2">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Mail className="w-4 h-4" />
-                <a href={`mailto:${member.email}`} className="hover:text-blue-600 truncate">
+                <a href={`mailto:${member.email}`} className="hover:text-brand-600 truncate">
                   {member.email}
                 </a>
               </div>
@@ -68,7 +68,7 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
               {member.phone && (
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Phone className="w-4 h-4" />
-                  <a href={`tel:${member.phone}`} className="hover:text-blue-600">
+                  <a href={`tel:${member.phone}`} className="hover:text-brand-600">
                     {member.phone}
                   </a>
                 </div>
@@ -80,7 +80,7 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
                 {onEditMember && (
                   <button
                     onClick={() => onEditMember(member.id)}
-                    className="flex-1 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                    className="flex-1 px-3 py-2 text-sm font-medium text-brand-600 bg-brand-50 hover:bg-brand-100 rounded-lg transition-colors"
                   >
                     Modifier
                   </button>

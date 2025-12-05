@@ -265,7 +265,7 @@ Les données proviennent de Supabase via:
 Éditer les classes Tailwind dans chaque composant:
 ```typescript
 // Exemple: Changer la couleur de succès
-className="bg-green-600" → className="bg-blue-600"
+className="bg-green-600" → className="bg-brand-600"
 ```
 
 ### Ajouter des KPIs

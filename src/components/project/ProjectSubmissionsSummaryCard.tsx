@@ -52,12 +52,12 @@ export default function ProjectSubmissionsSummaryCard({ projectId }: ProjectSubm
           <p className="text-xl font-bold text-gray-900">{data.draft}</p>
         </div>
 
-        <div className="bg-blue-50 rounded-lg p-3">
+        <div className="bg-brand-50 rounded-lg p-3">
           <div className="flex items-center gap-2 mb-1">
-            <Send className="w-3 h-3 text-blue-600" />
-            <span className="text-xs font-medium text-blue-900">Publiées</span>
+            <Send className="w-3 h-3 text-brand-600" />
+            <span className="text-xs font-medium text-brand-900">Publiées</span>
           </div>
-          <p className="text-xl font-bold text-blue-600">{data.published}</p>
+          <p className="text-xl font-bold text-brand-600">{data.published}</p>
         </div>
 
         <div className="bg-amber-50 rounded-lg p-3">

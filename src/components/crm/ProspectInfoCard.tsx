@@ -50,7 +50,7 @@ export default function ProspectInfoCard({ prospect }: ProspectInfoCardProps) {
               <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
               <a
                 href={`mailto:${prospect.email}`}
-                className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-gray-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400"
               >
                 {prospect.email}
               </a>
@@ -64,7 +64,7 @@ export default function ProspectInfoCard({ prospect }: ProspectInfoCardProps) {
                 <p className="text-sm text-gray-600 dark:text-gray-400">Téléphone</p>
                 <a
                   href={`tel:${prospect.phone}`}
-                  className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-gray-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400"
                 >
                   {prospect.phone}
                 </a>

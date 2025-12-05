@@ -19,7 +19,7 @@ const phaseLabels: Record<string, string> = {
 const phaseColors: Record<string, string> = {
   preparation: 'from-neutral-500 to-neutral-600',
   gros_oeuvre: 'from-brand-500 to-brand-600',
-  second_oeuvre: 'from-blue-500 to-blue-600',
+  second_oeuvre: 'from-brand-500 to-brand-600',
   finitions: 'from-green-500 to-green-600',
   livraison: 'from-brand-500 to-brand-600',
 };

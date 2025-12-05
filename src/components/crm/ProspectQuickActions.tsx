@@ -88,7 +88,7 @@ export function ProspectQuickActions({ prospect, projectId, onStatusChange }: Pr
             size="sm"
             onClick={handleConvertToReservation}
             disabled={loading}
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-brand-600 hover:bg-brand-700 text-white"
           >
             <CheckCircle className="h-4 w-4 mr-2" />
             Convertir en réservation
@@ -113,7 +113,7 @@ export function ProspectQuickActions({ prospect, projectId, onStatusChange }: Pr
               size="sm"
               onClick={handleSendEmail}
               disabled={loading}
-              className="text-blue-600 hover:text-blue-700 border-blue-300 hover:border-blue-400"
+              className="text-brand-600 hover:text-brand-700 border-brand-300 hover:border-brand-400"
             >
               <Mail className="h-4 w-4 mr-2" />
               Email

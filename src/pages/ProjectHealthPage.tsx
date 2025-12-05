@@ -120,19 +120,19 @@ export default function ProjectHealthPage() {
             <p className="font-medium text-gray-900">Actions suggérées:</p>
             <ul className="space-y-2 text-sm text-gray-600">
               <li className="flex items-start gap-2">
-                <span className="text-blue-600">•</span>
+                <span className="text-brand-600">•</span>
                 <span>Planifier une réunion de coordination hebdomadaire</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600">•</span>
+                <span className="text-brand-600">•</span>
                 <span>Mettre à jour les délais de livraison</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600">•</span>
+                <span className="text-brand-600">•</span>
                 <span>Vérifier les budgets et engagements</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600">•</span>
+                <span className="text-brand-600">•</span>
                 <span>Communiquer avec les parties prenantes</span>
               </li>
             </ul>

@@ -268,13 +268,13 @@ export function Landing() {
                       <div className="text-[9px] text-green-600 dark:text-green-400 mt-auto">+8.2% vs. prévu</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl p-3 border border-blue-200/50 dark:border-blue-800/50 h-24 flex flex-col">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl p-3 border border-brand-200/50 dark:border-brand-800/50 h-24 flex flex-col">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="text-[9px] font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wide">Prospects</div>
-                        <MessageSquare className="w-3 h-3 text-blue-600 flex-shrink-0" />
+                        <div className="text-[9px] font-semibold text-brand-700 dark:text-brand-400 uppercase tracking-wide">Prospects</div>
+                        <MessageSquare className="w-3 h-3 text-brand-600 flex-shrink-0" />
                       </div>
-                      <div className="text-2xl font-bold text-blue-900 dark:text-blue-300 leading-none">142</div>
-                      <div className="text-[9px] text-blue-600 dark:text-blue-400 mt-auto">18 nouveaux</div>
+                      <div className="text-2xl font-bold text-brand-900 dark:text-brand-300 leading-none">142</div>
+                      <div className="text-[9px] text-brand-600 dark:text-brand-400 mt-auto">18 nouveaux</div>
                     </div>
                   </div>
 

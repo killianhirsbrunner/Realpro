@@ -28,8 +28,8 @@ export default function ProjectLotsSummaryCard({ projectId }: ProjectLotsSummary
     <div className="bg-white rounded-xl border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-blue-600" />
+          <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center">
+            <Building2 className="w-5 h-5 text-brand-600" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900">Lots</h3>
@@ -38,7 +38,7 @@ export default function ProjectLotsSummaryCard({ projectId }: ProjectLotsSummary
         </div>
         <Link
           to={`/projects/${projectId}/lots`}
-          className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+          className="text-sm text-brand-600 hover:text-brand-700 font-medium"
         >
           Voir tous →
         </Link>
@@ -70,15 +70,15 @@ export default function ProjectLotsSummaryCard({ projectId }: ProjectLotsSummary
           <p className="text-2xl font-bold text-gray-600">{data.available}</p>
         </div>
 
-        <div className="bg-blue-50 rounded-lg p-4">
+        <div className="bg-brand-50 rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="w-4 h-4 text-blue-600" />
-            <span className="text-sm font-medium text-blue-900">Valeur vendue</span>
+            <TrendingUp className="w-4 h-4 text-brand-600" />
+            <span className="text-sm font-medium text-brand-900">Valeur vendue</span>
           </div>
-          <p className="text-lg font-bold text-blue-600">
+          <p className="text-lg font-bold text-brand-600">
             {(data.soldValue / 1000000).toFixed(1)}M
           </p>
-          <p className="text-xs text-blue-700 mt-1">
+          <p className="text-xs text-brand-700 mt-1">
             sur {(data.totalValue / 1000000).toFixed(1)}M CHF
           </p>
         </div>

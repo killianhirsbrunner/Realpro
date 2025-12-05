@@ -16,7 +16,7 @@ interface ProjectConstructionSummaryProps {
 
 const statusColors = {
   not_started: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'Non démarré' },
-  in_progress: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'En cours' },
+  in_progress: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'En cours' },
   completed: { bg: 'bg-green-100', text: 'text-green-700', label: 'Terminé' },
   delayed: { bg: 'bg-red-100', text: 'text-red-700', label: 'Retard' },
 };
@@ -26,14 +26,14 @@ export default function ProjectConstructionSummary({ construction }: ProjectCons
     <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-lg text-gray-900">Chantier</h3>
-        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+        <span className="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-sm font-semibold">
           {construction.overallProgress}%
         </span>
       </div>
 
       <div className="w-full bg-gray-200 rounded-full h-4">
         <div
-          className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500"
+          className="h-full bg-gradient-to-r from-brand-500 to-brand-600 rounded-full transition-all duration-500"
           style={{ width: `${construction.overallProgress}%` }}
         />
       </div>
@@ -58,7 +58,7 @@ export default function ProjectConstructionSummary({ construction }: ProjectCons
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
-                    section.status === 'delayed' ? 'bg-red-500' : 'bg-blue-500'
+                    section.status === 'delayed' ? 'bg-red-500' : 'bg-brand-500'
                   }`}
                   style={{ width: `${section.progress}%` }}
                 />

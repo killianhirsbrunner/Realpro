@@ -20,9 +20,9 @@ export default function ProjectFinanceSummary({ finance }: ProjectFinanceSummary
       <h3 className="font-semibold text-lg text-gray-900">Finances</h3>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className="p-4 bg-blue-50 rounded-lg">
-          <p className="text-sm text-blue-700 font-medium">Budget CFC</p>
-          <p className="text-2xl font-bold text-blue-900 mt-1">
+        <div className="p-4 bg-brand-50 rounded-lg">
+          <p className="text-sm text-brand-700 font-medium">Budget CFC</p>
+          <p className="text-2xl font-bold text-brand-900 mt-1">
             CHF {finance.cfcBudget.toLocaleString('fr-CH')}
           </p>
         </div>
@@ -43,7 +43,7 @@ export default function ProjectFinanceSummary({ finance }: ProjectFinanceSummary
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div
-              className="h-full bg-blue-500 rounded-full transition-all duration-500"
+              className="h-full bg-brand-500 rounded-full transition-all duration-500"
               style={{ width: `${engagedPercent}%` }}
             />
           </div>

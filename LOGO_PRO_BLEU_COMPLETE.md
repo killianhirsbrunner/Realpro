@@ -2,7 +2,7 @@
 
 ## Vue d'ensemble
 
-Le logo RealPro a été entièrement refondu pour afficher **"Real"** en noir (ou blanc en dark mode) et **"Pro"** en bleu (#2563eb / blue-600). Cette approche utilise du texte au lieu d'images SVG pour une meilleure performance, accessibilité et flexibilité.
+Le logo RealPro a été entièrement refondu pour afficher **"Real"** en noir (ou blanc en dark mode) et **"Pro"** en bleu (#0891b2 / blue-600). Cette approche utilise du texte au lieu d'images SVG pour une meilleure performance, accessibilité et flexibilité.
 
 ---
 
@@ -22,7 +22,7 @@ export function RealProLogo({ className = '', size = 'md' }: RealProLogoProps) {
   return (
     <div className={`flex items-center gap-0.5 ${sizeClasses[size]} font-bold ${className}`}>
       <span className="text-neutral-900 dark:text-white">Real</span>
-      <span className="text-blue-600">Pro</span>
+      <span className="text-brand-600">Pro</span>
     </div>
   );
 }
@@ -69,7 +69,7 @@ interface RealProIconProps {
 export function RealProIcon({ className = '', size = 'md' }: RealProIconProps) {
   return (
     <div
-      className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-bold text-white shadow-lg ${className}`}
+      className={`${sizeClasses[size]} rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center font-bold text-white shadow-lg ${className}`}
     >
       RP
     </div>
@@ -85,7 +85,7 @@ export function RealProIcon({ className = '', size = 'md' }: RealProIconProps) {
 
 **Rendu visuel**:
 - Badge carré arrondi (rounded-xl)
-- Gradient bleu (from-blue-500 to-blue-700)
+- Gradient bleu (from-brand-500 to-brand-700)
 - Texte "RP" blanc centré
 - Ombre portée (shadow-lg)
 
@@ -166,7 +166,7 @@ export function RealProIcon({ className = '', size = 'md' }: RealProIconProps) {
 - ✅ Pas de versions multiples à maintenir
 
 ### 5. Design
-- ✅ "Pro" toujours en bleu (#2563eb)
+- ✅ "Pro" toujours en bleu (#0891b2)
 - ✅ "Real" s'adapte au thème
 - ✅ Typography cohérente (font-bold)
 - ✅ Espacement optimal (gap-0.5)
@@ -177,14 +177,14 @@ export function RealProIcon({ className = '', size = 'md' }: RealProIconProps) {
 
 ### Light Mode
 - **"Real"**: `text-neutral-900` (#171717)
-- **"Pro"**: `text-blue-600` (#2563eb)
+- **"Pro"**: `text-brand-600` (#0891b2)
 
 ### Dark Mode
 - **"Real"**: `text-white` (#ffffff)
-- **"Pro"**: `text-blue-600` (#2563eb) - **reste identique**
+- **"Pro"**: `text-brand-600` (#0891b2) - **reste identique**
 
 ### Badge Icon
-- Gradient: `from-blue-500` (#3b82f6) `to-blue-700` (#1d4ed8)
+- Gradient: `from-brand-500` (#0891b2) `to-brand-700` (#0e7490)
 - Texte: `text-white` (#ffffff)
 
 ---

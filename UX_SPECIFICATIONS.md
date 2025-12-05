@@ -200,7 +200,7 @@
 <Button variant="primary">
   Enregistrer
 </Button>
-// → bg-blue-600 text-white hover:bg-blue-700
+// → bg-brand-600 text-white hover:bg-brand-700
 
 // Secondary
 <Button variant="secondary">
@@ -308,7 +308,7 @@
 - `success` : bg-green-100 text-green-800
 - `warning` : bg-amber-100 text-amber-800
 - `error` : bg-red-100 text-red-800
-- `info` : bg-blue-100 text-blue-800
+- `info` : bg-brand-100 text-brand-800
 - `default` : bg-gray-100 text-gray-800
 
 #### Table

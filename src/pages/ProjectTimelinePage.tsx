@@ -38,7 +38,7 @@ export default function ProjectTimelinePage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="p-6 bg-white rounded-xl border border-gray-200">
           <div className="flex items-center gap-3 mb-2">
-            <Calendar className="w-6 h-6 text-blue-600" />
+            <Calendar className="w-6 h-6 text-brand-600" />
             <p className="text-sm font-medium text-gray-600">Total phases</p>
           </div>
           <p className="text-3xl font-bold text-gray-900">{timeline.phases.length}</p>
@@ -54,7 +54,7 @@ export default function ProjectTimelinePage() {
 
         <div className="p-6 bg-white rounded-xl border border-gray-200">
           <div className="flex items-center gap-3 mb-2">
-            <Clock className="w-6 h-6 text-blue-600" />
+            <Clock className="w-6 h-6 text-brand-600" />
             <p className="text-sm font-medium text-gray-600">En cours</p>
           </div>
           <p className="text-3xl font-bold text-gray-900">{inProgressPhases}</p>
@@ -85,14 +85,14 @@ export default function ProjectTimelinePage() {
                 <div key={phase.id} className="relative pl-20">
                   <div className={`absolute left-6 w-5 h-5 rounded-full border-4 border-white ${
                     isCompleted ? 'bg-green-500' :
-                    isInProgress ? 'bg-blue-500' :
+                    isInProgress ? 'bg-brand-500' :
                     isDelayed ? 'bg-red-500' :
                     'bg-gray-300'
                   }`}></div>
 
                   <div className={`p-6 rounded-xl border-2 ${
                     isCompleted ? 'bg-green-50 border-green-200' :
-                    isInProgress ? 'bg-blue-50 border-blue-200' :
+                    isInProgress ? 'bg-brand-50 border-brand-200' :
                     isDelayed ? 'bg-red-50 border-red-200' :
                     'bg-gray-50 border-gray-200'
                   }`}>
@@ -102,7 +102,7 @@ export default function ProjectTimelinePage() {
                           <h3 className="text-lg font-semibold text-gray-900">{phase.name}</h3>
                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                             isCompleted ? 'bg-green-100 text-green-700' :
-                            isInProgress ? 'bg-blue-100 text-blue-700' :
+                            isInProgress ? 'bg-brand-100 text-brand-700' :
                             isDelayed ? 'bg-red-100 text-red-700' :
                             'bg-gray-100 text-gray-700'
                           }`}>
@@ -137,7 +137,7 @@ export default function ProjectTimelinePage() {
                             <div className="w-full bg-gray-200 rounded-full h-2">
                               <div
                                 className={`h-full rounded-full transition-all duration-500 ${
-                                  isDelayed ? 'bg-red-500' : 'bg-blue-500'
+                                  isDelayed ? 'bg-red-500' : 'bg-brand-500'
                                 }`}
                                 style={{ width: `${phase.progress}%` }}
                               />

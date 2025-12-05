@@ -128,7 +128,7 @@ Factures QR pour les acheteurs
 ### Palette de Couleurs
 
 **Dashboard KPI:**
-- Budget Total: Bleu (#3b82f6)
+- Budget Total: Bleu (#0891b2)
 - Engagé: Orange (#f97316)
 - Facturé: Violet (#a855f7)
 - Encaissé: Vert (#10b981)

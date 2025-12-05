@@ -81,7 +81,7 @@ export function PromoterDashboard() {
         </div>
         <Link
           to="/projects/wizard"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600 transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4" />
           Nouveau projet

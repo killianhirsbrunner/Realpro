@@ -164,7 +164,7 @@ window.location.href = result.redirectUrl;
 ```tsx
 // Même palette de couleurs que le reste de l'app
 - Gris: text-gray-900, text-gray-700, text-gray-500, text-gray-400
-- Bleu: bg-blue-600, ring-blue-500 (CTA principal)
+- Bleu: bg-brand-600, ring-brand-500 (CTA principal)
 - Vert: bg-green-50, text-green-800 (succès)
 - Rouge: bg-red-50, text-red-700 (erreurs)
 ```

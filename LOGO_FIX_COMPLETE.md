@@ -45,12 +45,12 @@ Le logo a été remplacé par un **SVG inline dynamique** qui :
 ### Couleurs
 
 **Mode Clair:**
-- Gradient icône: #2563eb → #1d4ed8
+- Gradient icône: #0891b2 → #0e7490
 - Texte "Real": #1b1b1b (noir riche)
 - Texte "Pro": #737373 (gris moyen)
 
 **Mode Sombre:**
-- Gradient icône: #60a5fa → #3b82f6
+- Gradient icône: #06b6d4 → #0891b2
 - Texte "Real": #f4f4f4 (blanc cassé)
 - Texte "Pro": #a3a3a3 (gris clair)
 
@@ -84,8 +84,8 @@ export function RealProLogo({ className = '', width = 180, height = 60 }: RealPr
       {/* Gradient definition */}
       <defs>
         <linearGradient id="realproGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={isDark ? "#60a5fa" : "#2563eb"} />
-          <stop offset="100%" stopColor={isDark ? "#3b82f6" : "#1d4ed8"} />
+          <stop offset="0%" stopColor={isDark ? "#06b6d4" : "#0891b2"} />
+          <stop offset="100%" stopColor={isDark ? "#0891b2" : "#0e7490"} />
         </linearGradient>
       </defs>
 

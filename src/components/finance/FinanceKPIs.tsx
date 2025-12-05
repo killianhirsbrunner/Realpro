@@ -42,7 +42,7 @@ export function FinanceKPIs({ data }: FinanceKPIsProps) {
       value: `${data.invoiced.toFixed(1)}%`,
       subtitle: formatCurrency(data.totalInvoices),
       icon: FileText,
-      color: 'bg-blue-600'
+      color: 'bg-brand-600'
     },
     {
       label: 'Payé',

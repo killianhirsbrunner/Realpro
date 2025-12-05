@@ -52,7 +52,7 @@ export function LandingEnhanced() {
       title: 'CRM & Ventes',
       description: 'Pipeline commercial complet pour gérer prospects, réservations et contrats. Suivi des courtiers et acheteurs centralisé.',
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
-      color: 'from-blue-600 to-blue-700'
+      color: 'from-brand-600 to-brand-700'
     },
     {
       icon: Home,

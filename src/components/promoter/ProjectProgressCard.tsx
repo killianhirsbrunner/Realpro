@@ -19,7 +19,7 @@ export default function ProjectProgressCard({ projects }: ProjectProgressCardPro
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'IN_PROGRESS':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+        return 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200';
       case 'PLANNING':
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
       case 'COMPLETED':
@@ -50,7 +50,7 @@ export default function ProjectProgressCard({ projects }: ProjectProgressCardPro
         </h2>
         <Link
           to="/projects"
-          className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 flex items-center gap-1"
+          className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 flex items-center gap-1"
         >
           Voir tous <ExternalLink className="w-4 h-4" />
         </Link>
@@ -61,7 +61,7 @@ export default function ProjectProgressCard({ projects }: ProjectProgressCardPro
           <p className="text-gray-500 dark:text-gray-400">Aucun projet actif</p>
           <Link
             to="/projects/wizard"
-            className="mt-4 inline-block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+            className="mt-4 inline-block text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300"
           >
             Créer votre premier projet
           </Link>
@@ -77,7 +77,7 @@ export default function ProjectProgressCard({ projects }: ProjectProgressCardPro
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                       {project.name}
                     </h3>
                     <span
@@ -104,7 +104,7 @@ export default function ProjectProgressCard({ projects }: ProjectProgressCardPro
 
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <div
-                  className="bg-blue-600 h-full rounded-full transition-all duration-300"
+                  className="bg-brand-600 h-full rounded-full transition-all duration-300"
                   style={{ width: `${project.progress}%` }}
                 />
               </div>

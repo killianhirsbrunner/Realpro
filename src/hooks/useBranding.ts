@@ -10,7 +10,7 @@ type Branding = {
 
 const DEFAULT_BRANDING: Branding = {
   logoUrl: null,
-  primaryColor: '#2563eb',
+  primaryColor: '#0891b2',
   secondaryColor: '#4b5563',
   accentColor: '#10b981',
 };

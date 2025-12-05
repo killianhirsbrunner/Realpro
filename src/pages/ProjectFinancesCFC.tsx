@@ -94,7 +94,7 @@ export function ProjectFinancesCFC() {
 
           <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 shadow-sm">
             <div className="flex items-center justify-between mb-3">
-              <div className="w-3 h-3 rounded-full bg-blue-600"></div>
+              <div className="w-3 h-3 rounded-full bg-brand-600"></div>
             </div>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium mb-1">
               Facturé

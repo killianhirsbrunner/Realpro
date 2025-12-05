@@ -402,7 +402,7 @@ export function ContractsTable({ contracts }: ContractsTableProps) {
               <Td>
                 <Link
                   href={`/contracts/${contract.id}`}
-                  className="font-medium text-blue-600 hover:text-blue-700 hover:underline"
+                  className="font-medium text-brand-600 hover:text-brand-700 hover:underline"
                 >
                   {contract.number}
                 </Link>
@@ -451,7 +451,7 @@ function Td({ children, className = '' }: { children: React.ReactNode; className
 function ContractTypeBadge({ type }: { type: string }) {
   const styles = {
     EG: 'bg-purple-50 text-purple-700 ring-purple-600/20',
-    SUBCONTRACTOR: 'bg-blue-50 text-blue-700 ring-blue-600/20',
+    SUBCONTRACTOR: 'bg-brand-50 text-brand-700 ring-brand-600/20',
     SERVICE: 'bg-gray-50 text-gray-700 ring-gray-600/20',
   };
 
@@ -474,7 +474,7 @@ function StatusBadge({ status }: { status: string }) {
   const styles = {
     DRAFT: 'bg-gray-50 text-gray-700 ring-gray-600/20',
     ACTIVE: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20',
-    COMPLETED: 'bg-blue-50 text-blue-700 ring-blue-600/20',
+    COMPLETED: 'bg-brand-50 text-brand-700 ring-brand-600/20',
     TERMINATED: 'bg-red-50 text-red-700 ring-red-600/20',
   };
 
@@ -550,7 +550,7 @@ export default function ProjectContractsPage({
       {loading && (
         <div className="flex justify-center py-12">
           <div className="text-center">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-brand-600 border-r-transparent"></div>
             <p className="mt-2 text-sm text-gray-500">Chargement des contrats…</p>
           </div>
         </div>

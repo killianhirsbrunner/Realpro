@@ -38,11 +38,11 @@ La Phase 1 du rebuild frontend RealPro est **100% complète**. Le projet dispose
 // Couleurs sémantiques professionnelles
 colors: {
   light: {
-    brand: '#2563eb',           // Bleu brand primary
+    brand: '#0891b2',           // Bleu brand primary
     success: '#10b981',         // Vert success
     warning: '#f59e0b',         // Amber warning
     danger: '#ef4444',          // Rouge danger
-    info: '#3b82f6',           // Bleu info
+    info: '#0891b2',           // Bleu info
   },
   status: {
     // CRM Pipeline
@@ -59,7 +59,7 @@ colors: {
     draft: '#6b7280',
   },
   chart: [
-    '#2563eb', '#10b981', '#f59e0b', '#ef4444',
+    '#0891b2', '#10b981', '#f59e0b', '#ef4444',
     '#8b5cf6', '#06b6d4', '#ec4899', '#f97316'
   ]
 }
@@ -242,7 +242,7 @@ const steps = [
   data={lotsByType}
   bars={[
     { dataKey: 'disponibles', color: '#10b981', name: 'Disponibles' },
-    { dataKey: 'vendus', color: '#3b82f6', name: 'Vendus' }
+    { dataKey: 'vendus', color: '#0891b2', name: 'Vendus' }
   ]}
   stacked={false}
   height={300}
@@ -265,7 +265,7 @@ const steps = [
 <AreaChart
   data={revenueData}
   areas={[
-    { dataKey: 'revenu', color: '#2563eb', name: 'Revenu' }
+    { dataKey: 'revenu', color: '#0891b2', name: 'Revenu' }
   ]}
   stacked={false}
   height={300}
@@ -451,11 +451,11 @@ colors: {
 // Système complet avec sémantique
 colors: {
   light: {
-    brand: '#2563eb',
+    brand: '#0891b2',
     success: '#10b981',    // ✨ NOUVEAU
     warning: '#f59e0b',    // ✨ NOUVEAU
     danger: '#ef4444',     // ✨ NOUVEAU
-    info: '#3b82f6',       // ✨ NOUVEAU
+    info: '#0891b2',       // ✨ NOUVEAU
   },
   status: {
     // CRM, Lots, Finance colors
@@ -466,7 +466,7 @@ colors: {
     // ... 10+ status colors
   },
   chart: [                 // ✨ NOUVEAU
-    '#2563eb', '#10b981', '#f59e0b', '#ef4444',
+    '#0891b2', '#10b981', '#f59e0b', '#ef4444',
     '#8b5cf6', '#06b6d4', '#ec4899', '#f97316'
   ]
 }

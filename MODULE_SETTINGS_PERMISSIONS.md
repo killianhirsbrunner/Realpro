@@ -146,7 +146,7 @@ Toggle switches premium avec animations.
 
 6 presets professionnels:
 - RealPro Violet (#9e5eef) ✅
-- Bleu professionnel (#3b82f6)
+- Bleu professionnel (#0891b2)
 - Vert moderne (#10b981)
 - Orange dynamique (#f59e0b)
 - Rose élégant (#ec4899)

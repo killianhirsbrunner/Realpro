@@ -79,14 +79,14 @@ export function QRInvoiceCard({
         </div>
 
         <div className="space-y-4">
-          <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div className="p-4 bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-lg">
             <div className="flex items-start gap-2">
-              <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <Info className="w-5 h-5 text-brand-600 dark:text-brand-400 flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-1">
+                <h4 className="text-sm font-semibold text-brand-900 dark:text-brand-300 mb-1">
                   QR-facture suisse
                 </h4>
-                <p className="text-xs text-blue-700 dark:text-blue-400 leading-relaxed">
+                <p className="text-xs text-brand-700 dark:text-brand-400 leading-relaxed">
                   Compatible avec toutes les banques suisses. Le paiement est automatiquement enregistré avec la bonne référence.
                 </p>
               </div>

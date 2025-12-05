@@ -20,7 +20,7 @@ interface ProjectMeetingsListProps {
 
 const typeColors = {
   chantier: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'Chantier' },
-  coordination: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Coordination' },
+  coordination: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'Coordination' },
   pilotage: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'Pilotage' },
   bureau: { bg: 'bg-green-100', text: 'text-green-700', label: 'Bureau' },
   autre: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'Autre' },
@@ -47,7 +47,7 @@ export default function ProjectMeetingsList({
               <div
                 key={meeting.id}
                 onClick={() => onMeetingClick?.(meeting.id)}
-                className="p-5 bg-white border-l-4 border-blue-500 rounded-r-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                className="p-5 bg-white border-l-4 border-brand-500 rounded-r-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
@@ -121,7 +121,7 @@ export default function ProjectMeetingsList({
                         e.stopPropagation();
                         onViewMinutes(meeting.id);
                       }}
-                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-brand-600 bg-brand-50 hover:bg-brand-100 rounded-lg transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>PV</span>

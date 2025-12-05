@@ -57,8 +57,8 @@ export function BuyerLotDetailCard({ buyer, projectId }: BuyerLotDetailCardProps
       <Card>
         <div className="p-6">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-              <Home className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+              <Home className="w-5 h-5 text-brand-600 dark:text-brand-400" />
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
               Lot acheté
@@ -90,8 +90,8 @@ export function BuyerLotDetailCard({ buyer, projectId }: BuyerLotDetailCardProps
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-              <Home className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+              <Home className="w-5 h-5 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
@@ -110,7 +110,7 @@ export function BuyerLotDetailCard({ buyer, projectId }: BuyerLotDetailCardProps
           </Link>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-brand-200 dark:border-brand-800">
           <div className="flex items-center justify-between mb-3">
             <div>
               <h4 className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -176,7 +176,7 @@ export function BuyerLotDetailCard({ buyer, projectId }: BuyerLotDetailCardProps
 
         <div className="flex gap-3">
           <Link to={`/projects/${projectId}/lots/${lot.id}`} className="flex-1">
-            <button className="w-full px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors text-sm font-medium">
+            <button className="w-full px-4 py-2 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 rounded-lg hover:bg-brand-100 dark:hover:bg-brand-900/30 transition-colors text-sm font-medium">
               Voir la fiche du lot
             </button>
           </Link>

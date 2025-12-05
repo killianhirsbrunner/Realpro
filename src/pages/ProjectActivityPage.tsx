@@ -50,7 +50,7 @@ export default function ProjectActivityPage() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Activity className="w-6 h-6 text-blue-600" />
+          <Activity className="w-6 h-6 text-brand-600" />
           <span className="text-2xl font-bold text-gray-900">{activity.length}</span>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function ProjectActivityPage() {
               onClick={() => setSelectedType(type)}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 selectedType === type
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-brand-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >

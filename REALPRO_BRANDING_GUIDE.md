@@ -99,9 +99,9 @@ Ce guide définit l'identité visuelle complète de RealPro Suite, le SaaS suiss
 
 #### Information (Conseils, aide)
 ```css
---color-info-light: #3b82f6;
---color-info-dark: #2563eb;
---color-info-bg-light: #dbeafe;
+--color-info-light: #0891b2;
+--color-info-dark: #0891b2;
+--color-info-bg-light: #cffafe;
 --color-info-bg-dark: #1e3a8a;
 ```
 
@@ -109,9 +109,9 @@ Ce guide définit l'identité visuelle complète de RealPro Suite, le SaaS suiss
 
 #### Bleu RealPro (Actions primaires)
 ```css
---color-blue-primary: #2563eb;
---color-blue-hover: #1d4ed8;
---color-blue-light: #60a5fa;
+--color-blue-primary: #0891b2;
+--color-blue-hover: #0e7490;
+--color-blue-light: #06b6d4;
 ```
 
 #### Or/Beige Premium (Accents luxe)

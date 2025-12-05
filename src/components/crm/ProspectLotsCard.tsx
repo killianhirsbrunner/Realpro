@@ -74,8 +74,8 @@ export function ProspectLotsCard({ prospect, projectId }: ProspectLotsCardProps)
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-              <Home className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+              <Home className="w-5 h-5 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">

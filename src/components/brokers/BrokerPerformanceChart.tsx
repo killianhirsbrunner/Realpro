@@ -49,8 +49,8 @@ export function BrokerPerformanceChart({ data }: BrokerPerformanceChartProps) {
         >
           <defs>
             <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              <stop offset="5%" stopColor="#0891b2" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#0891b2" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorReservations" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
@@ -82,7 +82,7 @@ export function BrokerPerformanceChart({ data }: BrokerPerformanceChartProps) {
           <Area
             type="monotone"
             dataKey="sales"
-            stroke="#3b82f6"
+            stroke="#0891b2"
             fillOpacity={1}
             fill="url(#colorSales)"
             name="Ventes"

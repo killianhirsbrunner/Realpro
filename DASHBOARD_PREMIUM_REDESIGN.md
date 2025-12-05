@@ -175,7 +175,7 @@ Le Dashboard RealPro Suite a été complètement redesigné pour offrir une exp�
 
 1. **Ajouter un document**
    - Icône: FileText
-   - Couleur: Bleu (from-blue-500 to-blue-600)
+   - Couleur: Bleu (from-brand-500 to-brand-600)
    - Lien: `/projects/{projectId}/documents`
 
 2. **Envoyer un message**
@@ -238,14 +238,14 @@ src/
 - Background: #eeede9 (beige doux)
 - Text: #1b1b1b (noir riche)
 - Borders: #cfcfcb (beige moyen)
-- Primary: Bleu (#2563eb)
+- Primary: Bleu (#0891b2)
 - Hover: #d9d8d4
 
 **Mode Sombre**:
 - Background: #1b1b1b (noir riche)
 - Text: #f4f4f4 (blanc cassé)
 - Borders: #2f2f2f (gris foncé)
-- Primary: Bleu (#60a5fa)
+- Primary: Bleu (#06b6d4)
 - Hover: #303030
 
 ### Typographie

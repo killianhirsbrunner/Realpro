@@ -58,7 +58,7 @@ export default function ProjectTasksList({ tasks, onTaskClick, onToggleComplete 
                       e.stopPropagation();
                       onToggleComplete?.(task.id);
                     }}
-                    className="mt-0.5 text-gray-400 hover:text-blue-600"
+                    className="mt-0.5 text-gray-400 hover:text-brand-600"
                   >
                     <StatusIcon className="w-5 h-5" />
                   </button>

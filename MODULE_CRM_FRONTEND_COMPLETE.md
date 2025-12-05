@@ -162,9 +162,9 @@ Il y a 3 jours • Par Sophie Bernard
 | **LOST** | Badge "Prospect perdu" (rouge) |
 
 **Boutons avec couleurs** :
-- 🔵 **Convertir** → bleu (bg-blue-600)
+- 🔵 **Convertir** → bleu (bg-brand-600)
 - 🟢 **Appeler** → vert (border-green-300)
-- 🔵 **Email** → bleu (border-blue-300)
+- 🔵 **Email** → bleu (border-brand-300)
 - 🟣 **Planifier** → violet (border-purple-300)
 - 🔴 **Marquer perdu** → rouge (border-red-300)
 
@@ -405,7 +405,7 @@ CHF 50'000
 👥 CRM/Prospects  → Violet/Indigo (#8b5cf6 / #6366f1)
 💰 Buyers/Finance → Vert/Emerald  (#10b981 / #10b981)
 📄 Documents      → Gris/Neutral  (#6b7280)
-🏢 Lots           → Bleu          (#1e40af)
+🏢 Lots           → Bleu          (#0e7490)
 ```
 
 ### Badges de Statut Prospect

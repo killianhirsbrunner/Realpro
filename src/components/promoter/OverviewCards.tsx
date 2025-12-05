@@ -19,8 +19,8 @@ export default function OverviewCards({ stats }: OverviewCardsProps) {
       label: 'Projets actifs',
       value: stats.activeProjects,
       icon: Building2,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50 dark:bg-blue-950',
+      color: 'text-brand-600',
+      bgColor: 'bg-brand-50 dark:bg-blue-950',
     },
     {
       label: 'Taux de vente',

@@ -255,8 +255,8 @@ export function OrganizationOnboarding() {
             {step === 2 && (
               <div className="space-y-6">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  <div className="w-12 h-12 bg-brand-100 dark:bg-brand-900/30 rounded-xl flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-brand-600 dark:text-brand-400" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white">

@@ -331,7 +331,7 @@ const { data: newMessage } = await supabase
 - `bg-slate-50 text-slate-700` → À venir, En attente, Disponible
 
 **Messages acheteur** (bleu):
-- `bg-blue-600 text-white` → Messages envoyés par l'acheteur
+- `bg-brand-600 text-white` → Messages envoyés par l'acheteur
 
 ### Typographie
 
@@ -365,7 +365,7 @@ const { data: newMessage } = await supabase
 
 **Boutons**:
 ```tsx
-<button className="rounded-full bg-blue-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-blue-700">
+<button className="rounded-full bg-brand-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-brand-700">
   {label}
 </button>
 ```

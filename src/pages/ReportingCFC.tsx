@@ -100,7 +100,7 @@ export function ReportingCFC() {
         title="Budget vs Engagé vs Facturé vs Payé"
         subtitle="Par code CFC (en milliers CHF)"
         bars={[
-          { dataKey: 'budget', name: 'Budget', color: '#3b82f6' },
+          { dataKey: 'budget', name: 'Budget', color: '#0891b2' },
           { dataKey: 'engaged', name: 'Engagé', color: '#f59e0b' },
           { dataKey: 'invoiced', name: 'Facturé', color: '#10b981' },
           { dataKey: 'paid', name: 'Payé', color: '#8b5cf6' },

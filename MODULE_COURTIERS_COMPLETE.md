@@ -338,7 +338,7 @@ WHERE project_id = :projectId
 
 ```css
 /* KPI Cards */
-- Bleu (Blue-600): #2563eb    /* Courtiers */
+- Bleu (Blue-600): #0891b2    /* Courtiers */
 - Vert (Green-600): #16a34a   /* Ventes */
 - Orange: #ea580c              /* Lots */
 - Violet: #9333ea              /* Commissions */

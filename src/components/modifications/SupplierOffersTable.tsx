@@ -26,7 +26,7 @@ export function SupplierOffersTable({ offers, projectId }: SupplierOffersTablePr
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
       draft: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
-      pending_client: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+      pending_client: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       client_approved: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       architect_approved: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
       final: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',

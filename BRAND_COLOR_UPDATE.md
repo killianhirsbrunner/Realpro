@@ -47,11 +47,11 @@ brand: {
 **Fichiers modifiés:**
 
 - `src/components/branding/RealProLogo.tsx`
-  - Changement: `text-blue-600` → `text-brand-600`
+  - Changement: `text-brand-600` → `text-brand-600`
   - Le "Pro" est maintenant affiché en violet
 
 - `src/components/branding/RealProIcon.tsx`
-  - Changement: `from-blue-500 to-blue-700` → `from-brand-500 to-brand-700`
+  - Changement: `from-brand-500 to-brand-700` → `from-brand-500 to-brand-700`
   - Le badge "RP" utilise maintenant un dégradé violet
 
 ### 3. Design System
@@ -173,7 +173,7 @@ npm run build  # ✓ Success
 
 ```tsx
 // Avant
-<button className="bg-blue-600 hover:bg-blue-700 text-white">
+<button className="bg-brand-600 hover:bg-brand-700 text-white">
   Bouton
 </button>
 
@@ -187,7 +187,7 @@ npm run build  # ✓ Success
 
 ```tsx
 // Avant
-<div className="bg-gradient-to-r from-blue-500 to-blue-700">
+<div className="bg-gradient-to-r from-brand-500 to-brand-700">
   Contenu
 </div>
 
@@ -201,7 +201,7 @@ npm run build  # ✓ Success
 
 ```tsx
 // Avant
-<input className="border-blue-300 focus:ring-blue-500" />
+<input className="border-brand-300 focus:ring-brand-500" />
 
 // Après
 <input className="border-brand-300 focus:ring-brand-500" />

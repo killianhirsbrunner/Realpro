@@ -48,15 +48,15 @@ export default function ProjectFinancesSummaryCard({ projectId }: ProjectFinance
       </div>
 
       <div className="space-y-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+        <div className="bg-brand-50 rounded-lg p-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-900">Budget CFC</span>
+              <TrendingUp className="w-4 h-4 text-brand-600" />
+              <span className="text-sm font-medium text-brand-900">Budget CFC</span>
             </div>
-            <span className="text-sm font-semibold text-blue-900">{cfcUsagePercent}%</span>
+            <span className="text-sm font-semibold text-brand-900">{cfcUsagePercent}%</span>
           </div>
-          <div className="space-y-2 text-xs text-blue-800">
+          <div className="space-y-2 text-xs text-brand-800">
             <div className="flex justify-between">
               <span>Budgété</span>
               <span className="font-medium">
@@ -76,9 +76,9 @@ export default function ProjectFinancesSummaryCard({ projectId }: ProjectFinance
               </span>
             </div>
           </div>
-          <div className="mt-3 w-full bg-blue-200 rounded-full h-2">
+          <div className="mt-3 w-full bg-brand-200 rounded-full h-2">
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all"
+              className="bg-brand-600 h-2 rounded-full transition-all"
               style={{ width: `${Math.min(cfcUsagePercent, 100)}%` }}
             ></div>
           </div>

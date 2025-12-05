@@ -275,7 +275,7 @@ export function ProjectModificationsOfferDetail() {
           </Card>
 
           {offer.status === 'pending_client' && (
-            <Card className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
+            <Card className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-brand-200 dark:border-brand-800">
               <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">
                 Action requise : Validation client
               </h3>
@@ -358,7 +358,7 @@ export function ProjectModificationsOfferDetail() {
 function OfferStatusBadge({ status }: { status: string }) {
   const config: Record<string, { label: string; className: string }> = {
     draft: { label: 'Brouillon', className: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200' },
-    pending_client: { label: 'En attente client', className: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
+    pending_client: { label: 'En attente client', className: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200' },
     client_approved: { label: 'Validée client', className: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200' },
     architect_approved: { label: 'Validée architecte', className: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
     final: { label: 'Finalisée', className: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },

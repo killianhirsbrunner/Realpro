@@ -188,7 +188,7 @@ export function LotCRMCard({ lot, projectId }: LotCRMCardProps) {
           <div className="space-y-4">
             {crmData.prospects.length > 0 ? (
               <>
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                <div className="bg-brand-50 dark:bg-brand-900/20 rounded-lg p-4">
                   <Badge variant="default" className="mb-3">Disponible</Badge>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                     {crmData.prospects.length} prospect{crmData.prospects.length > 1 ? 's' : ''} intéressé{crmData.prospects.length > 1 ? 's' : ''}

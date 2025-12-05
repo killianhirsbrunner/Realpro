@@ -209,7 +209,7 @@ Status: ✅ Succès
 ## Design System
 
 ### Couleurs
-- **Brand**: Bleu (#1e40af → #1e3a8a)
+- **Brand**: Bleu (#0e7490 → #1e3a8a)
 - **Success**: Vert pour états payés
 - **Warning**: Orange pour en attente
 - **Error**: Rouge pour retards

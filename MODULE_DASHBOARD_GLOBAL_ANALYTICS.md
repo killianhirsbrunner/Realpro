@@ -370,7 +370,7 @@ subscription_plans (id, name, limits)
 - Vert (#10b981): Succès, payé, terminé
 - Orange (#f59e0b): Warning, engagé, urgent
 - Rouge (#ef4444): Erreur, retard, critique
-- Bleu (#3b82f6): Info, en cours
+- Bleu (#0891b2): Info, en cours
 - Gris (#6b7280): Neutre, disponible
 
 **Mode sombre:**

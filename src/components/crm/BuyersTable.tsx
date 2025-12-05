@@ -48,7 +48,7 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
       },
       CONTRACT_SIGNED: {
         label: 'Contrat signé',
-        color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+        color: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
         icon: CheckCircle2,
       },
       NOTARY_IN_PROGRESS: {
@@ -165,7 +165,7 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
                         </div>
                         <div className="w-24 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                           <div
-                            className="bg-blue-600 h-full rounded-full"
+                            className="bg-brand-600 h-full rounded-full"
                             style={{ width: `${docsProgress}%` }}
                           />
                         </div>
@@ -182,7 +182,7 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
                   <td className="p-4 text-right">
                     <Link
                       to={`/projects/${projectId}/buyers/${buyer.id}`}
-                      className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                      className="inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium"
                     >
                       Ouvrir
                       <ExternalLink className="w-3 h-3" />

@@ -165,7 +165,7 @@ const { branding, loading, updateBranding } = useBranding(orgId);
 // branding contient:
 {
   logoUrl: string | null,
-  primaryColor: '#2563eb',
+  primaryColor: '#0891b2',
   secondaryColor: '#4b5563',
   accentColor: '#10b981'
 }
@@ -176,7 +176,7 @@ Dès le chargement, le hook injecte les CSS variables :
 
 ```css
 :root {
-  --color-primary: #2563eb;
+  --color-primary: #0891b2;
   --color-secondary: #4b5563;
   --color-accent: #10b981;
 }
@@ -205,7 +205,7 @@ organization_branding
 ```typescript
 DEFAULT_BRANDING = {
   logoUrl: null,
-  primaryColor: '#2563eb',   // blue-600
+  primaryColor: '#0891b2',   // blue-600
   secondaryColor: '#4b5563', // gray-600
   accentColor: '#10b981',    // emerald-500
 }

@@ -26,7 +26,7 @@ Modifier le logo RealPro dans toute l'application pour mettre le mot **"Pro"** e
 ```tsx
 <div className="font-bold text-3xl">
   <span className="text-neutral-900 dark:text-white">Real</span>
-  <span className="text-blue-600">Pro</span>
+  <span className="text-brand-600">Pro</span>
 </div>
 ```
 
@@ -43,7 +43,7 @@ Modifier le logo RealPro dans toute l'application pour mettre le mot **"Pro"** e
 
 **Après** : Badge arrondi avec gradient bleu + lettres "RP"
 ```tsx
-<div className="rounded-lg bg-gradient-to-br from-blue-600 to-blue-700">
+<div className="rounded-lg bg-gradient-to-br from-brand-600 to-brand-700">
   <span className="text-white">RP</span>
 </div>
 ```
@@ -88,7 +88,7 @@ noir  bleu
 
 **Couleurs** :
 - `Real` : `text-neutral-900` (light) / `text-white` (dark)
-- `Pro` : `text-blue-600` (toujours bleu)
+- `Pro` : `text-brand-600` (toujours bleu)
 
 ### Icône (RealProIcon)
 
@@ -99,7 +99,7 @@ noir  bleu
 ```
 
 **Couleurs** :
-- Fond : Gradient `from-blue-600 to-blue-700`
+- Fond : Gradient `from-brand-600 to-brand-700`
 - Texte : `text-white`
 
 ---
@@ -188,11 +188,11 @@ Le logo s'adapte automatiquement :
 
 **Light mode** :
 - `Real` → Noir (`text-neutral-900`)
-- `Pro` → Bleu (`text-blue-600`)
+- `Pro` → Bleu (`text-brand-600`)
 
 **Dark mode** :
 - `Real` → Blanc (`text-white`)
-- `Pro` → Bleu (`text-blue-600`)
+- `Pro` → Bleu (`text-brand-600`)
 
 Le bleu reste constant pour la reconnaissance de marque.
 
@@ -254,12 +254,12 @@ Le nouveau logo est **immédiatement visible** sur :
 /* Couleurs */
 .text-neutral-900  /* Noir (light mode) */
 .text-white        /* Blanc (dark mode) */
-.text-blue-600     /* Bleu "Pro" */
+.text-brand-600     /* Bleu "Pro" */
 
 /* Icône */
 .bg-gradient-to-br
-.from-blue-600
-.to-blue-700
+.from-brand-600
+.to-brand-700
 ```
 
 ---

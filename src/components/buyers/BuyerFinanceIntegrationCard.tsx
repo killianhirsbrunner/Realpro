@@ -194,10 +194,10 @@ export function BuyerFinanceIntegrationCard({ buyer, projectId }: BuyerFinanceIn
           )}
 
           {financeData.nextDueDate && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+            <div className="bg-brand-50 dark:bg-brand-900/20 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
-                <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                <span className="text-xs font-medium text-blue-900 dark:text-blue-100">
+                <Calendar className="w-4 h-4 text-brand-600 dark:text-brand-400" />
+                <span className="text-xs font-medium text-brand-900 dark:text-brand-100">
                   Prochain acompte
                 </span>
               </div>

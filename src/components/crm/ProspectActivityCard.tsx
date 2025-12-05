@@ -21,7 +21,7 @@ const activityIcons: Record<string, any> = {
 
 const activityColors: Record<string, string> = {
   CALL: 'text-green-600 bg-green-100 dark:bg-green-900/30',
-  EMAIL: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30',
+  EMAIL: 'text-brand-600 bg-brand-100 dark:bg-brand-900/30',
   MEETING: 'text-brand-600 bg-brand-100 dark:bg-brand-900/30',
   NOTE: 'text-amber-600 bg-amber-100 dark:bg-amber-900/30',
   MESSAGE: 'text-indigo-600 bg-indigo-100 dark:bg-indigo-900/30',

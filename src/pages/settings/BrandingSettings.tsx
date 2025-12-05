@@ -20,7 +20,7 @@ export function BrandingSettings() {
 
   const colorPresets = [
     { name: 'RealPro Violet', color: '#9e5eef' },
-    { name: 'Bleu professionnel', color: '#3b82f6' },
+    { name: 'Bleu professionnel', color: '#0891b2' },
     { name: 'Vert moderne', color: '#10b981' },
     { name: 'Orange dynamique', color: '#f59e0b' },
     { name: 'Rose élégant', color: '#ec4899' },

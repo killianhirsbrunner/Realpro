@@ -81,11 +81,11 @@ colors: {
 ```typescript
 colors: {
   light: {
-    brand: '#2563eb',
+    brand: '#0891b2',
     success: '#10b981',
     warning: '#f59e0b',
     danger: '#ef4444',
-    info: '#3b82f6'
+    info: '#0891b2'
   },
   status: {
     prospect: '#8b5cf6',

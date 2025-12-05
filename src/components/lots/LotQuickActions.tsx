@@ -68,7 +68,7 @@ export default function LotQuickActions({ lot, projectId, onStatusChange }: LotQ
           size="sm"
           onClick={() => updateStatus('SOLD')}
           disabled={loading}
-          className="text-blue-600 hover:text-blue-700 border-blue-300 hover:border-blue-400"
+          className="text-brand-600 hover:text-brand-700 border-brand-300 hover:border-brand-400"
         >
           <CheckCircle className="h-4 w-4 mr-2" />
           Vendre

@@ -160,7 +160,7 @@ export function ProjectLotDetail() {
               <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">Statut</p>
               <p className={`text-2xl font-bold ${
                 lot.status === 'AVAILABLE' ? 'text-green-600' :
-                lot.status === 'SOLD' ? 'text-blue-600' :
+                lot.status === 'SOLD' ? 'text-brand-600' :
                 'text-amber-600'
               }`}>
                 {lot.status === 'AVAILABLE' ? 'Libre' :

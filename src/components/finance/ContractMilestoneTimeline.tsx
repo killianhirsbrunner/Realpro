@@ -226,7 +226,7 @@ export function ContractMilestoneTimeline({
           <span className="text-neutral-600 dark:text-neutral-400">En retard</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-blue-500" />
+          <div className="w-3 h-3 rounded-full bg-brand-500" />
           <span className="text-neutral-600 dark:text-neutral-400">En attente</span>
         </div>
       </div>

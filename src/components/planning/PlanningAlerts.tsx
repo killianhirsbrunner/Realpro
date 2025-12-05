@@ -41,7 +41,7 @@ export function PlanningAlerts({ alerts, onResolve }: PlanningAlertsProps) {
       case 'warning':
         return 'border-brand-500 bg-brand-50 dark:bg-brand-950/20';
       default:
-        return 'border-blue-500 bg-blue-50 dark:bg-blue-950/20';
+        return 'border-brand-500 bg-brand-50 dark:bg-blue-950/20';
     }
   };
 
@@ -52,7 +52,7 @@ export function PlanningAlerts({ alerts, onResolve }: PlanningAlertsProps) {
       case 'warning':
         return 'text-brand-600';
       default:
-        return 'text-blue-600';
+        return 'text-brand-600';
     }
   };
 
@@ -100,7 +100,7 @@ export function PlanningAlerts({ alerts, onResolve }: PlanningAlertsProps) {
                       inline-block px-2 py-0.5 rounded-md text-xs font-medium mb-2
                       ${alert.severity === 'critical' ? 'bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300' : ''}
                       ${alert.severity === 'warning' ? 'bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300' : ''}
-                      ${alert.severity === 'info' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300' : ''}
+                      ${alert.severity === 'info' ? 'bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300' : ''}
                     `}>
                       {getAlertTypeLabel(alert.alert_type)}
                     </span>

@@ -10,10 +10,10 @@ export const designTokens = {
       accent: '#6b7280',
       border: '#d7d6d2',
 
-      // Brand colors
-      brand: '#2563eb',
-      brandLight: '#3b82f6',
-      brandDark: '#1e40af',
+      // Brand colors - Bleu Turquoise
+      brand: '#0891b2',
+      brandLight: '#06b6d4',
+      brandDark: '#0e7490',
 
       // Semantic colors
       success: '#10b981',
@@ -22,8 +22,8 @@ export const designTokens = {
       warningLight: '#fbbf24',
       danger: '#ef4444',
       dangerLight: '#f87171',
-      info: '#3b82f6',
-      infoLight: '#60a5fa',
+      info: '#0891b2',
+      infoLight: '#06b6d4',
     },
 
     // Dark Mode
@@ -35,10 +35,10 @@ export const designTokens = {
       accent: '#d1d5db',
       border: '#2e2e2e',
 
-      // Brand colors
-      brand: '#3b82f6',
-      brandLight: '#60a5fa',
-      brandDark: '#2563eb',
+      // Brand colors - Bleu Turquoise
+      brand: '#06b6d4',
+      brandLight: '#22d3ee',
+      brandDark: '#0891b2',
 
       // Semantic colors
       success: '#10b981',
@@ -47,15 +47,15 @@ export const designTokens = {
       warningLight: '#fbbf24',
       danger: '#ef4444',
       dangerLight: '#f87171',
-      info: '#3b82f6',
-      infoLight: '#60a5fa',
+      info: '#06b6d4',
+      infoLight: '#22d3ee',
     },
 
     // Status colors (mode-independent)
     status: {
       // CRM Pipeline
       prospect: '#8b5cf6',     // Purple
-      interested: '#06b6d4',   // Cyan
+      interested: '#0891b2',   // Turquoise
       reserved: '#f59e0b',     // Amber
       sold: '#10b981',         // Green
       lost: '#ef4444',         // Red
@@ -63,7 +63,7 @@ export const designTokens = {
       // Lot Status
       available: '#10b981',    // Green
       lotReserved: '#f59e0b',  // Amber
-      lotSold: '#3b82f6',      // Blue
+      lotSold: '#0891b2',      // Turquoise
       blocked: '#ef4444',      // Red
 
       // Financial Status
@@ -75,12 +75,12 @@ export const designTokens = {
 
     // Data Visualization (8 distinct colors for charts)
     chart: [
-      '#2563eb', // Blue
+      '#0891b2', // Turquoise (primary)
       '#10b981', // Green
       '#f59e0b', // Amber
       '#ef4444', // Red
       '#8b5cf6', // Purple
-      '#06b6d4', // Cyan
+      '#14b8a6', // Teal
       '#ec4899', // Pink
       '#f97316', // Orange
     ],
@@ -99,7 +99,8 @@ export const designTokens = {
     soft: '0 4px 12px rgba(0, 0, 0, 0.08)',
     card: '0 8px 18px rgba(0, 0, 0, 0.12)',
     panel: '0 12px 35px rgba(0, 0, 0, 0.18)',
-    glow: '0 0 20px rgba(59, 130, 246, 0.3)',
+    glow: '0 0 20px rgba(8, 145, 178, 0.3)',
+    glowTurquoise: '0 0 20px rgba(8, 145, 178, 0.4)',
   },
 
   typography: {

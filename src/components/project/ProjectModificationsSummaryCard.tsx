@@ -87,7 +87,7 @@ export default function ProjectModificationsSummaryCard({ projectId }: ProjectMo
               <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded">
                 {data.changeRequests.pending} en attente
               </span>
-              <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded">
+              <span className="px-2 py-1 bg-brand-100 text-brand-800 rounded">
                 {data.changeRequests.underReview} en revue
               </span>
               <span className="px-2 py-1 bg-green-100 text-green-800 rounded">

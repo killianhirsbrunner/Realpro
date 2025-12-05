@@ -30,7 +30,7 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
 
   const getSourceBadge = (source: string) => {
     const colors: Record<string, string> = {
-      website: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+      website: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       phone: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
       email: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
       referral: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
@@ -142,7 +142,7 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
                 <td className="p-4 text-right">
                   <Link
                     to={`/projects/${projectId}/crm/prospects/${prospect.id}`}
-                    className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                    className="inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium"
                   >
                     Voir
                     <ExternalLink className="w-3 h-3" />

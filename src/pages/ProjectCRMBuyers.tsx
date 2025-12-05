@@ -54,7 +54,7 @@ export default function ProjectCRMBuyers() {
           </button>
           <Link
             to={`/projects/${projectId}/crm/pipeline`}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-600 transition-colors shadow-sm"
           >
             Voir le pipeline
           </Link>
@@ -67,7 +67,7 @@ export default function ProjectCRMBuyers() {
           onClick={() => setStatusFilter('all')}
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'all'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-brand-600 text-white'
               : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
           }`}
         >
@@ -87,7 +87,7 @@ export default function ProjectCRMBuyers() {
           onClick={() => setStatusFilter('CONTRACT_SIGNED')}
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'CONTRACT_SIGNED'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-brand-600 text-white'
               : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
           }`}
         >
@@ -124,7 +124,7 @@ export default function ProjectCRMBuyers() {
             placeholder="Rechercher par nom, email ou numéro de lot..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+            className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-900 dark:text-white"
           />
         </div>
         <button className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">

@@ -224,7 +224,7 @@ import { RealProTable, RealProBadge } from '@/components/realpro';
 
 **Avant :**
 ```tsx
-className="bg-blue-600 text-white"
+className="bg-brand-600 text-white"
 className="bg-gray-100"
 ```
 

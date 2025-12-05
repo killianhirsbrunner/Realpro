@@ -36,7 +36,7 @@ export function ReportingDashboard() {
   const salesData = [
     { name: 'Vendus', value: data.sales.sold, color: '#10b981' },
     { name: 'Réservés', value: data.sales.reserved, color: '#f59e0b' },
-    { name: 'Disponibles', value: data.sales.available, color: '#3b82f6' },
+    { name: 'Disponibles', value: data.sales.available, color: '#0891b2' },
   ];
 
   return (

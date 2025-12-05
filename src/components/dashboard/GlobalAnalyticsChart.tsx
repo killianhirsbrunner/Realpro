@@ -69,9 +69,9 @@ export function GlobalAnalyticsChart({ data }: GlobalAnalyticsChartProps) {
               <Line
                 type="monotone"
                 dataKey="chantier"
-                stroke="#3b82f6"
+                stroke="#0891b2"
                 strokeWidth={2}
-                dot={{ fill: '#3b82f6', r: 4 }}
+                dot={{ fill: '#0891b2', r: 4 }}
                 activeDot={{ r: 6 }}
                 name="Avancement chantier (%)"
               />

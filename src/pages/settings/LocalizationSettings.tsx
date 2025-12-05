@@ -284,18 +284,18 @@ export function LocalizationSettings() {
         </div>
       </div>
 
-      <div className="bg-blue-50 dark:bg-blue-950/20 rounded-xl border border-blue-200 dark:border-blue-900/30 p-4">
+      <div className="bg-brand-50 dark:bg-blue-950/20 rounded-xl border border-brand-200 dark:border-brand-900/30 p-4">
         <div className="flex gap-3">
           <div className="flex-shrink-0">
-            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/40 rounded-lg flex items-center justify-center">
-              <Globe className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <div className="w-8 h-8 bg-brand-100 dark:bg-brand-900/40 rounded-lg flex items-center justify-center">
+              <Globe className="w-4 h-4 text-brand-600 dark:text-brand-400" />
             </div>
           </div>
           <div>
-            <h4 className="font-medium text-blue-900 dark:text-blue-100 mb-1">
+            <h4 className="font-medium text-brand-900 dark:text-brand-100 mb-1">
               Paramètres régionaux suisses
             </h4>
-            <p className="text-sm text-blue-700 dark:text-blue-300">
+            <p className="text-sm text-brand-700 dark:text-brand-300">
               RealPro est optimisé pour la Suisse avec support complet des formats locaux,
               TVA, QR-factures et conformité légale helvétique.
             </p>

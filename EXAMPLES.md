@@ -499,7 +499,7 @@ function LanguageSwitcher() {
           className={clsx(
             'px-3 py-2 rounded-lg transition-colors',
             {
-              'bg-blue-100 text-blue-700': language === lang.code,
+              'bg-brand-100 text-brand-700': language === lang.code,
               'hover:bg-gray-100': language !== lang.code,
             }
           )}

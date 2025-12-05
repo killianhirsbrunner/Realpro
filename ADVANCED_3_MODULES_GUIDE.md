@@ -440,7 +440,7 @@ function KpiCard({
   return (
     <Card className="p-4">
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-900/20">
+        <div className="p-2 rounded-lg bg-brand-50 text-brand-600 dark:bg-brand-900/20">
           {icon}
         </div>
         <div>

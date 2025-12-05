@@ -41,7 +41,7 @@
 ### Color Palette
 - **Primary:** #1b1b1b (black)
 - **Background:** #eeede9 (warm white)
-- **Brand:** #3b82f6 (blue)
+- **Brand:** #0891b2 (blue)
 - **Secondary:** #0ea5e9 (cyan)
 
 ### Missing Components (Critical)
@@ -235,15 +235,15 @@ const colors = {
   background: '#eeede9',
 
   // Brand
-  brand: '#2563eb',      // Primary brand blue
-  brandLight: '#3b82f6',
-  brandDark: '#1e40af',
+  brand: '#0891b2',      // Primary brand blue
+  brandLight: '#0891b2',
+  brandDark: '#0e7490',
 
   // Status
   success: '#10b981',    // Green
   warning: '#f59e0b',    // Amber
   danger: '#ef4444',     // Red
-  info: '#3b82f6',       // Blue
+  info: '#0891b2',       // Blue
 
   // CRM Pipeline
   prospect: '#8b5cf6',   // Purple
@@ -252,7 +252,7 @@ const colors = {
 
   // Data Visualization (8 colors)
   chart: [
-    '#2563eb', '#10b981', '#f59e0b', '#ef4444',
+    '#0891b2', '#10b981', '#f59e0b', '#ef4444',
     '#8b5cf6', '#06b6d4', '#ec4899', '#f97316'
   ]
 };

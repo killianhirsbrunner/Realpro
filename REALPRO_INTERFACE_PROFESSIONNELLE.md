@@ -564,15 +564,15 @@ interface RealProLogoProps {
 ### Brand colors:
 
 ```css
---brand-50: #eff6ff;
---brand-100: #dbeafe;
+--brand-50: #ecfeff;
+--brand-100: #cffafe;
 --brand-200: #bfdbfe;
---brand-300: #93c5fd;
---brand-400: #60a5fa;
---brand-500: #3b82f6;
+--brand-300: #22d3ee;
+--brand-400: #06b6d4;
+--brand-500: #0891b2;
 --brand-600: #0066cc;  /* Primary */
---brand-700: #1d4ed8;
---brand-800: #1e40af;
+--brand-700: #0e7490;
+--brand-800: #0e7490;
 --brand-900: #1e3a8a;
 ```
 

@@ -116,7 +116,7 @@ Toutes les images proviennent de Pexels (stock photos professionnelles gratuites
 ### Couleurs des Modules
 Chaque module a sa propre identité visuelle:
 - **Brand (Bleu)**: `from-brand-600 to-brand-700` - Gestion de Projets
-- **Blue**: `from-blue-600 to-blue-700` - CRM & Ventes
+- **Blue**: `from-brand-600 to-brand-700` - CRM & Ventes
 - **Green**: `from-green-600 to-green-700` - Lots & Inventaire
 - **Orange**: `from-orange-600 to-orange-700` - Finances & CFC
 - **Purple**: `from-purple-600 to-purple-700` - Soumissions

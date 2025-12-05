@@ -25,17 +25,17 @@
     --color-border: 230 231 235;       /* #E6E7EB - Borders */
     --color-divider: 241 245 249;      /* #F1F5F9 - Dividers */
 
-    /* Brand Colors */
-    --color-primary: 58 110 165;       /* #3A6EA5 - Swiss blue premium */
-    --color-primary-hover: 46 88 132;  /* Darker primary */
-    --color-primary-light: 219 234 254; /* Light primary bg */
+    /* Brand Colors - Turquoise */
+    --color-primary: 8 145 178;        /* #0891B2 - Turquoise premium */
+    --color-primary-hover: 14 116 144; /* Darker turquoise */
+    --color-primary-light: 207 250 254; /* Light turquoise bg */
 
-    --color-secondary: 100 116 139;    /* #64748B - Gray blue elegant */
-    --color-secondary-hover: 71 85 105;
+    --color-secondary: 20 184 166;     /* #14B8A6 - Teal elegant */
+    --color-secondary-hover: 15 118 110;
 
     /* Accent Colors */
-    --color-success: 37 99 235;        /* #2563EB - Blue validation */
-    --color-success-light: 219 234 254;
+    --color-success: 16 185 129;       /* #10B981 - Green validation */
+    --color-success-light: 209 250 229;
 
     --color-warning: 245 166 35;       /* #F5A623 - Orange warnings */
     --color-warning-light: 254 243 199;
@@ -43,8 +43,8 @@
     --color-danger: 228 88 88;         /* #E45858 - Red errors */
     --color-danger-light: 254 226 226;
 
-    --color-info: 59 130 246;          /* #3B82F6 - Blue info */
-    --color-info-light: 219 234 254;
+    --color-info: 8 145 178;           /* #0891B2 - Turquoise info */
+    --color-info-light: 207 250 254;
 
     /* Neutral Palette (extended) */
     --color-neutral-50: 248 250 252;
@@ -95,17 +95,17 @@
     --color-border: 42 42 42;          /* #2A2A2A - Borders */
     --color-divider: 38 38 38;         /* #262626 - Dividers */
 
-    /* Brand Colors (adjusted for dark mode) */
-    --color-primary: 75 140 217;       /* #4B8CD9 - Brighter blue */
-    --color-primary-hover: 96 165 250;
-    --color-primary-light: 30 58 138;
+    /* Brand Colors (adjusted for dark mode) - Turquoise */
+    --color-primary: 6 182 212;        /* #06B6D4 - Brighter turquoise */
+    --color-primary-hover: 34 211 238;
+    --color-primary-light: 8 51 68;
 
-    --color-secondary: 125 138 153;    /* #7D8A99 - Lighter gray blue */
-    --color-secondary-hover: 148 163 184;
+    --color-secondary: 45 212 191;     /* #2DD4BF - Teal */
+    --color-secondary-hover: 94 234 212;
 
     /* Accent Colors (adjusted) */
-    --color-success: 96 165 250;       /* #60A5FA - Brighter blue */
-    --color-success-light: 30 58 138;
+    --color-success: 52 211 153;       /* #34D399 - Brighter green */
+    --color-success-light: 6 78 59;
 
     --color-warning: 255 182 85;       /* #FFB655 - Brighter orange */
     --color-warning-light: 120 53 15;
@@ -113,8 +113,8 @@
     --color-danger: 255 112 112;       /* #FF7070 - Brighter red */
     --color-danger-light: 127 29 29;
 
-    --color-info: 96 165 250;          /* #60A5FA - Brighter info */
-    --color-info-light: 30 58 138;
+    --color-info: 6 182 212;           /* #06B6D4 - Brighter turquoise info */
+    --color-info-light: 8 51 68;
 
     /* Neutral Palette (inverted) */
     --color-neutral-50: 15 23 42;
@@ -222,12 +222,12 @@
 
   /* ===== Selection Styling ===== */
   ::selection {
-    @apply bg-blue-200 dark:bg-blue-900 text-gray-900 dark:text-gray-100;
+    @apply bg-brand-200 dark:bg-brand-900 text-gray-900 dark:text-gray-100;
   }
 
   /* ===== Focus Visible (Accessibility) ===== */
   :focus-visible {
-    @apply outline-none ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900;
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 dark:ring-offset-gray-900;
   }
 
   /* Remove search input decorations */
@@ -264,7 +264,7 @@
 
   /* Text Gradients */
   .text-gradient-primary {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-600 to-indigo-600 bg-clip-text text-transparent;
   }
 
   .text-gradient-success {
