@@ -124,6 +124,10 @@ import { RealProAdminDashboard } from './pages/admin/RealProAdminDashboard';
 import { AuditLogs } from './pages/admin/AuditLogs';
 import { FeatureFlags } from './pages/admin/FeatureFlags';
 import { OrganizationSettings } from './pages/OrganizationSettings';
+import AnalyticsBIDashboard from './pages/AnalyticsBIDashboard';
+import ProjectModificationsOfferWizard from './pages/ProjectModificationsOfferWizard';
+import MessagesGlobal from './pages/MessagesGlobal';
+import SAVGlobal from './pages/SAVGlobal';
 
 import { Settings } from './pages/Settings';
 import { LocalizationSettings } from './pages/settings/LocalizationSettings';
@@ -208,6 +212,7 @@ function App() {
                     <Route path="/projects/:projectId/submissions/:submissionId/companies" element={<SubmissionCompanies />} />
                     <Route path="/projects/:projectId/modifications/offers" element={<ProjectModificationsOffers />} />
                     <Route path="/projects/:projectId/modifications/offers/new" element={<ProjectModificationsOfferNew />} />
+                    <Route path="/projects/:projectId/modifications/offers/wizard" element={<ProjectModificationsOfferWizard />} />
                     <Route path="/projects/:projectId/modifications/offers/:offerId" element={<ProjectModificationsOfferDetail />} />
                     <Route path="/projects/:projectId/modifications/avenants" element={<ProjectAvenants />} />
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId" element={<AvenantSignature />} />
@@ -262,6 +267,9 @@ function App() {
 
                     <Route path="/billing" element={<BillingPage />} />
                     <Route path="/reporting" element={<ReportingOverview />} />
+                    <Route path="/analytics" element={<AnalyticsBIDashboard />} />
+                    <Route path="/messages" element={<MessagesGlobal />} />
+                    <Route path="/sav" element={<SAVGlobal />} />
                     <Route path="/submissions" element={<SubmissionComparison />} />
                     <Route path="/tasks" element={<TasksManager />} />
                     <Route path="/templates" element={<TemplatesManager />} />

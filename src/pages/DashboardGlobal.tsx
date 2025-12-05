@@ -12,6 +12,7 @@ import { ActivityFeedItem } from '../components/global-dashboard/ActivityFeedIte
 import { GlobalAnalyticsChart } from '../components/dashboard/GlobalAnalyticsChart';
 import { FinancialOverview } from '../components/dashboard/FinancialOverview';
 import { UpcomingDeadlines } from '../components/dashboard/UpcomingDeadlines';
+import { QuickLaunch } from '../components/dashboard/QuickLaunch';
 import {
   Building2,
   Plus,
@@ -168,6 +169,9 @@ export function DashboardGlobal() {
       {enhancedData && enhancedData.upcomingDeadlines.length > 0 && (
         <UpcomingDeadlines deadlines={enhancedData.upcomingDeadlines} />
       )}
+
+      {/* Quick Launch - All Modules */}
+      <QuickLaunch />
 
       {/* Projects Section */}
       <div>
