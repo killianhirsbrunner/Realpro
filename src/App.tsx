@@ -133,7 +133,6 @@ import { SuppliersSettings } from './pages/settings/SuppliersSettings';
 
 import { SelectOrganization } from './pages/SelectOrganization';
 import { OrganizationOnboarding } from './pages/OrganizationOnboarding';
-import { RealProAdminDashboard } from './pages/admin/RealProAdminDashboard';
 
 import CGU from './pages/legal/CGU';
 import CGV from './pages/legal/CGV';

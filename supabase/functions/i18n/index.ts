@@ -10,7 +10,7 @@ const translations: Record<string, Record<string, any>> = {
   'fr-CH': {
     errors: {
       LOT_NOT_FOUND: 'Lot introuvable',
-      PROJECT_NOT_FOUND': 'Projet introuvable',
+      PROJECT_NOT_FOUND: 'Projet introuvable',
       UNAUTHORIZED: 'Accès non autorisé',
       FORBIDDEN: 'Action interdite',
       VALIDATION_ERROR: 'Erreur de validation',
