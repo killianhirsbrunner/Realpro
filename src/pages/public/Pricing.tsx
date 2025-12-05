@@ -241,45 +241,159 @@ export function Pricing() {
       <section className="bg-gradient-to-br from-neutral-50 via-neutral-100/50 to-neutral-50 dark:from-neutral-900/50 dark:via-neutral-900 dark:to-neutral-900/50 py-16 md:py-24 border-y border-neutral-200/50 dark:border-neutral-800/50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center">
               Questions fréquentes
             </h2>
+            <p className="text-neutral-600 dark:text-neutral-400 text-center mb-12 max-w-2xl mx-auto">
+              Tout ce que vous devez savoir sur nos plans et notre facturation
+            </p>
 
-            <div className="space-y-8">
-              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
-                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
                   Puis-je changer de plan à tout moment ?
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  Oui, vous pouvez upgrader ou downgrader votre plan à tout moment. Les changements sont appliqués immédiatement et facturés au prorata.
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Oui, absolument. Les upgrades sont appliqués immédiatement avec un prorata automatique. Les downgrades prennent effet à la fin du cycle de facturation en cours pour éviter toute perte de données.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
-                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3">
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
                   Comment fonctionne l'essai gratuit ?
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  Vous bénéficiez de 14 jours d'essai gratuit sans carte bancaire. Explorez toutes les fonctionnalités sans engagement.
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Profitez de 14 jours d'essai gratuit sur tous les plans, sans carte bancaire requise. Accédez à toutes les fonctionnalités du plan choisi. Vos données sont conservées même après l'essai.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
-                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3">
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Le stockage est vraiment illimité ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Oui, sur tous les plans. Nous appliquons une politique d'utilisation raisonnable (fair use). Pour un usage standard de gestion de projets immobiliers, vous n'atteindrez jamais les limites.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Que se passe-t-il si je dépasse ma limite de projets ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Vous recevez une notification dès 80% de votre limite. Vous avez 7 jours de grâce pour upgrader. Après ce délai, les projets excédentaires passent en lecture seule jusqu'à l'upgrade.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
                   Quels moyens de paiement acceptez-vous ?
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  Nous acceptons toutes les cartes de crédit majeures, TWINT et Postfinance via notre partenaire Datatrans.
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Cartes de crédit (Visa, Mastercard, Amex), TWINT, Postfinance via Datatrans (certifié PCI-DSS). Virement bancaire disponible pour les paiements annuels.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
-                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3">
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Les prix sont-ils HT ou TTC ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Tous les prix affichés sont HT. La TVA suisse (8.1%) est ajoutée automatiquement pour les entreprises suisses. Les entreprises avec numéro TVA peuvent déduire ce montant.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
                   Où sont hébergées mes données ?
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  Toutes vos données sont hébergées en Suisse et conformes aux réglementations suisses et européennes (RGPD).
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  100% hébergement en Suisse (datacenters certifiés ISO 27001). Conformité totale RGPD et LPD (Loi suisse sur la Protection des Données). Vos données ne quittent jamais le territoire suisse.
                 </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Y a-t-il un engagement minimum ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Non pour les plans mensuels (résiliation avec préavis de 30 jours). Les plans annuels bénéficient d'un tarif réduit mais impliquent un engagement de 12 mois.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Puis-je obtenir une facture ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Oui, une facture conforme aux normes suisses est générée automatiquement pour chaque paiement et disponible dans votre espace. Export PDF et comptabilité inclus.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Quel est le niveau de support inclus ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Starter: email 48h. Professional: email 24h + chat. Enterprise: téléphone 24/7 + success manager dédié. Tous les plans incluent la base de connaissances et les tutoriels.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Comment fonctionne la facturation annuelle ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Le paiement annuel vous fait économiser environ 17% (équivalent à 2 mois gratuits). Un seul paiement au début de l'année, puis renouvellement automatique. Meilleur ROI garanti.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                  <span className="text-brand-600 dark:text-brand-400 mt-1">●</span>
+                  Proposez-vous des réductions pour organisations à but non lucratif ?
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                  Oui, nous offrons 30% de réduction aux associations, fondations et coopératives reconnues d'utilité publique en Suisse. Contactez-nous avec vos documents officiels.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 border border-brand-200 dark:border-brand-800">
+              <h3 className="font-bold text-xl text-neutral-900 dark:text-white mb-3 text-center">
+                Vous avez d'autres questions ?
+              </h3>
+              <p className="text-neutral-600 dark:text-neutral-400 text-center mb-6">
+                Notre équipe est là pour vous aider à choisir le plan adapté à vos besoins
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link to="/contact">
+                  <Button
+                    variant="default"
+                    className="bg-brand-600 hover:bg-brand-700 text-white border-0 rounded-full px-6"
+                  >
+                    Contacter l'équipe commerciale
+                  </Button>
+                </Link>
+                <a href="mailto:contact@realpro.ch">
+                  <Button
+                    variant="outline"
+                    className="rounded-full px-6"
+                  >
+                    Envoyer un email
+                  </Button>
+                </a>
               </div>
             </div>
           </ScrollReveal>
