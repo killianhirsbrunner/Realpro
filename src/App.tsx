@@ -90,6 +90,8 @@ import { ProjectSubmissions } from './pages/ProjectSubmissions';
 import { NewSubmission } from './pages/NewSubmission';
 import { SubmissionDetail } from './pages/SubmissionDetail';
 import { SubmissionComparison } from './pages/SubmissionComparison';
+import { SubmissionClarifications } from './pages/SubmissionClarifications';
+import { SubmissionCompanies } from './pages/SubmissionCompanies';
 import { ProjectModificationsOffers } from './pages/ProjectModificationsOffers';
 import { ProjectModificationsOfferNew } from './pages/ProjectModificationsOfferNew';
 import { ProjectModificationsOfferDetail } from './pages/ProjectModificationsOfferDetail';
@@ -197,6 +199,8 @@ function App() {
                     <Route path="/projects/:projectId/submissions/new" element={<NewSubmission />} />
                     <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetail />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
+                    <Route path="/projects/:projectId/submissions/:submissionId/clarifications" element={<SubmissionClarifications />} />
+                    <Route path="/projects/:projectId/submissions/:submissionId/companies" element={<SubmissionCompanies />} />
                     <Route path="/projects/:projectId/modifications/offers" element={<ProjectModificationsOffers />} />
                     <Route path="/projects/:projectId/modifications/offers/new" element={<ProjectModificationsOfferNew />} />
                     <Route path="/projects/:projectId/modifications/offers/:offerId" element={<ProjectModificationsOfferDetail />} />

@@ -120,3 +120,81 @@ export function useSubmissionDetail(submissionId: string | undefined) {
 
   return { submission, loading, error };
 }
+
+export function useSubmissionClarifications(submissionId: string | undefined) {
+  const [clarifications, setClarifications] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  async function fetchClarifications() {
+    if (!submissionId) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const { data, error: fetchError } = await supabase
+        .from('submission_clarifications')
+        .select('*')
+        .eq('submission_id', submissionId)
+        .order('created_at', { ascending: true });
+
+      if (fetchError) throw fetchError;
+
+      setClarifications(data || []);
+    } catch (err: any) {
+      console.error('Error fetching clarifications:', err);
+      setError('Erreur lors du chargement des clarifications');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchClarifications();
+  }, [submissionId]);
+
+  return { clarifications, loading, error, refetch: fetchClarifications };
+}
+
+export function useSubmissionCompanies(submissionId: string | undefined) {
+  const [companies, setCompanies] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  async function fetchCompanies() {
+    if (!submissionId) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const { data, error: fetchError } = await supabase
+        .from('submission_companies')
+        .select('*')
+        .eq('submission_id', submissionId)
+        .order('created_at', { ascending: false });
+
+      if (fetchError) throw fetchError;
+
+      setCompanies(data || []);
+    } catch (err: any) {
+      console.error('Error fetching companies:', err);
+      setError('Erreur lors du chargement des entreprises');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchCompanies();
+  }, [submissionId]);
+
+  return { companies, loading, error, refetch: fetchCompanies };
+}
