@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ChevronLeft, FileText, CheckCircle, XCircle, MessageSquare, Send, Download } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ChevronLeft, FileText, CheckCircle, XCircle, MessageSquare, Send, Download, FileSignature } from 'lucide-react';
 import { useSupplierOfferDetail } from '../hooks/useSupplierOffers';
+import { useGenerateAvenant } from '../hooks/useAvenants';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
@@ -12,7 +13,9 @@ import { formatDate } from '../lib/utils/format';
 
 export function ProjectModificationsOfferDetail() {
   const { projectId, offerId } = useParams<{ projectId: string; offerId: string }>();
+  const navigate = useNavigate();
   const { offer, loading, error, refetch } = useSupplierOfferDetail(offerId);
+  const { generateAvenant, generating } = useGenerateAvenant();
   const [comment, setComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -92,6 +95,28 @@ export function ProjectModificationsOfferDetail() {
       await refetch();
     } catch (error) {
       console.error('Error rejecting offer:', error);
+    }
+  }
+
+  async function handleGenerateAvenant() {
+    if (!offerId || !projectId) return;
+
+    try {
+      const avenant = await generateAvenant(projectId, offerId, {
+        title: `Modification technique - Lot ${offer?.lot_number}`,
+        description: offer?.description || '',
+        amount: offer?.total_amount || 0,
+        lotId: offer?.lot_id,
+      });
+
+      await supabase
+        .from('supplier_offers')
+        .update({ status: 'final', finalized_at: new Date().toISOString() })
+        .eq('id', offerId);
+
+      navigate(`/projects/${projectId}/modifications/avenants/${avenant.id}/sign`);
+    } catch (error) {
+      console.error('Error generating avenant:', error);
     }
   }
 
@@ -290,6 +315,26 @@ export function ProjectModificationsOfferDetail() {
                   Non conforme
                 </Button>
               </div>
+            </Card>
+          )}
+
+          {offer.status === 'architect_approved' && (
+            <Card className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">
+                Prêt pour génération d'avenant
+              </h3>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+                L'offre a été validée par le client et l'architecte. Vous pouvez maintenant générer l'avenant
+                pour signature électronique.
+              </p>
+              <Button
+                onClick={handleGenerateAvenant}
+                disabled={generating}
+                className="w-full bg-purple-600 hover:bg-purple-700"
+              >
+                <FileSignature className="h-4 w-4 mr-2" />
+                {generating ? 'Génération en cours...' : 'Générer l\'avenant'}
+              </Button>
             </Card>
           )}
 
