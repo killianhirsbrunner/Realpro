@@ -90,6 +90,9 @@ import { ProjectSubmissions } from './pages/ProjectSubmissions';
 import { NewSubmission } from './pages/NewSubmission';
 import { SubmissionDetail } from './pages/SubmissionDetail';
 import { SubmissionComparison } from './pages/SubmissionComparison';
+import { ProjectModificationsOffers } from './pages/ProjectModificationsOffers';
+import { ProjectModificationsOfferNew } from './pages/ProjectModificationsOfferNew';
+import { ProjectModificationsOfferDetail } from './pages/ProjectModificationsOfferDetail';
 import { ProjectCFC } from './pages/ProjectCFC';
 import { CfcDetail } from './pages/CfcDetail';
 import { ProjectFinance } from './pages/ProjectFinance';
@@ -194,6 +197,9 @@ function App() {
                     <Route path="/projects/:projectId/submissions/new" element={<NewSubmission />} />
                     <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetail />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
+                    <Route path="/projects/:projectId/modifications/offers" element={<ProjectModificationsOffers />} />
+                    <Route path="/projects/:projectId/modifications/offers/new" element={<ProjectModificationsOfferNew />} />
+                    <Route path="/projects/:projectId/modifications/offers/:offerId" element={<ProjectModificationsOfferDetail />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
                     <Route path="/projects/:projectId/cfc/:cfcId" element={<CfcDetail />} />
                     <Route path="/projects/:projectId/finance" element={<ProjectFinancesDashboard />} />
