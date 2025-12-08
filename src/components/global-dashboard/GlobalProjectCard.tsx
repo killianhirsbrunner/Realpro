@@ -42,7 +42,7 @@ export function GlobalProjectCard({ project }: GlobalProjectCardProps) {
 
   return (
     <Link
-      to={`/projects/${project.id}`}
+      to={`/projects/${project.id}/overview`}
       className="group block relative overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
     >
       {/* Image Header */}

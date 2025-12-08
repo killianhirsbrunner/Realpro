@@ -123,7 +123,7 @@ export default function DashboardGlobalEnhanced() {
               <Card
                 key={project.id}
                 className="p-6 cursor-pointer hover:shadow-lg-premium hover:-translate-y-0.5 transition-all duration-200"
-                onClick={() => navigate(`/projects/${project.id}/dashboard`)}
+                onClick={() => navigate(`/projects/${project.id}/overview`)}
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="p-2 rounded-lg bg-primary-50 dark:bg-primary-900/20">

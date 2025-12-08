@@ -98,7 +98,7 @@ export default function IssuesOverviewCard({ issues }: IssuesOverviewCardProps) 
             return (
               <Link
                 key={issue.id}
-                to={`/projects/${issue.projectId}`}
+                to={`/projects/${issue.projectId}/overview`}
                 className="block"
               >
                 <div

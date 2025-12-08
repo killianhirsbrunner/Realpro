@@ -71,7 +71,7 @@ export default function ProjectProgressCard({ projects }: ProjectProgressCardPro
           {projects.map((project) => (
             <Link
               key={project.id}
-              to={`/projects/${project.id}`}
+              to={`/projects/${project.id}/overview`}
               className="block group"
             >
               <div className="flex items-start justify-between mb-2">

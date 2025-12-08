@@ -176,7 +176,7 @@ export function DashboardHome() {
                     key={project.id}
                     whileHover={{ scale: 1.02 }}
                     className="group bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 cursor-pointer hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-lg transition-all"
-                    onClick={() => navigate(`/projects/${project.id}`)}
+                    onClick={() => navigate(`/projects/${project.id}/overview`)}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="p-3 bg-gradient-to-br from-brand-500 to-primary-500 rounded-xl">
