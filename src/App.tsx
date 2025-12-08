@@ -143,6 +143,11 @@ import CGV from './pages/legal/CGV';
 import MentionsLegales from './pages/legal/MentionsLegales';
 import Privacy from './pages/legal/Privacy';
 
+import ContactsList from './pages/ContactsList';
+import ContactDetail from './pages/ContactDetail';
+import CompanyDetail from './pages/CompanyDetail';
+import CompaniesList from './pages/CompaniesList';
+
 function App() {
   return (
     <ThemeProvider>
@@ -240,6 +245,11 @@ function App() {
                     <Route path="/projects/:projectId/health" element={<ProjectHealthPage />} />
                     <Route path="/projects/:projectId/timeline" element={<ProjectTimelinePage />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
+
+                    <Route path="/contacts" element={<ContactsList />} />
+                    <Route path="/contacts/:contactId" element={<ContactDetail />} />
+                    <Route path="/companies" element={<CompaniesList />} />
+                    <Route path="/companies/:companyId" element={<CompanyDetail />} />
 
                     <Route path="/promoter" element={<PromoterDashboard />} />
 

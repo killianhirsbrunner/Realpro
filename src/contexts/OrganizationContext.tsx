@@ -175,3 +175,5 @@ export function useOrganizationContext() {
   }
   return context;
 }
+
+export { useOrganizationContext as useOrganization };

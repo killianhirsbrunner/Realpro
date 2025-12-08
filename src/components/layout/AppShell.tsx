@@ -2,12 +2,17 @@ import { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
 import Footer from './Footer';
+import GlobalSearch from '../GlobalSearch';
+import QuickActions from '../QuickActions';
+import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 
 interface AppShellProps {
   children: ReactNode;
 }
 
 export function AppShell({ children }: AppShellProps) {
+  const { isOpen, close } = useGlobalSearch();
+
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-[#0A0A0A] text-gray-900 dark:text-gray-50 overflow-hidden">
       <Sidebar />
@@ -23,6 +28,9 @@ export function AppShell({ children }: AppShellProps) {
 
         <Footer />
       </div>
+
+      <GlobalSearch isOpen={isOpen} onClose={close} />
+      <QuickActions />
     </div>
   );
 }
