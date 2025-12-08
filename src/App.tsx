@@ -191,6 +191,7 @@ function App() {
                 <OrganizationProvider>
                   <AppShell>
                   <Routes>
+                    <Route path="/" element={<Navigate to="/promoter" replace />} />
                     <Route path="/dashboard" element={<DashboardHome />} />
                     <Route path="/dashboard-org" element={<OrganizationDashboard />} />
                     <Route path="/dashboard-global" element={<DashboardGlobal />} />
