@@ -47,57 +47,57 @@ export function Landing() {
   const coreModules = [
     {
       icon: Building2,
-      title: 'Gestion de Projets',
-      description: 'Centralisez l\'ensemble de vos operations de promotion immobiliere. Dashboard temps reel avec KPIs strategiques, suivi des jalons critiques et alertes predictives pour anticiper les risques.',
-      features: ['Vision 360 de tous les projets', 'Alertes et notifications automatisees', 'Tableau de bord personnalisable']
+      title: 'Gestion de projets',
+      description: 'Centralisez l\'ensemble de vos opérations de promotion immobilière. Dashboard temps réel avec KPIs stratégiques, suivi des jalons critiques et alertes prédictives pour anticiper les risques.',
+      features: ['Vision 360° de tous les projets', 'Alertes et notifications automatisées', 'Tableau de bord personnalisable']
     },
     {
       icon: Users,
-      title: 'CRM Commercial',
-      description: 'Pipeline de vente complet adapte a la promotion immobiliere. Gestion des prospects, reservations et conversions avec suivi detaille du parcours acheteur et performances courtiers.',
+      title: 'CRM commercial',
+      description: 'Pipeline de vente complet adapté à la promotion immobilière. Gestion des prospects, réservations et conversions avec suivi détaillé du parcours acheteur et performances courtiers.',
       features: ['Pipeline visuel drag-and-drop', 'Scoring automatique des leads', 'Historique complet des interactions']
     },
     {
       icon: Layers,
-      title: 'Gestion des Lots',
-      description: 'Inventaire detaille de chaque unite avec specifications techniques, surfaces, prix et disponibilites. Modifications en temps reel visibles par toutes les parties prenantes.',
-      features: ['Fiches lot completes', 'Plans et documents integres', 'Statuts de disponibilite temps reel']
+      title: 'Gestion des lots',
+      description: 'Inventaire détaillé de chaque unité avec spécifications techniques, surfaces, prix et disponibilités. Modifications en temps réel visibles par toutes les parties prenantes.',
+      features: ['Fiches lot complètes', 'Plans et documents intégrés', 'Statuts de disponibilité temps réel']
     },
     {
       icon: Calculator,
       title: 'Finances & CFC',
-      description: 'Budgetisation CFC suisse, facturation acheteurs avec QR-factures, echeanciers de paiement et suivi des encaissements. Compatibilite complete avec les normes bancaires suisses.',
-      features: ['Budgets CFC detailles', 'QR-factures automatiques', 'Suivi tresorerie et encaissements']
+      description: 'Budgétisation CFC suisse, facturation acquéreurs avec QR-factures, échéanciers de paiement et suivi des encaissements. Compatibilité complète avec les normes bancaires suisses.',
+      features: ['Budgets CFC détaillés', 'QR-factures automatiques', 'Suivi trésorerie et encaissements']
     },
     {
       icon: FileCheck,
       title: 'Soumissions',
-      description: 'Digitalisez votre processus d\'appels d\'offres. Centralisez les soumissions fournisseurs, comparez les offres et detectez automatiquement les ecarts par rapport aux budgets previsionnels.',
-      features: ['Comparatif automatique des offres', 'Detection des ecarts budgetaires', 'Workflow de validation integre']
+      description: 'Digitalisez votre processus d\'appels d\'offres. Centralisez les soumissions fournisseurs, comparez les offres et détectez automatiquement les écarts par rapport aux budgets prévisionnels.',
+      features: ['Comparatif automatique des offres', 'Détection des écarts budgétaires', 'Workflow de validation intégré']
     },
     {
       icon: Calendar,
-      title: 'Planning Chantier',
-      description: 'Planification Gantt interactive, journal de chantier numerique, suivi photographique de l\'avancement et coordination des intervenants terrain en temps reel.',
-      features: ['Diagramme Gantt interactif', 'Journal de chantier digital', 'Galerie photos geolocalisees']
+      title: 'Planning chantier',
+      description: 'Planification Gantt interactive, journal de chantier numérique, suivi photographique de l\'avancement et coordination des intervenants terrain en temps réel.',
+      features: ['Diagramme Gantt interactif', 'Journal de chantier digital', 'Galerie photos géolocalisées']
     }
   ];
 
   const additionalModules = [
     {
       icon: Package,
-      title: 'Choix Materiaux',
-      description: 'Catalogues fournisseurs, gestion des rendez-vous showroom et validation des selections acquereurs.'
+      title: 'Choix matériaux',
+      description: 'Catalogues fournisseurs, gestion des rendez-vous showroom et validation des sélections acquéreurs.'
     },
     {
       icon: FileText,
       title: 'GED & Documents',
-      description: 'Gestion documentaire complete avec versioning, annotations de plans et partage securise.'
+      description: 'Gestion documentaire complète avec versioning, annotations de plans et partage sécurisé.'
     },
     {
       icon: MessageSquare,
       title: 'Communication',
-      description: 'Hub centralise pour tous les echanges avec tracabilite complete et archivage intelligent.'
+      description: 'Hub centralisé pour tous les échanges avec traçabilité complète et archivage intelligent.'
     }
   ];
 
@@ -107,51 +107,51 @@ export function Landing() {
       title: 'Gain de temps',
       value: '15h',
       unit: '/semaine',
-      description: 'economisees en moyenne par collaborateur grace a l\'automatisation des taches repetitives'
+      description: 'économisées en moyenne par collaborateur grâce à l\'automatisation des tâches répétitives'
     },
     {
       icon: Target,
       title: 'Taux de conversion',
       value: '+35%',
       unit: '',
-      description: 'd\'amelioration du taux de conversion prospect vers acheteur avec le CRM integre'
+      description: 'd\'amélioration du taux de conversion prospect vers acheteur avec le CRM intégré'
     },
     {
       icon: PieChart,
-      title: 'Visibilite',
+      title: 'Visibilité',
       value: '100%',
       unit: '',
-      description: 'de visibilite sur l\'ensemble des operations, finances et commerciales en temps reel'
+      description: 'de visibilité sur l\'ensemble des opérations, finances et commerciales en temps réel'
     },
     {
       icon: Zap,
       title: 'Mise en place',
       value: '48h',
       unit: '',
-      description: 'pour deployer la solution et former vos equipes a son utilisation complete'
+      description: 'pour déployer la solution et former vos équipes à son utilisation complète'
     }
   ];
 
   const trustPoints = [
     {
       icon: Shield,
-      title: 'Securite Suisse',
-      description: 'Hebergement exclusif en Suisse, conformite RGPD et LPD, chiffrement de bout en bout.'
+      title: 'Sécurité suisse',
+      description: 'Hébergement exclusif en Suisse, conformité RGPD et LPD, chiffrement de bout en bout.'
     },
     {
       icon: Globe,
-      title: 'Multi-langue',
-      description: 'Interface disponible en francais, allemand, italien et anglais pour vos equipes internationales.'
+      title: 'Multilingue',
+      description: 'Interface disponible en français, allemand, italien et anglais pour vos équipes internationales.'
     },
     {
       icon: Headphones,
-      title: 'Support Dedié',
-      description: 'Equipe support basee en Suisse, disponible par telephone, email et chat en heures ouvrables.'
+      title: 'Support dédié',
+      description: 'Équipe support basée en Suisse, disponible par téléphone, e-mail et chat en heures ouvrables.'
     },
     {
       icon: Lock,
-      title: 'Conformite',
-      description: 'Respect des normes CFC, integration avec les systemes bancaires suisses et notariaux.'
+      title: 'Conformité',
+      description: 'Respect des normes CFC, intégration avec les systèmes bancaires suisses et notariaux.'
     }
   ];
 
@@ -166,7 +166,7 @@ export function Landing() {
 
             <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
               <Link to="/features" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
-                Fonctionnalites
+                Fonctionnalités
               </Link>
               <Link to="/pricing" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
                 Tarifs
@@ -201,7 +201,7 @@ export function Landing() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 py-4 px-6">
             <nav className="flex flex-col gap-3">
-              <Link to="/features" className="py-2 text-neutral-600 dark:text-neutral-400">Fonctionnalites</Link>
+              <Link to="/features" className="py-2 text-neutral-600 dark:text-neutral-400">Fonctionnalités</Link>
               <Link to="/pricing" className="py-2 text-neutral-600 dark:text-neutral-400">Tarifs</Link>
               <Link to="/contact" className="py-2 text-neutral-600 dark:text-neutral-400">Contact</Link>
             </nav>
@@ -226,16 +226,16 @@ export function Landing() {
 
             <FadeIn delay={200}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white leading-tight mb-6">
-                La solution complete pour piloter vos{' '}
-                <span className="text-realpro-turquoise">promotions immobilieres</span>
+                La solution complète pour piloter vos{' '}
+                <span className="text-realpro-turquoise">promotions immobilières</span>
               </h1>
             </FadeIn>
 
             <FadeIn delay={300}>
               <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-400 mb-10 max-w-3xl mx-auto leading-relaxed">
                 RealPro centralise la gestion de vos projets, ventes, finances et communications
-                sur une plateforme unique. Connectez architectes, courtiers, acquereurs et
-                fournisseurs pour une collaboration fluide et une visibilite totale.
+                sur une plateforme unique. Connectez architectes, courtiers, acquéreurs et
+                fournisseurs pour une collaboration fluide et une visibilité totale.
               </p>
             </FadeIn>
 
@@ -243,13 +243,13 @@ export function Landing() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
                 <Link to="/register">
                   <Button size="lg" className="h-12 px-8 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0 shadow-lg shadow-realpro-turquoise/25">
-                    Demarrer l'essai gratuit
+                    Démarrer l'essai gratuit
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
                 <Link to="/contact">
                   <Button size="lg" variant="outline" className="h-12 px-8 text-base">
-                    Demander une demonstration
+                    Demander une démonstration
                   </Button>
                 </Link>
               </div>
@@ -267,11 +267,11 @@ export function Landing() {
                 </span>
                 <span className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-realpro-turquoise" />
-                  Hebergement 100% Suisse
+                  Hébergement 100% Suisse
                 </span>
                 <span className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-realpro-turquoise" />
-                  Support en francais
+                  Support en français
                 </span>
               </div>
             </FadeIn>
@@ -314,7 +314,7 @@ export function Landing() {
                     <div className="flex items-center justify-between mb-6">
                       <div>
                         <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Tableau de bord</h3>
-                        <p className="text-xs text-neutral-500">Derniere mise a jour : il y a 2 min</p>
+                        <p className="text-xs text-neutral-500">Dernière mise à jour : il y a 2 min</p>
                       </div>
                     </div>
 
@@ -343,7 +343,7 @@ export function Landing() {
                           <BarChart3 className="w-4 h-4 text-green-600" />
                         </div>
                         <div className="text-2xl font-bold text-neutral-900 dark:text-white">12.4M</div>
-                        <div className="text-xs text-green-600 mt-1">+8.2% vs. prevu</div>
+                        <div className="text-xs text-green-600 mt-1">+8.2% vs. prévu</div>
                       </div>
 
                       <div className="bg-gradient-to-br from-realpro-turquoise/10 to-realpro-turquoise/5 rounded-xl p-4 border border-realpro-turquoise/20">
@@ -359,7 +359,7 @@ export function Landing() {
                     <div className="grid lg:grid-cols-2 gap-4">
                       <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
                         <div className="flex items-center justify-between mb-4">
-                          <h4 className="text-sm font-semibold text-neutral-900 dark:text-white">Evolution des ventes</h4>
+                          <h4 className="text-sm font-semibold text-neutral-900 dark:text-white">Évolution des ventes</h4>
                           <span className="text-xs text-neutral-500">6 derniers mois</span>
                         </div>
                         <div className="flex items-end gap-2 h-24">
@@ -377,7 +377,7 @@ export function Landing() {
                       </div>
 
                       <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
-                        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Projets recents</h4>
+                        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Projets récents</h4>
                         <div className="space-y-2">
                           <div className="flex items-center gap-3 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
                             <div className="w-2 h-2 rounded-full bg-green-500"></div>
@@ -389,7 +389,7 @@ export function Landing() {
                           <div className="flex items-center gap-3 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
                             <div className="w-2 h-2 rounded-full bg-realpro-turquoise"></div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-sm font-medium text-neutral-900 dark:text-white truncate">Residence Panorama</div>
+                              <div className="text-sm font-medium text-neutral-900 dark:text-white truncate">Résidence Panorama</div>
                               <div className="text-xs text-neutral-500">28 lots - 67% vendus</div>
                             </div>
                           </div>
@@ -408,15 +408,15 @@ export function Landing() {
                       <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 rounded-lg p-3 flex items-center gap-3">
                         <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
                         <div>
-                          <div className="text-xs font-semibold text-amber-900 dark:text-amber-300">3 echeances cette semaine</div>
+                          <div className="text-xs font-semibold text-amber-900 dark:text-amber-300">3 échéances cette semaine</div>
                           <div className="text-xs text-amber-700 dark:text-amber-400">CFC, signatures, RDV</div>
                         </div>
                       </div>
                       <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50 rounded-lg p-3 flex items-center gap-3">
                         <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
                         <div>
-                          <div className="text-xs font-semibold text-green-900 dark:text-green-300">8 contrats signes ce mois</div>
-                          <div className="text-xs text-green-700 dark:text-green-400">CHF 2.1M encaisses</div>
+                          <div className="text-xs font-semibold text-green-900 dark:text-green-300">8 contrats signés ce mois</div>
+                          <div className="text-xs text-green-700 dark:text-green-400">CHF 2.1M encaissés</div>
                         </div>
                       </div>
                     </div>
@@ -433,11 +433,11 @@ export function Landing() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                Une plateforme, tous vos besoins metiers
+                Une plateforme, tous vos besoins métiers
               </h2>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-                Chaque module a ete concu en collaboration avec des promoteurs immobiliers suisses
-                pour repondre aux exigences specifiques du marche romand et alemanique.
+                Chaque module a été conçu en collaboration avec des promoteurs immobiliers suisses
+                pour répondre aux exigences spécifiques du marché romand et alémanique.
               </p>
             </div>
           </ScrollReveal>
@@ -497,11 +497,11 @@ export function Landing() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                Des resultats mesurables pour votre activite
+                Des résultats mesurables pour votre activité
               </h2>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                Les promoteurs utilisant RealPro constatent des ameliorations significatives
-                de leur productivite et de leurs performances commerciales.
+                Les promoteurs utilisant RealPro constatent des améliorations significatives
+                de leur productivité et de leurs performances commerciales.
               </p>
             </div>
           </ScrollReveal>
@@ -536,11 +536,11 @@ export function Landing() {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                Concu pour le marche suisse
+                Conçu pour le marché suisse
               </h2>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                RealPro est developpe en Suisse, pour les professionnels suisses,
-                avec une parfaite comprehension des specificites locales.
+                RealPro est développé en Suisse, pour les professionnels suisses,
+                avec une parfaite compréhension des spécificités locales.
               </p>
             </div>
           </ScrollReveal>
@@ -569,11 +569,11 @@ export function Landing() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <ScrollReveal>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Pret a optimiser la gestion de vos promotions ?
+              Prêt à optimiser la gestion de vos promotions ?
             </h2>
             <p className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto">
               Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
-              leurs operations et ameliorer leur productivite.
+              leurs opérations et améliorer leur productivité.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -585,13 +585,13 @@ export function Landing() {
               </Link>
               <Link to="/contact">
                 <Button size="lg" variant="outline" className="h-12 px-8 text-base border-neutral-700 text-white hover:bg-neutral-800">
-                  Planifier une demo
+                  Planifier une démo
                 </Button>
               </Link>
             </div>
 
             <p className="mt-8 text-sm text-neutral-500">
-              14 jours gratuits - Aucune carte de credit requise - Configuration en 48h
+              14 jours gratuits - Aucune carte de crédit requise - Configuration en 48h
             </p>
           </ScrollReveal>
         </div>
@@ -603,14 +603,14 @@ export function Landing() {
             <div>
               <RealProLogo size="md" />
               <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                La plateforme de gestion complete pour les promoteurs immobiliers en Suisse.
+                La plateforme de gestion complète pour les promoteurs immobiliers en Suisse.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold text-neutral-900 dark:text-white mb-4">Produit</h4>
               <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/features" className="hover:text-realpro-turquoise transition-colors">Fonctionnalites</Link></li>
+                <li><Link to="/features" className="hover:text-realpro-turquoise transition-colors">Fonctionnalités</Link></li>
                 <li><Link to="/pricing" className="hover:text-realpro-turquoise transition-colors">Tarifs</Link></li>
                 <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Contact</Link></li>
               </ul>
@@ -625,21 +625,21 @@ export function Landing() {
             </div>
 
             <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-4">Legal</h4>
+              <h4 className="font-semibold text-neutral-900 dark:text-white mb-4">Légal</h4>
               <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
                 <li><Link to="/legal/cgu" className="hover:text-realpro-turquoise transition-colors">Conditions d'utilisation</Link></li>
                 <li><Link to="/legal/cgv" className="hover:text-realpro-turquoise transition-colors">Conditions de vente</Link></li>
-                <li><Link to="/legal/privacy" className="hover:text-realpro-turquoise transition-colors">Politique de confidentialite</Link></li>
+                <li><Link to="/legal/privacy" className="hover:text-realpro-turquoise transition-colors">Politique de confidentialité</Link></li>
               </ul>
             </div>
           </div>
 
           <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              2024-2025 Realpro SA. Tous droits reserves.
+              2024-2025 Realpro SA. Tous droits réservés.
             </p>
             <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
-              <span>Developpe en Suisse</span>
+              <span>Développé en Suisse</span>
               <span className="text-red-500">CH</span>
             </div>
           </div>
