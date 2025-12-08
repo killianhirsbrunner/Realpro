@@ -64,34 +64,103 @@ export function BillingPage() {
       setLoading(true);
       setError(null);
 
-      const session = await supabase.auth.getSession();
-      const token = session.data.session?.access_token;
+      const { data: orgData, error: orgError } = await supabase
+        .from('organizations')
+        .select('id, name')
+        .eq('id', organization.id)
+        .maybeSingle();
 
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const apiUrl = `${supabaseUrl}/functions/v1/billing/overview`;
+      if (orgError) throw orgError;
 
-      const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
+      const { data: subscription, error: subError } = await supabase
+        .from('subscriptions')
+        .select(`
+          id,
+          status,
+          billing_cycle,
+          current_period_start,
+          current_period_end,
+          trial_start,
+          trial_end,
+          plan:plans(
+            id,
+            slug,
+            name,
+            price_monthly,
+            price_yearly,
+            currency,
+            features,
+            limits
+          )
+        `)
+        .eq('organization_id', organization.id)
+        .maybeSingle();
+
+      if (subError) throw subError;
+
+      const { data: plans, error: plansError } = await supabase
+        .from('plans')
+        .select('id, slug, name, description, price_monthly, price_yearly, currency, features, limits, trial_days')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true });
+
+      if (plansError) throw plansError;
+
+      const { count: projectsCount } = await supabase
+        .from('projects')
+        .select('id', { count: 'exact', head: true })
+        .eq('organization_id', organization.id);
+
+      const { count: usersCount } = await supabase
+        .from('user_organizations')
+        .select('user_id', { count: 'exact', head: true })
+        .eq('organization_id', organization.id);
+
+      const plan = subscription?.plan as any;
+
+      const result: BillingOverviewResponse = {
+        organization: {
+          id: orgData?.id || organization.id,
+          name: orgData?.name || organization.name,
         },
-        body: JSON.stringify({
-          organizationId: organization.id
-        }),
-      });
+        currentSubscription: subscription && plan
+          ? {
+              planSlug: plan.slug,
+              planName: plan.name,
+              status: subscription.status,
+              billingCycle: subscription.billing_cycle,
+              currentPeriodStart: subscription.current_period_start,
+              currentPeriodEnd: subscription.current_period_end,
+              trialStart: subscription.trial_start,
+              trialEnd: subscription.trial_end,
+              features: plan.features || [],
+              limits: plan.limits || {},
+            }
+          : null,
+        availablePlans: (plans || []).map((p: any) => ({
+          slug: p.slug,
+          name: p.name,
+          description: p.description,
+          priceMonthly: p.price_monthly,
+          priceYearly: p.price_yearly,
+          currency: p.currency,
+          features: p.features || [],
+          limits: p.limits || {},
+          trialDays: p.trial_days || 0,
+        })),
+        usage: {
+          projectsCount: projectsCount || 0,
+          usersCount: usersCount || 0,
+        },
+      };
 
-      if (!response.ok) {
-        throw new Error('Erreur lors du chargement de la facturation');
-      }
-
-      const result = await response.json();
       setData(result);
 
       if (result.currentSubscription?.billingCycle) {
-        setBillingCycle(result.currentSubscription.billingCycle);
+        setBillingCycle(result.currentSubscription.billingCycle as 'MONTHLY' | 'YEARLY');
       }
     } catch (err: any) {
+      console.error('Billing fetch error:', err);
       setError(err.message || 'Impossible de charger les informations de facturation');
     } finally {
       setLoading(false);
