@@ -2,6 +2,8 @@ import { Plus } from 'lucide-react';
 import { LoadingState } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
 import { usePromoterDashboard } from '../hooks/usePromoterDashboard';
+import { useOrganization } from '../hooks/useOrganization';
+import { WelcomeDashboard } from './WelcomeDashboard';
 import { Link } from 'react-router-dom';
 import {
   OverviewCards,
@@ -12,8 +14,15 @@ import {
 
 export function PromoterDashboard() {
   const { stats, loading, error, refetch } = usePromoterDashboard();
+  const { projects, loading: orgLoading } = useOrganization();
 
-  if (loading) return <LoadingState message="Chargement du tableau de bord..." />;
+  if (loading || orgLoading) return <LoadingState message="Chargement du tableau de bord..." />;
+
+  // Si l'utilisateur n'a pas encore de projets, afficher l'écran d'accueil
+  if (!projects || projects.length === 0) {
+    return <WelcomeDashboard />;
+  }
+
   if (error) return <ErrorState message={error} retry={refetch} />;
   if (!stats) return <ErrorState message="Aucune donnée disponible" retry={refetch} />;
 

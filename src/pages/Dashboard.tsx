@@ -1,6 +1,7 @@
 import { useI18n } from '../lib/i18n';
 import { useDashboard } from '../hooks/useDashboard';
 import { useCurrentUser } from '../hooks/useCurrentUser';
+import { useOrganization } from '../hooks/useOrganization';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { DashboardKpis } from '../components/dashboard/DashboardKpis';
 import { SalesChart } from '../components/dashboard/SalesChart';
@@ -9,6 +10,7 @@ import { QuickActions } from '../components/dashboard/QuickActions';
 import { DocumentPreviewCard } from '../components/dashboard/DocumentPreviewCard';
 import { MessagePreview } from '../components/dashboard/MessagePreview';
 import { UpcomingTimeline } from '../components/dashboard/UpcomingTimeline';
+import { WelcomeDashboard } from './WelcomeDashboard';
 import { Sparkles, TrendingUp, ArrowUpRight, Building2, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -16,8 +18,9 @@ export function Dashboard() {
   const { t } = useI18n();
   const { data, loading, error } = useDashboard();
   const { user } = useCurrentUser();
+  const { projects, loading: orgLoading } = useOrganization();
 
-  if (loading) {
+  if (loading || orgLoading) {
     return (
       <div className="flex items-center justify-center min-h-[80vh]">
         <motion.div
@@ -34,6 +37,11 @@ export function Dashboard() {
         </motion.div>
       </div>
     );
+  }
+
+  // Si l'utilisateur n'a pas encore de projets, afficher l'écran d'accueil
+  if (!projects || projects.length === 0) {
+    return <WelcomeDashboard />;
   }
 
   if (error) {

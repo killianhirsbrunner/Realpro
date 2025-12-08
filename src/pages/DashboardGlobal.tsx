@@ -13,6 +13,7 @@ import { GlobalAnalyticsChart } from '../components/dashboard/GlobalAnalyticsCha
 import { FinancialOverview } from '../components/dashboard/FinancialOverview';
 import { UpcomingDeadlines } from '../components/dashboard/UpcomingDeadlines';
 import { QuickLaunch } from '../components/dashboard/QuickLaunch';
+import { WelcomeDashboard } from './WelcomeDashboard';
 import {
   Building2,
   Plus,
@@ -42,6 +43,11 @@ export function DashboardGlobal() {
         </div>
       </div>
     );
+  }
+
+  // Si l'utilisateur n'a pas encore de projets, afficher l'écran d'accueil
+  if (projectsCount === 0) {
+    return <WelcomeDashboard />;
   }
 
   const getGreeting = () => {
