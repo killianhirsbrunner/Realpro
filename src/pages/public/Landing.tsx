@@ -586,7 +586,7 @@ export function Landing() {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="h-12 px-8 text-base border-2 border-white text-white hover:bg-white hover:text-cyan-700 font-semibold transition-all">
+                <Button size="lg" className="h-12 px-8 text-base bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-cyan-700 font-semibold transition-all shadow-lg">
                   Planifier une demo
                 </Button>
               </Link>
