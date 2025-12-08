@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { useSecuritySettings, useUserSessions, useAuditLogs } from '../../hooks/useSettings';
 import { Button } from '../../components/ui/Button';
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
 import {
@@ -11,81 +12,83 @@ import {
   FileText,
   AlertTriangle,
   Check,
-  Download
+  Download,
+  RefreshCw,
+  LogOut
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { toast } from 'sonner';
 
 export function SecuritySettings() {
-  const { user, loading } = useCurrentUser();
+  const { user, loading: userLoading } = useCurrentUser();
+  const { settings, loading: settingsLoading, saving, saveSettings, refetch: refetchSettings } = useSecuritySettings();
+  const { sessions, loading: sessionsLoading, revokeSession, refetch: refetchSessions } = useUserSessions();
+  const { logs: auditLogs, loading: logsLoading, refetch: refetchLogs } = useAuditLogs();
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
-  const [saving, setSaving] = useState(false);
 
-  const recentLogins = [
-    {
-      id: '1',
-      device: 'Chrome sur Windows',
-      location: 'Lausanne, Suisse',
-      ip: '192.168.1.1',
-      timestamp: new Date(Date.now() - 1000 * 60 * 30),
-      current: true
-    },
-    {
-      id: '2',
-      device: 'Safari sur iPhone',
-      location: 'Genève, Suisse',
-      ip: '192.168.1.2',
-      timestamp: new Date(Date.now() - 1000 * 60 * 60 * 5),
-      current: false
-    },
-    {
-      id: '3',
-      device: 'Firefox sur macOS',
-      location: 'Zurich, Suisse',
-      ip: '192.168.1.3',
-      timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2),
-      current: false
+  const loading = userLoading || settingsLoading;
+
+  useEffect(() => {
+    if (settings) {
+      setTwoFactorEnabled(settings.enforce_2fa);
     }
-  ];
+  }, [settings]);
 
-  const auditLogs = [
+  const displaySessions = sessions.length > 0 ? sessions.map(s => ({
+    id: s.id,
+    device: s.device_info || 'Appareil inconnu',
+    location: s.location || 'Localisation inconnue',
+    ip: s.ip_address || '',
+    timestamp: new Date(s.last_activity_at || s.created_at),
+    current: s.is_current
+  })) : [
     {
       id: '1',
-      action: 'Modification de projet',
-      details: 'Projet "Résidence Lac Léman" mis à jour',
-      timestamp: new Date(Date.now() - 1000 * 60 * 15),
-      user: user?.first_name + ' ' + user?.last_name
-    },
-    {
-      id: '2',
-      action: 'Création d\'utilisateur',
-      details: 'Nouvel utilisateur invité: jean.dupont@example.com',
-      timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2),
-      user: user?.first_name + ' ' + user?.last_name
-    },
-    {
-      id: '3',
-      action: 'Export de données',
-      details: 'Export CFC vers Excel',
-      timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24),
-      user: user?.first_name + ' ' + user?.last_name
+      device: 'Session actuelle',
+      location: 'Suisse',
+      ip: '',
+      timestamp: new Date(),
+      current: true
     }
   ];
 
   const handleToggle2FA = async () => {
-    try {
-      setSaving(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setTwoFactorEnabled(!twoFactorEnabled);
-    } catch (error) {
-      console.error('Error toggling 2FA:', error);
-    } finally {
-      setSaving(false);
+    const newValue = !twoFactorEnabled;
+    const success = await saveSettings({ enforce_2fa: newValue });
+    if (success) {
+      setTwoFactorEnabled(newValue);
+      toast.success(newValue ? '2FA active' : '2FA desactive');
+    } else {
+      toast.error('Erreur lors de la modification');
+    }
+  };
+
+  const handleRevokeSession = async (sessionId: string) => {
+    const success = await revokeSession(sessionId);
+    if (success) {
+      toast.success('Session revoquee');
+    } else {
+      toast.error('Erreur lors de la revocation');
     }
   };
 
   const handleExportAuditLog = () => {
-    console.log('Exporting audit log...');
+    if (auditLogs.length === 0) {
+      toast.error('Aucun log a exporter');
+      return;
+    }
+    const csvContent = auditLogs.map(log =>
+      `"${format(new Date(log.created_at), 'dd/MM/yyyy HH:mm')}","${log.action}","${log.description || ''}","${log.entity_type || ''}"`
+    ).join('\n');
+
+    const header = '"Date","Action","Description","Type"\n';
+    const blob = new Blob([header + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `audit-log-${format(new Date(), 'yyyy-MM-dd')}.csv`;
+    link.click();
+    toast.success('Journal exporte');
   };
 
   if (loading) {
@@ -238,55 +241,67 @@ export function SecuritySettings() {
           </span>
         </div>
 
-        <div className="space-y-3">
-          {recentLogins.map((login) => (
-            <div
-              key={login.id}
-              className="flex items-start justify-between p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl"
-            >
-              <div className="flex gap-3">
-                <div className={`
-                  w-10 h-10 rounded-lg flex items-center justify-center
-                  ${login.current
-                    ? 'bg-green-100 dark:bg-green-900/30'
-                    : 'bg-neutral-200 dark:bg-neutral-700'
-                  }
-                `}>
-                  <Shield className={`
-                    w-5 h-5
+        {sessionsLoading ? (
+          <div className="flex justify-center py-8">
+            <LoadingSpinner size="md" />
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {displaySessions.map((login) => (
+              <div
+                key={login.id}
+                className="flex items-start justify-between p-4 bg-neutral-50 dark:bg-neutral-800 rounded-xl"
+              >
+                <div className="flex gap-3">
+                  <div className={`
+                    w-10 h-10 rounded-lg flex items-center justify-center
                     ${login.current
-                      ? 'text-green-600 dark:text-green-400'
-                      : 'text-neutral-600 dark:text-neutral-400'
+                      ? 'bg-green-100 dark:bg-green-900/30'
+                      : 'bg-neutral-200 dark:bg-neutral-700'
                     }
-                  `} />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <p className="font-medium text-neutral-900 dark:text-white">
-                      {login.device}
-                    </p>
-                    {login.current && (
-                      <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full">
-                        Session actuelle
-                      </span>
-                    )}
+                  `}>
+                    <Shield className={`
+                      w-5 h-5
+                      ${login.current
+                        ? 'text-green-600 dark:text-green-400'
+                        : 'text-neutral-600 dark:text-neutral-400'
+                      }
+                    `} />
                   </div>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {login.location} • {login.ip}
-                  </p>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-                    {format(login.timestamp, "dd MMM yyyy 'à' HH:mm", { locale: fr })}
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <p className="font-medium text-neutral-900 dark:text-white">
+                        {login.device}
+                      </p>
+                      {login.current && (
+                        <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full">
+                          Session actuelle
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                      {login.location}{login.ip && ` - ${login.ip}`}
+                    </p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
+                      {format(login.timestamp, "dd MMM yyyy 'a' HH:mm", { locale: fr })}
+                    </p>
+                  </div>
                 </div>
+                {!login.current && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleRevokeSession(login.id)}
+                    className="gap-1 text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/20"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Revoquer
+                  </Button>
+                )}
               </div>
-              {!login.current && (
-                <Button variant="outline" size="sm">
-                  Révoquer
-                </Button>
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-card p-6">
@@ -303,36 +318,51 @@ export function SecuritySettings() {
           </Button>
         </div>
 
-        <div className="space-y-2">
-          {auditLogs.map((log) => (
-            <div
-              key={log.id}
-              className="flex items-start gap-3 p-4 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
-            >
-              <div className="w-2 h-2 bg-brand-500 rounded-full mt-2 flex-shrink-0"></div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <p className="font-medium text-neutral-900 dark:text-white truncate">
-                    {log.action}
+        {logsLoading ? (
+          <div className="flex justify-center py-8">
+            <LoadingSpinner size="md" />
+          </div>
+        ) : auditLogs.length === 0 ? (
+          <div className="text-center py-8 text-neutral-500 dark:text-neutral-400">
+            Aucun evenement enregistre
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {auditLogs.map((log) => (
+              <div
+                key={log.id}
+                className="flex items-start gap-3 p-4 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+              >
+                <div className="w-2 h-2 bg-brand-500 rounded-full mt-2 flex-shrink-0"></div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <p className="font-medium text-neutral-900 dark:text-white truncate">
+                      {log.action}
+                    </p>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-500 whitespace-nowrap">
+                      {format(new Date(log.created_at), "dd MMM HH:mm", { locale: fr })}
+                    </span>
+                  </div>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
+                    {log.description}
                   </p>
-                  <span className="text-xs text-neutral-500 dark:text-neutral-500 whitespace-nowrap">
-                    {format(log.timestamp, "dd MMM HH:mm", { locale: fr })}
-                  </span>
+                  {log.entity_type && (
+                    <span className="inline-block px-2 py-0.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 text-xs rounded">
+                      {log.entity_type}
+                    </span>
+                  )}
                 </div>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
-                  {log.details}
-                </p>
-                <p className="text-xs text-neutral-500 dark:text-neutral-500">
-                  Par {log.user}
-                </p>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         <div className="mt-4 text-center">
-          <button className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
-            Voir l'historique complet
+          <button
+            onClick={() => refetchLogs(100)}
+            className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
+          >
+            Charger plus
           </button>
         </div>
       </div>

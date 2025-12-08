@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSuppliersSettings } from '../../hooks/useSettings';
 import { Button } from '../../components/ui/Button';
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
 import {
@@ -10,84 +11,109 @@ import {
   Mail,
   Phone,
   MapPin,
-  Calendar
+  Calendar,
+  X,
+  Save,
+  RefreshCw
 } from 'lucide-react';
-
-interface Supplier {
-  id: string;
-  name: string;
-  category: string;
-  email: string;
-  phone: string;
-  address: string;
-  status: 'active' | 'inactive';
-  appointmentsEnabled: boolean;
-}
+import { toast } from 'sonner';
 
 export function SuppliersSettings() {
-  const [loading] = useState(false);
+  const { suppliers, loading, saving, error, createSupplier, updateSupplier, deleteSupplier, refetch } = useSuppliersSettings();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showForm, setShowForm] = useState(false);
+  const [editingSupplier, setEditingSupplier] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    category: 'other',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    postal_code: '',
+    notes: '',
+    status: 'active' as const
+  });
 
   const categories = [
     { value: 'all', label: 'Tous' },
     { value: 'kitchen', label: 'Cuisines' },
     { value: 'bathroom', label: 'Sanitaires' },
-    { value: 'flooring', label: 'Sols & Revêtements' },
-    { value: 'electrical', label: 'Électricité' },
+    { value: 'flooring', label: 'Sols & Revetements' },
+    { value: 'electrical', label: 'Electricite' },
     { value: 'painting', label: 'Peinture' },
     { value: 'other', label: 'Autres' }
   ];
 
-  const suppliers: Supplier[] = [
-    {
-      id: '1',
-      name: 'Swiss Kitchens SA',
-      category: 'kitchen',
-      email: 'contact@swisskitchens.ch',
-      phone: '+41 21 123 45 67',
-      address: 'Lausanne, VD',
-      status: 'active',
-      appointmentsEnabled: true
-    },
-    {
-      id: '2',
-      name: 'Sanitech Solutions',
-      category: 'bathroom',
-      email: 'info@sanitech.ch',
-      phone: '+41 22 234 56 78',
-      address: 'Genève, GE',
-      status: 'active',
-      appointmentsEnabled: true
-    },
-    {
-      id: '3',
-      name: 'Parquet Premium',
-      category: 'flooring',
-      email: 'contact@parquetpremium.ch',
-      phone: '+41 44 345 67 89',
-      address: 'Zürich, ZH',
-      status: 'active',
-      appointmentsEnabled: false
-    },
-    {
-      id: '4',
-      name: 'Électro-Tech Romandie',
-      category: 'electrical',
-      email: 'info@electrotech.ch',
-      phone: '+41 26 456 78 90',
-      address: 'Fribourg, FR',
-      status: 'inactive',
-      appointmentsEnabled: false
-    }
-  ];
-
   const filteredSuppliers = suppliers.filter(supplier => {
     const matchesSearch = supplier.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         supplier.email.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || supplier.category === selectedCategory;
+                         (supplier.email?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
+    const matchesCategory = selectedCategory === 'all' || supplier.category?.toLowerCase() === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      category: 'other',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      postal_code: '',
+      notes: '',
+      status: 'active'
+    });
+    setEditingSupplier(null);
+    setShowForm(false);
+  };
+
+  const handleEdit = (supplier: typeof suppliers[0]) => {
+    setFormData({
+      name: supplier.name,
+      category: supplier.category || 'other',
+      email: supplier.email || '',
+      phone: supplier.phone || '',
+      address: supplier.address || '',
+      city: supplier.city || '',
+      postal_code: supplier.postal_code || '',
+      notes: supplier.notes || '',
+      status: supplier.status
+    });
+    setEditingSupplier(supplier.id);
+    setShowForm(true);
+  };
+
+  const handleSubmit = async () => {
+    if (!formData.name.trim()) {
+      toast.error('Le nom est requis');
+      return;
+    }
+
+    if (editingSupplier) {
+      const success = await updateSupplier(editingSupplier, formData);
+      if (success) {
+        toast.success('Fournisseur mis a jour');
+        resetForm();
+      }
+    } else {
+      const result = await createSupplier(formData);
+      if (result) {
+        toast.success('Fournisseur cree');
+        resetForm();
+      }
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (confirm('Etes-vous sur de vouloir supprimer ce fournisseur ?')) {
+      const success = await deleteSupplier(id);
+      if (success) {
+        toast.success('Fournisseur supprime');
+      }
+    }
+  };
 
   const getCategoryLabel = (category: string) => {
     return categories.find(c => c.value === category)?.label || category;
@@ -113,15 +139,138 @@ export function SuppliersSettings() {
               Fournisseurs
             </h1>
             <p className="text-neutral-600 dark:text-neutral-400">
-              Gérez vos partenaires et prestataires
+              Gerez vos partenaires et prestataires
             </p>
           </div>
         </div>
-        <Button className="gap-2">
-          <Plus className="w-4 h-4" />
-          Ajouter un fournisseur
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="outline" onClick={refetch} disabled={loading} className="gap-2">
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          </Button>
+          <Button onClick={() => setShowForm(true)} className="gap-2">
+            <Plus className="w-4 h-4" />
+            Ajouter un fournisseur
+          </Button>
+        </div>
       </div>
+
+      {showForm && (
+        <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-card p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
+              {editingSupplier ? 'Modifier le fournisseur' : 'Nouveau fournisseur'}
+            </h2>
+            <button onClick={resetForm} className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+              <X className="w-5 h-5 text-neutral-500" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Nom *</label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                placeholder="Nom du fournisseur"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Categorie</label>
+              <select
+                value={formData.category}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+              >
+                {categories.filter(c => c.value !== 'all').map(cat => (
+                  <option key={cat.value} value={cat.value}>{cat.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Email</label>
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                placeholder="email@exemple.ch"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Telephone</label>
+              <input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                placeholder="+41 XX XXX XX XX"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Adresse</label>
+              <input
+                type="text"
+                value={formData.address}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                placeholder="Rue et numero"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Ville</label>
+              <input
+                type="text"
+                value={formData.city}
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                placeholder="Ville"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Code postal</label>
+              <input
+                type="text"
+                value={formData.postal_code}
+                onChange={(e) => setFormData({ ...formData, postal_code: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                placeholder="NPA"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Statut</label>
+              <select
+                value={formData.status}
+                onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'inactive' })}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+              >
+                <option value="active">Actif</option>
+                <option value="inactive">Inactif</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Notes</label>
+            <textarea
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              rows={3}
+              className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
+              placeholder="Notes supplementaires..."
+            />
+          </div>
+
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={resetForm}>Annuler</Button>
+            <Button onClick={handleSubmit} disabled={saving} className="gap-2">
+              {saving ? <LoadingSpinner size="sm" /> : <Save className="w-4 h-4" />}
+              {editingSupplier ? 'Mettre a jour' : 'Creer'}
+            </Button>
+          </div>
+        </div>
+      )}
 
       <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-card p-6">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
@@ -172,7 +321,7 @@ export function SuppliersSettings() {
                         Inactif
                       </span>
                     )}
-                    {supplier.appointmentsEnabled && (
+                    {supplier.appointments_enabled && (
                       <span className="px-2 py-1 bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400 text-xs font-medium rounded-lg flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         Rendez-vous
@@ -181,27 +330,38 @@ export function SuppliersSettings() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                    <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                      <Mail className="w-4 h-4" />
-                      {supplier.email}
-                    </div>
-                    <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                      <Phone className="w-4 h-4" />
-                      {supplier.phone}
-                    </div>
-                    <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                      <MapPin className="w-4 h-4" />
-                      {supplier.address}
-                    </div>
+                    {supplier.email && (
+                      <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                        <Mail className="w-4 h-4" />
+                        {supplier.email}
+                      </div>
+                    )}
+                    {supplier.phone && (
+                      <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                        <Phone className="w-4 h-4" />
+                        {supplier.phone}
+                      </div>
+                    )}
+                    {(supplier.city || supplier.address) && (
+                      <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
+                        <MapPin className="w-4 h-4" />
+                        {[supplier.city, supplier.postal_code].filter(Boolean).join(', ')}
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 ml-4">
-                  <Button variant="outline" size="sm" className="gap-2">
+                  <Button variant="outline" size="sm" className="gap-2" onClick={() => handleEdit(supplier)}>
                     <Edit className="w-4 h-4" />
                     Modifier
                   </Button>
-                  <Button variant="outline" size="sm" className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20"
+                    onClick={() => handleDelete(supplier.id)}
+                  >
                     <Trash2 className="w-4 h-4" />
                   </Button>
                 </div>
@@ -224,7 +384,7 @@ export function SuppliersSettings() {
                 : 'Commencez par ajouter votre premier fournisseur'}
             </p>
             {!searchQuery && selectedCategory === 'all' && (
-              <Button className="gap-2">
+              <Button className="gap-2" onClick={() => setShowForm(true)}>
                 <Plus className="w-4 h-4" />
                 Ajouter un fournisseur
               </Button>
@@ -254,7 +414,7 @@ export function SuppliersSettings() {
 
         <div className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 text-center">
           <div className="text-3xl font-bold text-brand-600 dark:text-brand-400 mb-2">
-            {suppliers.filter(s => s.appointmentsEnabled).length}
+            {suppliers.filter(s => s.appointments_enabled).length}
           </div>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
             Avec rendez-vous

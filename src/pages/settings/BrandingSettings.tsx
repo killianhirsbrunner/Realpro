@@ -1,45 +1,100 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useOrganization } from '../../hooks/useOrganization';
+import { useBrandingSettings } from '../../hooks/useSettings';
 import { Button } from '../../components/ui/Button';
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
-import { Palette, Upload, Eye, Check, Sparkles } from 'lucide-react';
+import { Palette, Upload, Eye, Check, Sparkles, Save, RefreshCw, X } from 'lucide-react';
+import { toast } from 'sonner';
 
 export function BrandingSettings() {
-  const { organization, subscription, loading } = useOrganization();
-  const [saving, setSaving] = useState(false);
-  const [settings, setSettings] = useState({
+  const { subscription, loading: orgLoading } = useOrganization();
+  const { settings, loading, saving, error, saveSettings, uploadLogo, refetch } = useBrandingSettings();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [localSettings, setLocalSettings] = useState({
     logoUrl: '',
-    primaryColor: '#9e5eef',
-    accentColor: '#7c3aed',
+    primaryColor: '#0891b2',
+    accentColor: '#0e7490',
     showLogoOnDocuments: true,
-    documentHeaderColor: '#9e5eef',
+    documentHeaderColor: '#0891b2',
     emailSignature: true
   });
+  const [hasChanges, setHasChanges] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const isPro = subscription?.plan.slug === 'enterprise' || subscription?.plan.slug === 'pro';
 
-  const colorPresets = [
-    { name: 'RealPro Violet', color: '#9e5eef' },
-    { name: 'Bleu professionnel', color: '#0891b2' },
-    { name: 'Vert moderne', color: '#10b981' },
-    { name: 'Orange dynamique', color: '#f59e0b' },
-    { name: 'Rose élégant', color: '#ec4899' },
-    { name: 'Indigo premium', color: '#6366f1' }
-  ];
+  useEffect(() => {
+    if (settings) {
+      setLocalSettings({
+        logoUrl: settings.logo_url || '',
+        primaryColor: settings.primary_color,
+        accentColor: settings.accent_color,
+        showLogoOnDocuments: settings.show_logo_on_documents,
+        documentHeaderColor: settings.document_header_color,
+        emailSignature: settings.show_logo_in_emails
+      });
+    }
+  }, [settings]);
 
-  const handleSave = async () => {
-    try {
-      setSaving(true);
-      console.log('Saving branding settings:', settings);
-      await new Promise(resolve => setTimeout(resolve, 500));
-    } catch (error) {
-      console.error('Error saving settings:', error);
-    } finally {
-      setSaving(false);
+  const handleChange = (key: string, value: string | boolean) => {
+    setLocalSettings(prev => ({ ...prev, [key]: value }));
+    setHasChanges(true);
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Veuillez selectionner une image');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error('L\'image ne doit pas depasser 2 Mo');
+      return;
+    }
+
+    setUploading(true);
+    const url = await uploadLogo(file);
+    setUploading(false);
+
+    if (url) {
+      handleChange('logoUrl', url);
+      toast.success('Logo telecharge');
+    } else {
+      toast.error('Erreur lors du telechargement');
     }
   };
 
-  if (loading) {
+  const colorPresets = [
+    { name: 'RealPro Turquoise', color: '#0891b2' },
+    { name: 'Bleu Ocean', color: '#0ea5e9' },
+    { name: 'Vert moderne', color: '#10b981' },
+    { name: 'Orange dynamique', color: '#f59e0b' },
+    { name: 'Rouge elegant', color: '#ef4444' },
+    { name: 'Slate pro', color: '#475569' }
+  ];
+
+  const handleSave = async () => {
+    const success = await saveSettings({
+      logo_url: localSettings.logoUrl || null,
+      primary_color: localSettings.primaryColor,
+      accent_color: localSettings.accentColor,
+      show_logo_on_documents: localSettings.showLogoOnDocuments,
+      document_header_color: localSettings.documentHeaderColor,
+      show_logo_in_emails: localSettings.emailSignature
+    });
+
+    if (success) {
+      toast.success('Parametres de branding enregistres');
+      setHasChanges(false);
+    } else {
+      toast.error('Erreur lors de la sauvegarde');
+    }
+  };
+
+  if (loading || orgLoading) {
     return (
       <div className="flex items-center justify-center h-full">
         <LoadingSpinner size="lg" />
@@ -100,19 +155,25 @@ export function BrandingSettings() {
             </p>
           </div>
         </div>
-        <Button onClick={handleSave} disabled={saving} className="gap-2">
-          {saving ? (
-            <>
-              <LoadingSpinner size="sm" />
-              Enregistrement...
-            </>
-          ) : (
-            <>
-              <Check className="w-4 h-4" />
-              Enregistrer
-            </>
-          )}
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="outline" onClick={refetch} disabled={loading} className="gap-2">
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            Actualiser
+          </Button>
+          <Button onClick={handleSave} disabled={saving || !hasChanges} className="gap-2">
+            {saving ? (
+              <>
+                <LoadingSpinner size="sm" />
+                Enregistrement...
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                Enregistrer
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
       <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-card p-6">
@@ -122,23 +183,53 @@ export function BrandingSettings() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
-            <div className="aspect-video bg-neutral-50 dark:bg-neutral-800 rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 flex items-center justify-center">
-              {settings.logoUrl ? (
-                <img src={settings.logoUrl} alt="Logo" className="max-h-32" />
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileUpload}
+              className="hidden"
+            />
+            <div className="aspect-video bg-neutral-50 dark:bg-neutral-800 rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 flex items-center justify-center relative">
+              {localSettings.logoUrl ? (
+                <>
+                  <img src={localSettings.logoUrl} alt="Logo" className="max-h-32 object-contain" />
+                  <button
+                    onClick={() => handleChange('logoUrl', '')}
+                    className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </>
               ) : (
                 <div className="text-center">
                   <Upload className="w-12 h-12 text-neutral-400 mx-auto mb-2" />
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Aucun logo téléchargé
+                    Aucun logo telecharge
                   </p>
                 </div>
               )}
             </div>
             <div className="mt-4">
-              <Button variant="outline" className="gap-2">
-                <Upload className="w-4 h-4" />
-                Télécharger un logo
+              <Button
+                variant="outline"
+                className="gap-2"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+              >
+                {uploading ? (
+                  <>
+                    <LoadingSpinner size="sm" />
+                    Telechargement...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-4 h-4" />
+                    Telecharger un logo
+                  </>
+                )}
               </Button>
+              <p className="text-xs text-neutral-500 mt-2">PNG, JPG ou SVG. Max 2 Mo.</p>
             </div>
           </div>
 
@@ -155,8 +246,8 @@ export function BrandingSettings() {
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={settings.showLogoOnDocuments}
-                  onChange={(e) => setSettings({ ...settings, showLogoOnDocuments: e.target.checked })}
+                  checked={localSettings.showLogoOnDocuments}
+                  onChange={(e) => handleChange('showLogoOnDocuments', e.target.checked)}
                   className="sr-only peer"
                 />
                 <div className="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 dark:peer-focus:ring-brand-800 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-brand-600"></div>
@@ -175,8 +266,8 @@ export function BrandingSettings() {
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={settings.emailSignature}
-                  onChange={(e) => setSettings({ ...settings, emailSignature: e.target.checked })}
+                  checked={localSettings.emailSignature}
+                  onChange={(e) => handleChange('emailSignature', e.target.checked)}
                   className="sr-only peer"
                 />
                 <div className="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 dark:peer-focus:ring-brand-800 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-brand-600"></div>
@@ -200,10 +291,10 @@ export function BrandingSettings() {
               {colorPresets.map((preset) => (
                 <button
                   key={preset.name}
-                  onClick={() => setSettings({ ...settings, primaryColor: preset.color })}
+                  onClick={() => handleChange('primaryColor', preset.color)}
                   className={`
                     relative p-4 rounded-xl border-2 transition-all
-                    ${settings.primaryColor === preset.color
+                    ${localSettings.primaryColor === preset.color
                       ? 'border-neutral-900 dark:border-white'
                       : 'border-neutral-200 dark:border-neutral-700 hover:border-neutral-300'
                     }
@@ -216,7 +307,7 @@ export function BrandingSettings() {
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 text-center">
                     {preset.name}
                   </p>
-                  {settings.primaryColor === preset.color && (
+                  {localSettings.primaryColor === preset.color && (
                     <div className="absolute top-2 right-2">
                       <div className="w-5 h-5 bg-neutral-900 dark:bg-white rounded-full flex items-center justify-center">
                         <Check className="w-3 h-3 text-white dark:text-neutral-900" />
@@ -235,16 +326,16 @@ export function BrandingSettings() {
             <div className="flex gap-3">
               <input
                 type="color"
-                value={settings.primaryColor}
-                onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })}
+                value={localSettings.primaryColor}
+                onChange={(e) => handleChange('primaryColor', e.target.value)}
                 className="h-12 w-24 rounded-xl cursor-pointer"
               />
               <input
                 type="text"
-                value={settings.primaryColor}
-                onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })}
+                value={localSettings.primaryColor}
+                onChange={(e) => handleChange('primaryColor', e.target.value)}
                 className="flex-1 px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
-                placeholder="#9e5eef"
+                placeholder="#0891b2"
               />
             </div>
           </div>
@@ -267,13 +358,13 @@ export function BrandingSettings() {
             <div className="space-y-3">
               <div
                 className="h-12 rounded-lg flex items-center justify-center text-white font-medium"
-                style={{ backgroundColor: settings.primaryColor }}
+                style={{ backgroundColor: localSettings.primaryColor }}
               >
                 Bouton principal
               </div>
               <div
                 className="h-10 rounded-lg flex items-center justify-center border-2 font-medium"
-                style={{ borderColor: settings.primaryColor, color: settings.primaryColor }}
+                style={{ borderColor: localSettings.primaryColor, color: localSettings.primaryColor }}
               >
                 Bouton secondaire
               </div>
@@ -287,11 +378,11 @@ export function BrandingSettings() {
             <div className="bg-white dark:bg-neutral-800 rounded-lg p-4 border border-neutral-200 dark:border-neutral-700">
               <div
                 className="h-2 rounded mb-3"
-                style={{ backgroundColor: settings.documentHeaderColor }}
+                style={{ backgroundColor: localSettings.documentHeaderColor }}
               ></div>
-              {settings.logoUrl && (
+              {localSettings.logoUrl && (
                 <div className="mb-3">
-                  <div className="w-20 h-8 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
+                  <img src={localSettings.logoUrl} alt="Logo preview" className="w-20 h-8 object-contain" />
                 </div>
               )}
               <div className="space-y-2">

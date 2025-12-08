@@ -1,22 +1,45 @@
-import { useState } from 'react';
-import { useOrganization } from '../../hooks/useOrganization';
-import { supabase } from '../../lib/supabase';
+import { useState, useEffect } from 'react';
+import { useLocalizationSettings } from '../../hooks/useSettings';
 import { Button } from '../../components/ui/Button';
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
-import { Globe, Check, MapPin, DollarSign, FileText } from 'lucide-react';
+import { Globe, Check, MapPin, DollarSign, FileText, Save, RefreshCw } from 'lucide-react';
+import { toast } from 'sonner';
 
 export function LocalizationSettings() {
-  const { organization, loading } = useOrganization();
-  const [saving, setSaving] = useState(false);
-  const [settings, setSettings] = useState({
+  const { settings, loading, saving, error, saveSettings, refetch } = useLocalizationSettings();
+  const [localSettings, setLocalSettings] = useState({
     language: 'fr',
     country: 'CH',
+    canton: '',
     currency: 'CHF',
     dateFormat: 'DD.MM.YYYY',
     vatRate: '7.7',
     timeZone: 'Europe/Zurich',
-    numberFormat: 'space'
+    numberFormat: 'apostrophe',
+    invoiceFormat: 'qr-bill'
   });
+  const [hasChanges, setHasChanges] = useState(false);
+
+  useEffect(() => {
+    if (settings) {
+      setLocalSettings({
+        language: settings.language,
+        country: settings.country,
+        canton: settings.canton,
+        currency: settings.currency,
+        dateFormat: settings.date_format,
+        vatRate: String(settings.vat_rate),
+        timeZone: settings.time_zone,
+        numberFormat: settings.number_format,
+        invoiceFormat: settings.invoice_format
+      });
+    }
+  }, [settings]);
+
+  const handleChange = (key: string, value: string) => {
+    setLocalSettings(prev => ({ ...prev, [key]: value }));
+    setHasChanges(true);
+  };
 
   const languages = [
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -41,14 +64,23 @@ export function LocalizationSettings() {
   ];
 
   const handleSave = async () => {
-    try {
-      setSaving(true);
-      console.log('Saving localization settings:', settings);
-      await new Promise(resolve => setTimeout(resolve, 500));
-    } catch (error) {
-      console.error('Error saving settings:', error);
-    } finally {
-      setSaving(false);
+    const success = await saveSettings({
+      language: localSettings.language,
+      country: localSettings.country,
+      canton: localSettings.canton,
+      currency: localSettings.currency,
+      vat_rate: parseFloat(localSettings.vatRate),
+      date_format: localSettings.dateFormat,
+      number_format: localSettings.numberFormat,
+      time_zone: localSettings.timeZone,
+      invoice_format: localSettings.invoiceFormat
+    });
+
+    if (success) {
+      toast.success('Parametres enregistres');
+      setHasChanges(false);
+    } else {
+      toast.error('Erreur lors de la sauvegarde');
     }
   };
 
@@ -76,19 +108,25 @@ export function LocalizationSettings() {
             </p>
           </div>
         </div>
-        <Button onClick={handleSave} disabled={saving} className="gap-2">
-          {saving ? (
-            <>
-              <LoadingSpinner size="sm" />
-              Enregistrement...
-            </>
-          ) : (
-            <>
-              <Check className="w-4 h-4" />
-              Enregistrer
-            </>
-          )}
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="outline" onClick={refetch} disabled={loading} className="gap-2">
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            Actualiser
+          </Button>
+          <Button onClick={handleSave} disabled={saving || !hasChanges} className="gap-2">
+            {saving ? (
+              <>
+                <LoadingSpinner size="sm" />
+                Enregistrement...
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                Enregistrer
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
       <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-card p-6">
@@ -99,10 +137,10 @@ export function LocalizationSettings() {
           {languages.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => setSettings({ ...settings, language: lang.code })}
+              onClick={() => handleChange('language', lang.code)}
               className={`
                 relative p-4 rounded-xl border-2 transition-all text-left
-                ${settings.language === lang.code
+                ${localSettings.language === lang.code
                   ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/20'
                   : 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700'
                 }
@@ -119,7 +157,7 @@ export function LocalizationSettings() {
                   </p>
                 </div>
               </div>
-              {settings.language === lang.code && (
+              {localSettings.language === lang.code && (
                 <div className="absolute top-2 right-2">
                   <div className="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center">
                     <Check className="w-3 h-3 text-white" />
@@ -146,8 +184,8 @@ export function LocalizationSettings() {
                 Pays
               </label>
               <select
-                value={settings.country}
-                onChange={(e) => setSettings({ ...settings, country: e.target.value })}
+                value={localSettings.country}
+                onChange={(e) => handleChange('country', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               >
                 <option value="CH">Suisse</option>
@@ -161,8 +199,12 @@ export function LocalizationSettings() {
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 Canton principal
               </label>
-              <select className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
-                <option value="">Sélectionner un canton</option>
+              <select
+                value={localSettings.canton}
+                onChange={(e) => handleChange('canton', e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+              >
+                <option value="">Selectionner un canton</option>
                 {cantons.map((canton) => (
                   <option key={canton} value={canton}>
                     {canton}
@@ -175,12 +217,16 @@ export function LocalizationSettings() {
               <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 Fuseau horaire
               </label>
-              <input
-                type="text"
-                value={settings.timeZone}
-                disabled
-                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400"
-              />
+              <select
+                value={localSettings.timeZone}
+                onChange={(e) => handleChange('timeZone', e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+              >
+                <option value="Europe/Zurich">Europe/Zurich (UTC+1/+2)</option>
+                <option value="Europe/Paris">Europe/Paris (UTC+1/+2)</option>
+                <option value="Europe/Berlin">Europe/Berlin (UTC+1/+2)</option>
+                <option value="Europe/Rome">Europe/Rome (UTC+1/+2)</option>
+              </select>
             </div>
           </div>
         </div>
@@ -199,13 +245,13 @@ export function LocalizationSettings() {
                 Devise
               </label>
               <select
-                value={settings.currency}
-                onChange={(e) => setSettings({ ...settings, currency: e.target.value })}
+                value={localSettings.currency}
+                onChange={(e) => handleChange('currency', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               >
                 <option value="CHF">CHF - Franc suisse</option>
                 <option value="EUR">EUR - Euro</option>
-                <option value="USD">USD - Dollar américain</option>
+                <option value="USD">USD - Dollar americain</option>
               </select>
             </div>
 
@@ -214,8 +260,8 @@ export function LocalizationSettings() {
                 Taux TVA par défaut
               </label>
               <select
-                value={settings.vatRate}
-                onChange={(e) => setSettings({ ...settings, vatRate: e.target.value })}
+                value={localSettings.vatRate}
+                onChange={(e) => handleChange('vatRate', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               >
                 {vatRates.map((rate) => (
@@ -231,8 +277,8 @@ export function LocalizationSettings() {
                 Format des nombres
               </label>
               <select
-                value={settings.numberFormat}
-                onChange={(e) => setSettings({ ...settings, numberFormat: e.target.value })}
+                value={localSettings.numberFormat}
+                onChange={(e) => handleChange('numberFormat', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               >
                 <option value="space">1 000 000.00 (espace)</option>
@@ -258,8 +304,8 @@ export function LocalizationSettings() {
               Format de date
             </label>
             <select
-              value={settings.dateFormat}
-              onChange={(e) => setSettings({ ...settings, dateFormat: e.target.value })}
+              value={localSettings.dateFormat}
+              onChange={(e) => handleChange('dateFormat', e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
             >
               <option value="DD.MM.YYYY">DD.MM.YYYY (suisse)</option>
@@ -276,7 +322,11 @@ export function LocalizationSettings() {
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
               Format de facture QR
             </label>
-            <select className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all">
+            <select
+              value={localSettings.invoiceFormat}
+              onChange={(e) => handleChange('invoiceFormat', e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+            >
               <option value="qr-bill">QR-facture suisse (standard)</option>
               <option value="sepa">SEPA (UE)</option>
             </select>

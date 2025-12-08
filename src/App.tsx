@@ -140,6 +140,7 @@ import { LocalizationSettings } from './pages/settings/LocalizationSettings';
 import { BrandingSettings } from './pages/settings/BrandingSettings';
 import { SecuritySettings } from './pages/settings/SecuritySettings';
 import { SuppliersSettings } from './pages/settings/SuppliersSettings';
+import { CompanySettings } from './pages/settings/CompanySettings';
 
 import { SelectOrganization } from './pages/SelectOrganization';
 import { OrganizationOnboarding } from './pages/OrganizationOnboarding';
@@ -333,6 +334,7 @@ function App() {
                     <Route path="/settings/branding" element={<BrandingSettings />} />
                     <Route path="/settings/security" element={<SecuritySettings />} />
                     <Route path="/settings/suppliers" element={<SuppliersSettings />} />
+                    <Route path="/company" element={<CompanySettings />} />
 
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
                     <Route path="/admin/super" element={<SuperAdminDashboard />} />
