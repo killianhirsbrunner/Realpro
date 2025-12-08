@@ -49,6 +49,8 @@ export default {
           teal: '#14b8a6',
           warm: '#eeede9',
         },
+        'realpro-turquoise': '#0891b2',
+        'realpro-blue': '#1e40af',
         neutral: {
           50: '#f8f8f7',
           100: '#f2f2f0',

@@ -209,10 +209,11 @@ export function Landing() {
         )}
       </header>
 
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-20 lg:py-32 bg-gradient-to-b from-blue-50/50 via-white to-white dark:from-blue-950/20 dark:via-neutral-950 dark:to-neutral-950">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-realpro-turquoise/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-realpro-turquoise/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-realpro-turquoise/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-0 w-64 h-64 bg-blue-400/5 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -492,7 +493,7 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 dark:from-blue-950/10 dark:via-neutral-950 dark:to-blue-950/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -565,32 +566,32 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-20 bg-neutral-900 dark:bg-neutral-950">
+      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 dark:from-blue-950 dark:via-blue-900 dark:to-blue-950">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <ScrollReveal>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
               Prêt à optimiser la gestion de vos promotions ?
             </h2>
-            <p className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-blue-100/80 mb-10 max-w-2xl mx-auto">
               Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
               leurs opérations et améliorer leur productivité.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/register">
-                <Button size="lg" className="h-12 px-8 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0">
+                <Button size="lg" className="h-12 px-8 text-base bg-white hover:bg-blue-50 text-blue-900 border-0 shadow-lg">
                   Commencer l'essai gratuit
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="h-12 px-8 text-base border-neutral-700 text-white hover:bg-neutral-800">
+                <Button size="lg" variant="outline" className="h-12 px-8 text-base border-white/30 text-white hover:bg-white/10">
                   Planifier une démo
                 </Button>
               </Link>
             </div>
 
-            <p className="mt-8 text-sm text-neutral-500">
+            <p className="mt-8 text-sm text-blue-200/60">
               14 jours gratuits - Aucune carte de crédit requise - Configuration en 48h
             </p>
           </ScrollReveal>

@@ -133,16 +133,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="p-6 space-y-4">
           <div>
             <div className="flex items-start justify-between mb-2">
-              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-brand-600 transition-colors">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-brand-600 transition-colors">
                 {project.name}
               </h3>
             </div>
 
-            <p className="text-sm text-gray-500 line-clamp-2 mb-3">
+            <p className="text-sm text-gray-500 dark:text-neutral-400 line-clamp-2 mb-3">
               {project.description || 'Aucune description'}
             </p>
 
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-neutral-400">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4" />
                 <span>{project.city} ({project.canton})</span>
@@ -158,26 +158,26 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
 
           {project.total_lots !== undefined && (
-            <div className="space-y-3 pt-4 border-t border-gray-100">
+            <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-neutral-700">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-500 flex items-center gap-1.5">
+                <span className="text-gray-500 dark:text-neutral-400 flex items-center gap-1.5">
                   <Package className="w-4 h-4" />
                   Lots
                 </span>
                 <div className="flex items-center gap-3">
-                  <span className="text-gray-900 font-medium">{project.sold_lots || 0} vendus</span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-600">{project.total_lots} total</span>
+                  <span className="text-gray-900 dark:text-white font-medium">{project.sold_lots || 0} vendus</span>
+                  <span className="text-gray-400 dark:text-neutral-500">-</span>
+                  <span className="text-gray-600 dark:text-neutral-400">{project.total_lots} total</span>
                 </div>
               </div>
 
               {salesPercentage > 0 && (
                 <div>
                   <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="text-gray-500">Commercialisation</span>
-                    <span className="text-gray-900 font-semibold">{formatPercent(salesPercentage)}</span>
+                    <span className="text-gray-500 dark:text-neutral-400">Commercialisation</span>
+                    <span className="text-gray-900 dark:text-white font-semibold">{formatPercent(salesPercentage)}</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                  <div className="w-full bg-gray-100 dark:bg-neutral-700 rounded-full h-2 overflow-hidden">
                     <div
                       className="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${salesPercentage}%` }}
@@ -187,12 +187,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
               )}
 
               {project.total_revenue && project.total_revenue > 0 && (
-                <div className="flex items-center justify-between text-sm pt-2 border-t border-gray-50">
-                  <span className="text-gray-500 flex items-center gap-1.5">
+                <div className="flex items-center justify-between text-sm pt-2 border-t border-gray-50 dark:border-neutral-700">
+                  <span className="text-gray-500 dark:text-neutral-400 flex items-center gap-1.5">
                     <TrendingUp className="w-4 h-4" />
                     CA réalisé
                   </span>
-                  <span className="text-gray-900 font-semibold">{formatCHF(project.total_revenue)}</span>
+                  <span className="text-gray-900 dark:text-white font-semibold">{formatCHF(project.total_revenue)}</span>
                 </div>
               )}
             </div>
