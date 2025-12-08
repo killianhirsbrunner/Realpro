@@ -19,10 +19,10 @@ export function PromoterDashboard() {
 
   // Transform data for new components
   const overviewStats = {
-    activeProjects: stats.totalProjects,
-    totalLots: stats.projects.reduce((sum, p) => sum + p.sales.totalLots, 0),
-    soldLots: stats.projects.reduce((sum, p) => sum + p.sales.soldLots, 0),
-    salesRate: stats.projects.length > 0
+    activeProjects: stats.totalProjects || 0,
+    totalLots: stats.projects?.reduce((sum, p) => sum + p.sales.totalLots, 0) || 0,
+    soldLots: stats.projects?.reduce((sum, p) => sum + p.sales.soldLots, 0) || 0,
+    salesRate: stats.projects && stats.projects.length > 0
       ? Math.round(
           stats.projects.reduce((sum, p) => sum + p.sales.salesPercentage, 0) /
             stats.projects.length
@@ -30,41 +30,41 @@ export function PromoterDashboard() {
       : 0,
     pendingDocuments: 0,
     pendingModifications: 0,
-    totalRevenue: stats.totalRevenuePotential,
-    alerts: stats.totalSavTickets.open,
+    totalRevenue: stats.totalRevenuePotential || 0,
+    alerts: stats.totalSavTickets?.open || 0,
   };
 
-  const projectsData = stats.projects.map((project) => ({
+  const projectsData = (stats.projects || []).map((project) => ({
     id: project.id,
     name: project.name,
     location: project.city || 'Non défini',
-    progress: project.construction.progress,
+    progress: project.construction?.progress || 0,
     status: project.status,
-    lotsTotal: project.sales.totalLots,
-    lotsSold: project.sales.soldLots,
+    lotsTotal: project.sales?.totalLots || 0,
+    lotsSold: project.sales?.soldLots || 0,
   }));
 
-  const salesData = stats.projects.map((project) => ({
+  const salesData = (stats.projects || []).map((project) => ({
     projectId: project.id,
     projectName: project.name,
-    lotsTotal: project.sales.totalLots,
-    lotsSold: project.sales.soldLots,
-    lotsReserved: project.sales.reservedLots,
-    percentage: project.sales.salesPercentage,
-    revenue: project.sales.revenueRealized,
-    trend: project.sales.soldLots > project.sales.reservedLots ? 'up' : 'stable' as 'up' | 'down' | 'stable',
+    lotsTotal: project.sales?.totalLots || 0,
+    lotsSold: project.sales?.soldLots || 0,
+    lotsReserved: project.sales?.reservedLots || 0,
+    percentage: project.sales?.salesPercentage || 0,
+    revenue: project.sales?.revenueRealized || 0,
+    trend: (project.sales?.soldLots || 0) > (project.sales?.reservedLots || 0) ? 'up' : 'stable' as 'up' | 'down' | 'stable',
   }));
 
-  const issuesData = stats.projects
-    .filter((project) => project.sav.open > 0)
+  const issuesData = (stats.projects || [])
+    .filter((project) => (project.sav?.open || 0) > 0)
     .map((project) => ({
       id: project.id,
       type: 'alert' as 'delay' | 'alert' | 'warning',
       title: 'Tickets SAV ouverts',
-      description: `${project.sav.open} ticket${project.sav.open > 1 ? 's' : ''} nécessitent votre attention`,
+      description: `${project.sav?.open || 0} ticket${(project.sav?.open || 0) > 1 ? 's' : ''} nécessitent votre attention`,
       projectId: project.id,
       projectName: project.name,
-      severity: project.sav.open > 5 ? 'high' : project.sav.open > 2 ? 'medium' : 'low' as 'high' | 'medium' | 'low',
+      severity: (project.sav?.open || 0) > 5 ? 'high' : (project.sav?.open || 0) > 2 ? 'medium' : 'low' as 'high' | 'medium' | 'low',
     }));
 
   return (
