@@ -147,6 +147,7 @@ import ContactsList from './pages/ContactsList';
 import ContactDetail from './pages/ContactDetail';
 import CompanyDetail from './pages/CompanyDetail';
 import CompaniesList from './pages/CompaniesList';
+import ProjectMilestonesTimeline from './pages/ProjectMilestonesTimeline';
 
 function App() {
   return (
@@ -244,6 +245,7 @@ function App() {
                     <Route path="/projects/:projectId/activity" element={<ProjectActivityPage />} />
                     <Route path="/projects/:projectId/health" element={<ProjectHealthPage />} />
                     <Route path="/projects/:projectId/timeline" element={<ProjectTimelinePage />} />
+                    <Route path="/projects/:projectId/milestones" element={<ProjectMilestonesTimeline />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
                     <Route path="/contacts" element={<ContactsList />} />
