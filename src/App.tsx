@@ -149,6 +149,10 @@ import ContactDetail from './pages/ContactDetail';
 import CompanyDetail from './pages/CompanyDetail';
 import CompaniesList from './pages/CompaniesList';
 import ProjectMilestonesTimeline from './pages/ProjectMilestonesTimeline';
+import { ProjectConstructionPage } from './pages/ProjectConstructionPage';
+import { ProjectCommunicationPage } from './pages/ProjectCommunicationPage';
+import { ProjectReportingPage } from './pages/ProjectReportingPage';
+import { ProjectModificationsPage } from './pages/ProjectModificationsPage';
 
 function App() {
   return (
@@ -198,6 +202,10 @@ function App() {
                     <Route path="/projects/:projectId/planning/photos" element={<ProjectPlanningPhotos />} />
                     <Route path="/projects/:projectId/planning/reports" element={<ProjectPlanningReports />} />
                     <Route path="/projects/:projectId/planning/buyers" element={<ProjectPlanningBuyersProgress />} />
+                    <Route path="/projects/:projectId/construction" element={<ProjectConstructionPage />} />
+                    <Route path="/projects/:projectId/communication" element={<ProjectCommunicationPage />} />
+                    <Route path="/projects/:projectId/reporting" element={<ProjectReportingPage />} />
+                    <Route path="/projects/:projectId/modifications" element={<ProjectModificationsPage />} />
                     <Route path="/projects/:projectId/materials" element={<ProjectMaterialsSelections />} />
                     <Route path="/projects/:projectId/materials/catalogue" element={<ProjectMaterialsCatalogManager />} />
                     <Route path="/projects/:projectId/materials/lots/:lotId" element={<ProjectMaterialsLotChoices />} />
