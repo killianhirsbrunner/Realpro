@@ -2,9 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
   Building2,
-  Grid3x3,
   Users,
-  DollarSign,
   FolderOpen,
   Hammer,
   Settings,
@@ -13,24 +11,18 @@ import {
   TrendingUp,
   Wrench,
   BarChart3,
-  GitBranch,
   MessageSquare,
   Bell,
-  Package,
-  Calendar,
   ClipboardList,
-  UserCheck,
   Shield,
   ChevronDown,
   ChevronRight,
   Activity,
   PieChart,
-  Workflow
 } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 import { RealProLogo } from '../branding/RealProLogo';
-import { OrganizationSelector } from '../OrganizationSelector';
-import { ProjectSelector } from '../ProjectSelector';
+import { useOrganizationContext } from '../../contexts/OrganizationContext';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -45,6 +37,7 @@ interface NavItem {
 export function Sidebar() {
   const { t } = useI18n();
   const location = useLocation();
+  const { currentOrganization } = useOrganizationContext();
   const [expandedSections, setExpandedSections] = useState<string[]>(['main']);
 
   const toggleSection = (sectionName: string) => {
@@ -57,7 +50,7 @@ export function Sidebar() {
 
   const navigation: NavItem[] = [
     {
-      name: 'Dashboard Global',
+      name: 'Dashboard',
       href: '/dashboard',
       icon: LayoutDashboard
     },
@@ -67,7 +60,7 @@ export function Sidebar() {
       icon: Building2
     },
     {
-      name: 'Analytics & BI',
+      name: 'Analytics',
       href: '/analytics',
       icon: BarChart3,
       badge: 'NEW'
@@ -113,7 +106,7 @@ export function Sidebar() {
       icon: FileText
     },
     {
-      name: 'Tâches',
+      name: 'Taches',
       href: '/tasks',
       icon: ClipboardList
     },
@@ -126,7 +119,7 @@ export function Sidebar() {
 
   const administrationItems: NavItem[] = [
     {
-      name: 'Paramètres',
+      name: 'Parametres',
       href: '/settings',
       icon: Settings
     },
@@ -165,21 +158,21 @@ export function Sidebar() {
             }
           }}
           className={clsx(
-            'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150',
-            'hover:scale-[1.02] active:scale-[0.98]',
+            'group flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200',
             {
-              'bg-realpro-turquoise/10 text-realpro-turquoise shadow-sm': isActive,
-              'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800': !isActive,
-              'ml-4': depth > 0,
+              'bg-realpro-turquoise text-white shadow-md shadow-realpro-turquoise/20': isActive,
+              'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800/50': !isActive,
+              'ml-3': depth > 0,
             }
           )}
         >
-          <Icon className={clsx('h-4 w-4 flex-shrink-0', {
-            'text-realpro-turquoise': isActive,
+          <Icon className={clsx('h-[18px] w-[18px] flex-shrink-0 transition-colors', {
+            'text-white': isActive,
+            'text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300': !isActive,
           })} />
-          <span className="flex-1">{item.name}</span>
+          <span className="flex-1 truncate">{item.name}</span>
           {item.badge && (
-            <span className="px-2 py-0.5 text-xs font-semibold bg-green-500 text-white rounded-full">
+            <span className="px-1.5 py-0.5 text-[10px] font-bold bg-emerald-500 text-white rounded">
               {item.badge}
             </span>
           )}
@@ -188,7 +181,7 @@ export function Sidebar() {
           )}
         </Link>
         {hasChildren && isExpanded && (
-          <div className="ml-2 mt-1 space-y-0.5">
+          <div className="mt-1 space-y-0.5">
             {item.children.map(child => renderNavItem(child, depth + 1))}
           </div>
         )}
@@ -197,42 +190,45 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="w-64 h-full border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 flex flex-col">
-      {/* Logo */}
-      <div className="p-6 flex justify-center border-b border-gray-200 dark:border-gray-800">
-        <Link to="/dashboard" className="block transition-opacity hover:opacity-80">
-          <RealProLogo size="lg" />
+    <aside className="w-60 h-full bg-white dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 flex flex-col">
+      <div className="h-16 px-5 flex items-center border-b border-neutral-200 dark:border-neutral-800">
+        <Link to="/dashboard" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+          {currentOrganization?.logo_url ? (
+            <img
+              src={currentOrganization.logo_url}
+              alt={currentOrganization.name}
+              className="h-9 w-auto max-w-[140px] object-contain"
+            />
+          ) : (
+            <RealProLogo size="md" />
+          )}
         </Link>
       </div>
 
-      {/* Selectors */}
-      <div className="px-3 py-4 space-y-3 border-b border-gray-200 dark:border-gray-800">
-        <OrganizationSelector />
-        <ProjectSelector />
-      </div>
-
-      {/* Main Navigation */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-        <div className="mb-4">
-          <h3 className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+      <nav className="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
+        <div>
+          <h3 className="px-3 mb-2 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             Principal
           </h3>
-          {navigation.map(item => renderNavItem(item))}
+          <div className="space-y-0.5">
+            {navigation.map(item => renderNavItem(item))}
+          </div>
         </div>
 
-        <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-          <h3 className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+        <div>
+          <h3 className="px-3 mb-2 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             Administration
           </h3>
-          {administrationItems.map(item => renderNavItem(item))}
+          <div className="space-y-0.5">
+            {administrationItems.map(item => renderNavItem(item))}
+          </div>
         </div>
       </nav>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-        <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
-          <div className="font-semibold text-realpro-turquoise mb-1">RealPro SA</div>
-          <div>© 2024-2025 • v2.0</div>
+      <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center justify-between text-[11px] text-neutral-400 dark:text-neutral-500">
+          <span className="font-medium">RealPro</span>
+          <span>v2.0</span>
         </div>
       </div>
     </aside>
