@@ -50,8 +50,8 @@ export function Sidebar() {
 
   const navigation: NavItem[] = [
     {
-      name: 'Tableau de bord',
-      href: '/promoter',
+      name: 'Dashboard',
+      href: '/dashboard',
       icon: LayoutDashboard
     },
     {
@@ -69,6 +69,16 @@ export function Sidebar() {
       name: 'Reporting',
       href: '/reporting',
       icon: PieChart
+    },
+    {
+      name: 'Promoteur',
+      href: '/promoter',
+      icon: TrendingUp
+    },
+    {
+      name: 'Courtiers',
+      href: '/broker',
+      icon: Users
     },
     {
       name: 'Notifications',

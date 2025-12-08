@@ -19,10 +19,7 @@ export function PromoterDashboard() {
   if (loading || orgLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <LoadingSpinner size="lg" />
-          <p className="mt-4 text-neutral-600 dark:text-neutral-400">Chargement du tableau de bord...</p>
-        </div>
+        <LoadingSpinner size="lg" />
       </div>
     );
   }
