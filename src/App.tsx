@@ -29,6 +29,7 @@ import { Success } from './pages/auth/Success';
 
 import { DashboardGlobal } from './pages/DashboardGlobal';
 import { Dashboard } from './pages/Dashboard';
+import { OrganizationDashboard } from './pages/OrganizationDashboard';
 import { Notifications } from './pages/Notifications';
 import { ProjectsList } from './pages/ProjectsList';
 import { ProjectOverview } from './pages/ProjectOverview';
@@ -182,7 +183,8 @@ function App() {
                 <OrganizationProvider>
                   <AppShell>
                   <Routes>
-                    <Route path="/dashboard" element={<DashboardGlobal />} />
+                    <Route path="/dashboard" element={<OrganizationDashboard />} />
+                    <Route path="/dashboard-global" element={<DashboardGlobal />} />
                     <Route path="/dashboard-old" element={<Dashboard />} />
                     <Route path="/notifications" element={<Notifications />} />
 
