@@ -29,12 +29,12 @@ interface NavItem {
 
 const ROLE_NAV: Record<Role, NavItem[]> = {
   PROMOTER: [
-    { name: 'Tableau de bord', href: '/reporting', icon: LayoutDashboard },
+    { name: 'Tableau de bord', href: '/promoter', icon: LayoutDashboard },
     { name: 'Projets', href: '/projects', icon: Building2 },
+    { name: 'Analytics', href: '/analytics', icon: BarChart3 },
     { name: 'Facturation', href: '/billing', icon: CreditCard },
-    { name: 'Templates', href: '/templates', icon: FileText },
-    { name: 'Tâches', href: '/tasks', icon: ListTodo },
-    { name: 'Paramètres', href: '/settings', icon: Settings },
+    { name: 'Taches', href: '/tasks', icon: ListTodo },
+    { name: 'Parametres', href: '/settings', icon: Settings },
   ],
   EG: [
     { name: 'Projets', href: '/projects', icon: Building2 },
@@ -53,12 +53,10 @@ const ROLE_NAV: Record<Role, NavItem[]> = {
     { name: 'Tâches', href: '/tasks', icon: ListTodo },
   ],
   BROKER: [
-    { name: 'Tableau de bord', href: '/broker/dashboard', icon: LayoutDashboard },
-    { name: 'Projets', href: '/projects', icon: Building2 },
-    { name: 'Programme vente', href: '/broker/lots', icon: Grid3x3, projectScoped: true },
-    { name: 'Contrats', href: '/broker/contracts', icon: FileText, projectScoped: true },
-    { name: 'Performance', href: '/reporting/brokers', icon: BarChart3 },
-    { name: 'Tâches', href: '/tasks', icon: ListTodo },
+    { name: 'Mon espace', href: '/broker', icon: LayoutDashboard },
+    { name: 'Lots disponibles', href: '/broker/lots', icon: Grid3x3 },
+    { name: 'Mes contrats', href: '/broker/contracts', icon: FileText },
+    { name: 'Mon profil', href: '/broker/profile', icon: Users },
   ],
   NOTARY: [
     { name: 'Dossiers notaire', href: '/notary/files', icon: FolderOpen },

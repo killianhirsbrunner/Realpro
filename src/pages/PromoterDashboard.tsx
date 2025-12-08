@@ -1,5 +1,5 @@
 import { Plus } from 'lucide-react';
-import { LoadingState } from '../components/ui/LoadingSpinner';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
 import { usePromoterDashboard } from '../hooks/usePromoterDashboard';
 import { useOrganization } from '../hooks/useOrganization';
@@ -16,7 +16,16 @@ export function PromoterDashboard() {
   const { stats, loading, error, refetch } = usePromoterDashboard();
   const { projects, loading: orgLoading } = useOrganization();
 
-  if (loading || orgLoading) return <LoadingState message="Chargement du tableau de bord..." />;
+  if (loading || orgLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <LoadingSpinner size="lg" />
+          <p className="mt-4 text-neutral-600 dark:text-neutral-400">Chargement du tableau de bord...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Si l'utilisateur n'a pas encore de projets, afficher l'écran d'accueil
   if (!projects || projects.length === 0) {
