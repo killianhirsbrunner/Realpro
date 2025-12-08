@@ -33,7 +33,7 @@ import { DashboardGlobal } from './pages/DashboardGlobal';
 import { Dashboard } from './pages/Dashboard';
 import { OrganizationDashboard } from './pages/OrganizationDashboard';
 import { Notifications } from './pages/Notifications';
-import { ProjectsList } from './pages/ProjectsList';
+import { ProjectsListEnhanced } from './pages/ProjectsListEnhanced';
 import { ProjectOverview } from './pages/ProjectOverview';
 import { ProjectCockpit } from './pages/ProjectCockpit';
 import { ProjectCockpitDashboard } from './pages/ProjectCockpitDashboard';
@@ -208,7 +208,7 @@ function App() {
                     <Route path="/dashboard-old" element={<Dashboard />} />
                     <Route path="/notifications" element={<Notifications />} />
 
-                    <Route path="/projects" element={<ProjectsList />} />
+                    <Route path="/projects" element={<ProjectsListEnhanced />} />
                     <Route path="/projects/wizard" element={<ProjectCreationWizard />} />
                     <Route path="/projects/new" element={<ProjectCreationWizard />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />

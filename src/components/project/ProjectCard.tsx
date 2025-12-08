@@ -199,7 +199,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
 
           <div className="pt-4">
-            <Link to={`/projects/${project.id}/overview`}>
+            <Link to={`/projects/${project.id}`}>
               <Button
                 variant="outline"
                 className="w-full group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 transition-all"
