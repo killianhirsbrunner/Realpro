@@ -18,7 +18,7 @@ export function RealProLogo({ className = '', size = 'md', showIcon = true }: Re
     <div className={`flex items-center ${sizes.gap} ${className}`}>
       {showIcon && (
         <div className="relative flex-shrink-0">
-          <div className={`${sizes.icon} rounded-2xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 flex items-center justify-center shadow-xl shadow-brand-600/40 relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-brand-600/50 transition-all duration-300`}>
+          <div className={`${sizes.icon} rounded-full bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 flex items-center justify-center shadow-xl shadow-brand-600/40 relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-brand-600/50 transition-all duration-300`}>
             <svg
               className={`${sizes.iconSize} text-white relative z-10`}
               viewBox="0 0 40 40"

@@ -14,23 +14,23 @@
     </filter>
   </defs>
 
-  <!-- Icon Container -->
-  <rect x="0" y="4" width="40" height="40" rx="10" fill="url(#iconGradient)" filter="url(#shadow)"/>
+  <!-- Icon Container - Circle -->
+  <circle cx="20" cy="24" r="20" fill="url(#iconGradient)" filter="url(#shadow)"/>
 
   <!-- Diamond shape -->
-  <path d="M20 12L28 20L20 32L12 20L20 12Z" fill="white" opacity="0.9"/>
-  <path d="M20 16L24 20L20 28L16 20L20 16Z" fill="white" opacity="0.3"/>
+  <path d="M20 16L28 24L20 36L12 24L20 16Z" fill="white" opacity="0.9"/>
+  <path d="M20 20L24 24L20 32L16 24L20 20Z" fill="white" opacity="0.3"/>
 
   <!-- Center circle -->
-  <circle cx="20" cy="20" r="5" fill="white" opacity="0.95"/>
-  <circle cx="20" cy="20" r="2" fill="white" opacity="0.4"/>
+  <circle cx="20" cy="24" r="5" fill="white" opacity="0.95"/>
+  <circle cx="20" cy="24" r="2" fill="white" opacity="0.4"/>
 
   <!-- Cardinal lines -->
-  <path d="M20 12L20 8M28 20L32 20M20 28L20 32M12 20L8 20"
+  <path d="M20 16L20 12M28 24L32 24M20 32L20 36M12 24L8 24"
         stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
 
   <!-- Shine effect -->
-  <rect x="0" y="4" width="40" height="40" rx="10" fill="url(#shineGradient)" opacity="0.1"/>
+  <circle cx="20" cy="24" r="20" fill="url(#shineGradient)" opacity="0.1"/>
   <defs>
     <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:white;stop-opacity:0.2" />
