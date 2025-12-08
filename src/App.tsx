@@ -23,10 +23,12 @@ import { LoginEnhanced } from './pages/LoginEnhanced';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
 import { Register } from './pages/auth/Register';
+import { RegisterCompany } from './pages/auth/RegisterCompany';
 import { ChoosePlan } from './pages/auth/ChoosePlan';
 import { Checkout } from './pages/auth/Checkout';
 import { Success } from './pages/auth/Success';
 
+import { DashboardHome } from './pages/DashboardHome';
 import { DashboardGlobal } from './pages/DashboardGlobal';
 import { Dashboard } from './pages/Dashboard';
 import { OrganizationDashboard } from './pages/OrganizationDashboard';
@@ -165,10 +167,12 @@ function App() {
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<RegisterCompany />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
 
           <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/register-company" element={<RegisterCompany />} />
           <Route path="/auth/choose-plan" element={<ChoosePlan />} />
           <Route path="/auth/checkout" element={<Checkout />} />
           <Route path="/auth/success" element={<Success />} />
@@ -187,12 +191,14 @@ function App() {
                 <OrganizationProvider>
                   <AppShell>
                   <Routes>
-                    <Route path="/dashboard" element={<OrganizationDashboard />} />
+                    <Route path="/dashboard" element={<DashboardHome />} />
+                    <Route path="/dashboard-org" element={<OrganizationDashboard />} />
                     <Route path="/dashboard-global" element={<DashboardGlobal />} />
                     <Route path="/dashboard-old" element={<Dashboard />} />
                     <Route path="/notifications" element={<Notifications />} />
 
                     <Route path="/projects" element={<ProjectsList />} />
+                    <Route path="/projects/wizard" element={<ProjectSetupWizard />} />
                     <Route path="/projects/new" element={<ProjectSetupWizard />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />
                     <Route path="/projects/:projectId/overview" element={<ProjectOverview />} />

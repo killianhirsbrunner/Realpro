@@ -93,7 +93,7 @@ export function Landing() {
                   Connexion
                 </Button>
               </Link>
-              <Link to="/auth/register">
+              <Link to="/register">
                 <Button size="sm" className="rounded-full bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 border-0 text-white shadow-lg shadow-brand-600/30">
                   Essai gratuit
                 </Button>
@@ -161,7 +161,7 @@ export function Landing() {
 
         <FadeIn delay={400}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-            <Link to="/auth/register">
+            <Link to="/register">
               <Button
                 size="lg"
                 className="group rounded-full px-8 h-12 text-base font-medium shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 hover:scale-105 border-0 text-white"
@@ -437,7 +437,7 @@ export function Landing() {
               Rejoignez les promoteurs qui économisent <span className="text-brand-400 font-semibold">15h par semaine</span> avec RealPro.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/auth/register">
+              <Link to="/register">
                 <Button
                   size="lg"
                   className="group bg-brand-600 text-white hover:bg-brand-700 border-0 rounded-full px-8 h-12 text-base font-medium shadow-2xl hover:shadow-brand-600/50 transition-all duration-300 hover:scale-105"
