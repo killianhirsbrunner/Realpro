@@ -1,10 +1,13 @@
-import { Building2, MapPin, Calendar, TrendingUp, Users, Package } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Building2, MapPin, Calendar, TrendingUp, Users, Package, MoreVertical, Settings, Trash2 } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { useI18n } from '../../lib/i18n';
 import { formatCHF, formatPercent } from '../../lib/utils/format';
+import { useProjects } from '../../hooks/useProjects';
+import { toast } from 'sonner';
 
 interface ProjectCardProps {
   project: {
@@ -28,6 +31,11 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const { t } = useI18n();
+  const navigate = useNavigate();
+  const { deleteProject } = useProjects();
+  const [showMenu, setShowMenu] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const getStatusVariant = (status: string): 'default' | 'success' | 'warning' | 'danger' | 'info' => {
     const map: Record<string, 'default' | 'success' | 'warning' | 'danger' | 'info'> = {
@@ -43,6 +51,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const salesPercentage = project.total_lots && project.sold_lots
     ? (project.sold_lots / project.total_lots) * 100
     : 0;
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteProject(project.id);
+      toast.success('Projet supprimé avec succès');
+      setShowDeleteConfirm(false);
+    } catch (error) {
+      console.error('Error deleting project:', error);
+      toast.error('Erreur lors de la suppression du projet');
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <Card hover className="group transition-all duration-300 hover:shadow-xl">
@@ -60,7 +81,49 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           )}
 
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+            <div className="relative">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowMenu(!showMenu);
+                }}
+                className="p-2 rounded-lg bg-white/90 backdrop-blur-sm hover:bg-white transition-colors opacity-0 group-hover:opacity-100"
+              >
+                <MoreVertical className="w-4 h-4 text-gray-700" />
+              </button>
+
+              {showMenu && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setShowMenu(false)}
+                  />
+                  <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20">
+                    <Link
+                      to={`/projects/${project.id}/settings`}
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      <Settings className="w-4 h-4" />
+                      Paramètres
+                    </Link>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowMenu(false);
+                        setShowDeleteConfirm(true);
+                      }}
+                      className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Supprimer
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
             <Badge variant={getStatusVariant(project.status)} size="sm" className="backdrop-blur-sm bg-white/90">
               {t(`projects.statuses.${project.status}`)}
             </Badge>
@@ -147,6 +210,44 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
       </CardContent>
+
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="w-full max-w-md mx-4 bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 space-y-4">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                <Trash2 className="w-5 h-5 text-red-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                  Supprimer le projet ?
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Le projet <span className="font-semibold">{project.name}</span> et toutes ses données seront définitivement supprimés.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 pt-2">
+              <Button
+                variant="outline"
+                onClick={() => setShowDeleteConfirm(false)}
+                disabled={isDeleting}
+              >
+                Annuler
+              </Button>
+              <Button
+                variant="outline"
+                className="text-red-600 border-red-600 hover:bg-red-50"
+                onClick={handleDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? 'Suppression...' : 'Supprimer'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </Card>
   );
 }

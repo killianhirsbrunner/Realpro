@@ -72,7 +72,18 @@ export function useProjects() {
     };
   }, []);
 
-  return { projects, loading, error, refetch: () => setLoading(true) };
+  const deleteProject = async (projectId: string) => {
+    const { error } = await supabase
+      .from('projects')
+      .delete()
+      .eq('id', projectId);
+
+    if (error) throw error;
+
+    setProjects(prev => prev.filter(p => p.id !== projectId));
+  };
+
+  return { projects, loading, error, refetch: () => setLoading(true), deleteProject };
 }
 
 export function useProject(projectId: string | undefined) {
