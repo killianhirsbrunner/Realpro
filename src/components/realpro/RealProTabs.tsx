@@ -13,20 +13,24 @@ interface RealProTabsProps {
 
 export function RealProTabs({ tabs, active }: RealProTabsProps) {
   return (
-    <div className="flex gap-6 border-b border-neutral-200 dark:border-neutral-800 pb-2 mb-6">
+    <div className="flex gap-1 border-b border-neutral-200 dark:border-neutral-800 mb-6">
       {tabs.map((tab) => (
         <Link
           key={tab.key}
           to={tab.href}
           className={`
-            pb-2
+            relative
+            px-4
+            py-3
             text-sm
             font-medium
-            transition-colors
+            transition-all
+            duration-200
+            rounded-t-lg
             ${
               active === tab.key
-                ? 'border-b-2 border-primary-900 dark:border-primary-100 text-primary-900 dark:text-primary-100'
-                : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'
+                ? 'text-brand-600 dark:text-brand-400 bg-brand-50/50 dark:bg-brand-900/20 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-600 dark:after:bg-brand-400'
+                : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-50 dark:hover:bg-neutral-900/50'
             }
           `}
         >

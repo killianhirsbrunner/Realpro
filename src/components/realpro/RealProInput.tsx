@@ -11,8 +11,10 @@ export const RealProInput = forwardRef<HTMLInputElement, RealProInputProps>(
         ref={ref}
         className={`
           w-full
+          h-10
           px-4
-          py-3
+          py-2.5
+          text-sm
           rounded-xl
           border
           ${error

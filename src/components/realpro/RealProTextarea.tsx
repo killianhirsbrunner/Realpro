@@ -11,8 +11,10 @@ export const RealProTextarea = forwardRef<HTMLTextAreaElement, RealProTextareaPr
         ref={ref}
         className={`
           w-full
+          min-h-[80px]
           px-4
-          py-3
+          py-2.5
+          text-sm
           rounded-xl
           border
           ${error
