@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Hammer, AlertCircle, Camera, MessageSquare, Wifi, WifiOff } from 'lucide-react';
+import { Home, Hammer, AlertCircle, Camera, MessageSquare, Wifi, WifiOff, Building2, ClipboardList, FileText, Settings } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
-import { LoadingState } from '../components/ui/LoadingSpinner';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { useOfflineQueue } from '../hooks/useOfflineQueue';
 import { supabase } from '../lib/supabase';
@@ -47,7 +47,16 @@ export function ChantierHome() {
     }
   }
 
-  if (loading) return <LoadingState message="Chargement..." />;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+        <div className="text-center">
+          <LoadingSpinner size="lg" />
+          <p className="mt-4 text-gray-400">Chargement...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white pb-20">

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useCurrentUser } from '../hooks/useCurrentUser';
-import { useOrganization } from '../hooks/useOrganization';
 import { supabase } from '../lib/supabase';
 import { ModernCard } from '../components/ui/ModernCard';
 import { Button } from '../components/ui/Button';
@@ -55,8 +54,7 @@ interface Task {
 }
 
 export function TasksManager() {
-  const { user } = useCurrentUser();
-  const { currentOrganization } = useOrganization();
+  const { user, organization } = useCurrentUser();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('kanban');
@@ -75,13 +73,13 @@ export function TasksManager() {
   });
 
   useEffect(() => {
-    if (currentOrganization) {
+    if (organization) {
       loadTasks();
     }
-  }, [currentOrganization]);
+  }, [organization]);
 
   const loadTasks = async () => {
-    if (!currentOrganization) return;
+    if (!organization) return;
 
     try {
       const { data, error } = await supabase
@@ -91,7 +89,7 @@ export function TasksManager() {
           assigned_to:users!tasks_assigned_to_id_fkey(first_name, last_name),
           project:projects(name)
         `)
-        .eq('organization_id', currentOrganization.id)
+        .eq('organization_id', organization.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -105,7 +103,7 @@ export function TasksManager() {
   };
 
   const createTask = async () => {
-    if (!currentOrganization || !user) return;
+    if (!organization || !user) return;
     if (!newTask.title.trim()) {
       toast.error('Le titre est obligatoire');
       return;
@@ -116,7 +114,7 @@ export function TasksManager() {
         .from('tasks')
         .insert({
           ...newTask,
-          organization_id: currentOrganization.id,
+          organization_id: organization.id,
           created_by_id: user.id
         })
         .select(`

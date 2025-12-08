@@ -264,11 +264,11 @@ export function BillingPage() {
   if (error && !data) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-8">
-        <h1 className="text-2xl font-semibold text-gray-900">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
           Facturation & abonnement
         </h1>
         <Card className="mt-4">
-          <div className="flex items-center gap-3 text-red-700">
+          <div className="flex items-center gap-3 text-red-700 dark:text-red-400">
             <AlertCircle className="w-5 h-5" />
             <p className="text-sm">{error}</p>
           </div>
@@ -285,14 +285,14 @@ export function BillingPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-8">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-gray-400">
-          Administration · Facturation
+        <p className="text-xs uppercase tracking-wide text-gray-400 dark:text-gray-500">
+          Administration - Facturation
         </p>
-        <h1 className="text-2xl font-semibold text-gray-900">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
           Facturation & abonnement
         </h1>
-        <p className="text-sm text-gray-500">
-          Gérez votre abonnement, vos plans et les moyens de paiement pour votre
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Gerez votre abonnement, vos plans et les moyens de paiement pour votre
           organisation
         </p>
       </header>
@@ -321,20 +321,20 @@ export function BillingPage() {
       <Card>
         <div className="space-y-4">
           <div>
-            <p className="text-sm font-semibold text-gray-900">Organisation</p>
-            <p className="text-sm text-gray-700 mt-1">{data.organization.name}</p>
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">Organisation</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">{data.organization.name}</p>
           </div>
 
-          <div className="border-t pt-4">
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-wide text-gray-400">
+                <p className="text-xs uppercase tracking-wide text-gray-400 dark:text-gray-500">
                   Abonnement actuel
                 </p>
                 {current ? (
                   <div className="mt-2 space-y-1">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
                         {current.planName}
                       </p>
                       <Badge variant={getStatusVariant(current.status)}>
@@ -344,35 +344,35 @@ export function BillingPage() {
                         {current.billingCycle === 'YEARLY' ? 'Annuel' : 'Mensuel'}
                       </Badge>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      Période du {formatDate(current.currentPeriodStart)} au{' '}
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Periode du {formatDate(current.currentPeriodStart)} au{' '}
                       {formatDate(current.currentPeriodEnd)}
                     </p>
                     {current.trialEnd && new Date(current.trialEnd) > new Date() && (
-                      <p className="text-xs text-brand-600 font-medium">
-                        Période d'essai jusqu'au {formatDate(current.trialEnd)}
+                      <p className="text-xs text-realpro-turquoise font-medium">
+                        Periode d'essai jusqu'au {formatDate(current.trialEnd)}
                       </p>
                     )}
                   </div>
                 ) : (
-                  <p className="mt-2 text-sm text-gray-500">
-                    Aucun abonnement actif. Choisissez un plan ci-dessous pour démarrer
+                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                    Aucun abonnement actif. Choisissez un plan ci-dessous pour demarrer
                   </p>
                 )}
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex gap-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {data.usage.projectsCount}
                     </p>
-                    <p className="text-xs text-gray-500">Projets</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Projets</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {data.usage.usersCount}
                     </p>
-                    <p className="text-xs text-gray-500">Utilisateurs</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Utilisateurs</p>
                   </div>
                 </div>
               </div>
@@ -384,11 +384,11 @@ export function BillingPage() {
       <Card>
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <CreditCard className="w-5 h-5 text-gray-400" />
-            <p className="text-sm font-semibold text-gray-900">Moyen de paiement</p>
+            <CreditCard className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">Moyen de paiement</p>
           </div>
-          <p className="text-sm text-gray-500">
-            Configurez un moyen de paiement via Datatrans pour le prélèvement
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Configurez un moyen de paiement via Datatrans pour le prelevement
             automatique de vos abonnements
           </p>
           <Button
@@ -396,16 +396,16 @@ export function BillingPage() {
             disabled={loadingPayment}
             variant="primary"
           >
-            {loadingPayment ? 'Initialisation…' : 'Configurer un moyen de paiement'}
+            {loadingPayment ? 'Initialisation...' : 'Configurer un moyen de paiement'}
           </Button>
         </div>
       </Card>
 
       <section className="space-y-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Plans disponibles</h2>
-          <p className="text-sm text-gray-500 mt-1">
-            Sélectionnez le plan qui correspond le mieux à vos besoins
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Plans disponibles</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Selectionnez le plan qui correspond le mieux a vos besoins
           </p>
         </div>
 
