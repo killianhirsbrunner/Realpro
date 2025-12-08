@@ -123,27 +123,16 @@ export function UserMenu() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          'flex items-center gap-3 p-1.5 pr-3 rounded-full transition-all duration-200',
-          'hover:bg-neutral-100 dark:hover:bg-neutral-800',
+          'relative p-1 rounded-full transition-all duration-200',
+          'hover:ring-2 hover:ring-brand-500/30',
           'focus:outline-none focus:ring-2 focus:ring-brand-500/50',
-          isOpen && 'bg-neutral-100 dark:bg-neutral-800'
+          isOpen && 'ring-2 ring-brand-500/50'
         )}
       >
-        <div className="relative">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 text-white flex items-center justify-center text-sm font-semibold shadow-sm">
-            {getInitials(profile?.first_name, profile?.last_name)}
-          </div>
-          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-neutral-900 rounded-full" />
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 text-white flex items-center justify-center text-sm font-semibold shadow-md">
+          {getInitials(profile?.first_name, profile?.last_name)}
         </div>
-
-        <div className="hidden lg:block text-left max-w-[140px]">
-          <div className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
-            {getFullName()}
-          </div>
-          <div className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
-            {getRoleLabel(profile?.role)}
-          </div>
-        </div>
+        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-neutral-900 rounded-full" />
       </button>
 
       <div
