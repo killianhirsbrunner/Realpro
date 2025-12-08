@@ -187,6 +187,7 @@ function App() {
                     <Route path="/notifications" element={<Notifications />} />
 
                     <Route path="/projects" element={<ProjectsList />} />
+                    <Route path="/projects/new" element={<ProjectSetupWizard />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />
                     <Route path="/projects/:projectId/overview" element={<ProjectOverview />} />
                     <Route path="/projects/:projectId/dashboard" element={<ProjectCockpitDashboardIntegrated />} />

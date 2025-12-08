@@ -161,24 +161,39 @@ async function inviteActors(supabase: any, projectId: string, organizationId: st
 }
 
 async function createBudgets(supabase: any, projectId: string, totalBudget: number) {
+  const { data: budget, error: budgetError } = await supabase
+    .from('cfc_budgets')
+    .insert({
+      project_id: projectId,
+      name: 'Budget principal',
+      version: 'V1',
+      total_amount: totalBudget,
+      status: 'DRAFT',
+    })
+    .select()
+    .single();
+
+  if (budgetError) throw budgetError;
+
   const cfcCategories = [
-    { code: '0', name: 'Terrain', percent: 0 },
-    { code: '1', name: 'Travaux préparatoires', percent: 5 },
-    { code: '2', name: 'Bâtiment', percent: 60 },
-    { code: '3', name: 'Équipements d\'exploitation', percent: 10 },
-    { code: '4', name: 'Aménagements extérieurs', percent: 10 },
-    { code: '5', name: 'Frais annexes', percent: 15 },
+    { code: '0', label: 'Terrain', percent: 0 },
+    { code: '1', label: 'Travaux préparatoires', percent: 5 },
+    { code: '2', label: 'Bâtiment', percent: 60 },
+    { code: '3', label: 'Équipements d\'exploitation', percent: 10 },
+    { code: '4', label: 'Aménagements extérieurs', percent: 10 },
+    { code: '5', label: 'Frais annexes', percent: 15 },
   ];
 
   for (const cfc of cfcCategories) {
     const amount = (totalBudget * cfc.percent) / 100;
 
-    await supabase.from('cfc_budgets').insert({
-      project_id: projectId,
+    await supabase.from('cfc_lines').insert({
+      budget_id: budget.id,
       code: cfc.code,
-      name: cfc.name,
-      budgeted_amount: amount,
-      spent_amount: 0,
+      label: cfc.label,
+      amount_budgeted: amount,
+      amount_committed: 0,
+      amount_spent: 0,
     });
   }
 }

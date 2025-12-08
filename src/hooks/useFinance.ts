@@ -46,9 +46,20 @@ export interface BuyerFinanceDetail {
   invoices: Invoice[];
 }
 
+export interface CFCBudgetLine {
+  id: string;
+  code: string;
+  name: string;
+  budgeted_amount: number;
+  engaged_amount: number;
+  billed_amount: number;
+  paid_amount: number;
+}
+
 export function useFinance(projectId: string | undefined) {
   const [summary, setSummary] = useState<FinanceSummary | null>(null);
   const [buyers, setBuyers] = useState<BuyerFinance[]>([]);
+  const [cfcBudgets, setCfcBudgets] = useState<CFCBudgetLine[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -62,6 +73,32 @@ export function useFinance(projectId: string | undefined) {
       try {
         setLoading(true);
         setError(null);
+
+        const { data: budgetData } = await supabase
+          .from('cfc_budgets')
+          .select('id')
+          .eq('project_id', projectId)
+          .maybeSingle();
+
+        if (budgetData) {
+          const { data: cfcLinesData } = await supabase
+            .from('cfc_lines')
+            .select('*')
+            .eq('budget_id', budgetData.id)
+            .order('code');
+
+          const cfcLines = (cfcLinesData || []).map((line: any) => ({
+            id: line.id,
+            code: line.code,
+            name: line.label,
+            budgeted_amount: parseFloat(line.amount_budgeted) || 0,
+            engaged_amount: parseFloat(line.amount_committed) || 0,
+            billed_amount: parseFloat(line.amount_committed) || 0,
+            paid_amount: parseFloat(line.amount_spent) || 0,
+          }));
+
+          setCfcBudgets(cfcLines);
+        }
 
         const { data: invoicesData, error: invoicesError } = await supabase
           .from('buyer_invoices')
@@ -156,7 +193,7 @@ export function useFinance(projectId: string | undefined) {
     fetchFinance();
   }, [projectId]);
 
-  return { summary, buyers, loading, error };
+  return { summary, buyers, cfcBudgets, loading, error };
 }
 
 export function useBuyerFinance(buyerId: string | undefined) {

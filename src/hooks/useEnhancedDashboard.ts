@@ -51,12 +51,17 @@ export function useEnhancedDashboard(organizationId: string) {
 
       const { data: cfcData } = await supabase
         .from('cfc_lines')
-        .select('budget_amount, engaged_amount, paid_amount')
-        .in('project_id', projectIds);
+        .select(`
+          amount_budgeted,
+          amount_committed,
+          amount_spent,
+          budget:cfc_budgets!inner(project_id)
+        `)
+        .in('budget.project_id', projectIds);
 
-      const totalBudget = cfcData?.reduce((sum, line) => sum + (Number(line.budget_amount) || 0), 0) || 0;
-      const engaged = cfcData?.reduce((sum, line) => sum + (Number(line.engaged_amount) || 0), 0) || 0;
-      const paid = cfcData?.reduce((sum, line) => sum + (Number(line.paid_amount) || 0), 0) || 0;
+      const totalBudget = cfcData?.reduce((sum, line) => sum + (Number(line.amount_budgeted) || 0), 0) || 0;
+      const engaged = cfcData?.reduce((sum, line) => sum + (Number(line.amount_committed) || 0), 0) || 0;
+      const paid = cfcData?.reduce((sum, line) => sum + (Number(line.amount_spent) || 0), 0) || 0;
       const remaining = totalBudget - engaged;
 
       const financialData = {
