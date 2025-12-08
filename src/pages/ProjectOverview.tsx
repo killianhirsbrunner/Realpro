@@ -114,7 +114,7 @@ export function ProjectOverview() {
 
       const { data: lots } = await supabase
         .from('lots')
-        .select('id, status, price_vat')
+        .select('id, status, price_total')
         .eq('project_id', id);
 
       const totalLots = lots?.length || 0;
@@ -123,7 +123,7 @@ export function ProjectOverview() {
       const availableLots = lots?.filter(l => l.status === 'AVAILABLE').length || 0;
       const totalRevenue = lots
         ?.filter(l => l.status === 'SOLD')
-        .reduce((sum, l) => sum + (l.price_vat || 0), 0) || 0;
+        .reduce((sum, l) => sum + (l.price_total || 0), 0) || 0;
 
       const { data: notaryFiles } = await supabase
         .from('notary_files')

@@ -81,7 +81,7 @@ export function SearchBar({ placeholder = 'Rechercher un projet, lot, acheteur, 
       // Search lots by number
       const { data: lots } = await supabase
         .from('lots')
-        .select('id, lot_number, projects(name), price_vat')
+        .select('id, lot_number, projects(name), price_total')
         .ilike('lot_number', `%${lowerQuery}%`)
         .limit(3);
 
@@ -91,7 +91,7 @@ export function SearchBar({ placeholder = 'Rechercher un projet, lot, acheteur, 
             type: 'lot',
             id: l.id,
             title: `Lot ${l.lot_number}`,
-            subtitle: `${l.projects?.name || ''} • ${formatCHF(l.price_vat)}`,
+            subtitle: `${l.projects?.name || ''} • ${formatCHF(l.price_total)}`,
             url: `/lots/${l.id}`,
           });
         });

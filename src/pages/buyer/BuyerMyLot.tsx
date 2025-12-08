@@ -29,7 +29,7 @@ interface BuyerOverviewData {
     rooms: number;
     surface_habitable: number;
     surface_ppe: number;
-    price_vat: number;
+    price_total: number;
     status: string;
   };
   buyer_file: {
@@ -81,7 +81,7 @@ export function BuyerMyLot() {
             rooms,
             surface_habitable,
             surface_ppe,
-            price_vat,
+            price_total,
             status
           ),
           buyer_files (
@@ -182,7 +182,7 @@ export function BuyerMyLot() {
               <p className="text-xs uppercase tracking-wide text-gray-400">
                 Prix total
               </p>
-              <p className="mt-1 text-gray-900">{formatCHF(lot.price_vat)}</p>
+              <p className="mt-1 text-gray-900">{formatCHF(lot.price_total)}</p>
             </div>
             <div>
               <p className="text-xs uppercase tracking-wide text-gray-400">

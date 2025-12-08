@@ -87,8 +87,8 @@ async function exportSalesProgramCSV(supabase: any, projectId: string) {
       rooms_label,
       surface_habitable,
       status,
-      price_vat,
-      price_qpt,
+      price_total,
+      price_base,
       building:buildings(id, name),
       floor:floors(id, label),
       buyer:buyers!lots_buyer_id_fkey(id, first_name, last_name)
@@ -116,7 +116,7 @@ async function exportSalesProgramCSV(supabase: any, projectId: string) {
     lot.floor?.label || '',
     lot.rooms_label || '',
     lot.surface_habitable || '',
-    lot.price_vat || lot.price_qpt || '',
+    lot.price_total || lot.price_base || '',
     lot.status,
     lot.buyer ? `${lot.buyer.first_name} ${lot.buyer.last_name}` : '',
   ]);
@@ -154,8 +154,8 @@ async function exportSalesProgramJSON(supabase: any, projectId: string) {
       rooms_label,
       surface_habitable,
       status,
-      price_vat,
-      price_qpt,
+      price_total,
+      price_base,
       building:buildings(id, name),
       floor:floors(id, label),
       buyer:buyers!lots_buyer_id_fkey(id, first_name, last_name, email)
@@ -183,8 +183,8 @@ async function exportSalesProgramJSON(supabase: any, projectId: string) {
       roomsLabel: lot.rooms_label,
       surfaceHabitable: lot.surface_habitable,
       status: lot.status,
-      priceVat: lot.price_vat,
-      priceQpt: lot.price_qpt,
+      priceTotal: lot.price_total,
+      priceBase: lot.price_base,
       building: lot.building,
       floor: lot.floor,
       buyer: lot.buyer,
@@ -594,7 +594,7 @@ function generateBuyerDossierHTML(data: any): string {
       </div>
       <div class="info-item">
         <div class="info-label">Prix</div>
-        <div class="info-value">${formatCHF(lot.price_vat || lot.price_qpt)}</div>
+        <div class="info-value">${formatCHF(lot.price_total || lot.price_base)}</div>
       </div>
       <div class="info-item">
         <div class="info-label">Statut</div>

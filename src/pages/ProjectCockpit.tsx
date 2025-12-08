@@ -116,7 +116,7 @@ export function ProjectCockpit() {
       // Fetch lots statistics
       const { data: lots, error: lotsError } = await supabase
         .from('lots')
-        .select('id, status, price_vat')
+        .select('id, status, price_total')
         .eq('project_id', id);
 
       if (lotsError) throw lotsError;
@@ -127,7 +127,7 @@ export function ProjectCockpit() {
       const availableLots = lots?.filter(l => l.status === 'AVAILABLE').length || 0;
       const totalRevenue = lots
         ?.filter(l => l.status === 'SOLD')
-        .reduce((sum, l) => sum + (l.price_vat || 0), 0) || 0;
+        .reduce((sum, l) => sum + (l.price_total || 0), 0) || 0;
 
       // Fetch notary files statistics
       const { data: notaryFiles } = await supabase

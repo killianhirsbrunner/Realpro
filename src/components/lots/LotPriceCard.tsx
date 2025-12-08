@@ -4,7 +4,7 @@ import { formatCHF } from '../../lib/utils/format';
 
 interface LotPriceCardProps {
   lot: {
-    price_vat?: number;
+    price_total?: number;
     sale_type?: string;
   };
 }
@@ -17,13 +17,13 @@ export function LotPriceCard({ lot }: LotPriceCardProps) {
       </h2>
 
       <div className="space-y-4">
-        {lot.price_vat && (
+        {lot.price_total && (
           <div className="flex items-center gap-3">
             <DollarSign className="h-5 w-5 text-neutral-400" />
             <div className="flex-1">
               <p className="text-xs text-neutral-500 dark:text-neutral-400">Prix TTC</p>
               <p className="text-xl font-semibold text-primary-600 dark:text-primary-400">
-                {formatCHF(lot.price_vat)}
+                {formatCHF(lot.price_total)}
               </p>
             </div>
           </div>
@@ -41,7 +41,7 @@ export function LotPriceCard({ lot }: LotPriceCardProps) {
           </div>
         )}
 
-        {!lot.price_vat && (
+        {!lot.price_total && (
           <p className="text-sm text-neutral-500">Prix non défini</p>
         )}
       </div>

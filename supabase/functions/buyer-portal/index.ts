@@ -162,7 +162,7 @@ async function getOverview(supabase: any, buyerId: string): Promise<Response> {
       estimatedDeliveryDate: buyer.projects.expected_delivery,
     },
     sale: {
-      totalPriceChf: lot.price_vat || 0,
+      totalPriceChf: lot.price_total || 0,
       saleType: salesContract?.sale_type || 'PPE',
       contractSignedAt: salesContract?.contract_signed_at || null,
       reservationSignedAt: salesContract?.reservation_signed_at || null,
@@ -359,7 +359,7 @@ async function getPayments(supabase: any, buyerId: string): Promise<Response> {
 
   const { data: lot } = await supabase
     .from('lots')
-    .select('price_vat')
+    .select('price_total')
     .eq('buyer_id', buyerId)
     .single();
 
@@ -383,7 +383,7 @@ async function getPayments(supabase: any, buyerId: string): Promise<Response> {
     .eq('buyer_id', buyerId)
     .order('installment_number');
 
-  const totalPrice = lot.price_vat || 0;
+  const totalPrice = lot.price_total || 0;
   const paid = (installments || [])
     .filter((i: any) => i.status === 'PAID')
     .reduce((acc: number, i: any) => acc + (i.amount || 0), 0);

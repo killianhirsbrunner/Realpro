@@ -12,7 +12,7 @@ interface LotDetails {
   surface: number;
   surface_living?: number;
   surface_balcony?: number;
-  price_vat?: number;
+  price_total?: number;
   sale_type?: string;
   cave?: string;
   parkings?: string[];
@@ -133,7 +133,7 @@ export function useLotDetails(projectId: string | undefined, lotId: string | und
           surface: lotData.surface,
           surface_living: lotData.surface_living,
           surface_balcony: lotData.surface_balcony,
-          price_vat: lotData.price_vat,
+          price_total: lotData.price_total,
           sale_type: lotData.sale_type,
           cave: lotData.cave,
           parkings: lotData.parkings,
