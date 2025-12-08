@@ -119,6 +119,9 @@ import SupplierAppointments from './pages/SupplierAppointments';
 
 import { BillingPage } from './pages/BillingPage';
 import { ReportingOverview } from './pages/ReportingOverview';
+import { ReportingSales } from './pages/ReportingSales';
+import { ReportingFinance } from './pages/ReportingFinance';
+import { ReportingCFC } from './pages/ReportingCFC';
 import { TasksManager } from './pages/TasksManager';
 import { TemplatesManager } from './pages/TemplatesManager';
 import AdminOrganizationsPage from './pages/AdminOrganizations';
@@ -155,6 +158,7 @@ import { ModulesHub } from './pages/ModulesHub';
 import { FinanceHub } from './pages/FinanceHub';
 import { PlanningHub } from './pages/PlanningHub';
 import { SAVHub } from './pages/SAVHub';
+import { ReportingHub } from './pages/ReportingHub';
 import { DashboardAnalytics } from './pages/DashboardAnalytics';
 import ProjectMilestonesTimeline from './pages/ProjectMilestonesTimeline';
 import { ProjectConstructionPage } from './pages/ProjectConstructionPage';
@@ -281,6 +285,7 @@ function App() {
                     <Route path="/finance" element={<FinanceHub />} />
                     <Route path="/planning" element={<PlanningHub />} />
                     <Route path="/sav" element={<SAVHub />} />
+                    <Route path="/reporting" element={<ReportingHub />} />
 
                     <Route path="/contacts" element={<ContactsList />} />
                     <Route path="/contacts/:contactId" element={<ContactDetail />} />
@@ -312,7 +317,10 @@ function App() {
                     <Route path="/supplier/appointments" element={<SupplierAppointments />} />
 
                     <Route path="/billing" element={<BillingPage />} />
-                    <Route path="/reporting" element={<ReportingOverview />} />
+                    <Route path="/reporting/overview" element={<ReportingOverview />} />
+                    <Route path="/reporting/sales" element={<ReportingSales />} />
+                    <Route path="/reporting/finance" element={<ReportingFinance />} />
+                    <Route path="/reporting/cfc" element={<ReportingCFC />} />
                     <Route path="/analytics" element={<AnalyticsBIDashboard />} />
                     <Route path="/messages" element={<MessagesGlobal />} />
                     <Route path="/sav" element={<SAVGlobal />} />
