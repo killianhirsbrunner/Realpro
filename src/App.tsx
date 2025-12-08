@@ -151,6 +151,11 @@ import ContactDetail from './pages/ContactDetail';
 import CompanyDetail from './pages/CompanyDetail';
 import CompaniesList from './pages/CompaniesList';
 import { CRMDashboard } from './pages/CRMDashboard';
+import { ModulesHub } from './pages/ModulesHub';
+import { FinanceHub } from './pages/FinanceHub';
+import { PlanningHub } from './pages/PlanningHub';
+import { SAVHub } from './pages/SAVHub';
+import { DashboardAnalytics } from './pages/DashboardAnalytics';
 import ProjectMilestonesTimeline from './pages/ProjectMilestonesTimeline';
 import { ProjectConstructionPage } from './pages/ProjectConstructionPage';
 import { ProjectCommunicationPage } from './pages/ProjectCommunicationPage';
@@ -267,8 +272,15 @@ function App() {
                     <Route path="/projects/:projectId/milestones" element={<ProjectMilestonesTimeline />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
 
+                    <Route path="/modules" element={<ModulesHub />} />
+                    <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
+
                     <Route path="/crm" element={<CRMDashboard />} />
                     <Route path="/crm/dashboard" element={<CRMDashboard />} />
+
+                    <Route path="/finance" element={<FinanceHub />} />
+                    <Route path="/planning" element={<PlanningHub />} />
+                    <Route path="/sav" element={<SAVHub />} />
 
                     <Route path="/contacts" element={<ContactsList />} />
                     <Route path="/contacts/:contactId" element={<ContactDetail />} />
