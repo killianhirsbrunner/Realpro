@@ -566,33 +566,34 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 dark:from-blue-950 dark:via-blue-900 dark:to-blue-950">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-br from-cyan-700 via-teal-600 to-cyan-700 dark:from-cyan-900 dark:via-teal-800 dark:to-cyan-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
           <ScrollReveal>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Prêt à optimiser la gestion de vos promotions ?
+              Pret a optimiser la gestion de vos promotions ?
             </h2>
-            <p className="text-lg text-blue-100/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
               Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
-              leurs opérations et améliorer leur productivité.
+              leurs operations et ameliorer leur productivite.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/register">
-                <Button size="lg" className="h-12 px-8 text-base bg-white hover:bg-blue-50 text-blue-900 border-0 shadow-lg">
+                <Button size="lg" className="h-12 px-8 text-base bg-white hover:bg-gray-100 text-cyan-700 border-0 shadow-xl shadow-black/20 font-semibold">
                   Commencer l'essai gratuit
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="h-12 px-8 text-base border-white/30 text-white hover:bg-white/10">
-                  Planifier une démo
+                <Button size="lg" variant="outline" className="h-12 px-8 text-base border-2 border-white text-white hover:bg-white hover:text-cyan-700 font-semibold transition-all">
+                  Planifier une demo
                 </Button>
               </Link>
             </div>
 
-            <p className="mt-8 text-sm text-blue-200/60">
-              14 jours gratuits - Aucune carte de crédit requise - Configuration en 48h
+            <p className="mt-8 text-sm text-white/60">
+              14 jours gratuits - Aucune carte de credit requise - Configuration en 48h
             </p>
           </ScrollReveal>
         </div>
