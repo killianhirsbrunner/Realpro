@@ -72,13 +72,12 @@ export function ReportingOverview() {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const apiUrl = `${supabaseUrl}/functions/v1/reporting`;
 
-      const response = await fetch(`${apiUrl}/organization/overview`, {
+      const response = await fetch(`${apiUrl}/organization/overview?organizationId=${organizationId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ organizationId }),
       });
 
       if (!response.ok) {

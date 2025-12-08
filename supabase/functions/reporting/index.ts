@@ -21,14 +21,20 @@ Deno.serve(async (req: Request) => {
     const pathSegments = url.pathname.split('/').filter(Boolean);
 
     if (method === 'GET' && pathSegments[0] === 'organization' && pathSegments[1] === 'overview') {
-      const body = await req.json().catch(() => ({}));
-      const overview = await getOrganizationOverview(supabase, body.organizationId);
+      const organizationId = url.searchParams.get('organizationId');
+      if (!organizationId) {
+        return jsonResponse({ error: 'organizationId required' }, 400);
+      }
+      const overview = await getOrganizationOverview(supabase, organizationId);
       return jsonResponse(overview);
     }
 
     if (method === 'GET' && pathSegments[0] === 'organization' && pathSegments[1] === 'brokers') {
-      const body = await req.json().catch(() => ({}));
-      const brokers = await getBrokerPerformance(supabase, body.organizationId);
+      const organizationId = url.searchParams.get('organizationId');
+      if (!organizationId) {
+        return jsonResponse({ error: 'organizationId required' }, 400);
+      }
+      const brokers = await getBrokerPerformance(supabase, organizationId);
       return jsonResponse(brokers);
     }
 
@@ -57,14 +63,14 @@ async function getOrganizationOverview(supabase: any, organizationId: string) {
 
   const { data: lots, error: lotsError } = await supabase
     .from('lots')
-    .select('id, project_id, status, price_vat, price_qpt')
+    .select('id, project_id, status, price_total')
     .in('project_id', projects.map((p: any) => p.id));
 
   if (lotsError) throw lotsError;
 
   const { data: cfcBudgets, error: cfcError } = await supabase
     .from('cfc_budgets')
-    .select('project_id, cfc_code, budget_revised, engagement_total, invoiced_total, paid_total')
+    .select('id, project_id, name, total_amount')
     .in('project_id', projects.map((p: any) => p.id));
 
   if (cfcError) throw cfcError;
@@ -104,7 +110,7 @@ async function getOrganizationOverview(supabase: any, organizationId: string) {
     if (lot.status === 'FREE') p.free += 1;
 
     if (lot.status === 'SOLD') {
-      totalSalesChf += Number(lot.price_vat ?? lot.price_qpt ?? 0);
+      totalSalesChf += Number(lot.price_total ?? 0);
     }
   }
 
@@ -119,10 +125,9 @@ async function getOrganizationOverview(supabase: any, organizationId: string) {
       cfcByProject.set(key, { budget: 0, engagement: 0, invoiced: 0, paid: 0 });
     }
     const agg = cfcByProject.get(key)!;
-    agg.budget += Number(cfc.budget_revised ?? 0);
-    agg.engagement += Number(cfc.engagement_total ?? 0);
-    agg.invoiced += Number(cfc.invoiced_total ?? 0);
-    agg.paid += Number(cfc.paid_total ?? 0);
+    agg.budget += Number(cfc.total_amount ?? 0);
+    // Pour l'instant, on met 0 pour engagement, invoiced, paid car ces colonnes n'existent pas
+    // Il faudrait les calculer à partir des cfc_lines ou contracts
   }
 
   const buyerFilesStats = buyerFiles.reduce(
