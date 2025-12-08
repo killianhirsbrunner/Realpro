@@ -256,7 +256,7 @@ export function Landing() {
             </FadeIn>
 
             <FadeIn delay={500}>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-neutral-500 dark:text-neutral-400">
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-neutral-500 dark:text-neutral-400 mb-16">
                 <span className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-realpro-turquoise" />
                   14 jours d'essai gratuit
@@ -276,6 +276,155 @@ export function Landing() {
               </div>
             </FadeIn>
           </div>
+
+          <FadeIn delay={600}>
+            <div className="relative max-w-6xl mx-auto mt-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-neutral-950 via-transparent to-transparent z-10 pointer-events-none h-32 bottom-0 top-auto" />
+              <div className="relative rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden">
+                <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 flex items-center gap-2 border-b border-neutral-200 dark:border-neutral-700">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="px-4 py-1 bg-white dark:bg-neutral-700 rounded-md border border-neutral-200 dark:border-neutral-600 text-xs text-neutral-500 dark:text-neutral-400">
+                      app.realpro.ch/dashboard
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950">
+                  <div className="hidden md:flex flex-col w-16 bg-neutral-100 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 p-2 gap-2">
+                    <div className="w-10 h-10 rounded-lg bg-realpro-turquoise flex items-center justify-center">
+                      <Building2 className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                      <Users className="w-5 h-5 text-neutral-500" />
+                    </div>
+                    <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                      <FileText className="w-5 h-5 text-neutral-500" />
+                    </div>
+                    <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center">
+                      <BarChart3 className="w-5 h-5 text-neutral-500" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 p-6 lg:p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Tableau de bord</h3>
+                        <p className="text-xs text-neutral-500">Derniere mise a jour : il y a 2 min</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-realpro-turquoise/10 to-realpro-turquoise/5 rounded-xl p-4 border border-realpro-turquoise/20">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-realpro-turquoise uppercase tracking-wide">Projets actifs</span>
+                          <TrendingUp className="w-4 h-4 text-realpro-turquoise" />
+                        </div>
+                        <div className="text-2xl font-bold text-neutral-900 dark:text-white">12</div>
+                        <div className="text-xs text-realpro-turquoise mt-1">+2 ce mois</div>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-realpro-turquoise/10 to-realpro-turquoise/5 rounded-xl p-4 border border-realpro-turquoise/20">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-realpro-turquoise uppercase tracking-wide">Taux de vente</span>
+                          <Users className="w-4 h-4 text-realpro-turquoise" />
+                        </div>
+                        <div className="text-2xl font-bold text-neutral-900 dark:text-white">87%</div>
+                        <div className="text-xs text-realpro-turquoise mt-1">234/268 lots</div>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-green-100/50 to-green-50/50 dark:from-green-900/20 dark:to-green-800/10 rounded-xl p-4 border border-green-200/50 dark:border-green-800/30">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-green-700 dark:text-green-400 uppercase tracking-wide">Revenu total</span>
+                          <BarChart3 className="w-4 h-4 text-green-600" />
+                        </div>
+                        <div className="text-2xl font-bold text-neutral-900 dark:text-white">12.4M</div>
+                        <div className="text-xs text-green-600 mt-1">+8.2% vs. prevu</div>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-realpro-turquoise/10 to-realpro-turquoise/5 rounded-xl p-4 border border-realpro-turquoise/20">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-medium text-realpro-turquoise uppercase tracking-wide">Prospects</span>
+                          <MessageSquare className="w-4 h-4 text-realpro-turquoise" />
+                        </div>
+                        <div className="text-2xl font-bold text-neutral-900 dark:text-white">142</div>
+                        <div className="text-xs text-realpro-turquoise mt-1">18 nouveaux</div>
+                      </div>
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-4">
+                      <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                        <div className="flex items-center justify-between mb-4">
+                          <h4 className="text-sm font-semibold text-neutral-900 dark:text-white">Evolution des ventes</h4>
+                          <span className="text-xs text-neutral-500">6 derniers mois</span>
+                        </div>
+                        <div className="flex items-end gap-2 h-24">
+                          <div className="flex-1 bg-gradient-to-t from-realpro-turquoise to-realpro-turquoise/60 rounded-t" style={{height: '45%'}}></div>
+                          <div className="flex-1 bg-gradient-to-t from-realpro-turquoise to-realpro-turquoise/60 rounded-t" style={{height: '60%'}}></div>
+                          <div className="flex-1 bg-gradient-to-t from-realpro-turquoise to-realpro-turquoise/60 rounded-t" style={{height: '50%'}}></div>
+                          <div className="flex-1 bg-gradient-to-t from-realpro-turquoise to-realpro-turquoise/60 rounded-t" style={{height: '75%'}}></div>
+                          <div className="flex-1 bg-gradient-to-t from-realpro-turquoise to-realpro-turquoise/60 rounded-t" style={{height: '85%'}}></div>
+                          <div className="flex-1 bg-gradient-to-t from-realpro-turquoise to-realpro-turquoise/60 rounded-t" style={{height: '100%'}}></div>
+                        </div>
+                        <div className="flex justify-between mt-2 text-xs text-neutral-400">
+                          <span>Jan</span>
+                          <span>Juin</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                        <h4 className="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Projets recents</h4>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
+                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-neutral-900 dark:text-white truncate">Les Jardins du Lac</div>
+                              <div className="text-xs text-neutral-500">42 lots - 89% vendus</div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
+                            <div className="w-2 h-2 rounded-full bg-realpro-turquoise"></div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-neutral-900 dark:text-white truncate">Residence Panorama</div>
+                              <div className="text-xs text-neutral-500">28 lots - 67% vendus</div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 p-2 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg">
+                            <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-neutral-900 dark:text-white truncate">Villa des Pins</div>
+                              <div className="text-xs text-neutral-500">15 lots - 45% vendus</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                      <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 rounded-lg p-3 flex items-center gap-3">
+                        <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                        <div>
+                          <div className="text-xs font-semibold text-amber-900 dark:text-amber-300">3 echeances cette semaine</div>
+                          <div className="text-xs text-amber-700 dark:text-amber-400">CFC, signatures, RDV</div>
+                        </div>
+                      </div>
+                      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50 rounded-lg p-3 flex items-center gap-3">
+                        <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                        <div>
+                          <div className="text-xs font-semibold text-green-900 dark:text-green-300">8 contrats signes ce mois</div>
+                          <div className="text-xs text-green-700 dark:text-green-400">CHF 2.1M encaisses</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
