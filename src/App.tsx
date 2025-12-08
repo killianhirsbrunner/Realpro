@@ -42,7 +42,7 @@ import ProjectPlanningPage from './pages/ProjectPlanningPage';
 import ProjectPlanningPhotos from './pages/ProjectPlanningPhotos';
 import ProjectPlanningReports from './pages/ProjectPlanningReports';
 import ProjectPlanningBuyersProgress from './pages/ProjectPlanningBuyersProgress';
-import ProjectSetupWizard from './pages/ProjectSetupWizard';
+import ProjectCreationWizard from './pages/ProjectCreationWizard';
 import ProjectStructurePage from './pages/ProjectStructurePage';
 import ProjectTeamPage from './pages/ProjectTeamPage';
 import ProjectActivityPage from './pages/ProjectActivityPage';
@@ -110,7 +110,7 @@ import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
 import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
 import { ProjectSAV } from './pages/ProjectSAV';
-import { ProjectSettings } from './pages/ProjectSettings';
+import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
 import SupplierShowroomForm from './pages/SupplierShowroomForm';
@@ -209,8 +209,8 @@ function App() {
                     <Route path="/notifications" element={<Notifications />} />
 
                     <Route path="/projects" element={<ProjectsList />} />
-                    <Route path="/projects/wizard" element={<ProjectSetupWizard />} />
-                    <Route path="/projects/new" element={<ProjectSetupWizard />} />
+                    <Route path="/projects/wizard" element={<ProjectCreationWizard />} />
+                    <Route path="/projects/new" element={<ProjectCreationWizard />} />
                     <Route path="/projects/:projectId" element={<ProjectCockpit />} />
                     <Route path="/projects/:projectId/overview" element={<ProjectOverview />} />
                     <Route path="/projects/:projectId/dashboard" element={<ProjectCockpitDashboardIntegrated />} />
@@ -231,7 +231,7 @@ function App() {
                     <Route path="/projects/:projectId/materials/suppliers" element={<ProjectMaterialsSuppliers />} />
                     <Route path="/projects/:projectId/materials/suppliers/:supplierId" element={<ProjectMaterialsSupplierAgenda />} />
                     <Route path="/projects/:projectId/messages" element={<ProjectMessages />} />
-                    <Route path="/projects/:projectId/setup" element={<ProjectSetupWizard />} />
+                    <Route path="/projects/:projectId/setup" element={<ProjectCreationWizard />} />
                     <Route path="/projects/:projectId/lots" element={<ProjectLots />} />
                     <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetail />} />
                     <Route path="/projects/:projectId/buyers" element={<ProjectBuyers />} />
@@ -274,7 +274,7 @@ function App() {
                     <Route path="/projects/:projectId/health" element={<ProjectHealthPage />} />
                     <Route path="/projects/:projectId/timeline" element={<ProjectTimelinePage />} />
                     <Route path="/projects/:projectId/milestones" element={<ProjectMilestonesTimeline />} />
-                    <Route path="/projects/:projectId/settings" element={<ProjectSettings />} />
+                    <Route path="/projects/:projectId/settings" element={<ProjectSettingsComplete />} />
 
                     <Route path="/modules" element={<ModulesHub />} />
                     <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
