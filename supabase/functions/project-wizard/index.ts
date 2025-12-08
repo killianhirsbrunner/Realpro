@@ -68,13 +68,13 @@ async function createCompleteProject(
       address: projectData.address,
       city: projectData.city,
       canton: projectData.canton,
-      type: projectData.type || 'PPE',
-      status: 'ACTIVE',
-      language: projectData.defaultLanguage || 'fr',
-      vat_rate: parseFloat(projectData.vatRate || '8.1'),
-      description: projectData.description || null,
-      start_date: projectData.startDate || null,
-      end_date: projectData.endDate || null,
+      type: 'TO_DEFINE',
+      status: 'PLANNING',
+      language: 'fr',
+      vat_rate: 8.1,
+      description: null,
+      start_date: null,
+      end_date: null,
     })
     .select()
     .single();
@@ -82,22 +82,6 @@ async function createCompleteProject(
   if (projectError) throw projectError;
 
   await createDocumentFolders(supabase, project.id);
-
-  if (projectData.lots && projectData.lots.length > 0) {
-    await createLots(supabase, project.id, projectData.lots);
-  }
-
-  if (projectData.actors && projectData.actors.length > 0) {
-    await inviteActors(supabase, project.id, organizationId, projectData.actors);
-  }
-
-  if (projectData.totalBudget) {
-    await createBudgets(supabase, project.id, parseFloat(projectData.totalBudget));
-  }
-
-  if (projectData.startDate && projectData.endDate) {
-    await createPlanningPhases(supabase, project.id, projectData.startDate, projectData.endDate);
-  }
 
   return {
     projectId: project.id,

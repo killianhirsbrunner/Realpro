@@ -1,75 +1,104 @@
 import { useState } from 'react';
-import { ChevronLeft, Home } from 'lucide-react';
+import { ChevronLeft, Home, Building2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import Step1Info from '../components/wizard/Step1Info';
-import Step2Structure from '../components/wizard/Step2Structure';
-import Step3Actors from '../components/wizard/Step3Actors';
-import Step4Finances from '../components/wizard/Step4Finances';
-import Step5Planning from '../components/wizard/Step5Planning';
-import Step6Summary from '../components/wizard/Step6Summary';
+import { Input } from '../components/ui/Input';
+import { Select } from '../components/ui/Select';
 import { useProjectCreation } from '../hooks/useProjectCreation';
 import { Link } from 'react-router-dom';
 
+const SWISS_CANTONS = [
+  { value: 'AG', label: 'Argovie (AG)' },
+  { value: 'AI', label: 'Appenzell Rhodes-Intérieures (AI)' },
+  { value: 'AR', label: 'Appenzell Rhodes-Extérieures (AR)' },
+  { value: 'BE', label: 'Berne (BE)' },
+  { value: 'BL', label: 'Bâle-Campagne (BL)' },
+  { value: 'BS', label: 'Bâle-Ville (BS)' },
+  { value: 'FR', label: 'Fribourg (FR)' },
+  { value: 'GE', label: 'Genève (GE)' },
+  { value: 'GL', label: 'Glaris (GL)' },
+  { value: 'GR', label: 'Grisons (GR)' },
+  { value: 'JU', label: 'Jura (JU)' },
+  { value: 'LU', label: 'Lucerne (LU)' },
+  { value: 'NE', label: 'Neuchâtel (NE)' },
+  { value: 'NW', label: 'Nidwald (NW)' },
+  { value: 'OW', label: 'Obwald (OW)' },
+  { value: 'SG', label: 'Saint-Gall (SG)' },
+  { value: 'SH', label: 'Schaffhouse (SH)' },
+  { value: 'SO', label: 'Soleure (SO)' },
+  { value: 'SZ', label: 'Schwyz (SZ)' },
+  { value: 'TG', label: 'Thurgovie (TG)' },
+  { value: 'TI', label: 'Tessin (TI)' },
+  { value: 'UR', label: 'Uri (UR)' },
+  { value: 'VD', label: 'Vaud (VD)' },
+  { value: 'VS', label: 'Valais (VS)' },
+  { value: 'ZG', label: 'Zoug (ZG)' },
+  { value: 'ZH', label: 'Zurich (ZH)' },
+];
+
 export default function ProjectSetupWizard() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState<any>({
-    vatRate: '8.1',
-    defaultLanguage: 'fr',
-    type: 'PPE',
+  const [formData, setFormData] = useState({
+    name: '',
+    address: '',
+    city: '',
     canton: 'VD',
-    buildingsCount: '1',
-    entrancesCount: '1',
-    floorsCount: '3',
-    contingencyRate: '5',
-    paymentMode: 'SCHEDULE',
-    lots: [],
-    actors: [],
   });
 
-  const { createProject } = useProjectCreation();
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { createProject, isCreating, error } = useProjectCreation();
 
-  const updateFormData = (data: any) => {
-    setFormData((prev: any) => ({ ...prev, ...data }));
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
   };
 
-  const nextStep = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, 6));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Le nom du projet est requis';
+    }
+    if (!formData.address.trim()) {
+      newErrors.address = 'L\'adresse est requise';
+    }
+    if (!formData.city.trim()) {
+      newErrors.city = 'La commune est requise';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const prevStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const handleSubmit = async () => {
-    await createProject(formData);
-  };
+    if (!validateForm()) {
+      return;
+    }
 
-  const steps = [
-    { number: 1, title: 'Informations', completed: currentStep > 1 },
-    { number: 2, title: 'Structure', completed: currentStep > 2 },
-    { number: 3, title: 'Intervenants', completed: currentStep > 3 },
-    { number: 4, title: 'Finances', completed: currentStep > 4 },
-    { number: 5, title: 'Planning', completed: currentStep > 5 },
-    { number: 6, title: 'Récapitulatif', completed: currentStep > 6 },
-  ];
+    try {
+      await createProject(formData);
+    } catch (err) {
+      console.error('Erreur lors de la création du projet:', err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
       <div className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link
               to="/projects"
-              className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
+              className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
               Retour aux projets
             </Link>
             <Link
               to="/dashboard"
-              className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100"
+              className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
             >
               <Home className="w-5 h-5" />
             </Link>
@@ -77,82 +106,127 @@ export default function ProjectSetupWizard() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-8">
-        <div className="mb-8">
+      <div className="max-w-2xl mx-auto px-6 py-12">
+        <div className="mb-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary-100 dark:bg-primary-900/30 mb-4">
+            <Building2 className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+          </div>
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Créer un nouveau projet
           </h1>
           <p className="text-neutral-600 dark:text-neutral-400">
-            Assistant de création guidé en {steps.length} étapes
+            Renseignez les informations de base. Vous pourrez configurer le reste plus tard.
           </p>
         </div>
 
-        <div className="mb-10">
-          <div className="flex items-center justify-between">
-            {steps.map((step, index) => (
-              <div key={step.number} className="flex items-center flex-1">
-                <div className="flex items-center">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                      step.completed
-                        ? 'bg-green-600 text-white'
-                        : currentStep === step.number
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400'
-                    }`}
-                  >
-                    {step.completed ? (
-                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      step.number
-                    )}
-                  </div>
-                  <span
-                    className={`ml-2 text-sm font-medium ${
-                      currentStep === step.number
-                        ? 'text-neutral-900 dark:text-neutral-100'
-                        : 'text-neutral-600 dark:text-neutral-400'
-                    } hidden sm:inline`}
-                  >
-                    {step.title}
-                  </span>
-                </div>
-                {index < steps.length - 1 && (
-                  <div
-                    className={`flex-1 h-1 mx-4 ${
-                      step.completed
-                        ? 'bg-green-600'
-                        : 'bg-neutral-200 dark:bg-neutral-800'
-                    }`}
-                  />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-white dark:bg-neutral-950 rounded-xl border border-neutral-200 dark:border-neutral-800 p-8 space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">
+                Nom du projet <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                placeholder="ex: Résidence du Lac"
+                className={errors.name ? 'border-red-500' : ''}
+                disabled={isCreating}
+              />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">
+                Adresse <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="text"
+                value={formData.address}
+                onChange={(e) => handleChange('address', e.target.value)}
+                placeholder="ex: Rue de la Gare 15"
+                className={errors.address ? 'border-red-500' : ''}
+                disabled={isCreating}
+              />
+              {errors.address && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.address}</p>
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">
+                  Commune <span className="text-red-500">*</span>
+                </label>
+                <Input
+                  type="text"
+                  value={formData.city}
+                  onChange={(e) => handleChange('city', e.target.value)}
+                  placeholder="ex: Lausanne"
+                  className={errors.city ? 'border-red-500' : ''}
+                  disabled={isCreating}
+                />
+                {errors.city && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.city}</p>
                 )}
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div>
-          {currentStep === 1 && (
-            <Step1Info data={formData} onUpdate={updateFormData} onNext={nextStep} />
-          )}
-          {currentStep === 2 && (
-            <Step2Structure data={formData} onUpdate={updateFormData} onNext={nextStep} onPrev={prevStep} />
-          )}
-          {currentStep === 3 && (
-            <Step3Actors data={formData} onUpdate={updateFormData} onNext={nextStep} onPrev={prevStep} />
-          )}
-          {currentStep === 4 && (
-            <Step4Finances data={formData} onUpdate={updateFormData} onNext={nextStep} onPrev={prevStep} />
-          )}
-          {currentStep === 5 && (
-            <Step5Planning data={formData} onUpdate={updateFormData} onNext={nextStep} onPrev={prevStep} />
-          )}
-          {currentStep === 6 && (
-            <Step6Summary data={formData} onPrev={prevStep} onSubmit={handleSubmit} />
-          )}
-        </div>
+              <div>
+                <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">
+                  Canton <span className="text-red-500">*</span>
+                </label>
+                <Select
+                  value={formData.canton}
+                  onChange={(e) => handleChange('canton', e.target.value)}
+                  disabled={isCreating}
+                >
+                  {SWISS_CANTONS.map(canton => (
+                    <option key={canton.value} value={canton.value}>
+                      {canton.label}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+            </div>
+
+            {error && (
+              <div className="rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
+                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              </div>
+            )}
+
+            <div className="flex items-center gap-3 pt-4">
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                className="flex-1"
+                disabled={isCreating}
+              >
+                {isCreating ? 'Création en cours...' : 'Créer le projet'}
+              </Button>
+              <Link to="/projects">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="lg"
+                  disabled={isCreating}
+                >
+                  Annuler
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="text-center text-sm text-neutral-500 dark:text-neutral-400">
+            <p>
+              Vous pourrez configurer le type de projet, les lots, le budget et le planning
+              après la création.
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   );
