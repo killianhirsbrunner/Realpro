@@ -138,14 +138,14 @@ export function ProjectOverview() {
 
       const { data: cfcBudgets } = await supabase
         .from('cfc_budgets')
-        .select('budget_initial, budget_revised, engagement_total, invoiced_total, paid_total')
+        .select('total_amount')
         .eq('project_id', id);
 
       const cfcTotal = (cfcBudgets || []).reduce((acc, cfc) => ({
-        budget: acc.budget + (cfc.budget_revised || cfc.budget_initial || 0),
-        engagement: acc.engagement + (cfc.engagement_total || 0),
-        invoiced: acc.invoiced + (cfc.invoiced_total || 0),
-        paid: acc.paid + (cfc.paid_total || 0),
+        budget: acc.budget + (cfc.total_amount || 0),
+        engagement: acc.engagement,
+        invoiced: acc.invoiced,
+        paid: acc.paid,
       }), { budget: 0, engagement: 0, invoiced: 0, paid: 0 });
 
       const { data: phases } = await supabase
@@ -160,22 +160,22 @@ export function ProjectOverview() {
 
       const { data: submissions } = await supabase
         .from('submissions')
-        .select('id, title, cfc_code, status, deadline, estimated_amount')
+        .select('id, title, reference, status, submission_deadline')
         .eq('project_id', id)
         .order('created_at', { ascending: false })
         .limit(10);
 
       const { data: documents } = await supabase
-        .from('project_documents')
-        .select('id, name, file_type, file_size, uploaded_at, uploaded_by_name, category')
+        .from('documents')
+        .select('id, name, file_type, file_size, created_at, uploaded_by, category')
         .eq('project_id', id)
-        .order('uploaded_at', { ascending: false })
+        .order('created_at', { ascending: false })
         .limit(10);
 
       const { data: messages } = await supabase
-        .from('project_messages')
-        .select('id, content, author_name, author_role, created_at, is_read, priority')
-        .eq('project_id', id)
+        .from('messages')
+        .select('id, content, author_id, created_at')
+        .eq('thread_id', id)
         .order('created_at', { ascending: false })
         .limit(10);
 
@@ -215,29 +215,29 @@ export function ProjectOverview() {
         submissions: (submissions || []).map(s => ({
           id: s.id,
           title: s.title,
-          cfc_code: s.cfc_code || undefined,
+          cfc_code: s.reference || undefined,
           status: s.status,
-          deadline: s.deadline || null,
+          deadline: s.submission_deadline || null,
           offers_count: 0,
-          estimated_amount: s.estimated_amount || undefined,
+          estimated_amount: undefined,
         })),
         documents: (documents || []).map(d => ({
           id: d.id,
           name: d.name,
           type: d.file_type || 'application/pdf',
           size: d.file_size || undefined,
-          uploaded_at: d.uploaded_at,
-          uploaded_by: d.uploaded_by_name || undefined,
+          uploaded_at: d.created_at,
+          uploaded_by: undefined,
           category: d.category || undefined,
         })),
         messages: (messages || []).map(m => ({
           id: m.id,
           content: m.content,
-          author_name: m.author_name,
-          author_role: m.author_role || undefined,
+          author_name: undefined,
+          author_role: undefined,
           created_at: m.created_at,
-          is_unread: !m.is_read,
-          priority: m.priority as 'high' | 'normal' | 'low' | undefined,
+          is_unread: true,
+          priority: undefined,
         })),
       };
 

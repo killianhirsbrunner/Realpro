@@ -1,6 +1,6 @@
 import { Home, TrendingUp, Users, Package, Calendar, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 import { StatCard } from '../ui/StatCard';
-import { Card } from '../ui/Card';
+import { Card, CardContent } from '../ui/Card';
 import { formatCHF, formatPercent } from '../../lib/utils/format';
 
 interface ProjectKPIsProps {
@@ -62,7 +62,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
           </div>
 
           <Card className="mt-4">
-            <Card.Content>
+            <CardContent>
               <div className="flex items-center justify-between text-sm mb-2">
                 <span className="font-medium text-gray-700">Taux de commercialisation</span>
                 <span className="text-gray-900 font-semibold text-lg">
@@ -85,7 +85,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
                   {formatCHF(sales.total_revenue)}
                 </p>
               </div>
-            </Card.Content>
+            </CardContent>
           </Card>
         </section>
       )}
@@ -95,7 +95,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Dossiers notaire</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card hover>
-              <Card.Content>
+              <CardContent>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Dossiers prêts</p>
@@ -105,11 +105,11 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
                     <CheckCircle className="h-7 w-7 text-green-600" />
                   </div>
                 </div>
-              </Card.Content>
+              </CardContent>
             </Card>
 
             <Card hover>
-              <Card.Content>
+              <CardContent>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Dossiers signés</p>
@@ -119,11 +119,11 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
                     <FileText className="h-7 w-7 text-brand-600" />
                   </div>
                 </div>
-              </Card.Content>
+              </CardContent>
             </Card>
 
             <Card hover>
-              <Card.Content>
+              <CardContent>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Dossiers incomplets</p>
@@ -133,7 +133,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
                     <AlertCircle className="h-7 w-7 text-yellow-600" />
                   </div>
                 </div>
-              </Card.Content>
+              </CardContent>
             </Card>
           </div>
         </section>
@@ -144,37 +144,37 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Budget CFC</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Card>
-              <Card.Content>
+              <CardContent>
                 <p className="text-xs text-gray-500 mb-1">Budget initial</p>
                 <p className="text-lg font-semibold text-gray-900">{formatCHF(finance.cfc_budget)}</p>
-              </Card.Content>
+              </CardContent>
             </Card>
             <Card>
-              <Card.Content>
+              <CardContent>
                 <p className="text-xs text-gray-500 mb-1">Engagé</p>
                 <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_engagement)}</p>
                 <p className="text-xs text-gray-500 mt-1">
                   {formatPercent((finance.cfc_engagement / finance.cfc_budget) * 100)} du budget
                 </p>
-              </Card.Content>
+              </CardContent>
             </Card>
             <Card>
-              <Card.Content>
+              <CardContent>
                 <p className="text-xs text-gray-500 mb-1">Facturé</p>
                 <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_invoiced)}</p>
                 <p className="text-xs text-gray-500 mt-1">
                   {formatPercent((finance.cfc_invoiced / finance.cfc_budget) * 100)} du budget
                 </p>
-              </Card.Content>
+              </CardContent>
             </Card>
             <Card>
-              <Card.Content>
+              <CardContent>
                 <p className="text-xs text-gray-500 mb-1">Payé</p>
                 <p className="text-lg font-semibold text-green-600">{formatCHF(finance.cfc_paid)}</p>
                 <p className="text-xs text-gray-500 mt-1">
                   {formatPercent((finance.cfc_paid / finance.cfc_budget) * 100)} du budget
                 </p>
-              </Card.Content>
+              </CardContent>
             </Card>
           </div>
         </section>
@@ -184,7 +184,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
         <section>
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Avancement chantier</h2>
           <Card>
-            <Card.Content>
+            <CardContent>
               <div className="flex items-center justify-between text-sm mb-2">
                 <span className="font-medium text-gray-700">Progression globale</span>
                 <span className="text-gray-900 font-semibold text-lg">
@@ -199,7 +199,7 @@ export function ProjectKPIs({ sales, notary, finance, construction }: ProjectKPI
                   <div className="absolute inset-0 bg-white/20 animate-pulse" />
                 </div>
               </div>
-            </Card.Content>
+            </CardContent>
           </Card>
         </section>
       )}

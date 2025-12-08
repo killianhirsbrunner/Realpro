@@ -152,16 +152,16 @@ export function ProjectCockpit() {
       // Fetch CFC budgets
       const { data: cfcBudgets } = await supabase
         .from('cfc_budgets')
-        .select('cfc_code, label, budget_initial, budget_revised, engagement_total, invoiced_total, paid_total')
+        .select('name, total_amount')
         .eq('project_id', id)
-        .order('budget_revised', { ascending: false })
+        .order('total_amount', { ascending: false })
         .limit(5);
 
       const cfcTotal = (cfcBudgets || []).reduce((acc, cfc) => ({
-        budget: acc.budget + (cfc.budget_initial || 0),
-        engagement: acc.engagement + (cfc.engagement_total || 0),
-        invoiced: acc.invoiced + (cfc.invoiced_total || 0),
-        paid: acc.paid + (cfc.paid_total || 0),
+        budget: acc.budget + (cfc.total_amount || 0),
+        engagement: acc.engagement,
+        invoiced: acc.invoiced,
+        paid: acc.paid,
       }), { budget: 0, engagement: 0, invoiced: 0, paid: 0 });
 
       // Fetch construction phases
@@ -178,7 +178,7 @@ export function ProjectCockpit() {
       // Fetch submissions statistics
       const { data: submissions } = await supabase
         .from('submissions')
-        .select('id, title, cfc_code, status, submission_offers(count)')
+        .select('id, title, reference, status')
         .eq('project_id', id);
 
       const submissionsInProgress = submissions?.filter(s => s.status === 'PUBLISHED').length || 0;
