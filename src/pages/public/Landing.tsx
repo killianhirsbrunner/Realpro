@@ -580,13 +580,13 @@ export function Landing() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/register">
-                <Button size="lg" className="h-12 px-8 text-base bg-white hover:bg-gray-100 text-cyan-700 border-0 shadow-xl shadow-black/20 font-semibold">
+                <Button size="lg" className="h-12 px-8 text-base bg-white hover:bg-gray-50 text-gray-900 border-0 shadow-xl shadow-black/30 font-bold">
                   Commencer l'essai gratuit
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" className="h-12 px-8 text-base bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-cyan-700 font-semibold transition-all shadow-lg">
+                <Button size="lg" className="h-12 px-8 text-base bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold transition-all shadow-lg">
                   Planifier une demo
                 </Button>
               </Link>
