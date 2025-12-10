@@ -1,119 +1,120 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { useCurrentUser } from './useCurrentUser';
+import type {
+  DashboardData,
+  DashboardKpiData,
+  SalesChartDataPoint,
+  CfcChartDataPoint,
+  UseDashboardReturn
+} from '../types/dashboard.types';
 
-interface DashboardData {
-  kpis: {
-    projects: number;
-    lotsSold: number;
-    paid: number;
-    delayedPayments: number;
-    activeSoumissions: number;
-    documentsRecent: number;
-    unreadMessages: number;
-  };
-  salesChart: Array<{ month: string; sold: number }>;
-  cfcChart: Array<{ cfc: string; budget: number; spent: number }>;
-  soumissions: Array<{ id: string; label: string; deadline: string; status: string }>;
-  documentsRecent: Array<{ id: string; name: string; created_at: string }>;
-  planning: Array<{ id: string; phase: string; status: string }>;
-  activityFeed: Array<{ id: string; user: string; action: string; time: string }>;
-}
+// Re-export types for convenience
+export type { DashboardData, DashboardKpiData };
 
-export function useDashboard() {
+/**
+ * Hook for fetching and managing dashboard data
+ * Provides KPIs, charts, and activity data for the main dashboard
+ */
+export function useDashboard(): UseDashboardReturn {
   const { user } = useCurrentUser();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchDashboardData = useCallback(async () => {
     if (!user) {
       setLoading(false);
       return;
     }
 
-    async function fetchDashboardData() {
-      try {
-        setLoading(true);
-        setError(null);
+    try {
+      setLoading(true);
+      setError(null);
 
-        const [
-          projectsResult,
-          lotsResult,
-          paymentsResult,
-          soumissionsResult,
-          documentsResult,
-          messagesResult,
-          planningResult,
-          activitiesResult
-        ] = await Promise.all([
-          supabase.from('projects').select('id, status').eq('status', 'active'),
-          supabase.from('lots').select('id, status').eq('status', 'sold'),
-          supabase.from('payments').select('amount, status, due_date'),
-          supabase.from('submissions').select('id, label, deadline, status').eq('status', 'active').limit(5),
-          supabase.from('documents').select('id, name, created_at').order('created_at', { ascending: false }).limit(5),
-          supabase.from('messages').select('id').eq('read', false),
-          supabase.from('planning_phases').select('id, phase_name, status').limit(5),
-          supabase.from('audit_logs').select('id, action_type, user_id, created_at, users(first_name, last_name)').order('created_at', { ascending: false }).limit(8)
-        ]);
+      const [
+        projectsResult,
+        lotsResult,
+        paymentsResult,
+        soumissionsResult,
+        documentsResult,
+        messagesResult,
+        planningResult,
+        activitiesResult
+      ] = await Promise.all([
+        supabase.from('projects').select('id, status').eq('status', 'active'),
+        supabase.from('lots').select('id, status').eq('status', 'sold'),
+        supabase.from('payments').select('amount, status, due_date'),
+        supabase.from('submissions').select('id, label, deadline, status').eq('status', 'active').limit(5),
+        supabase.from('documents').select('id, name, created_at').order('created_at', { ascending: false }).limit(5),
+        supabase.from('messages').select('id').eq('read', false),
+        supabase.from('planning_phases').select('id, phase_name, status').limit(5),
+        supabase.from('audit_logs').select('id, action_type, user_id, created_at, users(first_name, last_name)').order('created_at', { ascending: false }).limit(8)
+      ]);
 
-        const totalPaid = paymentsResult.data
-          ?.filter(p => p.status === 'paid')
-          .reduce((sum, p) => sum + (p.amount || 0), 0) || 0;
+      const totalPaid = paymentsResult.data
+        ?.filter(p => p.status === 'paid')
+        .reduce((sum, p) => sum + (p.amount || 0), 0) || 0;
 
-        const delayedPayments = paymentsResult.data
-          ?.filter(p => p.status === 'pending' && new Date(p.due_date) < new Date())
-          .length || 0;
+      const delayedPayments = paymentsResult.data
+        ?.filter(p => p.status === 'pending' && new Date(p.due_date) < new Date())
+        .length || 0;
 
-        const salesChartData = generateMonthlySalesData(lotsResult.data || []);
-        const cfcChartData = await fetchCfcData();
+      const salesChartData = generateMonthlySalesData(lotsResult.data || []);
+      const cfcChartData = await fetchCfcData();
 
-        const kpiData = {
-          projects: projectsResult.data?.length || 3,
-          lotsSold: lotsResult.data?.length || 24,
-          paid: totalPaid || 4850000,
-          delayedPayments: delayedPayments || 0,
-          activeSoumissions: soumissionsResult.data?.length || 7,
-          documentsRecent: documentsResult.data?.length || 12,
-          unreadMessages: messagesResult.data?.length || 5
-        };
+      const kpiData: DashboardKpiData = {
+        projects: projectsResult.data?.length || 3,
+        lotsSold: lotsResult.data?.length || 24,
+        paid: totalPaid || 4850000,
+        delayedPayments: delayedPayments || 0,
+        activeSoumissions: soumissionsResult.data?.length || 7,
+        documentsRecent: documentsResult.data?.length || 12,
+        unreadMessages: messagesResult.data?.length || 5
+      };
 
-        setData({
-          kpis: kpiData,
-          salesChart: salesChartData.length > 0 ? salesChartData : getDefaultSalesData(),
-          cfcChart: cfcChartData.length > 0 ? cfcChartData : getDefaultCfcData(),
-          soumissions: soumissionsResult.data?.map(s => ({
-            id: s.id,
-            label: s.label || 'Sans titre',
-            deadline: new Date(s.deadline).toLocaleDateString('fr-CH'),
-            status: s.status
-          })) || [],
-          documentsRecent: documentsResult.data || [],
-          planning: planningResult.data?.map(p => ({
-            id: p.id,
-            phase: p.phase_name,
-            status: p.status
-          })) || [],
-          activityFeed: activitiesResult.data?.map(a => ({
-            id: a.id,
-            user: a.users ? `${a.users.first_name} ${a.users.last_name}` : 'Utilisateur',
-            action: a.action_type,
-            time: formatRelativeTime(a.created_at)
-          })) || []
-        });
+      setData({
+        kpis: kpiData,
+        salesChart: salesChartData.length > 0 ? salesChartData : getDefaultSalesData(),
+        cfcChart: cfcChartData.length > 0 ? cfcChartData : getDefaultCfcData(),
+        soumissions: soumissionsResult.data?.map(s => ({
+          id: s.id,
+          label: s.label || 'Sans titre',
+          deadline: new Date(s.deadline).toLocaleDateString('fr-CH'),
+          status: s.status
+        })) || [],
+        documentsRecent: documentsResult.data || [],
+        planning: planningResult.data?.map(p => ({
+          id: p.id,
+          phase: p.phase_name,
+          status: p.status
+        })) || [],
+        activityFeed: activitiesResult.data?.map(a => ({
+          id: a.id,
+          user: a.users ? `${a.users.first_name} ${a.users.last_name}` : 'Utilisateur',
+          action: a.action_type,
+          time: formatRelativeTime(a.created_at)
+        })) || []
+      });
 
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching dashboard data:', err);
-        setError('Erreur lors du chargement des données');
-        setLoading(false);
-      }
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+      setError('Erreur lors du chargement des données');
+      setLoading(false);
     }
-
-    fetchDashboardData();
   }, [user]);
 
-  return { data, loading, error };
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
+
+  return {
+    data,
+    loading,
+    error,
+    refetch: fetchDashboardData
+  };
 }
 
 function getDefaultSalesData(): Array<{ month: string; sold: number }> {
