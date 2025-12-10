@@ -256,14 +256,14 @@ export default function ProjectPlanningReports() {
               onChange={(e) => setNewEntry({ ...newEntry, notes: e.target.value })}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
               rows={4}
-              placeholder="Activites realisees, observations..."
+              placeholder="Activités réalisées, observations..."
             />
           </div>
 
           <div className="mt-6">
             <div className="flex items-center justify-between mb-3">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Main d'oeuvre presente
+                Main d'œuvre présente
               </label>
               <Button variant="outline" size="sm" onClick={addWorkforceRow}>
                 <Plus className="h-4 w-4 mr-1" />

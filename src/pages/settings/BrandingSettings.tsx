@@ -46,12 +46,12 @@ export function BrandingSettings() {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      toast.error('Veuillez selectionner une image');
+      toast.error('Veuillez sélectionner une image');
       return;
     }
 
     if (file.size > 2 * 1024 * 1024) {
-      toast.error('L\'image ne doit pas depasser 2 Mo');
+      toast.error('L\'image ne doit pas dépasser 2 Mo');
       return;
     }
 
@@ -61,9 +61,9 @@ export function BrandingSettings() {
 
     if (url) {
       handleChange('logoUrl', url);
-      toast.success('Logo telecharge');
+      toast.success('Logo téléchargé');
     } else {
-      toast.error('Erreur lors du telechargement');
+      toast.error('Erreur lors du téléchargement');
     }
   };
 
@@ -87,7 +87,7 @@ export function BrandingSettings() {
     });
 
     if (success) {
-      toast.success('Parametres de branding enregistres');
+      toast.success('Paramètres de branding enregistrés');
       setHasChanges(false);
     } else {
       toast.error('Erreur lors de la sauvegarde');
@@ -205,7 +205,7 @@ export function BrandingSettings() {
                 <div className="text-center">
                   <Upload className="w-12 h-12 text-neutral-400 mx-auto mb-2" />
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    Aucun logo telecharge
+                    Aucun logo téléchargé
                   </p>
                 </div>
               )}
@@ -220,12 +220,12 @@ export function BrandingSettings() {
                 {uploading ? (
                   <>
                     <LoadingSpinner size="sm" />
-                    Telechargement...
+                    Téléchargement...
                   </>
                 ) : (
                   <>
                     <Upload className="w-4 h-4" />
-                    Telecharger un logo
+                    Télécharger un logo
                   </>
                 )}
               </Button>

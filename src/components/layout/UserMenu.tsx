@@ -52,13 +52,13 @@ export function UserMenu() {
     },
     {
       label: 'Organisation',
-      description: 'Gerer votre entreprise',
+      description: 'Gérer votre entreprise',
       icon: Building2,
       href: '/settings/organization',
     },
     {
       label: 'Notifications',
-      description: 'Preferences de notifications',
+      description: 'Préférences de notifications',
       icon: Bell,
       href: '/notifications',
     },
@@ -69,7 +69,7 @@ export function UserMenu() {
       href: '/billing',
     },
     {
-      label: 'Securite',
+      label: 'Sécurité',
       description: 'Mot de passe et connexion',
       icon: Shield,
       href: '/settings/security',
@@ -78,7 +78,7 @@ export function UserMenu() {
 
   const secondaryItems = [
     {
-      label: 'Parametres',
+      label: 'Paramètres',
       icon: Settings,
       href: '/settings',
     },
@@ -112,7 +112,7 @@ export function UserMenu() {
       BROKER: 'Courtier',
       BUYER: 'Acheteur',
       NOTARY: 'Notaire',
-      EG: 'Entreprise generale',
+      EG: 'Entreprise générale',
       ARCHITECT: 'Architecte',
     };
     return labels[role || ''] || role || 'Utilisateur';
@@ -235,12 +235,12 @@ export function UserMenu() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                <span>Deconnexion...</span>
+                <span>Déconnexion...</span>
               </>
             ) : (
               <>
                 <LogOut className="h-4 w-4" />
-                <span>Se deconnecter</span>
+                <span>Se déconnecter</span>
               </>
             )}
           </button>

@@ -29,25 +29,25 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; icon: any; n
     next: ['closed', 'cancelled']
   },
   closed: {
-    label: 'Cloturee',
+    label: 'Clôturée',
     color: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
     icon: Pause,
     next: ['evaluation', 'cancelled']
   },
   evaluation: {
-    label: 'En evaluation',
+    label: 'En évaluation',
     color: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
     icon: BarChart3,
     next: ['awarded', 'cancelled']
   },
   awarded: {
-    label: 'Adjugee',
+    label: 'Adjugée',
     color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
     icon: Award,
     next: []
   },
   cancelled: {
-    label: 'Annulee',
+    label: 'Annulée',
     color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
     icon: X,
     next: []
@@ -72,10 +72,10 @@ export function SubmissionDetail() {
         .eq('id', submissionId);
 
       if (error) throw error;
-      toast.success(`Statut mis a jour: ${STATUS_CONFIG[newStatus]?.label}`);
+      toast.success(`Statut mis à jour: ${STATUS_CONFIG[newStatus]?.label}`);
       window.location.reload();
     } catch (err: any) {
-      toast.error('Erreur lors de la mise a jour');
+      toast.error('Erreur lors de la mise à jour');
     } finally {
       setUpdating(false);
     }
@@ -91,7 +91,7 @@ export function SubmissionDetail() {
         .eq('id', submissionId);
 
       if (error) throw error;
-      toast.success('Soumission supprimee');
+      toast.success('Soumission supprimée');
       navigate(`/projects/${projectId}/submissions`);
     } catch (err: any) {
       toast.error('Erreur lors de la suppression');
@@ -254,7 +254,7 @@ export function SubmissionDetail() {
               <Package className="h-5 w-5 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">Offres recues</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Offres reçues</p>
               <p className="font-semibold text-neutral-900 dark:text-white">
                 {offersCount} offre{offersCount > 1 ? 's' : ''}
               </p>
@@ -275,7 +275,7 @@ export function SubmissionDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-neutral-900 dark:text-white">Entreprises invitees</h2>
+            <h2 className="font-semibold text-neutral-900 dark:text-white">Entreprises invitées</h2>
             <Button variant="outline" size="sm">
               <Users className="h-4 w-4 mr-1" />
               Inviter
@@ -286,7 +286,7 @@ export function SubmissionDetail() {
             <div className="text-center py-8">
               <Building2 className="h-10 w-10 text-neutral-300 mx-auto mb-3" />
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                Aucune entreprise invitee
+                Aucune entreprise invitée
               </p>
             </div>
           ) : (
@@ -311,7 +311,7 @@ export function SubmissionDetail() {
 
         <Card className="p-6 lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-neutral-900 dark:text-white">Offres recues</h2>
+            <h2 className="font-semibold text-neutral-900 dark:text-white">Offres reçues</h2>
             {offersCount > 1 && (
               <Link to={`/projects/${projectId}/submissions/${submissionId}/compare`}>
                 <Button variant="outline" size="sm">
@@ -326,7 +326,7 @@ export function SubmissionDetail() {
             <div className="text-center py-8">
               <Package className="h-10 w-10 text-neutral-300 mx-auto mb-3" />
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                Aucune offre recue pour le moment
+                Aucune offre reçue pour le moment
               </p>
             </div>
           ) : (
@@ -336,7 +336,7 @@ export function SubmissionDetail() {
                   <tr className="border-b border-neutral-200 dark:border-neutral-700">
                     <th className="text-left py-3 px-2 text-xs font-medium text-neutral-500 uppercase">Entreprise</th>
                     <th className="text-right py-3 px-2 text-xs font-medium text-neutral-500 uppercase">Montant</th>
-                    <th className="text-right py-3 px-2 text-xs font-medium text-neutral-500 uppercase">Delai</th>
+                    <th className="text-right py-3 px-2 text-xs font-medium text-neutral-500 uppercase">Délai</th>
                     <th className="text-center py-3 px-2 text-xs font-medium text-neutral-500 uppercase">Statut</th>
                     <th className="text-right py-3 px-2 text-xs font-medium text-neutral-500 uppercase">Actions</th>
                   </tr>
@@ -387,7 +387,7 @@ export function SubmissionDetail() {
             </h3>
           </div>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            Analyser et comparer les offres recues cote a cote
+            Analyser et comparer les offres reçues côte à côte
           </p>
         </Link>
 
@@ -404,7 +404,7 @@ export function SubmissionDetail() {
             </h3>
           </div>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            Gerer les echanges avec les entreprises soumissionnaires
+            Gérer les échanges avec les entreprises soumissionnaires
           </p>
         </Link>
 
@@ -421,7 +421,7 @@ export function SubmissionDetail() {
             </h3>
           </div>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            Inviter et gerer les entreprises participantes
+            Inviter et gérer les entreprises participantes
           </p>
         </Link>
       </div>

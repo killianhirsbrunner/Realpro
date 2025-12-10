@@ -106,7 +106,7 @@ export function Sidebar() {
       icon: FileText
     },
     {
-      name: 'Taches',
+      name: 'Tâches',
       href: '/tasks',
       icon: ClipboardList
     },
@@ -119,7 +119,7 @@ export function Sidebar() {
 
   const administrationItems: NavItem[] = [
     {
-      name: 'Parametres',
+      name: 'Paramètres',
       href: '/settings',
       icon: Settings
     },

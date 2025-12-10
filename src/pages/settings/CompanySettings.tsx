@@ -461,7 +461,7 @@ export function CompanySettings() {
               onChange={(e) => handleChange('description', e.target.value)}
               rows={4}
               className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
-              placeholder="Description de votre activite..."
+              placeholder="Description de votre activité..."
             />
           </div>
         </div>

@@ -173,7 +173,7 @@ export function useLocalizationSettings() {
       }
     } catch (err) {
       console.error('Error fetching localization settings:', err);
-      setError('Erreur lors du chargement des parametres');
+      setError('Erreur lors du chargement des paramètres');
     } finally {
       setLoading(false);
     }

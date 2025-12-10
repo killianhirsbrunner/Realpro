@@ -77,7 +77,7 @@ export function LocalizationSettings() {
     });
 
     if (success) {
-      toast.success('Parametres enregistres');
+      toast.success('Paramètres enregistrés');
       setHasChanges(false);
     } else {
       toast.error('Erreur lors de la sauvegarde');
@@ -204,7 +204,7 @@ export function LocalizationSettings() {
                 onChange={(e) => handleChange('canton', e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               >
-                <option value="">Selectionner un canton</option>
+                <option value="">Sélectionner un canton</option>
                 {cantons.map((canton) => (
                   <option key={canton} value={canton}>
                     {canton}
@@ -251,7 +251,7 @@ export function LocalizationSettings() {
               >
                 <option value="CHF">CHF - Franc suisse</option>
                 <option value="EUR">EUR - Euro</option>
-                <option value="USD">USD - Dollar americain</option>
+                <option value="USD">USD - Dollar américain</option>
               </select>
             </div>
 
