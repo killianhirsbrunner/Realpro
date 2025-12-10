@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { Card, CardContent } from '../../components/ui/Card';
 import { ArrowLeft, CreditCard, Shield, Check } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
@@ -138,7 +137,7 @@ export function Checkout() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-            <RealProLogo size="lg" />
+            <span className="text-2xl font-bold text-neutral-900 dark:text-white">RealPro</span>
           </Link>
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Confirmez votre abonnement

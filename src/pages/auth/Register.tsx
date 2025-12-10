@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { supabase } from '../../lib/supabase';
 import { AlertCircle, ArrowRight, Check } from 'lucide-react';
 
@@ -86,7 +85,7 @@ export function Register() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-            <RealProLogo size="xl" className="mx-auto" />
+            <span className="text-2xl font-bold text-neutral-900 dark:text-white">RealPro</span>
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Créer votre compte

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Button } from '../../components/ui/Button';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import { ScrollReveal } from '../../components/ui/PageTransition';
 import { Check, ArrowRight, Menu, X, Sparkles } from 'lucide-react';
@@ -84,7 +83,7 @@ export function Pricing() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center transition-opacity hover:opacity-70">
-              <RealProLogo size="xl" />
+              <span className="text-xl font-bold text-neutral-900 dark:text-white">RealPro</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -435,7 +434,7 @@ export function Pricing() {
           <div className="grid md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
             <div className="md:col-span-1">
               <div className="mb-4">
-                <RealProLogo size="lg" />
+                <span className="text-xl font-bold text-neutral-900 dark:text-white">RealPro</span>
               </div>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4 max-w-xs leading-relaxed">
                 La solution complète pour les promoteurs immobiliers suisses

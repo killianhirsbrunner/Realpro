@@ -13,7 +13,6 @@ import {
   ArrowLeft,
   Sparkles
 } from 'lucide-react';
-import { RealProLogo } from '../components/branding/RealProLogo';
 
 interface OnboardingData {
   organizationName: string;
@@ -145,7 +144,7 @@ export function OrganizationOnboarding() {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-6">
-              <RealProLogo size="lg" />
+              <span className="text-2xl font-bold text-neutral-900 dark:text-white">RealPro</span>
             </div>
             <h1 className="text-4xl font-semibold text-neutral-900 dark:text-white mb-3">
               Créez votre organisation

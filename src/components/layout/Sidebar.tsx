@@ -21,7 +21,6 @@ import {
   PieChart,
 } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
-import { RealProLogo } from '../branding/RealProLogo';
 import { useOrganizationContext } from '../../contexts/OrganizationContext';
 import clsx from 'clsx';
 import { useState } from 'react';
@@ -191,20 +190,6 @@ export function Sidebar() {
 
   return (
     <aside className="w-60 h-full bg-white dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 flex flex-col">
-      <div className="h-16 px-5 flex items-center border-b border-neutral-200 dark:border-neutral-800">
-        <Link to="/dashboard" className="flex items-center gap-3 transition-opacity hover:opacity-80">
-          {currentOrganization?.logo_url ? (
-            <img
-              src={currentOrganization.logo_url}
-              alt={currentOrganization.name}
-              className="h-10 w-auto max-w-[180px] object-contain"
-            />
-          ) : (
-            <RealProLogo size="md" />
-          )}
-        </Link>
-      </div>
-
       <nav className="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
         <div>
           <h3 className="px-3 mb-2 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">

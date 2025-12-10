@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '../../components/ui/Button';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import { ScrollReveal, FadeIn } from '../../components/ui/PageTransition';
 import {
@@ -136,7 +135,7 @@ export function LandingEnhanced() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center transition-opacity hover:opacity-70">
-              <RealProLogo size="xl" />
+              <span className="text-xl font-bold text-neutral-900 dark:text-white">RealPro</span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -406,7 +405,7 @@ export function LandingEnhanced() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <RealProLogo size="lg" className="mb-4" />
+              <span className="text-xl font-bold text-neutral-900 dark:text-white mb-4 block">RealPro</span>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 La plateforme de gestion immobilière pour les promoteurs suisses
               </p>

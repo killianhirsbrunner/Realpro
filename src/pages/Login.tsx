@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Input } from '../components/ui/Input';
-import { RealProLogo } from '../components/branding/RealProLogo';
 import { ArrowRight, Sparkles, Play, CheckCircle } from 'lucide-react';
 import { useDemoMode, DEMO_CREDENTIALS } from '../hooks/useDemoMode';
 
@@ -81,7 +80,7 @@ export function Login() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <Link to="/" className="inline-block mb-8">
-            <RealProLogo size="xl" />
+            <span className="text-2xl font-bold text-neutral-900 dark:text-white">RealPro</span>
           </Link>
           <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mb-2">
             {isSignUp ? 'Créer un compte' : 'Bienvenue sur RealPro'}

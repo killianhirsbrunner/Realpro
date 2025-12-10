@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 
 export function Success() {
@@ -8,7 +7,7 @@ export function Success() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 flex items-center justify-center px-6">
       <div className="max-w-2xl w-full text-center">
         <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-          <RealProLogo size="lg" />
+          <span className="text-2xl font-bold text-neutral-900 dark:text-white">RealPro</span>
         </Link>
 
         <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-12 shadow-xl">
