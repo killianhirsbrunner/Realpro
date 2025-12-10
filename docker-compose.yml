@@ -1,0 +1,67 @@
+# =================================================================
+# RealPro Suite - Docker Compose Configuration
+# =================================================================
+# Quick start:
+#   1. Copy .env.example to .env and fill in your Supabase credentials
+#   2. Run: docker-compose up -d
+#   3. Access: http://localhost:3000
+#
+# Commands:
+#   docker-compose up -d          # Start in background
+#   docker-compose up --build     # Rebuild and start
+#   docker-compose logs -f        # View logs
+#   docker-compose down           # Stop containers
+# =================================================================
+
+version: '3.8'
+
+services:
+  # -----------------------------------------------------------------
+  # Frontend Application (Production Build)
+  # -----------------------------------------------------------------
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+        - VITE_APP_ENV=${VITE_APP_ENV:-production}
+        - VITE_APP_URL=${VITE_APP_URL:-http://localhost:3000}
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "app=realpro-frontend"
+      - "env=${VITE_APP_ENV:-production}"
+
+  # -----------------------------------------------------------------
+  # Development Server (Alternative to production build)
+  # -----------------------------------------------------------------
+  # Uncomment to use development server instead of production build
+  # -----------------------------------------------------------------
+  # dev:
+  #   image: node:20-alpine
+  #   working_dir: /app
+  #   volumes:
+  #     - .:/app
+  #     - node_modules:/app/node_modules
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+  #     - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+  #   command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
+# volumes:
+#   node_modules:
+
+networks:
+  default:
+    name: realpro-network
