@@ -17,8 +17,8 @@ export function RealProLogo({ className = '', size = 'md' }: RealProLogoProps) {
   const sizes = sizeClasses[size];
 
   const logoSrc = actualTheme === 'dark'
-    ? '/logos/realpro-dark.png'
-    : '/logos/realpro-light.png';
+    ? '/logos/Official-dark.svg'
+    : '/logos/Official-light.svg';
 
   return (
     <img
