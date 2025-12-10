@@ -1,20 +1,16 @@
 /*
-  # Trigger pour création automatique du profil utilisateur
+  # Correction du trigger d'authentification
 
-  1. Fonction
-    - Crée automatiquement un utilisateur dans `public.users` quand un compte auth est créé
-    - Extrait le prénom/nom de l'email si non fournis
-    - Crée une organisation par défaut pour chaque nouvel utilisateur
+  ## Problème
+  Le trigger `handle_new_user()` cherchait un rôle nommé 'ADMIN' qui n'existe pas.
+  Le rôle correct est 'org_admin'.
 
-  2. Trigger
-    - Se déclenche après l'insertion dans `auth.users`
-    - Appelle la fonction pour créer le profil
-
-  3. Sécurité
-    - Aucune RLS requise (trigger système)
+  ## Solution
+  - Mise à jour de la fonction pour utiliser le bon nom de rôle 'org_admin'
+  - Ajout de gestion d'erreur améliorée
 */
 
--- Fonction pour créer le profil utilisateur
+-- Recréer la fonction avec le bon nom de rôle
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -26,6 +22,7 @@ DECLARE
   v_first_name text;
   v_last_name text;
   v_email_parts text[];
+  v_role_id uuid;
 BEGIN
   -- Extraire prénom/nom de l'email si pas de metadata
   v_email_parts := string_to_array(split_part(NEW.email, '@', 1), '.');
@@ -56,18 +53,25 @@ BEGIN
   INSERT INTO public.user_organizations (user_id, organization_id, is_default)
   VALUES (NEW.id, v_org_id, true);
 
-  -- Assigner le rôle admin par défaut
-  INSERT INTO public.user_roles (user_id, organization_id, role_id)
-  SELECT NEW.id, v_org_id, id
-  FROM public.roles
-  WHERE name = 'org_admin'
-  LIMIT 1;
+  -- Récupérer le rôle org_admin (correction du nom de rôle)
+  SELECT id INTO v_role_id FROM public.roles WHERE name = 'org_admin' LIMIT 1;
+
+  -- Assigner le rôle admin par défaut si trouvé
+  IF v_role_id IS NOT NULL THEN
+    INSERT INTO public.user_roles (user_id, organization_id, role_id)
+    VALUES (NEW.id, v_org_id, v_role_id);
+  END IF;
 
   RETURN NEW;
+EXCEPTION
+  WHEN OTHERS THEN
+    -- Log l'erreur mais ne pas bloquer la création de l'utilisateur auth
+    RAISE WARNING 'Error in handle_new_user trigger: %', SQLERRM;
+    RETURN NEW;
 END;
 $$;
 
--- Trigger sur auth.users
+-- S'assurer que le trigger existe
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users

@@ -59,22 +59,9 @@ export function Register() {
 
       if (authError) throw authError;
 
+      // Le trigger handle_new_user() crée automatiquement l'utilisateur dans public.users,
+      // l'organisation et les rôles. Pas besoin d'insertion manuelle.
       if (authData.user) {
-        const { error: userError } = await supabase
-          .from('users')
-          .insert({
-            id: authData.user.id,
-            email: formData.email,
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            language: 'FR',
-            is_active: true
-          });
-
-        if (userError) {
-          console.error('Error creating user record:', userError);
-        }
-
         if (preselectedPlan) {
           navigate(`/auth/choose-plan?preselected=${preselectedPlan}`);
         } else {

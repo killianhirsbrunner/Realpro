@@ -148,6 +148,8 @@ export function RegisterCompany() {
     setLoading(true);
 
     try {
+      // 1. Créer le compte auth - le trigger handle_new_user() crée automatiquement
+      // l'utilisateur, l'organisation par défaut et assigne le rôle org_admin
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
@@ -164,55 +166,48 @@ export function RegisterCompany() {
       if (authError) throw authError;
 
       if (authData.user) {
-        const { data: orgData, error: orgError } = await supabase
-          .from('organizations')
-          .insert({
-            name: formData.companyName,
-            legal_form: formData.companyType,
-            ide_number: formData.ideNumber || null,
-            vat_number: formData.vatNumber || null,
-            activity_sector: formData.activitySector,
-            company_size: formData.companySize,
-            address: formData.address,
-            postal_code: formData.postalCode,
-            city: formData.city,
-            canton: formData.canton,
-            phone: formData.phone,
-            website: formData.website || null,
-            description: formData.description || null,
-            default_language: 'FR',
-            default_currency: 'CHF',
-            is_active: true
-          })
-          .select()
+        // 2. Récupérer l'organisation créée automatiquement par le trigger
+        const { data: userOrg } = await supabase
+          .from('user_organizations')
+          .select('organization_id')
+          .eq('user_id', authData.user.id)
           .single();
 
-        if (orgError) throw orgError;
+        if (userOrg?.organization_id) {
+          // 3. Mettre à jour l'organisation avec les informations de l'entreprise
+          const { error: updateOrgError } = await supabase
+            .from('organizations')
+            .update({
+              name: formData.companyName,
+              settings: {
+                legal_form: formData.companyType,
+                ide_number: formData.ideNumber || null,
+                vat_number: formData.vatNumber || null,
+                activity_sector: formData.activitySector,
+                company_size: formData.companySize,
+                address: formData.address,
+                postal_code: formData.postalCode,
+                city: formData.city,
+                canton: formData.canton,
+                phone: formData.phone,
+                website: formData.website || null,
+                description: formData.description || null
+              }
+            })
+            .eq('id', userOrg.organization_id);
 
-        const { error: userError } = await supabase
-          .from('users')
-          .insert({
-            id: authData.user.id,
-            email: formData.email,
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            phone: formData.directPhone || null,
-            position: formData.position,
-            language: 'FR',
-            is_active: true
-          });
+          if (updateOrgError) {
+            console.error('Error updating organization:', updateOrgError);
+          }
+        }
 
-        if (userError) throw userError;
-
-        const { error: userOrgError } = await supabase
-          .from('user_organizations')
-          .insert({
-            user_id: authData.user.id,
-            organization_id: orgData.id,
-            role: 'PROMOTER'
-          });
-
-        if (userOrgError) throw userOrgError;
+        // 4. Mettre à jour le profil utilisateur avec le téléphone direct
+        if (formData.directPhone) {
+          await supabase
+            .from('users')
+            .update({ phone: formData.directPhone })
+            .eq('id', authData.user.id);
+        }
 
         navigate('/dashboard');
       }

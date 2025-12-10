@@ -38,7 +38,7 @@ export function useCurrentUser() {
         const { data: userData, error: fetchError } = await supabase
           .from('users')
           .select('*')
-          .eq('email', authUser.email)
+          .eq('id', authUser.id)
           .maybeSingle();
 
         if (fetchError) throw fetchError;
