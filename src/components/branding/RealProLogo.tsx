@@ -5,12 +5,12 @@ interface RealProLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-// Tailles optimisées pour le logo croppé (ratio ~4.4:1)
+// Tailles optimisées pour le logo croppé (ratio ~4.4:1) - UX premium
 const sizeClasses = {
-  sm: { height: 'h-5', width: 'w-[88px]' },
-  md: { height: 'h-7', width: 'w-[123px]' },
-  lg: { height: 'h-9', width: 'w-[158px]' },
-  xl: { height: 'h-11', width: 'w-[193px]' }
+  sm: { height: 'h-8', width: 'w-[140px]' },      // 32px - topbar compact
+  md: { height: 'h-10', width: 'w-[176px]' },     // 40px - sidebar standard
+  lg: { height: 'h-12', width: 'w-[211px]' },     // 48px - headers
+  xl: { height: 'h-16', width: 'w-[282px]' }      // 64px - landing pages
 };
 
 export function RealProLogo({ className = '', size = 'md' }: RealProLogoProps) {

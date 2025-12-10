@@ -197,7 +197,7 @@ export function Sidebar() {
             <img
               src={currentOrganization.logo_url}
               alt={currentOrganization.name}
-              className="h-9 w-auto max-w-[140px] object-contain"
+              className="h-10 w-auto max-w-[180px] object-contain"
             />
           ) : (
             <RealProLogo size="md" />
