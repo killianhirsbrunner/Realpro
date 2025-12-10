@@ -6,6 +6,7 @@ import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { ThemeToggle } from '../ThemeToggle';
 import { NotificationBell } from '../NotificationBell';
+import { RealProLogo } from '../branding/RealProLogo';
 import { supabase } from '../../lib/supabase';
 import clsx from 'clsx';
 
@@ -81,6 +82,10 @@ export function Topbar() {
   return (
     <header className="h-16 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex items-center px-6">
       <div className="flex items-center gap-6 flex-1">
+        <RealProLogo size="sm" className="hidden lg:block" />
+
+        <div className="hidden lg:block h-8 w-px bg-neutral-200 dark:bg-neutral-800" />
+
         <div className="flex flex-col">
           <h1 className="text-lg font-semibold text-neutral-900 dark:text-white leading-tight">
             {pageInfo.title}
