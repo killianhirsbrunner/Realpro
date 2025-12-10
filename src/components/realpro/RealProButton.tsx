@@ -15,7 +15,7 @@ export function RealProButton({
   ...props
 }: RealProButtonProps) {
   const variants = {
-    primary: 'bg-primary-900 dark:bg-primary-100 text-white dark:text-neutral-900 shadow-soft hover:opacity-90',
+    primary: 'bg-primary-900 dark:bg-brand-600 text-white shadow-soft hover:opacity-90',
     secondary: 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-300 dark:hover:bg-neutral-700',
     outline: 'border-2 border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800',
     ghost: 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800',
