@@ -17,6 +17,7 @@ import {
   File,
 } from 'lucide-react';
 import clsx from 'clsx';
+import { RealProLogo } from '../branding/RealProLogo';
 
 type Role = 'PROMOTER' | 'EG' | 'ARCHITECT' | 'BROKER' | 'NOTARY' | 'BUYER';
 
@@ -100,16 +101,10 @@ export function DynamicSidebar({
   });
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col h-full">
-      <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-lg">
-            R
-          </div>
-          <div>
-            <div className="text-lg font-bold text-gray-900">RealtySuite</div>
-            <div className="text-xs text-gray-500">Swiss PropTech</div>
-          </div>
+    <aside className="w-64 bg-white dark:bg-neutral-950 border-r border-gray-200 dark:border-neutral-800 flex flex-col h-full">
+      <div className="p-6 border-b border-gray-200 dark:border-neutral-800">
+        <div className="flex items-center justify-center">
+          <RealProLogo size="md" />
         </div>
       </div>
 
@@ -125,8 +120,8 @@ export function DynamicSidebar({
               className={clsx(
                 'w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors duration-150',
                 {
-                  'bg-brand-50 text-brand-700': isActive,
-                  'text-gray-700 hover:bg-gray-50': !isActive,
+                  'bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300': isActive,
+                  'text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800': !isActive,
                 }
               )}
             >
@@ -137,10 +132,10 @@ export function DynamicSidebar({
         })}
       </nav>
 
-      <div className="p-4 border-t border-gray-200">
-        <div className="text-xs text-gray-500">
-          <div className="font-medium text-gray-700 mb-1">Connecté en tant que</div>
-          <div className="px-2 py-1 bg-gray-100 rounded-lg text-center">
+      <div className="p-4 border-t border-gray-200 dark:border-neutral-800">
+        <div className="text-xs text-gray-500 dark:text-neutral-400">
+          <div className="font-medium text-gray-700 dark:text-neutral-300 mb-1">Connecté en tant que</div>
+          <div className="px-2 py-1 bg-gray-100 dark:bg-neutral-800 rounded-lg text-center">
             {getRoleLabel(role)}
           </div>
         </div>
