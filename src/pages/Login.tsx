@@ -15,26 +15,53 @@ export function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
   const { loginAsDemo, isLoggingIn: isDemoLoading, error: demoError } = useDemoMode();
 
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccessMessage(null);
 
     try {
       if (isSignUp) {
-        const { error: signUpError } = await supabase.auth.signUp({
+        const { data, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              first_name: '',
+              last_name: '',
+            },
+          },
         });
         if (signUpError) throw signUpError;
-        alert('Compte créé! Vous pouvez maintenant vous connecter.');
-        setIsSignUp(false);
+
+        // Check if email confirmation is required
+        if (data.user && !data.session) {
+          // Email confirmation is required
+          setSuccessMessage(
+            'Un email de confirmation a été envoyé à votre adresse. Veuillez cliquer sur le lien dans l\'email pour activer votre compte, puis vous pourrez vous connecter.'
+          );
+          setIsSignUp(false);
+        } else if (data.session) {
+          // No email confirmation required, user is logged in
+          navigate('/dashboard');
+        }
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
-        if (signInError) throw signInError;
+        if (signInError) {
+          // Provide clearer error messages in French
+          if (signInError.message.includes('Invalid login credentials')) {
+            throw new Error('Email ou mot de passe incorrect');
+          } else if (signInError.message.includes('Email not confirmed')) {
+            throw new Error('Veuillez confirmer votre email avant de vous connecter. Vérifiez votre boîte de réception.');
+          }
+          throw signInError;
+        }
         navigate('/dashboard');
       }
     } catch (err) {
@@ -72,6 +99,13 @@ export function Login() {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
                 <span>{error}</span>
+              </div>
+            )}
+
+            {successMessage && (
+              <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 px-4 py-3 rounded-xl text-sm flex items-start gap-2">
+                <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <span>{successMessage}</span>
               </div>
             )}
 
