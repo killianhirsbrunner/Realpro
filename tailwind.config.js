@@ -91,6 +91,7 @@ export default {
         'slideRight': 'slideRight 0.3s ease-out',
         'fadeIn': 'fadeIn 0.2s ease-out',
         'scaleIn': 'scaleIn 0.2s ease-out',
+        'shimmer': 'shimmer 2s infinite linear',
       },
       keyframes: {
         slideLeft: {
@@ -108,6 +109,10 @@ export default {
         scaleIn: {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },

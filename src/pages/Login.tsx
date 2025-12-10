@@ -3,7 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Input } from '../components/ui/Input';
 import { RealProLogo } from '../components/branding/RealProLogo';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Play, CheckCircle } from 'lucide-react';
+import { useDemoMode, DEMO_CREDENTIALS } from '../hooks/useDemoMode';
 
 export function Login() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSignUp, setIsSignUp] = useState(false);
+  const { loginAsDemo, isLoggingIn: isDemoLoading, error: demoError } = useDemoMode();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -144,19 +146,67 @@ export function Login() {
           </div>
 
           {!isSignUp && (
-            <div className="mt-6 p-4 bg-gradient-to-br from-brand-50 to-brand-100/50 dark:from-brand-900/20 dark:to-brand-800/20 border border-brand-200 dark:border-brand-900/30 rounded-xl">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-4 h-4 text-brand-600 dark:text-brand-400" />
-                <p className="text-xs text-brand-900 dark:text-brand-200 font-semibold">
-                  Compte de démonstration
+            <div className="mt-6 p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-900/20 dark:to-emerald-800/20 border border-emerald-200 dark:border-emerald-900/30 rounded-xl">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <p className="text-sm text-emerald-900 dark:text-emerald-200 font-semibold">
+                  Accès Démonstration
                 </p>
               </div>
-              <p className="text-xs text-brand-700 dark:text-brand-300 mb-1">
-                Email: <span className="font-mono font-semibold">demo@realpro.ch</span>
-              </p>
-              <p className="text-xs text-brand-700 dark:text-brand-300">
-                Mot de passe: <span className="font-mono font-semibold">demo123456</span>
-              </p>
+
+              {/* Liste des fonctionnalités disponibles */}
+              <div className="mb-4 space-y-1.5">
+                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>Toutes les fonctionnalités débloquées</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>Création de projets illimitée</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>Projet de démonstration pré-configuré</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>Gestion complète: lots, acheteurs, factures</span>
+                </div>
+              </div>
+
+              {/* Bouton d'accès rapide à la démo */}
+              <button
+                type="button"
+                onClick={loginAsDemo}
+                disabled={isDemoLoading || loading}
+                className="group w-full h-11 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 active:from-emerald-800 active:to-emerald-900 text-white font-medium shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+              >
+                {isDemoLoading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                ) : (
+                  <>
+                    <Play className="w-4 h-4" />
+                    Essayer la démo gratuitement
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
+
+              {demoError && (
+                <p className="mt-2 text-xs text-red-600 dark:text-red-400 text-center">
+                  {demoError}
+                </p>
+              )}
+
+              {/* Identifiants alternatifs */}
+              <div className="mt-3 pt-3 border-t border-emerald-200 dark:border-emerald-800/30">
+                <p className="text-xs text-emerald-600 dark:text-emerald-400 text-center mb-1">
+                  Ou connectez-vous manuellement:
+                </p>
+                <p className="text-xs text-emerald-700 dark:text-emerald-300 text-center">
+                  <span className="font-mono">{DEMO_CREDENTIALS.email}</span> / <span className="font-mono">{DEMO_CREDENTIALS.password}</span>
+                </p>
+              </div>
             </div>
           )}
         </div>
