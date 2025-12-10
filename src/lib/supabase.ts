@@ -2,16 +2,34 @@
  * RealPro | © 2024-2025 Realpro SA. Tous droits réservés.
  */
 
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+// Validate environment variables
+const isMissingEnvVars = !supabaseUrl || !supabaseAnonKey;
+
+if (isMissingEnvVars && import.meta.env.DEV) {
+  console.error(
+    '⚠️ Missing Supabase environment variables!\n' +
+    'Please create a .env file with:\n' +
+    '  VITE_SUPABASE_URL=your-supabase-url\n' +
+    '  VITE_SUPABASE_ANON_KEY=your-anon-key\n' +
+    'See .env.example for reference.'
+  );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Create client with fallback for build time (will fail at runtime if not configured)
+export const supabase: SupabaseClient = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseAnonKey || 'placeholder-key'
+);
+
+// Helper to check if Supabase is properly configured
+export const isSupabaseConfigured = (): boolean => {
+  return !isMissingEnvVars;
+};
 
 export type Json =
   | string
