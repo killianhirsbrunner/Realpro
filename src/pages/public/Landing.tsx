@@ -579,16 +579,18 @@ export function Landing() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/register">
-                <Button size="lg" className="h-12 px-8 text-base !bg-neutral-900 dark:!bg-white !text-white dark:!text-neutral-900 hover:!bg-neutral-800 dark:hover:!bg-neutral-100 border-0 shadow-xl shadow-black/30 font-bold">
-                  Commencer l'essai gratuit
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+              <Link
+                to="/register"
+                className="inline-flex items-center justify-center h-12 px-8 text-base font-bold rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100 shadow-xl shadow-black/30 transition-all duration-200"
+              >
+                Commencer l'essai gratuit
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
-              <Link to="/contact">
-                <Button size="lg" className="h-12 px-8 text-base !bg-transparent backdrop-blur-sm border-2 !border-white !text-white hover:!bg-white/20 font-semibold transition-all shadow-lg">
-                  Planifier une démo
-                </Button>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center h-12 px-8 text-base font-semibold rounded-lg bg-transparent backdrop-blur-sm border-2 border-white text-white hover:bg-white/20 shadow-lg transition-all duration-200"
+              >
+                Planifier une démo
               </Link>
             </div>
 
