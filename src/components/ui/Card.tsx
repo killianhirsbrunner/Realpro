@@ -6,7 +6,14 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
+interface CardComponent extends React.ForwardRefExoticComponent<CardProps & React.RefAttributes<HTMLDivElement>> {
+  Header: typeof CardHeader;
+  Title: typeof CardTitle;
+  Content: typeof CardContent;
+  Description: typeof CardDescription;
+}
+
+const CardBase = forwardRef<HTMLDivElement, CardProps>(
   ({ className, hover = false, padding = 'md', children, ...props }, ref) => {
     return (
       <div
@@ -30,7 +37,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   }
 );
 
-Card.displayName = 'Card';
+CardBase.displayName = 'Card';
 
 export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -81,3 +88,28 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
 );
 
 CardContent.displayName = 'CardContent';
+
+export interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}
+
+export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <p
+        ref={ref}
+        className={clsx('text-sm text-gray-500 dark:text-neutral-500', className)}
+        {...props}
+      >
+        {children}
+      </p>
+    );
+  }
+);
+
+CardDescription.displayName = 'CardDescription';
+
+// Attach sub-components to Card
+export const Card = CardBase as CardComponent;
+Card.Header = CardHeader;
+Card.Title = CardTitle;
+Card.Content = CardContent;
+Card.Description = CardDescription;

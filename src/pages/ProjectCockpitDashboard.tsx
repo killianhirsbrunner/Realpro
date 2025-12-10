@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   Building2,
   DollarSign,
@@ -23,11 +23,8 @@ import { DeadlineCard } from '../components/dashboard/DeadlineCard';
 import { QuickActions } from '../components/dashboard/QuickActions';
 import { useProjectDashboard } from '../hooks/useProjectDashboard';
 
-interface ProjectCockpitDashboardProps {
-  projectId: string;
-}
-
-export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardProps) {
+export function ProjectCockpitDashboard() {
+  const { projectId } = useParams<{ projectId: string }>();
   const { data, loading, error } = useProjectDashboard(projectId);
 
   if (loading) {
@@ -386,7 +383,7 @@ export function ProjectCockpitDashboard({ projectId }: ProjectCockpitDashboardPr
 
         <QuickActions projectId={project.id} />
 
-        <ProjectExportPanel projectId={projectId} />
+        <ProjectExportPanel projectId={projectId || ''} />
       </div>
     </div>
   );

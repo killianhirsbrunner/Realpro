@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Send, Languages, User } from 'lucide-react';
 import { useChat } from '../hooks/useChat';
 import { useCurrentUser } from '../hooks/useCurrentUser';
-import { Card } from './ui/Card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/Card';
 import { LoadingState } from './ui/LoadingSpinner';
 
 interface ChatProps {
@@ -43,7 +43,7 @@ export function Chat({ threadId }: ChatProps) {
   async function handleTranslate(messageId: string, text: string, fromLang: string) {
     setTranslating(prev => ({ ...prev, [messageId]: true }));
     try {
-      const userLang = user?.preferred_language || 'fr-CH';
+      const userLang = user?.language || 'FR';
       const translated = await translateMessage(text, fromLang, userLang);
       if (translated) {
         setTranslations(prev => ({ ...prev, [messageId]: translated }));
@@ -59,14 +59,14 @@ export function Chat({ threadId }: ChatProps) {
 
   return (
     <Card className="flex flex-col h-[600px]">
-      <Card.Header>
-        <Card.Title>{thread?.title || 'Conversation'}</Card.Title>
-        <Card.Description>
+      <CardHeader>
+        <CardTitle>{thread?.title || 'Conversation'}</CardTitle>
+        <CardDescription>
           {thread?.context_type && `Contexte: ${thread.context_type}`}
-        </Card.Description>
-      </Card.Header>
+        </CardDescription>
+      </CardHeader>
 
-      <Card.Content className="flex-1 overflow-y-auto space-y-4 p-4">
+      <CardContent className="flex-1 overflow-y-auto space-y-4 p-4">
         {messages.length === 0 ? (
           <div className="text-center text-gray-500 py-12">
             <p>Aucun message pour le moment</p>
@@ -110,7 +110,7 @@ export function Chat({ threadId }: ChatProps) {
                     )}
                   </div>
 
-                  {!isOwn && message.body_lang !== (user?.preferred_language || 'fr-CH') && (
+                  {!isOwn && message.body_lang !== (user?.language || 'FR') && (
                     <button
                       onClick={() => handleTranslate(message.id, message.body, message.body_lang)}
                       disabled={translating[message.id]}
@@ -133,7 +133,7 @@ export function Chat({ threadId }: ChatProps) {
           })
         )}
         <div ref={messagesEndRef} />
-      </Card.Content>
+      </CardContent>
 
       <div className="border-t border-gray-200 p-4">
         <div className="flex items-end gap-2">
