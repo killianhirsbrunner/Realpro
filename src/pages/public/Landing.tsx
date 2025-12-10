@@ -566,35 +566,57 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-cyan-700 via-teal-600 to-cyan-700 dark:from-cyan-900 dark:via-teal-800 dark:to-cyan-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
+      <section className="py-24 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-realpro-turquoise/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-realpro-turquoise/15 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-0 w-64 h-64 bg-realpro-turquoise/10 rounded-full blur-3xl" />
+        </div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
           <ScrollReveal>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Prêt à optimiser la gestion de vos promotions ?
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-realpro-turquoise/20 text-realpro-turquoise text-sm font-medium mb-8 border border-realpro-turquoise/30">
+              <Sparkles className="w-4 h-4" />
+              Démarrez dès aujourd'hui
+            </div>
+
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
+              Prêt à optimiser la gestion de vos{' '}
+              <span className="text-realpro-turquoise">promotions</span> ?
             </h2>
-            <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
               Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
               leurs opérations et améliorer leur productivité.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/register">
-                <Button size="lg" variant="ghost" className="h-12 px-8 text-base bg-white hover:bg-gray-50 text-gray-900 border-0 shadow-xl shadow-black/30 font-bold">
+                <Button size="lg" className="h-14 px-10 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0 shadow-xl shadow-realpro-turquoise/30 font-semibold">
                   Commencer l'essai gratuit
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="ghost" className="h-12 px-8 text-base bg-white/90 backdrop-blur-sm border-2 border-white text-gray-900 hover:bg-white font-semibold transition-all shadow-lg">
+                <Button size="lg" variant="outline" className="h-14 px-10 text-base bg-transparent border-2 border-neutral-600 text-white hover:bg-neutral-800 hover:border-neutral-500 font-semibold transition-all">
                   Planifier une démo
                 </Button>
               </Link>
             </div>
 
-            <p className="mt-8 text-sm text-white/80">
-              14 jours gratuits - Aucune carte de crédit requise - Configuration en 48h
-            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-neutral-400">
+              <span className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-realpro-turquoise" />
+                14 jours gratuits
+              </span>
+              <span className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-realpro-turquoise" />
+                Aucune carte requise
+              </span>
+              <span className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-realpro-turquoise" />
+                Configuration en 48h
+              </span>
+            </div>
           </ScrollReveal>
         </div>
       </section>
