@@ -182,7 +182,7 @@ export function Sidebar() {
         </Link>
         {hasChildren && isExpanded && (
           <div className="mt-1 space-y-0.5">
-            {item.children.map(child => renderNavItem(child, depth + 1))}
+            {item.children?.map(child => renderNavItem(child, depth + 1))}
           </div>
         )}
       </div>

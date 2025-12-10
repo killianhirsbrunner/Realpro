@@ -103,7 +103,7 @@ export default function LotEditPanel({ lot, buildings, floors, onClose, onSave }
       isOpen={true}
       onClose={onClose}
       title={lot ? `Modifier ${lot.code}` : 'Nouveau lot'}
-      width="large"
+      width="lg"
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Info */}

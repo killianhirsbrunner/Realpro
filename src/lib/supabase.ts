@@ -45,6 +45,7 @@ export interface Database {
           email: string;
           first_name: string;
           last_name: string;
+          full_name?: string;
           language: 'FR' | 'DE' | 'EN' | 'IT';
           avatar_url: string | null;
           phone: string | null;
@@ -53,6 +54,8 @@ export interface Database {
           created_at: string;
           updated_at: string;
         };
+        Insert: Omit<Database['public']['Tables']['users']['Row'], 'id' | 'created_at' | 'updated_at' | 'full_name'>;
+        Update: Partial<Omit<Database['public']['Tables']['users']['Row'], 'id' | 'created_at' | 'updated_at' | 'full_name'>>;
       };
       projects: {
         Row: {
@@ -95,6 +98,8 @@ export interface Database {
           created_at: string;
           updated_at: string;
         };
+        Insert: Omit<Database['public']['Tables']['lots']['Row'], 'id' | 'created_at' | 'updated_at'> & { id?: string };
+        Update: Partial<Omit<Database['public']['Tables']['lots']['Row'], 'id' | 'created_at' | 'updated_at'>>;
       };
       plans: {
         Row: {

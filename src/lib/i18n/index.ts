@@ -4,6 +4,8 @@ import type { Locale } from './config';
 
 export { i18n, locales, defaultLocale, localeLabels };
 export type { Locale };
+// Alias for backward compatibility
+export type LanguageCode = Locale;
 
 export function useI18n() {
   const { t, i18n: i18nInstance } = useTranslation();

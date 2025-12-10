@@ -158,7 +158,7 @@ export function UserMenu() {
               </div>
               <div className="mt-1">
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 text-white">
-                  {getRoleLabel(profile?.role)}
+                  {getRoleLabel(profile?.role ?? undefined)}
                 </span>
               </div>
             </div>

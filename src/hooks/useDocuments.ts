@@ -26,6 +26,9 @@ export interface Document {
   child_count?: number;
 }
 
+// Folder is a Document with is_folder = true
+export type Folder = Document & { is_folder: true };
+
 export function useDocuments(projectId: string, folderId?: string | null) {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
