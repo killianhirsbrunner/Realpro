@@ -159,9 +159,9 @@ export function Landing() {
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       <header className="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-16 flex items-center justify-between">
+          <div className="h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center">
-              <RealProLogo size="lg" />
+              <RealProLogo size="xl" />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
@@ -625,7 +625,7 @@ export function Landing() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <RealProLogo size="md" />
+              <RealProLogo size="lg" />
               <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 La plateforme de gestion complète pour les promoteurs immobiliers en Suisse.
               </p>
