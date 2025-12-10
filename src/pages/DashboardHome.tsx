@@ -65,7 +65,7 @@ export function DashboardHome() {
       <div className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <RealProLogo size="lg" variant="blue" />
+            <RealProLogo size="lg" />
             <button
               onClick={() => navigate('/projects/wizard')}
               className="flex items-center gap-2 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-600/20"

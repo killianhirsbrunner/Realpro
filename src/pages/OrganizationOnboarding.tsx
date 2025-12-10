@@ -145,7 +145,7 @@ export function OrganizationOnboarding() {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-6">
-              <RealProLogo className="h-12" />
+              <RealProLogo size="lg" />
             </div>
             <h1 className="text-4xl font-semibold text-neutral-900 dark:text-white mb-3">
               Créez votre organisation
