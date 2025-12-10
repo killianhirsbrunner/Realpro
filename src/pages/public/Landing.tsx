@@ -592,7 +592,7 @@ export function Landing() {
               </Link>
             </div>
 
-            <p className="mt-8 text-sm text-white/60">
+            <p className="mt-8 text-sm text-white/80">
               14 jours gratuits - Aucune carte de crédit requise - Configuration en 48h
             </p>
           </ScrollReveal>

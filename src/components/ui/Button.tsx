@@ -33,9 +33,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               variant === 'primary',
             'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500':
               variant === 'secondary',
-            'border-2 border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-gray-500':
+            'border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-neutral-700 focus:ring-gray-500':
               variant === 'outline',
-            'text-gray-700 hover:bg-gray-100 focus:ring-gray-500':
+            'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-800 focus:ring-gray-500':
               variant === 'ghost',
             'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500':
               variant === 'danger',
