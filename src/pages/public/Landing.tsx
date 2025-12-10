@@ -571,11 +571,11 @@ export function Landing() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
           <ScrollReveal>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Pret a optimiser la gestion de vos promotions ?
+              Prêt à optimiser la gestion de vos promotions ?
             </h2>
             <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
               Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
-              leurs operations et ameliorer leur productivite.
+              leurs opérations et améliorer leur productivité.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -586,14 +586,14 @@ export function Landing() {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" className="h-12 px-8 text-base bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold transition-all shadow-lg">
-                  Planifier une demo
+                <Button size="lg" className="h-12 px-8 text-base bg-white/90 backdrop-blur-sm border-2 border-white text-gray-900 hover:bg-white font-semibold transition-all shadow-lg">
+                  Planifier une démo
                 </Button>
               </Link>
             </div>
 
             <p className="mt-8 text-sm text-white/60">
-              14 jours gratuits - Aucune carte de credit requise - Configuration en 48h
+              14 jours gratuits - Aucune carte de crédit requise - Configuration en 48h
             </p>
           </ScrollReveal>
         </div>

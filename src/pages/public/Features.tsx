@@ -239,7 +239,7 @@ export function Features() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white bg-white/10 hover:bg-white hover:text-neutral-900 rounded-full px-8 h-12 text-base font-medium backdrop-blur-md transition-all duration-300 hover:scale-105"
+                  className="border-2 border-white text-gray-900 bg-white/90 hover:bg-white rounded-full px-8 h-12 text-base font-medium backdrop-blur-md transition-all duration-300 hover:scale-105"
                 >
                   Demander une démo
                 </Button>

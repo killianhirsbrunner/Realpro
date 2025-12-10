@@ -33,8 +33,8 @@ const ROLE_NAV: Record<Role, NavItem[]> = {
     { name: 'Projets', href: '/projects', icon: Building2 },
     { name: 'Facturation', href: '/billing', icon: CreditCard },
     { name: 'Templates', href: '/templates', icon: FileText },
-    { name: 'Taches', href: '/tasks', icon: ListTodo },
-    { name: 'Parametres', href: '/settings', icon: Settings },
+    { name: 'Tâches', href: '/tasks', icon: ListTodo },
+    { name: 'Paramètres', href: '/settings', icon: Settings },
   ],
   EG: [
     { name: 'Projets', href: '/projects', icon: Building2 },
@@ -58,7 +58,7 @@ const ROLE_NAV: Record<Role, NavItem[]> = {
     { name: 'Programme vente', href: '/broker/lots', icon: Grid3x3, projectScoped: true },
     { name: 'Contrats', href: '/broker/contracts', icon: FileText, projectScoped: true },
     { name: 'Performance', href: '/reporting/brokers', icon: BarChart3 },
-    { name: 'Taches', href: '/tasks', icon: ListTodo },
+    { name: 'Tâches', href: '/tasks', icon: ListTodo },
   ],
   NOTARY: [
     { name: 'Dossiers notaire', href: '/notary/files', icon: FolderOpen },

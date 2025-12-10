@@ -19,14 +19,14 @@ const PAGE_TITLES: Record<string, { title: string; subtitle?: string }> = {
   '/notifications': { title: 'Notifications', subtitle: 'Centre de notifications' },
   '/messages': { title: 'Messages', subtitle: 'Messagerie' },
   '/chantier': { title: 'Chantier', subtitle: 'Suivi de construction' },
-  '/sav': { title: 'SAV', subtitle: 'Service apres-vente' },
+  '/sav': { title: 'SAV', subtitle: 'Service après-vente' },
   '/submissions': { title: 'Soumissions', subtitle: 'Appels d\'offres' },
-  '/tasks': { title: 'Taches', subtitle: 'Gestion des taches' },
+  '/tasks': { title: 'Tâches', subtitle: 'Gestion des tâches' },
   '/billing': { title: 'Facturation', subtitle: 'Abonnement et paiements' },
-  '/settings': { title: 'Parametres', subtitle: 'Configuration' },
-  '/organization/settings': { title: 'Organisation', subtitle: 'Parametres organisation' },
+  '/settings': { title: 'Paramètres', subtitle: 'Configuration' },
+  '/organization/settings': { title: 'Organisation', subtitle: 'Paramètres organisation' },
   '/admin/realpro': { title: 'Administration', subtitle: 'Panel admin' },
-  '/admin/audit-logs': { title: 'Audit Logs', subtitle: 'Journal d\'activite' },
+  '/admin/audit-logs': { title: 'Audit Logs', subtitle: 'Journal d\'activité' },
 };
 
 function getPageInfo(pathname: string): { title: string; subtitle?: string } {
@@ -35,19 +35,19 @@ function getPageInfo(pathname: string): { title: string; subtitle?: string } {
   }
 
   if (pathname.startsWith('/projects/') && pathname.includes('/lots/')) {
-    return { title: 'Detail du lot', subtitle: 'Informations lot' };
+    return { title: 'Détail du lot', subtitle: 'Informations lot' };
   }
   if (pathname.startsWith('/projects/') && pathname.includes('/buyers/')) {
-    return { title: 'Detail acquereur', subtitle: 'Fiche acquereur' };
+    return { title: 'Détail acquéreur', subtitle: 'Fiche acquéreur' };
   }
   if (pathname.startsWith('/projects/')) {
-    return { title: 'Projet', subtitle: 'Detail du projet' };
+    return { title: 'Projet', subtitle: 'Détail du projet' };
   }
   if (pathname.startsWith('/broker')) {
     return { title: 'Espace Courtier', subtitle: 'Gestion courtiers' };
   }
   if (pathname.startsWith('/buyer')) {
-    return { title: 'Espace Acquereur', subtitle: 'Portail client' };
+    return { title: 'Espace Acquéreur', subtitle: 'Portail client' };
   }
 
   return { title: 'RealPro' };
@@ -99,7 +99,7 @@ export function Topbar() {
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400 group-focus-within:text-realpro-turquoise transition-colors" />
             <input
               type="text"
-              placeholder="Rechercher projets, lots, acquereurs..."
+              placeholder="Rechercher projets, lots, acquéreurs..."
               className="w-full h-10 pl-10 pr-20 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-realpro-turquoise/20 focus:border-realpro-turquoise focus:bg-white dark:focus:bg-neutral-800 transition-all duration-200"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-neutral-400">
@@ -164,7 +164,7 @@ export function Topbar() {
                   className="w-full text-left px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-3 transition-colors duration-150"
                 >
                   <LogOut className="w-4 h-4" />
-                  <span>Deconnexion</span>
+                  <span>Déconnexion</span>
                 </button>
               </div>
             </div>

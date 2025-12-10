@@ -335,7 +335,7 @@ export default function AnalyticsBIDashboard() {
         <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <LineChart className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Activite commerciale</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Activité commerciale</h2>
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <RechartsLineChart data={salesData}>
@@ -363,8 +363,8 @@ export default function AnalyticsBIDashboard() {
               <YAxis stroke="#9CA3AF" />
               <Tooltip contentStyle={{ backgroundColor: '#1F2937', border: 'none', borderRadius: '8px' }} />
               <Legend />
-              <Area type="monotone" dataKey="crees" name="Crees" stackId="1" stroke="#00B8A9" fill="#00B8A9" />
-              <Area type="monotone" dataKey="completes" name="Completes" stackId="1" stroke="#10B981" fill="#10B981" />
+              <Area type="monotone" dataKey="crees" name="Créés" stackId="1" stroke="#00B8A9" fill="#00B8A9" />
+              <Area type="monotone" dataKey="completes" name="Complétés" stackId="1" stroke="#10B981" fill="#10B981" />
               <Area type="monotone" dataKey="en_cours" name="En cours" stackId="1" stroke="#F59E0B" fill="#F59E0B" />
             </AreaChart>
           </ResponsiveContainer>
@@ -375,7 +375,7 @@ export default function AnalyticsBIDashboard() {
         <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <BarChart3 className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Activite utilisateurs</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Activité utilisateurs</h2>
           </div>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={userActivityData}>
