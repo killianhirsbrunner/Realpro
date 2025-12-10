@@ -309,8 +309,8 @@ export function BrandingSettings() {
                   </p>
                   {localSettings.primaryColor === preset.color && (
                     <div className="absolute top-2 right-2">
-                      <div className="w-5 h-5 bg-neutral-900 dark:bg-white rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-white dark:text-neutral-900" />
+                      <div className="w-5 h-5 bg-brand-600 rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" />
                       </div>
                     </div>
                   )}
