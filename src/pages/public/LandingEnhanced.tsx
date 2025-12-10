@@ -134,7 +134,7 @@ export function LandingEnhanced() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-20 flex items-center justify-between">
+          <div className="h-44 flex items-center justify-between">
             <Link to="/" className="flex items-center transition-opacity hover:opacity-70">
               <RealProLogo size="xl" />
             </Link>

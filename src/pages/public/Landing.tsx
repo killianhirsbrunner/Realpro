@@ -159,7 +159,7 @@ export function Landing() {
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       <header className="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-20 flex items-center justify-between">
+          <div className="h-44 flex items-center justify-between">
             <Link to="/" className="flex items-center">
               <RealProLogo size="xl" />
             </Link>

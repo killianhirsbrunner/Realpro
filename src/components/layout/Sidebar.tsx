@@ -190,14 +190,14 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="w-60 h-full bg-white dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 flex flex-col">
-      <div className="h-16 px-5 flex items-center border-b border-neutral-200 dark:border-neutral-800">
+    <aside className="w-[480px] h-full bg-white dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 flex flex-col">
+      <div className="h-28 px-5 flex items-center border-b border-neutral-200 dark:border-neutral-800">
         <Link to="/dashboard" className="flex items-center gap-3 transition-opacity hover:opacity-80">
           {currentOrganization?.logo_url ? (
             <img
               src={currentOrganization.logo_url}
               alt={currentOrganization.name}
-              className="h-10 w-auto max-w-[180px] object-contain"
+              className="h-24 w-auto max-w-[400px] object-contain"
             />
           ) : (
             <RealProLogo size="md" />

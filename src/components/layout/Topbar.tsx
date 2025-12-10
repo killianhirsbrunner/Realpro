@@ -80,7 +80,7 @@ export function Topbar() {
   };
 
   return (
-    <header className="h-16 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex items-center px-6">
+    <header className="h-24 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex items-center px-6">
       <div className="flex items-center gap-6 flex-1">
         <RealProLogo size="sm" className="hidden lg:block" />
 
