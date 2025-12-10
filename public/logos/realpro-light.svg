@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" width="240" height="50">
+  <!-- Icon: Three overlapping pill shapes in teal -->
+  <g transform="translate(0, 0)">
+    <!-- First pill (leftmost, tilted) -->
+    <rect x="2" y="16" width="32" height="15" rx="7.5" ry="7.5" fill="#1B9BAE" transform="rotate(-35, 18, 23.5)"/>
+
+    <!-- Second pill (middle, tilted, overlapping) -->
+    <rect x="22" y="16" width="32" height="15" rx="7.5" ry="7.5" fill="#1B9BAE" transform="rotate(-35, 38, 23.5)"/>
+
+    <!-- Third circle (rightmost) -->
+    <circle cx="54" cy="13" r="10" fill="#1B9BAE"/>
+  </g>
+
+  <!-- Text "Real" - Black for light mode -->
+  <text x="72" y="36" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="800" fill="#000000" letter-spacing="-1">Real</text>
+
+  <!-- Text "Pro" - Teal color matching icon -->
+  <text x="137" y="36" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="800" fill="#1B9BAE" letter-spacing="-1">Pro</text>
+</svg>
