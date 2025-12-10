@@ -5,16 +5,16 @@ import { FolderCard } from './FolderCard';
 import { DocumentCard } from './DocumentCard';
 import { UploadDialog } from './UploadDialog';
 import { EmptyState } from '../ui/EmptyState';
-import type { Folder } from '../../hooks/useDocuments';
+import type { Document } from '../../hooks/useDocuments';
 
 interface DocumentsExplorerProps {
   projectId: string;
-  tree: Folder[];
+  tree: Document[];
   onRefresh?: () => void;
 }
 
 export function DocumentsExplorer({ projectId, tree, onRefresh }: DocumentsExplorerProps) {
-  const [selectedFolder, setSelectedFolder] = useState<Folder | null>(tree[0] || null);
+  const [selectedFolder, setSelectedFolder] = useState<Document | null>(tree[0] || null);
   const [search, setSearch] = useState('');
 
   const filteredFiles = selectedFolder

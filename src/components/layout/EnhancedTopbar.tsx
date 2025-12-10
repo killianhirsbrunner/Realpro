@@ -20,10 +20,10 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
   const [showProjectMenu, setShowProjectMenu] = useState(false);
 
   const languages: { code: LanguageCode; label: string }[] = [
-    { code: 'FR', label: 'Français' },
-    { code: 'DE', label: 'Deutsch' },
-    { code: 'EN', label: 'English' },
-    { code: 'IT', label: 'Italiano' },
+    { code: 'fr-CH', label: 'Français' },
+    { code: 'de-CH', label: 'Deutsch' },
+    { code: 'en-GB', label: 'English' },
+    { code: 'it-CH', label: 'Italiano' },
   ];
 
   const currentProject = projects?.find(p => p.id === currentProjectId);

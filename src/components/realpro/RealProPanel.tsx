@@ -1,11 +1,10 @@
 import { ReactNode } from 'react';
 import { X } from 'lucide-react';
-import { RealProButton } from './RealProButton';
 
-interface RealProPanelProps {
+export interface RealProPanelProps {
   title: string;
   children: ReactNode;
-  isOpen: boolean;
+  isOpen?: boolean;
   onClose: () => void;
   width?: 'sm' | 'md' | 'lg';
 }
@@ -13,7 +12,7 @@ interface RealProPanelProps {
 export function RealProPanel({
   title,
   children,
-  isOpen,
+  isOpen = true,
   onClose,
   width = 'md'
 }: RealProPanelProps) {

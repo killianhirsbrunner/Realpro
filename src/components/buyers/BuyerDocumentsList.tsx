@@ -186,19 +186,14 @@ export function BuyerDocumentsList({ buyerId }: BuyerDocumentsListProps) {
       )}
 
       <div>
-        <label className="block">
+        <label className="block cursor-pointer">
           <input
             type="file"
             onChange={handleUpload}
             disabled={uploading}
             className="hidden"
           />
-          <Button
-            variant="outline"
-            className="w-full"
-            disabled={uploading}
-            as="span"
-          >
+          <span className="inline-flex w-full items-center justify-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-50">
             {uploading ? (
               <>
                 <LoadingSpinner size="sm" className="mr-2" />
@@ -210,7 +205,7 @@ export function BuyerDocumentsList({ buyerId }: BuyerDocumentsListProps) {
                 Ajouter un document
               </>
             )}
-          </Button>
+          </span>
         </label>
       </div>
     </div>

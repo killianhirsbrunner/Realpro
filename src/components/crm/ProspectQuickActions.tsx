@@ -84,7 +84,7 @@ export function ProspectQuickActions({ prospect, projectId, onStatusChange }: Pr
       {isActive && (
         <>
           <Button
-            variant="default"
+            variant="secondary"
             size="sm"
             onClick={handleConvertToReservation}
             disabled={loading}

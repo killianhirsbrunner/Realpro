@@ -100,48 +100,57 @@ export function UpcomingTimeline({ items }: UpcomingTimelineProps) {
           sortedItems.map((item) => {
             const statusStyles = getStatusStyles(item.status);
             const StatusIcon = statusStyles.icon;
-            const ItemWrapper = item.href ? Link : 'div';
-            const wrapperProps = item.href ? { to: item.href } : {};
 
-            return (
-              <ItemWrapper
+            const content = (
+              <div className="flex items-start gap-3">
+                <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${statusStyles.badge} flex items-center justify-center`}>
+                  <StatusIcon className={`w-5 h-5 ${statusStyles.iconColor}`} />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${statusStyles.badge} font-medium`}>
+                      {getTypeLabel(item.type)}
+                    </span>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                      {formatDate(item.date)}
+                    </span>
+                  </div>
+
+                  <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    {item.title}
+                  </h3>
+
+                  {item.description && (
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">
+                      {item.description}
+                    </p>
+                  )}
+
+                  {item.project_name && (
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
+                      Projet: {item.project_name}
+                    </p>
+                  )}
+                </div>
+              </div>
+            );
+
+            return item.href ? (
+              <Link
                 key={item.id}
-                {...wrapperProps}
+                to={item.href}
                 className="group block p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-md transition-all duration-200"
               >
-                <div className="flex items-start gap-3">
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${statusStyles.badge} flex items-center justify-center`}>
-                    <StatusIcon className={`w-5 h-5 ${statusStyles.iconColor}`} />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${statusStyles.badge} font-medium`}>
-                        {getTypeLabel(item.type)}
-                      </span>
-                      <span className="text-xs text-neutral-500 dark:text-neutral-400">
-                        {formatDate(item.date)}
-                      </span>
-                    </div>
-
-                    <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                      {item.title}
-                    </h3>
-
-                    {item.description && (
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">
-                        {item.description}
-                      </p>
-                    )}
-
-                    {item.project_name && (
-                      <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
-                        Projet: {item.project_name}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </ItemWrapper>
+                {content}
+              </Link>
+            ) : (
+              <div
+                key={item.id}
+                className="group block p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-md transition-all duration-200"
+              >
+                {content}
+              </div>
             );
           })
         )}

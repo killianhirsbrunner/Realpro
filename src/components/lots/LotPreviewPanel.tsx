@@ -50,7 +50,7 @@ export default function LotPreviewPanel({ lot, onClose, onEdit }: LotPreviewPane
       isOpen={true}
       onClose={onClose}
       title={`Lot ${lot.code}`}
-      width="large"
+      width="lg"
     >
       <div className="space-y-6">
         {/* Header Section */}
@@ -63,7 +63,7 @@ export default function LotPreviewPanel({ lot, onClose, onEdit }: LotPreviewPane
               {lot.rooms_count && ` • ${lot.rooms_count} pièces`}
             </p>
           </div>
-          <RealProBadge type={statusConfig.type} size="lg">
+          <RealProBadge type={statusConfig.type} size="md">
             {statusConfig.label}
           </RealProBadge>
         </div>

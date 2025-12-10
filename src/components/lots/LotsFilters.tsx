@@ -42,7 +42,8 @@ export default function LotsFilters({ onFilterChange, buildings = [], statusCoun
     onFilterChange(newFilters);
   };
 
-  const handleSearchChange = (value: string) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setSearch(value);
     handleFilterChange({ search: value });
   };
