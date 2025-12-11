@@ -9,6 +9,8 @@ import { RealProCard } from '../components/realpro/RealProCard';
 import { RealProButton } from '../components/realpro/RealProButton';
 import { RealProTopbar } from '../components/realpro/RealProTopbar';
 import { Breadcrumbs } from '../components/ui/Breadcrumbs';
+import { ExportMenu } from '../components/ui/ExportMenu';
+import { prospectExportColumns } from '../lib/utils/export';
 
 export default function ProjectCRMProspects() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -50,6 +52,13 @@ export default function ProjectCRMProspects() {
         subtitle={`${filteredProspects.length} prospect${filteredProspects.length !== 1 ? 's' : ''} dans ce projet`}
         actions={
           <div className="flex items-center gap-3">
+            <ExportMenu
+              data={filteredProspects}
+              columns={prospectExportColumns}
+              filename="prospects-projet"
+              title="Liste des prospects"
+              subtitle={`${filteredProspects.length} prospects`}
+            />
             <RealProButton variant="outline">
               <Upload className="w-4 h-4" />
               Importer
