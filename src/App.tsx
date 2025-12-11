@@ -96,7 +96,7 @@ import { ProjectDocuments } from './pages/ProjectDocuments';
 import { DocumentViewer } from './pages/DocumentViewer';
 import { ProjectSubmissions } from './pages/ProjectSubmissions';
 import { NewSubmission } from './pages/NewSubmission';
-import { SubmissionDetail } from './pages/SubmissionDetail';
+import SubmissionDetailEnhanced from './pages/SubmissionDetailEnhanced';
 import { SubmissionComparison } from './pages/SubmissionComparison';
 import { SubmissionClarifications } from './pages/SubmissionClarifications';
 import { SubmissionCompanies } from './pages/SubmissionCompanies';
@@ -253,7 +253,7 @@ function App() {
                     <Route path="/projects/:projectId/documents/:documentId" element={<DocumentViewer />} />
                     <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
                     <Route path="/projects/:projectId/submissions/new" element={<NewSubmission />} />
-                    <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetail />} />
+                    <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetailEnhanced />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/clarifications" element={<SubmissionClarifications />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/companies" element={<SubmissionCompanies />} />
