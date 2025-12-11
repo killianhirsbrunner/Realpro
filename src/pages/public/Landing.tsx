@@ -597,7 +597,7 @@ export function Landing() {
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="h-14 px-10 text-base bg-transparent border-2 border-neutral-600 text-white hover:bg-neutral-800 hover:border-neutral-500 font-semibold transition-all">
+                <Button size="lg" variant="outline" className="h-14 px-10 text-base bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 font-semibold transition-all backdrop-blur-sm">
                   Planifier une démo
                 </Button>
               </Link>
@@ -662,9 +662,14 @@ export function Landing() {
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
               2024-2025 Realpro SA. Tous droits réservés.
             </p>
-            <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
-              <span>Développé en Suisse</span>
-              <span className="text-red-500">CH</span>
+            <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
+              <div className="flex items-center justify-center w-6 h-6 bg-red-600 rounded">
+                <span className="text-white text-xs font-bold">+</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-red-700 dark:text-red-400">Développé en Suisse</span>
+                <span className="text-[10px] text-red-600/70 dark:text-red-500/70">Hébergement & données 100% suisses</span>
+              </div>
             </div>
           </div>
         </div>
