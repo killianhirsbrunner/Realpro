@@ -32,6 +32,7 @@ import { DashboardHome } from './pages/DashboardHome';
 import { DashboardGlobal } from './pages/DashboardGlobal';
 import { Dashboard } from './pages/Dashboard';
 import { OrganizationDashboard } from './pages/OrganizationDashboard';
+import { UnifiedDashboard } from './pages/UnifiedDashboard';
 import { Notifications } from './pages/Notifications';
 import { ProjectsListEnhanced } from './pages/ProjectsListEnhanced';
 import { ProjectOverview } from './pages/ProjectOverview';
@@ -202,13 +203,20 @@ function App() {
                 <OrganizationProvider>
                   <AppShell>
                   <Routes>
-                    <Route path="/" element={<Navigate to="/promoter" replace />} />
-                    <Route path="/dashboard" element={<DashboardHome />} />
+                    {/* ═══════════════════════════════════════════════════════════════
+                        ACCUEIL - Point d'entrée principal
+                        ═══════════════════════════════════════════════════════════════ */}
+                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                    <Route path="/dashboard" element={<UnifiedDashboard />} />
+                    <Route path="/dashboard-home" element={<DashboardHome />} />
                     <Route path="/dashboard-org" element={<OrganizationDashboard />} />
                     <Route path="/dashboard-global" element={<DashboardGlobal />} />
                     <Route path="/dashboard-old" element={<Dashboard />} />
                     <Route path="/notifications" element={<Notifications />} />
 
+                    {/* ═══════════════════════════════════════════════════════════════
+                        PROJETS - Cœur métier de l'application
+                        ═══════════════════════════════════════════════════════════════ */}
                     <Route path="/projects" element={<ProjectsListEnhanced />} />
                     <Route path="/projects/wizard" element={<ProjectCreationWizard />} />
                     <Route path="/projects/new" element={<ProjectCreationWizard />} />
@@ -277,24 +285,22 @@ function App() {
                     <Route path="/projects/:projectId/milestones" element={<ProjectMilestonesTimeline />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettingsComplete />} />
 
+                    {/* ═══════════════════════════════════════════════════════════════
+                        HUBS MODULAIRES
+                        ═══════════════════════════════════════════════════════════════ */}
                     <Route path="/modules" element={<ModulesHub />} />
                     <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
+                    <Route path="/promoter" element={<PromoterDashboard />} />
 
+                    {/* ═══════════════════════════════════════════════════════════════
+                        COMMERCIAL - CRM, Ventes, Courtiers
+                        ═══════════════════════════════════════════════════════════════ */}
                     <Route path="/crm" element={<CRMDashboard />} />
                     <Route path="/crm/dashboard" element={<CRMDashboard />} />
-
-                    <Route path="/finance" element={<FinanceHub />} />
-                    <Route path="/planning" element={<PlanningHub />} />
-                    <Route path="/sav" element={<SAVHub />} />
-                    <Route path="/reporting" element={<ReportingHub />} />
-
                     <Route path="/contacts" element={<ContactsList />} />
                     <Route path="/contacts/:contactId" element={<ContactDetail />} />
                     <Route path="/companies" element={<CompaniesList />} />
                     <Route path="/companies/:companyId" element={<CompanyDetail />} />
-
-                    <Route path="/promoter" element={<PromoterDashboard />} />
-
                     <Route path="/broker" element={<BrokerDashboard />} />
                     <Route path="/broker/lots" element={<BrokerLots />} />
                     <Route path="/broker/lots/:lotId" element={<BrokerLotDetail />} />
@@ -302,6 +308,37 @@ function App() {
                     <Route path="/broker/contracts/:contractId" element={<BrokerSalesContractDetail />} />
                     <Route path="/broker/contracts/new" element={<BrokerNewSalesContract />} />
 
+                    {/* ═══════════════════════════════════════════════════════════════
+                        CHANTIER - Construction, Planning, SAV
+                        ═══════════════════════════════════════════════════════════════ */}
+                    <Route path="/chantier" element={<ChantierHome />} />
+                    <Route path="/planning" element={<PlanningHub />} />
+                    <Route path="/sav" element={<SAVHub />} />
+                    <Route path="/submissions" element={<SubmissionComparison />} />
+
+                    {/* ═══════════════════════════════════════════════════════════════
+                        FINANCES - Budget, CFC, Facturation
+                        ═══════════════════════════════════════════════════════════════ */}
+                    <Route path="/finance" element={<FinanceHub />} />
+                    <Route path="/billing" element={<BillingPage />} />
+                    <Route path="/reporting" element={<ReportingHub />} />
+                    <Route path="/reporting/overview" element={<ReportingOverview />} />
+                    <Route path="/reporting/sales" element={<ReportingSales />} />
+                    <Route path="/reporting/finance" element={<ReportingFinance />} />
+                    <Route path="/reporting/cfc" element={<ReportingCFC />} />
+                    <Route path="/analytics" element={<AnalyticsBIDashboard />} />
+
+                    {/* ═══════════════════════════════════════════════════════════════
+                        COMMUNICATION - Messages, Notifications, Tâches
+                        ═══════════════════════════════════════════════════════════════ */}
+                    <Route path="/messages" element={<MessagesGlobal />} />
+                    <Route path="/tasks" element={<TasksManager />} />
+                    <Route path="/templates" element={<TemplatesManager />} />
+
+                    {/* ═══════════════════════════════════════════════════════════════
+                        PORTAILS EXTERNES
+                        ═══════════════════════════════════════════════════════════════ */}
+                    {/* Portail Acheteur */}
                     <Route path="/buyer/my-lot" element={<BuyerMyLot />} />
                     <Route path="/buyer/materials" element={<BuyerMaterialChoices />} />
                     <Route path="/buyer/appointments" element={<BuyerAppointments />} />
@@ -311,40 +348,30 @@ function App() {
                     <Route path="/buyer/payments" element={<BuyerPayments />} />
                     <Route path="/buyer/choices" element={<BuyerChoices />} />
 
+                    {/* Portail Fournisseur */}
                     <Route path="/supplier/showrooms" element={<SupplierShowrooms />} />
                     <Route path="/supplier/showrooms/new" element={<SupplierShowroomForm />} />
                     <Route path="/supplier/showrooms/:showroomId/edit" element={<SupplierShowroomForm />} />
                     <Route path="/supplier/showrooms/:showroomId/time-slots" element={<SupplierTimeSlots />} />
                     <Route path="/supplier/appointments" element={<SupplierAppointments />} />
 
-                    <Route path="/billing" element={<BillingPage />} />
-                    <Route path="/reporting/overview" element={<ReportingOverview />} />
-                    <Route path="/reporting/sales" element={<ReportingSales />} />
-                    <Route path="/reporting/finance" element={<ReportingFinance />} />
-                    <Route path="/reporting/cfc" element={<ReportingCFC />} />
-                    <Route path="/analytics" element={<AnalyticsBIDashboard />} />
-                    <Route path="/messages" element={<MessagesGlobal />} />
-                    <Route path="/sav" element={<SAVGlobal />} />
-                    <Route path="/submissions" element={<SubmissionComparison />} />
-                    <Route path="/tasks" element={<TasksManager />} />
-                    <Route path="/templates" element={<TemplatesManager />} />
-
+                    {/* ═══════════════════════════════════════════════════════════════
+                        PARAMÈTRES & ADMINISTRATION
+                        ═══════════════════════════════════════════════════════════════ */}
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/settings/localization" element={<LocalizationSettings />} />
                     <Route path="/settings/branding" element={<BrandingSettings />} />
                     <Route path="/settings/security" element={<SecuritySettings />} />
                     <Route path="/settings/suppliers" element={<SuppliersSettings />} />
                     <Route path="/company" element={<CompanySettings />} />
+                    <Route path="/organization/settings" element={<OrganizationSettings />} />
 
+                    {/* Administration */}
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
                     <Route path="/admin/super" element={<SuperAdminDashboard />} />
                     <Route path="/admin/realpro" element={<RealProAdminDashboard />} />
                     <Route path="/admin/audit-logs" element={<AuditLogs />} />
                     <Route path="/admin/feature-flags" element={<FeatureFlags />} />
-
-                    <Route path="/organization/settings" element={<OrganizationSettings />} />
-
-                    <Route path="/chantier" element={<ChantierHome />} />
                   </Routes>
                 </AppShell>
                 </OrganizationProvider>

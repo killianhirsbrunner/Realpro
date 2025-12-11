@@ -9,48 +9,138 @@ import { NotificationBell } from '../NotificationBell';
 import { supabase } from '../../lib/supabase';
 import clsx from 'clsx';
 
-const PAGE_TITLES: Record<string, { title: string; subtitle?: string }> = {
-  '/dashboard': { title: 'Dashboard', subtitle: 'Vue d\'ensemble' },
-  '/projects': { title: 'Projets', subtitle: 'Gestion des projets' },
-  '/analytics': { title: 'Analytics', subtitle: 'Business Intelligence' },
-  '/reporting': { title: 'Reporting', subtitle: 'Rapports et statistiques' },
-  '/promoter': { title: 'Promoteur', subtitle: 'Tableau de bord' },
-  '/broker': { title: 'Courtiers', subtitle: 'Gestion des courtiers' },
-  '/notifications': { title: 'Notifications', subtitle: 'Centre de notifications' },
-  '/messages': { title: 'Messages', subtitle: 'Messagerie' },
-  '/chantier': { title: 'Chantier', subtitle: 'Suivi de construction' },
-  '/sav': { title: 'SAV', subtitle: 'Service après-vente' },
-  '/submissions': { title: 'Soumissions', subtitle: 'Appels d\'offres' },
-  '/tasks': { title: 'Tâches', subtitle: 'Gestion des tâches' },
-  '/billing': { title: 'Facturation', subtitle: 'Abonnement et paiements' },
-  '/settings': { title: 'Paramètres', subtitle: 'Configuration' },
-  '/organization/settings': { title: 'Organisation', subtitle: 'Paramètres organisation' },
-  '/admin/realpro': { title: 'Administration', subtitle: 'Panel admin' },
-  '/admin/audit-logs': { title: 'Audit Logs', subtitle: 'Journal d\'activité' },
+// ═══════════════════════════════════════════════════════════════════════════
+// CONFIGURATION DES TITRES DE PAGES PAR SECTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+const PAGE_TITLES: Record<string, { title: string; subtitle?: string; section?: string }> = {
+  // ─────────────────────────────────────────────────────────────────────────
+  // ACCUEIL
+  // ─────────────────────────────────────────────────────────────────────────
+  '/dashboard': { title: 'Tableau de bord', subtitle: 'Vue d\'ensemble de votre activité', section: 'Accueil' },
+  '/notifications': { title: 'Notifications', subtitle: 'Centre de notifications', section: 'Communication' },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // PROJETS
+  // ─────────────────────────────────────────────────────────────────────────
+  '/projects': { title: 'Projets', subtitle: 'Liste de vos projets immobiliers', section: 'Projets' },
+  '/promoter': { title: 'Vue promoteur', subtitle: 'Synthèse globale de vos projets', section: 'Projets' },
+  '/analytics': { title: 'Analytics', subtitle: 'Business Intelligence & KPIs', section: 'Projets' },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // COMMERCIAL
+  // ─────────────────────────────────────────────────────────────────────────
+  '/crm': { title: 'CRM', subtitle: 'Gestion des prospects et clients', section: 'Commercial' },
+  '/contacts': { title: 'Contacts', subtitle: 'Annuaire des contacts', section: 'Commercial' },
+  '/companies': { title: 'Entreprises', subtitle: 'Annuaire des entreprises', section: 'Commercial' },
+  '/broker': { title: 'Courtiers', subtitle: 'Gestion des partenaires courtiers', section: 'Commercial' },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CHANTIER
+  // ─────────────────────────────────────────────────────────────────────────
+  '/planning': { title: 'Planning', subtitle: 'Planification des travaux', section: 'Chantier' },
+  '/chantier': { title: 'Construction', subtitle: 'Suivi de chantier', section: 'Chantier' },
+  '/sav': { title: 'SAV', subtitle: 'Service après-vente', section: 'Chantier' },
+  '/submissions': { title: 'Soumissions', subtitle: 'Appels d\'offres', section: 'Chantier' },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // FINANCES
+  // ─────────────────────────────────────────────────────────────────────────
+  '/finance': { title: 'Finances', subtitle: 'Vue d\'ensemble financière', section: 'Finances' },
+  '/billing': { title: 'Facturation', subtitle: 'Abonnement et paiements', section: 'Finances' },
+  '/reporting': { title: 'Reporting', subtitle: 'Rapports et statistiques', section: 'Finances' },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // COMMUNICATION
+  // ─────────────────────────────────────────────────────────────────────────
+  '/messages': { title: 'Messages', subtitle: 'Messagerie interne', section: 'Communication' },
+  '/tasks': { title: 'Tâches', subtitle: 'Gestion des tâches', section: 'Communication' },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ADMINISTRATION
+  // ─────────────────────────────────────────────────────────────────────────
+  '/settings': { title: 'Paramètres', subtitle: 'Configuration utilisateur', section: 'Administration' },
+  '/organization/settings': { title: 'Organisation', subtitle: 'Paramètres organisation', section: 'Administration' },
+  '/admin/realpro': { title: 'Administration', subtitle: 'Panel administrateur', section: 'Administration' },
+  '/admin/audit-logs': { title: 'Audit Logs', subtitle: 'Journal d\'activité', section: 'Administration' },
 };
 
-function getPageInfo(pathname: string): { title: string; subtitle?: string } {
+function getPageInfo(pathname: string): { title: string; subtitle?: string; section?: string } {
+  // Direct match
   if (PAGE_TITLES[pathname]) {
     return PAGE_TITLES[pathname];
   }
 
-  if (pathname.startsWith('/projects/') && pathname.includes('/lots/')) {
-    return { title: 'Détail du lot', subtitle: 'Informations lot' };
-  }
-  if (pathname.startsWith('/projects/') && pathname.includes('/buyers/')) {
-    return { title: 'Détail acquéreur', subtitle: 'Fiche acquéreur' };
-  }
+  // ─────────────────────────────────────────────────────────────────────────
+  // ROUTES DE PROJETS
+  // ─────────────────────────────────────────────────────────────────────────
   if (pathname.startsWith('/projects/')) {
-    return { title: 'Projet', subtitle: 'Détail du projet' };
-  }
-  if (pathname.startsWith('/broker')) {
-    return { title: 'Espace Courtier', subtitle: 'Gestion courtiers' };
-  }
-  if (pathname.startsWith('/buyer')) {
-    return { title: 'Espace Acquéreur', subtitle: 'Portail client' };
+    // Sous-pages spécifiques
+    if (pathname.includes('/lots/')) {
+      return { title: 'Détail du lot', subtitle: 'Informations et suivi du lot', section: 'Projets' };
+    }
+    if (pathname.includes('/buyers/')) {
+      return { title: 'Fiche acquéreur', subtitle: 'Détails et suivi client', section: 'Projets' };
+    }
+    if (pathname.includes('/planning')) {
+      return { title: 'Planning projet', subtitle: 'Planification et jalons', section: 'Projets' };
+    }
+    if (pathname.includes('/finance') || pathname.includes('/finances')) {
+      return { title: 'Finances projet', subtitle: 'Budget et CFC', section: 'Projets' };
+    }
+    if (pathname.includes('/crm')) {
+      return { title: 'CRM projet', subtitle: 'Pipeline et prospects', section: 'Projets' };
+    }
+    if (pathname.includes('/sav')) {
+      return { title: 'SAV projet', subtitle: 'Tickets et interventions', section: 'Projets' };
+    }
+    if (pathname.includes('/materials')) {
+      return { title: 'Matériaux', subtitle: 'Catalogue et sélections', section: 'Projets' };
+    }
+    if (pathname.includes('/submissions')) {
+      return { title: 'Soumissions', subtitle: 'Appels d\'offres projet', section: 'Projets' };
+    }
+    if (pathname.includes('/documents')) {
+      return { title: 'Documents', subtitle: 'Bibliothèque documentaire', section: 'Projets' };
+    }
+    if (pathname.includes('/settings')) {
+      return { title: 'Paramètres projet', subtitle: 'Configuration', section: 'Projets' };
+    }
+    // Page projet par défaut
+    return { title: 'Projet', subtitle: 'Tableau de bord projet', section: 'Projets' };
   }
 
-  return { title: 'RealPro' };
+  // ─────────────────────────────────────────────────────────────────────────
+  // PORTAILS EXTERNES
+  // ─────────────────────────────────────────────────────────────────────────
+  if (pathname.startsWith('/broker')) {
+    return { title: 'Espace Courtier', subtitle: 'Portail partenaire', section: 'Commercial' };
+  }
+  if (pathname.startsWith('/buyer')) {
+    return { title: 'Espace Acquéreur', subtitle: 'Portail client', section: 'Portail' };
+  }
+  if (pathname.startsWith('/supplier')) {
+    return { title: 'Espace Fournisseur', subtitle: 'Portail fournisseur', section: 'Portail' };
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // REPORTING
+  // ─────────────────────────────────────────────────────────────────────────
+  if (pathname.startsWith('/reporting/')) {
+    return { title: 'Reporting', subtitle: 'Rapports détaillés', section: 'Finances' };
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ADMINISTRATION
+  // ─────────────────────────────────────────────────────────────────────────
+  if (pathname.startsWith('/admin/')) {
+    return { title: 'Administration', subtitle: 'Gestion système', section: 'Administration' };
+  }
+  if (pathname.startsWith('/settings/')) {
+    return { title: 'Paramètres', subtitle: 'Configuration', section: 'Administration' };
+  }
+
+  return { title: 'RealPro', section: 'Accueil' };
 }
 
 export function Topbar() {
@@ -86,9 +176,17 @@ export function Topbar() {
         <div className="hidden lg:block h-8 w-px bg-neutral-200 dark:bg-neutral-800" />
 
         <div className="flex flex-col">
-          <h1 className="text-lg font-semibold text-neutral-900 dark:text-white leading-tight">
-            {pageInfo.title}
-          </h1>
+          {/* Section badge */}
+          {pageInfo.section && (
+            <span className="text-[10px] font-semibold text-realpro-turquoise uppercase tracking-wider mb-0.5">
+              {pageInfo.section}
+            </span>
+          )}
+          <div className="flex items-center gap-2">
+            <h1 className="text-lg font-semibold text-neutral-900 dark:text-white leading-tight">
+              {pageInfo.title}
+            </h1>
+          </div>
           {pageInfo.subtitle && (
             <span className="text-xs text-neutral-500 dark:text-neutral-400">
               {pageInfo.subtitle}
