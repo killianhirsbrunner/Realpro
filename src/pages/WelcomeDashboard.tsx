@@ -66,7 +66,7 @@ export function WelcomeDashboard() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <RealProLogo size="xl" />
+              <RealProLogo size="2xl" />
             </motion.div>
           </div>
 

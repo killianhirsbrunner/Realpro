@@ -81,7 +81,7 @@ export function Login() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <Link to="/" className="inline-block mb-8">
-            <RealProLogo size="xl" />
+            <RealProLogo size="2xl" />
           </Link>
           <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mb-2">
             {isSignUp ? 'Créer un compte' : 'Bienvenue sur RealPro'}

@@ -128,7 +128,7 @@ export function SelectOrganization() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
-              <RealProLogo size="lg" />
+              <RealProLogo size="xl" />
             </div>
             <h1 className="text-4xl font-semibold text-neutral-900 dark:text-white mb-3">
               Choisissez votre organisation

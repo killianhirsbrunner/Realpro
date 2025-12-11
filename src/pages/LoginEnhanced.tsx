@@ -39,7 +39,7 @@ export function LoginEnhanced() {
         <div className="max-w-md w-full">
           <div className="mb-8">
             <Link to="/" className="inline-block mb-8">
-              <RealProLogo size="xl" />
+              <RealProLogo size="2xl" />
             </Link>
 
             <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-3">
