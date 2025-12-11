@@ -43,8 +43,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="text-xs text-gray-400 dark:text-gray-500">
-            © {currentYear} Realpro SA, Yverdon-les-Bains, Suisse · RealPro v1.0
+          <div className="flex items-center gap-4">
+            <span className="text-xs text-gray-400 dark:text-gray-500">
+              © {currentYear} Realpro SA · v1.0
+            </span>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
+              <div className="flex items-center justify-center w-4 h-4 bg-red-600 rounded-sm">
+                <span className="text-white text-[8px] font-bold">+</span>
+              </div>
+              <span className="text-[10px] font-medium text-red-700 dark:text-red-400">Développé en Suisse</span>
+            </div>
           </div>
         </div>
       </div>
