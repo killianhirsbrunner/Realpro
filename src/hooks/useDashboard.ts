@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
-import { useCurrentUser } from './useCurrentUser';
+import { useOrganizationContext } from '../contexts/OrganizationContext';
 
 interface DashboardData {
   kpis: {
@@ -21,150 +21,192 @@ interface DashboardData {
 }
 
 export function useDashboard() {
-  const { user } = useCurrentUser();
+  const { currentOrganization, currentProject } = useOrganizationContext();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!user) {
+  const fetchDashboardData = useCallback(async () => {
+    if (!currentOrganization) {
+      setData(null);
       setLoading(false);
       return;
     }
 
-    async function fetchDashboardData() {
-      try {
-        setLoading(true);
-        setError(null);
+    try {
+      setLoading(true);
+      setError(null);
 
-        const [
-          projectsResult,
-          lotsResult,
-          paymentsResult,
-          soumissionsResult,
-          documentsResult,
-          messagesResult,
-          planningResult,
-          activitiesResult
-        ] = await Promise.all([
-          supabase.from('projects').select('id, status').eq('status', 'active'),
-          supabase.from('lots').select('id, status').eq('status', 'sold'),
-          supabase.from('payments').select('amount, status, due_date'),
-          supabase.from('submissions').select('id, label, deadline, status').eq('status', 'active').limit(5),
-          supabase.from('documents').select('id, name, created_at').order('created_at', { ascending: false }).limit(5),
-          supabase.from('messages').select('id').eq('read', false),
-          supabase.from('planning_phases').select('id, phase_name, status').limit(5),
-          supabase.from('audit_logs').select('id, action_type, user_id, created_at, users(first_name, last_name)').order('created_at', { ascending: false }).limit(8)
-        ]);
+      // D'abord récupérer les IDs des projets de cette organisation
+      const { data: orgProjects } = await supabase
+        .from('projects')
+        .select('id')
+        .eq('organization_id', currentOrganization.id);
 
-        const totalPaid = paymentsResult.data
-          ?.filter(p => p.status === 'paid')
-          .reduce((sum, p) => sum + (p.amount || 0), 0) || 0;
+      const projectIds = orgProjects?.map(p => p.id) || [];
 
-        const delayedPayments = paymentsResult.data
-          ?.filter(p => p.status === 'pending' && new Date(p.due_date) < new Date())
-          .length || 0;
-
-        const salesChartData = generateMonthlySalesData(lotsResult.data || []);
-        const cfcChartData = await fetchCfcData();
-
-        const kpiData = {
-          projects: projectsResult.data?.length || 3,
-          lotsSold: lotsResult.data?.length || 24,
-          paid: totalPaid || 4850000,
-          delayedPayments: delayedPayments || 0,
-          activeSoumissions: soumissionsResult.data?.length || 7,
-          documentsRecent: documentsResult.data?.length || 12,
-          unreadMessages: messagesResult.data?.length || 5
-        };
-
+      // Si aucun projet, retourner des données vides (pas de données par défaut hardcodées)
+      if (projectIds.length === 0) {
         setData({
-          kpis: kpiData,
-          salesChart: salesChartData.length > 0 ? salesChartData : getDefaultSalesData(),
-          cfcChart: cfcChartData.length > 0 ? cfcChartData : getDefaultCfcData(),
-          soumissions: soumissionsResult.data?.map(s => ({
-            id: s.id,
-            label: s.label || 'Sans titre',
-            deadline: new Date(s.deadline).toLocaleDateString('fr-CH'),
-            status: s.status
-          })) || [],
-          documentsRecent: documentsResult.data || [],
-          planning: planningResult.data?.map(p => ({
-            id: p.id,
-            phase: p.phase_name,
-            status: p.status
-          })) || [],
-          activityFeed: activitiesResult.data?.map(a => ({
-            id: a.id,
-            user: a.users ? `${a.users.first_name} ${a.users.last_name}` : 'Utilisateur',
-            action: a.action_type,
-            time: formatRelativeTime(a.created_at)
-          })) || []
+          kpis: {
+            projects: 0,
+            lotsSold: 0,
+            paid: 0,
+            delayedPayments: 0,
+            activeSoumissions: 0,
+            documentsRecent: 0,
+            unreadMessages: 0
+          },
+          salesChart: [],
+          cfcChart: [],
+          soumissions: [],
+          documentsRecent: [],
+          planning: [],
+          activityFeed: []
         });
-
         setLoading(false);
-      } catch (err) {
-        console.error('Error fetching dashboard data:', err);
-        setError('Erreur lors du chargement des données');
-        setLoading(false);
+        return;
       }
+
+      const [
+        projectsResult,
+        lotsResult,
+        paymentsResult,
+        soumissionsResult,
+        documentsResult,
+        messagesResult,
+        planningResult,
+        activitiesResult
+      ] = await Promise.all([
+        // Filtrer par organization_id
+        supabase.from('projects').select('id, status').eq('organization_id', currentOrganization.id),
+        // Filtrer les lots par project_id de l'organisation
+        supabase.from('lots').select('id, status, created_at').in('project_id', projectIds).eq('status', 'SOLD'),
+        // Filtrer les paiements par project_id
+        supabase.from('payments').select('amount, status, due_date').in('project_id', projectIds),
+        // Filtrer les soumissions par project_id
+        supabase.from('submissions').select('id, label, deadline, status').in('project_id', projectIds).eq('status', 'active').limit(5),
+        // Filtrer les documents par project_id
+        supabase.from('documents').select('id, name, created_at').in('project_id', projectIds).order('created_at', { ascending: false }).limit(5),
+        // Filtrer les messages par organization_id ou par project_id
+        supabase.from('message_threads').select('id, is_read').in('project_id', projectIds).eq('is_read', false),
+        // Filtrer le planning par project_id
+        supabase.from('planning_phases').select('id, phase_name, status').in('project_id', projectIds).limit(5),
+        // Filtrer les logs d'audit par organization_id
+        supabase.from('audit_logs').select('id, action_type, user_id, created_at, users(first_name, last_name)').eq('organization_id', currentOrganization.id).order('created_at', { ascending: false }).limit(8)
+      ]);
+
+      const totalPaid = paymentsResult.data
+        ?.filter(p => p.status === 'paid')
+        .reduce((sum, p) => sum + (p.amount || 0), 0) || 0;
+
+      const delayedPayments = paymentsResult.data
+        ?.filter(p => p.status === 'pending' && new Date(p.due_date) < new Date())
+        .length || 0;
+
+      const salesChartData = generateMonthlySalesData(lotsResult.data || []);
+      const cfcChartData = await fetchCfcData(projectIds);
+
+      const kpiData = {
+        projects: projectsResult.data?.length || 0,
+        lotsSold: lotsResult.data?.length || 0,
+        paid: totalPaid,
+        delayedPayments: delayedPayments,
+        activeSoumissions: soumissionsResult.data?.length || 0,
+        documentsRecent: documentsResult.data?.length || 0,
+        unreadMessages: messagesResult.data?.length || 0
+      };
+
+      setData({
+        kpis: kpiData,
+        salesChart: salesChartData,
+        cfcChart: cfcChartData,
+        soumissions: soumissionsResult.data?.map(s => ({
+          id: s.id,
+          label: s.label || 'Sans titre',
+          deadline: s.deadline ? new Date(s.deadline).toLocaleDateString('fr-CH') : '-',
+          status: s.status
+        })) || [],
+        documentsRecent: documentsResult.data || [],
+        planning: planningResult.data?.map(p => ({
+          id: p.id,
+          phase: p.phase_name,
+          status: p.status
+        })) || [],
+        activityFeed: activitiesResult.data?.map(a => ({
+          id: a.id,
+          user: a.users ? `${a.users.first_name} ${a.users.last_name}` : 'Utilisateur',
+          action: a.action_type,
+          time: formatRelativeTime(a.created_at)
+        })) || []
+      });
+
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+      setError('Erreur lors du chargement des données');
+      setLoading(false);
     }
+  }, [currentOrganization]);
 
+  useEffect(() => {
     fetchDashboardData();
-  }, [user]);
+  }, [fetchDashboardData]);
 
-  return { data, loading, error };
-}
-
-function getDefaultSalesData(): Array<{ month: string; sold: number }> {
-  return [
-    { month: 'Juil', sold: 3 },
-    { month: 'Août', sold: 5 },
-    { month: 'Sep', sold: 4 },
-    { month: 'Oct', sold: 6 },
-    { month: 'Nov', sold: 8 },
-    { month: 'Déc', sold: 7 }
-  ];
-}
-
-function getDefaultCfcData(): Array<{ cfc: string; budget: number; spent: number }> {
-  return [
-    { cfc: 'CFC 1', budget: 850000, spent: 720000 },
-    { cfc: 'CFC 2', budget: 1200000, spent: 980000 },
-    { cfc: 'CFC 3', budget: 650000, spent: 420000 },
-    { cfc: 'CFC 4', budget: 920000, spent: 880000 },
-    { cfc: 'CFC 5', budget: 740000, spent: 550000 }
-  ];
+  return { data, loading, error, refresh: fetchDashboardData };
 }
 
 function generateMonthlySalesData(lots: any[]): Array<{ month: string; sold: number }> {
   const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
   const currentMonth = new Date().getMonth();
 
+  // Compter les ventes par mois basé sur les données réelles
+  const salesByMonth: Record<number, number> = {};
+
+  lots.forEach(lot => {
+    if (lot.created_at) {
+      const lotMonth = new Date(lot.created_at).getMonth();
+      salesByMonth[lotMonth] = (salesByMonth[lotMonth] || 0) + 1;
+    }
+  });
+
   const last6Months = [];
   for (let i = 5; i >= 0; i--) {
     const monthIndex = (currentMonth - i + 12) % 12;
     last6Months.push({
       month: months[monthIndex],
-      sold: Math.floor(Math.random() * 10) + 2
+      sold: salesByMonth[monthIndex] || 0
     });
   }
 
   return last6Months;
 }
 
-async function fetchCfcData(): Promise<Array<{ cfc: string; budget: number; spent: number }>> {
-  const { data } = await supabase
-    .from('cfc_codes')
-    .select('code, label, budget')
+async function fetchCfcData(projectIds: string[]): Promise<Array<{ cfc: string; budget: number; spent: number }>> {
+  if (projectIds.length === 0) return [];
+
+  // Récupérer les budgets CFC pour les projets de l'organisation
+  const { data: budgets } = await supabase
+    .from('cfc_budgets')
+    .select('id')
+    .in('project_id', projectIds);
+
+  if (!budgets || budgets.length === 0) return [];
+
+  const budgetIds = budgets.map(b => b.id);
+
+  const { data: cfcLines } = await supabase
+    .from('cfc_lines')
+    .select('code, label, amount_budgeted, amount_spent')
+    .in('budget_id', budgetIds)
     .limit(6);
 
-  if (!data) return [];
+  if (!cfcLines) return [];
 
-  return data.map(cfc => ({
-    cfc: cfc.code,
-    budget: cfc.budget || 0,
-    spent: Math.floor((cfc.budget || 0) * (0.5 + Math.random() * 0.4))
+  return cfcLines.map(cfc => ({
+    cfc: cfc.code || cfc.label || 'CFC',
+    budget: parseFloat(cfc.amount_budgeted) || 0,
+    spent: parseFloat(cfc.amount_spent) || 0
   }));
 }
 

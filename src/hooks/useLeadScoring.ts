@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
+import { useOrganizationContext } from '../contexts/OrganizationContext';
 
 export interface ScoringRule {
   id: string;
+  organization_id?: string;
   project_id?: string;
   name: string;
   description?: string;
@@ -32,15 +34,23 @@ export interface LeadScore {
 }
 
 export function useLeadScoring() {
+  const { currentOrganization } = useOrganizationContext();
   const [scoringRules, setScoringRules] = useState<ScoringRule[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchScoringRules = async () => {
+  const fetchScoringRules = useCallback(async () => {
+    if (!currentOrganization) {
+      setScoringRules([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       const { data, error } = await supabase
         .from('crm_lead_scoring_rules')
         .select('*')
+        .eq('organization_id', currentOrganization.id)
         .eq('is_active', true)
         .order('category, score_points', { ascending: [true, false] });
 
@@ -52,11 +62,11 @@ export function useLeadScoring() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentOrganization]);
 
   useEffect(() => {
     fetchScoringRules();
-  }, []);
+  }, [fetchScoringRules]);
 
   const createScoringRule = async (ruleData: Partial<ScoringRule>) => {
     try {
