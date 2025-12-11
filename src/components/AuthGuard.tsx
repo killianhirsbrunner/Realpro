@@ -1,17 +1,34 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { handlePostAuthSetup } from '../lib/authHelpers';
 import { RealProLogo } from './branding/RealProLogo';
+import { useCanAccessApp } from '../hooks/useTrialStatus';
 
 interface AuthGuardProps {
   children: React.ReactNode;
+  /** Skip trial check for certain pages like billing */
+  skipTrialCheck?: boolean;
 }
 
-export function AuthGuard({ children }: AuthGuardProps) {
+export function AuthGuard({ children, skipTrialCheck = false }: AuthGuardProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
+  const { canAccess, loading: trialLoading } = useCanAccessApp();
+
+  // Pages that should bypass trial check
+  const bypassTrialCheckPaths = [
+    '/billing',
+    '/auth/checkout',
+    '/auth/choose-plan',
+    '/auth/trial-expired',
+    '/settings',
+  ];
+
+  const shouldBypassTrialCheck = skipTrialCheck ||
+    bypassTrialCheckPaths.some(path => location.pathname.startsWith(path));
 
   useEffect(() => {
     checkAuth();
@@ -33,6 +50,13 @@ export function AuthGuard({ children }: AuthGuardProps) {
     };
   }, [navigate]);
 
+  // Check trial expiration and redirect if needed
+  useEffect(() => {
+    if (!trialLoading && authenticated && !shouldBypassTrialCheck && !canAccess) {
+      navigate('/auth/trial-expired');
+    }
+  }, [canAccess, trialLoading, authenticated, shouldBypassTrialCheck, navigate]);
+
   async function checkAuth() {
     const {
       data: { session },
@@ -50,7 +74,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
     setLoading(false);
   }
 
-  if (loading) {
+  if (loading || trialLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-950">
         <div className="text-center">
@@ -67,6 +91,11 @@ export function AuthGuard({ children }: AuthGuardProps) {
   }
 
   if (!authenticated) {
+    return null;
+  }
+
+  // Block access if trial expired (unless on bypass pages)
+  if (!shouldBypassTrialCheck && !canAccess) {
     return null;
   }
 

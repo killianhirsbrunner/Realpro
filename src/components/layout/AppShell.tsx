@@ -6,6 +6,7 @@ import GlobalSearch from '../GlobalSearch';
 import QuickActions from '../QuickActions';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { DemoBanner } from '../DemoBanner';
+import { TrialBanner } from './TrialBanner';
 
 interface AppShellProps {
   children: ReactNode;
@@ -20,6 +21,7 @@ export function AppShell({ children }: AppShellProps) {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <DemoBanner />
+        <TrialBanner />
         <Topbar />
 
         <main className="flex-1 overflow-y-auto px-8 py-6">

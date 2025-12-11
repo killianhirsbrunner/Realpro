@@ -27,6 +27,7 @@ import { RegisterCompany } from './pages/auth/RegisterCompany';
 import { ChoosePlan } from './pages/auth/ChoosePlan';
 import { Checkout } from './pages/auth/Checkout';
 import { Success } from './pages/auth/Success';
+import { TrialExpired } from './pages/auth/TrialExpired';
 
 import { DashboardHome } from './pages/DashboardHome';
 import { DashboardGlobal } from './pages/DashboardGlobal';
@@ -187,6 +188,7 @@ function App() {
           <Route path="/auth/choose-plan" element={<ChoosePlan />} />
           <Route path="/auth/checkout" element={<Checkout />} />
           <Route path="/auth/success" element={<Success />} />
+          <Route path="/auth/trial-expired" element={<TrialExpired />} />
           <Route path="/auth/onboarding" element={<OrganizationOnboarding />} />
           <Route path="/auth/select-organization" element={<SelectOrganization />} />
 
