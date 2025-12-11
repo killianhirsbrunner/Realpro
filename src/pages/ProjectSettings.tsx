@@ -158,13 +158,13 @@ export function ProjectSettings() {
                 <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
                   Supprimer définitivement ce projet ?
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
                   Cette action est irréversible. Toutes les données associées au projet seront définitivement supprimées :
                 </p>
-                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 mb-4 list-disc list-inside">
+                <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 mb-4 list-disc list-inside">
                   <li>Tous les lots et leurs informations</li>
                   <li>Tous les acheteurs et dossiers</li>
                   <li>Tous les documents et contrats</li>
@@ -173,8 +173,8 @@ export function ProjectSettings() {
                   <li>Toutes les soumissions et offres</li>
                   <li>Tout l'historique et le planning</li>
                 </ul>
-                <p className="text-sm text-gray-900 dark:text-white font-medium mb-2">
-                  Pour confirmer, tapez <span className="font-mono font-bold text-red-600">SUPPRIMER</span> ci-dessous :
+                <p className="text-sm text-neutral-900 dark:text-neutral-100 font-medium mb-2">
+                  Pour confirmer, tapez <span className="font-mono font-bold text-red-600 dark:text-red-400">SUPPRIMER</span> ci-dessous :
                 </p>
                 <Input
                   type="text"
@@ -187,7 +187,7 @@ export function ProjectSettings() {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex justify-end gap-3 pt-4 border-t border-neutral-200 dark:border-neutral-700">
               <Button
                 variant="outline"
                 onClick={() => {

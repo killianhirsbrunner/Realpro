@@ -171,8 +171,80 @@
     "paid": "Payé",
     "remaining": "Restant",
     "invoice": "Facture",
+    "invoices": "Factures",
     "payment": "Paiement",
-    "dueDate": "Date d'échéance"
+    "payments": "Paiements",
+    "dueDate": "Date d'échéance",
+    "invoiceNumber": "N° Facture",
+    "totalAmount": "Montant total",
+    "pendingAmount": "En attente",
+    "paidAmount": "Payé",
+    "createInvoice": "Nouvelle facture",
+    "invoiceType": {
+      "acompte": "Acompte",
+      "appel_fonds": "Appel de fonds",
+      "solde": "Solde",
+      "travaux_supplementaires": "Travaux supplémentaires",
+      "autre": "Autre"
+    },
+    "invoiceStatus": {
+      "draft": "Brouillon",
+      "sent": "Envoyée",
+      "paid": "Payée",
+      "overdue": "En retard"
+    },
+    "export": {
+      "title": "Export des données",
+      "csv": "Export CSV",
+      "excel": "Export Excel",
+      "pdf": "Imprimer / PDF"
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "pipeline": "Pipeline",
+    "prospects": "Prospects",
+    "buyers": "Acheteurs",
+    "reservations": "Réservations",
+    "newProspect": "Nouveau prospect",
+    "newReservation": "Nouvelle réservation",
+    "prospectStatus": {
+      "NEW": "Nouveau",
+      "CONTACTED": "Contacté",
+      "QUALIFIED": "Qualifié",
+      "CONVERTED": "Converti",
+      "LOST": "Perdu"
+    },
+    "reservationStatus": {
+      "PENDING": "En attente",
+      "CONFIRMED": "Confirmée",
+      "CONVERTED": "Convertie",
+      "CANCELLED": "Annulée",
+      "EXPIRED": "Expirée"
+    },
+    "source": {
+      "website": "Site web",
+      "phone": "Téléphone",
+      "email": "Email",
+      "referral": "Recommandation",
+      "broker": "Courtier",
+      "walk_in": "Visite",
+      "event": "Événement",
+      "social_media": "Réseaux sociaux",
+      "advertising": "Publicité",
+      "other": "Autre"
+    },
+    "interest": "Intérêt",
+    "targetLot": "Lot ciblé",
+    "deposit": "Arrhes",
+    "depositPaid": "Arrhes payées",
+    "expiresAt": "Expire le",
+    "reservedAt": "Réservé le",
+    "noProspects": "Aucun prospect",
+    "noReservations": "Aucune réservation",
+    "prospectDetails": "Détails du prospect",
+    "reservationDetails": "Détails de la réservation",
+    "convertToSale": "Convertir en vente"
   },
   "materials": {
     "catalog": "Catalogue",

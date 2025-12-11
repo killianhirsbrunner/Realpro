@@ -1,11 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
-import { Plus, ArrowLeft, FileText, Download } from 'lucide-react';
+import { Plus, ArrowLeft, FileText } from 'lucide-react';
 import { useFinanceDashboard } from '../hooks/useFinanceDashboard';
 import { InvoiceTable } from '../components/finance/InvoiceTable';
 import { Button } from '../components/ui/Button';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
 import { ScrollReveal } from '../components/ui/PageTransition';
+import { ExportMenu } from '../components/ui/ExportMenu';
+import { invoiceExportColumns } from '../lib/utils/export';
 
 export function ProjectFinancesInvoices() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -141,10 +143,13 @@ export function ProjectFinancesInvoices() {
               </p>
             </div>
 
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Exporter
-            </Button>
+            <ExportMenu
+              data={data.invoices}
+              columns={invoiceExportColumns}
+              filename="factures-projet"
+              title="Liste des factures"
+              subtitle="Export des factures acheteurs"
+            />
           </div>
 
           <InvoiceTable invoices={data.invoices} projectId={projectId!} />

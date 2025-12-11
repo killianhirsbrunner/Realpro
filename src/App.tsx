@@ -63,8 +63,10 @@ import ProjectNotaryDetail from './pages/ProjectNotaryDetail';
 import ProjectCRMPipeline from './pages/ProjectCRMPipeline';
 import ProjectCRMProspects from './pages/ProjectCRMProspects';
 import ProjectCRMProspectDetail from './pages/ProjectCRMProspectDetail';
+import ProjectCRMProspectCreate from './pages/ProjectCRMProspectCreate';
 import ProjectCRMBuyers from './pages/ProjectCRMBuyers';
 import ProjectReservations from './pages/ProjectReservations';
+import ProjectReservationCreate from './pages/ProjectReservationCreate';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
 
@@ -110,6 +112,7 @@ import { ProjectFinancesDashboard } from './pages/ProjectFinancesDashboard';
 import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
 import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
+import ProjectFinancesInvoiceCreate from './pages/ProjectFinancesInvoiceCreate';
 import { ProjectSAV } from './pages/ProjectSAV';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
@@ -266,6 +269,7 @@ function App() {
                     <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboard />} />
                     <Route path="/projects/:projectId/finances/cfc" element={<ProjectFinancesCFC />} />
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
+                    <Route path="/projects/:projectId/finances/invoices/new" element={<ProjectFinancesInvoiceCreate />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
@@ -274,7 +278,9 @@ function App() {
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
                     <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipeline />} />
                     <Route path="/projects/:projectId/crm/reservations" element={<ProjectReservations />} />
+                    <Route path="/projects/:projectId/crm/reservations/new" element={<ProjectReservationCreate />} />
                     <Route path="/projects/:projectId/crm/prospects" element={<ProjectCRMProspects />} />
+                    <Route path="/projects/:projectId/crm/prospects/new" element={<ProjectCRMProspectCreate />} />
                     <Route path="/projects/:projectId/crm/prospects/:prospectId" element={<ProjectCRMProspectDetail />} />
                     <Route path="/projects/:projectId/crm/buyers" element={<ProjectCRMBuyers />} />
                     <Route path="/projects/:projectId/structure" element={<ProjectStructurePage />} />

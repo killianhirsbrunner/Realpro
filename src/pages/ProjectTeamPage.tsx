@@ -4,8 +4,10 @@ import { Breadcrumbs } from '../components/ui/Breadcrumbs';
 import { LoadingState } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
 import ProjectTeamList from '../components/project/ProjectTeamList';
-import { Button } from '../components/ui/Button';
-import { Plus, Users } from 'lucide-react';
+import { RealProButton } from '../components/realpro/RealProButton';
+import { RealProCard } from '../components/realpro/RealProCard';
+import { RealProTopbar } from '../components/realpro/RealProTopbar';
+import { Plus, Users, UserCheck, Briefcase, Building2 } from 'lucide-react';
 import { useProjectTeam } from '../hooks/useProjectTeam';
 import { SearchBar } from '../components/ui/SearchBar';
 
@@ -38,57 +40,78 @@ export default function ProjectTeamPage() {
         ]}
       />
 
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Équipe du Projet</h1>
-          <p className="text-gray-600 mt-2">
-            Gérez les membres de l'équipe et leurs rôles
-          </p>
-        </div>
+      <RealProTopbar
+        title="Équipe du Projet"
+        subtitle="Gérez les membres de l'équipe et leurs rôles"
+        actions={
+          <RealProButton variant="primary">
+            <Plus className="w-4 h-4" />
+            Ajouter un membre
+          </RealProButton>
+        }
+      />
 
-        <Button className="flex items-center gap-2">
-          <Plus className="w-5 h-5" />
-          Ajouter un membre
-        </Button>
-      </div>
-
+      {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Total membres</p>
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Total membres</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {team.length}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30">
+              <Users className="w-6 h-6 text-brand-600 dark:text-brand-400" />
+            </div>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{team.length}</p>
-        </div>
+        </RealProCard>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-green-600" />
-            <p className="text-sm font-medium text-gray-600">Actifs</p>
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Actifs</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {team.length}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-green-100 dark:bg-green-900/30">
+              <UserCheck className="w-6 h-6 text-green-600 dark:text-green-400" />
+            </div>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{team.length}</p>
-        </div>
+        </RealProCard>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Rôles différents</p>
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Rôles différents</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {roles.length - 1}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30">
+              <Briefcase className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+            </div>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{roles.length - 1}</p>
-        </div>
+        </RealProCard>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Entreprises</p>
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Entreprises</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {new Set(team.filter(m => m.company).map(m => m.company)).size}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-amber-100 dark:bg-amber-900/30">
+              <Building2 className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            </div>
           </div>
-          <p className="text-3xl font-bold text-gray-900">
-            {new Set(team.filter(m => m.company).map(m => m.company)).size}
-          </p>
-        </div>
+        </RealProCard>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
+      {/* Liste de l'équipe */}
+      <RealProCard padding="lg">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="flex-1">
             <SearchBar
@@ -101,7 +124,7 @@ export default function ProjectTeamPage() {
           <select
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+            className="px-4 py-2 border border-neutral-300 dark:border-neutral-700 rounded-xl bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
           >
             <option value="all">Tous les rôles</option>
             {roles.filter(r => r !== 'all').map((role) => (
@@ -112,8 +135,15 @@ export default function ProjectTeamPage() {
 
         {filteredTeam.length === 0 ? (
           <div className="text-center py-12">
-            <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-600 mb-4">Aucun membre trouvé</p>
+            <div className="w-20 h-20 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
+              <Users className="w-10 h-10 text-neutral-400 dark:text-neutral-500" />
+            </div>
+            <p className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">
+              Aucun membre trouvé
+            </p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              Modifiez vos filtres ou ajoutez de nouveaux membres
+            </p>
           </div>
         ) : (
           <ProjectTeamList
@@ -122,7 +152,7 @@ export default function ProjectTeamPage() {
             onRemoveMember={(id) => console.log('Remove member:', id)}
           />
         )}
-      </div>
+      </RealProCard>
     </div>
   );
 }
