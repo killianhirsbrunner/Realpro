@@ -49,13 +49,14 @@ export function useDemoMode() {
       message.includes('rate limit') ||
       message.includes('too many requests') ||
       message.includes('over_email_send_rate_limit') ||
-      message.includes('email rate limit')
+      message.includes('email rate limit') ||
+      message.includes('for security purposes')
     );
   };
 
   // Message d'erreur utilisateur pour le rate limit
   const getRateLimitMessage = (): string => {
-    return 'Trop de tentatives de connexion. Le compte démo nécessite une confirmation par email. Veuillez réessayer dans quelques minutes ou contacter le support.';
+    return 'Service temporairement limité. Veuillez réessayer dans quelques minutes ou utiliser les identifiants manuellement.';
   };
 
   // Connexion automatique en mode démo

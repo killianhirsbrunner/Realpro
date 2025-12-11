@@ -1,11 +1,15 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { handlePostAuthSetup } from '../lib/authHelpers';
 import { Input } from '../components/ui/Input';
 import { RealProLogo } from '../components/branding/RealProLogo';
-import { ArrowRight, Sparkles, Play, CheckCircle } from 'lucide-react';
+import { ArrowRight, Sparkles, Play, CheckCircle, Clock } from 'lucide-react';
 import { useDemoMode, DEMO_CREDENTIALS } from '../hooks/useDemoMode';
+
+// Cooldown configuration pour éviter le rate limiting
+const SIGNUP_COOLDOWN_KEY = 'realpro_signup_cooldown';
+const COOLDOWN_DURATION_MS = 60000; // 60 secondes entre les tentatives
 
 export function Login() {
   const navigate = useNavigate();
@@ -17,6 +21,40 @@ export function Login() {
   const { loginAsDemo, isLoggingIn: isDemoLoading, error: demoError } = useDemoMode();
 
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [cooldownRemaining, setCooldownRemaining] = useState(0);
+
+  // Vérifier et gérer le cooldown
+  const checkCooldown = useCallback((): number => {
+    const storedCooldown = localStorage.getItem(SIGNUP_COOLDOWN_KEY);
+    if (storedCooldown) {
+      const cooldownEnd = parseInt(storedCooldown, 10);
+      const remaining = cooldownEnd - Date.now();
+      if (remaining > 0) {
+        return Math.ceil(remaining / 1000);
+      }
+      localStorage.removeItem(SIGNUP_COOLDOWN_KEY);
+    }
+    return 0;
+  }, []);
+
+  // Définir un cooldown après une tentative d'inscription
+  const setCooldown = useCallback(() => {
+    const cooldownEnd = Date.now() + COOLDOWN_DURATION_MS;
+    localStorage.setItem(SIGNUP_COOLDOWN_KEY, cooldownEnd.toString());
+    setCooldownRemaining(Math.ceil(COOLDOWN_DURATION_MS / 1000));
+  }, []);
+
+  // Mettre à jour le compteur de cooldown
+  useEffect(() => {
+    const updateCooldown = () => {
+      const remaining = checkCooldown();
+      setCooldownRemaining(remaining);
+    };
+
+    updateCooldown();
+    const interval = setInterval(updateCooldown, 1000);
+    return () => clearInterval(interval);
+  }, [checkCooldown]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -31,12 +69,29 @@ export function Login() {
         message.includes('rate limit') ||
         message.includes('too many requests') ||
         message.includes('over_email_send_rate_limit') ||
-        message.includes('email rate limit')
+        message.includes('email rate limit') ||
+        message.includes('for security purposes')
+      );
+    };
+
+    // Helper pour détecter si l'utilisateur existe déjà
+    const isUserExistsError = (error: Error): boolean => {
+      const message = error.message.toLowerCase();
+      return (
+        message.includes('user already registered') ||
+        message.includes('already been registered') ||
+        message.includes('already exists')
       );
     };
 
     try {
       if (isSignUp) {
+        // Vérifier le cooldown avant de tenter l'inscription
+        const remainingCooldown = checkCooldown();
+        if (remainingCooldown > 0) {
+          throw new Error(`Veuillez patienter encore ${remainingCooldown} secondes avant de réessayer l'inscription.`);
+        }
+
         const { data, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
@@ -47,15 +102,27 @@ export function Login() {
             },
           },
         });
+
         if (signUpError) {
           if (isRateLimitError(signUpError)) {
-            throw new Error('Trop de tentatives d\'inscription. Veuillez patienter quelques minutes avant de réessayer.');
+            setCooldown();
+            throw new Error('Service temporairement limité. Veuillez patienter 60 secondes avant de réessayer.');
+          }
+          if (isUserExistsError(signUpError)) {
+            throw new Error('Un compte existe déjà avec cet email. Veuillez vous connecter ou utiliser "Mot de passe oublié" si nécessaire.');
           }
           throw signUpError;
         }
 
+        // Définir un cooldown après une tentative réussie pour éviter les répétitions
+        setCooldown();
+
         // Check if email confirmation is required
         if (data.user && !data.session) {
+          // Vérifier si l'utilisateur existait déjà (identities vides = utilisateur existant)
+          if (data.user.identities && data.user.identities.length === 0) {
+            throw new Error('Un compte existe déjà avec cet email. Veuillez vous connecter ou utiliser "Mot de passe oublié" si nécessaire.');
+          }
           // Email confirmation is required
           setSuccessMessage(
             'Un email de confirmation a été envoyé à votre adresse. Veuillez cliquer sur le lien dans l\'email pour activer votre compte, puis vous pourrez vous connecter.'
@@ -63,6 +130,7 @@ export function Login() {
           setIsSignUp(false);
         } else if (data.session) {
           // No email confirmation required, user is logged in
+          await handlePostAuthSetup();
           navigate('/dashboard');
         }
       } else {
@@ -165,13 +233,26 @@ export function Login() {
               />
             </div>
 
+            {/* Indicateur de cooldown pour l'inscription */}
+            {isSignUp && cooldownRemaining > 0 && (
+              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
+                <Clock className="w-5 h-5 flex-shrink-0" />
+                <span>Patientez {cooldownRemaining} secondes avant de réessayer...</span>
+              </div>
+            )}
+
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || (isSignUp && cooldownRemaining > 0)}
               className="group w-full h-12 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 active:from-brand-800 active:to-brand-900 text-white font-medium shadow-lg shadow-brand-600/30 hover:shadow-xl hover:shadow-brand-600/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              ) : isSignUp && cooldownRemaining > 0 ? (
+                <>
+                  <Clock className="w-4 h-4" />
+                  Patientez {cooldownRemaining}s
+                </>
               ) : (
                 <>
                   {isSignUp ? "Créer mon compte" : 'Se connecter'}
