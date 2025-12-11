@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { handlePostAuthSetup } from '../lib/authHelpers';
+import { RealProLogo } from './branding/RealProLogo';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -16,9 +18,12 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setAuthenticated(!!session);
-      if (!session) {
+      if (session) {
+        // Ensure user setup is complete when auth state changes
+        await handlePostAuthSetup();
+      } else {
         navigate('/login');
       }
     });
@@ -32,20 +37,28 @@ export function AuthGuard({ children }: AuthGuardProps) {
     const {
       data: { session },
     } = await supabase.auth.getSession();
-    setAuthenticated(!!session);
-    setLoading(false);
 
-    if (!session) {
+    if (session) {
+      // Ensure user setup is complete
+      await handlePostAuthSetup();
+      setAuthenticated(true);
+    } else {
+      setAuthenticated(false);
       navigate('/login');
     }
+
+    setLoading(false);
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-950">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto" />
-          <p className="mt-4 text-gray-600">Chargement...</p>
+          <div className="flex justify-center mb-6">
+            <RealProLogo variant="full" size="lg" />
+          </div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3DAABD] mx-auto" />
+          <p className="mt-4 text-neutral-600 dark:text-neutral-400">Chargement...</p>
         </div>
       </div>
     );

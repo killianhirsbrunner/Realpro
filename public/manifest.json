@@ -1,21 +1,21 @@
 {
-  "name": "RealtyOS - Gestion Immobilière Suisse",
-  "short_name": "RealtyOS",
+  "name": "RealPro - Gestion Immobilière Suisse",
+  "short_name": "RealPro",
   "description": "Plateforme SaaS de gestion de projets immobiliers suisses",
-  "start_url": "/chantier",
+  "start_url": "/dashboard",
   "display": "standalone",
-  "background_color": "#111827",
-  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "theme_color": "#3DAABD",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/logos/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/logos/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" fill="none">
+  <!-- RealPro Full Logo - Light version for dark backgrounds -->
+
+  <!-- Icon part - scaled down -->
+  <g transform="translate(0, 5) scale(0.5)">
+    <!-- Bottom left pill shape -->
+    <ellipse cx="45" cy="105" rx="30" ry="30" fill="#3DAABD"/>
+
+    <!-- Top left circle -->
+    <ellipse cx="55" cy="45" rx="25" ry="25" fill="#3DAABD"/>
+
+    <!-- Main diagonal bar -->
+    <rect x="35" y="55" width="110" height="35" rx="17.5" transform="rotate(-35 90 75)" fill="#3DAABD"/>
+
+    <!-- Top right circle -->
+    <ellipse cx="145" cy="55" rx="25" ry="25" fill="#3DAABD"/>
+
+    <!-- Bottom right pill shape -->
+    <ellipse cx="155" cy="105" rx="25" ry="25" fill="#3DAABD"/>
+
+    <!-- Second diagonal bar -->
+    <rect x="55" y="55" width="90" height="35" rx="17.5" transform="rotate(35 100 75)" fill="#3DAABD"/>
+  </g>
+
+  <!-- Text: Real (light gray for dark backgrounds) -->
+  <text x="115" y="55" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="700" fill="#A8B5BD">Real</text>
+
+  <!-- Text: Pro (brand color) -->
+  <text x="215" y="55" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="700" fill="#3DAABD">Pro</text>
+</svg>

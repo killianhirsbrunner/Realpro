@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- RealPro Favicon - Simplified icon -->
+  <g transform="translate(1, 4) scale(0.19)">
+    <!-- Bottom left pill shape -->
+    <ellipse cx="45" cy="105" rx="30" ry="30" fill="#3DAABD"/>
+
+    <!-- Top left circle -->
+    <ellipse cx="55" cy="45" rx="25" ry="25" fill="#3DAABD"/>
+
+    <!-- Main diagonal bar -->
+    <rect x="35" y="55" width="110" height="35" rx="17.5" transform="rotate(-35 90 75)" fill="#3DAABD"/>
+
+    <!-- Top right circle -->
+    <ellipse cx="145" cy="55" rx="25" ry="25" fill="#3DAABD"/>
+
+    <!-- Bottom right pill shape -->
+    <ellipse cx="155" cy="105" rx="25" ry="25" fill="#3DAABD"/>
+
+    <!-- Second diagonal bar -->
+    <rect x="55" y="55" width="90" height="35" rx="17.5" transform="rotate(35 100 75)" fill="#3DAABD"/>
+  </g>
+</svg>
