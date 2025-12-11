@@ -63,8 +63,11 @@ import ProjectNotaryDetail from './pages/ProjectNotaryDetail';
 import ProjectCRMPipeline from './pages/ProjectCRMPipeline';
 import ProjectCRMProspects from './pages/ProjectCRMProspects';
 import ProjectCRMProspectDetail from './pages/ProjectCRMProspectDetail';
+import ProjectCRMProspectNew from './pages/ProjectCRMProspectNew';
 import ProjectCRMBuyers from './pages/ProjectCRMBuyers';
 import ProjectReservations from './pages/ProjectReservations';
+import ProjectCRMReservationNew from './pages/ProjectCRMReservationNew';
+import ProjectCRMReservationDetail from './pages/ProjectCRMReservationDetail';
 import { PromoterDashboard } from './pages/PromoterDashboard';
 import { ChantierHome } from './pages/ChantierHome';
 
@@ -93,7 +96,7 @@ import { ProjectDocuments } from './pages/ProjectDocuments';
 import { DocumentViewer } from './pages/DocumentViewer';
 import { ProjectSubmissions } from './pages/ProjectSubmissions';
 import { NewSubmission } from './pages/NewSubmission';
-import { SubmissionDetail } from './pages/SubmissionDetail';
+import SubmissionDetailEnhanced from './pages/SubmissionDetailEnhanced';
 import { SubmissionComparison } from './pages/SubmissionComparison';
 import { SubmissionClarifications } from './pages/SubmissionClarifications';
 import { SubmissionCompanies } from './pages/SubmissionCompanies';
@@ -107,6 +110,7 @@ import { CfcDetail } from './pages/CfcDetail';
 import { ProjectFinance } from './pages/ProjectFinance';
 import { BuyerFinance } from './pages/BuyerFinance';
 import { ProjectFinancesDashboard } from './pages/ProjectFinancesDashboard';
+import ProjectFinancesDashboardEnhanced from './pages/ProjectFinancesDashboardEnhanced';
 import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
 import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
@@ -131,6 +135,7 @@ import { RealProAdminDashboard } from './pages/admin/RealProAdminDashboard';
 import { AuditLogs } from './pages/admin/AuditLogs';
 import { FeatureFlags } from './pages/admin/FeatureFlags';
 import { OrganizationSettings } from './pages/OrganizationSettings';
+import OrganizationTeam from './pages/OrganizationTeam';
 import AnalyticsBIDashboard from './pages/AnalyticsBIDashboard';
 import ProjectModificationsOfferWizard from './pages/ProjectModificationsOfferWizard';
 import MessagesGlobal from './pages/MessagesGlobal';
@@ -249,7 +254,7 @@ function App() {
                     <Route path="/projects/:projectId/documents/:documentId" element={<DocumentViewer />} />
                     <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
                     <Route path="/projects/:projectId/submissions/new" element={<NewSubmission />} />
-                    <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetail />} />
+                    <Route path="/projects/:projectId/submissions/:submissionId" element={<SubmissionDetailEnhanced />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/compare" element={<SubmissionComparison />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/clarifications" element={<SubmissionClarifications />} />
                     <Route path="/projects/:projectId/submissions/:submissionId/companies" element={<SubmissionCompanies />} />
@@ -262,8 +267,9 @@ function App() {
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId/sign" element={<AvenantSignature />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
                     <Route path="/projects/:projectId/cfc/:cfcId" element={<CfcDetail />} />
-                    <Route path="/projects/:projectId/finance" element={<ProjectFinancesDashboard />} />
-                    <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboard />} />
+                    <Route path="/projects/:projectId/finance" element={<ProjectFinancesDashboardEnhanced />} />
+                    <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboardEnhanced />} />
+                    <Route path="/projects/:projectId/finances/dashboard" element={<ProjectFinancesDashboardEnhanced />} />
                     <Route path="/projects/:projectId/finances/cfc" element={<ProjectFinancesCFC />} />
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
@@ -274,7 +280,10 @@ function App() {
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
                     <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipeline />} />
                     <Route path="/projects/:projectId/crm/reservations" element={<ProjectReservations />} />
+                    <Route path="/projects/:projectId/crm/reservations/new" element={<ProjectCRMReservationNew />} />
+                    <Route path="/projects/:projectId/crm/reservations/:reservationId" element={<ProjectCRMReservationDetail />} />
                     <Route path="/projects/:projectId/crm/prospects" element={<ProjectCRMProspects />} />
+                    <Route path="/projects/:projectId/crm/prospects/new" element={<ProjectCRMProspectNew />} />
                     <Route path="/projects/:projectId/crm/prospects/:prospectId" element={<ProjectCRMProspectDetail />} />
                     <Route path="/projects/:projectId/crm/buyers" element={<ProjectCRMBuyers />} />
                     <Route path="/projects/:projectId/structure" element={<ProjectStructurePage />} />
@@ -365,6 +374,8 @@ function App() {
                     <Route path="/settings/suppliers" element={<SuppliersSettings />} />
                     <Route path="/company" element={<CompanySettings />} />
                     <Route path="/organization/settings" element={<OrganizationSettings />} />
+                    <Route path="/organization/team" element={<OrganizationTeam />} />
+                    <Route path="/admin/users" element={<OrganizationTeam />} />
 
                     {/* Administration */}
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
