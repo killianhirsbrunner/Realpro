@@ -40,24 +40,15 @@ export function RealProLogo({
   const RealProIconSVG = ({ iconSize }: { iconSize: number }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 200 150"
+      viewBox="0 0 100 100"
       fill="none"
       width={iconSize}
-      height={iconSize * 0.75}
+      height={iconSize}
       className="flex-shrink-0"
     >
-      {/* Bottom left pill shape */}
-      <ellipse cx="45" cy="105" rx="30" ry="30" fill={BRAND_COLOR}/>
-      {/* Top left circle */}
-      <ellipse cx="55" cy="45" rx="25" ry="25" fill={BRAND_COLOR}/>
-      {/* Main diagonal bar */}
-      <rect x="35" y="55" width="110" height="35" rx="17.5" transform="rotate(-35 90 75)" fill={BRAND_COLOR}/>
-      {/* Top right circle */}
-      <ellipse cx="145" cy="55" rx="25" ry="25" fill={BRAND_COLOR}/>
-      {/* Bottom right pill shape */}
-      <ellipse cx="155" cy="105" rx="25" ry="25" fill={BRAND_COLOR}/>
-      {/* Second diagonal bar */}
-      <rect x="55" y="55" width="90" height="35" rx="17.5" transform="rotate(35 100 75)" fill={BRAND_COLOR}/>
+      {/* Two interlocking diagonal capsules forming X */}
+      <path d="M15 75 L15 75 C6.7 66.7 6.7 53.3 15 45 L45 15 C53.3 6.7 66.7 6.7 75 15 L75 15 C83.3 23.3 83.3 36.7 75 45 L45 75 C36.7 83.3 23.3 83.3 15 75 Z" fill={BRAND_COLOR}/>
+      <path d="M25 15 L25 15 C33.3 6.7 46.7 6.7 55 15 L85 45 C93.3 53.3 93.3 66.7 85 75 L85 75 C76.7 83.3 63.3 83.3 55 75 L25 45 C16.7 36.7 16.7 23.3 25 15 Z" fill={BRAND_COLOR}/>
     </svg>
   );
 
@@ -93,7 +84,7 @@ export function RealProLogo({
   const fontSize = config.height * 0.55;
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <RealProIconSVG iconSize={config.iconSize * 0.8} />
+      <RealProIconSVG iconSize={config.iconSize} />
       <div className="flex items-center">
         <span
           className="font-bold text-neutral-900 dark:text-neutral-300"

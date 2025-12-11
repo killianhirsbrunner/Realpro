@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" fill="none">
-  <!-- RealPro Official Icon - Two interlocking diagonal capsules -->
-
-  <!-- First diagonal capsule (bottom-left to top-right) -->
-  <path d="M12 62 C4 54, 4 42, 12 34 L42 4 C50 -4, 62 -4, 70 4 L70 4 C78 12, 78 24, 70 32 L40 62 C32 70, 20 70, 12 62 Z" fill="#3DAABD"/>
-
-  <!-- Second diagonal capsule (top-left to bottom-right) -->
-  <path d="M30 4 C22 -4, 10 -4, 2 4 L2 4 C-6 12, -6 24, 2 32 L58 76 C66 84, 78 84, 86 76 L86 76 C94 68, 94 56, 86 48 L30 4 Z" fill="#3DAABD"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- RealPro Official Icon - Two interlocking diagonal capsules forming X -->
+  <!-- Capsule 1: bottom-left to top-right -->
+  <path d="M15 75 L15 75 C6.7 66.7 6.7 53.3 15 45 L45 15 C53.3 6.7 66.7 6.7 75 15 L75 15 C83.3 23.3 83.3 36.7 75 45 L45 75 C36.7 83.3 23.3 83.3 15 75 Z" fill="#3DAABD"/>
+  <!-- Capsule 2: top-left to bottom-right -->
+  <path d="M25 15 L25 15 C33.3 6.7 46.7 6.7 55 15 L85 45 C93.3 53.3 93.3 66.7 85 75 L85 75 C76.7 83.3 63.3 83.3 55 75 L25 45 C16.7 36.7 16.7 23.3 25 15 Z" fill="#3DAABD"/>
 </svg>
