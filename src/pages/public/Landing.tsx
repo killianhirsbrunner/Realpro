@@ -218,6 +218,12 @@ export function Landing() {
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
+            <FadeIn delay={50}>
+              <div className="flex justify-center mb-8">
+                <RealProLogo variant="icon" size="xl" className="w-24 h-24 md:w-32 md:h-32" />
+              </div>
+            </FadeIn>
+
             <FadeIn delay={100}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-realpro-turquoise/10 text-realpro-turquoise text-sm font-medium mb-8">
                 <Sparkles className="w-4 h-4" />
