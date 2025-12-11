@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
+import { useOrganizationContext } from '../contexts/OrganizationContext';
 
 export interface EmailTemplate {
   id: string;
@@ -46,16 +47,24 @@ export interface EmailSend {
 }
 
 export function useEmailMarketing() {
+  const { currentOrganization } = useOrganizationContext();
   const [templates, setTemplates] = useState<EmailTemplate[]>([]);
   const [sends, setSends] = useState<EmailSend[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchTemplates = async () => {
+  const fetchTemplates = useCallback(async () => {
+    if (!currentOrganization) {
+      setTemplates([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       const { data, error } = await supabase
         .from('crm_email_templates')
         .select('*')
+        .eq('organization_id', currentOrganization.id)
         .eq('is_active', true)
         .order('usage_count', { ascending: false });
 
@@ -67,13 +76,19 @@ export function useEmailMarketing() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentOrganization]);
 
-  const fetchSends = async (campaignId?: string) => {
+  const fetchSends = useCallback(async (campaignId?: string) => {
+    if (!currentOrganization) {
+      setSends([]);
+      return;
+    }
+
     try {
       let query = supabase
         .from('crm_email_sends')
         .select('*')
+        .eq('organization_id', currentOrganization.id)
         .order('created_at', { ascending: false });
 
       if (campaignId) {
@@ -88,11 +103,11 @@ export function useEmailMarketing() {
       console.error('Error fetching sends:', error);
       toast.error('Erreur lors du chargement des envois');
     }
-  };
+  }, [currentOrganization]);
 
   useEffect(() => {
     fetchTemplates();
-  }, []);
+  }, [fetchTemplates]);
 
   const createTemplate = async (templateData: Partial<EmailTemplate>) => {
     try {
