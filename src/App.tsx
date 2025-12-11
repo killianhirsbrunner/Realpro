@@ -134,6 +134,7 @@ import { RealProAdminDashboard } from './pages/admin/RealProAdminDashboard';
 import { AuditLogs } from './pages/admin/AuditLogs';
 import { FeatureFlags } from './pages/admin/FeatureFlags';
 import { OrganizationSettings } from './pages/OrganizationSettings';
+import OrganizationTeam from './pages/OrganizationTeam';
 import AnalyticsBIDashboard from './pages/AnalyticsBIDashboard';
 import ProjectModificationsOfferWizard from './pages/ProjectModificationsOfferWizard';
 import MessagesGlobal from './pages/MessagesGlobal';
@@ -371,6 +372,8 @@ function App() {
                     <Route path="/settings/suppliers" element={<SuppliersSettings />} />
                     <Route path="/company" element={<CompanySettings />} />
                     <Route path="/organization/settings" element={<OrganizationSettings />} />
+                    <Route path="/organization/team" element={<OrganizationTeam />} />
+                    <Route path="/admin/users" element={<OrganizationTeam />} />
 
                     {/* Administration */}
                     <Route path="/admin/organizations" element={<AdminOrganizationsPage />} />
