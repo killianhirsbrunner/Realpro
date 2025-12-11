@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Plus, Mail, Building2, Rocket, FolderPlus, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCurrentUser } from '../hooks/useCurrentUser';
-import { RealProLogo } from '../components/branding/RealProLogo';
 
 export function WelcomeDashboard() {
   const { user } = useCurrentUser();
@@ -60,15 +59,6 @@ export function WelcomeDashboard() {
       >
         {/* Logo et Titre */}
         <motion.div variants={itemVariants} className="text-center mb-12">
-          <div className="flex justify-center mb-8">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <RealProLogo size="xl" />
-            </motion.div>
-          </div>
 
           <motion.h1
             variants={itemVariants}

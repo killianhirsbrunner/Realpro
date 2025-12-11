@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { X } from 'lucide-react';
-import { RealProLogo } from '../branding/RealProLogo';
 
 interface RealProModalProps {
   isOpen: boolean;
@@ -48,7 +47,7 @@ export function RealProModal({
       >
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <RealProLogo size="sm" />
+            <span className="font-bold text-lg text-neutral-900 dark:text-white">RealPro</span>
             <div className="h-6 w-px bg-neutral-200 dark:bg-neutral-700" />
             <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
               {title}

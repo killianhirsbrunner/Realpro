@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Textarea } from '../../components/ui/Textarea';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import { ScrollReveal } from '../../components/ui/PageTransition';
 import { Mail, Phone, MapPin, Send, Check, Menu, X } from 'lucide-react';
@@ -33,8 +32,8 @@ export function Contact() {
       <header className="sticky top-0 z-50 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="h-20 flex items-center justify-between">
-            <Link to="/" className="flex items-center transition-opacity hover:opacity-70">
-              <RealProLogo size="xl" />
+            <Link to="/" className="flex items-center font-bold text-xl text-neutral-900 dark:text-white transition-opacity hover:opacity-70">
+              RealPro
             </Link>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -282,7 +281,7 @@ export function Contact() {
           <div className="grid md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
             <div className="md:col-span-1">
               <div className="mb-4">
-                <RealProLogo size="lg" />
+                <span className="font-bold text-xl text-neutral-900 dark:text-white">RealPro</span>
               </div>
               <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-4 max-w-xs leading-relaxed">
                 La solution complète pour les promoteurs immobiliers suisses

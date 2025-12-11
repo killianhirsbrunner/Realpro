@@ -17,7 +17,6 @@ import {
   File,
 } from 'lucide-react';
 import clsx from 'clsx';
-import { RealProLogo } from '../branding/RealProLogo';
 
 type Role = 'PROMOTER' | 'EG' | 'ARCHITECT' | 'BROKER' | 'NOTARY' | 'BUYER';
 
@@ -104,7 +103,7 @@ export function DynamicSidebar({
     <aside className="w-64 bg-white dark:bg-neutral-950 border-r border-gray-200 dark:border-neutral-800 flex flex-col h-full">
       <div className="p-6 border-b border-gray-200 dark:border-neutral-800">
         <div className="flex items-center justify-center">
-          <RealProLogo size="md" />
+          <span className="font-bold text-xl text-neutral-900 dark:text-white">RealPro</span>
         </div>
       </div>
 

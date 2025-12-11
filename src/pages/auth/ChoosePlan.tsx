@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Check, ArrowLeft } from 'lucide-react';
@@ -96,9 +95,6 @@ export function ChoosePlan() {
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 py-12 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-            <RealProLogo size="lg" />
-          </Link>
           <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
             Choisissez votre plan
           </h1>

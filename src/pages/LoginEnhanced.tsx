@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Input } from '../components/ui/Input';
-import { RealProLogo } from '../components/branding/RealProLogo';
 import { Button } from '../components/ui/Button';
 import { ArrowRight, Sparkles, Check, Shield, Zap } from 'lucide-react';
 
@@ -38,10 +37,6 @@ export function LoginEnhanced() {
       <div className="flex-1 flex items-center justify-center p-8 lg:p-12">
         <div className="max-w-md w-full">
           <div className="mb-8">
-            <Link to="/" className="inline-block mb-8">
-              <RealProLogo size="xl" />
-            </Link>
-
             <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-3">
               Bienvenue sur RealPro
             </h1>

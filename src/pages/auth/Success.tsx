@@ -1,16 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
-import { RealProLogo } from '../../components/branding/RealProLogo';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 
 export function Success() {
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 flex items-center justify-center px-6">
       <div className="max-w-2xl w-full text-center">
-        <Link to="/" className="inline-block mb-8 transition-opacity hover:opacity-80">
-          <RealProLogo size="lg" />
-        </Link>
-
         <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-12 shadow-xl">
           <div className="w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-900/20 flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-12 h-12 text-primary-600 dark:text-primary-400" />
