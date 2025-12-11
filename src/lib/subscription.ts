@@ -1,10 +1,17 @@
 const PLAN_HIERARCHY = {
+  demo: 0,
   starter: 1,
-  business: 2,
+  professional: 2,
+  business: 2, // alias pour professional
   enterprise: 3,
 } as const;
 
 type PlanName = keyof typeof PLAN_HIERARCHY;
+
+// Vérifier si un plan est un plan démo
+export function isDemoPlan(planName: string): boolean {
+  return planName.toLowerCase() === 'demo';
+}
 
 export function getPlanLevel(planName: string): number {
   const normalized = planName.toLowerCase() as PlanName;
@@ -114,6 +121,24 @@ export function validatePlanChange(
 }
 
 export const PLANS = [
+  {
+    id: 'demo',
+    name: 'Demo',
+    price: 0,
+    billingPeriod: 'gratuit',
+    yearlyPrice: 0,
+    features: [
+      '1 projet de démonstration',
+      '14 jours d\'accès',
+      'Toutes les fonctionnalités',
+      'Support email',
+    ],
+    maxProjects: 1,
+    maxUsers: 1,
+    storageGb: 1,
+    isDemo: true,
+    trialDays: 14,
+  },
   {
     id: 'starter',
     name: 'Starter',

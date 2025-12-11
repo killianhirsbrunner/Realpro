@@ -183,6 +183,11 @@ export function Landing() {
                   Connexion
                 </Button>
               </Link>
+              <Link to="/auth/demo" className="hidden md:block">
+                <Button variant="outline" size="sm">
+                  Essayer la démo
+                </Button>
+              </Link>
               <Link to="/register">
                 <Button size="sm" className="bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0">
                   Essai gratuit
@@ -242,15 +247,15 @@ export function Landing() {
 
             <FadeIn delay={400}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-                <Link to="/register">
+                <Link to="/auth/demo">
                   <Button size="lg" className="h-12 px-8 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0 shadow-lg shadow-realpro-turquoise/25">
-                    Démarrer l'essai gratuit
+                    Essayer gratuitement
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
-                <Link to="/contact">
+                <Link to="/pricing">
                   <Button size="lg" variant="outline" className="h-12 px-8 text-base">
-                    Demander une démonstration
+                    Voir les tarifs
                   </Button>
                 </Link>
               </div>
@@ -590,15 +595,15 @@ export function Landing() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/register">
+              <Link to="/auth/demo">
                 <Button size="lg" className="h-14 px-10 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0 shadow-xl shadow-realpro-turquoise/30 font-semibold">
-                  Commencer l'essai gratuit
+                  Essayer gratuitement
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link to="/contact">
+              <Link to="/pricing">
                 <Button size="lg" variant="outline" className="h-14 px-10 text-base bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 font-semibold transition-all backdrop-blur-sm">
-                  Planifier une démo
+                  Voir les offres
                 </Button>
               </Link>
             </div>

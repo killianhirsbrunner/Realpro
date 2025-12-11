@@ -24,9 +24,12 @@ import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
 import { Register } from './pages/auth/Register';
 import { RegisterCompany } from './pages/auth/RegisterCompany';
+import { RegisterDemo } from './pages/auth/RegisterDemo';
 import { ChoosePlan } from './pages/auth/ChoosePlan';
 import { Checkout } from './pages/auth/Checkout';
 import { Success } from './pages/auth/Success';
+import { DemoSuccess } from './pages/auth/DemoSuccess';
+import { DemoExpired } from './pages/auth/DemoExpired';
 
 import { DashboardHome } from './pages/DashboardHome';
 import { DashboardGlobal } from './pages/DashboardGlobal';
@@ -184,6 +187,9 @@ function App() {
 
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/register-company" element={<RegisterCompany />} />
+          <Route path="/auth/demo" element={<RegisterDemo />} />
+          <Route path="/auth/demo-success" element={<DemoSuccess />} />
+          <Route path="/auth/demo-expired" element={<DemoExpired />} />
           <Route path="/auth/choose-plan" element={<ChoosePlan />} />
           <Route path="/auth/checkout" element={<Checkout />} />
           <Route path="/auth/success" element={<Success />} />
