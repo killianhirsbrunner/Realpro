@@ -4,7 +4,6 @@ import { useI18n, type LanguageCode } from '../../lib/i18n';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { useProjects } from '../../hooks/useProjects';
 import { NotificationBell } from '../NotificationBell';
-import { RealProLogo } from '../branding/RealProLogo';
 import clsx from 'clsx';
 
 interface EnhancedTopbarProps {
@@ -32,7 +31,7 @@ export function EnhancedTopbar({ currentProjectId, onProjectChange }: EnhancedTo
   return (
     <header className="h-16 bg-white dark:bg-neutral-950 border-b border-gray-200 dark:border-neutral-800 flex items-center justify-between gap-4 px-6 relative z-50">
       <div className="flex items-center space-x-4">
-        <RealProLogo size="sm" className="hidden md:block" />
+        <span className="font-bold text-lg text-neutral-900 dark:text-white hidden md:block">RealPro</span>
 
         {projects && projects.length > 0 && (
           <div className="relative">

@@ -4,7 +4,6 @@ import { supabase } from '../lib/supabase';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 import { Building2, ArrowRight, Check } from 'lucide-react';
-import { RealProLogo } from '../components/branding/RealProLogo';
 
 interface Organization {
   id: string;
@@ -127,9 +126,6 @@ export function SelectOrganization() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <RealProLogo size="lg" />
-            </div>
             <h1 className="text-4xl font-semibold text-neutral-900 dark:text-white mb-3">
               Choisissez votre organisation
             </h1>

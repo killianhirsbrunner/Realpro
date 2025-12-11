@@ -21,7 +21,6 @@ import {
   PieChart,
 } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
-import { RealProLogo } from '../branding/RealProLogo';
 import { useOrganizationContext } from '../../contexts/OrganizationContext';
 import clsx from 'clsx';
 import { useState } from 'react';
@@ -200,7 +199,7 @@ export function Sidebar() {
               className="h-10 w-auto max-w-[180px] object-contain"
             />
           ) : (
-            <RealProLogo size="md" />
+            <span className="font-bold text-xl text-neutral-900 dark:text-white">RealPro</span>
           )}
         </Link>
       </div>
