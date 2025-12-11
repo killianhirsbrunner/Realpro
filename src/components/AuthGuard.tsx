@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { handlePostAuthSetup } from '../lib/authHelpers';
 import { RealProLogo } from './branding/RealProLogo';
@@ -55,7 +55,9 @@ export function AuthGuard({ children }: AuthGuardProps) {
       <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-950">
         <div className="text-center">
           <div className="flex justify-center mb-6">
-            <RealProLogo variant="full" size="lg" />
+            <Link to="/">
+              <RealProLogo variant="full" size="lg" />
+            </Link>
           </div>
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3DAABD] mx-auto" />
           <p className="mt-4 text-neutral-600 dark:text-neutral-400">Chargement...</p>
