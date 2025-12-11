@@ -36,8 +36,8 @@
     <circle cx="40" cy="36" r="7" fill="#3DAABD" />
   </g>
 
-  <!-- Text: Real (light gray for dark backgrounds) -->
-  <text x="63" y="42" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="700" fill="#A8B5BD">Real</text>
+  <!-- Text: Real (white for dark backgrounds) -->
+  <text x="63" y="42" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="700" fill="#FFFFFF">Real</text>
 
   <!-- Text: Pro (brand color) -->
   <text x="153" y="42" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="700" fill="#3DAABD">Pro</text>
