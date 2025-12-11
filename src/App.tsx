@@ -115,6 +115,7 @@ import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
 import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
 import { ProjectSAV } from './pages/ProjectSAV';
+import { ProjectSAVEnhanced } from './pages/ProjectSAVEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -274,7 +275,7 @@ function App() {
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
-                    <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
+                    <Route path="/projects/:projectId/sav" element={<ProjectSAVEnhanced />} />
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
                     <Route path="/projects/:projectId/notary" element={<ProjectNotary />} />
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
