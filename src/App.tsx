@@ -110,6 +110,7 @@ import { CfcDetail } from './pages/CfcDetail';
 import { ProjectFinance } from './pages/ProjectFinance';
 import { BuyerFinance } from './pages/BuyerFinance';
 import { ProjectFinancesDashboard } from './pages/ProjectFinancesDashboard';
+import ProjectFinancesDashboardEnhanced from './pages/ProjectFinancesDashboardEnhanced';
 import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
 import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
@@ -266,8 +267,9 @@ function App() {
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId/sign" element={<AvenantSignature />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
                     <Route path="/projects/:projectId/cfc/:cfcId" element={<CfcDetail />} />
-                    <Route path="/projects/:projectId/finance" element={<ProjectFinancesDashboard />} />
-                    <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboard />} />
+                    <Route path="/projects/:projectId/finance" element={<ProjectFinancesDashboardEnhanced />} />
+                    <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboardEnhanced />} />
+                    <Route path="/projects/:projectId/finances/dashboard" element={<ProjectFinancesDashboardEnhanced />} />
                     <Route path="/projects/:projectId/finances/cfc" element={<ProjectFinancesCFC />} />
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
