@@ -1,21 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" fill="none">
-  <!-- RealPro Icon - Geometric Cloud Design -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
+  <!-- RealPro Icon - Abstract Modern Design -->
   <defs>
-    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#5BC4D6"/>
+      <stop offset="100%" style="stop-color:#3DAABD"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3DAABD"/>
       <stop offset="100%" style="stop-color:#2E8A9A"/>
     </linearGradient>
   </defs>
 
-  <!-- Geometric Cloud - Perfect circles composition -->
-  <!-- Large left circle -->
-  <circle cx="28" cy="38" r="18" fill="url(#cloudGradient)"/>
-  <!-- Large center circle -->
-  <circle cx="50" cy="28" r="22" fill="url(#cloudGradient)"/>
-  <!-- Medium right circle -->
-  <circle cx="74" cy="36" r="16" fill="url(#cloudGradient)"/>
-  <!-- Small top accent circle -->
-  <circle cx="38" cy="18" r="10" fill="#3DAABD"/>
-  <!-- Base rectangle for flat bottom -->
-  <rect x="10" y="38" width="80" height="18" rx="9" fill="url(#cloudGradient)"/>
+  <!-- Abstract Modern Shape - Interlocking arcs -->
+  <!-- Main arc - top -->
+  <path
+    d="M8 25 Q8 8 25 8 Q42 8 42 25"
+    stroke="url(#grad1)"
+    stroke-width="6"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <!-- Secondary arc - bottom -->
+  <path
+    d="M8 25 Q8 42 25 42 Q42 42 42 25"
+    stroke="url(#grad2)"
+    stroke-width="6"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <!-- Center accent dot -->
+  <circle cx="25" cy="25" r="5" fill="#3DAABD"/>
 </svg>
