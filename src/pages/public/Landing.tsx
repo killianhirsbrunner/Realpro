@@ -625,7 +625,9 @@ export function Landing() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <RealProLogo variant="full" size="sm" />
+              <Link to="/">
+                <RealProLogo variant="full" size="sm" />
+              </Link>
               <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 La plateforme de gestion complète pour les promoteurs immobiliers en Suisse.
               </p>

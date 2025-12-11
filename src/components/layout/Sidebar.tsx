@@ -227,7 +227,9 @@ export function Sidebar() {
 
       <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
         <div className="flex items-center justify-between text-[11px] text-neutral-400 dark:text-neutral-500">
-          <RealProLogo variant="text" size="xs" />
+          <Link to="/">
+            <RealProLogo variant="text" size="xs" />
+          </Link>
           <span>v2.0</span>
         </div>
       </div>

@@ -49,36 +49,38 @@ export function RealProLogo({
       height={iconSize}
       className="flex-shrink-0"
     >
-      <defs>
-        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={BRAND_COLOR_LIGHT} />
-          <stop offset="100%" stopColor={BRAND_COLOR} />
-        </linearGradient>
-        <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={BRAND_COLOR} />
-          <stop offset="100%" stopColor={BRAND_COLOR_DARK} />
-        </linearGradient>
-      </defs>
-
-      {/* Abstract Modern Shape - Interlocking arcs */}
-      {/* Main arc - top left to bottom right */}
-      <path
-        d="M8 25 Q8 8 25 8 Q42 8 42 25"
-        stroke="url(#grad1)"
-        strokeWidth="6"
-        strokeLinecap="round"
-        fill="none"
+      {/* Official RealPro Logo - Interlocking Pills/Capsules Design */}
+      {/* Main diagonal bar (top-left to bottom-right) - background layer */}
+      <rect
+        x="5"
+        y="20"
+        width="40"
+        height="10"
+        rx="5"
+        fill={BRAND_COLOR}
+        transform="rotate(-35, 25, 25)"
       />
-      {/* Secondary arc - creates depth */}
-      <path
-        d="M8 25 Q8 42 25 42 Q42 42 42 25"
-        stroke="url(#grad2)"
-        strokeWidth="6"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Center accent dot */}
-      <circle cx="25" cy="25" r="5" fill={BRAND_COLOR} />
+      {/* Secondary diagonal bar (top-right to bottom-left) */}
+      <g>
+        {/* Top-right circle */}
+        <circle cx="38" cy="12" r="7" fill={BRAND_COLOR} />
+        {/* Bottom-left circle */}
+        <circle cx="12" cy="38" r="7" fill={BRAND_COLOR} />
+        {/* Connecting bar */}
+        <rect
+          x="5"
+          y="20"
+          width="32"
+          height="10"
+          rx="5"
+          fill={BRAND_COLOR}
+          transform="rotate(35, 25, 25)"
+        />
+      </g>
+      {/* Top-left circle (part of main bar) */}
+      <circle cx="10" cy="14" r="7" fill={BRAND_COLOR} />
+      {/* Bottom-right end (part of main bar) - extends further */}
+      <circle cx="40" cy="36" r="7" fill={BRAND_COLOR} />
     </svg>
   );
 
