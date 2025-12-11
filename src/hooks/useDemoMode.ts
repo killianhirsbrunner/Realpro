@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { handlePostAuthSetup } from '../lib/authHelpers';
 
 // Identifiants du compte démo avec accès complet
 export const DEMO_CREDENTIALS = {
@@ -90,6 +91,10 @@ export function useDemoMode() {
 
       // Marquer le mode démo
       localStorage.setItem(DEMO_MODE_KEY, 'true');
+
+      // Ensure user setup is complete
+      await handlePostAuthSetup();
+
       setState(prev => ({ ...prev, isDemoMode: true, isLoggingIn: false }));
 
       // Redirection vers le dashboard

@@ -1,7 +1,9 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { handlePostAuthSetup } from '../lib/authHelpers';
 import { Input } from '../components/ui/Input';
+import { RealProLogo } from '../components/branding/RealProLogo';
 import { ArrowRight, Sparkles, Play, CheckCircle } from 'lucide-react';
 import { useDemoMode, DEMO_CREDENTIALS } from '../hooks/useDemoMode';
 
@@ -61,6 +63,8 @@ export function Login() {
           }
           throw signInError;
         }
+        // Ensure user setup is complete after login
+        await handlePostAuthSetup();
         navigate('/dashboard');
       }
     } catch (err) {
@@ -79,8 +83,11 @@ export function Login() {
 
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
+          <div className="flex justify-center mb-6">
+            <RealProLogo variant="full" size="lg" />
+          </div>
           <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mb-2">
-            {isSignUp ? 'Créer un compte' : 'Bienvenue sur RealPro'}
+            {isSignUp ? 'Créer un compte' : 'Bienvenue'}
           </h1>
           <p className="text-neutral-600 dark:text-neutral-400">
             {isSignUp ? 'Commencez votre essai gratuit de 14 jours' : 'Gérez vos projets immobiliers en toute simplicité'}

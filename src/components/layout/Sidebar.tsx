@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { useI18n } from '../../lib/i18n';
 import { useOrganizationContext } from '../../contexts/OrganizationContext';
+import { RealProLogo } from '../branding/RealProLogo';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -199,7 +200,7 @@ export function Sidebar() {
               className="h-10 w-auto max-w-[180px] object-contain"
             />
           ) : (
-            <span className="font-bold text-xl text-neutral-900 dark:text-white">RealPro</span>
+            <RealProLogo variant="full" size="sm" />
           )}
         </Link>
       </div>
@@ -226,7 +227,7 @@ export function Sidebar() {
 
       <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
         <div className="flex items-center justify-between text-[11px] text-neutral-400 dark:text-neutral-500">
-          <span className="font-medium">RealPro</span>
+          <RealProLogo variant="text" size="xs" />
           <span>v2.0</span>
         </div>
       </div>

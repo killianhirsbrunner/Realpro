@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useOrganization } from '../hooks/useOrganization';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { RealProLogo } from '../components/branding/RealProLogo';
 import {
   Building2,
   Plus,
@@ -64,7 +65,7 @@ export function DashboardHome() {
       <div className="border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <span className="font-bold text-2xl text-neutral-900 dark:text-white">RealPro</span>
+            <RealProLogo variant="full" size="md" />
             <button
               onClick={() => navigate('/projects/wizard')}
               className="flex items-center gap-2 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-600/20"
