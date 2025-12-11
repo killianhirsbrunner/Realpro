@@ -5,7 +5,8 @@ import { Input } from '../../components/ui/Input';
 import { Select } from '../../components/ui/Select';
 import { Textarea } from '../../components/ui/Textarea';
 import { supabase } from '../../lib/supabase';
-import { AlertCircle, ArrowRight, Check, Building2, User, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
+import { handlePostAuthSetup } from '../../lib/authHelpers';
+import { AlertCircle, ArrowRight, Check, Building2, User, Mail, Phone, MapPin, Briefcase, CheckCircle } from 'lucide-react';
 
 const SWISS_CANTONS = [
   { value: 'AG', label: 'Argovie (AG)' },
@@ -80,6 +81,7 @@ export function RegisterCompany() {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const updateField = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
@@ -141,10 +143,33 @@ export function RegisterCompany() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccessMessage(null);
 
     if (!validateStep2()) return;
 
     setLoading(true);
+
+    // Helper pour détecter les erreurs de rate limit
+    const isRateLimitError = (error: Error): boolean => {
+      const message = error.message.toLowerCase();
+      return (
+        message.includes('rate limit') ||
+        message.includes('too many requests') ||
+        message.includes('over_email_send_rate_limit') ||
+        message.includes('email rate limit') ||
+        message.includes('for security purposes')
+      );
+    };
+
+    // Helper pour détecter si l'utilisateur existe déjà
+    const isUserExistsError = (error: Error): boolean => {
+      const message = error.message.toLowerCase();
+      return (
+        message.includes('user already registered') ||
+        message.includes('already been registered') ||
+        message.includes('already exists')
+      );
+    };
 
     try {
       // 1. Créer le compte auth - le trigger handle_new_user() crée automatiquement
@@ -162,10 +187,53 @@ export function RegisterCompany() {
         }
       });
 
-      if (authError) throw authError;
+      if (authError) {
+        if (isRateLimitError(authError)) {
+          throw new Error('Service temporairement limité. Veuillez patienter quelques minutes avant de réessayer.');
+        }
+        if (isUserExistsError(authError)) {
+          throw new Error('Un compte existe déjà avec cet email. Veuillez vous connecter ou utiliser "Mot de passe oublié" si nécessaire.');
+        }
+        throw authError;
+      }
 
-      if (authData.user) {
-        // 2. Récupérer l'organisation créée automatiquement par le trigger
+      // Stocker les données de l'entreprise pour les récupérer après confirmation email
+      localStorage.setItem('realpro_pending_company_data', JSON.stringify({
+        companyName: formData.companyName,
+        companyType: formData.companyType,
+        ideNumber: formData.ideNumber,
+        vatNumber: formData.vatNumber,
+        activitySector: formData.activitySector,
+        companySize: formData.companySize,
+        address: formData.address,
+        postalCode: formData.postalCode,
+        city: formData.city,
+        canton: formData.canton,
+        phone: formData.phone,
+        website: formData.website,
+        description: formData.description,
+        directPhone: formData.directPhone
+      }));
+
+      // Vérifier si la confirmation email est requise
+      if (authData.user && !authData.session) {
+        // Vérifier si l'utilisateur existait déjà (identities vides = utilisateur existant)
+        if (authData.user.identities && authData.user.identities.length === 0) {
+          throw new Error('Un compte existe déjà avec cet email. Veuillez vous connecter ou utiliser "Mot de passe oublié" si nécessaire.');
+        }
+        // Email confirmation requise
+        setSuccessMessage(
+          'Un email de confirmation a été envoyé à votre adresse. Veuillez cliquer sur le lien dans l\'email pour activer votre compte, puis vous pourrez vous connecter.'
+        );
+        return;
+      }
+
+      // Session créée directement (pas de confirmation email requise)
+      if (authData.user && authData.session) {
+        // Configurer l'utilisateur
+        await handlePostAuthSetup();
+
+        // Récupérer l'organisation et mettre à jour avec les infos entreprise
         const { data: userOrg } = await supabase
           .from('user_organizations')
           .select('organization_id')
@@ -173,8 +241,7 @@ export function RegisterCompany() {
           .single();
 
         if (userOrg?.organization_id) {
-          // 3. Mettre à jour l'organisation avec les informations de l'entreprise
-          const { error: updateOrgError } = await supabase
+          await supabase
             .from('organizations')
             .update({
               name: formData.companyName,
@@ -194,19 +261,17 @@ export function RegisterCompany() {
               }
             })
             .eq('id', userOrg.organization_id);
-
-          if (updateOrgError) {
-            console.error('Error updating organization:', updateOrgError);
-          }
         }
 
-        // 4. Mettre à jour le profil utilisateur avec le téléphone direct
         if (formData.directPhone) {
           await supabase
             .from('users')
             .update({ phone: formData.directPhone })
             .eq('id', authData.user.id);
         }
+
+        // Nettoyer les données temporaires
+        localStorage.removeItem('realpro_pending_company_data');
 
         navigate('/dashboard');
       }
@@ -259,7 +324,22 @@ export function RegisterCompany() {
             </div>
           )}
 
-          {step === 1 ? (
+          {successMessage && (
+            <div className="mb-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 flex items-start gap-3">
+              <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm text-emerald-800 dark:text-emerald-200">{successMessage}</p>
+                <Link
+                  to="/login"
+                  className="inline-block mt-3 text-sm font-medium text-emerald-700 dark:text-emerald-300 hover:text-emerald-800 dark:hover:text-emerald-200 underline"
+                >
+                  Aller à la page de connexion
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {step === 1 && !successMessage ? (
             <form onSubmit={(e) => { e.preventDefault(); handleNext(); }} className="space-y-6">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-800">
                 <Building2 className="w-5 h-5 text-brand-600" />
@@ -473,7 +553,7 @@ export function RegisterCompany() {
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
-          ) : (
+          ) : step === 2 && !successMessage ? (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-800">
                 <User className="w-5 h-5 text-brand-600" />
@@ -639,7 +719,7 @@ export function RegisterCompany() {
                 </Link>
               </p>
             </form>
-          )}
+          ) : null}
         </div>
 
         <p className="text-center text-sm text-neutral-600 dark:text-neutral-400 mt-6">

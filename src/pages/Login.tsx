@@ -1,15 +1,11 @@
-import { useState, FormEvent, useEffect, useCallback } from 'react';
+import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { handlePostAuthSetup } from '../lib/authHelpers';
 import { Input } from '../components/ui/Input';
 import { RealProLogo } from '../components/branding/RealProLogo';
-import { ArrowRight, Sparkles, Play, CheckCircle, Clock } from 'lucide-react';
+import { ArrowRight, Sparkles, Play, CheckCircle } from 'lucide-react';
 import { useDemoMode, DEMO_CREDENTIALS } from '../hooks/useDemoMode';
-
-// Cooldown configuration pour éviter le rate limiting
-const SIGNUP_COOLDOWN_KEY = 'realpro_signup_cooldown';
-const COOLDOWN_DURATION_MS = 60000; // 60 secondes entre les tentatives
 
 export function Login() {
   const navigate = useNavigate();
@@ -17,44 +13,9 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isSignUp, setIsSignUp] = useState(false);
   const { loginAsDemo, isLoggingIn: isDemoLoading, error: demoError } = useDemoMode();
 
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [cooldownRemaining, setCooldownRemaining] = useState(0);
-
-  // Vérifier et gérer le cooldown
-  const checkCooldown = useCallback((): number => {
-    const storedCooldown = localStorage.getItem(SIGNUP_COOLDOWN_KEY);
-    if (storedCooldown) {
-      const cooldownEnd = parseInt(storedCooldown, 10);
-      const remaining = cooldownEnd - Date.now();
-      if (remaining > 0) {
-        return Math.ceil(remaining / 1000);
-      }
-      localStorage.removeItem(SIGNUP_COOLDOWN_KEY);
-    }
-    return 0;
-  }, []);
-
-  // Définir un cooldown après une tentative d'inscription
-  const setCooldown = useCallback(() => {
-    const cooldownEnd = Date.now() + COOLDOWN_DURATION_MS;
-    localStorage.setItem(SIGNUP_COOLDOWN_KEY, cooldownEnd.toString());
-    setCooldownRemaining(Math.ceil(COOLDOWN_DURATION_MS / 1000));
-  }, []);
-
-  // Mettre à jour le compteur de cooldown
-  useEffect(() => {
-    const updateCooldown = () => {
-      const remaining = checkCooldown();
-      setCooldownRemaining(remaining);
-    };
-
-    updateCooldown();
-    const interval = setInterval(updateCooldown, 1000);
-    return () => clearInterval(interval);
-  }, [checkCooldown]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -74,87 +35,84 @@ export function Login() {
       );
     };
 
-    // Helper pour détecter si l'utilisateur existe déjà
-    const isUserExistsError = (error: Error): boolean => {
-      const message = error.message.toLowerCase();
-      return (
-        message.includes('user already registered') ||
-        message.includes('already been registered') ||
-        message.includes('already exists')
-      );
-    };
-
     try {
-      if (isSignUp) {
-        // Vérifier le cooldown avant de tenter l'inscription
-        const remainingCooldown = checkCooldown();
-        if (remainingCooldown > 0) {
-          throw new Error(`Veuillez patienter encore ${remainingCooldown} secondes avant de réessayer l'inscription.`);
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (signInError) {
+        // Vérifier si c'est une erreur de rate limit
+        if (isRateLimitError(signInError)) {
+          throw new Error('Trop de tentatives de connexion. Veuillez patienter quelques minutes avant de réessayer.');
         }
-
-        const { data, error: signUpError } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              first_name: '',
-              last_name: '',
-            },
-          },
-        });
-
-        if (signUpError) {
-          if (isRateLimitError(signUpError)) {
-            setCooldown();
-            throw new Error('Service temporairement limité. Veuillez patienter 60 secondes avant de réessayer.');
-          }
-          if (isUserExistsError(signUpError)) {
-            throw new Error('Un compte existe déjà avec cet email. Veuillez vous connecter ou utiliser "Mot de passe oublié" si nécessaire.');
-          }
-          throw signUpError;
+        // Provide clearer error messages in French
+        if (signInError.message.includes('Invalid login credentials')) {
+          throw new Error('Email ou mot de passe incorrect');
+        } else if (signInError.message.includes('Email not confirmed')) {
+          throw new Error('Veuillez confirmer votre email avant de vous connecter. Vérifiez votre boîte de réception.');
         }
-
-        // Définir un cooldown après une tentative réussie pour éviter les répétitions
-        setCooldown();
-
-        // Check if email confirmation is required
-        if (data.user && !data.session) {
-          // Vérifier si l'utilisateur existait déjà (identities vides = utilisateur existant)
-          if (data.user.identities && data.user.identities.length === 0) {
-            throw new Error('Un compte existe déjà avec cet email. Veuillez vous connecter ou utiliser "Mot de passe oublié" si nécessaire.');
-          }
-          // Email confirmation is required
-          setSuccessMessage(
-            'Un email de confirmation a été envoyé à votre adresse. Veuillez cliquer sur le lien dans l\'email pour activer votre compte, puis vous pourrez vous connecter.'
-          );
-          setIsSignUp(false);
-        } else if (data.session) {
-          // No email confirmation required, user is logged in
-          await handlePostAuthSetup();
-          navigate('/dashboard');
-        }
-      } else {
-        const { error: signInError } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (signInError) {
-          // Vérifier si c'est une erreur de rate limit
-          if (isRateLimitError(signInError)) {
-            throw new Error('Trop de tentatives de connexion. Veuillez patienter quelques minutes avant de réessayer.');
-          }
-          // Provide clearer error messages in French
-          if (signInError.message.includes('Invalid login credentials')) {
-            throw new Error('Email ou mot de passe incorrect');
-          } else if (signInError.message.includes('Email not confirmed')) {
-            throw new Error('Veuillez confirmer votre email avant de vous connecter. Vérifiez votre boîte de réception.');
-          }
-          throw signInError;
-        }
-        // Ensure user setup is complete after login
-        await handlePostAuthSetup();
-        navigate('/dashboard');
+        throw signInError;
       }
+      // Ensure user setup is complete after login
+      await handlePostAuthSetup();
+
+      // Récupérer et appliquer les données entreprise si elles existent (après confirmation email)
+      const pendingCompanyData = localStorage.getItem('realpro_pending_company_data');
+      if (pendingCompanyData) {
+        try {
+          const companyData = JSON.parse(pendingCompanyData);
+          const { data: { user } } = await supabase.auth.getUser();
+
+          if (user) {
+            // Récupérer l'organisation de l'utilisateur
+            const { data: userOrg } = await supabase
+              .from('user_organizations')
+              .select('organization_id')
+              .eq('user_id', user.id)
+              .single();
+
+            if (userOrg?.organization_id) {
+              // Mettre à jour l'organisation avec les données entreprise
+              await supabase
+                .from('organizations')
+                .update({
+                  name: companyData.companyName,
+                  settings: {
+                    legal_form: companyData.companyType,
+                    ide_number: companyData.ideNumber || null,
+                    vat_number: companyData.vatNumber || null,
+                    activity_sector: companyData.activitySector,
+                    company_size: companyData.companySize,
+                    address: companyData.address,
+                    postal_code: companyData.postalCode,
+                    city: companyData.city,
+                    canton: companyData.canton,
+                    phone: companyData.phone,
+                    website: companyData.website || null,
+                    description: companyData.description || null
+                  }
+                })
+                .eq('id', userOrg.organization_id);
+            }
+
+            // Mettre à jour le téléphone direct si présent
+            if (companyData.directPhone) {
+              await supabase
+                .from('users')
+                .update({ phone: companyData.directPhone })
+                .eq('id', user.id);
+            }
+          }
+
+          // Nettoyer les données temporaires
+          localStorage.removeItem('realpro_pending_company_data');
+        } catch (e) {
+          console.error('Error applying pending company data:', e);
+          localStorage.removeItem('realpro_pending_company_data');
+        }
+      }
+
+      navigate('/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     } finally {
@@ -177,10 +135,10 @@ export function Login() {
             </Link>
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mb-2">
-            {isSignUp ? 'Créer un compte' : 'Bienvenue'}
+            Bienvenue
           </h1>
           <p className="text-neutral-600 dark:text-neutral-400">
-            {isSignUp ? 'Commencez votre essai gratuit de 14 jours' : 'Gérez vos projets immobiliers en toute simplicité'}
+            Gérez vos projets immobiliers en toute simplicité
           </p>
         </div>
 
@@ -233,122 +191,102 @@ export function Login() {
               />
             </div>
 
-            {/* Indicateur de cooldown pour l'inscription */}
-            {isSignUp && cooldownRemaining > 0 && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
-                <Clock className="w-5 h-5 flex-shrink-0" />
-                <span>Patientez {cooldownRemaining} secondes avant de réessayer...</span>
-              </div>
-            )}
-
             <button
               type="submit"
-              disabled={loading || (isSignUp && cooldownRemaining > 0)}
+              disabled={loading}
               className="group w-full h-12 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 active:from-brand-800 active:to-brand-900 text-white font-medium shadow-lg shadow-brand-600/30 hover:shadow-xl hover:shadow-brand-600/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-              ) : isSignUp && cooldownRemaining > 0 ? (
-                <>
-                  <Clock className="w-4 h-4" />
-                  Patientez {cooldownRemaining}s
-                </>
               ) : (
                 <>
-                  {isSignUp ? "Créer mon compte" : 'Se connecter'}
+                  Se connecter
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>
           </form>
 
-          {!isSignUp && (
-            <div className="mt-4 text-center">
-              <a
-                href="/forgot-password"
-                className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors"
-              >
-                Mot de passe oublié ?
-              </a>
-            </div>
-          )}
-
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors"
+          <div className="mt-4 text-center">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors"
             >
-              {isSignUp
-                ? 'Vous avez déjà un compte? Se connecter'
-                : "Pas encore de compte? S'inscrire"}
-            </button>
+              Mot de passe oublié ?
+            </Link>
           </div>
 
-          {!isSignUp && (
-            <div className="mt-6 p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-900/20 dark:to-emerald-800/20 border border-emerald-200 dark:border-emerald-900/30 rounded-xl">
-              <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <p className="text-sm text-emerald-900 dark:text-emerald-200 font-semibold">
-                  Accès Démonstration
-                </p>
+          <div className="mt-6 text-center">
+            <Link
+              to="/register"
+              className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors"
+            >
+              Pas encore de compte ? S'inscrire
+            </Link>
+          </div>
+
+          <div className="mt-6 p-4 bg-gradient-to-br from-emerald-50 to-emerald-100/50 dark:from-emerald-900/20 dark:to-emerald-800/20 border border-emerald-200 dark:border-emerald-900/30 rounded-xl">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <p className="text-sm text-emerald-900 dark:text-emerald-200 font-semibold">
+                Accès Démonstration
+              </p>
+            </div>
+
+            {/* Liste des fonctionnalités disponibles */}
+            <div className="mb-4 space-y-1.5">
+              <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                <CheckCircle className="w-3.5 h-3.5" />
+                <span>Toutes les fonctionnalités débloquées</span>
               </div>
-
-              {/* Liste des fonctionnalités disponibles */}
-              <div className="mb-4 space-y-1.5">
-                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
-                  <CheckCircle className="w-3.5 h-3.5" />
-                  <span>Toutes les fonctionnalités débloquées</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
-                  <CheckCircle className="w-3.5 h-3.5" />
-                  <span>Création de projets illimitée</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
-                  <CheckCircle className="w-3.5 h-3.5" />
-                  <span>Projet de démonstration pré-configuré</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
-                  <CheckCircle className="w-3.5 h-3.5" />
-                  <span>Gestion complète: lots, acheteurs, factures</span>
-                </div>
+              <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                <CheckCircle className="w-3.5 h-3.5" />
+                <span>Création de projets illimitée</span>
               </div>
-
-              {/* Bouton d'accès rapide à la démo */}
-              <button
-                type="button"
-                onClick={loginAsDemo}
-                disabled={isDemoLoading || loading}
-                className="group w-full h-11 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 active:from-emerald-800 active:to-emerald-900 text-white font-medium shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-              >
-                {isDemoLoading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                ) : (
-                  <>
-                    <Play className="w-4 h-4" />
-                    Essayer la démo gratuitement
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </button>
-
-              {demoError && (
-                <p className="mt-2 text-xs text-red-600 dark:text-red-400 text-center">
-                  {demoError}
-                </p>
-              )}
-
-              {/* Identifiants alternatifs */}
-              <div className="mt-3 pt-3 border-t border-emerald-200 dark:border-emerald-800/30">
-                <p className="text-xs text-emerald-600 dark:text-emerald-400 text-center mb-1">
-                  Ou connectez-vous manuellement:
-                </p>
-                <p className="text-xs text-emerald-700 dark:text-emerald-300 text-center">
-                  <span className="font-mono">{DEMO_CREDENTIALS.email}</span> / <span className="font-mono">{DEMO_CREDENTIALS.password}</span>
-                </p>
+              <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                <CheckCircle className="w-3.5 h-3.5" />
+                <span>Projet de démonstration pré-configuré</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+                <CheckCircle className="w-3.5 h-3.5" />
+                <span>Gestion complète: lots, acheteurs, factures</span>
               </div>
             </div>
-          )}
+
+            {/* Bouton d'accès rapide à la démo */}
+            <button
+              type="button"
+              onClick={loginAsDemo}
+              disabled={isDemoLoading || loading}
+              className="group w-full h-11 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 active:from-emerald-800 active:to-emerald-900 text-white font-medium shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+            >
+              {isDemoLoading ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              ) : (
+                <>
+                  <Play className="w-4 h-4" />
+                  Essayer la démo gratuitement
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
+            </button>
+
+            {demoError && (
+              <p className="mt-2 text-xs text-red-600 dark:text-red-400 text-center">
+                {demoError}
+              </p>
+            )}
+
+            {/* Identifiants alternatifs */}
+            <div className="mt-3 pt-3 border-t border-emerald-200 dark:border-emerald-800/30">
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 text-center mb-1">
+                Ou connectez-vous manuellement:
+              </p>
+              <p className="text-xs text-emerald-700 dark:text-emerald-300 text-center">
+                <span className="font-mono">{DEMO_CREDENTIALS.email}</span> / <span className="font-mono">{DEMO_CREDENTIALS.password}</span>
+              </p>
+            </div>
+          </div>
         </div>
 
         <p className="text-center text-xs text-neutral-500 dark:text-neutral-400 mt-8 flex items-center justify-center gap-1.5">
