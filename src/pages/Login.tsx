@@ -153,6 +153,63 @@ export function Login() {
         }
         // Ensure user setup is complete after login
         await handlePostAuthSetup();
+
+        // Récupérer et appliquer les données entreprise si elles existent (après confirmation email)
+        const pendingCompanyData = localStorage.getItem('realpro_pending_company_data');
+        if (pendingCompanyData) {
+          try {
+            const companyData = JSON.parse(pendingCompanyData);
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (user) {
+              // Récupérer l'organisation de l'utilisateur
+              const { data: userOrg } = await supabase
+                .from('user_organizations')
+                .select('organization_id')
+                .eq('user_id', user.id)
+                .single();
+
+              if (userOrg?.organization_id) {
+                // Mettre à jour l'organisation avec les données entreprise
+                await supabase
+                  .from('organizations')
+                  .update({
+                    name: companyData.companyName,
+                    settings: {
+                      legal_form: companyData.companyType,
+                      ide_number: companyData.ideNumber || null,
+                      vat_number: companyData.vatNumber || null,
+                      activity_sector: companyData.activitySector,
+                      company_size: companyData.companySize,
+                      address: companyData.address,
+                      postal_code: companyData.postalCode,
+                      city: companyData.city,
+                      canton: companyData.canton,
+                      phone: companyData.phone,
+                      website: companyData.website || null,
+                      description: companyData.description || null
+                    }
+                  })
+                  .eq('id', userOrg.organization_id);
+              }
+
+              // Mettre à jour le téléphone direct si présent
+              if (companyData.directPhone) {
+                await supabase
+                  .from('users')
+                  .update({ phone: companyData.directPhone })
+                  .eq('id', user.id);
+              }
+            }
+
+            // Nettoyer les données temporaires
+            localStorage.removeItem('realpro_pending_company_data');
+          } catch (e) {
+            console.error('Error applying pending company data:', e);
+            localStorage.removeItem('realpro_pending_company_data');
+          }
+        }
+
         navigate('/dashboard');
       }
     } catch (err) {
