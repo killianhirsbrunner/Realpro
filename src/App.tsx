@@ -63,6 +63,7 @@ import ProjectNotaryDetail from './pages/ProjectNotaryDetail';
 import ProjectCRMPipeline from './pages/ProjectCRMPipeline';
 import ProjectCRMProspects from './pages/ProjectCRMProspects';
 import ProjectCRMProspectDetail from './pages/ProjectCRMProspectDetail';
+import ProjectCRMProspectCreate from './pages/ProjectCRMProspectCreate';
 import ProjectCRMBuyers from './pages/ProjectCRMBuyers';
 import ProjectReservations from './pages/ProjectReservations';
 import { PromoterDashboard } from './pages/PromoterDashboard';
@@ -275,6 +276,7 @@ function App() {
                     <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipeline />} />
                     <Route path="/projects/:projectId/crm/reservations" element={<ProjectReservations />} />
                     <Route path="/projects/:projectId/crm/prospects" element={<ProjectCRMProspects />} />
+                    <Route path="/projects/:projectId/crm/prospects/new" element={<ProjectCRMProspectCreate />} />
                     <Route path="/projects/:projectId/crm/prospects/:prospectId" element={<ProjectCRMProspectDetail />} />
                     <Route path="/projects/:projectId/crm/buyers" element={<ProjectCRMBuyers />} />
                     <Route path="/projects/:projectId/structure" element={<ProjectStructurePage />} />

@@ -4,8 +4,10 @@ import { Breadcrumbs } from '../components/ui/Breadcrumbs';
 import { LoadingState } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
 import ProjectStructureTree from '../components/project/ProjectStructureTree';
-import { Button } from '../components/ui/Button';
-import { Plus, Building2 } from 'lucide-react';
+import { RealProButton } from '../components/realpro/RealProButton';
+import { RealProCard } from '../components/realpro/RealProCard';
+import { RealProTopbar } from '../components/realpro/RealProTopbar';
+import { Plus, Building2, DoorOpen, Layers, Home } from 'lucide-react';
 import { useProjectStructure } from '../hooks/useProjectStructure';
 
 export default function ProjectStructurePage() {
@@ -17,6 +19,12 @@ export default function ProjectStructurePage() {
   if (error) return <ErrorState message={error.message} retry={refetch} />;
   if (!structure || !project) return <ErrorState message="Structure introuvable" />;
 
+  const totalEntrances = structure.buildings.reduce((acc, b) => acc + b.entrances.length, 0);
+  const totalFloors = structure.buildings.reduce(
+    (acc, b) => acc + b.entrances.reduce((acc2, e) => acc2 + e.floors.length, 0),
+    0
+  );
+
   return (
     <div className="space-y-8">
       <Breadcrumbs
@@ -27,74 +35,100 @@ export default function ProjectStructurePage() {
         ]}
       />
 
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Structure du Projet</h1>
-          <p className="text-gray-600 mt-2">
-            Gérez la structure hiérarchique: bâtiments, entrées et étages
-          </p>
-        </div>
+      <RealProTopbar
+        title="Structure du Projet"
+        subtitle="Gérez la structure hiérarchique: bâtiments, entrées et étages"
+        actions={
+          <RealProButton
+            variant="primary"
+            onClick={() => setIsAddingBuilding(true)}
+          >
+            <Plus className="w-4 h-4" />
+            Nouveau bâtiment
+          </RealProButton>
+        }
+      />
 
-        <Button
-          onClick={() => setIsAddingBuilding(true)}
-          className="flex items-center gap-2"
-        >
-          <Plus className="w-5 h-5" />
-          Nouveau bâtiment
-        </Button>
+      {/* KPIs Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Bâtiments</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {structure.buildings.length}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30">
+              <Building2 className="w-6 h-6 text-brand-600 dark:text-brand-400" />
+            </div>
+          </div>
+        </RealProCard>
+
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Entrées</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {totalEntrances}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-green-100 dark:bg-green-900/30">
+              <DoorOpen className="w-6 h-6 text-green-600 dark:text-green-400" />
+            </div>
+          </div>
+        </RealProCard>
+
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Étages</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {totalFloors}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-amber-100 dark:bg-amber-900/30">
+              <Layers className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            </div>
+          </div>
+        </RealProCard>
+
+        <RealProCard padding="md">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Total Lots</p>
+              <p className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">
+                {structure.totalLots}
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30">
+              <Home className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+            </div>
+          </div>
+        </RealProCard>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Building2 className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Bâtiments</p>
-          </div>
-          <p className="text-3xl font-bold text-gray-900">{structure.buildings.length}</p>
-        </div>
-
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Building2 className="w-6 h-6 text-green-600" />
-            <p className="text-sm font-medium text-gray-600">Entrées</p>
-          </div>
-          <p className="text-3xl font-bold text-gray-900">
-            {structure.buildings.reduce((acc, b) => acc + b.entrances.length, 0)}
-          </p>
-        </div>
-
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Building2 className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Étages</p>
-          </div>
-          <p className="text-3xl font-bold text-gray-900">
-            {structure.buildings.reduce(
-              (acc, b) => acc + b.entrances.reduce((acc2, e) => acc2 + e.floors.length, 0),
-              0
-            )}
-          </p>
-        </div>
-
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-2">
-            <Building2 className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Total Lots</p>
-          </div>
-          <p className="text-3xl font-bold text-gray-900">{structure.totalLots}</p>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Arborescence du Projet</h2>
+      {/* Arborescence */}
+      <RealProCard padding="lg">
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6">
+          Arborescence du Projet
+        </h2>
 
         {structure.buildings.length === 0 ? (
           <div className="text-center py-12">
-            <Building2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-600 mb-4">Aucun bâtiment défini</p>
-            <Button onClick={() => setIsAddingBuilding(true)}>
+            <div className="w-20 h-20 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
+              <Building2 className="w-10 h-10 text-neutral-400 dark:text-neutral-500" />
+            </div>
+            <p className="text-neutral-700 dark:text-neutral-300 font-medium mb-2">
+              Aucun bâtiment défini
+            </p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6">
+              Commencez par créer le premier bâtiment de votre projet
+            </p>
+            <RealProButton variant="primary" onClick={() => setIsAddingBuilding(true)}>
+              <Plus className="w-4 h-4" />
               Créer le premier bâtiment
-            </Button>
+            </RealProButton>
           </div>
         ) : (
           <ProjectStructureTree
@@ -104,7 +138,7 @@ export default function ProjectStructurePage() {
             onSelectFloor={(id) => console.log('Floor selected:', id)}
           />
         )}
-      </div>
+      </RealProCard>
     </div>
   );
 }

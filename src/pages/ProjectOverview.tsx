@@ -298,7 +298,7 @@ export function ProjectOverview() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {construction.phases.length > 0 && (
           <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Avancement chantier</h2>
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Avancement chantier</h2>
             <ProjectTimeline phases={construction.phases} />
           </div>
         )}
