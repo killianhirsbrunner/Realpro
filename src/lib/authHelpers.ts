@@ -11,6 +11,89 @@ interface UserSetupData {
   company?: string;
 }
 
+const TRIAL_DAYS = 14;
+
+/**
+ * Creates a trial subscription for a new organization
+ */
+async function createTrialSubscription(organizationId: string): Promise<boolean> {
+  try {
+    // Check if subscription already exists
+    const { data: existingSubscription } = await supabase
+      .from('subscriptions')
+      .select('id')
+      .eq('organization_id', organizationId)
+      .maybeSingle();
+
+    if (existingSubscription) {
+      // Subscription already exists, skip creation
+      return true;
+    }
+
+    // Get the default trial plan (starter)
+    const { data: starterPlan, error: planError } = await supabase
+      .from('plans')
+      .select('id, trial_days')
+      .eq('slug', 'starter')
+      .eq('is_active', true)
+      .maybeSingle();
+
+    if (planError || !starterPlan) {
+      console.error('Error fetching starter plan:', planError);
+      // Try to get any active plan
+      const { data: anyPlan } = await supabase
+        .from('plans')
+        .select('id, trial_days')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true })
+        .limit(1)
+        .maybeSingle();
+
+      if (!anyPlan) {
+        console.error('No active plans found');
+        return false;
+      }
+
+      return await insertTrialSubscription(organizationId, anyPlan.id, anyPlan.trial_days || TRIAL_DAYS);
+    }
+
+    return await insertTrialSubscription(organizationId, starterPlan.id, starterPlan.trial_days || TRIAL_DAYS);
+  } catch (error) {
+    console.error('Error creating trial subscription:', error);
+    return false;
+  }
+}
+
+async function insertTrialSubscription(
+  organizationId: string,
+  planId: string,
+  trialDays: number
+): Promise<boolean> {
+  const now = new Date();
+  const trialEnd = new Date(now);
+  trialEnd.setDate(trialEnd.getDate() + trialDays);
+
+  const { error: subscriptionError } = await supabase
+    .from('subscriptions')
+    .insert({
+      organization_id: organizationId,
+      plan_id: planId,
+      status: 'TRIAL',
+      billing_cycle: 'MONTHLY',
+      current_period_start: now.toISOString(),
+      current_period_end: trialEnd.toISOString(),
+      trial_start: now.toISOString(),
+      trial_end: trialEnd.toISOString(),
+    });
+
+  if (subscriptionError) {
+    console.error('Error inserting trial subscription:', subscriptionError);
+    return false;
+  }
+
+  return true;
+}
+
 /**
  * Ensures a user has all required database records after authentication.
  * Creates missing user, organization, and user_organization records.
@@ -115,7 +198,15 @@ export async function ensureUserSetup(authUserId: string, userData?: UserSetupDa
         if (linkError) {
           console.error('Error linking user to organization:', linkError);
         }
+
+        // 6. Create trial subscription for new organization
+        await createTrialSubscription(organizationId);
       }
+    }
+
+    // Ensure organization has a subscription (for existing users without one)
+    if (organizationId) {
+      await createTrialSubscription(organizationId);
     }
 
     return {
