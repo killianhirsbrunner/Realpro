@@ -42,6 +42,22 @@ export function useDemoMode() {
     checkDemoMode();
   }, []);
 
+  // Helper pour détecter les erreurs de rate limit
+  const isRateLimitError = (error: Error): boolean => {
+    const message = error.message.toLowerCase();
+    return (
+      message.includes('rate limit') ||
+      message.includes('too many requests') ||
+      message.includes('over_email_send_rate_limit') ||
+      message.includes('email rate limit')
+    );
+  };
+
+  // Message d'erreur utilisateur pour le rate limit
+  const getRateLimitMessage = (): string => {
+    return 'Trop de tentatives de connexion. Le compte démo nécessite une confirmation par email. Veuillez réessayer dans quelques minutes ou contacter le support.';
+  };
+
   // Connexion automatique en mode démo
   const loginAsDemo = useCallback(async () => {
     setState(prev => ({ ...prev, isLoggingIn: true, error: null }));
@@ -57,6 +73,11 @@ export function useDemoMode() {
       });
 
       if (signInError) {
+        // Vérifier si c'est une erreur de rate limit
+        if (isRateLimitError(signInError)) {
+          throw new Error(getRateLimitMessage());
+        }
+
         // Si le compte démo n'existe pas, on essaie de le créer
         if (signInError.message.includes('Invalid login credentials')) {
           const { error: signUpError } = await supabase.auth.signUp({
@@ -72,6 +93,10 @@ export function useDemoMode() {
           });
 
           if (signUpError) {
+            // Vérifier si c'est une erreur de rate limit
+            if (isRateLimitError(signUpError)) {
+              throw new Error(getRateLimitMessage());
+            }
             throw signUpError;
           }
 
@@ -82,8 +107,18 @@ export function useDemoMode() {
           });
 
           if (retryError) {
+            // Vérifier si c'est une erreur de rate limit
+            if (isRateLimitError(retryError)) {
+              throw new Error(getRateLimitMessage());
+            }
+            // Si email non confirmé après création
+            if (retryError.message.includes('Email not confirmed')) {
+              throw new Error('Le compte démo a été créé. Veuillez confirmer votre email ou réessayer dans quelques minutes.');
+            }
             throw retryError;
           }
+        } else if (signInError.message.includes('Email not confirmed')) {
+          throw new Error('Veuillez confirmer votre email pour accéder à la démo. Vérifiez votre boîte de réception.');
         } else {
           throw signInError;
         }

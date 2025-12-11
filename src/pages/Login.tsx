@@ -24,6 +24,17 @@ export function Login() {
     setError(null);
     setSuccessMessage(null);
 
+    // Helper pour détecter les erreurs de rate limit
+    const isRateLimitError = (error: Error): boolean => {
+      const message = error.message.toLowerCase();
+      return (
+        message.includes('rate limit') ||
+        message.includes('too many requests') ||
+        message.includes('over_email_send_rate_limit') ||
+        message.includes('email rate limit')
+      );
+    };
+
     try {
       if (isSignUp) {
         const { data, error: signUpError } = await supabase.auth.signUp({
@@ -36,7 +47,12 @@ export function Login() {
             },
           },
         });
-        if (signUpError) throw signUpError;
+        if (signUpError) {
+          if (isRateLimitError(signUpError)) {
+            throw new Error('Trop de tentatives d\'inscription. Veuillez patienter quelques minutes avant de réessayer.');
+          }
+          throw signUpError;
+        }
 
         // Check if email confirmation is required
         if (data.user && !data.session) {
@@ -55,6 +71,10 @@ export function Login() {
           password,
         });
         if (signInError) {
+          // Vérifier si c'est une erreur de rate limit
+          if (isRateLimitError(signInError)) {
+            throw new Error('Trop de tentatives de connexion. Veuillez patienter quelques minutes avant de réessayer.');
+          }
           // Provide clearer error messages in French
           if (signInError.message.includes('Invalid login credentials')) {
             throw new Error('Email ou mot de passe incorrect');
