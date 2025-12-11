@@ -42,6 +42,29 @@ interface Subscription {
   };
 }
 
+interface Project {
+  id: string;
+  organization_id: string;
+  name: string;
+  code: string;
+  description: string | null;
+  address: string | null;
+  city: string | null;
+  postal_code: string | null;
+  canton: string | null;
+  country: string;
+  status: string;
+  start_date: string | null;
+  end_date: string | null;
+  total_surface: number | null;
+  image_url: string | null;
+  settings: Record<string, any>;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+  total_lots?: number;
+}
+
 interface OrganizationData {
   organization: Organization | null;
   subscription: Subscription | null;
@@ -49,6 +72,7 @@ interface OrganizationData {
   canAddUser: boolean;
   projectsCount: number;
   usersCount: number;
+  projects: Project[];
 }
 
 export function useOrganization() {
@@ -60,6 +84,7 @@ export function useOrganization() {
     canAddUser: false,
     projectsCount: 0,
     usersCount: 0,
+    projects: [],
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -95,6 +120,7 @@ export function useOrganization() {
           canAddUser: false,
           projectsCount: 0,
           usersCount: 0,
+          projects: [],
         });
         setLoading(false);
         return;
@@ -128,7 +154,7 @@ export function useOrganization() {
         console.error('Subscription error:', subscriptionError);
       }
 
-      const [projectsResult, usersResult] = await Promise.all([
+      const [projectsResult, usersResult, projectsListResult] = await Promise.all([
         supabase
           .from('projects')
           .select('id', { count: 'exact', head: true })
@@ -137,10 +163,17 @@ export function useOrganization() {
           .from('user_organizations')
           .select('user_id', { count: 'exact', head: true })
           .eq('organization_id', orgId),
+        // Récupérer la liste complète des projets pour cette organisation
+        supabase
+          .from('projects')
+          .select('*')
+          .eq('organization_id', orgId)
+          .order('created_at', { ascending: false }),
       ]);
 
       const projectsCount = projectsResult.count || 0;
       const usersCount = usersResult.count || 0;
+      const projectsList = projectsListResult.data || [];
 
       const limits = subscription?.plan?.limits || {
         projects_max: 0,
@@ -159,6 +192,7 @@ export function useOrganization() {
         canAddUser,
         projectsCount,
         usersCount,
+        projects: projectsList as Project[],
       });
     } catch (err) {
       console.error('Error fetching organization data:', err);

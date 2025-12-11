@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
+import { useOrganizationContext } from '../contexts/OrganizationContext';
 
 export interface CRMSegment {
   id: string;
@@ -19,15 +20,23 @@ export interface CRMSegment {
 }
 
 export function useCRMSegments() {
+  const { currentOrganization } = useOrganizationContext();
   const [segments, setSegments] = useState<CRMSegment[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchSegments = async () => {
+  const fetchSegments = useCallback(async () => {
+    if (!currentOrganization) {
+      setSegments([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       const { data, error } = await supabase
         .from('crm_segments')
         .select('*')
+        .eq('organization_id', currentOrganization.id)
         .eq('is_active', true)
         .order('created_at', { ascending: false });
 
@@ -39,11 +48,11 @@ export function useCRMSegments() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentOrganization]);
 
   useEffect(() => {
     fetchSegments();
-  }, []);
+  }, [fetchSegments]);
 
   const createSegment = async (segmentData: Partial<CRMSegment>) => {
     try {
