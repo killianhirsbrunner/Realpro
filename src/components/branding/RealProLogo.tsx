@@ -115,7 +115,7 @@ export function RealProLogo({
   // Full variant: icon + text
   const fontSize = config.height * 0.55;
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-1 ${className}`}>
       <RealProIconSVG iconSize={config.iconSize * 0.8} />
       <div className="flex items-center">
         <span
