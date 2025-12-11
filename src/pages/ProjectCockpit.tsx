@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
-  Home, TrendingUp, FileText, Hammer, Building2,
-  AlertCircle, Calendar, Users, Package
+  Home, TrendingUp, FileText, Building2,
+  AlertCircle, Calendar, Users, Package, Settings, FolderOpen,
+  ArrowRight, Briefcase, Hammer
 } from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { StatCard } from '../components/ui/StatCard';
-import { Badge } from '../components/ui/Badge';
-import { Table } from '../components/ui/Table';
+import { RealProCard } from '../components/realpro/RealProCard';
+import { RealProButton } from '../components/realpro/RealProButton';
+import { RealProBadge } from '../components/realpro/RealProBadge';
+import { RealProTopbar } from '../components/realpro/RealProTopbar';
 import { Breadcrumbs } from '../components/ui/Breadcrumbs';
 import { LoadingState } from '../components/ui/LoadingSpinner';
 import { ErrorState } from '../components/ui/ErrorState';
-import { Button } from '../components/ui/Button';
 import { supabase } from '../lib/supabase';
 import { formatCHF, formatPercent, formatDateCH, formatRelativeTime } from '../lib/utils/format';
-import { getStatusLabel, LOT_STATUS_COLORS } from '../lib/constants/status-labels';
+import { getStatusLabel } from '../lib/constants/status-labels';
 
 interface ProjectCockpitData {
   project: {
@@ -85,6 +85,55 @@ interface ProjectCockpitData {
     created_at: string;
     user_name: string;
   }>;
+}
+
+// Composant StatCard interne avec support dark mode
+function CockpitStatCard({ label, value, icon: Icon, variant = 'default' }: {
+  label: string;
+  value: number | string;
+  icon: React.ElementType;
+  variant?: 'default' | 'success' | 'warning' | 'info';
+}) {
+  const variants = {
+    default: 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400',
+    success: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400',
+    warning: 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400',
+    info: 'bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400',
+  };
+
+  return (
+    <RealProCard padding="md">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">{label}</p>
+          <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mt-1">{value}</p>
+        </div>
+        <div className={`p-3 rounded-xl ${variants[variant]}`}>
+          <Icon className="h-6 w-6" />
+        </div>
+      </div>
+    </RealProCard>
+  );
+}
+
+// Composant MiniCard pour les KPI financiers
+function MiniKPICard({ label, value, color = 'default' }: {
+  label: string;
+  value: string;
+  color?: 'default' | 'brand' | 'success';
+}) {
+  const colors = {
+    default: 'text-neutral-900 dark:text-neutral-100',
+    brand: 'text-brand-600 dark:text-brand-400',
+    success: 'text-green-600 dark:text-green-400',
+  };
+
+  return (
+    <RealProCard padding="md">
+      <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-1">{label}</p>
+      <p className={`text-lg font-semibold ${colors[color]}`}>{value}</p>
+    </RealProCard>
+  );
 }
 
 export function ProjectCockpit() {
@@ -209,12 +258,12 @@ export function ProjectCockpit() {
           cfc_invoiced: cfcTotal.invoiced,
           cfc_paid: cfcTotal.paid,
           top_cfc_lines: (cfcBudgets || []).map(cfc => ({
-            code: cfc.cfc_code,
-            label: cfc.label || '',
-            budget: cfc.budget_revised || cfc.budget_initial || 0,
-            engagement: cfc.engagement_total || 0,
-            invoiced: cfc.invoiced_total || 0,
-            paid: cfc.paid_total || 0,
+            code: (cfc as any).cfc_code || '',
+            label: (cfc as any).label || '',
+            budget: (cfc as any).budget_revised || (cfc as any).budget_initial || 0,
+            engagement: (cfc as any).engagement_total || 0,
+            invoiced: (cfc as any).invoiced_total || 0,
+            paid: (cfc as any).paid_total || 0,
           })),
         },
         construction: {
@@ -233,8 +282,8 @@ export function ProjectCockpit() {
           recent: (submissions || []).slice(0, 5).map(s => ({
             id: s.id,
             title: s.title,
-            cfc_code: s.cfc_code || '',
-            offers_count: (s.submission_offers as any)?.length || 0,
+            cfc_code: (s as any).cfc_code || '',
+            offers_count: ((s as any).submission_offers as any)?.length || 0,
             status: s.status,
           })),
         },
@@ -256,6 +305,17 @@ export function ProjectCockpit() {
 
   const { project, sales, notary, finance, construction, submissions, activities } = data;
 
+  const getStatusBadgeType = (status: string): 'success' | 'warning' | 'info' | 'neutral' => {
+    const map: Record<string, 'success' | 'warning' | 'info' | 'neutral'> = {
+      PLANNING: 'info',
+      CONSTRUCTION: 'warning',
+      SELLING: 'success',
+      COMPLETED: 'neutral',
+      ARCHIVED: 'neutral',
+    };
+    return map[status] || 'neutral';
+  };
+
   return (
     <div className="space-y-8">
       {/* Breadcrumbs */}
@@ -267,413 +327,366 @@ export function ProjectCockpit() {
       />
 
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
             {project.name}
           </h1>
-          <div className="mt-2 flex items-center gap-3 text-sm text-gray-500">
-            <span>{project.type || 'PPE'}</span>
-            <span>•</span>
+          <div className="mt-2 flex items-center gap-3 text-sm text-neutral-600 dark:text-neutral-400">
+            <span className="font-medium">{project.type || 'PPE'}</span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
             <span>{project.city} ({project.canton})</span>
-            <span>•</span>
+            <span className="text-neutral-400 dark:text-neutral-500">•</span>
             <span>{project.total_lots} lots</span>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Badge variant="info">{getStatusLabel('project', project.status)}</Badge>
-          <Button variant="secondary">Paramètres du projet</Button>
-          <Button variant="secondary">Documents</Button>
+          <RealProBadge type={getStatusBadgeType(project.status)}>
+            {getStatusLabel('project', project.status)}
+          </RealProBadge>
+          <Link to={`/projects/${project.id}/settings`}>
+            <RealProButton variant="outline" size="sm">
+              <Settings className="w-4 h-4" />
+              Paramètres
+            </RealProButton>
+          </Link>
+          <Link to={`/projects/${project.id}/documents`}>
+            <RealProButton variant="outline" size="sm">
+              <FolderOpen className="w-4 h-4" />
+              Documents
+            </RealProButton>
+          </Link>
         </div>
       </div>
 
-      {/* Block 1: Sales KPIs */}
+      {/* Section 1: Ventes & Lots */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Ventes & lots</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Ventes & lots</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-          <StatCard
-            label="Lots totaux"
-            value={sales.total_lots}
-            icon={Home}
-            variant="default"
-          />
-          <StatCard
-            label="Vendus"
-            value={sales.sold_lots}
-            icon={TrendingUp}
-            variant="success"
-          />
-          <StatCard
-            label="Réservés"
-            value={sales.reserved_lots}
-            icon={Calendar}
-            variant="warning"
-          />
-          <StatCard
-            label="Disponibles"
-            value={sales.available_lots}
-            icon={Package}
-            variant="info"
-          />
+          <CockpitStatCard label="Lots totaux" value={sales.total_lots} icon={Home} variant="default" />
+          <CockpitStatCard label="Vendus" value={sales.sold_lots} icon={TrendingUp} variant="success" />
+          <CockpitStatCard label="Réservés" value={sales.reserved_lots} icon={Calendar} variant="warning" />
+          <CockpitStatCard label="Disponibles" value={sales.available_lots} icon={Package} variant="info" />
         </div>
 
-        <Card>
-          <Card.Content>
-            <div className="flex items-center justify-between text-sm mb-2">
-              <span className="font-medium text-gray-700">Taux de commercialisation</span>
-              <span className="text-gray-900 font-semibold">
-                {formatPercent(sales.sales_percentage)}
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
-              <div
-                className="bg-green-600 h-3 rounded-full transition-all"
-                style={{ width: `${sales.sales_percentage}%` }}
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-600">
-                Chiffre d'affaires: <span className="font-semibold text-gray-900">{formatCHF(sales.total_revenue)}</span>
-              </p>
-              <a
-                href={`/projects/${project.id}/lots`}
-                className="text-sm text-brand-600 hover:text-brand-700 font-medium"
-              >
-                Voir le programme de vente →
-              </a>
-            </div>
-          </Card.Content>
-        </Card>
+        <RealProCard>
+          <div className="flex items-center justify-between text-sm mb-2">
+            <span className="font-medium text-neutral-700 dark:text-neutral-300">Taux de commercialisation</span>
+            <span className="text-neutral-900 dark:text-neutral-100 font-semibold">
+              {formatPercent(sales.sales_percentage)}
+            </span>
+          </div>
+          <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-3 mb-3">
+            <div
+              className="bg-green-600 h-3 rounded-full transition-all"
+              style={{ width: `${sales.sales_percentage}%` }}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Chiffre d'affaires : <span className="font-semibold text-neutral-900 dark:text-neutral-100">{formatCHF(sales.total_revenue)}</span>
+            </p>
+            <Link
+              to={`/projects/${project.id}/lots`}
+              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+            >
+              Voir le programme de vente
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </RealProCard>
       </section>
 
-      {/* Block 2: Buyers & Notary */}
+      {/* Section 2: Acheteurs & Notaire */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Acheteurs & notaire</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Acheteurs & notaire</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <Card>
-            <Card.Content>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-500">Dossiers prêts</p>
-                  <p className="text-2xl font-bold text-gray-900">{notary.ready_files}</p>
-                </div>
-                <div className="p-3 bg-green-50 rounded-xl">
-                  <FileText className="h-6 w-6 text-green-600" />
-                </div>
+          <RealProCard>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">Dossiers prêts</p>
+                <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{notary.ready_files}</p>
               </div>
-            </Card.Content>
-          </Card>
+              <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-xl">
+                <FileText className="h-6 w-6 text-green-600 dark:text-green-400" />
+              </div>
+            </div>
+          </RealProCard>
 
-          <Card>
-            <Card.Content>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-500">Dossiers signés</p>
-                  <p className="text-2xl font-bold text-gray-900">{notary.signed_files}</p>
-                </div>
-                <div className="p-3 bg-brand-50 rounded-xl">
-                  <Users className="h-6 w-6 text-brand-600" />
-                </div>
+          <RealProCard>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">Dossiers signés</p>
+                <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{notary.signed_files}</p>
               </div>
-            </Card.Content>
-          </Card>
+              <div className="p-3 bg-brand-100 dark:bg-brand-900/30 rounded-xl">
+                <Users className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+              </div>
+            </div>
+          </RealProCard>
 
-          <Card>
-            <Card.Content>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-500">Dossiers incomplets</p>
-                  <p className="text-2xl font-bold text-gray-900">{notary.incomplete_files}</p>
-                </div>
-                <div className="p-3 bg-yellow-50 rounded-xl">
-                  <AlertCircle className="h-6 w-6 text-yellow-600" />
-                </div>
+          <RealProCard>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">Dossiers incomplets</p>
+                <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{notary.incomplete_files}</p>
               </div>
-            </Card.Content>
-          </Card>
+              <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-xl">
+                <AlertCircle className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+              </div>
+            </div>
+          </RealProCard>
         </div>
 
-        <Card>
-          <Card.Header>
-            <Card.Title>Signatures à venir</Card.Title>
-            <Card.Description>
-              Prochains rendez-vous de signature planifiés
-            </Card.Description>
-          </Card.Header>
-          <Card.Content>
-            {notary.upcoming_signatures.length > 0 ? (
-              <Table>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.Head>Acheteur</Table.Head>
-                    <Table.Head>Lot</Table.Head>
-                    <Table.Head>Date de signature</Table.Head>
-                    <Table.Head>Action</Table.Head>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
+        <RealProCard>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Signatures à venir</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Prochains rendez-vous de signature planifiés</p>
+          </div>
+
+          {notary.upcoming_signatures.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-neutral-200 dark:border-neutral-700">
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Acheteur</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Lot</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Date</th>
+                    <th className="text-right py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {notary.upcoming_signatures.map((sig, idx) => (
-                    <Table.Row key={idx}>
-                      <Table.Cell>{sig.buyer_name}</Table.Cell>
-                      <Table.Cell>{sig.lot_number}</Table.Cell>
-                      <Table.Cell>{formatDateCH(sig.date)}</Table.Cell>
-                      <Table.Cell>
-                        <Button size="sm" variant="secondary">Confirmer</Button>
-                      </Table.Cell>
-                    </Table.Row>
+                    <tr key={idx} className="border-b border-neutral-100 dark:border-neutral-800 last:border-0">
+                      <td className="py-3 px-4 text-sm text-neutral-900 dark:text-neutral-100">{sig.buyer_name}</td>
+                      <td className="py-3 px-4 text-sm text-neutral-900 dark:text-neutral-100">{sig.lot_number}</td>
+                      <td className="py-3 px-4 text-sm text-neutral-600 dark:text-neutral-400">{formatDateCH(sig.date)}</td>
+                      <td className="py-3 px-4 text-right">
+                        <RealProButton size="sm" variant="secondary">Confirmer</RealProButton>
+                      </td>
+                    </tr>
                   ))}
-                </Table.Body>
-              </Table>
-            ) : (
-              <p className="text-sm text-gray-500 text-center py-4">
-                Aucune signature planifiée cette semaine.
-              </p>
-            )}
-          </Card.Content>
-        </Card>
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center py-6">
+              Aucune signature planifiée cette semaine.
+            </p>
+          )}
 
-        <div className="mt-4">
-          <a
-            href={`/projects/${project.id}/notary`}
-            className="text-sm text-brand-600 hover:text-brand-700 font-medium"
-          >
-            Voir tous les dossiers notaire →
-          </a>
-        </div>
+          <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+            <Link
+              to={`/projects/${project.id}/notary`}
+              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+            >
+              Voir tous les dossiers notaire
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </RealProCard>
       </section>
 
-      {/* Block 3: CFC & Finance */}
+      {/* Section 3: Budget CFC & Contrats */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Budget CFC & contrats</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Budget CFC & contrats</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-          <Card>
-            <Card.Content>
-              <p className="text-xs text-gray-500 mb-1">Budget initial</p>
-              <p className="text-lg font-semibold text-gray-900">{formatCHF(finance.cfc_budget)}</p>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <p className="text-xs text-gray-500 mb-1">Engagé</p>
-              <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_engagement)}</p>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <p className="text-xs text-gray-500 mb-1">Facturé</p>
-              <p className="text-lg font-semibold text-brand-600">{formatCHF(finance.cfc_invoiced)}</p>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <p className="text-xs text-gray-500 mb-1">Payé</p>
-              <p className="text-lg font-semibold text-green-600">{formatCHF(finance.cfc_paid)}</p>
-            </Card.Content>
-          </Card>
+          <MiniKPICard label="Budget initial" value={formatCHF(finance.cfc_budget)} />
+          <MiniKPICard label="Engagé" value={formatCHF(finance.cfc_engagement)} color="brand" />
+          <MiniKPICard label="Facturé" value={formatCHF(finance.cfc_invoiced)} color="brand" />
+          <MiniKPICard label="Payé" value={formatCHF(finance.cfc_paid)} color="success" />
         </div>
 
-        <Card>
-          <Card.Header>
-            <Card.Title>Détail par poste CFC</Card.Title>
-            <Card.Description>
-              Top 5 des postes les plus importants
-            </Card.Description>
-          </Card.Header>
-          <Card.Content>
-            {finance.top_cfc_lines.length > 0 ? (
-              <>
-                <Table>
-                  <Table.Header>
-                    <Table.Row>
-                      <Table.Head>CFC</Table.Head>
-                      <Table.Head className="text-right">Budget révisé</Table.Head>
-                      <Table.Head className="text-right">Engagé</Table.Head>
-                      <Table.Head className="text-right">Facturé</Table.Head>
-                      <Table.Head className="text-right">Payé</Table.Head>
-                    </Table.Row>
-                  </Table.Header>
-                  <Table.Body>
+        <RealProCard>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Détail par poste CFC</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Top 5 des postes les plus importants</p>
+          </div>
+
+          {finance.top_cfc_lines.length > 0 ? (
+            <>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-neutral-200 dark:border-neutral-700">
+                      <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">CFC</th>
+                      <th className="text-right py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Budget révisé</th>
+                      <th className="text-right py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Engagé</th>
+                      <th className="text-right py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Facturé</th>
+                      <th className="text-right py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Payé</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     {finance.top_cfc_lines.map(line => (
-                      <Table.Row key={line.code}>
-                        <Table.Cell>
-                          <div>
-                            <div className="font-medium text-sm">{line.code}</div>
-                            <div className="text-xs text-gray-500">{line.label}</div>
-                          </div>
-                        </Table.Cell>
-                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.budget)}</Table.Cell>
-                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.engagement)}</Table.Cell>
-                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.invoiced)}</Table.Cell>
-                        <Table.Cell className="font-mono text-right text-sm">{formatCHF(line.paid)}</Table.Cell>
-                      </Table.Row>
+                      <tr key={line.code} className="border-b border-neutral-100 dark:border-neutral-800 last:border-0">
+                        <td className="py-3 px-4">
+                          <div className="font-medium text-sm text-neutral-900 dark:text-neutral-100">{line.code}</div>
+                          <div className="text-xs text-neutral-500 dark:text-neutral-400">{line.label}</div>
+                        </td>
+                        <td className="py-3 px-4 font-mono text-right text-sm text-neutral-900 dark:text-neutral-100">{formatCHF(line.budget)}</td>
+                        <td className="py-3 px-4 font-mono text-right text-sm text-neutral-900 dark:text-neutral-100">{formatCHF(line.engagement)}</td>
+                        <td className="py-3 px-4 font-mono text-right text-sm text-neutral-900 dark:text-neutral-100">{formatCHF(line.invoiced)}</td>
+                        <td className="py-3 px-4 font-mono text-right text-sm text-neutral-900 dark:text-neutral-100">{formatCHF(line.paid)}</td>
+                      </tr>
                     ))}
-                  </Table.Body>
-                </Table>
-                <div className="mt-4 flex flex-wrap gap-4 text-sm">
-                  <a href={`/projects/${project.id}/cfc`} className="text-brand-600 hover:text-brand-700 font-medium">
-                    Voir le détail CFC →
-                  </a>
-                  <a href={`/projects/${project.id}/contracts`} className="text-brand-600 hover:text-brand-700 font-medium">
-                    Voir les contrats entreprises →
-                  </a>
-                </div>
-              </>
-            ) : (
-              <p className="text-sm text-gray-500 text-center py-4">
-                Aucun budget CFC n'a été saisi pour ce projet.
-              </p>
-            )}
-          </Card.Content>
-        </Card>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700 flex flex-wrap gap-4">
+                <Link
+                  to={`/projects/${project.id}/cfc`}
+                  className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+                >
+                  Voir le détail CFC
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to={`/projects/${project.id}/finances`}
+                  className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+                >
+                  Voir les contrats entreprises
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </>
+          ) : (
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center py-6">
+              Aucun budget CFC n'a été saisi pour ce projet.
+            </p>
+          )}
+        </RealProCard>
       </section>
 
-      {/* Block 4: Construction */}
+      {/* Section 4: Chantier & Planning */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Chantier & planning</h2>
-        <Card className="mb-4">
-          <Card.Content>
-            <div className="flex items-center justify-between text-sm mb-2">
-              <span className="font-medium text-gray-700">Avancement global</span>
-              <span className="text-gray-900 font-semibold">
-                {formatPercent(construction.overall_progress)}
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-3">
-              <div
-                className="bg-brand-600 h-3 rounded-full transition-all"
-                style={{ width: `${construction.overall_progress}%` }}
-              />
-            </div>
-          </Card.Content>
-        </Card>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Chantier & planning</h2>
+
+        <RealProCard className="mb-4">
+          <div className="flex items-center justify-between text-sm mb-2">
+            <span className="font-medium text-neutral-700 dark:text-neutral-300">Avancement global</span>
+            <span className="text-neutral-900 dark:text-neutral-100 font-semibold">
+              {formatPercent(construction.overall_progress)}
+            </span>
+          </div>
+          <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-3">
+            <div
+              className="bg-brand-600 h-3 rounded-full transition-all"
+              style={{ width: `${construction.overall_progress}%` }}
+            />
+          </div>
+        </RealProCard>
 
         {construction.phases.length > 0 && (
-          <Card>
-            <Card.Content>
-              <Table>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.Head>Phase</Table.Head>
-                    <Table.Head>Prévu</Table.Head>
-                    <Table.Head>Réel</Table.Head>
-                    <Table.Head>Statut</Table.Head>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
+          <RealProCard>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-neutral-200 dark:border-neutral-700">
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Phase</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Prévu</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Réel</th>
+                    <th className="text-left py-3 px-4 text-sm font-medium text-neutral-600 dark:text-neutral-400">Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {construction.phases.map((phase, idx) => (
-                    <Table.Row key={idx}>
-                      <Table.Cell className="font-medium">{phase.name}</Table.Cell>
-                      <Table.Cell>{formatDateCH(phase.planned_end)}</Table.Cell>
-                      <Table.Cell>{phase.actual_end ? formatDateCH(phase.actual_end) : '—'}</Table.Cell>
-                      <Table.Cell>
-                        <Badge variant={phase.status === 'COMPLETED' ? 'success' : 'info'}>
+                    <tr key={idx} className="border-b border-neutral-100 dark:border-neutral-800 last:border-0">
+                      <td className="py-3 px-4 font-medium text-neutral-900 dark:text-neutral-100">{phase.name}</td>
+                      <td className="py-3 px-4 text-sm text-neutral-600 dark:text-neutral-400">{formatDateCH(phase.planned_end)}</td>
+                      <td className="py-3 px-4 text-sm text-neutral-600 dark:text-neutral-400">{phase.actual_end ? formatDateCH(phase.actual_end) : '—'}</td>
+                      <td className="py-3 px-4">
+                        <RealProBadge type={phase.status === 'COMPLETED' ? 'success' : 'info'} size="sm">
                           {getStatusLabel('phase', phase.status)}
-                        </Badge>
-                      </Table.Cell>
-                    </Table.Row>
+                        </RealProBadge>
+                      </td>
+                    </tr>
                   ))}
-                </Table.Body>
-              </Table>
-              <div className="mt-4">
-                <a
-                  href={`/projects/${project.id}/construction`}
-                  className="text-sm text-brand-600 hover:text-brand-700 font-medium"
-                >
-                  Voir le planning détaillé →
-                </a>
-              </div>
-            </Card.Content>
-          </Card>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+              <Link
+                to={`/projects/${project.id}/construction`}
+                className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+              >
+                Voir le planning détaillé
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </RealProCard>
         )}
       </section>
 
-      {/* Block 5: Submissions */}
+      {/* Section 5: Soumissions & Adjudications */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Soumissions & adjudications</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Soumissions & adjudications</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <Card>
-            <Card.Content>
-              <p className="text-sm text-gray-500">Soumissions en cours</p>
-              <p className="text-2xl font-bold text-gray-900">{submissions.in_progress}</p>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <p className="text-sm text-gray-500">Soumissions adjugées</p>
-              <p className="text-2xl font-bold text-gray-900">{submissions.adjudicated}</p>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <p className="text-sm text-gray-500">Clarifications ouvertes</p>
-              <p className="text-2xl font-bold text-gray-900">{submissions.open_clarifications}</p>
-            </Card.Content>
-          </Card>
+          <CockpitStatCard label="En cours" value={submissions.in_progress} icon={Briefcase} variant="info" />
+          <CockpitStatCard label="Adjugées" value={submissions.adjudicated} icon={TrendingUp} variant="success" />
+          <CockpitStatCard label="Clarifications ouvertes" value={submissions.open_clarifications} icon={AlertCircle} variant="warning" />
         </div>
 
         {submissions.recent.length > 0 && (
-          <Card>
-            <Card.Content>
-              <div className="space-y-3">
-                {submissions.recent.map(sub => (
-                  <div key={sub.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                      <p className="font-medium text-gray-900">{sub.title}</p>
-                      <p className="text-sm text-gray-500">
-                        CFC {sub.cfc_code} • {sub.offers_count} offres
-                      </p>
-                    </div>
-                    <Badge>{getStatusLabel('submission', sub.status)}</Badge>
+          <RealProCard>
+            <div className="space-y-3">
+              {submissions.recent.map(sub => (
+                <div key={sub.id} className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+                  <div>
+                    <p className="font-medium text-neutral-900 dark:text-neutral-100">{sub.title}</p>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                      CFC {sub.cfc_code} • {sub.offers_count} offres
+                    </p>
                   </div>
-                ))}
-              </div>
-              <div className="mt-4">
-                <a
-                  href={`/projects/${project.id}/submissions`}
-                  className="text-sm text-brand-600 hover:text-brand-700 font-medium"
-                >
-                  Gérer les soumissions →
-                </a>
-              </div>
-            </Card.Content>
-          </Card>
+                  <RealProBadge type="neutral" size="sm">{getStatusLabel('submission', sub.status)}</RealProBadge>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+              <Link
+                to={`/projects/${project.id}/submissions`}
+                className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+              >
+                Gérer les soumissions
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </RealProCard>
         )}
       </section>
 
-      {/* Block 6: Recent Activity */}
+      {/* Section 6: Activité récente */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Activité récente</h2>
-        <Card>
-          <Card.Content>
-            {activities.length === 0 ? (
-              <p className="text-sm text-gray-500 py-8 text-center">
-                Aucune activité récente
-              </p>
-            ) : (
-              <div className="space-y-4">
-                {activities.map(activity => (
-                  <div key={activity.id} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-brand-600" />
-                    <div className="flex-1">
-                      <p className="text-sm text-gray-900">{activity.action}</p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        {activity.user_name} • {formatRelativeTime(activity.created_at)}
-                      </p>
-                    </div>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4">Activité récente</h2>
+        <RealProCard>
+          {activities.length === 0 ? (
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 py-8 text-center">
+              Aucune activité récente
+            </p>
+          ) : (
+            <div className="space-y-4">
+              {activities.map(activity => (
+                <div key={activity.id} className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-brand-600 dark:bg-brand-400" />
+                  <div className="flex-1">
+                    <p className="text-sm text-neutral-900 dark:text-neutral-100">{activity.action}</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                      {activity.user_name} • {formatRelativeTime(activity.created_at)}
+                    </p>
                   </div>
-                ))}
-              </div>
-            )}
-            <div className="mt-6 pt-4 border-t border-gray-200">
-              <a
-                href={`/projects/${project.id}/communication`}
-                className="text-sm text-brand-600 hover:text-brand-700 font-medium"
-              >
-                Voir tous les messages →
-              </a>
+                </div>
+              ))}
             </div>
-          </Card.Content>
-        </Card>
+          )}
+          <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+            <Link
+              to={`/projects/${project.id}/communication`}
+              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+            >
+              Voir tous les messages
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </RealProCard>
       </section>
     </div>
   );
