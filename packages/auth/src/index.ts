@@ -32,3 +32,6 @@ export * from './guards';
 
 // Providers
 export * from './providers';
+
+// UI Components (Auth screens)
+export * from './components';
