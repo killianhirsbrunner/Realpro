@@ -69,6 +69,7 @@ import ProjectReservations from './pages/ProjectReservations';
 import ProjectCRMReservationNew from './pages/ProjectCRMReservationNew';
 import ProjectCRMReservationDetail from './pages/ProjectCRMReservationDetail';
 import { PromoterDashboard } from './pages/PromoterDashboard';
+import { InvestorPortfolioEnhanced } from './pages/InvestorPortfolioEnhanced';
 import { ChantierHome } from './pages/ChantierHome';
 
 import { BrokerDashboard } from './pages/BrokerDashboard';
@@ -104,6 +105,7 @@ import { ProjectModificationsOffers } from './pages/ProjectModificationsOffers';
 import { ProjectModificationsOfferNew } from './pages/ProjectModificationsOfferNew';
 import { ProjectModificationsOfferDetail } from './pages/ProjectModificationsOfferDetail';
 import { ProjectAvenants } from './pages/ProjectAvenants';
+import { ProjectAvenantsEnhanced } from './pages/ProjectAvenantsEnhanced';
 import { AvenantSignature } from './pages/AvenantSignature';
 import { ProjectCFC } from './pages/ProjectCFC';
 import { CfcDetail } from './pages/CfcDetail';
@@ -115,6 +117,7 @@ import { ProjectFinancesCFC } from './pages/ProjectFinancesCFC';
 import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
 import { ProjectSAV } from './pages/ProjectSAV';
+import { ProjectSAVEnhanced } from './pages/ProjectSAVEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -262,7 +265,7 @@ function App() {
                     <Route path="/projects/:projectId/modifications/offers/new" element={<ProjectModificationsOfferNew />} />
                     <Route path="/projects/:projectId/modifications/offers/wizard" element={<ProjectModificationsOfferWizard />} />
                     <Route path="/projects/:projectId/modifications/offers/:offerId" element={<ProjectModificationsOfferDetail />} />
-                    <Route path="/projects/:projectId/modifications/avenants" element={<ProjectAvenants />} />
+                    <Route path="/projects/:projectId/modifications/avenants" element={<ProjectAvenantsEnhanced />} />
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId" element={<AvenantSignature />} />
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId/sign" element={<AvenantSignature />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
@@ -274,7 +277,7 @@ function App() {
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
-                    <Route path="/projects/:projectId/sav" element={<ProjectSAV />} />
+                    <Route path="/projects/:projectId/sav" element={<ProjectSAVEnhanced />} />
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
                     <Route path="/projects/:projectId/notary" element={<ProjectNotary />} />
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
@@ -300,6 +303,8 @@ function App() {
                     <Route path="/modules" element={<ModulesHub />} />
                     <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
                     <Route path="/promoter" element={<PromoterDashboard />} />
+                    <Route path="/investor" element={<InvestorPortfolioEnhanced />} />
+                    <Route path="/investor/portfolio" element={<InvestorPortfolioEnhanced />} />
 
                     {/* ═══════════════════════════════════════════════════════════════
                         COMMERCIAL - CRM, Ventes, Courtiers
