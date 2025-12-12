@@ -104,6 +104,7 @@ import { ProjectModificationsOffers } from './pages/ProjectModificationsOffers';
 import { ProjectModificationsOfferNew } from './pages/ProjectModificationsOfferNew';
 import { ProjectModificationsOfferDetail } from './pages/ProjectModificationsOfferDetail';
 import { ProjectAvenants } from './pages/ProjectAvenants';
+import { ProjectAvenantsEnhanced } from './pages/ProjectAvenantsEnhanced';
 import { AvenantSignature } from './pages/AvenantSignature';
 import { ProjectCFC } from './pages/ProjectCFC';
 import { CfcDetail } from './pages/CfcDetail';
@@ -263,7 +264,7 @@ function App() {
                     <Route path="/projects/:projectId/modifications/offers/new" element={<ProjectModificationsOfferNew />} />
                     <Route path="/projects/:projectId/modifications/offers/wizard" element={<ProjectModificationsOfferWizard />} />
                     <Route path="/projects/:projectId/modifications/offers/:offerId" element={<ProjectModificationsOfferDetail />} />
-                    <Route path="/projects/:projectId/modifications/avenants" element={<ProjectAvenants />} />
+                    <Route path="/projects/:projectId/modifications/avenants" element={<ProjectAvenantsEnhanced />} />
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId" element={<AvenantSignature />} />
                     <Route path="/projects/:projectId/modifications/avenants/:avenantId/sign" element={<AvenantSignature />} />
                     <Route path="/projects/:projectId/cfc" element={<ProjectCFC />} />
