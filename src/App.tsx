@@ -18,6 +18,7 @@ import { Features } from './pages/public/Features';
 import { Contact } from './pages/public/Contact';
 import { AppsPage } from './pages/public/AppsPage';
 import { AppLauncher } from './pages/public/AppLauncher';
+import { PPEAdminDashboard, RegieDashboard, PromoteurAppDashboard } from './pages/apps';
 
 import { Login } from './pages/Login';
 import { ForgotPassword } from './pages/ForgotPassword';
@@ -307,6 +308,22 @@ function App() {
                     <Route path="/projects/:projectId/timeline" element={<ProjectTimelinePage />} />
                     <Route path="/projects/:projectId/milestones" element={<ProjectMilestonesTimeline />} />
                     <Route path="/projects/:projectId/settings" element={<ProjectSettingsComplete />} />
+
+                    {/* ═══════════════════════════════════════════════════════════════
+                        APPLICATIONS INTÉGRÉES - PPE Admin, Régie, Promoteur
+                        ═══════════════════════════════════════════════════════════════ */}
+                    <Route path="/app/ppe-admin" element={<PPEAdminDashboard />} />
+                    <Route path="/app/ppe-admin/*" element={<PPEAdminDashboard />} />
+                    <Route path="/app/regie" element={<RegieDashboard />} />
+                    <Route path="/app/regie/*" element={<RegieDashboard />} />
+                    <Route path="/app/promoteur" element={<PromoteurAppDashboard />} />
+                    <Route path="/app/promoteur/*" element={<PromoteurAppDashboard />} />
+
+                    {/* Alias routes for direct access */}
+                    <Route path="/ppe-admin" element={<PPEAdminDashboard />} />
+                    <Route path="/ppe-admin/*" element={<PPEAdminDashboard />} />
+                    <Route path="/regie" element={<RegieDashboard />} />
+                    <Route path="/regie/*" element={<RegieDashboard />} />
 
                     {/* ═══════════════════════════════════════════════════════════════
                         HUBS MODULAIRES
