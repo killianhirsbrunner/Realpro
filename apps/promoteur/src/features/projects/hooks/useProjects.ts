@@ -3,7 +3,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { CreateProjectInput, UpdateProjectInput } from '@realpro/entities';
+import type { CreateProjectInput, UpdateProjectInput, Project } from '@realpro/entities';
 import * as projectsApi from '../api/projects.api';
 
 // Query keys
@@ -59,7 +59,7 @@ export function useUpdateProject() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: UpdateProjectInput }) =>
       projectsApi.updateProject(id, input),
-    onSuccess: (data) => {
+    onSuccess: (data: Project) => {
       queryClient.invalidateQueries({ queryKey: projectKeys.lists() });
       queryClient.setQueryData(projectKeys.detail(data.id), data);
     },
@@ -74,7 +74,7 @@ export function useDeleteProject() {
 
   return useMutation({
     mutationFn: (id: string) => projectsApi.deleteProject(id),
-    onSuccess: (_, deletedId) => {
+    onSuccess: (_: void, deletedId: string) => {
       queryClient.invalidateQueries({ queryKey: projectKeys.lists() });
       queryClient.removeQueries({ queryKey: projectKeys.detail(deletedId) });
     },

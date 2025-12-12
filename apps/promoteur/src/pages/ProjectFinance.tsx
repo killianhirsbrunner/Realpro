@@ -20,7 +20,6 @@ import {
   TrendingUp,
   TrendingDown,
   Clock,
-  CheckCircle,
 } from 'lucide-react';
 import {
   INVOICE_STATUS_LABELS,
@@ -30,13 +29,13 @@ import {
 import { useProject } from '@/features/projects/hooks/useProjects';
 import { useProjectFinance, useInvoices } from '@/features/finance/hooks/useFinance';
 
-const STATUS_VARIANT: Record<InvoiceStatus, 'success' | 'info' | 'warning' | 'error' | 'neutral'> = {
-  DRAFT: 'neutral',
+const STATUS_VARIANT: Record<InvoiceStatus, 'success' | 'info' | 'warning' | 'error' | 'default'> = {
+  DRAFT: 'default',
   PENDING: 'warning',
   PARTIAL: 'info',
   PAID: 'success',
   LATE: 'error',
-  CANCELLED: 'neutral',
+  CANCELLED: 'default',
 };
 
 export function ProjectFinancePage() {
@@ -230,7 +229,7 @@ export function ProjectFinancePage() {
         <CardContent>
           {buyers.length === 0 ? (
             <EmptyState
-              icon={<DollarSign className="w-12 h-12" />}
+              icon={DollarSign}
               title="Aucune donnée financière"
               description="Les données financières apparaîtront lorsque des factures seront créées."
             />
@@ -350,14 +349,13 @@ export function ProjectFinancePage() {
             </div>
           ) : !invoices || invoices.length === 0 ? (
             <EmptyState
-              icon={<DollarSign className="w-12 h-12" />}
+              icon={DollarSign}
               title="Aucune facture"
               description="Créez votre première facture pour commencer le suivi financier."
-              action={
-                <Button leftIcon={<Plus className="w-4 h-4" />}>
-                  Nouvelle facture
-                </Button>
-              }
+              action={{
+                label: 'Nouvelle facture',
+                onClick: () => {},
+              }}
             />
           ) : (
             <div className="overflow-x-auto">

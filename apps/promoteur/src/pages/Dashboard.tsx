@@ -44,12 +44,12 @@ function StatCard({ title, value, subtitle, icon, trend, loading }: StatCardProp
   );
 }
 
-const statusVariants: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'neutral'> = {
+const statusVariants: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'default'> = {
   PLANNING: 'info',
   CONSTRUCTION: 'warning',
   SELLING: 'success',
-  COMPLETED: 'neutral',
-  ARCHIVED: 'neutral',
+  COMPLETED: 'default',
+  ARCHIVED: 'default',
 };
 
 export function DashboardPage() {
@@ -168,8 +168,9 @@ export function DashboardPage() {
                           vendues
                         </p>
                       </div>
-                      <div className="w-32">
-                        <Progress value={progress} size="md" showValue />
+                      <div className="w-32 flex items-center gap-2">
+                        <Progress value={progress} size="md" />
+                        <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">{progress}%</span>
                       </div>
                     </div>
                   </Link>

@@ -32,14 +32,14 @@ import {
 import { useProject } from '@/features/projects/hooks/useProjects';
 import { useBuyers } from '@/features/buyers/hooks/useBuyers';
 
-const STATUS_VARIANT: Record<BuyerStatus, 'info' | 'warning' | 'success' | 'neutral'> = {
+const STATUS_VARIANT: Record<BuyerStatus, 'info' | 'warning' | 'success' | 'default'> = {
   PROSPECT: 'info',
   RESERVED: 'warning',
   CONTRACT_PENDING: 'warning',
   CONTRACT_SIGNED: 'success',
   NOTARY_PENDING: 'info',
   SALE_COMPLETED: 'success',
-  DELIVERED: 'neutral',
+  DELIVERED: 'default',
 };
 
 function formatCurrency(value: number | null | undefined): string {
@@ -195,7 +195,7 @@ export function ProjectBuyersPage() {
       {/* Buyers Grid */}
       {filteredBuyers.length === 0 ? (
         <EmptyState
-          icon={<Users className="w-12 h-12" />}
+          icon={Users}
           title={buyers.length === 0 ? 'Aucun acheteur' : 'Aucun acheteur trouvé'}
           description={
             buyers.length === 0
@@ -203,11 +203,9 @@ export function ProjectBuyersPage() {
               : 'Modifiez vos critères de recherche.'
           }
           action={
-            buyers.length === 0 ? (
-              <Button leftIcon={<Plus className="w-4 h-4" />}>
-                Nouvel acheteur
-              </Button>
-            ) : undefined
+            buyers.length === 0
+              ? { label: 'Nouvel acheteur', onClick: () => {} }
+              : undefined
           }
         />
       ) : (
@@ -218,8 +216,8 @@ export function ProjectBuyersPage() {
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
                     <Avatar
-                      name={getBuyerFullName(buyer)}
-                      initials={getBuyerInitials(buyer)}
+                      fallback={getBuyerInitials(buyer)}
+                      alt={getBuyerFullName(buyer)}
                       size="md"
                     />
                     <div className="flex-1 min-w-0">

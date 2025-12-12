@@ -3,7 +3,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { CreateBuyerInput, UpdateBuyerInput, BuyerStatus } from '@realpro/entities';
+import type { CreateBuyerInput, UpdateBuyerInput, BuyerStatus, Buyer } from '@realpro/entities';
 import * as buyersApi from '../api/buyers.api';
 import { projectKeys } from '../../projects';
 
@@ -87,7 +87,7 @@ export function useUpdateBuyer() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: UpdateBuyerInput }) =>
       buyersApi.updateBuyer(id, input),
-    onSuccess: (data) => {
+    onSuccess: (data: Buyer) => {
       queryClient.invalidateQueries({ queryKey: buyerKeys.lists() });
       queryClient.setQueryData(buyerKeys.detail(data.id), data);
     },
@@ -102,7 +102,7 @@ export function useDeleteBuyer() {
 
   return useMutation({
     mutationFn: (id: string) => buyersApi.deleteBuyer(id),
-    onSuccess: (_, deletedId) => {
+    onSuccess: (_: void, deletedId: string) => {
       queryClient.invalidateQueries({ queryKey: buyerKeys.lists() });
       queryClient.removeQueries({ queryKey: buyerKeys.detail(deletedId) });
       // Also invalidate project stats as buyer count might affect it
@@ -120,7 +120,7 @@ export function useUpdateBuyerStatus() {
   return useMutation({
     mutationFn: ({ id, status }: { id: string; status: BuyerStatus }) =>
       buyersApi.updateBuyer(id, { status }),
-    onSuccess: (data) => {
+    onSuccess: (data: Buyer) => {
       queryClient.invalidateQueries({ queryKey: buyerKeys.lists() });
       queryClient.setQueryData(buyerKeys.detail(data.id), data);
     },

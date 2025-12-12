@@ -14,12 +14,12 @@ import { Search, Plus, Building2, MapPin, Calendar, AlertCircle } from 'lucide-r
 import { PROJECT_STATUS_LABELS, type ProjectStatus } from '@realpro/entities';
 import { useProjects } from '@/features/projects/hooks/useProjects';
 
-const STATUS_VARIANT: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'neutral'> = {
+const STATUS_VARIANT: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'default'> = {
   PLANNING: 'info',
   CONSTRUCTION: 'warning',
   SELLING: 'success',
-  COMPLETED: 'neutral',
-  ARCHIVED: 'neutral',
+  COMPLETED: 'default',
+  ARCHIVED: 'default',
 };
 
 export function ProjectsPage() {
@@ -139,18 +139,17 @@ export function ProjectsPage() {
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
         <EmptyState
-          icon={<Building2 className="w-12 h-12" />}
+          icon={Building2}
           title={projects?.length === 0 ? 'Aucun projet' : 'Aucun projet trouvé'}
           description={
             projects?.length === 0
               ? 'Commencez par créer votre premier projet de promotion.'
               : 'Modifiez vos critères de recherche ou créez un nouveau projet.'
           }
-          action={
-            <Button leftIcon={<Plus className="w-4 h-4" />}>
-              Nouveau projet
-            </Button>
-          }
+          action={{
+            label: 'Nouveau projet',
+            onClick: () => {},
+          }}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

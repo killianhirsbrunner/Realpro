@@ -3,7 +3,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { CreateLotInput, UpdateLotInput, LotStatus } from '@realpro/entities';
+import type { CreateLotInput, UpdateLotInput, LotStatus, Lot } from '@realpro/entities';
 import * as lotsApi from '../api/lots.api';
 import { projectKeys } from '../../projects';
 
@@ -58,7 +58,7 @@ export function useCreateLot() {
 
   return useMutation({
     mutationFn: (input: CreateLotInput) => lotsApi.createLot(input),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: lotKeys.lists() });
       // Also invalidate project stats
       queryClient.invalidateQueries({ queryKey: projectKeys.lists() });
@@ -75,7 +75,7 @@ export function useUpdateLot() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: UpdateLotInput }) =>
       lotsApi.updateLot(id, input),
-    onSuccess: (data) => {
+    onSuccess: (data: Lot) => {
       queryClient.invalidateQueries({ queryKey: lotKeys.lists() });
       queryClient.setQueryData(lotKeys.detail(data.id), data);
       // Also invalidate project stats if status changed
@@ -92,7 +92,7 @@ export function useDeleteLot() {
 
   return useMutation({
     mutationFn: (id: string) => lotsApi.deleteLot(id),
-    onSuccess: (_, deletedId) => {
+    onSuccess: (_: void, deletedId: string) => {
       queryClient.invalidateQueries({ queryKey: lotKeys.lists() });
       queryClient.removeQueries({ queryKey: lotKeys.detail(deletedId) });
       queryClient.invalidateQueries({ queryKey: projectKeys.lists() });
@@ -109,7 +109,7 @@ export function useUpdateLotStatus() {
   return useMutation({
     mutationFn: ({ id, status }: { id: string; status: LotStatus }) =>
       lotsApi.updateLotStatus(id, status),
-    onSuccess: (data) => {
+    onSuccess: (data: Lot) => {
       queryClient.invalidateQueries({ queryKey: lotKeys.lists() });
       queryClient.setQueryData(lotKeys.detail(data.id), data);
       queryClient.invalidateQueries({ queryKey: projectKeys.lists() });

@@ -20,6 +20,11 @@ export interface ProspectsQueryFilters {
   assignedTo?: string;
 }
 
+// Type for Supabase query result
+interface ProspectRow extends Prospect {
+  project: { id: string; name: string } | null;
+}
+
 export async function fetchProspects(
   projectId: string,
   filters?: ProspectsQueryFilters
@@ -60,7 +65,8 @@ export async function fetchProspects(
   if (error) throw error;
 
   // Transform to ProspectWithProject and apply client-side search
-  let prospects: ProspectWithProject[] = (data || []).map((p) => ({
+  const prospectRows = (data || []) as ProspectRow[];
+  let prospects: ProspectWithProject[] = prospectRows.map((p: ProspectRow) => ({
     ...p,
     project_name: p.project?.name || '',
     days_in_stage: calculateDaysInStage(p.created_at),

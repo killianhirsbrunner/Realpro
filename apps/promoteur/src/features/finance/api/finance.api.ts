@@ -7,14 +7,51 @@ import type {
   Invoice,
   InvoiceWithBuyer,
   InvoiceStatus,
+  InvoiceType,
   BuyerFinanceSummary,
   FinanceSummary,
   CFCBudgetLine,
   CreateInvoiceInput,
   UpdateInvoiceInput,
   RecordPaymentInput,
-  calculateFinanceSummary,
 } from '@realpro/entities';
+
+// Types for Supabase query results
+interface InvoiceBuyerRow {
+  id: string;
+  project_id: string;
+  buyer_id: string;
+  label: string;
+  invoice_number: string | null;
+  invoice_type: InvoiceType;
+  amount: number;
+  amount_paid: number;
+  status: InvoiceStatus;
+  due_date: string | null;
+  payment_date: string | null;
+  qr_reference: string | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+  buyer: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string | null;
+    sales_contracts?: Array<{
+      lot: { code: string; price_total: number | null } | null;
+    }>;
+  } | null;
+}
+
+interface CFCLineRow {
+  id: string;
+  code: string;
+  label: string;
+  amount_budgeted: string | number | null;
+  amount_committed: string | number | null;
+  amount_spent: string | number | null;
+}
 
 export interface FinanceQueryFilters {
   status?: InvoiceStatus;
@@ -48,12 +85,12 @@ export async function fetchProjectFinance(projectId: string): Promise<{
 
   if (error) throw error;
 
-  const invoices = invoicesData || [];
+  const invoices = (invoicesData || []) as InvoiceBuyerRow[];
 
   // Aggregate by buyer
   const buyerMap = new Map<string, BuyerFinanceSummary>();
 
-  invoices.forEach((invoice) => {
+  invoices.forEach((invoice: InvoiceBuyerRow) => {
     if (!invoice.buyer) return;
 
     const buyerId = invoice.buyer.id;
@@ -146,7 +183,8 @@ export async function fetchInvoices(
 
   if (error) throw error;
 
-  let invoices: InvoiceWithBuyer[] = (data || []).map((inv) => ({
+  const invoiceRows = (data || []) as InvoiceBuyerRow[];
+  let invoices: InvoiceWithBuyer[] = invoiceRows.map((inv: InvoiceBuyerRow) => ({
     ...inv,
     buyer_name: inv.buyer
       ? `${inv.buyer.first_name} ${inv.buyer.last_name}`
@@ -211,14 +249,15 @@ export async function fetchCFCBudgets(projectId: string): Promise<CFCBudgetLine[
 
   if (error) throw error;
 
-  return (linesData || []).map((line) => ({
+  const cfcLines = (linesData || []) as CFCLineRow[];
+  return cfcLines.map((line: CFCLineRow) => ({
     id: line.id,
     code: line.code,
     name: line.label,
-    budgeted_amount: parseFloat(line.amount_budgeted) || 0,
-    engaged_amount: parseFloat(line.amount_committed) || 0,
-    billed_amount: parseFloat(line.amount_committed) || 0,
-    paid_amount: parseFloat(line.amount_spent) || 0,
+    budgeted_amount: parseFloat(String(line.amount_budgeted)) || 0,
+    engaged_amount: parseFloat(String(line.amount_committed)) || 0,
+    billed_amount: parseFloat(String(line.amount_committed)) || 0,
+    paid_amount: parseFloat(String(line.amount_spent)) || 0,
   }));
 }
 

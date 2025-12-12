@@ -89,7 +89,7 @@ export function PromoteurLayout() {
         {/* User section */}
         <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex items-center gap-3">
-            <Avatar name="Marie Dupont" size="sm" />
+            <Avatar fallback="MD" alt="Marie Dupont" size="sm" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">
                 Marie Dupont
@@ -128,7 +128,7 @@ export function PromoteurLayout() {
                 align="right"
                 trigger={
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <Avatar name="Marie Dupont" size="xs" />
+                    <Avatar fallback="MD" alt="Marie Dupont" size="xs" />
                     <span className="hidden sm:inline text-sm">Marie Dupont</span>
                     <ChevronDown className="w-4 h-4" />
                   </Button>

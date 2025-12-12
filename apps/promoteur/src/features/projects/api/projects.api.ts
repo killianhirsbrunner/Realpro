@@ -14,20 +14,23 @@ export async function fetchProjects(): Promise<ProjectWithStats[]> {
   if (error) throw error;
 
   // Fetch stats for each project
+  type LotRow = { id: string; status: string; price_total: number | null };
+
   const projectsWithStats = await Promise.all(
-    (projectsData || []).map(async (project) => {
+    (projectsData || []).map(async (project: Project) => {
       const { data: lots } = await supabase
         .from('lots')
         .select('id, status, price_total')
         .eq('project_id', project.id);
 
-      const totalLots = lots?.length || 0;
-      const soldLots = lots?.filter(l => l.status === 'SOLD').length || 0;
-      const reservedLots = lots?.filter(l => l.status === 'RESERVED').length || 0;
-      const availableLots = lots?.filter(l => l.status === 'AVAILABLE').length || 0;
-      const totalRevenue = lots
-        ?.filter(l => l.status === 'SOLD')
-        .reduce((sum, l) => sum + (l.price_total || 0), 0) || 0;
+      const lotsData = (lots || []) as LotRow[];
+      const totalLots = lotsData.length;
+      const soldLots = lotsData.filter((l) => l.status === 'SOLD').length;
+      const reservedLots = lotsData.filter((l) => l.status === 'RESERVED').length;
+      const availableLots = lotsData.filter((l) => l.status === 'AVAILABLE').length;
+      const totalRevenue = lotsData
+        .filter((l) => l.status === 'SOLD')
+        .reduce((sum: number, l) => sum + (l.price_total || 0), 0);
 
       const completionPercent = totalLots > 0
         ? Math.round((soldLots / totalLots) * 100)

@@ -18,6 +18,42 @@ export interface BuyersQueryFilters {
   search?: string;
 }
 
+// Type for Supabase query result - nested selects may return arrays
+interface SalesContractRow {
+  id: string;
+  status: string;
+  total_price: number | null;
+  lot: { id: string; code: string; type: string }[] | { id: string; code: string; type: string } | null;
+  buyer: Buyer[] | Buyer | null;
+  project: { id: string; name: string }[] | { id: string; name: string } | null;
+}
+
+// Helper to safely get first element from nested select result
+function getFirst<T>(value: T | T[] | null): T | null {
+  if (Array.isArray(value)) return value[0] || null;
+  return value;
+}
+
+interface DocumentRow {
+  id: string;
+  buyer_id: string;
+  name: string;
+  type: string | null;
+  status: string | null;
+  storage_path: string | null;
+  created_at: string;
+}
+
+interface PaymentRow {
+  id: string;
+  buyer_id: string;
+  description: string;
+  amount: number;
+  status: string | null;
+  due_date: string | null;
+  paid_date: string | null;
+}
+
 export async function fetchBuyers(
   projectId: string,
   filters?: BuyersQueryFilters
@@ -62,17 +98,20 @@ export async function fetchBuyers(
   if (error) throw error;
 
   // Transform to BuyerWithLot array
-  const buyers: BuyerWithLot[] = (contracts || [])
-    .filter((contract) => contract.buyer)
-    .map((contract) => {
-      const buyer = contract.buyer as Buyer;
+  const contractRows = (contracts || []) as SalesContractRow[];
+  const buyers: BuyerWithLot[] = contractRows
+    .filter((contract: SalesContractRow) => getFirst(contract.buyer))
+    .map((contract: SalesContractRow) => {
+      const buyer = getFirst(contract.buyer) as Buyer;
+      const lot = getFirst(contract.lot);
+      const project = getFirst(contract.project);
       return {
         ...buyer,
-        lot_id: contract.lot?.id || null,
-        lot_code: contract.lot?.code || null,
-        lot_type: contract.lot?.type || null,
-        project_id: contract.project?.id || null,
-        project_name: contract.project?.name || null,
+        lot_id: lot?.id || null,
+        lot_code: lot?.code || null,
+        lot_type: lot?.type || null,
+        project_id: project?.id || null,
+        project_name: project?.name || null,
         sale_contract_id: contract.id,
         sale_price: contract.total_price || null,
       };
@@ -155,22 +194,24 @@ export async function fetchBuyerDetails(buyerId: string): Promise<BuyerDetails |
 
   const saleContract = buyerData.sales_contracts?.[0];
 
-  const buyerDocuments: BuyerDocument[] = (documents || []).map((doc) => ({
+  const documentRows = (documents || []) as DocumentRow[];
+  const buyerDocuments: BuyerDocument[] = documentRows.map((doc: DocumentRow) => ({
     id: doc.id,
     buyer_id: doc.buyer_id,
     name: doc.name,
     type: doc.type || 'other',
-    status: doc.status || 'pending',
+    status: (doc.status || 'pending') as 'pending' | 'approved' | 'rejected',
     storage_path: doc.storage_path,
     created_at: doc.created_at,
   }));
 
-  const buyerPayments: BuyerPayment[] = (payments || []).map((p) => ({
+  const paymentRows = (payments || []) as PaymentRow[];
+  const buyerPayments: BuyerPayment[] = paymentRows.map((p: PaymentRow) => ({
     id: p.id,
     buyer_id: p.buyer_id,
     description: p.description,
     amount: p.amount,
-    status: p.status || 'pending',
+    status: (p.status || 'pending') as 'pending' | 'paid' | 'overdue' | 'cancelled',
     due_date: p.due_date,
     paid_date: p.paid_date,
   }));

@@ -7,6 +7,7 @@ import type {
   CreateInvoiceInput,
   UpdateInvoiceInput,
   RecordPaymentInput,
+  Invoice,
 } from '@realpro/entities';
 import * as financeApi from '../api/finance.api';
 import { buyerKeys } from '../../buyers';
@@ -89,7 +90,7 @@ export function useCreateInvoice() {
 
   return useMutation({
     mutationFn: (input: CreateInvoiceInput) => financeApi.createInvoice(input),
-    onSuccess: (data) => {
+    onSuccess: (data: Invoice) => {
       queryClient.invalidateQueries({ queryKey: financeKeys.invoices() });
       queryClient.invalidateQueries({ queryKey: financeKeys.projectFinance(data.project_id) });
       queryClient.invalidateQueries({ queryKey: financeKeys.buyerInvoices(data.buyer_id) });
@@ -106,7 +107,7 @@ export function useUpdateInvoice() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: UpdateInvoiceInput }) =>
       financeApi.updateInvoice(id, input),
-    onSuccess: (data) => {
+    onSuccess: (data: Invoice) => {
       queryClient.invalidateQueries({ queryKey: financeKeys.invoices() });
       queryClient.invalidateQueries({ queryKey: financeKeys.projectFinance(data.project_id) });
       queryClient.setQueryData(financeKeys.invoiceDetail(data.id), data);
@@ -122,7 +123,7 @@ export function useRecordPayment() {
 
   return useMutation({
     mutationFn: (input: RecordPaymentInput) => financeApi.recordPayment(input),
-    onSuccess: (data) => {
+    onSuccess: (data: Invoice) => {
       queryClient.invalidateQueries({ queryKey: financeKeys.invoices() });
       queryClient.invalidateQueries({ queryKey: financeKeys.projectFinance(data.project_id) });
       queryClient.invalidateQueries({ queryKey: financeKeys.buyerInvoices(data.buyer_id) });

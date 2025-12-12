@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Card,
@@ -36,25 +37,24 @@ import {
   LOT_TYPE_LABELS,
   type ProjectStatus,
   type LotStatus,
-  getProjectFullAddress,
 } from '@realpro/entities';
 import { useProject } from '@/features/projects/hooks/useProjects';
 import { useLots } from '@/features/lots/hooks/useLots';
 
-const STATUS_VARIANT: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'neutral'> = {
+const STATUS_VARIANT: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'default'> = {
   PLANNING: 'info',
   CONSTRUCTION: 'warning',
   SELLING: 'success',
-  COMPLETED: 'neutral',
-  ARCHIVED: 'neutral',
+  COMPLETED: 'default',
+  ARCHIVED: 'default',
 };
 
-const LOT_STATUS_VARIANT: Record<LotStatus, 'success' | 'info' | 'warning' | 'neutral'> = {
+const LOT_STATUS_VARIANT: Record<LotStatus, 'success' | 'info' | 'warning' | 'default'> = {
   AVAILABLE: 'success',
   RESERVED: 'info',
   OPTION: 'warning',
-  SOLD: 'neutral',
-  DELIVERED: 'neutral',
+  SOLD: 'default',
+  DELIVERED: 'default',
 };
 
 function formatCurrency(value: number | null | undefined): string {
@@ -73,6 +73,7 @@ function formatSurface(value: number | null | undefined): string {
 
 export function ProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>();
+  const [activeTab, setActiveTab] = useState('units');
 
   const { data: project, isLoading: projectLoading, error: projectError } = useProject(projectId);
   const { lots, stats, isLoading: lotsLoading } = useLots(projectId);
@@ -316,7 +317,7 @@ export function ProjectDetailPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="units">
+      <Tabs value={activeTab} onChange={setActiveTab}>
         <TabsList>
           <TabsTrigger value="units">Unités ({stats?.total || 0})</TabsTrigger>
           <TabsTrigger value="documents">Documents</TabsTrigger>
@@ -343,14 +344,13 @@ export function ProjectDetailPage() {
                 </div>
               ) : lots.length === 0 ? (
                 <EmptyState
-                  icon={<Home className="w-12 h-12" />}
+                  icon={Home}
                   title="Aucune unité"
                   description="Ajoutez des unités (appartements, parkings, etc.) à ce projet."
-                  action={
-                    <Button size="sm" leftIcon={<Plus className="w-4 h-4" />}>
-                      Ajouter une unité
-                    </Button>
-                  }
+                  action={{
+                    label: 'Ajouter une unité',
+                    onClick: () => {},
+                  }}
                 />
               ) : (
                 <div className="overflow-x-auto">
@@ -428,7 +428,7 @@ export function ProjectDetailPage() {
             </CardHeader>
             <CardContent>
               <EmptyState
-                icon={<Building2 className="w-12 h-12" />}
+                icon={Building2}
                 title="À venir"
                 description="La gestion documentaire sera disponible dans une prochaine version."
               />
@@ -445,7 +445,7 @@ export function ProjectDetailPage() {
             </CardHeader>
             <CardContent>
               <EmptyState
-                icon={<Calendar className="w-12 h-12" />}
+                icon={Calendar}
                 title="À venir"
                 description="Le planning de construction sera disponible dans une prochaine version."
               />
@@ -462,7 +462,7 @@ export function ProjectDetailPage() {
             </CardHeader>
             <CardContent>
               <EmptyState
-                icon={<Users className="w-12 h-12" />}
+                icon={Users}
                 title="À venir"
                 description="La gestion des prospects sera disponible dans une prochaine version."
               />

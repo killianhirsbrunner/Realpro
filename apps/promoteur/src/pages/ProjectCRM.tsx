@@ -18,9 +18,7 @@ import {
   Clock,
 } from 'lucide-react';
 import {
-  PROSPECT_STATUS_LABELS,
   CRM_PIPELINE_STAGES,
-  type ProspectStatus,
   getProspectFullName,
   getProspectInitials,
 } from '@realpro/entities';
@@ -132,14 +130,13 @@ export function ProjectCRMPage() {
       {/* Kanban Board */}
       {totalProspects === 0 ? (
         <EmptyState
-          icon={<Users className="w-12 h-12" />}
+          icon={Users}
           title="Aucun prospect"
           description="Ajoutez votre premier prospect pour commencer à suivre votre pipeline commercial."
-          action={
-            <Button leftIcon={<Plus className="w-4 h-4" />}>
-              Nouveau prospect
-            </Button>
-          }
+          action={{
+            label: 'Nouveau prospect',
+            onClick: () => {},
+          }}
         />
       ) : (
         <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4">
@@ -153,7 +150,7 @@ export function ProjectCRMPage() {
                   className={`${HEADER_COLOR[stage.id]} text-white px-3 py-2 rounded-t-lg flex items-center justify-between`}
                 >
                   <span className="font-medium text-sm">{stage.label}</span>
-                  <Badge variant="neutral" size="sm" className="bg-white/20 text-white">
+                  <Badge variant="default" size="sm" className="bg-white/20 text-white">
                     {prospects.length}
                   </Badge>
                 </div>
@@ -171,8 +168,8 @@ export function ProjectCRMPage() {
                         <CardContent className="p-3">
                           <div className="flex items-start gap-2">
                             <Avatar
-                              name={getProspectFullName(prospect)}
-                              initials={getProspectInitials(prospect)}
+                              fallback={getProspectInitials(prospect)}
+                              alt={getProspectFullName(prospect)}
                               size="sm"
                             />
                             <div className="flex-1 min-w-0">

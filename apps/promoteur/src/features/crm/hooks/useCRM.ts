@@ -8,6 +8,7 @@ import type {
   UpdateProspectInput,
   ProspectStatus,
   CRMActivity,
+  Prospect,
 } from '@realpro/entities';
 import * as crmApi from '../api/crm.api';
 
@@ -88,7 +89,7 @@ export function useCreateProspect() {
 
   return useMutation({
     mutationFn: (input: CreateProspectInput) => crmApi.createProspect(input),
-    onSuccess: (data) => {
+    onSuccess: (data: Prospect) => {
       queryClient.invalidateQueries({ queryKey: crmKeys.prospects() });
       queryClient.invalidateQueries({ queryKey: crmKeys.pipeline(data.project_id) });
     },
@@ -104,7 +105,7 @@ export function useUpdateProspect() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: UpdateProspectInput }) =>
       crmApi.updateProspect(id, input),
-    onSuccess: (data) => {
+    onSuccess: (data: Prospect) => {
       queryClient.invalidateQueries({ queryKey: crmKeys.prospects() });
       queryClient.invalidateQueries({ queryKey: crmKeys.pipeline(data.project_id) });
       queryClient.setQueryData(crmKeys.prospectDetail(data.id), data);
@@ -121,7 +122,7 @@ export function useUpdateProspectStatus() {
   return useMutation({
     mutationFn: ({ id, status }: { id: string; status: ProspectStatus }) =>
       crmApi.updateProspectStatus(id, status),
-    onSuccess: (data) => {
+    onSuccess: (data: Prospect) => {
       queryClient.invalidateQueries({ queryKey: crmKeys.prospects() });
       queryClient.invalidateQueries({ queryKey: crmKeys.pipeline(data.project_id) });
       queryClient.setQueryData(crmKeys.prospectDetail(data.id), data);
@@ -158,7 +159,10 @@ export function useCreateActivity() {
       prospectId: string;
       activity: Omit<CRMActivity, 'id' | 'prospect_id' | 'created_at'>;
     }) => crmApi.createActivity(prospectId, activity),
-    onSuccess: (_, { prospectId }) => {
+    onSuccess: (
+      _: CRMActivity,
+      { prospectId }: { prospectId: string; activity: Omit<CRMActivity, 'id' | 'prospect_id' | 'created_at'> }
+    ) => {
       queryClient.invalidateQueries({ queryKey: crmKeys.activities(prospectId) });
     },
   });

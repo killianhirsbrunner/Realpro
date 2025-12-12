@@ -3,7 +3,7 @@
  */
 
 import { supabase } from '@/lib/supabase';
-import type { Lot, LotWithBuyer, CreateLotInput, UpdateLotInput, LotFilters, LotStatus } from '@realpro/entities';
+import type { Lot, CreateLotInput, UpdateLotInput, LotFilters, LotStatus } from '@realpro/entities';
 
 export interface LotWithRelations extends Lot {
   building?: { id: string; name: string; code: string } | null;
