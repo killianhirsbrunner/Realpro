@@ -8,7 +8,6 @@ import {
   FileText,
   Receipt,
   Wrench,
-  Calendar,
   Settings,
   Menu,
   X,
@@ -25,10 +24,9 @@ const navigation = [
   { name: 'Biens', href: '/properties', icon: Building2 },
   { name: 'Locataires', href: '/tenants', icon: Users },
   { name: 'Baux', href: '/leases', icon: FileText },
-  { name: 'Loyers', href: '/rents', icon: Receipt },
+  { name: 'Comptabilité', href: '/accounting', icon: Receipt },
+  { name: 'Documents', href: '/documents', icon: Key },
   { name: 'Interventions', href: '/maintenance', icon: Wrench },
-  { name: 'Visites', href: '/visits', icon: Calendar },
-  { name: 'États des lieux', href: '/inspections', icon: Key },
   { name: 'Paramètres', href: '/settings', icon: Settings },
 ];
 
@@ -92,7 +90,7 @@ export function RegieLayout() {
 
         <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex items-center gap-3">
-            <Avatar name="Sophie Müller" size="sm" />
+            <Avatar fallback="Sophie Müller" size="sm" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">
                 Sophie Müller
@@ -127,7 +125,7 @@ export function RegieLayout() {
                 align="right"
                 trigger={
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <Avatar name="Sophie Müller" size="xs" />
+                    <Avatar fallback="Sophie Müller" size="xs" />
                     <span className="hidden sm:inline text-sm">Sophie Müller</span>
                     <ChevronDown className="w-4 h-4" />
                   </Button>

@@ -73,7 +73,7 @@ const mockProperties: Property[] = [
 const statusConfig = {
   active: { label: 'Actif', variant: 'success' as const },
   pending: { label: 'En attente', variant: 'warning' as const },
-  archived: { label: 'Archivé', variant: 'neutral' as const },
+  archived: { label: 'Archivé', variant: 'default' as const },
 };
 
 export function PropertiesPage() {
@@ -111,14 +111,13 @@ export function PropertiesPage() {
 
       {filteredProperties.length === 0 ? (
         <EmptyState
-          icon={<Building className="w-12 h-12" />}
+          icon={Building}
           title="Aucun immeuble trouvé"
           description="Modifiez vos critères de recherche ou ajoutez un nouvel immeuble."
-          action={
-            <Button leftIcon={<Plus className="w-4 h-4" />}>
-              Nouvel immeuble
-            </Button>
-          }
+          action={{
+            label: 'Nouvel immeuble',
+            onClick: () => {},
+          }}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">

@@ -341,10 +341,6 @@ importers:
         version: 5.9.3
 
   packages/entities:
-    dependencies:
-      '@supabase/supabase-js':
-        specifier: ^2.39.0
-        version: 2.87.1
     devDependencies:
       '@realpro/config':
         specifier: workspace:*
