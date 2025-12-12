@@ -64,11 +64,11 @@ const priorityConfig = {
   urgent: { label: 'Urgent', variant: 'error' as const },
   high: { label: 'Haute', variant: 'warning' as const },
   medium: { label: 'Moyenne', variant: 'info' as const },
-  low: { label: 'Basse', variant: 'neutral' as const },
+  low: { label: 'Basse', variant: 'default' as const },
 };
 
 const statusConfig = {
-  open: { label: 'Ouvert', variant: 'neutral' as const, icon: Clock },
+  open: { label: 'Ouvert', variant: 'default' as const, icon: Clock },
   assigned: { label: 'Assigné', variant: 'info' as const, icon: User },
   in_progress: { label: 'En cours', variant: 'warning' as const, icon: Wrench },
   completed: { label: 'Terminé', variant: 'success' as const, icon: CheckCircle2 },

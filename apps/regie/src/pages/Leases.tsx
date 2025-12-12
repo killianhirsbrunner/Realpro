@@ -66,7 +66,7 @@ const statusConfig = {
   notice_given: { label: 'Congé donné', variant: 'warning' as const },
   expiring_soon: { label: 'Expire bientôt', variant: 'info' as const },
   terminated: { label: 'Résilié', variant: 'error' as const },
-  draft: { label: 'Brouillon', variant: 'neutral' as const },
+  draft: { label: 'Brouillon', variant: 'default' as const },
 };
 
 export function LeasesPage() {

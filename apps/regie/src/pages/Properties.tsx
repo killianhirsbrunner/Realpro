@@ -108,14 +108,13 @@ export function PropertiesPage() {
 
       {filteredProperties.length === 0 ? (
         <EmptyState
-          icon={<Building2 className="w-12 h-12" />}
+          icon={Building2}
           title="Aucun bien trouvé"
           description="Modifiez vos critères de recherche ou ajoutez un nouveau bien."
-          action={
-            <Button leftIcon={<Plus className="w-4 h-4" />}>
-              Nouveau bien
-            </Button>
-          }
+          action={{
+            label: 'Nouveau bien',
+            onClick: () => {},
+          }}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">

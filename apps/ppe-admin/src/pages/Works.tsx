@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardContent, Button, Badge, Progress } from '@realpro/ui';
+import { Card, CardContent, Button, Badge, Progress } from '@realpro/ui';
 import { Wrench, Plus, Calendar, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 const mockWorks = [
@@ -151,7 +151,7 @@ export function WorksPage() {
                       <span className="text-neutral-500">Avancement</span>
                       <span className="font-medium">{work.progress}%</span>
                     </div>
-                    <Progress value={work.progress} size="sm" variant={work.progress === 100 ? 'success' : 'primary'} />
+                    <Progress value={work.progress} size="sm" variant={work.progress === 100 ? 'success' : 'default'} />
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-neutral-500">Budget</span>
                       <span className={`font-medium ${budgetPercent > 100 ? 'text-error-600' : ''}`}>

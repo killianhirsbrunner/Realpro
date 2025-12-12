@@ -92,7 +92,7 @@ export function PPEAdminLayout() {
 
         <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
           <div className="flex items-center gap-3">
-            <Avatar name="Jean Martin" size="sm" />
+            <Avatar fallback="Jean Martin" size="sm" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">
                 Jean Martin
@@ -127,7 +127,7 @@ export function PPEAdminLayout() {
                 align="right"
                 trigger={
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <Avatar name="Jean Martin" size="xs" />
+                    <Avatar fallback="Jean Martin" size="xs" />
                     <span className="hidden sm:inline text-sm">Jean Martin</span>
                     <ChevronDown className="w-4 h-4" />
                   </Button>

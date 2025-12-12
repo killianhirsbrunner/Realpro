@@ -70,14 +70,13 @@ export function TenantsPage() {
 
       {filteredTenants.length === 0 ? (
         <EmptyState
-          icon={<Users className="w-12 h-12" />}
+          icon={Users}
           title="Aucun locataire trouvé"
           description="Modifiez vos critères de recherche ou ajoutez un nouveau locataire."
-          action={
-            <Button leftIcon={<Plus className="w-4 h-4" />}>
-              Nouveau locataire
-            </Button>
-          }
+          action={{
+            label: 'Nouveau locataire',
+            onClick: () => {},
+          }}
         />
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -85,7 +84,7 @@ export function TenantsPage() {
             <Card key={tenant.id} className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-4">
                 <div className="flex items-start gap-4">
-                  <Avatar name={tenant.name} size="lg" />
+                  <Avatar fallback={tenant.name} size="lg" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div>

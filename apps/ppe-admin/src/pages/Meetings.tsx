@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardContent, Button, Badge } from '@realpro/ui';
+import { Card, CardContent, Button, Badge } from '@realpro/ui';
 import { Calendar, Plus, Users, FileText, Clock, MapPin } from 'lucide-react';
 
 const mockMeetings = [
@@ -43,13 +43,13 @@ const mockMeetings = [
 const statusConfig = {
   planned: { label: 'Planifiée', variant: 'info' as const },
   convoked: { label: 'Convoquée', variant: 'warning' as const },
-  in_progress: { label: 'En cours', variant: 'primary' as const },
+  in_progress: { label: 'En cours', variant: 'brand' as const },
   completed: { label: 'Terminée', variant: 'success' as const },
   cancelled: { label: 'Annulée', variant: 'error' as const },
 };
 
 const typeConfig = {
-  ordinary: { label: 'Ordinaire', variant: 'neutral' as const },
+  ordinary: { label: 'Ordinaire', variant: 'default' as const },
   extraordinary: { label: 'Extraordinaire', variant: 'warning' as const },
 };
 

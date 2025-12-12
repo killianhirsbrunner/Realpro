@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardContent, Button, Input, Badge } from '@realpro/ui';
-import { Settings, User, Building, Bell, Shield, Palette, Globe } from 'lucide-react';
+import { User, Building, Bell, Shield, Palette, Globe } from 'lucide-react';
 
 export function SettingsPage() {
   return (
@@ -78,7 +78,7 @@ export function SettingsPage() {
                 ].map((notif, i) => (
                   <div key={i} className="flex items-center justify-between py-2">
                     <span className="text-neutral-900 dark:text-white">{notif.label}</span>
-                    <Badge variant={notif.enabled ? 'success' : 'neutral'} size="sm">
+                    <Badge variant={notif.enabled ? 'success' : 'default'} size="sm">
                       {notif.enabled ? 'Activé' : 'Désactivé'}
                     </Badge>
                   </div>

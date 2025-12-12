@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Card, CardContent, Button, Input, Badge, EmptyState } from '@realpro/ui';
-import { Search, Plus, FileText, Folder, Download, Eye, Upload } from 'lucide-react';
+import { Search, FileText, Download, Eye, Upload } from 'lucide-react';
 
 const mockDocuments = [
   { id: '1', name: 'PV AG 2024.pdf', type: 'pdf', category: 'Assemblées', date: '15.06.2024', size: '2.4 MB' },
@@ -72,14 +72,13 @@ export function DocumentsPage() {
 
       {filteredDocuments.length === 0 ? (
         <EmptyState
-          icon={<FileText className="w-12 h-12" />}
+          icon={FileText}
           title="Aucun document trouvé"
           description="Modifiez vos critères de recherche ou téléchargez un nouveau document."
-          action={
-            <Button leftIcon={<Upload className="w-4 h-4" />}>
-              Télécharger
-            </Button>
-          }
+          action={{
+            label: 'Télécharger',
+            onClick: () => {},
+          }}
         />
       ) : (
         <Card>
@@ -97,7 +96,7 @@ export function DocumentsPage() {
                         {doc.name}
                       </p>
                       <div className="flex items-center gap-2 text-sm text-neutral-500">
-                        <Badge variant="neutral" size="sm">{doc.category}</Badge>
+                        <Badge variant="default" size="sm">{doc.category}</Badge>
                         <span>·</span>
                         <span>{doc.date}</span>
                         <span>·</span>

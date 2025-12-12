@@ -119,7 +119,7 @@ export function OwnersPage() {
 
       {filteredOwners.length === 0 ? (
         <EmptyState
-          icon={<Users className="w-12 h-12" />}
+          icon={Users}
           title="Aucun copropriétaire trouvé"
           description="Modifiez vos critères de recherche."
         />
@@ -130,7 +130,7 @@ export function OwnersPage() {
               <CardContent className="p-4">
                 <div className="flex items-start gap-3">
                   <Avatar
-                    name={owner.type === 'company' ? owner.companyName! : `${owner.firstName} ${owner.lastName}`}
+                    fallback={owner.type === 'company' ? owner.companyName! : `${owner.firstName} ${owner.lastName}`}
                     size="md"
                   />
                   <div className="flex-1 min-w-0">
@@ -139,7 +139,7 @@ export function OwnersPage() {
                         {owner.type === 'company' ? owner.companyName : `${owner.firstName} ${owner.lastName}`}
                       </h3>
                       {owner.isPresident && (
-                        <Badge variant="primary" size="sm">Président</Badge>
+                        <Badge variant="brand" size="sm">Président</Badge>
                       )}
                       {owner.isCommittee && !owner.isPresident && (
                         <Badge variant="info" size="sm">Comité</Badge>
