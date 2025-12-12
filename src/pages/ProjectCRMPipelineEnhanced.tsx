@@ -846,5 +846,3 @@ function ContactCard({ contact, projectId }: ContactCardProps) {
     </Card>
   );
 }
-
-export { ProjectCRMPipelineEnhanced };

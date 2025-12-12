@@ -3,6 +3,33 @@ import { supabase } from '../lib/supabase';
 import { useCurrentUser } from './useCurrentUser';
 
 export type DocumentType = 'identity' | 'income_proof' | 'financing_proof' | 'signature_power' | 'other';
+export type DocumentStatus = 'pending' | 'uploaded' | 'verified' | 'rejected';
+
+export function getDocumentStatusConfig(status: DocumentStatus) {
+  const configs: Record<DocumentStatus, { label: string; color: string; icon: string }> = {
+    pending: {
+      label: 'En attente',
+      color: 'text-neutral-600 bg-neutral-100 dark:text-neutral-400 dark:bg-neutral-900/30',
+      icon: 'Circle',
+    },
+    uploaded: {
+      label: 'Téléversé',
+      color: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
+      icon: 'Upload',
+    },
+    verified: {
+      label: 'Vérifié',
+      color: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
+      icon: 'CheckCircle',
+    },
+    rejected: {
+      label: 'Rejeté',
+      color: 'text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30',
+      icon: 'XCircle',
+    },
+  };
+  return configs[status] || configs.pending;
+}
 
 export interface NotaryDocument {
   id: string;
