@@ -25,10 +25,9 @@ const navigation = [
   { name: 'Biens', href: '/properties', icon: Building2 },
   { name: 'Locataires', href: '/tenants', icon: Users },
   { name: 'Baux', href: '/leases', icon: FileText },
-  { name: 'Loyers', href: '/rents', icon: Receipt },
+  { name: 'Comptabilité', href: '/accounting', icon: Receipt },
+  { name: 'Documents', href: '/documents', icon: Key },
   { name: 'Interventions', href: '/maintenance', icon: Wrench },
-  { name: 'Visites', href: '/visits', icon: Calendar },
-  { name: 'États des lieux', href: '/inspections', icon: Key },
   { name: 'Paramètres', href: '/settings', icon: Settings },
 ];
 

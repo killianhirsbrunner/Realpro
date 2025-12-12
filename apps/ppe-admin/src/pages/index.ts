@@ -1,3 +1,10 @@
 export { DashboardPage } from './Dashboard';
 export { PropertiesPage } from './Properties';
 export { PropertyDetailPage } from './PropertyDetail';
+export { OwnersPage } from './Owners';
+export { AccountingPage } from './Accounting';
+export { FundsPage } from './Funds';
+export { DocumentsPage } from './Documents';
+export { WorksPage } from './Works';
+export { MeetingsPage } from './Meetings';
+export { SettingsPage } from './Settings';
