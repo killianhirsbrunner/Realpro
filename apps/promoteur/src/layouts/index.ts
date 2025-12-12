@@ -1,0 +1,1 @@
+export { PromoteurLayout } from './PromoteurLayout';

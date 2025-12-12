@@ -1,0 +1,23 @@
+{
+  "name": "@realpro/i18n",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Internationalization package for Realpro Suite",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./locales/*": "./src/locales/*"
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "dependencies": {
+    "i18next": "^23.7.6",
+    "react-i18next": "^13.5.0"
+  }
+}
