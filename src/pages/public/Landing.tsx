@@ -157,39 +157,39 @@ export function Landing() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <header className="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-20 flex items-center justify-between">
+          <div className="h-16 flex items-center justify-between">
             <Link to="/" className="flex items-center">
-              <RealProLogo variant="full" size="md" />
+              <RealProLogo variant="full" size="sm" />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
-              <Link to="/features" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+            <nav className="hidden lg:flex items-center gap-1">
+              <Link to="/features" className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all">
                 Fonctionnalités
               </Link>
-              <Link to="/pricing" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <Link to="/pricing" className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all">
                 Tarifs
               </Link>
-              <Link to="/contact" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <Link to="/contact" className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all">
                 Contact
               </Link>
             </nav>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <ThemeToggle />
               <Link to="/login" className="hidden md:block">
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white">
                   Connexion
                 </Button>
               </Link>
               <Link to="/register">
-                <Button size="sm" className="bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0">
+                <Button size="sm" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white border-0 shadow-sm">
                   Essai gratuit
                 </Button>
               </Link>
               <button
-                className="lg:hidden p-2 text-neutral-600 dark:text-neutral-400"
+                className="lg:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -199,11 +199,12 @@ export function Landing() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 py-4 px-6">
-            <nav className="flex flex-col gap-3">
-              <Link to="/features" className="py-2 text-neutral-600 dark:text-neutral-400">Fonctionnalités</Link>
-              <Link to="/pricing" className="py-2 text-neutral-600 dark:text-neutral-400">Tarifs</Link>
-              <Link to="/contact" className="py-2 text-neutral-600 dark:text-neutral-400">Contact</Link>
+          <div className="lg:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 py-3 px-6">
+            <nav className="flex flex-col gap-1">
+              <Link to="/features" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">Fonctionnalités</Link>
+              <Link to="/pricing" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">Tarifs</Link>
+              <Link to="/contact" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">Contact</Link>
+              <Link to="/login" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors md:hidden">Connexion</Link>
             </nav>
           </div>
         )}
@@ -219,60 +220,55 @@ export function Landing() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn delay={100}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-realpro-turquoise/10 text-realpro-turquoise text-sm font-medium mb-8">
-                <Sparkles className="w-4 h-4" />
-                Plateforme leader pour les promoteurs immobiliers suisses
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-realpro-turquoise/10 text-realpro-turquoise text-sm font-medium mb-6 border border-realpro-turquoise/20">
+                <Shield className="w-3.5 h-3.5" />
+                Solution 100% suisse
               </div>
             </FadeIn>
 
             <FadeIn delay={200}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white leading-tight mb-6">
-                La solution complète pour piloter vos{' '}
-                <span className="text-realpro-turquoise">promotions immobilières</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white leading-[1.1] tracking-tight mb-6">
+                Pilotez vos promotions<br className="hidden sm:block" />
+                <span className="text-realpro-turquoise">immobilières</span> en toute simplicité
               </h1>
             </FadeIn>
 
             <FadeIn delay={300}>
-              <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-400 mb-10 max-w-3xl mx-auto leading-relaxed">
-                RealPro centralise la gestion de vos projets, ventes, finances et communications
-                sur une plateforme unique. Connectez architectes, courtiers, acquéreurs et
-                fournisseurs pour une collaboration fluide et une visibilité totale.
+              <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Centralisez projets, ventes, finances et documents sur une plateforme unique.
+                Collaborez efficacement avec tous vos intervenants.
               </p>
             </FadeIn>
 
             <FadeIn delay={400}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
                 <Link to="/register">
-                  <Button size="lg" className="h-12 px-8 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0 shadow-lg shadow-realpro-turquoise/25">
-                    Démarrer l'essai gratuit
+                  <Button size="lg" className="h-13 px-8 text-base bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white border-0 shadow-lg shadow-realpro-turquoise/20 font-medium">
+                    Essai gratuit 14 jours
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button size="lg" variant="outline" className="h-12 px-8 text-base">
-                    Demander une démonstration
+                  <Button size="lg" variant="outline" className="h-13 px-8 text-base border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">
+                    Demander une démo
                   </Button>
                 </Link>
               </div>
             </FadeIn>
 
             <FadeIn delay={500}>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-neutral-500 dark:text-neutral-400 mb-16">
-                <span className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-neutral-500 dark:text-neutral-400 mb-12">
+                <span className="flex items-center gap-1.5">
                   <Check className="w-4 h-4 text-realpro-turquoise" />
-                  14 jours d'essai gratuit
+                  Sans carte bancaire
                 </span>
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-1.5">
                   <Check className="w-4 h-4 text-realpro-turquoise" />
-                  Sans engagement
+                  Données hébergées en Suisse
                 </span>
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-1.5">
                   <Check className="w-4 h-4 text-realpro-turquoise" />
-                  Hébergement 100% Suisse
-                </span>
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-realpro-turquoise" />
-                  Support en français
+                  Support inclus
                 </span>
               </div>
             </FadeIn>
@@ -429,100 +425,89 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-20 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-24 bg-neutral-50/50 dark:bg-neutral-900/30">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                Une plateforme, tous vos besoins métiers
+              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4 tracking-tight">
+                Tous vos outils métier en une plateforme
               </h2>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-                Chaque module a été conçu en collaboration avec des promoteurs immobiliers suisses
-                pour répondre aux exigences spécifiques du marché romand et alémanique.
+              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                Conçue avec des promoteurs suisses pour répondre aux exigences du marché local.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-6 mb-12">
-            {coreModules.map((module, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {coreModules.map((module) => (
               <ScrollReveal key={module.title}>
-                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 border border-neutral-200 dark:border-neutral-700 hover:shadow-lg transition-shadow duration-300 h-full">
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-realpro-turquoise/10 flex items-center justify-center flex-shrink-0">
-                      <module.icon className="w-6 h-6 text-realpro-turquoise" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
-                        {module.title}
-                      </h3>
-                      <p className="text-neutral-600 dark:text-neutral-400 mb-4 leading-relaxed">
-                        {module.description}
-                      </p>
-                      <ul className="space-y-2">
-                        {module.features.map((feature, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                            <ChevronRight className="w-4 h-4 text-realpro-turquoise flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {additionalModules.map((module, index) => (
-              <ScrollReveal key={module.title}>
-                <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700 hover:shadow-lg transition-shadow duration-300">
-                  <div className="w-10 h-10 rounded-lg bg-realpro-turquoise/10 flex items-center justify-center mb-4">
+                <div className="group bg-white dark:bg-neutral-800/50 rounded-xl p-6 border border-neutral-200/80 dark:border-neutral-700/50 hover:border-realpro-turquoise/30 hover:shadow-lg hover:shadow-realpro-turquoise/5 transition-all duration-300 h-full">
+                  <div className="w-11 h-11 rounded-xl bg-realpro-turquoise/10 group-hover:bg-realpro-turquoise/15 flex items-center justify-center mb-4 transition-colors">
                     <module.icon className="w-5 h-5 text-realpro-turquoise" />
                   </div>
                   <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
                     {module.title}
                   </h3>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                    {module.description}
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+                    {module.description.split('.')[0]}.
                   </p>
+                  <ul className="space-y-1.5">
+                    {module.features.slice(0, 2).map((feature, i) => (
+                      <li key={i} className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+                        <Check className="w-3.5 h-3.5 text-realpro-turquoise flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </ScrollReveal>
             ))}
           </div>
+
+          <ScrollReveal>
+            <div className="mt-12 grid md:grid-cols-3 gap-4">
+              {additionalModules.map((module) => (
+                <div key={module.title} className="flex items-center gap-4 bg-white dark:bg-neutral-800/30 rounded-lg p-4 border border-neutral-200/60 dark:border-neutral-700/40">
+                  <div className="w-9 h-9 rounded-lg bg-realpro-turquoise/10 flex items-center justify-center flex-shrink-0">
+                    <module.icon className="w-4 h-4 text-realpro-turquoise" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-neutral-900 dark:text-white">{module.title}</h4>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{module.description.split('.')[0]}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 dark:from-blue-950/10 dark:via-neutral-950 dark:to-blue-950/5">
+      <section className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                Des résultats mesurables pour votre activité
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4 tracking-tight">
+                Résultats concrets
               </h2>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                Les promoteurs utilisant RealPro constatent des améliorations significatives
-                de leur productivité et de leurs performances commerciales.
+              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+                Ce que nos clients constatent après adoption de Realpro.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit) => (
               <ScrollReveal key={benefit.title}>
-                <div className="text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-realpro-turquoise/10 flex items-center justify-center mx-auto mb-4">
-                    <benefit.icon className="w-7 h-7 text-realpro-turquoise" />
-                  </div>
-                  <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-4xl font-bold text-neutral-900 dark:text-white">
+                <div className="text-center p-6 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-neutral-800/50">
+                  <div className="flex items-baseline justify-center gap-1 mb-3">
+                    <span className="text-4xl font-bold text-realpro-turquoise">
                       {benefit.value}
                     </span>
-                    <span className="text-lg text-neutral-500 dark:text-neutral-400">
+                    <span className="text-lg text-neutral-400">
                       {benefit.unit}
                     </span>
                   </div>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                     {benefit.description}
                   </p>
                 </div>
@@ -532,28 +517,27 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-20 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-20 bg-neutral-50/70 dark:bg-neutral-900/30">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-                Conçu pour le marché suisse
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 dark:text-white mb-4 tracking-tight">
+                Pensé pour la Suisse
               </h2>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                RealPro est développé en Suisse, pour les professionnels suisses,
-                avec une parfaite compréhension des spécificités locales.
+              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+                Développé en Suisse, avec une parfaite maîtrise des spécificités locales.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustPoints.map((point, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {trustPoints.map((point) => (
               <ScrollReveal key={point.title}>
-                <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700 h-full">
-                  <div className="w-10 h-10 rounded-lg bg-realpro-turquoise/10 flex items-center justify-center mb-4">
+                <div className="bg-white dark:bg-neutral-800/50 rounded-xl p-5 border border-neutral-200/80 dark:border-neutral-700/50 h-full">
+                  <div className="w-10 h-10 rounded-lg bg-realpro-turquoise/10 flex items-center justify-center mb-3">
                     <point.icon className="w-5 h-5 text-realpro-turquoise" />
                   </div>
-                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-1.5">
                     {point.title}
                   </h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -566,76 +550,73 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-neutral-900 dark:bg-neutral-950 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-realpro-turquoise/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-realpro-turquoise/15 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-realpro-turquoise/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-realpro-turquoise/15 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-realpro-turquoise/10 rounded-full blur-3xl" />
         </div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center relative">
           <ScrollReveal>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-realpro-turquoise/20 text-realpro-turquoise text-sm font-medium mb-8 border border-realpro-turquoise/30">
-              <Sparkles className="w-4 h-4" />
-              Démarrez dès aujourd'hui
-            </div>
-
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-              Prêt à optimiser la gestion de vos{' '}
-              <span className="text-realpro-turquoise">promotions</span> ?
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-5 tracking-tight">
+              Prêt à simplifier la gestion de vos promotions ?
             </h2>
-            <p className="text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
-              leurs opérations et améliorer leur productivité.
+            <p className="text-lg text-neutral-400 mb-8 max-w-xl mx-auto">
+              Rejoignez les promoteurs qui ont choisi Realpro pour gagner en efficacité.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
               <Link to="/register">
-                <Button size="lg" className="h-14 px-10 text-base bg-realpro-turquoise hover:bg-realpro-turquoise/90 text-white border-0 shadow-xl shadow-realpro-turquoise/30 font-semibold">
-                  Commencer l'essai gratuit
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                <Button size="lg" className="h-13 px-8 text-base bg-realpro-turquoise hover:bg-realpro-turquoise-light text-white border-0 shadow-lg shadow-realpro-turquoise/20 font-medium">
+                  Démarrer l'essai gratuit
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="h-14 px-10 text-base bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 hover:border-white/50 font-semibold transition-all backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="h-13 px-8 text-base border-neutral-600 text-white hover:bg-neutral-800 hover:border-neutral-500">
                   Planifier une démo
                 </Button>
               </Link>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-neutral-400">
-              <span className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-neutral-500">
+              <span className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-realpro-turquoise" />
                 14 jours gratuits
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-realpro-turquoise" />
-                Aucune carte requise
+                Sans carte bancaire
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-realpro-turquoise" />
-                Configuration en 48h
+                Support inclus
               </span>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <footer className="py-16 border-t border-neutral-200 dark:border-neutral-800">
+      <footer className="py-12 bg-white dark:bg-neutral-950 border-t border-neutral-200/80 dark:border-neutral-800/80">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div>
+          <div className="grid md:grid-cols-5 gap-8 mb-10">
+            <div className="md:col-span-2">
               <Link to="/">
                 <RealProLogo variant="full" size="sm" />
               </Link>
-              <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                La plateforme de gestion complète pour les promoteurs immobiliers en Suisse.
+              <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xs">
+                La plateforme suisse pour piloter vos promotions immobilières.
               </p>
+              <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-950/30 border border-red-200/80 dark:border-red-900/50">
+                <div className="flex items-center justify-center w-5 h-5 bg-red-600 rounded">
+                  <span className="text-white text-[10px] font-bold">+</span>
+                </div>
+                <span className="text-xs font-medium text-red-700 dark:text-red-400">Made in Switzerland</span>
+              </div>
             </div>
 
             <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-4">Produit</h4>
-              <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+              <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 text-sm">Produit</h4>
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li><Link to="/features" className="hover:text-realpro-turquoise transition-colors">Fonctionnalités</Link></li>
                 <li><Link to="/pricing" className="hover:text-realpro-turquoise transition-colors">Tarifs</Link></li>
                 <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Contact</Link></li>
@@ -643,36 +624,27 @@ export function Landing() {
             </div>
 
             <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-4">Ressources</h4>
-              <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+              <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 text-sm">Ressources</h4>
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Support</Link></li>
                 <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Documentation</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-4">Légal</h4>
-              <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/legal/cgu" className="hover:text-realpro-turquoise transition-colors">Conditions d'utilisation</Link></li>
-                <li><Link to="/legal/cgv" className="hover:text-realpro-turquoise transition-colors">Conditions de vente</Link></li>
-                <li><Link to="/legal/privacy" className="hover:text-realpro-turquoise transition-colors">Politique de confidentialité</Link></li>
+              <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 text-sm">Légal</h4>
+              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+                <li><Link to="/legal/cgu" className="hover:text-realpro-turquoise transition-colors">CGU</Link></li>
+                <li><Link to="/legal/cgv" className="hover:text-realpro-turquoise transition-colors">CGV</Link></li>
+                <li><Link to="/legal/privacy" className="hover:text-realpro-turquoise transition-colors">Confidentialité</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              2024-2025 Realpro SA. Tous droits réservés.
+          <div className="pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80">
+            <p className="text-xs text-neutral-500 dark:text-neutral-500">
+              © 2024-2025 Realpro SA. Tous droits réservés. Hébergement des données en Suisse.
             </p>
-            <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
-              <div className="flex items-center justify-center w-6 h-6 bg-red-600 rounded">
-                <span className="text-white text-xs font-bold">+</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-semibold text-red-700 dark:text-red-400">Développé en Suisse</span>
-                <span className="text-[10px] text-red-600/70 dark:text-red-500/70">Hébergement & données 100% suisses</span>
-              </div>
-            </div>
           </div>
         </div>
       </footer>
