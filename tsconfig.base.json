@@ -33,7 +33,11 @@
       "@realpro/config": ["packages/config/src/index.ts"],
       "@realpro/config/*": ["packages/config/src/*"],
       "@realpro/shared-utils": ["packages/shared-utils/src/index.ts"],
-      "@realpro/shared-utils/*": ["packages/shared-utils/src/*"]
+      "@realpro/shared-utils/*": ["packages/shared-utils/src/*"],
+      "@realpro/entities": ["packages/entities/src/index.ts"],
+      "@realpro/entities/*": ["packages/entities/src/*"],
+      "@realpro/core": ["packages/core/src/index.ts"],
+      "@realpro/core/*": ["packages/core/src/*"]
     }
   },
   "exclude": ["node_modules", "dist", "build"]
