@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, SearchInput, Badge, Select, EmptyState } from '@realpro/ui';
 import { PageShell, ContentCard } from '@realpro/ui/layouts';
-import { Plus, Download, Folder, FileText, Image, File, MoreHorizontal, Eye, Trash2, Upload, FolderOpen } from 'lucide-react';
+import { Plus, Download, Folder, FileText, Image, File, Eye, Upload, FolderOpen } from 'lucide-react';
 
 const mockFolders = [
   { id: '1', name: 'Plans & Permis', count: 24, icon: Folder },

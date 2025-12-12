@@ -3,7 +3,6 @@ import {
   Button,
   SearchInput,
   Badge,
-  Avatar,
   Dropdown,
   DropdownItem,
   DropdownSeparator,
@@ -13,7 +12,6 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  Progress,
 } from '@realpro/ui';
 import { PageShell, ContentCard } from '@realpro/ui/layouts';
 import { StatCard } from '@realpro/ui';
@@ -25,14 +23,12 @@ import {
   FileText,
   Edit,
   Eye,
-  Filter,
   Download,
   Clock,
   CheckCircle2,
   AlertCircle,
   AlertTriangle,
   Phone,
-  Mail,
   MapPin,
   Building,
   Hammer,
@@ -41,7 +37,6 @@ import {
   Zap,
   ShieldAlert,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 // Mock data - Interventions techniques
 const mockInterventions = [

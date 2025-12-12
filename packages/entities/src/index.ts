@@ -85,20 +85,19 @@ export * from './finance';
 
 // Re-export promoteur types at root level for backward compatibility
 // TODO: Migrate apps/promoteur to use '@realpro/entities/promoteur' directly
+// Note: ProspectStatus, BuyerStatus, PROSPECT_STATUS_LABELS, BUYER_STATUS_LABELS
+// are exported from ./prospect and ./buyer modules (not promoteur) to use the correct versions
 export {
-  // Enums
+  // Enums (only promoteur-specific)
   type ProjectStatus,
   type LotType,
   type LotStatus,
-  type ProspectStatus,
   type ReservationStatus,
-  type BuyerStatus,
   type PromoteurUserRole,
-  // Labels
+  // Labels (only promoteur-specific)
   PROJECT_STATUS_LABELS,
   LOT_STATUS_LABELS,
   LOT_TYPE_LABELS,
-  PROSPECT_STATUS_LABELS,
   PROMOTEUR_ROLE_LABELS,
   // Entities
   type Project,
@@ -113,10 +112,7 @@ export {
   type CreateLotInput,
   type UpdateLotInput,
   type LotFilters,
-  type Prospect,
-  type CreateProspectInput,
   type Reservation,
-  type Buyer,
   // Utils
   getProjectFullAddress,
   isProjectActive,
@@ -125,7 +121,6 @@ export {
   isLotAvailable,
   isLotSold,
   isLotReserved,
-  getProspectFullName,
   canConvertProspect,
 } from './promoteur';
 

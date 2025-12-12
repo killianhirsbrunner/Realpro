@@ -5,11 +5,12 @@ export interface AvatarProps {
   src?: string | null;
   alt?: string;
   fallback?: string;
+  name?: string; // Alias for fallback
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }
 
-export function Avatar({ src, alt, fallback, size = 'md', className }: AvatarProps) {
+export function Avatar({ src, alt, fallback, name, size = 'md', className }: AvatarProps) {
   const sizeClasses = {
     xs: 'w-6 h-6 text-xs',
     sm: 'w-8 h-8 text-sm',
@@ -18,8 +19,11 @@ export function Avatar({ src, alt, fallback, size = 'md', className }: AvatarPro
     xl: 'w-16 h-16 text-lg',
   };
 
-  const initials = fallback
-    ? fallback
+  // Support both fallback and name props
+  const displayName = fallback ?? name;
+
+  const initials = displayName
+    ? displayName
         .split(' ')
         .map((n) => n[0])
         .join('')
@@ -31,7 +35,7 @@ export function Avatar({ src, alt, fallback, size = 'md', className }: AvatarPro
     return (
       <img
         src={src}
-        alt={alt || fallback || 'Avatar'}
+        alt={alt || displayName || 'Avatar'}
         className={clsx(
           'rounded-full object-cover',
           sizeClasses[size],

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, SearchInput, Badge, Select, EmptyState, Progress } from '@realpro/ui';
+import { Button, SearchInput, Badge, Select, Progress } from '@realpro/ui';
 import { PageShell, ContentCard } from '@realpro/ui/layouts';
 import { StatCard } from '@realpro/ui';
 import { Plus, Download, Building2, Calendar, CheckCircle2, Clock, AlertTriangle, HardHat, Hammer, Users } from 'lucide-react';

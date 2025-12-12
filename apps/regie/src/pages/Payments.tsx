@@ -3,7 +3,6 @@ import {
   Button,
   SearchInput,
   Badge,
-  Progress,
   Select,
   Tabs,
   TabsList,
@@ -22,8 +21,6 @@ import {
   Clock,
   Mail,
   FileText,
-  ArrowUpRight,
-  ArrowDownRight,
   Send,
 } from 'lucide-react';
 

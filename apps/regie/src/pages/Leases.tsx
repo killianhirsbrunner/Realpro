@@ -18,18 +18,11 @@ import { PageShell, ContentCard } from '@realpro/ui/layouts';
 import {
   Plus,
   MoreHorizontal,
-  Building,
-  User,
-  Calendar,
   FileText,
   Edit,
   Trash2,
   Eye,
-  Filter,
   Download,
-  Clock,
-  AlertCircle,
-  CheckCircle2,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

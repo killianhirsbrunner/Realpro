@@ -82,7 +82,7 @@ const mockCoowners = [
 export function CoownersPage() {
   const [search, setSearch] = useState('');
   const [isLoading] = useState(false);
-  const [selectedCoowner, setSelectedCoowner] = useState<string | null>(null);
+  const [_selectedCoowner, setSelectedCoowner] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const filteredCoowners = mockCoowners.filter(
@@ -96,7 +96,7 @@ export function CoownersPage() {
   const handleDelete = () => {
     // Handle delete logic
     setShowDeleteModal(false);
-    setSelectedCoowner(null);
+    setSelectedCoowner(null); // Reset selection
   };
 
   return (

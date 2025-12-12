@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import {
-  Card,
-  CardHeader,
-  CardContent,
   Button,
   Badge,
   Progress,
@@ -16,7 +13,6 @@ import { StatCard } from '@realpro/ui';
 import {
   Wallet,
   TrendingUp,
-  TrendingDown,
   Download,
   Calendar,
   AlertCircle,

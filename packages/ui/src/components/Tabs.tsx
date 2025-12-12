@@ -1,17 +1,27 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, createContext, useContext } from 'react';
 import clsx from 'clsx';
 
 export interface TabsProps {
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  onValueChange?: (value: string) => void;
   children: ReactNode;
   className?: string;
 }
 
-export function Tabs({ value, onChange, children, className }: TabsProps) {
+export function Tabs({ value, defaultValue, onChange, onValueChange, children, className }: TabsProps) {
+  // Support both onChange and onValueChange for compatibility
+  const handleChange = (newValue: string) => {
+    onChange?.(newValue);
+    onValueChange?.(newValue);
+  };
+
+  const activeValue = value ?? defaultValue ?? '';
+
   return (
     <div className={clsx('w-full', className)}>
-      <TabsContext.Provider value={{ value, onChange }}>
+      <TabsContext.Provider value={{ value: activeValue, onChange: handleChange }}>
         {children}
       </TabsContext.Provider>
     </div>
@@ -83,8 +93,6 @@ export function TabsContent({ value, children, className }: TabsContentProps) {
 }
 
 // Context
-import { createContext, useContext } from 'react';
-
 interface TabsContextValue {
   value: string;
   onChange: (value: string) => void;

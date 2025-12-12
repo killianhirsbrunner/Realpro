@@ -2,10 +2,6 @@ import { useState } from 'react';
 import {
   Button,
   SearchInput,
-  Badge,
-  Dropdown,
-  DropdownItem,
-  DropdownSeparator,
   Modal,
   EmptyState,
   Tabs,
@@ -16,16 +12,11 @@ import {
 import { FileUpload } from '@realpro/ui';
 import { PageShell, ContentCard } from '@realpro/ui/layouts';
 import {
-  Plus,
-  MoreHorizontal,
-  Folder,
   File,
   FileText,
   Image,
   Download,
   Eye,
-  Edit,
-  Trash2,
   Upload,
   FolderOpen,
   Search,

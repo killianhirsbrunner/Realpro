@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import {
-  Card,
-  CardHeader,
-  CardContent,
   Button,
   Badge,
   Progress,
@@ -15,7 +12,6 @@ import { PageShell, ContentCard } from '@realpro/ui/layouts';
 import { StatCard } from '@realpro/ui';
 import {
   Receipt,
-  TrendingUp,
   FileText,
   Download,
   Wallet,

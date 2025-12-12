@@ -15,8 +15,8 @@ export * from './validation';
 // Storage utilities
 export * from './storage';
 
-// HTTP utilities
-export * from './http';
+// HTTP utilities (excluding ApiError and ApiResponse which are in api)
+export { fetchApi, buildUrl, delay, retryWithBackoff } from './http';
 
-// API utilities
+// API utilities (primary source for ApiError and ApiResponse)
 export * from './api';

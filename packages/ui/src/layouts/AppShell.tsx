@@ -24,7 +24,7 @@ export function AppShell({
   header,
   children,
   sidebarWidth = '256px',
-  sidebarCollapsedWidth = '64px',
+  sidebarCollapsedWidth: _sidebarCollapsedWidth = '64px',
   responsiveSidebar = true,
   className,
 }: AppShellProps) {
@@ -33,7 +33,7 @@ export function AppShell({
   return (
     <div className={clsx('flex h-screen overflow-hidden bg-neutral-50 dark:bg-neutral-950', className)}>
       {/* Desktop sidebar */}
-      <div className="hidden lg:flex lg:flex-shrink-0">{sidebar}</div>
+      <div className="hidden lg:flex lg:flex-shrink-0" style={{ width: sidebarWidth }}>{sidebar}</div>
 
       {/* Mobile sidebar overlay */}
       {responsiveSidebar && (

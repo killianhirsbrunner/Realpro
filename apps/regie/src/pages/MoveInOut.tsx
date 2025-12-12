@@ -25,7 +25,6 @@ import {
   FileText,
   Edit,
   Eye,
-  Filter,
   Download,
   Clock,
   CheckCircle2,
@@ -34,7 +33,6 @@ import {
   ClipboardList,
   Home,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 // Mock data - États des lieux
 const mockMoveEvents = [

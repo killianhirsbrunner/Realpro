@@ -1,4 +1,4 @@
-import { type ReactNode, useState, useCallback, useMemo } from 'react';
+import { type ReactNode, useCallback } from 'react';
 import clsx from 'clsx';
 import { ChevronUp, ChevronDown, ChevronsUpDown, Search } from 'lucide-react';
 import { Checkbox } from './Checkbox';
@@ -242,8 +242,8 @@ export function DataGrid<T>({
       <div className={clsx('w-full', className)}>
         <EmptyState
           title={emptyState.title}
-          description={emptyState.description}
-          icon={emptyState.icon || <Search className="h-6 w-6" />}
+          description={emptyState.description ?? ''}
+          icon={emptyState.icon ?? <Search className="h-6 w-6" />}
           action={emptyState.action}
         />
       </div>

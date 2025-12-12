@@ -107,7 +107,6 @@ export function OwnersPage() {
   );
 
   const totalUnits = mockOwners.reduce((sum, o) => sum + o.units, 0);
-  const totalRent = mockOwners.reduce((sum, o) => sum + o.monthlyRent, 0);
 
   return (
     <PageShell

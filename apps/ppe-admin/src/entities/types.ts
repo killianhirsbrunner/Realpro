@@ -8,7 +8,7 @@
  * Ne pas importer dans Promoteur ou Régie.
  */
 
-import type { Json, Address, SwissCanton } from '@realpro/entities/shared';
+import type { Json, SwissCanton } from '@realpro/entities/shared';
 
 // ============================================================================
 // PPE-Specific Enums

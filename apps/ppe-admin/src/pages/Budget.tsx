@@ -9,20 +9,17 @@ import {
   TabsContent,
   Select,
 } from '@realpro/ui';
-import { PageShell, ContentCard, PageSection } from '@realpro/ui/layouts';
+import { PageShell, ContentCard } from '@realpro/ui/layouts';
 import { StatCard } from '@realpro/ui';
 import {
   Download,
   Plus,
   Wallet,
-  TrendingUp,
   TrendingDown,
-  Receipt,
   PiggyBank,
   AlertTriangle,
   ArrowUpRight,
   ArrowDownRight,
-  Building,
 } from 'lucide-react';
 
 // Mock data
