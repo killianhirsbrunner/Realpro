@@ -11,11 +11,11 @@ export default function ProjectModificationsSummaryCard({ projectId }: ProjectMo
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-gray-200 p-6 animate-pulse">
-        <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+      <div className="bg-white rounded-xl border border-neutral-200 p-6 animate-pulse">
+        <div className="h-6 bg-neutral-200 rounded w-1/3 mb-4"></div>
         <div className="space-y-3">
-          <div className="h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded"></div>
+          <div className="h-4 bg-neutral-200 rounded"></div>
+          <div className="h-4 bg-neutral-200 rounded"></div>
         </div>
       </div>
     );
@@ -24,15 +24,15 @@ export default function ProjectModificationsSummaryCard({ projectId }: ProjectMo
   if (!data) return null;
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6">
+    <div className="bg-white rounded-xl border border-neutral-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center">
             <Palette className="w-5 h-5 text-indigo-600" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Modifications</h3>
-            <p className="text-sm text-gray-500">Choix & Demandes clients</p>
+            <h3 className="text-lg font-semibold text-neutral-900">Modifications</h3>
+            <p className="text-sm text-neutral-500">Choix & Demandes clients</p>
           </div>
         </div>
         <Link
@@ -71,15 +71,15 @@ export default function ProjectModificationsSummaryCard({ projectId }: ProjectMo
           </div>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-neutral-50 rounded-lg p-4">
           <div className="flex items-center gap-2 mb-3">
-            <FileEdit className="w-4 h-4 text-gray-600" />
-            <span className="text-sm font-medium text-gray-900">Demandes de modification</span>
+            <FileEdit className="w-4 h-4 text-neutral-600" />
+            <span className="text-sm font-medium text-neutral-900">Demandes de modification</span>
           </div>
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">Total demandes</span>
-              <span className="font-semibold text-gray-900">
+              <span className="text-neutral-600">Total demandes</span>
+              <span className="font-semibold text-neutral-900">
                 {data.changeRequests.total}
               </span>
             </div>
@@ -97,10 +97,10 @@ export default function ProjectModificationsSummaryCard({ projectId }: ProjectMo
           </div>
         </div>
 
-        <div className="pt-3 border-t border-gray-200">
+        <div className="pt-3 border-t border-neutral-200">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">Coût estimé total</span>
-            <span className="text-lg font-bold text-gray-900">
+            <span className="text-sm text-neutral-600">Coût estimé total</span>
+            <span className="text-lg font-bold text-neutral-900">
               {(data.changeRequests.totalEstimatedCost / 1000).toFixed(0)}K CHF
             </span>
           </div>

@@ -16,15 +16,15 @@ export function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-neutral-100 transition-colors"
         aria-label="Change language"
       >
-        <Globe className="w-4 h-4 text-gray-600" />
-        <span className="text-sm font-medium text-gray-700 hidden sm:inline">
+        <Globe className="w-4 h-4 text-neutral-600" />
+        <span className="text-sm font-medium text-neutral-700 hidden sm:inline">
           {localeLabels[language]}
         </span>
         <svg
-          className={clsx('w-4 h-4 text-gray-500 transition-transform', {
+          className={clsx('w-4 h-4 text-neutral-500 transition-transform', {
             'rotate-180': isOpen,
           })}
           fill="none"
@@ -46,16 +46,16 @@ export function LanguageSwitcher() {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-neutral-200 py-1 z-50">
             {locales.map((locale) => (
               <button
                 key={locale}
                 onClick={() => handleLanguageChange(locale)}
                 className={clsx(
-                  'w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors flex items-center justify-between',
+                  'w-full text-left px-4 py-2 text-sm hover:bg-neutral-50 transition-colors flex items-center justify-between',
                   {
                     'bg-brand-50 text-brand-700': language === locale,
-                    'text-gray-700': language !== locale,
+                    'text-neutral-700': language !== locale,
                   }
                 )}
               >

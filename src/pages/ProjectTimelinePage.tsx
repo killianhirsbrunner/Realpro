@@ -29,51 +29,51 @@ export default function ProjectTimelinePage() {
       />
 
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Timeline du Projet</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-neutral-900">Timeline du Projet</h1>
+        <p className="text-neutral-600 mt-2">
           Vue chronologique des phases et jalons du projet
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Calendar className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Total phases</p>
+            <p className="text-sm font-medium text-neutral-600">Total phases</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{timeline.phases.length}</p>
+          <p className="text-3xl font-bold text-neutral-900">{timeline.phases.length}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <CheckCircle className="w-6 h-6 text-green-600" />
-            <p className="text-sm font-medium text-gray-600">Terminées</p>
+            <p className="text-sm font-medium text-neutral-600">Terminées</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{completedPhases}</p>
+          <p className="text-3xl font-bold text-neutral-900">{completedPhases}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Clock className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">En cours</p>
+            <p className="text-sm font-medium text-neutral-600">En cours</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{inProgressPhases}</p>
+          <p className="text-3xl font-bold text-neutral-900">{inProgressPhases}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <AlertCircle className="w-6 h-6 text-red-600" />
-            <p className="text-sm font-medium text-gray-600">En retard</p>
+            <p className="text-sm font-medium text-neutral-600">En retard</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{delayedPhases}</p>
+          <p className="text-3xl font-bold text-neutral-900">{delayedPhases}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-8">Phases du projet</h2>
+      <div className="bg-white rounded-xl border border-neutral-200 p-8">
+        <h2 className="text-xl font-semibold text-neutral-900 mb-8">Phases du projet</h2>
 
         <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-neutral-200"></div>
 
           <div className="space-y-8">
             {timeline.phases.map((phase, index) => {
@@ -87,24 +87,24 @@ export default function ProjectTimelinePage() {
                     isCompleted ? 'bg-green-500' :
                     isInProgress ? 'bg-brand-500' :
                     isDelayed ? 'bg-red-500' :
-                    'bg-gray-300'
+                    'bg-neutral-300'
                   }`}></div>
 
                   <div className={`p-6 rounded-xl border-2 ${
                     isCompleted ? 'bg-green-50 border-green-200' :
                     isInProgress ? 'bg-brand-50 border-brand-200' :
                     isDelayed ? 'bg-red-50 border-red-200' :
-                    'bg-gray-50 border-gray-200'
+                    'bg-neutral-50 border-neutral-200'
                   }`}>
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">{phase.name}</h3>
+                          <h3 className="text-lg font-semibold text-neutral-900">{phase.name}</h3>
                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                             isCompleted ? 'bg-green-100 text-green-700' :
                             isInProgress ? 'bg-brand-100 text-brand-700' :
                             isDelayed ? 'bg-red-100 text-red-700' :
-                            'bg-gray-100 text-gray-700'
+                            'bg-neutral-100 text-neutral-700'
                           }`}>
                             {isCompleted ? 'Terminé' :
                              isInProgress ? 'En cours' :
@@ -114,10 +114,10 @@ export default function ProjectTimelinePage() {
                         </div>
 
                         {phase.description && (
-                          <p className="text-sm text-gray-600 mb-3">{phase.description}</p>
+                          <p className="text-sm text-neutral-600 mb-3">{phase.description}</p>
                         )}
 
-                        <div className="flex items-center gap-6 text-sm text-gray-600">
+                        <div className="flex items-center gap-6 text-sm text-neutral-600">
                           <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4" />
                             <span>Début: {phase.startDate}</span>
@@ -131,10 +131,10 @@ export default function ProjectTimelinePage() {
                         {phase.progress !== undefined && (
                           <div className="mt-4">
                             <div className="flex items-center justify-between text-sm mb-2">
-                              <span className="text-gray-600">Avancement</span>
-                              <span className="font-semibold text-gray-900">{phase.progress}%</span>
+                              <span className="text-neutral-600">Avancement</span>
+                              <span className="font-semibold text-neutral-900">{phase.progress}%</span>
                             </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="w-full bg-neutral-200 rounded-full h-2">
                               <div
                                 className={`h-full rounded-full transition-all duration-500 ${
                                   isDelayed ? 'bg-red-500' : 'bg-brand-500'
@@ -155,8 +155,8 @@ export default function ProjectTimelinePage() {
       </div>
 
       {timeline.milestones && timeline.milestones.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Jalons importants</h2>
+        <div className="bg-white rounded-xl border border-neutral-200 p-6">
+          <h2 className="text-xl font-semibold text-neutral-900 mb-6">Jalons importants</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {timeline.milestones.map((milestone) => (
               <div
@@ -165,10 +165,10 @@ export default function ProjectTimelinePage() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-2xl">🎯</span>
-                  <p className="font-semibold text-gray-900">{milestone.name}</p>
+                  <p className="font-semibold text-neutral-900">{milestone.name}</p>
                 </div>
-                <p className="text-sm text-gray-600 mb-2">{milestone.description}</p>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <p className="text-sm text-neutral-600 mb-2">{milestone.description}</p>
+                <div className="flex items-center gap-2 text-sm text-neutral-500">
                   <Calendar className="w-4 h-4" />
                   <span>{milestone.date}</span>
                 </div>

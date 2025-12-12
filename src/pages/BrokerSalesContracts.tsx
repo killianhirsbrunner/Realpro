@@ -81,9 +81,9 @@ function CreateSalesContractModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <Card className="w-full max-w-2xl mx-4">
-        <div className="flex items-center justify-between border-b border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900">Créer un contrat de vente</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+        <div className="flex items-center justify-between border-b border-neutral-200 p-6">
+          <h2 className="text-xl font-bold text-neutral-900">Créer un contrat de vente</h2>
+          <button onClick={onClose} className="text-neutral-400 hover:text-neutral-600">
             <X className="h-6 w-6" />
           </button>
         </div>
@@ -96,7 +96,7 @@ function CreateSalesContractModal({
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               ID Projet *
             </label>
             <Input
@@ -109,7 +109,7 @@ function CreateSalesContractModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               ID Lot *
             </label>
             <Input
@@ -122,7 +122,7 @@ function CreateSalesContractModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               ID Acheteur *
             </label>
             <Input
@@ -135,7 +135,7 @@ function CreateSalesContractModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               Date de signature
             </label>
             <Input
@@ -146,7 +146,7 @@ function CreateSalesContractModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               Date d'effet
             </label>
             <Input
@@ -157,14 +157,14 @@ function CreateSalesContractModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               Notes
             </label>
             <textarea
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
+              className="block w-full rounded-lg border-neutral-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
             />
           </div>
 
@@ -223,9 +223,9 @@ function EditSignatureDateModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <Card className="w-full max-w-md mx-4">
-        <div className="flex items-center justify-between border-b border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900">Modifier la date de signature</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+        <div className="flex items-center justify-between border-b border-neutral-200 p-6">
+          <h2 className="text-xl font-bold text-neutral-900">Modifier la date de signature</h2>
+          <button onClick={onClose} className="text-neutral-400 hover:text-neutral-600">
             <X className="h-6 w-6" />
           </button>
         </div>
@@ -238,7 +238,7 @@ function EditSignatureDateModal({
           )}
 
           <div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-neutral-600 mb-4">
               Lot: <span className="font-medium">{contract.lot.code}</span>
               <br />
               Acheteur: <span className="font-medium">
@@ -248,7 +248,7 @@ function EditSignatureDateModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 mb-1">
               Date de signature
             </label>
             <Input
@@ -282,12 +282,12 @@ export function BrokerSalesContracts() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Contrats de vente</h1>
-            <p className="mt-2 text-gray-600">
+            <h1 className="text-3xl font-bold text-neutral-900">Contrats de vente</h1>
+            <p className="mt-2 text-neutral-600">
               Gérez les contrats de vente (actes notariés) pour vos projets
             </p>
           </div>
@@ -299,13 +299,13 @@ export function BrokerSalesContracts() {
 
         {loading ? (
           <Card className="p-8 text-center">
-            <div className="text-gray-500">Chargement des contrats...</div>
+            <div className="text-neutral-500">Chargement des contrats...</div>
           </Card>
         ) : !contracts || contracts.length === 0 ? (
           <Card className="p-8 text-center">
-            <FileText className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Aucun contrat de vente</h3>
-            <p className="mt-2 text-gray-600">
+            <FileText className="mx-auto h-12 w-12 text-neutral-400" />
+            <h3 className="mt-4 text-lg font-medium text-neutral-900">Aucun contrat de vente</h3>
+            <p className="mt-2 text-neutral-600">
               Commencez par créer votre premier contrat de vente.
             </p>
             <Button onClick={() => setIsCreateModalOpen(true)} className="mt-4">
@@ -316,62 +316,62 @@ export function BrokerSalesContracts() {
         ) : (
           <Card>
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-neutral-200">
+                <thead className="bg-neutral-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Lot
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Acheteur
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Projet
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Prix
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Date signature
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Date effet
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Document
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                    <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-neutral-200 bg-white">
                   {contracts.map((contract) => (
-                    <tr key={contract.id} className="hover:bg-gray-50">
+                    <tr key={contract.id} className="hover:bg-neutral-50">
                       <td className="whitespace-nowrap px-6 py-4">
-                        <div className="font-medium text-gray-900">{contract.lot.code}</div>
-                        <div className="text-sm text-gray-500">{contract.lot.type}</div>
+                        <div className="font-medium text-neutral-900">{contract.lot.code}</div>
+                        <div className="text-sm text-neutral-500">{contract.lot.type}</div>
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        <div className="font-medium text-gray-900">
+                        <div className="font-medium text-neutral-900">
                           {contract.buyer.first_name} {contract.buyer.last_name}
                         </div>
                         {contract.buyer.email && (
-                          <div className="text-sm text-gray-500">{contract.buyer.email}</div>
+                          <div className="text-sm text-neutral-500">{contract.buyer.email}</div>
                         )}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        <div className="text-sm text-gray-900">{contract.project.name}</div>
-                        <div className="text-sm text-gray-500">{contract.project.code}</div>
+                        <div className="text-sm text-neutral-900">{contract.project.name}</div>
+                        <div className="text-sm text-neutral-500">{contract.project.code}</div>
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-right font-medium text-gray-900">
+                      <td className="whitespace-nowrap px-6 py-4 text-right font-medium text-neutral-900">
                         {formatCurrency(contract.lot.price_total)}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {contract.signed_at ? (
                           <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4 text-green-600" />
-                            <span className="text-sm text-gray-900">
+                            <span className="text-sm text-neutral-900">
                               {formatDate(contract.signed_at)}
                             </span>
                           </div>
@@ -379,7 +379,7 @@ export function BrokerSalesContracts() {
                           <Badge variant="warning">Non signé</Badge>
                         )}
                       </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-neutral-500">
                         {formatDate(contract.effective_at)}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
@@ -394,7 +394,7 @@ export function BrokerSalesContracts() {
                             {contract.document.name}
                           </a>
                         ) : (
-                          <span className="text-sm text-gray-400">Aucun document</span>
+                          <span className="text-sm text-neutral-400">Aucun document</span>
                         )}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-right">

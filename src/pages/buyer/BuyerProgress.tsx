@@ -97,44 +97,44 @@ export function BuyerProgress() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       <header className="space-y-1">
-        <h1 className="text-xl font-semibold text-gray-900">
+        <h1 className="text-xl font-semibold text-neutral-900">
           Avancement du projet
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-neutral-500">
           {project.name} · Appartement {lot.lot_number}
         </p>
       </header>
 
       {/* Overall Progress */}
       <section className="space-y-2 rounded-2xl border bg-white px-4 py-4">
-        <p className="text-sm font-medium text-gray-900">
+        <p className="text-sm font-medium text-neutral-900">
           Avancement global : {progress_pct} %
         </p>
-        <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
+        <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-100">
           <div
             className="h-full rounded-full bg-emerald-500 transition-all"
             style={{ width: `${Math.min(100, progress_pct)}%` }}
           />
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-neutral-500">
           Ce pourcentage représente l'avancement global estimé du projet.
         </p>
       </section>
 
       {/* Phases */}
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold text-gray-900">Grandes étapes</h2>
+        <h2 className="text-sm font-semibold text-neutral-900">Grandes étapes</h2>
         <div className="overflow-hidden rounded-2xl border bg-white">
           <table className="min-w-full text-xs">
-            <thead className="bg-gray-50">
+            <thead className="bg-neutral-50">
               <tr>
-                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-neutral-500">
                   Phase
                 </th>
-                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-neutral-500">
                   Prévu
                 </th>
-                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-neutral-500">
                   Statut
                 </th>
               </tr>
@@ -153,7 +153,7 @@ export function BuyerProgress() {
               ))}
               {phases.length === 0 && (
                 <tr>
-                  <td colSpan={3} className="px-3 py-6 text-center text-sm text-gray-500">
+                  <td colSpan={3} className="px-3 py-6 text-center text-sm text-neutral-500">
                     Les phases du projet n'ont pas encore été définies.
                   </td>
                 </tr>
@@ -165,11 +165,11 @@ export function BuyerProgress() {
 
       {/* Updates */}
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold text-gray-900">
+        <h2 className="text-sm font-semibold text-neutral-900">
           Dernières nouvelles chantier
         </h2>
         {updates.length === 0 ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Aucune actualité n'a encore été publiée. Vous serez informé dès
             qu'une étape importante sera franchie.
           </p>
@@ -177,10 +177,10 @@ export function BuyerProgress() {
           <ul className="space-y-3 text-sm">
             {updates.map((u) => (
               <li key={u.id} className="rounded-2xl border bg-white px-4 py-3">
-                <p className="text-xs text-gray-500 mb-1">
+                <p className="text-xs text-neutral-500 mb-1">
                   {formatDateCH(u.created_at)}
                 </p>
-                <p className="text-gray-900">{u.message}</p>
+                <p className="text-neutral-900">{u.message}</p>
               </li>
             ))}
           </ul>
@@ -193,7 +193,7 @@ export function BuyerProgress() {
 function PhaseStatusPill({ status }: { status: string }) {
   const normalized = status.toUpperCase();
   let label = getStatusLabel('phase', status);
-  let styles = 'bg-gray-100 text-gray-700';
+  let styles = 'bg-neutral-100 text-neutral-700';
 
   if (normalized === 'NOT_STARTED' || normalized === 'PLANNED') {
     styles = 'bg-slate-50 text-slate-700';

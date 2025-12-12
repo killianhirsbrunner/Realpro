@@ -121,7 +121,7 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
       indigo: { bg: 'bg-indigo-50', text: 'text-indigo-600', hover: 'hover:bg-indigo-100 hover:border-indigo-300', border: 'border-indigo-200' },
       pink: { bg: 'bg-pink-50', text: 'text-pink-600', hover: 'hover:bg-pink-100 hover:border-pink-300', border: 'border-pink-200' },
       teal: { bg: 'bg-teal-50', text: 'text-teal-600', hover: 'hover:bg-teal-100 hover:border-teal-300', border: 'border-teal-200' },
-      gray: { bg: 'bg-gray-50', text: 'text-gray-600', hover: 'hover:bg-gray-100 hover:border-gray-300', border: 'border-gray-200' },
+      gray: { bg: 'bg-neutral-50', text: 'text-neutral-600', hover: 'hover:bg-neutral-100 hover:border-neutral-300', border: 'border-neutral-200' },
     };
     return colors[color] || colors.gray;
   };
@@ -129,7 +129,7 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Actions rapides</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 mb-4">Actions rapides</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {primaryActions.map((action) => {
             const Icon = action.icon;
@@ -143,14 +143,14 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="flex-1 text-left">
-                      <h3 className="font-semibold text-gray-900 mb-0.5">
+                      <h3 className="font-semibold text-neutral-900 mb-0.5">
                         {action.label}
                       </h3>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-neutral-500">
                         {action.description}
                       </p>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-neutral-600 group-hover:translate-x-1 transition-all" />
                   </div>
                 </button>
               </Link>
@@ -160,7 +160,7 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
       </div>
 
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Modules du projet</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 mb-4">Modules du projet</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3">
           {navigationActions.map((action) => {
             const Icon = action.icon;
@@ -175,10 +175,10 @@ export function ProjectQuickActions({ projectId }: ProjectQuickActionsProps) {
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 text-sm mb-0.5 group-hover:text-brand-600 transition-colors">
+                        <h3 className="font-semibold text-neutral-900 text-sm mb-0.5 group-hover:text-brand-600 transition-colors">
                           {action.label}
                         </h3>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-neutral-500">
                           {action.description}
                         </p>
                       </div>

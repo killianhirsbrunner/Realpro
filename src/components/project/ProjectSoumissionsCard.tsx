@@ -41,7 +41,7 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
       <Card.Header>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Hammer className="h-5 w-5 text-gray-600" />
+            <Hammer className="h-5 w-5 text-neutral-600" />
             <Card.Title>Soumissions & Adjudications</Card.Title>
           </div>
           {stats && (
@@ -56,8 +56,8 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
       <Card.Content className="space-y-4">
         {soumissions.length === 0 ? (
           <div className="text-center py-8">
-            <Hammer className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-sm text-gray-500 mb-4">Aucune soumission en cours</p>
+            <Hammer className="h-12 w-12 text-neutral-300 mx-auto mb-3" />
+            <p className="text-sm text-neutral-500 mb-4">Aucune soumission en cours</p>
             <Link to={`/projects/${projectId}/submissions/new`}>
               <Button size="sm" className="gap-2">
                 <Plus className="h-4 w-4" />
@@ -77,14 +77,14 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
                     key={soumission.id}
                     to={`/projects/${projectId}/submissions/${soumission.id}`}
                   >
-                    <div className="group p-4 rounded-lg border border-gray-100 hover:border-brand-200 hover:bg-brand-50/50 transition-all cursor-pointer">
+                    <div className="group p-4 rounded-lg border border-neutral-100 hover:border-brand-200 hover:bg-brand-50/50 transition-all cursor-pointer">
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-gray-900 group-hover:text-brand-600 transition-colors truncate">
+                          <h4 className="font-medium text-neutral-900 group-hover:text-brand-600 transition-colors truncate">
                             {soumission.title}
                           </h4>
                           {soumission.cfc_code && (
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-neutral-500 mt-1">
                               CFC {soumission.cfc_code}
                             </p>
                           )}
@@ -95,7 +95,7 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
                         </Badge>
                       </div>
 
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-4 text-xs text-neutral-500">
                         {soumission.deadline && (
                           <span className="flex items-center gap-1">
                             <Clock className="h-3 w-3" />
@@ -104,7 +104,7 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
                         )}
                         <span>{soumission.offers_count} offre{soumission.offers_count > 1 ? 's' : ''}</span>
                         {soumission.estimated_amount && (
-                          <span className="font-medium text-gray-700">
+                          <span className="font-medium text-neutral-700">
                             {formatCHF(soumission.estimated_amount)}
                           </span>
                         )}
@@ -115,7 +115,7 @@ export function ProjectSoumissionsCard({ projectId, soumissions, stats }: Projec
               })}
             </div>
 
-            <div className="pt-4 border-t border-gray-100 flex gap-2">
+            <div className="pt-4 border-t border-neutral-100 flex gap-2">
               <Link to={`/projects/${projectId}/submissions`} className="flex-1">
                 <Button variant="outline" className="w-full">
                   Voir toutes les soumissions

@@ -53,7 +53,7 @@ export function SubmissionEvaluationMatrix({
 
   function getRankIcon(rank: number) {
     if (rank === 1) return <Award className="w-4 h-4 text-yellow-500" />;
-    if (rank === 2) return <Award className="w-4 h-4 text-gray-400" />;
+    if (rank === 2) return <Award className="w-4 h-4 text-neutral-400" />;
     if (rank === 3) return <Award className="w-4 h-4 text-amber-600" />;
     return <Star className="w-4 h-4 text-neutral-400" />;
   }

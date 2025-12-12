@@ -213,7 +213,7 @@ export function BuyerMaterialChoices() {
   if (!data) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-8">
-        <p className="text-sm text-gray-500">Données introuvables</p>
+        <p className="text-sm text-neutral-500">Données introuvables</p>
       </div>
     );
   }
@@ -224,18 +224,18 @@ export function BuyerMaterialChoices() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-6">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-gray-400">
+        <p className="text-xs uppercase tracking-wide text-neutral-400">
           Espace acquéreur · Choix matériaux
         </p>
-        <h1 className="text-2xl font-semibold text-gray-900">
+        <h1 className="text-2xl font-semibold text-neutral-900">
           Lot {lot.lotNumber}
           {lot.roomsLabel && (
-            <span className="text-sm font-normal text-gray-500 ml-2">
+            <span className="text-sm font-normal text-neutral-500 ml-2">
               ({lot.roomsLabel})
             </span>
           )}
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-neutral-500">
           Sélectionnez vos finitions et matériaux pour personnaliser votre logement
         </p>
       </header>
@@ -261,11 +261,11 @@ export function BuyerMaterialChoices() {
       {categories.length === 0 ? (
         <Card>
           <div className="text-center py-12">
-            <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <Package className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-neutral-900 mb-2">
               Catalogue en préparation
             </h3>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               Les choix de matériaux ne sont pas encore disponibles pour ce projet.
               Vous serez notifié dès leur ouverture.
             </p>
@@ -278,7 +278,7 @@ export function BuyerMaterialChoices() {
               <Card key={cat.id}>
                 <div className="flex items-center gap-3 mb-4">
                   <Package className="w-5 h-5 text-brand-600" />
-                  <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                  <h2 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide">
                     {cat.name}
                   </h2>
                 </div>
@@ -292,23 +292,23 @@ export function BuyerMaterialChoices() {
                         className={`flex cursor-pointer flex-col rounded-xl border px-4 py-3 transition-all ${
                           isChecked
                             ? 'border-brand-500 bg-brand-50 ring-2 ring-brand-200'
-                            : 'border-gray-200 bg-white hover:border-gray-300'
+                            : 'border-neutral-200 bg-white hover:border-neutral-300'
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2 mb-2">
                           <div className="flex-1">
-                            <p className="font-medium text-gray-900 text-sm">
+                            <p className="font-medium text-neutral-900 text-sm">
                               {opt.name}
                             </p>
                             {opt.description && (
-                              <p className="text-xs text-gray-500 mt-1">
+                              <p className="text-xs text-neutral-500 mt-1">
                                 {opt.description}
                               </p>
                             )}
                           </div>
                           <input
                             type="checkbox"
-                            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                            className="mt-0.5 h-4 w-4 rounded border-neutral-300 text-brand-600 focus:ring-brand-500"
                             checked={isChecked}
                             onChange={() => toggleOption(cat.id, opt.id)}
                           />
@@ -320,7 +320,7 @@ export function BuyerMaterialChoices() {
                           ) : (
                             <>
                               <Badge variant="warning">Option avec supplément</Badge>
-                              <span className="font-medium text-gray-900">
+                              <span className="font-medium text-neutral-900">
                                 + {formatCurrency(opt.extraPrice)}
                               </span>
                             </>
@@ -334,26 +334,26 @@ export function BuyerMaterialChoices() {
             ))}
           </section>
 
-          <Card className="bg-gray-50 border-gray-300">
+          <Card className="bg-neutral-50 border-neutral-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-900">
+                <p className="text-sm font-semibold text-neutral-900">
                   Total des options
                 </p>
-                <p className="text-xs text-gray-500 mt-0.5">
+                <p className="text-xs text-neutral-500 mt-0.5">
                   Supplément au prix de base
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-xl font-semibold text-gray-900 tabular-nums">
+                <p className="text-xl font-semibold text-neutral-900 tabular-nums">
                   {formatCurrency(totalExtra)}
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-neutral-500">
                   {Array.from(selected).length} option(s) sélectionnée(s)
                 </p>
               </div>
             </div>
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="mt-4 pt-4 border-t border-neutral-200">
               <Button
                 onClick={handleSaveChoices}
                 disabled={saving}
@@ -369,8 +369,8 @@ export function BuyerMaterialChoices() {
       <section className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-gray-600" />
-            <h2 className="text-base font-semibold text-gray-900">
+            <MessageSquare className="w-5 h-5 text-neutral-600" />
+            <h2 className="text-base font-semibold text-neutral-900">
               Modifications spéciales
             </h2>
           </div>
@@ -387,11 +387,11 @@ export function BuyerMaterialChoices() {
 
         {showChangeRequestForm && (
           <Card className="bg-brand-50 border-brand-200">
-            <h3 className="text-sm font-semibold text-gray-900 mb-3">
+            <h3 className="text-sm font-semibold text-neutral-900 mb-3">
               Demander une modification spéciale
             </h3>
             <textarea
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
+              className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
               rows={4}
               placeholder="Décrivez la modification souhaitée (par ex. déplacer une cloison, modifier un emplacement de prise, changer un type de matériau…)"
               value={newChangeRequest}
@@ -421,7 +421,7 @@ export function BuyerMaterialChoices() {
 
         {changeRequests.length === 0 ? (
           <Card>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               Aucune demande de modification spéciale pour le moment
             </p>
           </Card>
@@ -430,15 +430,15 @@ export function BuyerMaterialChoices() {
             {changeRequests.map((cr) => (
               <Card key={cr.id}>
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <p className="text-sm font-medium text-gray-900 flex-1">
+                  <p className="text-sm font-medium text-neutral-900 flex-1">
                     {cr.description}
                   </p>
                   <ChangeRequestStatusBadge status={cr.status} />
                 </div>
-                <div className="flex items-center justify-between text-xs text-gray-500">
+                <div className="flex items-center justify-between text-xs text-neutral-500">
                   <span>Demandé le {formatDate(cr.createdAt)}</span>
                   {cr.extraPrice != null && (
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium text-neutral-900">
                       Impact: {formatCurrency(cr.extraPrice)}
                     </span>
                   )}

@@ -46,7 +46,7 @@ export function ProjectLotsCard({ projectId, lots }: ProjectLotsCardProps) {
       <Card.Header>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Home className="h-5 w-5 text-gray-600" />
+            <Home className="h-5 w-5 text-neutral-600" />
             <Card.Title>Lots & Commercialisation</Card.Title>
           </div>
           <Badge variant="default">{lots.total} lots</Badge>
@@ -60,13 +60,13 @@ export function ProjectLotsCard({ projectId, lots }: ProjectLotsCardProps) {
             return (
               <div
                 key={stat.label}
-                className="flex flex-col items-center p-4 rounded-xl border border-gray-100 hover:border-gray-200 transition-colors"
+                className="flex flex-col items-center p-4 rounded-xl border border-neutral-100 hover:border-neutral-200 transition-colors"
               >
                 <div className={`p-2 rounded-lg ${stat.color} mb-2`}>
                   <Icon className="h-5 w-5" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
+                <p className="text-2xl font-bold text-neutral-900">{stat.value}</p>
+                <p className="text-xs text-neutral-500 mt-1">{stat.label}</p>
               </div>
             );
           })}
@@ -74,13 +74,13 @@ export function ProjectLotsCard({ projectId, lots }: ProjectLotsCardProps) {
 
         <div className="space-y-3">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">Taux de commercialisation</span>
-            <span className="text-lg font-bold text-gray-900">
+            <span className="text-neutral-600">Taux de commercialisation</span>
+            <span className="text-lg font-bold text-neutral-900">
               {formatPercent(salesRate)}
             </span>
           </div>
 
-          <div className="relative w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+          <div className="relative w-full bg-neutral-100 h-3 rounded-full overflow-hidden">
             <div
               className="absolute inset-y-0 left-0 bg-gradient-to-r from-green-500 to-green-600 transition-all duration-700"
               style={{ width: `${salesRate}%` }}
@@ -91,17 +91,17 @@ export function ProjectLotsCard({ projectId, lots }: ProjectLotsCardProps) {
         </div>
 
         {lots.totalRevenue > 0 && (
-          <div className="pt-4 border-t border-gray-100 space-y-2">
+          <div className="pt-4 border-t border-neutral-100 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Chiffre d'affaires</span>
-              <span className="text-lg font-bold text-gray-900">
+              <span className="text-sm text-neutral-600">Chiffre d'affaires</span>
+              <span className="text-lg font-bold text-neutral-900">
                 {formatCHF(lots.totalRevenue)}
               </span>
             </div>
             {lots.averagePrice > 0 && (
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Prix moyen</span>
-                <span className="text-sm font-medium text-gray-900">
+                <span className="text-sm text-neutral-600">Prix moyen</span>
+                <span className="text-sm font-medium text-neutral-900">
                   {formatCHF(lots.averagePrice)}
                 </span>
               </div>

@@ -113,7 +113,7 @@ export default function SupplierShowroomForm() {
         <Button variant="ghost" onClick={() => navigate('/supplier/showrooms')}>
           <ArrowLeft className="w-4 h-4" />
         </Button>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
           {id
             ? t('supplier.showrooms.edit') || 'Modifier le showroom'
             : t('supplier.showrooms.create') || 'Nouveau showroom'}
@@ -124,7 +124,7 @@ export default function SupplierShowroomForm() {
         <Card>
           <div className="p-6 space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 {t('supplier.showroom.name') || 'Nom du showroom'} *
               </label>
               <Input
@@ -136,7 +136,7 @@ export default function SupplierShowroomForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 {t('supplier.showroom.categories') || 'Catégories'} *
               </label>
               <div className="flex flex-wrap gap-3">
@@ -151,7 +151,7 @@ export default function SupplierShowroomForm() {
                       onChange={() => toggleCategory(cat.value)}
                       className="w-4 h-4 text-brand-600 rounded focus:ring-brand-500"
                     />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                    <span className="text-sm text-neutral-700 dark:text-neutral-300">
                       {cat.label}
                     </span>
                   </label>
@@ -160,7 +160,7 @@ export default function SupplierShowroomForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 {t('common.address') || 'Adresse'}
               </label>
               <Input
@@ -172,7 +172,7 @@ export default function SupplierShowroomForm() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('common.postalCode') || 'Code postal'}
                 </label>
                 <Input
@@ -182,7 +182,7 @@ export default function SupplierShowroomForm() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('common.city') || 'Ville'}
                 </label>
                 <Input
@@ -195,7 +195,7 @@ export default function SupplierShowroomForm() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('common.email') || 'Email'}
                 </label>
                 <Input
@@ -206,7 +206,7 @@ export default function SupplierShowroomForm() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('common.phone') || 'Téléphone'}
                 </label>
                 <Input
@@ -218,7 +218,7 @@ export default function SupplierShowroomForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 {t('common.notes') || 'Notes'}
               </label>
               <Textarea
@@ -237,13 +237,13 @@ export default function SupplierShowroomForm() {
                 onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
                 className="w-4 h-4 text-brand-600 rounded focus:ring-brand-500"
               />
-              <label htmlFor="is_active" className="text-sm text-gray-700 dark:text-gray-300">
+              <label htmlFor="is_active" className="text-sm text-neutral-700 dark:text-neutral-300">
                 {t('supplier.showroom.active') || 'Showroom actif (visible par les acheteurs)'}
               </label>
             </div>
           </div>
 
-          <div className="px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex items-center justify-end space-x-3">
+          <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-end space-x-3">
             <Button
               type="button"
               variant="outline"

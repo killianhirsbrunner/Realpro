@@ -24,9 +24,9 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
       case 'failed':
         return <XCircle className="w-6 h-6 text-red-600" />;
       case 'skipped':
-        return <Circle className="w-6 h-6 text-gray-400" />;
+        return <Circle className="w-6 h-6 text-neutral-400" />;
       default:
-        return <Circle className="w-6 h-6 text-gray-300" />;
+        return <Circle className="w-6 h-6 text-neutral-300" />;
     }
   };
 
@@ -39,9 +39,9 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
       case 'failed':
         return 'bg-red-50 border-red-200';
       case 'skipped':
-        return 'bg-gray-50 border-gray-200';
+        return 'bg-neutral-50 border-neutral-200';
       default:
-        return 'bg-white border-gray-200';
+        return 'bg-white border-neutral-200';
     }
   };
 
@@ -61,14 +61,14 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
       {/* Progress bar */}
       <div className="relative">
         <div className="flex justify-between mb-2">
-          <span className="text-sm font-medium text-gray-700">
+          <span className="text-sm font-medium text-neutral-700">
             Progression du workflow
           </span>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-neutral-600">
             {steps.filter(s => s.status === 'completed').length} / {steps.length} étapes
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-neutral-200 rounded-full h-2">
           <div
             className="bg-realpro-turquoise h-2 rounded-full transition-all duration-300"
             style={{
@@ -92,7 +92,7 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
           >
             {/* Connector line */}
             {index < steps.length - 1 && (
-              <div className="absolute left-7 top-14 bottom-0 w-0.5 bg-gray-300 -mb-3" />
+              <div className="absolute left-7 top-14 bottom-0 w-0.5 bg-neutral-300 -mb-3" />
             )}
 
             {/* Step icon */}
@@ -105,14 +105,14 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <h4 className="text-sm font-semibold text-gray-900">
+                    <h4 className="text-sm font-semibold text-neutral-900">
                       {step.step_name}
                     </h4>
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                       step.status === 'completed' ? 'bg-green-100 text-green-800' :
                       step.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
                       step.status === 'failed' ? 'bg-red-100 text-red-800' :
-                      'bg-gray-100 text-gray-800'
+                      'bg-neutral-100 text-neutral-800'
                     }`}>
                       {getStepStatusLabel(step.status)}
                     </span>
@@ -121,12 +121,12 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
                   {/* Step metadata */}
                   <div className="mt-1 space-y-1">
                     {step.assigned_user && (
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-neutral-600">
                         Assigné à : {step.assigned_user.first_name} {step.assigned_user.last_name}
                       </p>
                     )}
                     {step.assigned_role && !step.assigned_user && (
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-neutral-600">
                         Rôle requis : <span className="font-medium">{step.assigned_role}</span>
                       </p>
                     )}
@@ -150,7 +150,7 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
                   </div>
 
                   {/* Timing */}
-                  <div className="mt-2 flex items-center gap-4 text-xs text-gray-500">
+                  <div className="mt-2 flex items-center gap-4 text-xs text-neutral-500">
                     {step.started_at && (
                       <span>
                         Démarré {formatDistanceToNow(new Date(step.started_at), { locale: fr, addSuffix: true })}
@@ -177,16 +177,16 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
       </div>
 
       {/* Workflow metadata */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <h5 className="text-sm font-semibold text-gray-900 mb-2">Informations du workflow</h5>
+      <div className="mt-6 p-4 bg-neutral-50 rounded-lg border border-neutral-200">
+        <h5 className="text-sm font-semibold text-neutral-900 mb-2">Informations du workflow</h5>
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <span className="text-gray-600">Statut :</span>
+            <span className="text-neutral-600">Statut :</span>
             <span className={`ml-2 font-medium ${
               instance.status === 'completed' ? 'text-green-600' :
               instance.status === 'active' ? 'text-blue-600' :
               instance.status === 'cancelled' ? 'text-red-600' :
-              'text-gray-600'
+              'text-neutral-600'
             }`}>
               {instance.status === 'completed' ? 'Terminé' :
                instance.status === 'active' ? 'En cours' :
@@ -196,23 +196,23 @@ export function WorkflowProgress({ instance, onStepClick }: WorkflowProgressProp
             </span>
           </div>
           <div>
-            <span className="text-gray-600">Démarré :</span>
-            <span className="ml-2 text-gray-900">
+            <span className="text-neutral-600">Démarré :</span>
+            <span className="ml-2 text-neutral-900">
               {formatDistanceToNow(new Date(instance.started_at), { locale: fr, addSuffix: true })}
             </span>
           </div>
           {instance.initiator && (
             <div>
-              <span className="text-gray-600">Initié par :</span>
-              <span className="ml-2 text-gray-900">
+              <span className="text-neutral-600">Initié par :</span>
+              <span className="ml-2 text-neutral-900">
                 {instance.initiator.first_name} {instance.initiator.last_name}
               </span>
             </div>
           )}
           {instance.completed_at && (
             <div>
-              <span className="text-gray-600">Terminé :</span>
-              <span className="ml-2 text-gray-900">
+              <span className="text-neutral-600">Terminé :</span>
+              <span className="ml-2 text-neutral-900">
                 {formatDistanceToNow(new Date(instance.completed_at), { locale: fr, addSuffix: true })}
               </span>
             </div>

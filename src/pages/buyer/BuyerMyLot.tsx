@@ -132,13 +132,13 @@ export function BuyerMyLot() {
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       {/* Header */}
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-gray-400">
+        <p className="text-xs uppercase tracking-wide text-neutral-400">
           Espace acquéreur
         </p>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">
           Bonjour {buyer.first_name} {buyer.last_name}
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-neutral-500">
           Projet : {project.name}
           {project.city ? ` · ${project.city}` : ''}
           {project.canton ? ` (${project.canton})` : ''}
@@ -147,14 +147,14 @@ export function BuyerMyLot() {
 
       {/* Lot Card */}
       <section className="space-y-3">
-        <h2 className="text-base font-semibold text-gray-900">Votre lot</h2>
+        <h2 className="text-base font-semibold text-neutral-900">Votre lot</h2>
         <div className="rounded-2xl border bg-white px-4 py-4 space-y-3">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">
+              <p className="text-sm font-medium text-neutral-900">
                 Appartement {lot.lot_number}
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 {lot.rooms} pièces · {formatSurface(lot.surface_habitable)}
               </p>
             </div>
@@ -173,22 +173,22 @@ export function BuyerMyLot() {
 
           <div className="grid gap-4 sm:grid-cols-3 text-sm">
             <div>
-              <p className="text-xs uppercase tracking-wide text-gray-400">
+              <p className="text-xs uppercase tracking-wide text-neutral-400">
                 Type de vente
               </p>
-              <p className="mt-1 text-gray-900">{sale.sale_type || 'PPE'}</p>
+              <p className="mt-1 text-neutral-900">{sale.sale_type || 'PPE'}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-gray-400">
+              <p className="text-xs uppercase tracking-wide text-neutral-400">
                 Prix total
               </p>
-              <p className="mt-1 text-gray-900">{formatCHF(lot.price_total)}</p>
+              <p className="mt-1 text-neutral-900">{formatCHF(lot.price_total)}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-gray-400">
+              <p className="text-xs uppercase tracking-wide text-neutral-400">
                 Remise des clés prévue
               </p>
-              <p className="mt-1 text-gray-900">
+              <p className="mt-1 text-neutral-900">
                 {project.expected_delivery
                   ? formatDateCH(project.expected_delivery)
                   : 'À préciser'}
@@ -200,44 +200,44 @@ export function BuyerMyLot() {
 
       {/* Contract Status */}
       <section className="space-y-3">
-        <h2 className="text-base font-semibold text-gray-900">
+        <h2 className="text-base font-semibold text-neutral-900">
           Situation de votre contrat
         </h2>
         <div className="rounded-2xl border bg-white px-4 py-4 space-y-3">
           {sale.contract_signed_at ? (
             <>
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-neutral-900">
                 Votre acte de vente a été signé le{' '}
                 <span className="font-semibold">
                   {formatDateCH(sale.contract_signed_at)}
                 </span>
                 .
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Nous vous informerons des prochaines étapes et des échéances de
                 paiement au fur et à mesure.
               </p>
             </>
           ) : sale.reservation_signed_at ? (
             <>
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-neutral-900">
                 Votre réservation a été signée le{' '}
                 <span className="font-semibold">
                   {formatDateCH(sale.reservation_signed_at)}
                 </span>
                 .
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Le dossier est en cours de finalisation pour la signature de
                 l'acte chez le notaire.
               </p>
             </>
           ) : (
             <>
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-neutral-900">
                 Votre dossier est en cours de préparation.
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Vous serez informé dès que votre réservation ou votre acte sera
                 prêt pour signature.
               </p>
@@ -248,18 +248,18 @@ export function BuyerMyLot() {
 
       {/* Navigation Links */}
       <section className="space-y-3">
-        <h2 className="text-base font-semibold text-gray-900">
+        <h2 className="text-base font-semibold text-neutral-900">
           Accéder à vos informations
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <a
             href={`/buyers/${buyer.id}/progress`}
-            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-neutral-50 transition-colors"
           >
-            <p className="text-sm font-semibold text-gray-900">
+            <p className="text-sm font-semibold text-neutral-900">
               Avancement du projet
             </p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-neutral-500">
               Suivez l'avancement du chantier et les grandes étapes jusqu'à la
               remise des clés.
             </p>
@@ -267,32 +267,32 @@ export function BuyerMyLot() {
 
           <a
             href={`/buyers/${buyer.id}/documents`}
-            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-neutral-50 transition-colors"
           >
-            <p className="text-sm font-semibold text-gray-900">Mes documents</p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="text-sm font-semibold text-neutral-900">Mes documents</p>
+            <p className="mt-1 text-xs text-neutral-500">
               Consultez et téléchargez votre contrat, vos plans et vos avenants.
             </p>
           </a>
 
           <a
             href={`/buyers/${buyer.id}/choices`}
-            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-neutral-50 transition-colors"
           >
-            <p className="text-sm font-semibold text-gray-900">
+            <p className="text-sm font-semibold text-neutral-900">
               Mes choix & modifications
             </p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-neutral-500">
               Choisissez vos finitions et suivez vos demandes de modifications.
             </p>
           </a>
 
           <a
             href={`/buyers/${buyer.id}/payments`}
-            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-gray-50 transition-colors"
+            className="block rounded-2xl border bg-white px-4 py-4 hover:bg-neutral-50 transition-colors"
           >
-            <p className="text-sm font-semibold text-gray-900">Mes paiements</p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="text-sm font-semibold text-neutral-900">Mes paiements</p>
+            <p className="mt-1 text-xs text-neutral-500">
               Visualisez les échéances, les montants déjà payés et le solde
               restant.
             </p>

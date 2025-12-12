@@ -17,8 +17,8 @@ export function ErrorState({
       <div className="mb-4 rounded-full bg-red-100 p-3 dark:bg-red-900/20">
         <AlertCircle className="h-8 w-8 text-red-600 dark:text-red-400" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-50 mb-1">{title}</h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400 text-center max-w-sm mb-6">{message}</p>
+      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-1">{title}</h3>
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center max-w-sm mb-6">{message}</p>
       {retry && (
         <Button variant="secondary" onClick={retry}>
           Try again

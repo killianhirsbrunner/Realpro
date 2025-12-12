@@ -53,12 +53,12 @@ export function PermissionGate({
     }
 
     return (
-      <div className="rounded-lg border border-dashed border-gray-300 bg-gray-50 p-6 text-center dark:border-gray-700 dark:bg-gray-800">
-        <Lock className="mx-auto h-8 w-8 text-gray-400 dark:text-gray-500" />
-        <p className="mt-2 text-sm font-medium text-gray-900 dark:text-gray-50">
+      <div className="rounded-lg border border-dashed border-neutral-300 bg-neutral-50 p-6 text-center dark:border-neutral-700 dark:bg-neutral-800">
+        <Lock className="mx-auto h-8 w-8 text-neutral-400 dark:text-neutral-500" />
+        <p className="mt-2 text-sm font-medium text-neutral-900 dark:text-neutral-50">
           Accès restreint
         </p>
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
           Vous n'avez pas les permissions nécessaires pour accéder à cette section.
         </p>
       </div>

@@ -78,7 +78,7 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
             {prospects.map((prospect) => (
               <tr
                 key={prospect.id}

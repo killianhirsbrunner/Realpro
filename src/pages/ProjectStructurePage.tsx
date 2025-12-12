@@ -29,8 +29,8 @@ export default function ProjectStructurePage() {
 
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Structure du Projet</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-neutral-900">Structure du Projet</h1>
+          <p className="text-neutral-600 mt-2">
             Gérez la structure hiérarchique: bâtiments, entrées et étages
           </p>
         </div>
@@ -45,30 +45,30 @@ export default function ProjectStructurePage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Building2 className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Bâtiments</p>
+            <p className="text-sm font-medium text-neutral-600">Bâtiments</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{structure.buildings.length}</p>
+          <p className="text-3xl font-bold text-neutral-900">{structure.buildings.length}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Building2 className="w-6 h-6 text-green-600" />
-            <p className="text-sm font-medium text-gray-600">Entrées</p>
+            <p className="text-sm font-medium text-neutral-600">Entrées</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">
+          <p className="text-3xl font-bold text-neutral-900">
             {structure.buildings.reduce((acc, b) => acc + b.entrances.length, 0)}
           </p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Building2 className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Étages</p>
+            <p className="text-sm font-medium text-neutral-600">Étages</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">
+          <p className="text-3xl font-bold text-neutral-900">
             {structure.buildings.reduce(
               (acc, b) => acc + b.entrances.reduce((acc2, e) => acc2 + e.floors.length, 0),
               0
@@ -76,22 +76,22 @@ export default function ProjectStructurePage() {
           </p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Building2 className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Total Lots</p>
+            <p className="text-sm font-medium text-neutral-600">Total Lots</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{structure.totalLots}</p>
+          <p className="text-3xl font-bold text-neutral-900">{structure.totalLots}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Arborescence du Projet</h2>
+      <div className="bg-white rounded-xl border border-neutral-200 p-6">
+        <h2 className="text-xl font-semibold text-neutral-900 mb-6">Arborescence du Projet</h2>
 
         {structure.buildings.length === 0 ? (
           <div className="text-center py-12">
-            <Building2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-600 mb-4">Aucun bâtiment défini</p>
+            <Building2 className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+            <p className="text-neutral-600 mb-4">Aucun bâtiment défini</p>
             <Button onClick={() => setIsAddingBuilding(true)}>
               Créer le premier bâtiment
             </Button>

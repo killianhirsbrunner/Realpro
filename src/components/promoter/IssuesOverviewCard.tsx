@@ -39,7 +39,7 @@ export default function IssuesOverviewCard({ issues }: IssuesOverviewCardProps) 
       case 'low':
         return 'bg-yellow-50 dark:bg-yellow-950 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-200';
       default:
-        return 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-800 text-gray-800 dark:text-gray-200';
+        return 'bg-neutral-50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200';
     }
   };
 
@@ -57,12 +57,12 @@ export default function IssuesOverviewCard({ issues }: IssuesOverviewCardProps) 
   };
 
   return (
-    <div className="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
+    <div className="p-6 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm">
       <div className="mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
           Alertes & Retards
         </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
           Nécessitent votre attention
         </p>
       </div>
@@ -84,10 +84,10 @@ export default function IssuesOverviewCard({ issues }: IssuesOverviewCardProps) 
               />
             </svg>
           </div>
-          <p className="text-gray-900 dark:text-white font-medium">
+          <p className="text-neutral-900 dark:text-white font-medium">
             Tout est en ordre !
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
             Aucune alerte pour le moment
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function IssuesOverviewCard({ issues }: IssuesOverviewCardProps) 
                         <p className="font-medium text-sm">
                           {issue.title}
                         </p>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-white dark:bg-gray-800 border border-current">
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-white dark:bg-neutral-800 border border-current">
                           {getSeverityLabel(issue.severity)}
                         </span>
                       </div>

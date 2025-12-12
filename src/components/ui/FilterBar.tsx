@@ -19,7 +19,7 @@ export function FilterBar({
     <div className="flex flex-col sm:flex-row gap-3 mb-6">
       {onSearchChange && (
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" />
           <Input
             type="text"
             placeholder={searchPlaceholder}
@@ -31,7 +31,7 @@ export function FilterBar({
       )}
       {children && (
         <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-gray-500" />
+          <Filter className="h-4 w-4 text-neutral-500" />
           {children}
         </div>
       )}

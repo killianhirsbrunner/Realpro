@@ -81,8 +81,8 @@ export function BuyerDocuments() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       <header className="space-y-1">
-        <h1 className="text-xl font-semibold text-gray-900">Mes documents</h1>
-        <p className="text-sm text-gray-500">
+        <h1 className="text-xl font-semibold text-neutral-900">Mes documents</h1>
+        <p className="text-sm text-neutral-500">
           Documents officiels liés à votre achat, {buyer.first_name}{' '}
           {buyer.last_name}.
         </p>
@@ -90,7 +90,7 @@ export function BuyerDocuments() {
 
       {documents.length === 0 ? (
         <div className="rounded-2xl border bg-white px-4 py-12 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Aucun document n'est disponible pour l'instant. Vous serez informé
             dès qu'un contrat, un plan ou un avenant sera déposé.
           </p>
@@ -98,25 +98,25 @@ export function BuyerDocuments() {
       ) : (
         <div className="overflow-hidden rounded-2xl border bg-white">
           <table className="min-w-full text-sm">
-            <thead className="bg-gray-50 text-xs">
+            <thead className="bg-neutral-50 text-xs">
               <tr>
-                <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-neutral-500">
                   Nom
                 </th>
-                <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-neutral-500">
                   Type
                 </th>
-                <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-neutral-500">
                   Date
                 </th>
-                <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-500">
+                <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-neutral-500">
                   Action
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y">
               {documents.map((doc) => (
-                <tr key={doc.id} className="hover:bg-gray-50">
+                <tr key={doc.id} className="hover:bg-neutral-50">
                   <td className="px-3 py-3 align-middle">{doc.name}</td>
                   <td className="px-3 py-3 align-middle">
                     {renderCategory(doc.category)}

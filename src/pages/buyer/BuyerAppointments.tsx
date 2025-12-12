@@ -146,10 +146,10 @@ export function BuyerAppointments() {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">
           {t('appointments.myAppointments') || 'Mes rendez-vous fournisseurs'}
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
           Suivez vos rendez-vous pour les cuisines, sanitaires et revêtements de sols
         </p>
       </div>
@@ -171,18 +171,18 @@ export function BuyerAppointments() {
                   <div className="flex-1 space-y-3">
                     <div>
                       <div className="flex items-center space-x-2">
-                        <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                        <h3 className="font-semibold text-neutral-900 dark:text-neutral-100">
                           {appointment.showroom.name}
                         </h3>
                         {getStatusBadge(appointment.status)}
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
                         {getCategoryLabel(appointment.time_slot.category)}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                      <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center space-x-2 text-neutral-600 dark:text-neutral-400">
                         <Calendar className="w-4 h-4" />
                         <span>
                           {new Date(appointment.time_slot.start_at).toLocaleDateString('fr-CH', {
@@ -194,7 +194,7 @@ export function BuyerAppointments() {
                         </span>
                       </div>
 
-                      <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center space-x-2 text-neutral-600 dark:text-neutral-400">
                         <Clock className="w-4 h-4" />
                         <span>
                           {new Date(appointment.time_slot.start_at).toLocaleTimeString('fr-CH', {
@@ -210,19 +210,19 @@ export function BuyerAppointments() {
                       </div>
 
                       {appointment.showroom.city && (
-                        <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center space-x-2 text-neutral-600 dark:text-neutral-400">
                           <MapPin className="w-4 h-4" />
                           <span>{appointment.showroom.city}</span>
                         </div>
                       )}
 
-                      <div className="text-gray-600 dark:text-gray-400">
+                      <div className="text-neutral-600 dark:text-neutral-400">
                         <span className="font-medium">Lot:</span> {appointment.lot.lot_number} - {appointment.project.name}
                       </div>
                     </div>
 
                     {appointment.showroom.contact_phone && (
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">
                         <span className="font-medium">Contact:</span> {appointment.showroom.contact_phone}
                         {appointment.showroom.contact_email && ` • ${appointment.showroom.contact_email}`}
                       </div>

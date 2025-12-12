@@ -40,8 +40,8 @@ export default function ProjectTeamPage() {
 
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Équipe du Projet</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-neutral-900">Équipe du Projet</h1>
+          <p className="text-neutral-600 mt-2">
             Gérez les membres de l'équipe et leurs rôles
           </p>
         </div>
@@ -53,42 +53,42 @@ export default function ProjectTeamPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Users className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Total membres</p>
+            <p className="text-sm font-medium text-neutral-600">Total membres</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{team.length}</p>
+          <p className="text-3xl font-bold text-neutral-900">{team.length}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Users className="w-6 h-6 text-green-600" />
-            <p className="text-sm font-medium text-gray-600">Actifs</p>
+            <p className="text-sm font-medium text-neutral-600">Actifs</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{team.length}</p>
+          <p className="text-3xl font-bold text-neutral-900">{team.length}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Users className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Rôles différents</p>
+            <p className="text-sm font-medium text-neutral-600">Rôles différents</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{roles.length - 1}</p>
+          <p className="text-3xl font-bold text-neutral-900">{roles.length - 1}</p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Users className="w-6 h-6 text-brand-600" />
-            <p className="text-sm font-medium text-gray-600">Entreprises</p>
+            <p className="text-sm font-medium text-neutral-600">Entreprises</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">
+          <p className="text-3xl font-bold text-neutral-900">
             {new Set(team.filter(m => m.company).map(m => m.company)).size}
           </p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
+      <div className="bg-white rounded-xl border border-neutral-200 p-6">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="flex-1">
             <SearchBar
@@ -101,7 +101,7 @@ export default function ProjectTeamPage() {
           <select
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+            className="px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
           >
             <option value="all">Tous les rôles</option>
             {roles.filter(r => r !== 'all').map((role) => (
@@ -112,8 +112,8 @@ export default function ProjectTeamPage() {
 
         {filteredTeam.length === 0 ? (
           <div className="text-center py-12">
-            <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-600 mb-4">Aucun membre trouvé</p>
+            <Users className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+            <p className="text-neutral-600 mb-4">Aucun membre trouvé</p>
           </div>
         ) : (
           <ProjectTeamList

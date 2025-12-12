@@ -82,7 +82,7 @@ export function BrokerNewSalesContract() {
 
   if (!lotId || !projectId) {
     return (
-      <div className="min-h-screen bg-gray-50 p-8">
+      <div className="min-h-screen bg-neutral-50 p-8">
         <Card className="max-w-2xl mx-auto p-6">
           <div className="flex items-start gap-3">
             <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
@@ -107,7 +107,7 @@ export function BrokerNewSalesContract() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6">
           <Button
@@ -118,8 +118,8 @@ export function BrokerNewSalesContract() {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Retour
           </Button>
-          <h1 className="text-3xl font-bold text-gray-900">Nouveau contrat de vente</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-neutral-900">Nouveau contrat de vente</h1>
+          <p className="mt-2 text-neutral-600">
             Créez un contrat de vente (acte notarié) pour ce lot. Un dossier acheteur et un dossier notaire seront automatiquement créés.
           </p>
         </div>
@@ -140,11 +140,11 @@ export function BrokerNewSalesContract() {
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Acheteur <span className="text-red-500">*</span>
                 </label>
                 {loadingBuyers ? (
-                  <div className="text-sm text-gray-500 py-2">
+                  <div className="text-sm text-neutral-500 py-2">
                     Chargement des acheteurs...
                   </div>
                 ) : buyers.length === 0 ? (
@@ -158,7 +158,7 @@ export function BrokerNewSalesContract() {
                     value={buyerId}
                     onChange={(e) => setBuyerId(e.target.value)}
                     required
-                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                    className="block w-full rounded-lg border-neutral-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
                   >
                     <option value="">Sélectionner un acheteur...</option>
                     {buyers.map((buyer) => (
@@ -173,7 +173,7 @@ export function BrokerNewSalesContract() {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     Date de signature
                   </label>
                   <Input
@@ -181,13 +181,13 @@ export function BrokerNewSalesContract() {
                     value={signedAt}
                     onChange={(e) => setSignedAt(e.target.value)}
                   />
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="mt-1 text-xs text-neutral-500">
                     Date de signature de l'acte notarié
                   </p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     Date d'effet
                   </label>
                   <Input
@@ -195,14 +195,14 @@ export function BrokerNewSalesContract() {
                     value={effectiveAt}
                     onChange={(e) => setEffectiveAt(e.target.value)}
                   />
-                  <p className="mt-1 text-xs text-gray-500">
+                  <p className="mt-1 text-xs text-neutral-500">
                     Date à laquelle l'acte prend effet
                   </p>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   ID du document (acte signé)
                 </label>
                 <Input
@@ -211,20 +211,20 @@ export function BrokerNewSalesContract() {
                   onChange={(e) => setDocumentId(e.target.value)}
                   placeholder="UUID du document"
                 />
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-neutral-500">
                   Optionnel : ID du document PDF de l'acte signé (après upload)
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Notes
                 </label>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={4}
-                  className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                  className="block w-full rounded-lg border-neutral-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
                   placeholder="Notes internes sur ce contrat de vente..."
                 />
               </div>

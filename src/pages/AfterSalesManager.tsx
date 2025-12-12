@@ -93,11 +93,11 @@ export default function AfterSalesManager({ projectId }: AfterSalesManagerProps)
         <div>
           <div className="flex items-center gap-2">
             <AlertCircle className="h-6 w-6 text-brand-600" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">
+            <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
               SAV & Réserves
             </h1>
           </div>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
             Gestion des tickets service après-vente et interventions post-livraison
           </p>
         </div>
@@ -140,11 +140,11 @@ export default function AfterSalesManager({ projectId }: AfterSalesManagerProps)
 
       <Card className="p-4">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+          <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
             Liste des tickets
           </h2>
           <div className="flex items-center gap-3">
-            <Filter className="h-4 w-4 text-gray-400" />
+            <Filter className="h-4 w-4 text-neutral-400" />
             <Select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as SavStatus | 'ALL')}
@@ -165,8 +165,8 @@ export default function AfterSalesManager({ projectId }: AfterSalesManagerProps)
           </div>
         ) : tickets.length === 0 ? (
           <div className="py-12 text-center">
-            <AlertCircle className="mx-auto h-12 w-12 text-gray-400" />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <AlertCircle className="mx-auto h-12 w-12 text-neutral-400" />
+            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
               Aucun ticket SAV pour le moment
             </p>
           </div>
@@ -174,49 +174,49 @@ export default function AfterSalesManager({ projectId }: AfterSalesManagerProps)
           <Table>
             <thead>
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   N° / Lot
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   Titre / Description
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   Sévérité
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   Statut
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   Assigné à
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   Créé le
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-gray-500">
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase text-neutral-500">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
               {tickets.map((ticket) => (
-                <tr key={ticket.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                <tr key={ticket.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-800/50">
                   <td className="px-4 py-4">
                     <div>
-                      <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                      <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
                         #{ticket.id.substring(0, 8)}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         Lot {ticket.lot?.lot_number}
                       </p>
                     </div>
                   </td>
                   <td className="px-4 py-4">
                     <div className="max-w-xs">
-                      <p className="truncate text-sm font-medium text-gray-900 dark:text-gray-50">
+                      <p className="truncate text-sm font-medium text-neutral-900 dark:text-neutral-50">
                         {ticket.title}
                       </p>
                       {ticket.location && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
                           📍 {ticket.location}
                         </p>
                       )}
@@ -231,15 +231,15 @@ export default function AfterSalesManager({ projectId }: AfterSalesManagerProps)
                   <td className="px-4 py-4">
                     <div className="text-sm">
                       {ticket.assigned_company ? (
-                        <p className="text-gray-900 dark:text-gray-50">
+                        <p className="text-neutral-900 dark:text-neutral-50">
                           {ticket.assigned_company.name}
                         </p>
                       ) : (
-                        <p className="text-gray-400">Non assigné</p>
+                        <p className="text-neutral-400">Non assigné</p>
                       )}
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-600 dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm text-neutral-600 dark:text-neutral-400">
                     {formatDate(ticket.created_at)}
                   </td>
                   <td className="px-4 py-4">
@@ -293,10 +293,10 @@ function StatCard({
         </div>
       </div>
       <div className="mt-4">
-        <p className="text-2xl font-bold text-gray-900 dark:text-gray-50">{value}</p>
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{label}</p>
+        <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">{value}</p>
+        <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{label}</p>
         {trend !== undefined && trendLabel && (
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+          <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
             {trend} {trendLabel}
           </p>
         )}

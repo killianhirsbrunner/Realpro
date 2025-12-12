@@ -123,10 +123,10 @@ export function QuickLaunch() {
           <Zap className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
             Accès Rapide aux Modules
           </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
             Tous vos outils professionnels en un clic
           </p>
         </div>
@@ -139,7 +139,7 @@ export function QuickLaunch() {
             <Link
               key={module.href}
               to={module.href}
-              className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-6 hover:shadow-xl hover:border-transparent hover:-translate-y-1 transition-all duration-200"
+              className="group relative overflow-hidden rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-xl hover:border-transparent hover:-translate-y-1 transition-all duration-200"
             >
               {/* Gradient Background on Hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-0 group-hover:opacity-5 transition-opacity duration-200`} />
@@ -157,11 +157,11 @@ export function QuickLaunch() {
                   )}
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-realpro-turquoise transition-colors">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2 group-hover:text-realpro-turquoise transition-colors">
                   {module.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
                   {module.description}
                 </p>
 
@@ -192,16 +192,16 @@ export function QuickLaunch() {
             </svg>
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
               Besoin d'aide pour démarrer ?
             </h3>
-            <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+            <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-4">
               Consultez notre documentation complète ou contactez notre équipe de support pour une démonstration personnalisée.
             </p>
             <div className="flex gap-3">
               <Link
                 to="/docs"
-                className="px-4 py-2 text-sm font-medium bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="px-4 py-2 text-sm font-medium bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-lg border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
               >
                 Documentation
               </Link>

@@ -39,7 +39,7 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
       case 'DELAYED':
         return 'text-red-600 bg-red-50';
       default:
-        return 'text-gray-400 bg-gray-50';
+        return 'text-neutral-400 bg-neutral-50';
     }
   };
 
@@ -67,7 +67,7 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
     return (
       <Card>
         <Card.Content>
-          <p className="text-sm text-gray-500 text-center py-8">
+          <p className="text-sm text-neutral-500 text-center py-8">
             Aucune phase de construction définie
           </p>
         </Card.Content>
@@ -78,7 +78,7 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
   return (
     <Card>
       <Card.Content className="p-0">
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-neutral-100">
           {phases.map((phase, index) => {
             const Icon = getPhaseIcon(phase.status);
             const isLate = phase.status === 'DELAYED' ||
@@ -90,7 +90,7 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
               <div
                 key={index}
                 className={clsx(
-                  'p-6 hover:bg-gray-50/50 transition-colors',
+                  'p-6 hover:bg-neutral-50/50 transition-colors',
                   index === 0 && 'rounded-t-lg',
                   index === phases.length - 1 && 'rounded-b-lg'
                 )}
@@ -106,12 +106,12 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <h3 className="text-base font-semibold text-gray-900 mb-1">
+                        <h3 className="text-base font-semibold text-neutral-900 mb-1">
                           {phase.name}
                         </h3>
-                        <div className="flex items-center gap-3 text-sm text-gray-600">
+                        <div className="flex items-center gap-3 text-sm text-neutral-600">
                           <span className="flex items-center gap-1">
-                            <span className="text-gray-500">Prévu:</span>
+                            <span className="text-neutral-500">Prévu:</span>
                             <span className={clsx(
                               'font-medium',
                               isLate && 'text-red-600'
@@ -121,9 +121,9 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
                           </span>
                           {phase.actual_end && (
                             <>
-                              <span className="text-gray-300">•</span>
+                              <span className="text-neutral-300">•</span>
                               <span className="flex items-center gap-1">
-                                <span className="text-gray-500">Réel:</span>
+                                <span className="text-neutral-500">Réel:</span>
                                 <span className="font-medium text-green-600">
                                   {formatDateCH(phase.actual_end)}
                                 </span>
@@ -141,12 +141,12 @@ export function ProjectTimeline({ phases }: ProjectTimelineProps) {
                     {phase.progress_percent !== undefined && phase.status === 'IN_PROGRESS' && (
                       <div className="mt-3">
                         <div className="flex items-center justify-between text-xs mb-1.5">
-                          <span className="text-gray-500">Progression</span>
-                          <span className="font-semibold text-gray-900">
+                          <span className="text-neutral-500">Progression</span>
+                          <span className="font-semibold text-neutral-900">
                             {phase.progress_percent}%
                           </span>
                         </div>
-                        <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                        <div className="w-full bg-neutral-100 rounded-full h-2 overflow-hidden">
                           <div
                             className="bg-gradient-to-r from-brand-500 to-brand-600 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${phase.progress_percent}%` }}

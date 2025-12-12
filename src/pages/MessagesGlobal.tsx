@@ -12,11 +12,11 @@ export default function MessagesGlobal() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <MessageSquare className="w-8 h-8 text-realpro-turquoise" />
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
             Messages
           </h1>
         </div>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-neutral-600 dark:text-neutral-400">
           Messagerie instantanée pour communiquer avec votre équipe et vos clients
         </p>
       </div>
@@ -28,10 +28,10 @@ export default function MessagesGlobal() {
             <MessageSquare className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
               Accès aux messages par projet
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
+            <p className="text-neutral-700 dark:text-neutral-300 mb-4">
               Les conversations sont organisées par projet. Sélectionnez un projet ci-dessous pour accéder à sa messagerie.
             </p>
           </div>
@@ -40,7 +40,7 @@ export default function MessagesGlobal() {
 
       {/* Projects List */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
           Vos projets
         </h2>
 
@@ -50,21 +50,21 @@ export default function MessagesGlobal() {
               <Link
                 key={project.id}
                 to={`/projects/${project.id}/messages`}
-                className="group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:border-realpro-turquoise hover:shadow-lg transition-all"
+                className="group bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 hover:border-realpro-turquoise hover:shadow-lg transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-realpro-turquoise transition-colors">
+                    <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-realpro-turquoise transition-colors">
                       {project.name}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
                       {project.address}
                     </p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-realpro-turquoise group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-realpro-turquoise group-hover:translate-x-1 transition-all" />
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
                   <div className="flex items-center gap-1">
                     <Inbox className="w-4 h-4" />
                     <span>Messages</span>
@@ -74,9 +74,9 @@ export default function MessagesGlobal() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
-            <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 dark:text-gray-400">
+          <div className="text-center py-12 bg-white dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-800">
+            <MessageSquare className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+            <p className="text-neutral-600 dark:text-neutral-400">
               Aucun projet disponible. Créez un projet pour commencer à échanger.
             </p>
           </div>

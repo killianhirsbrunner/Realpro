@@ -90,7 +90,7 @@ export default function ProjectMilestonesTimeline() {
       case 'DELAYED':
         return <AlertTriangle className="w-5 h-5 text-red-500" />;
       default:
-        return <Calendar className="w-5 h-5 text-gray-400" />;
+        return <Calendar className="w-5 h-5 text-neutral-400" />;
     }
   };
 
@@ -103,7 +103,7 @@ export default function ProjectMilestonesTimeline() {
       case 'DELAYED':
         return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
       case 'CANCELLED':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+        return 'bg-neutral-100 text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200';
       default:
         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
     }
@@ -136,10 +136,10 @@ export default function ProjectMilestonesTimeline() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
             Jalons du projet
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <p className="text-neutral-600 dark:text-neutral-400 mt-1">
             Suivi des étapes clés et des livrables
           </p>
         </div>
@@ -153,50 +153,50 @@ export default function ProjectMilestonesTimeline() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-gray-600 dark:text-gray-400">Total</span>
-            <Calendar className="w-5 h-5 text-gray-400" />
+            <span className="text-neutral-600 dark:text-neutral-400">Total</span>
+            <Calendar className="w-5 h-5 text-neutral-400" />
           </div>
-          <div className="text-3xl font-bold text-gray-900 dark:text-white">
+          <div className="text-3xl font-bold text-neutral-900 dark:text-white">
             {stats.total}
           </div>
-          <div className="text-sm text-gray-500 mt-1">jalons</div>
+          <div className="text-sm text-neutral-500 mt-1">jalons</div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-gray-600 dark:text-gray-400">Complétés</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Complétés</span>
             <CheckCircle className="w-5 h-5 text-green-500" />
           </div>
           <div className="text-3xl font-bold text-green-600 dark:text-green-400">
             {stats.completed}
           </div>
-          <div className="text-sm text-gray-500 mt-1">
+          <div className="text-sm text-neutral-500 mt-1">
             {stats.completionRate.toFixed(0)}% du total
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-gray-600 dark:text-gray-400">En retard</span>
+            <span className="text-neutral-600 dark:text-neutral-400">En retard</span>
             <AlertTriangle className="w-5 h-5 text-red-500" />
           </div>
           <div className="text-3xl font-bold text-red-600 dark:text-red-400">
             {stats.delayed}
           </div>
-          <div className="text-sm text-gray-500 mt-1">nécessitent attention</div>
+          <div className="text-sm text-neutral-500 mt-1">nécessitent attention</div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-gray-600 dark:text-gray-400">Progression</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Progression</span>
             <TrendingUp className="w-5 h-5 text-blue-500" />
           </div>
           <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
             {stats.averageCompletion.toFixed(0)}%
           </div>
-          <div className="text-sm text-gray-500 mt-1">moyenne</div>
+          <div className="text-sm text-neutral-500 mt-1">moyenne</div>
         </div>
       </div>
 
@@ -206,7 +206,7 @@ export default function ProjectMilestonesTimeline() {
           className={`px-4 py-2 rounded-lg ${
             viewMode === 'timeline'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+              : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300'
           }`}
         >
           Timeline
@@ -216,7 +216,7 @@ export default function ProjectMilestonesTimeline() {
           className={`px-4 py-2 rounded-lg ${
             viewMode === 'list'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+              : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300'
           }`}
         >
           Liste
@@ -226,7 +226,7 @@ export default function ProjectMilestonesTimeline() {
           className={`px-4 py-2 rounded-lg ${
             viewMode === 'critical'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+              : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300'
           }`}
         >
           Chemin critique
@@ -234,24 +234,24 @@ export default function ProjectMilestonesTimeline() {
       </div>
 
       {viewMode === 'timeline' && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
           <div className="space-y-6">
             {milestones.map((milestone, index) => (
               <div key={milestone.id} className="relative">
                 {index !== milestones.length - 1 && (
-                  <div className="absolute left-6 top-12 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                  <div className="absolute left-6 top-12 bottom-0 w-0.5 bg-neutral-200 dark:bg-neutral-700"></div>
                 )}
                 <div className="flex gap-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-white dark:bg-neutral-900 border-2 border-neutral-300 dark:border-neutral-600 flex items-center justify-center">
                       {getStatusIcon(milestone.status)}
                     </div>
                   </div>
-                  <div className="flex-1 bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
+                  <div className="flex-1 bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
                             {milestone.name}
                           </h3>
                           <span
@@ -261,16 +261,16 @@ export default function ProjectMilestonesTimeline() {
                           >
                             {milestone.status}
                           </span>
-                          <span className="px-2 py-1 text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                          <span className="px-2 py-1 text-xs bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded">
                             {getMilestoneTypeLabel(milestone.milestone_type)}
                           </span>
                         </div>
                         {milestone.description && (
-                          <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
+                          <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-2">
                             {milestone.description}
                           </p>
                         )}
-                        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
                             <span>
@@ -297,12 +297,12 @@ export default function ProjectMilestonesTimeline() {
                         </div>
                         <div className="mt-3">
                           <div className="flex items-center justify-between text-sm mb-1">
-                            <span className="text-gray-600 dark:text-gray-400">Progression</span>
-                            <span className="font-medium text-gray-900 dark:text-white">
+                            <span className="text-neutral-600 dark:text-neutral-400">Progression</span>
+                            <span className="font-medium text-neutral-900 dark:text-white">
                               {milestone.completion_percentage}%
                             </span>
                           </div>
-                          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                          <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                             <div
                               className="bg-blue-600 h-2 rounded-full transition-all"
                               style={{ width: `${milestone.completion_percentage}%` }}
@@ -343,8 +343,8 @@ export default function ProjectMilestonesTimeline() {
       )}
 
       {viewMode === 'critical' && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
             Chemin critique
           </h3>
           <div className="space-y-3">
@@ -354,15 +354,15 @@ export default function ProjectMilestonesTimeline() {
                 className={`p-4 rounded-lg ${
                   item.isOverdue
                     ? 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
-                    : 'bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700'
+                    : 'bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 dark:text-white">
+                    <h4 className="font-medium text-neutral-900 dark:text-white">
                       {item.name}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       {format(new Date(item.planned_date), 'dd/MM/yyyy')} •{' '}
                       {item.isOverdue ? (
                         <span className="text-red-600 dark:text-red-400 font-medium">
@@ -374,7 +374,7 @@ export default function ProjectMilestonesTimeline() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <div className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {item.completion_percentage}%
                     </div>
                     <span className={`text-xs ${getStatusColor(item.status)} px-2 py-1 rounded-full`}>
@@ -390,38 +390,38 @@ export default function ProjectMilestonesTimeline() {
 
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-2xl w-full mx-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 max-w-2xl w-full mx-4">
+            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
               Nouveau jalon
             </h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   Nom *
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900"
+                  className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900"
                   placeholder="Ex: Fin des fondations"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   Description
                 </label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900"
+                  className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900"
                   rows={3}
                   placeholder="Description du jalon"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                     Type
                   </label>
                   <select
@@ -432,7 +432,7 @@ export default function ProjectMilestonesTimeline() {
                         milestone_type: e.target.value as ProjectMilestone['milestone_type'],
                       })
                     }
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900"
+                    className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900"
                   >
                     <option value="START">Démarrage</option>
                     <option value="PERMIT">Permis</option>
@@ -446,14 +446,14 @@ export default function ProjectMilestonesTimeline() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                     Date planifiée *
                   </label>
                   <input
                     type="date"
                     value={formData.planned_date}
                     onChange={(e) => setFormData({ ...formData, planned_date: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900"
+                    className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900"
                   />
                 </div>
               </div>
@@ -461,7 +461,7 @@ export default function ProjectMilestonesTimeline() {
             <div className="flex gap-2 justify-end mt-6">
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700"
               >
                 Annuler
               </button>

@@ -41,8 +41,8 @@ export default function OverviewCards({ stats }: OverviewCardsProps) {
       label: 'Alertes & Retards',
       value: stats.alerts,
       icon: AlertCircle,
-      color: stats.alerts > 0 ? 'text-red-600' : 'text-gray-600',
-      bgColor: stats.alerts > 0 ? 'bg-red-50 dark:bg-red-950' : 'bg-gray-50 dark:bg-gray-900',
+      color: stats.alerts > 0 ? 'text-red-600' : 'text-neutral-600',
+      bgColor: stats.alerts > 0 ? 'bg-red-50 dark:bg-red-950' : 'bg-neutral-50 dark:bg-neutral-900',
     },
   ];
 
@@ -53,18 +53,18 @@ export default function OverviewCards({ stats }: OverviewCardsProps) {
         return (
           <div
             key={i}
-            className="p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow"
+            className="p-6 rounded-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
                   {card.label}
                 </p>
-                <p className="text-3xl font-semibold text-gray-900 dark:text-white">
+                <p className="text-3xl font-semibold text-neutral-900 dark:text-white">
                   {card.value}
                 </p>
                 {card.subtitle && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
                     {card.subtitle}
                   </p>
                 )}

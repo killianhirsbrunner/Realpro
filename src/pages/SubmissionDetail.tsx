@@ -18,7 +18,7 @@ import { formatDate } from '../lib/utils/format';
 const STATUS_CONFIG: Record<string, { label: string; color: string; icon: any; next?: string[] }> = {
   draft: {
     label: 'Brouillon',
-    color: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
+    color: 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200',
     icon: FileText,
     next: ['active']
   },
@@ -177,7 +177,7 @@ export function SubmissionDetail() {
               </Button>
 
               {showActions && (
-                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-neutral-900 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
                   {nextStatuses.map(status => {
                     const config = STATUS_CONFIG[status];
                     const Icon = config?.icon || FileText;
@@ -185,7 +185,7 @@ export function SubmissionDetail() {
                       <button
                         key={status}
                         onClick={() => { handleStatusChange(status); setShowActions(false); }}
-                        className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center gap-2"
                       >
                         <Icon className="h-4 w-4" />
                         {config?.label}
@@ -376,7 +376,7 @@ export function SubmissionDetail() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Link
           to={`/projects/${projectId}/submissions/${submissionId}/compare`}
-          className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-realpro-turquoise dark:hover:border-realpro-turquoise transition-all hover:shadow-lg group bg-white dark:bg-gray-900"
+          className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-realpro-turquoise dark:hover:border-realpro-turquoise transition-all hover:shadow-lg group bg-white dark:bg-neutral-900"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-lg bg-realpro-turquoise/10 group-hover:bg-realpro-turquoise/20 transition-colors">
@@ -393,7 +393,7 @@ export function SubmissionDetail() {
 
         <Link
           to={`/projects/${projectId}/submissions/${submissionId}/clarifications`}
-          className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-green-500 dark:hover:border-green-500 transition-all hover:shadow-lg group bg-white dark:bg-gray-900"
+          className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-green-500 dark:hover:border-green-500 transition-all hover:shadow-lg group bg-white dark:bg-neutral-900"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900 group-hover:bg-green-200 dark:group-hover:bg-green-800 transition-colors">
@@ -410,7 +410,7 @@ export function SubmissionDetail() {
 
         <Link
           to={`/projects/${projectId}/submissions/${submissionId}/companies`}
-          className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-orange-500 dark:hover:border-orange-500 transition-all hover:shadow-lg group bg-white dark:bg-gray-900"
+          className="p-6 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-orange-500 dark:hover:border-orange-500 transition-all hover:shadow-lg group bg-white dark:bg-neutral-900"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900 group-hover:bg-orange-200 dark:group-hover:bg-orange-800 transition-colors">

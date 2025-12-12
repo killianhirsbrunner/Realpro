@@ -97,8 +97,8 @@ export function BuyerPayments() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       <header className="space-y-1">
-        <h1 className="text-xl font-semibold text-gray-900">Mes paiements</h1>
-        <p className="text-sm text-gray-500">
+        <h1 className="text-xl font-semibold text-neutral-900">Mes paiements</h1>
+        <p className="text-sm text-neutral-500">
           Récapitulatif de vos échéances, montants payés et solde restant.
         </p>
       </header>
@@ -112,39 +112,39 @@ export function BuyerPayments() {
 
       {/* Installments Table */}
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold text-gray-900">
+        <h2 className="text-sm font-semibold text-neutral-900">
           Détail des échéances
         </h2>
 
         {installments.length === 0 ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Aucun échéancier n'a encore été défini pour votre dossier.
           </p>
         ) : (
           <div className="overflow-hidden rounded-2xl border bg-white">
             <table className="min-w-full text-sm">
-              <thead className="bg-gray-50 text-xs">
+              <thead className="bg-neutral-50 text-xs">
                 <tr>
-                  <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-500">
+                  <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-neutral-500">
                     Échéance
                   </th>
-                  <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-500">
+                  <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-neutral-500">
                     Due le
                   </th>
-                  <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-500">
+                  <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-neutral-500">
                     Montant
                   </th>
-                  <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-500">
+                  <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-neutral-500">
                     Statut
                   </th>
-                  <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-500">
+                  <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-neutral-500">
                     Facture
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y">
                 {installments.map((i) => (
-                  <tr key={i.id} className="hover:bg-gray-50">
+                  <tr key={i.id} className="hover:bg-neutral-50">
                     <td className="px-3 py-3 align-middle">{i.label}</td>
                     <td className="px-3 py-3 align-middle">
                       {i.due_date ? formatDateCH(i.due_date) : 'À définir'}
@@ -167,7 +167,7 @@ export function BuyerPayments() {
                           Télécharger
                         </a>
                       ) : (
-                        <span className="text-xs text-gray-400">—</span>
+                        <span className="text-xs text-neutral-400">—</span>
                       )}
                     </td>
                   </tr>
@@ -184,10 +184,10 @@ export function BuyerPayments() {
 function SummaryCard({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-2xl border bg-white px-4 py-3">
-      <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
+      <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
         {label}
       </p>
-      <p className="mt-2 text-lg font-semibold text-gray-900 tabular-nums">
+      <p className="mt-2 text-lg font-semibold text-neutral-900 tabular-nums">
         {formatCHF(value)}
       </p>
     </div>
@@ -197,7 +197,7 @@ function SummaryCard({ label, value }: { label: string; value: number }) {
 function InstallmentStatusPill({ status }: { status: string }) {
   const s = status.toUpperCase();
   let label = status;
-  let styles = 'bg-gray-100 text-gray-700';
+  let styles = 'bg-neutral-100 text-neutral-700';
 
   if (s === 'PLANNED' || s === 'PENDING') {
     label = 'À venir';

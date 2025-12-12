@@ -98,10 +98,10 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
           {t('financial.simulator')}
         </h1>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
           {t('financial.simulatorDescription')}
         </p>
       </div>
@@ -118,7 +118,7 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   {t('financial.priceMultiplier')}
                 </label>
                 <Input
@@ -128,13 +128,13 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
                   onChange={(e) => setPriceMultiplier(parseFloat(e.target.value))}
                   className="mt-1"
                 />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                   {t('financial.priceMultiplierHelp')}
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   {t('financial.costMultiplier')}
                 </label>
                 <Input
@@ -144,13 +144,13 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
                   onChange={(e) => setCostMultiplier(parseFloat(e.target.value))}
                   className="mt-1"
                 />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                   {t('financial.costMultiplierHelp')}
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   {t('financial.vacancyRate')}
                 </label>
                 <Input
@@ -162,13 +162,13 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
                   onChange={(e) => setVacancyRate(parseFloat(e.target.value))}
                   className="mt-1"
                 />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                   {t('financial.vacancyRateHelp')}
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   {t('financial.interestRate')}
                 </label>
                 <Input
@@ -180,7 +180,7 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
                   onChange={(e) => setInterestRate(parseFloat(e.target.value))}
                   className="mt-1"
                 />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                   {t('financial.interestRateHelp')}
                 </p>
               </div>
@@ -278,7 +278,7 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
       {/* Saved Scenarios */}
       <Card>
         <div className="space-y-4">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-50">
+          <h2 className="text-lg font-medium text-neutral-900 dark:text-neutral-50">
             {t('financial.savedScenarios')}
           </h2>
 
@@ -293,22 +293,22 @@ export function FinancialSimulator({ projectId }: FinancialSimulatorProps) {
               {scenarios.map((scenario) => (
                 <div
                   key={scenario.id}
-                  className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800"
+                  className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white p-3 dark:border-neutral-700 dark:bg-neutral-800"
                 >
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-gray-50">
+                    <p className="font-medium text-neutral-900 dark:text-neutral-50">
                       {scenario.name}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">
                       {new Date(scenario.created_at).toLocaleDateString('fr-CH')}
                     </p>
                   </div>
                   {scenario.results && (
                     <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                      <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
                         {scenario.results.margin.toLocaleString('fr-CH')} CHF
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         {scenario.results.marginPercent.toFixed(1)}% marge
                       </p>
                     </div>
@@ -337,18 +337,18 @@ function KpiCard({
   const trendColors = {
     positive: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
     negative: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
-    neutral: 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700',
+    neutral: 'bg-neutral-50 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700',
   };
 
   const textColors = {
     positive: 'text-green-900 dark:text-green-100',
     negative: 'text-red-900 dark:text-red-100',
-    neutral: 'text-gray-900 dark:text-gray-50',
+    neutral: 'text-neutral-900 dark:text-neutral-50',
   };
 
   return (
     <div className={`rounded-lg border p-3 ${trendColors[trend]}`}>
-      <p className="text-xs text-gray-500 dark:text-gray-400">{label}</p>
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">{label}</p>
       <p className={`text-lg font-semibold ${textColors[trend]}`}>
         {value.toLocaleString('fr-CH', { maximumFractionDigits: 0 })} {suffix}
       </p>

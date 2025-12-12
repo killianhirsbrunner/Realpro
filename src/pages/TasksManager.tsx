@@ -249,10 +249,10 @@ export function TasksManager() {
               <CheckSquare className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
                 Gestionnaire de Tâches
               </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 Organisez et suivez toutes vos tâches
               </p>
             </div>
@@ -302,13 +302,13 @@ export function TasksManager() {
         {/* Search */}
         <div className="flex-1 min-w-64">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
             <input
               type="text"
               placeholder="Rechercher une tâche..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
             />
           </div>
         </div>
@@ -317,7 +317,7 @@ export function TasksManager() {
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value as any)}
-          className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+          className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900"
         >
           <option value="ALL">Tous les statuts</option>
           <option value="TODO">À faire</option>
@@ -329,7 +329,7 @@ export function TasksManager() {
         <select
           value={filterPriority}
           onChange={(e) => setFilterPriority(e.target.value as any)}
-          className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+          className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900"
         >
           <option value="ALL">Toutes priorités</option>
           <option value="URGENT">Urgent</option>
@@ -339,12 +339,12 @@ export function TasksManager() {
         </select>
 
         {/* View Mode */}
-        <div className="flex gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-1">
+        <div className="flex gap-2 border border-neutral-300 dark:border-neutral-700 rounded-lg p-1">
           <button
             onClick={() => setViewMode('kanban')}
             className={clsx(
               'p-2 rounded',
-              viewMode === 'kanban' ? 'bg-realpro-turquoise text-white' : 'text-gray-600 dark:text-gray-400'
+              viewMode === 'kanban' ? 'bg-realpro-turquoise text-white' : 'text-neutral-600 dark:text-neutral-400'
             )}
           >
             <LayoutGrid className="w-4 h-4" />
@@ -353,7 +353,7 @@ export function TasksManager() {
             onClick={() => setViewMode('list')}
             className={clsx(
               'p-2 rounded',
-              viewMode === 'list' ? 'bg-realpro-turquoise text-white' : 'text-gray-600 dark:text-gray-400'
+              viewMode === 'list' ? 'bg-realpro-turquoise text-white' : 'text-neutral-600 dark:text-neutral-400'
             )}
           >
             <List className="w-4 h-4" />
@@ -366,13 +366,13 @@ export function TasksManager() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {(['TODO', 'IN_PROGRESS', 'DONE'] as TaskStatus[]).map(status => (
             <div key={status} className="space-y-3">
-              <div className="flex items-center justify-between p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
-                <h3 className="font-semibold text-gray-900 dark:text-white">
+              <div className="flex items-center justify-between p-4 bg-neutral-100 dark:bg-neutral-800 rounded-lg">
+                <h3 className="font-semibold text-neutral-900 dark:text-white">
                   {status === 'TODO' && 'À faire'}
                   {status === 'IN_PROGRESS' && 'En cours'}
                   {status === 'DONE' && 'Terminé'}
                 </h3>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-neutral-600 dark:text-neutral-400">
                   {filteredTasks.filter(t => t.status === status).length}
                 </span>
               </div>
@@ -439,7 +439,7 @@ function TaskCard({ task, onToggleStatus, onEdit, onDelete, getPriorityColor, ge
 
   return (
     <div className={clsx(
-      'group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-4 hover:shadow-lg transition-all',
+      'group bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 hover:shadow-lg transition-all',
       task.status === 'DONE' && 'opacity-60'
     )}>
       <div className="flex items-start gap-3">
@@ -452,14 +452,14 @@ function TaskCard({ task, onToggleStatus, onEdit, onDelete, getPriorityColor, ge
           ) : task.status === 'IN_PROGRESS' ? (
             <Clock className="w-5 h-5 text-orange-500" />
           ) : (
-            <Circle className="w-5 h-5 text-gray-400 hover:text-realpro-turquoise" />
+            <Circle className="w-5 h-5 text-neutral-400 hover:text-realpro-turquoise" />
           )}
         </button>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-2">
             <h4 className={clsx(
-              'font-medium text-gray-900 dark:text-white',
+              'font-medium text-neutral-900 dark:text-white',
               task.status === 'DONE' && 'line-through'
             )}>
               {task.title}
@@ -473,12 +473,12 @@ function TaskCard({ task, onToggleStatus, onEdit, onDelete, getPriorityColor, ge
           </div>
 
           {task.description && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
               {task.description}
             </p>
           )}
 
-          <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-500">
             {task.due_date && (
               <div className={clsx(
                 'flex items-center gap-1',
@@ -509,9 +509,9 @@ function TaskCard({ task, onToggleStatus, onEdit, onDelete, getPriorityColor, ge
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             onClick={onEdit}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
+            className="p-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded"
           >
-            <Edit2 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            <Edit2 className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
           </button>
           <button
             onClick={onDelete}
@@ -536,36 +536,36 @@ interface TaskFormModalProps {
 function TaskFormModal({ title, task, onSave, onCancel, onChange }: TaskFormModalProps) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-2xl w-full p-6 shadow-2xl">
+      <div className="bg-white dark:bg-neutral-900 rounded-2xl max-w-2xl w-full p-6 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h2>
-          <button onClick={onCancel} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">{title}</h2>
+          <button onClick={onCancel} className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
               Titre *
             </label>
             <input
               type="text"
               value={task.title}
               onChange={(e) => onChange({ ...task, title: e.target.value })}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800"
               placeholder="Titre de la tâche"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
               Description
             </label>
             <textarea
               value={task.description}
               onChange={(e) => onChange({ ...task, description: e.target.value })}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800"
               rows={3}
               placeholder="Description détaillée..."
             />
@@ -573,13 +573,13 @@ function TaskFormModal({ title, task, onSave, onCancel, onChange }: TaskFormModa
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
                 Priorité
               </label>
               <select
                 value={task.priority}
                 onChange={(e) => onChange({ ...task, priority: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800"
               >
                 <option value="LOW">Basse</option>
                 <option value="MEDIUM">Moyenne</option>
@@ -589,14 +589,14 @@ function TaskFormModal({ title, task, onSave, onCancel, onChange }: TaskFormModa
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
                 Date d'échéance
               </label>
               <input
                 type="date"
                 value={task.due_date}
                 onChange={(e) => onChange({ ...task, due_date: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800"
               />
             </div>
           </div>

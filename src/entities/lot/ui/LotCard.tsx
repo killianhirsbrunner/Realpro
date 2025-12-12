@@ -31,17 +31,17 @@ export function LotCard({ lot, onClick, selected, className }: LotCardProps) {
     >
       <div className="flex items-start justify-between mb-3">
         <div>
-          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+          <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
             {LOT_TYPE_LABELS[lot.type]}
           </span>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
             {lot.code}
           </h3>
         </div>
         <LotStatusBadge status={lot.status} size="sm" />
       </div>
 
-      <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+      <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
         {lot.rooms_count && (
           <div className="flex items-center gap-2">
             <DoorOpen className="w-4 h-4" />
@@ -65,7 +65,7 @@ export function LotCard({ lot, onClick, selected, className }: LotCardProps) {
       </div>
 
       {lot.price_total && (
-        <div className="mt-3 pt-3 border-t border-gray-200 dark:border-neutral-700">
+        <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700">
           <span className="text-lg font-bold text-brand-600 dark:text-brand-400">
             {formatCHF(lot.price_total)}
           </span>

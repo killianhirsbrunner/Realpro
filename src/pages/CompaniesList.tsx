@@ -32,8 +32,8 @@ export default function CompaniesList() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Entreprises</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Entreprises</h1>
+          <p className="text-neutral-600 dark:text-neutral-400 mt-1">
             {filteredCompanies.length} entreprise{filteredCompanies.length !== 1 ? 's' : ''}
           </p>
         </div>
@@ -48,19 +48,19 @@ export default function CompaniesList() {
 
       <div className="flex gap-4 mb-6">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
           <input
             type="text"
             placeholder="Rechercher une entreprise..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+            className="w-full pl-10 pr-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
           />
         </div>
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+          className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
         >
           <option value="all">Tous les types</option>
           <option value="EG">Entreprise Générale</option>
@@ -74,12 +74,12 @@ export default function CompaniesList() {
       </div>
 
       {filteredCompanies.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-12 text-center">
-          <Building2 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-12 text-center">
+          <Building2 className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-2">
             Aucune entreprise trouvée
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
             Commencez par ajouter votre première entreprise
           </p>
           <button
@@ -96,7 +96,7 @@ export default function CompaniesList() {
             <button
               key={company.id}
               onClick={() => navigate(`/companies/${company.id}`)}
-              className="bg-white dark:bg-gray-800 rounded-lg p-6 text-left hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700"
+              className="bg-white dark:bg-neutral-800 rounded-lg p-6 text-left hover:shadow-lg transition-shadow border border-neutral-200 dark:border-neutral-700"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -104,11 +104,11 @@ export default function CompaniesList() {
                     <Building2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 dark:text-white">
+                    <h3 className="font-medium text-neutral-900 dark:text-white">
                       {company.name}
                     </h3>
                     {company.legal_form && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
                         {company.legal_form}
                       </p>
                     )}
@@ -123,17 +123,17 @@ export default function CompaniesList() {
 
               <div className="space-y-2">
                 {company.email && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     {company.email}
                   </p>
                 )}
                 {company.phone && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     {company.phone}
                   </p>
                 )}
                 {company.industry && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     {company.industry}
                   </p>
                 )}
@@ -144,7 +144,7 @@ export default function CompaniesList() {
                   {company.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
+                      className="px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded"
                     >
                       {tag}
                     </span>
@@ -152,15 +152,15 @@ export default function CompaniesList() {
                 </div>
               )}
 
-              <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-2 mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                 {company.is_client && (
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Client</span>
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400">Client</span>
                 )}
                 {company.is_supplier && (
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Fournisseur</span>
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400">Fournisseur</span>
                 )}
                 {company.is_partner && (
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Partenaire</span>
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400">Partenaire</span>
                 )}
               </div>
             </button>

@@ -28,7 +28,7 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        'animate-pulse bg-gray-200 dark:bg-neutral-700',
+        'animate-pulse bg-neutral-200 dark:bg-neutral-700',
         variantClasses[variant],
         className
       )}
@@ -94,7 +94,7 @@ export function PageSkeleton() {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="bg-white dark:bg-neutral-900 p-4 rounded-lg border border-gray-200 dark:border-neutral-700">
+          <div key={i} className="bg-white dark:bg-neutral-900 p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
             <Skeleton width="60%" height="14px" className="mb-2" />
             <Skeleton width="40%" height="24px" />
           </div>

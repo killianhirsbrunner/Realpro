@@ -3,36 +3,36 @@ import { FileText } from 'lucide-react';
 
 export default function CGU() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="flex items-center gap-3 mb-8">
           <FileText className="w-8 h-8 text-brand-600 dark:text-brand-400" />
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
             Conditions Générales d'Utilisation & de Service
           </h1>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 space-y-8">
-          <div className="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-sm p-8 space-y-8">
+          <div className="text-center border-b border-neutral-200 dark:border-neutral-700 pb-6">
+            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">
               RealPro
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-neutral-600 dark:text-neutral-400">
               Édité par <strong>Realpro SA</strong>, société anonyme de droit suisse
             </p>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-neutral-600 dark:text-neutral-400">
               Siège : Yverdon-les-Bains (VD), Suisse
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
+            <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-4">
               Dernière mise à jour : 3 décembre 2025
             </p>
           </div>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               1. Définitions
             </h3>
-            <div className="space-y-3 text-gray-700 dark:text-gray-300">
+            <div className="space-y-3 text-neutral-700 dark:text-neutral-300">
               <p>
                 <strong>« Realpro SA »</strong> : l'éditeur du logiciel, société anonyme suisse dont le siège est à Yverdon-les-Bains, canton de Vaud.
               </p>
@@ -67,13 +67,13 @@ export default function CGU() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               2. Objet
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <p className="text-neutral-700 dark:text-neutral-300 mb-3">
               Les présentes CGU régissent :
             </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+            <ul className="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300 ml-4">
               <li>l'accès au Logiciel RealPro,</li>
               <li>les droits et obligations des Clients et Utilisateurs,</li>
               <li>les conditions d'abonnement,</li>
@@ -81,18 +81,18 @@ export default function CGU() {
               <li>la propriété intellectuelle,</li>
               <li>la responsabilité et les garanties.</li>
             </ul>
-            <p className="text-gray-900 dark:text-white font-semibold mt-4">
+            <p className="text-neutral-900 dark:text-white font-semibold mt-4">
               L'utilisation du Logiciel implique l'acceptation pleine et entière des présentes CGU.
             </p>
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               3. Accès au Logiciel
             </h3>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.1 Conditions d'accès</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.1 Conditions d'accès</h4>
                 <p className="mb-2">L'accès au Logiciel nécessite :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>un abonnement actif,</li>
@@ -101,7 +101,7 @@ export default function CGU() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.2 Multi-rôles</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.2 Multi-rôles</h4>
                 <p className="mb-2">Les rôles sont attribués par le Client ou par le promoteur/propriétaire du projet :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Promoteur / Développeur</li>
@@ -119,11 +119,11 @@ export default function CGU() {
                 <p className="font-semibold mt-2">Chaque rôle dispose d'un niveau d'accès spécifique.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.3 Restriction multi-projet</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.3 Restriction multi-projet</h4>
                 <p>Un utilisateur ne voit que les projets auxquels il a été assigné.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.4 Restrictions spécifiques</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.4 Restrictions spécifiques</h4>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Les acheteurs ne peuvent pas consulter les données d'autres lots.</li>
                   <li>Les entreprises soumissionnaires n'ont accès qu'à leurs propres soumissions.</li>
@@ -134,12 +134,12 @@ export default function CGU() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               4. Abonnement et Paiements
             </h3>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">4.1 Gestion via Datatrans</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">4.1 Gestion via Datatrans</h4>
                 <p className="mb-2">Les paiements d'abonnement sont gérés via le PSP suisse Datatrans :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>cartes de crédit (Visa, Mastercard, AMEX),</li>
@@ -150,11 +150,11 @@ export default function CGU() {
                 <p className="font-semibold mt-2">Realpro SA ne stocke aucune donnée de carte bancaire.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">4.2 Facturation</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">4.2 Facturation</h4>
                 <p>Une facture mensuelle ou annuelle est générée à chaque renouvellement d'abonnement.</p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">4.3 Suspension de compte</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">4.3 Suspension de compte</h4>
                 <p className="mb-2">En cas de non-paiement :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>accès suspendu après 14 jours,</li>
@@ -163,17 +163,17 @@ export default function CGU() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">4.4 Résiliation</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">4.4 Résiliation</h4>
                 <p>Le Client peut résilier son abonnement à tout moment, mais aucun remboursement n'est dû pour la période en cours.</p>
               </div>
             </div>
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               5. Modules financiers – Acomptes, Factures QR et EG
             </h3>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <p>RealPro permet :</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>la génération de factures QR pour les acheteurs,</li>
@@ -183,7 +183,7 @@ export default function CGU() {
                 <li>l'export comptable.</li>
               </ul>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">5.1 Responsabilité des montants</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">5.1 Responsabilité des montants</h4>
                 <p className="mb-2">Les montants, taux TVA, dates d'échéance et références QR sont fournis par le Client.</p>
                 <p className="font-semibold">Realpro SA n'est pas responsable :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
@@ -193,7 +193,7 @@ export default function CGU() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">5.2 Transmission aux acheteurs</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">5.2 Transmission aux acheteurs</h4>
                 <p className="mb-2">Les factures QR peuvent être :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>téléchargées par l'acheteur,</li>
@@ -204,14 +204,14 @@ export default function CGU() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               10. Propriété intellectuelle
             </h3>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">10.1 Logiciel</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">10.1 Logiciel</h4>
                 <p className="mb-2">Le Logiciel RealPro est la propriété exclusive de :</p>
-                <p className="font-bold text-gray-900 dark:text-white">
+                <p className="font-bold text-neutral-900 dark:text-white">
                   Realpro SA<br />
                   Yverdon-les-Bains<br />
                   Vaud, Suisse
@@ -224,7 +224,7 @@ export default function CGU() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">10.2 Interdictions</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">10.2 Interdictions</h4>
                 <p className="mb-2">Il est strictement interdit de :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>copier, modifier, décompiler ou reproduire le logiciel,</li>
@@ -234,7 +234,7 @@ export default function CGU() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">10.3 Marques</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">10.3 Marques</h4>
                 <p className="mb-2">Les dénominations :</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Realpro,</li>
@@ -248,10 +248,10 @@ export default function CGU() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               12. Responsabilité
             </h3>
-            <div className="space-y-3 text-gray-700 dark:text-gray-300">
+            <div className="space-y-3 text-neutral-700 dark:text-neutral-300">
               <p>Realpro SA n'assume aucune responsabilité pour :</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>les erreurs de saisie du Client,</li>
@@ -261,20 +261,20 @@ export default function CGU() {
                 <li>les retards de paiement des acheteurs,</li>
                 <li>la conformité juridique des contrats importés.</li>
               </ul>
-              <p className="font-semibold text-gray-900 dark:text-white mt-4">
+              <p className="font-semibold text-neutral-900 dark:text-white mt-4">
                 Responsabilité maximale : montant annuel de l'abonnement payé.
               </p>
             </div>
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               15. Droit applicable et Juridiction
             </h3>
-            <div className="space-y-3 text-gray-700 dark:text-gray-300">
-              <p>Les présentes CGU sont régies par <strong className="text-gray-900 dark:text-white">le droit suisse</strong>.</p>
+            <div className="space-y-3 text-neutral-700 dark:text-neutral-300">
+              <p>Les présentes CGU sont régies par <strong className="text-neutral-900 dark:text-white">le droit suisse</strong>.</p>
               <p>En cas de litige :</p>
-              <p className="font-bold text-gray-900 dark:text-white">
+              <p className="font-bold text-neutral-900 dark:text-white">
                 Tribunaux ordinaires du district du Jura-Nord vaudois (Yverdon-les-Bains),<br />
                 sous réserve d'un recours au Tribunal fédéral.
               </p>
@@ -282,16 +282,16 @@ export default function CGU() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               16. Acceptation
             </h3>
-            <p className="text-gray-900 dark:text-white font-semibold">
+            <p className="text-neutral-900 dark:text-white font-semibold">
               En utilisant RealPro, le Client et les Utilisateurs déclarent accepter sans réserve les présentes CGU.
             </p>
           </section>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+            <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
               <a
                 href="/legal/cgv"
                 className="text-brand-600 dark:text-brand-400 hover:underline"
@@ -313,7 +313,7 @@ export default function CGU() {
                 Politique de confidentialité
               </a>
             </p>
-            <p className="text-center text-xs text-gray-500 dark:text-gray-500 mt-4">
+            <p className="text-center text-xs text-neutral-500 dark:text-neutral-500 mt-4">
               © 2025 Realpro SA, Yverdon-les-Bains (VD), Suisse. Tous droits réservés.
             </p>
           </div>

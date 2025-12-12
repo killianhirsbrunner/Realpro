@@ -117,11 +117,11 @@ export default function BuyerAfterSales({
         <div>
           <div className="flex items-center gap-2">
             <AlertCircle className="h-6 w-6 text-brand-600" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">
+            <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
               Service Après-Vente
             </h1>
           </div>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
             Signalez un problème ou suivez vos demandes d'intervention
           </p>
         </div>
@@ -133,13 +133,13 @@ export default function BuyerAfterSales({
 
       {showNewTicketForm && (
         <Card className="p-6">
-          <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-50">
+          <h2 className="mb-4 text-lg font-semibold text-neutral-900 dark:text-neutral-50">
             Créer un nouveau ticket SAV
           </h2>
 
           <div className="space-y-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Titre *
               </label>
               <Input
@@ -150,7 +150,7 @@ export default function BuyerAfterSales({
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Localisation
               </label>
               <Input
@@ -161,7 +161,7 @@ export default function BuyerAfterSales({
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Sévérité
               </label>
               <Select
@@ -178,7 +178,7 @@ export default function BuyerAfterSales({
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Description *
               </label>
               <Textarea
@@ -213,7 +213,7 @@ export default function BuyerAfterSales({
       )}
 
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
           Mes tickets SAV
         </h2>
 
@@ -223,11 +223,11 @@ export default function BuyerAfterSales({
           </div>
         ) : tickets.length === 0 ? (
           <Card className="p-12 text-center">
-            <AlertCircle className="mx-auto h-12 w-12 text-gray-400" />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <AlertCircle className="mx-auto h-12 w-12 text-neutral-400" />
+            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
               Vous n'avez aucun ticket SAV pour le moment
             </p>
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
               Cliquez sur "Nouveau ticket" pour signaler un problème
             </p>
           </Card>
@@ -238,7 +238,7 @@ export default function BuyerAfterSales({
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-gray-900 dark:text-gray-50">
+                      <h3 className="font-semibold text-neutral-900 dark:text-neutral-50">
                         {ticket.title}
                       </h3>
                       <TicketStatusBadge status={ticket.status} />
@@ -246,19 +246,19 @@ export default function BuyerAfterSales({
                     </div>
 
                     {ticket.location && (
-                      <div className="mt-1 flex items-center gap-1 text-xs text-gray-500">
+                      <div className="mt-1 flex items-center gap-1 text-xs text-neutral-500">
                         <MapPin className="h-3 w-3" />
                         {ticket.location}
                       </div>
                     )}
 
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                       {ticket.description.length > 150
                         ? `${ticket.description.substring(0, 150)}...`
                         : ticket.description}
                     </p>
 
-                    <div className="mt-3 flex items-center gap-4 text-xs text-gray-500">
+                    <div className="mt-3 flex items-center gap-4 text-xs text-neutral-500">
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         Créé le {formatDate(ticket.created_at)}
@@ -312,10 +312,10 @@ function TicketDetailView({
         </Button>
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">
+            <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
               {ticket.title}
             </h1>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-neutral-500">
               Ticket #{ticket.id.substring(0, 8)}
             </p>
           </div>
@@ -328,34 +328,34 @@ function TicketDetailView({
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card className="p-4">
-          <h2 className="mb-3 font-semibold text-gray-900 dark:text-gray-50">
+          <h2 className="mb-3 font-semibold text-neutral-900 dark:text-neutral-50">
             Informations
           </h2>
           <dl className="space-y-2 text-sm">
             <div>
-              <dt className="text-gray-500">Localisation</dt>
-              <dd className="font-medium text-gray-900 dark:text-gray-50">
+              <dt className="text-neutral-500">Localisation</dt>
+              <dd className="font-medium text-neutral-900 dark:text-neutral-50">
                 {ticket.location || '-'}
               </dd>
             </div>
             <div>
-              <dt className="text-gray-500">Créé le</dt>
-              <dd className="font-medium text-gray-900 dark:text-gray-50">
+              <dt className="text-neutral-500">Créé le</dt>
+              <dd className="font-medium text-neutral-900 dark:text-neutral-50">
                 {formatDate(ticket.created_at)}
               </dd>
             </div>
             {ticket.assigned_company && (
               <div>
-                <dt className="text-gray-500">Entreprise assignée</dt>
-                <dd className="font-medium text-gray-900 dark:text-gray-50">
+                <dt className="text-neutral-500">Entreprise assignée</dt>
+                <dd className="font-medium text-neutral-900 dark:text-neutral-50">
                   {ticket.assigned_company.name}
                 </dd>
               </div>
             )}
             {ticket.fixed_at && (
               <div>
-                <dt className="text-gray-500">Corrigé le</dt>
-                <dd className="font-medium text-gray-900 dark:text-gray-50">
+                <dt className="text-neutral-500">Corrigé le</dt>
+                <dd className="font-medium text-neutral-900 dark:text-neutral-50">
                   {formatDate(ticket.fixed_at)}
                 </dd>
               </div>
@@ -364,10 +364,10 @@ function TicketDetailView({
         </Card>
 
         <Card className="p-4">
-          <h2 className="mb-3 font-semibold text-gray-900 dark:text-gray-50">
+          <h2 className="mb-3 font-semibold text-neutral-900 dark:text-neutral-50">
             Description
           </h2>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-neutral-700 dark:text-neutral-300">
             {ticket.description}
           </p>
         </Card>
@@ -375,24 +375,24 @@ function TicketDetailView({
 
       {ticket.messages && ticket.messages.length > 0 && (
         <Card className="p-4">
-          <h2 className="mb-4 font-semibold text-gray-900 dark:text-gray-50">
+          <h2 className="mb-4 font-semibold text-neutral-900 dark:text-neutral-50">
             Messages ({ticket.messages.length})
           </h2>
           <div className="space-y-3">
             {ticket.messages.map((message) => (
               <div
                 key={message.id}
-                className="rounded-lg border bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-800"
+                className="rounded-lg border bg-neutral-50 p-3 dark:border-neutral-700 dark:bg-neutral-800"
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                  <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
                     {message.author?.first_name} {message.author?.last_name}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-neutral-500">
                     {formatDate(message.created_at)}
                   </p>
                 </div>
-                <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+                <p className="mt-1 text-sm text-neutral-700 dark:text-neutral-300">
                   {message.body}
                 </p>
               </div>

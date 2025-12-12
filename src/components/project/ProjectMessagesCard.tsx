@@ -29,9 +29,9 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
       case 'normal':
         return 'bg-brand-50 border-brand-100';
       case 'low':
-        return 'bg-gray-50 border-gray-100';
+        return 'bg-neutral-50 border-neutral-100';
       default:
-        return 'bg-gray-50 border-gray-100';
+        return 'bg-neutral-50 border-neutral-100';
     }
   };
 
@@ -40,7 +40,7 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
       <Card.Header>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-gray-600" />
+            <MessageSquare className="h-5 w-5 text-neutral-600" />
             <Card.Title>Messages récents</Card.Title>
           </div>
           {unreadCount > 0 && (
@@ -54,8 +54,8 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
       <Card.Content className="space-y-4">
         {messages.length === 0 ? (
           <div className="text-center py-8">
-            <MessageSquare className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-sm text-gray-500 mb-4">Aucun message récent</p>
+            <MessageSquare className="h-12 w-12 text-neutral-300 mx-auto mb-3" />
+            <p className="text-sm text-neutral-500 mb-4">Aucun message récent</p>
             <Link to={`/projects/${projectId}/communication`}>
               <Button size="sm" variant="outline">
                 Voir les conversations
@@ -83,7 +83,7 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <p className="font-medium text-gray-900">
+                        <p className="font-medium text-neutral-900">
                           {message.author_name}
                         </p>
                         {message.author_role && (
@@ -91,12 +91,12 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
                             {message.author_role}
                           </Badge>
                         )}
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-neutral-500">
                           {formatRelativeTime(message.created_at)}
                         </span>
                       </div>
 
-                      <p className="text-sm text-gray-700 line-clamp-2">
+                      <p className="text-sm text-neutral-700 line-clamp-2">
                         {message.content}
                       </p>
                     </div>
@@ -105,7 +105,7 @@ export function ProjectMessagesCard({ projectId, messages, unreadCount = 0 }: Pr
               ))}
             </div>
 
-            <div className="pt-4 border-t border-gray-100 flex gap-2">
+            <div className="pt-4 border-t border-neutral-100 flex gap-2">
               <Link to={`/projects/${projectId}/communication`} className="flex-1">
                 <Button variant="outline" className="w-full">
                   Toutes les conversations

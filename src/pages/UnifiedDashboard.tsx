@@ -245,10 +245,10 @@ export function UnifiedDashboard() {
         {/* En-tête avec salutation */}
         <motion.div variants={itemVariants} className="flex items-start justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
               {getGreeting()}, {user?.full_name?.split(' ')[0] || 'Bienvenue'}
             </h1>
-            <p className="mt-1 text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-neutral-600 dark:text-neutral-400">
               Voici un aperçu de votre activité sur RealPro
             </p>
           </div>
@@ -263,7 +263,7 @@ export function UnifiedDashboard() {
 
         {/* Actions rapides */}
         <motion.div variants={itemVariants}>
-          <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+          <h2 className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-4">
             Actions rapides
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -278,10 +278,10 @@ export function UnifiedDashboard() {
                   <div className={clsx('p-2.5 rounded-lg w-fit mb-3', action.bgColor)}>
                     <Icon className={clsx('w-5 h-5', action.color)} />
                   </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                  <h3 className="font-semibold text-neutral-900 dark:text-white text-sm group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                     {action.title}
                   </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
                     {action.description}
                   </p>
                 </Link>
@@ -334,7 +334,7 @@ export function UnifiedDashboard() {
             ═══════════════════════════════════════════════════════════════════════ */}
         <motion.div variants={itemVariants}>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+            <h2 className="text-lg font-bold text-neutral-900 dark:text-white">
               Accès rapide aux modules
             </h2>
           </div>
@@ -350,12 +350,12 @@ export function UnifiedDashboard() {
                   <div className={clsx('p-3 rounded-xl w-fit mx-auto mb-3', module.bgColor)}>
                     <Icon className={clsx('w-6 h-6', module.color)} />
                   </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">
+                  <h3 className="font-semibold text-neutral-900 dark:text-white text-sm mb-1">
                     {module.title}
                   </h3>
                   {module.stats && (
-                    <p className="text-xs text-gray-500 dark:text-gray-500">
-                      {module.stats.label}: <span className="font-medium text-gray-700 dark:text-gray-300">{module.stats.value}</span>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-500">
+                      {module.stats.label}: <span className="font-medium text-neutral-700 dark:text-neutral-300">{module.stats.value}</span>
                     </p>
                   )}
                 </Link>
@@ -369,7 +369,7 @@ export function UnifiedDashboard() {
             ═══════════════════════════════════════════════════════════════════════ */}
         <motion.div variants={itemVariants}>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
               <Building2 className="w-5 h-5 text-brand-600" />
               Vos projets récents
             </h2>
@@ -417,7 +417,7 @@ export function UnifiedDashboard() {
           {/* Activité récente */}
           <Card className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <h3 className="text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
                 <Activity className="w-5 h-5 text-brand-600" />
                 Activité récente
               </h3>
@@ -456,7 +456,7 @@ export function UnifiedDashboard() {
           {/* Calendrier / Rendez-vous */}
           <Card className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <h3 className="text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
                 <CalendarDays className="w-5 h-5 text-brand-600" />
                 Prochains rendez-vous
               </h3>
@@ -549,19 +549,19 @@ function KPICard({
           <TrendingUp className={clsx('w-4 h-4', {
             'text-emerald-500': trend === 'up',
             'text-red-500 rotate-180': trend === 'down',
-            'text-gray-400': trend === 'stable',
+            'text-neutral-400': trend === 'stable',
           })} />
         )}
       </div>
-      <div className="text-2xl font-bold text-gray-900 dark:text-white">
+      <div className="text-2xl font-bold text-neutral-900 dark:text-white">
         {value}
         {total !== undefined && (
-          <span className="text-sm font-normal text-gray-500 dark:text-gray-500">
+          <span className="text-sm font-normal text-neutral-500 dark:text-neutral-500">
             /{total}
           </span>
         )}
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{title}</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">{title}</p>
     </div>
   );
 
@@ -588,16 +588,16 @@ function ProjectCard({ project, onClick }: { project: any; onClick: () => void }
         </Badge>
       </div>
 
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-1">
+      <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-2 line-clamp-1">
         {project.name}
       </h3>
 
-      <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
         <p className="line-clamp-1">{project.city}, {project.canton}</p>
       </div>
 
       <div className="flex items-center justify-between pt-4 border-t border-neutral-200 dark:border-neutral-800">
-        <div className="flex items-center gap-4 text-xs text-gray-500">
+        <div className="flex items-center gap-4 text-xs text-neutral-500">
           <span className="flex items-center gap-1">
             <Home className="w-4 h-4" />
             {project.total_lots || 0} lots
@@ -616,10 +616,10 @@ function EmptyProjectsState({ onCreateProject }: { onCreateProject: () => void }
         <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-brand-100 to-emerald-100 dark:from-brand-900/50 dark:to-emerald-900/50 mb-6">
           <Building2 className="w-10 h-10 text-brand-600 dark:text-brand-400" />
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-3">
           Aucun projet pour le moment
         </h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-neutral-600 dark:text-neutral-400 mb-6">
           Créez votre premier projet pour commencer à utiliser RealPro
         </p>
         <button
@@ -656,14 +656,14 @@ function ActivityItem({
         <Icon className={clsx('w-4 h-4', iconColor)} />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-gray-900 dark:text-white">
+        <p className="text-sm font-medium text-neutral-900 dark:text-white">
           {title}
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-500 line-clamp-1">
+        <p className="text-xs text-neutral-500 dark:text-neutral-500 line-clamp-1">
           {description}
         </p>
       </div>
-      <span className="text-xs text-gray-400 dark:text-gray-600 whitespace-nowrap">
+      <span className="text-xs text-neutral-400 dark:text-neutral-600 whitespace-nowrap">
         {time}
       </span>
     </div>
@@ -685,14 +685,14 @@ function AppointmentItem({
         <Clock className="w-4 h-4 text-purple-600 dark:text-purple-400" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-gray-900 dark:text-white line-clamp-1">
+        <p className="text-sm font-medium text-neutral-900 dark:text-white line-clamp-1">
           {title}
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-500">
+        <p className="text-xs text-neutral-500 dark:text-neutral-500">
           {date} à {time}
         </p>
       </div>
-      <ChevronRight className="w-4 h-4 text-gray-400" />
+      <ChevronRight className="w-4 h-4 text-neutral-400" />
     </div>
   );
 }

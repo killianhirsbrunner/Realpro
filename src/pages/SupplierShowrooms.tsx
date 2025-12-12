@@ -72,10 +72,10 @@ export default function SupplierShowrooms() {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
             {t('supplier.showrooms.title') || 'Mes Showrooms'}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <p className="text-neutral-600 dark:text-neutral-400 mt-1">
             {t('supplier.showrooms.subtitle') || 'Gérez vos showrooms et créneaux de rendez-vous'}
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function SupplierShowrooms() {
               <div className="p-6 space-y-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+                    <h3 className="font-semibold text-lg text-neutral-900 dark:text-white">
                       {showroom.name}
                     </h3>
                     <div className="flex items-center gap-2 mt-2">
@@ -128,7 +128,7 @@ export default function SupplierShowrooms() {
                   </Badge>
                 </div>
 
-                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                   {showroom.address && (
                     <div className="flex items-start space-x-2">
                       <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
@@ -157,7 +157,7 @@ export default function SupplierShowrooms() {
                   )}
                 </div>
 
-                <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-between">
                   <Button
                     variant="outline"
                     size="sm"

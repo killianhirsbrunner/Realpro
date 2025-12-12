@@ -63,20 +63,20 @@ export default function ProjectStructureTree({
       {buildings.map((building) => {
         const isExpanded = expandedBuildings.has(building.id);
         return (
-          <div key={building.id} className="border border-gray-200 rounded-lg overflow-hidden">
+          <div key={building.id} className="border border-neutral-200 rounded-lg overflow-hidden">
             <button
               onClick={() => toggleBuilding(building.id)}
-              className="w-full flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center gap-3 p-4 hover:bg-neutral-50 transition-colors"
             >
               {isExpanded ? (
-                <ChevronDown className="w-5 h-5 text-gray-500" />
+                <ChevronDown className="w-5 h-5 text-neutral-500" />
               ) : (
-                <ChevronRight className="w-5 h-5 text-gray-500" />
+                <ChevronRight className="w-5 h-5 text-neutral-500" />
               )}
               <Building2 className="w-5 h-5 text-brand-600" />
               <div className="flex-1 text-left">
-                <p className="font-semibold text-gray-900">{building.name}</p>
-                <p className="text-sm text-gray-500">Code: {building.code}</p>
+                <p className="font-semibold text-neutral-900">{building.name}</p>
+                <p className="text-sm text-neutral-500">Code: {building.code}</p>
               </div>
               <span className="px-2 py-1 bg-brand-100 text-brand-700 rounded text-sm font-medium">
                 {building.entrances.length} entrées
@@ -91,17 +91,17 @@ export default function ProjectStructureTree({
                     <div key={entrance.id} className="mt-2">
                       <button
                         onClick={() => toggleEntrance(entrance.id)}
-                        className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="w-full flex items-center gap-3 p-3 hover:bg-neutral-50 rounded-lg transition-colors"
                       >
                         {isEntranceExpanded ? (
-                          <ChevronDown className="w-4 h-4 text-gray-500" />
+                          <ChevronDown className="w-4 h-4 text-neutral-500" />
                         ) : (
-                          <ChevronRight className="w-4 h-4 text-gray-500" />
+                          <ChevronRight className="w-4 h-4 text-neutral-500" />
                         )}
                         <Home className="w-4 h-4 text-green-600" />
                         <div className="flex-1 text-left">
-                          <p className="font-medium text-gray-900">{entrance.name}</p>
-                          <p className="text-xs text-gray-500">Code: {entrance.code}</p>
+                          <p className="font-medium text-neutral-900">{entrance.name}</p>
+                          <p className="text-xs text-neutral-500">Code: {entrance.code}</p>
                         </div>
                         <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">
                           {entrance.floors.length} étages
@@ -114,12 +114,12 @@ export default function ProjectStructureTree({
                             <button
                               key={floor.id}
                               onClick={() => onSelectFloor?.(floor.id)}
-                              className="w-full flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors"
+                              className="w-full flex items-center gap-3 p-2 hover:bg-neutral-50 rounded-lg transition-colors"
                             >
                               <Layers className="w-4 h-4 text-brand-600" />
                               <div className="flex-1 text-left">
-                                <p className="text-sm font-medium text-gray-900">{floor.name}</p>
-                                <p className="text-xs text-gray-500">Niveau {floor.level}</p>
+                                <p className="text-sm font-medium text-neutral-900">{floor.name}</p>
+                                <p className="text-xs text-neutral-500">Niveau {floor.level}</p>
                               </div>
                               <span className="px-2 py-1 bg-brand-100 text-brand-700 rounded text-xs">
                                 {floor.lotsCount} lots

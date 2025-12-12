@@ -24,7 +24,7 @@ export function ProjectCard({ project, onClick, className }: ProjectCardProps) {
       className={cn('cursor-pointer overflow-hidden', className)}
     >
       {/* Image */}
-      <div className="h-40 bg-gray-100 dark:bg-neutral-800 relative">
+      <div className="h-40 bg-neutral-100 dark:bg-neutral-800 relative">
         {project.image_url ? (
           <img
             src={project.image_url}
@@ -33,7 +33,7 @@ export function ProjectCard({ project, onClick, className }: ProjectCardProps) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <Building2 className="w-12 h-12 text-gray-300 dark:text-neutral-600" />
+            <Building2 className="w-12 h-12 text-neutral-300 dark:text-neutral-600" />
           </div>
         )}
         <div className="absolute top-3 right-3">
@@ -48,21 +48,21 @@ export function ProjectCard({ project, onClick, className }: ProjectCardProps) {
             <span className="text-xs font-medium text-brand-600 dark:text-brand-400">
               {project.code}
             </span>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white line-clamp-1">
               {project.name}
             </h3>
           </div>
         </div>
 
         {project.city && (
-          <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <div className="flex items-center gap-1 text-sm text-neutral-500 dark:text-neutral-400 mb-2">
             <MapPin className="w-4 h-4" />
             <span>{project.city}</span>
           </div>
         )}
 
         {project.start_date && (
-          <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-1 text-sm text-neutral-500 dark:text-neutral-400">
             <Calendar className="w-4 h-4" />
             <span>{formatDateCH(project.start_date)}</span>
           </div>

@@ -64,7 +64,7 @@ export function NotaryChecklist({ buyerId }: NotaryChecklistProps) {
   if (loading) {
     return (
       <Card>
-        <p className="text-sm text-gray-500 dark:text-gray-400">{t('common.loading')}</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">{t('common.loading')}</p>
       </Card>
     );
   }
@@ -78,10 +78,10 @@ export function NotaryChecklist({ buyerId }: NotaryChecklistProps) {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">
+            <h3 className="text-lg font-medium text-neutral-900 dark:text-neutral-50">
               {t('notary.checklistTitle')}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
               {data.buyer.fullName} · {data.buyer.projectName}
             </p>
           </div>
@@ -100,15 +100,15 @@ export function NotaryChecklist({ buyerId }: NotaryChecklistProps) {
           {data.items.map((item: ChecklistItem) => (
             <div
               key={item.key}
-              className="flex items-start space-x-3 rounded-lg border border-gray-200 p-3 dark:border-gray-700"
+              className="flex items-start space-x-3 rounded-lg border border-neutral-200 p-3 dark:border-neutral-700"
             >
               <div className="mt-0.5">{getStatusIcon(item.status)}</div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
                   {item.label}
                 </p>
                 {item.details && item.details.length > 0 && (
-                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                     {t('notary.missing')}: {item.details.join(', ')}
                   </p>
                 )}

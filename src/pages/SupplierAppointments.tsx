@@ -170,17 +170,17 @@ export default function SupplierAppointments() {
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
             {t('supplier.appointments.title') || 'Rendez-vous'}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">{showroom.name}</p>
+          <p className="text-neutral-600 dark:text-neutral-400">{showroom.name}</p>
         </div>
       </div>
 
       {pendingAppointments.length > 0 && (
         <Card>
           <div className="p-6 space-y-4">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-white">
               {t('supplier.appointments.pending') || 'Demandes en attente'} (
               {pendingAppointments.length})
             </h3>
@@ -198,29 +198,29 @@ export default function SupplierAppointments() {
                         </Badge>
                         {getStatusBadge(appointment.status)}
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-700 dark:text-gray-300">
+                      <div className="flex items-center space-x-2 text-sm text-neutral-700 dark:text-neutral-300">
                         <Calendar className="w-4 h-4" />
                         <span>{formatDateTime(appointment.time_slot.start_at)}</span>
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-700 dark:text-gray-300">
+                      <div className="flex items-center space-x-2 text-sm text-neutral-700 dark:text-neutral-300">
                         <User className="w-4 h-4" />
                         <span>
                           {appointment.buyer.first_name} {appointment.buyer.last_name}
                         </span>
-                        <span className="text-gray-500">•</span>
+                        <span className="text-neutral-500">•</span>
                         <span>{appointment.buyer.email}</span>
                         {appointment.buyer.phone && (
                           <>
-                            <span className="text-gray-500">•</span>
+                            <span className="text-neutral-500">•</span>
                             <span>{appointment.buyer.phone}</span>
                           </>
                         )}
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">
                         {appointment.project.name} - Lot {appointment.lot.lot_number}
                       </div>
                       {appointment.notes_buyer && (
-                        <div className="text-sm text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 p-3 rounded">
+                        <div className="text-sm text-neutral-700 dark:text-neutral-300 bg-white dark:bg-neutral-800 p-3 rounded">
                           <strong>{t('supplier.appointments.buyerNotes') || 'Notes acheteur'}:</strong>
                           <br />
                           {appointment.notes_buyer}
@@ -286,7 +286,7 @@ export default function SupplierAppointments() {
       {confirmedAppointments.length > 0 && (
         <Card>
           <div className="p-6 space-y-4">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-white">
               {t('supplier.appointments.confirmed') || 'Rendez-vous confirmés'} (
               {confirmedAppointments.length})
             </h3>
@@ -294,7 +294,7 @@ export default function SupplierAppointments() {
               {confirmedAppointments.map((appointment) => (
                 <div
                   key={appointment.id}
-                  className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                  className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg"
                 >
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
@@ -304,19 +304,19 @@ export default function SupplierAppointments() {
                         </Badge>
                         {getStatusBadge(appointment.status)}
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-700 dark:text-gray-300">
+                      <div className="flex items-center space-x-2 text-sm text-neutral-700 dark:text-neutral-300">
                         <Calendar className="w-4 h-4" />
                         <span>{formatDateTime(appointment.time_slot.start_at)}</span>
                       </div>
-                      <div className="flex items-center space-x-2 text-sm text-gray-700 dark:text-gray-300">
+                      <div className="flex items-center space-x-2 text-sm text-neutral-700 dark:text-neutral-300">
                         <User className="w-4 h-4" />
                         <span>
                           {appointment.buyer.first_name} {appointment.buyer.last_name}
                         </span>
-                        <span className="text-gray-500">•</span>
+                        <span className="text-neutral-500">•</span>
                         <span>{appointment.buyer.email}</span>
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">
                         {appointment.project.name} - Lot {appointment.lot.lot_number}
                       </div>
                     </div>
@@ -331,14 +331,14 @@ export default function SupplierAppointments() {
       {otherAppointments.length > 0 && (
         <Card>
           <div className="p-6 space-y-4">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-white">
               {t('supplier.appointments.history') || 'Historique'}
             </h3>
             <div className="space-y-3">
               {otherAppointments.map((appointment) => (
                 <div
                   key={appointment.id}
-                  className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg opacity-60"
+                  className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg opacity-60"
                 >
                   <div className="flex items-center justify-between">
                     <div className="space-y-1">
@@ -348,7 +348,7 @@ export default function SupplierAppointments() {
                         </Badge>
                         {getStatusBadge(appointment.status)}
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">
                         {formatDateTime(appointment.time_slot.start_at)} •{' '}
                         {appointment.buyer.first_name} {appointment.buyer.last_name}
                       </div>
@@ -363,7 +363,7 @@ export default function SupplierAppointments() {
 
       {appointments.length === 0 && (
         <Card>
-          <div className="p-12 text-center text-gray-500 dark:text-gray-400">
+          <div className="p-12 text-center text-neutral-500 dark:text-neutral-400">
             {t('supplier.appointments.empty') || 'Aucun rendez-vous'}
           </div>
         </Card>

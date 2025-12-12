@@ -29,8 +29,8 @@ export function StatCard({ label, value, icon: Icon, trend, variant = 'default' 
     <Card className="p-6">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-gray-600 mb-1">{label}</p>
-          <p className="text-3xl font-bold text-gray-900">{value}</p>
+          <p className="text-sm font-medium text-neutral-600 mb-1">{label}</p>
+          <p className="text-3xl font-bold text-neutral-900">{value}</p>
           {trend && (
             <p className={clsx('text-sm font-medium mt-2', trendClasses)}>
               {trend.value >= 0 ? '+' : ''}{trend.value}% {trend.label}

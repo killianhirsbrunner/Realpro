@@ -21,7 +21,7 @@ const roleColors: Record<string, { bg: string; text: string }> = {
   ARCHITECT: { bg: 'bg-brand-100', text: 'text-brand-700' },
   CONTRACTOR: { bg: 'bg-brand-100', text: 'text-brand-700' },
   ENGINEER: { bg: 'bg-green-100', text: 'text-green-700' },
-  NOTARY: { bg: 'bg-gray-100', text: 'text-gray-700' },
+  NOTARY: { bg: 'bg-neutral-100', text: 'text-neutral-700' },
   BROKER: { bg: 'bg-yellow-100', text: 'text-yellow-700' },
   MANAGER: { bg: 'bg-red-100', text: 'text-red-700' },
 };
@@ -30,11 +30,11 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {team.map((member) => {
-        const roleStyle = roleColors[member.role] || { bg: 'bg-gray-100', text: 'text-gray-700' };
+        const roleStyle = roleColors[member.role] || { bg: 'bg-neutral-100', text: 'text-neutral-700' };
         return (
           <div
             key={member.id}
-            className="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
+            className="p-6 bg-white rounded-xl border border-neutral-200 hover:shadow-md transition-shadow"
           >
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white font-semibold text-lg">
@@ -46,7 +46,7 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
               </div>
 
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-gray-900 truncate">{member.name}</p>
+                <p className="font-semibold text-neutral-900 truncate">{member.name}</p>
                 <span className={`inline-block mt-1 px-2 py-1 ${roleStyle.bg} ${roleStyle.text} rounded text-xs font-medium`}>
                   {member.role}
                 </span>
@@ -54,11 +54,11 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
             </div>
 
             {member.company && (
-              <p className="text-sm text-gray-600 mt-3">{member.company}</p>
+              <p className="text-sm text-neutral-600 mt-3">{member.company}</p>
             )}
 
             <div className="mt-4 space-y-2">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-neutral-600">
                 <Mail className="w-4 h-4" />
                 <a href={`mailto:${member.email}`} className="hover:text-brand-600 truncate">
                   {member.email}
@@ -66,7 +66,7 @@ export default function ProjectTeamList({ team, onEditMember, onRemoveMember }: 
               </div>
 
               {member.phone && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-neutral-600">
                   <Phone className="w-4 h-4" />
                   <a href={`tel:${member.phone}`} className="hover:text-brand-600">
                     {member.phone}

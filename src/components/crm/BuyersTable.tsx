@@ -107,7 +107,7 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
             {buyers.map((buyer) => {
               const statusConfig = getStatusConfig(buyer.status);
               const StatusIcon = statusConfig.icon;
