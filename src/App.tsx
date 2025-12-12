@@ -120,6 +120,7 @@ import { ProjectSAV } from './pages/ProjectSAV';
 import { ProjectSAVEnhanced } from './pages/ProjectSAVEnhanced';
 import { ProjectQualityControlEnhanced } from './pages/ProjectQualityControlEnhanced';
 import { ProjectCRMPipelineEnhanced } from './pages/ProjectCRMPipelineEnhanced';
+import ProjectConstructionProgressEnhanced from './pages/ProjectConstructionProgressEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -239,6 +240,7 @@ function App() {
                     <Route path="/projects/:projectId/planning/reports" element={<ProjectPlanningReports />} />
                     <Route path="/projects/:projectId/planning/buyers" element={<ProjectPlanningBuyersProgress />} />
                     <Route path="/projects/:projectId/construction" element={<ProjectConstructionPage />} />
+                    <Route path="/projects/:projectId/construction/progress" element={<ProjectConstructionProgressEnhanced />} />
                     <Route path="/projects/:projectId/communication" element={<ProjectCommunicationPage />} />
                     <Route path="/projects/:projectId/reporting" element={<ProjectReportingPage />} />
                     <Route path="/projects/:projectId/modifications" element={<ProjectModificationsPage />} />
