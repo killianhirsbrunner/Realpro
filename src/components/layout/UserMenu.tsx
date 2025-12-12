@@ -37,7 +37,7 @@ export function UserMenu() {
     setIsLoggingOut(true);
     try {
       await supabase.auth.signOut();
-      navigate('/auth/login');
+      navigate('/login');
     } catch (error) {
       setIsLoggingOut(false);
     }
@@ -124,12 +124,12 @@ export function UserMenu() {
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
           'relative p-1 rounded-full transition-all duration-200',
-          'hover:ring-2 hover:ring-brand-500/30',
-          'focus:outline-none focus:ring-2 focus:ring-brand-500/50',
-          isOpen && 'ring-2 ring-brand-500/50'
+          'hover:ring-2 hover:ring-realpro-turquoise/30',
+          'focus:outline-none focus:ring-2 focus:ring-realpro-turquoise/50',
+          isOpen && 'ring-2 ring-realpro-turquoise/50'
         )}
       >
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 text-white flex items-center justify-center text-sm font-semibold shadow-md">
+        <div className="w-10 h-10 rounded-full bg-realpro-turquoise text-white flex items-center justify-center text-sm font-semibold shadow-md">
           {getInitials(profile?.first_name, profile?.last_name)}
         </div>
         <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-neutral-900 rounded-full" />
@@ -144,7 +144,7 @@ export function UserMenu() {
             : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
         )}
       >
-        <div className="p-4 bg-gradient-to-br from-brand-500 to-brand-600">
+        <div className="p-4 bg-realpro-turquoise">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center text-lg font-semibold">
               {getInitials(profile?.first_name, profile?.last_name)}
@@ -177,8 +177,8 @@ export function UserMenu() {
                 }}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors group"
               >
-                <div className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-brand-50 dark:group-hover:bg-brand-900/20 transition-colors">
-                  <Icon className="h-4.5 w-4.5 text-neutral-600 dark:text-neutral-400 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors" />
+                <div className="w-9 h-9 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-realpro-turquoise/5 dark:group-hover:bg-realpro-turquoise/10 transition-colors">
+                  <Icon className="h-4.5 w-4.5 text-neutral-600 dark:text-neutral-400 group-hover:text-realpro-turquoise transition-colors" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
