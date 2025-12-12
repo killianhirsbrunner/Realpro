@@ -5,6 +5,7 @@ import { ProjectsPage } from './pages/Projects';
 import { ProjectDetailPage } from './pages/ProjectDetail';
 import { ProjectBuyersPage } from './pages/ProjectBuyers';
 import { ProjectCRMPage } from './pages/ProjectCRM';
+import { ProjectFinancePage } from './pages/ProjectFinance';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="projects/:projectId" element={<ProjectDetailPage />} />
         <Route path="projects/:projectId/buyers" element={<ProjectBuyersPage />} />
         <Route path="projects/:projectId/crm" element={<ProjectCRMPage />} />
+        <Route path="projects/:projectId/finance" element={<ProjectFinancePage />} />
       </Route>
     </Routes>
   );

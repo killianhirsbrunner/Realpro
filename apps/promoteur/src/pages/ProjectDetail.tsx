@@ -25,6 +25,10 @@ import {
   Home,
   DollarSign,
   Ruler,
+  UserCheck,
+  Target,
+  CreditCard,
+  ChevronRight,
 } from 'lucide-react';
 import {
   PROJECT_STATUS_LABELS,
@@ -250,6 +254,66 @@ export function ProjectDetailPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Quick Navigation Modules */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <Link to={`/projects/${projectId}/buyers`}>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors">
+                <UserCheck className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-neutral-900 dark:text-white">
+                  Acheteurs
+                </h4>
+                <p className="text-sm text-neutral-500">
+                  Gestion des acquéreurs
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link to={`/projects/${projectId}/crm`}>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
+                <Target className="w-6 h-6 text-purple-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-neutral-900 dark:text-white">
+                  Pipeline CRM
+                </h4>
+                <p className="text-sm text-neutral-500">
+                  Suivi des prospects
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link to={`/projects/${projectId}/finance`}>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg group-hover:bg-green-200 dark:group-hover:bg-green-900/50 transition-colors">
+                <CreditCard className="w-6 h-6 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-neutral-900 dark:text-white">
+                  Finances
+                </h4>
+                <p className="text-sm text-neutral-500">
+                  Paiements et factures
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
 
       {/* Tabs */}
       <Tabs defaultValue="units">
