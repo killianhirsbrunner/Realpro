@@ -12,28 +12,28 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
             {label}
           </label>
         )}
         <input
           ref={ref}
           className={clsx(
-            'w-full px-3 py-2.5 h-10 border rounded-lg text-sm text-gray-900 placeholder-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent',
-            'disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed',
+            'w-full px-3 py-2.5 h-10 border rounded-lg text-sm text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 bg-white dark:bg-neutral-800',
+            'focus:outline-none focus:ring-2 focus:ring-realpro-turquoise/50 focus:border-realpro-turquoise',
+            'disabled:bg-neutral-50 disabled:text-neutral-500 dark:disabled:bg-neutral-900 dark:disabled:text-neutral-500 disabled:cursor-not-allowed',
             'transition-colors duration-200',
             {
-              'border-gray-300': !error,
+              'border-neutral-300 dark:border-neutral-600': !error,
               'border-red-500 focus:ring-red-500': error,
             },
             className
           )}
           {...props}
         />
-        {error && <p className="mt-1.5 text-sm text-red-600">{error}</p>}
+        {error && <p className="mt-1.5 text-sm text-red-600 dark:text-red-400">{error}</p>}
         {helperText && !error && (
-          <p className="mt-1.5 text-sm text-gray-500">{helperText}</p>
+          <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">{helperText}</p>
         )}
       </div>
     );

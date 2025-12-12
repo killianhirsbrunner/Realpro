@@ -13,8 +13,8 @@ function StatCard({ icon: Icon, label, value, color }: { icon: any; label: strin
           <Icon className="h-6 w-6 text-white" />
         </div>
         <div>
-          <p className="text-sm text-gray-600">{label}</p>
-          <p className="text-2xl font-semibold text-gray-900">{value}</p>
+          <p className="text-sm text-neutral-600">{label}</p>
+          <p className="text-2xl font-semibold text-neutral-900">{value}</p>
         </div>
       </div>
     </Card>
@@ -96,37 +96,37 @@ export function BrokerDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Tableau de bord Courtier</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-neutral-900">Tableau de bord Courtier</h1>
+          <p className="mt-2 text-neutral-600">
             Gérez vos lots, réservations et contrats de vente
           </p>
         </div>
 
         {projectsLoading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-gray-500">Chargement des projets...</div>
+            <div className="text-neutral-500">Chargement des projets...</div>
           </div>
         ) : projects && projects.length === 0 ? (
           <Card className="p-8 text-center">
-            <Building2 className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-4 text-lg font-medium text-gray-900">Aucun projet</h3>
-            <p className="mt-2 text-gray-600">
+            <Building2 className="mx-auto h-12 w-12 text-neutral-400" />
+            <h3 className="mt-4 text-lg font-medium text-neutral-900">Aucun projet</h3>
+            <p className="mt-2 text-neutral-600">
               Vous n'êtes pas encore assigné à un projet en tant que courtier.
             </p>
           </Card>
         ) : (
           <>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Filtrer par projet
               </label>
               <select
                 value={selectedProjectId || ''}
                 onChange={(e) => setSelectedProjectId(e.target.value || undefined)}
-                className="block w-full max-w-md rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                className="block w-full max-w-md rounded-lg border-neutral-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
               >
                 <option value="">Tous les projets</option>
                 {projects?.map((project: any) => (
@@ -167,7 +167,7 @@ export function BrokerDashboard() {
             <div className="space-y-8">
               <section>
                 <div className="mb-4 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-gray-900">Lots commercialisables</h2>
+                  <h2 className="text-xl font-bold text-neutral-900">Lots commercialisables</h2>
                   <Button href={`/broker/lots${selectedProjectId ? `?project=${selectedProjectId}` : ''}`}>
                     Voir tous les lots
                   </Button>
@@ -175,86 +175,86 @@ export function BrokerDashboard() {
 
                 {lotsLoading ? (
                   <Card className="p-8 text-center">
-                    <div className="text-gray-500">Chargement des lots...</div>
+                    <div className="text-neutral-500">Chargement des lots...</div>
                   </Card>
                 ) : !lots || lots.length === 0 ? (
                   <Card className="p-8 text-center">
-                    <Home className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-4 text-lg font-medium text-gray-900">Aucun lot</h3>
-                    <p className="mt-2 text-gray-600">Aucun lot disponible pour le moment.</p>
+                    <Home className="mx-auto h-12 w-12 text-neutral-400" />
+                    <h3 className="mt-4 text-lg font-medium text-neutral-900">Aucun lot</h3>
+                    <p className="mt-2 text-neutral-600">Aucun lot disponible pour le moment.</p>
                   </Card>
                 ) : (
                   <Card>
                     <div className="overflow-x-auto">
-                      <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                      <table className="min-w-full divide-y divide-neutral-200">
+                        <thead className="bg-neutral-50">
                           <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Lot
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Projet
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Type
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Statut
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Prix
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Acheteur/Prospect
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Dates clés
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
+                        <tbody className="divide-y divide-neutral-200 bg-white">
                           {lots.slice(0, 10).map((lot) => (
-                            <tr key={lot.id} className="hover:bg-gray-50">
+                            <tr key={lot.id} className="hover:bg-neutral-50">
                               <td className="whitespace-nowrap px-6 py-4">
-                                <div className="font-medium text-gray-900">{lot.code}</div>
-                                <div className="text-sm text-gray-500">
+                                <div className="font-medium text-neutral-900">{lot.code}</div>
+                                <div className="text-sm text-neutral-500">
                                   {lot.rooms_count && `${lot.rooms_count} pièces`}
                                   {lot.surface_living && ` • ${lot.surface_living} m²`}
                                 </div>
                               </td>
                               <td className="whitespace-nowrap px-6 py-4">
-                                <div className="text-sm text-gray-900">{lot.project.name}</div>
-                                <div className="text-sm text-gray-500">{lot.project.code}</div>
+                                <div className="text-sm text-neutral-900">{lot.project.name}</div>
+                                <div className="text-sm text-neutral-500">{lot.project.code}</div>
                               </td>
-                              <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-6 py-4 text-sm text-neutral-500">
                                 {lot.type}
                               </td>
                               <td className="whitespace-nowrap px-6 py-4">
                                 {getLotStatusBadge(lot.status)}
                               </td>
-                              <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium text-gray-900">
+                              <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium text-neutral-900">
                                 {formatCurrency(lot.price_total)}
                               </td>
                               <td className="whitespace-nowrap px-6 py-4 text-sm">
                                 {lot.buyer ? (
                                   <div>
-                                    <div className="font-medium text-gray-900">
+                                    <div className="font-medium text-neutral-900">
                                       {lot.buyer.first_name} {lot.buyer.last_name}
                                     </div>
-                                    <div className="text-gray-500">Acheteur</div>
+                                    <div className="text-neutral-500">Acheteur</div>
                                   </div>
                                 ) : lot.reservation ? (
                                   <div>
-                                    <div className="font-medium text-gray-900">
+                                    <div className="font-medium text-neutral-900">
                                       {lot.reservation.buyer_first_name} {lot.reservation.buyer_last_name}
                                     </div>
-                                    <div className="text-gray-500">Réservation</div>
+                                    <div className="text-neutral-500">Réservation</div>
                                   </div>
                                 ) : (
-                                  <span className="text-gray-400">-</span>
+                                  <span className="text-neutral-400">-</span>
                                 )}
                               </td>
-                              <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-6 py-4 text-sm text-neutral-500">
                                 {lot.reservation?.signed_at ? (
                                   <div className="text-green-600">
                                     ✓ Réservation signée
@@ -266,7 +266,7 @@ export function BrokerDashboard() {
                                     <div className="text-xs">{formatDate(lot.sales_contract.signed_at)}</div>
                                   </div>
                                 ) : (
-                                  <span className="text-gray-400">-</span>
+                                  <span className="text-neutral-400">-</span>
                                 )}
                               </td>
                             </tr>
@@ -280,7 +280,7 @@ export function BrokerDashboard() {
 
               <section>
                 <div className="mb-4 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-gray-900">Réservations actives</h2>
+                  <h2 className="text-xl font-bold text-neutral-900">Réservations actives</h2>
                   <Button href={`/broker/reservations${selectedProjectId ? `?project=${selectedProjectId}` : ''}`}>
                     Voir toutes
                   </Button>
@@ -288,59 +288,59 @@ export function BrokerDashboard() {
 
                 {reservationsLoading ? (
                   <Card className="p-8 text-center">
-                    <div className="text-gray-500">Chargement des réservations...</div>
+                    <div className="text-neutral-500">Chargement des réservations...</div>
                   </Card>
                 ) : !reservations || reservations.length === 0 ? (
                   <Card className="p-8 text-center">
-                    <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 className="mt-4 text-lg font-medium text-gray-900">Aucune réservation</h3>
-                    <p className="mt-2 text-gray-600">Aucune réservation active pour le moment.</p>
+                    <FileText className="mx-auto h-12 w-12 text-neutral-400" />
+                    <h3 className="mt-4 text-lg font-medium text-neutral-900">Aucune réservation</h3>
+                    <p className="mt-2 text-neutral-600">Aucune réservation active pour le moment.</p>
                   </Card>
                 ) : (
                   <Card>
                     <div className="overflow-x-auto">
-                      <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                      <table className="min-w-full divide-y divide-neutral-200">
+                        <thead className="bg-neutral-50">
                           <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Lot
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Acheteur
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Statut
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Date réservation
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Date signature
                             </th>
-                            <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                            <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                               Acompte
                             </th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
+                        <tbody className="divide-y divide-neutral-200 bg-white">
                           {reservations.slice(0, 5).map((reservation) => (
-                            <tr key={reservation.id} className="hover:bg-gray-50">
+                            <tr key={reservation.id} className="hover:bg-neutral-50">
                               <td className="whitespace-nowrap px-6 py-4">
-                                <div className="font-medium text-gray-900">{reservation.lot.code}</div>
-                                <div className="text-sm text-gray-500">{reservation.project.name}</div>
+                                <div className="font-medium text-neutral-900">{reservation.lot.code}</div>
+                                <div className="text-sm text-neutral-500">{reservation.project.name}</div>
                               </td>
                               <td className="whitespace-nowrap px-6 py-4">
-                                <div className="font-medium text-gray-900">
+                                <div className="font-medium text-neutral-900">
                                   {reservation.buyer_first_name} {reservation.buyer_last_name}
                                 </div>
                                 {reservation.buyer_email && (
-                                  <div className="text-sm text-gray-500">{reservation.buyer_email}</div>
+                                  <div className="text-sm text-neutral-500">{reservation.buyer_email}</div>
                                 )}
                               </td>
                               <td className="whitespace-nowrap px-6 py-4">
                                 {getReservationStatusBadge(reservation.status)}
                               </td>
-                              <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-6 py-4 text-sm text-neutral-500">
                                 {formatDate(reservation.reserved_at)}
                               </td>
                               <td className="whitespace-nowrap px-6 py-4 text-sm">
@@ -349,10 +349,10 @@ export function BrokerDashboard() {
                                     ✓ {formatDate(reservation.signed_at)}
                                   </div>
                                 ) : (
-                                  <span className="text-gray-400">Non signé</span>
+                                  <span className="text-neutral-400">Non signé</span>
                                 )}
                               </td>
-                              <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-neutral-500">
                                 {formatCurrency(reservation.deposit_amount)}
                                 {reservation.deposit_paid_at && (
                                   <div className="text-xs text-green-600">✓ Payé</div>

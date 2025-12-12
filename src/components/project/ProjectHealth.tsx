@@ -21,8 +21,8 @@ interface ProjectHealthProps {
 
 export default function ProjectHealth({ health }: ProjectHealthProps) {
   return (
-    <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm space-y-4">
-      <h3 className="font-semibold text-lg text-gray-900">Santé du Projet</h3>
+    <div className="p-6 bg-white rounded-xl border border-neutral-200 shadow-sm space-y-4">
+      <h3 className="font-semibold text-lg text-neutral-900">Santé du Projet</h3>
 
       {health.risks.length === 0 && health.alerts.length === 0 && (
         <div className="p-4 rounded-xl bg-green-50 border border-green-200">

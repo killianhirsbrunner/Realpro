@@ -127,10 +127,10 @@ export default function AdminOrganizationsPage() {
   return (
     <div className="space-y-6 p-6">
       <header>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
           Administration SaaS
         </h1>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
           Gestion des organisations et abonnements
         </p>
       </header>
@@ -143,8 +143,8 @@ export default function AdminOrganizationsPage() {
                 <Building2 className="h-5 w-5 text-brand-600 dark:text-brand-400" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Organisations</p>
-                <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Organisations</p>
+                <p className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
                   {stats.organizations}
                 </p>
               </div>
@@ -157,8 +157,8 @@ export default function AdminOrganizationsPage() {
                 <FolderKanban className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Projets</p>
-                <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Projets</p>
+                <p className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
                   {stats.projects}
                 </p>
               </div>
@@ -171,8 +171,8 @@ export default function AdminOrganizationsPage() {
                 <Users className="h-5 w-5 text-brand-600 dark:text-brand-400" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Utilisateurs</p>
-                <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Utilisateurs</p>
+                <p className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
                   {stats.users}
                 </p>
               </div>
@@ -185,8 +185,8 @@ export default function AdminOrganizationsPage() {
                 <TrendingUp className="h-5 w-5 text-brand-600 dark:text-brand-400" />
               </div>
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Abonnements actifs</p>
-                <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Abonnements actifs</p>
+                <p className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">
                   {stats.activeSubscriptions}
                 </p>
               </div>
@@ -198,7 +198,7 @@ export default function AdminOrganizationsPage() {
       <Card>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="border-b bg-gray-50 text-xs uppercase text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
+            <thead className="border-b bg-neutral-50 text-xs uppercase text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400">
               <tr>
                 <th className="px-4 py-3">Organisation</th>
                 <th className="px-4 py-3">Plan actuel</th>
@@ -213,25 +213,25 @@ export default function AdminOrganizationsPage() {
               {organizations.map((org) => (
                 <tr
                   key={org.id}
-                  className="border-b last:border-b-0 dark:border-gray-800"
+                  className="border-b last:border-b-0 dark:border-neutral-800"
                 >
                   <td className="px-4 py-3">
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-gray-50">
+                      <p className="font-medium text-neutral-900 dark:text-neutral-50">
                         {org.name}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         {new Date(org.createdAt).toLocaleDateString('fr-CH')}
                       </p>
                     </div>
                   </td>
                   <td className="px-4 py-3">
                     <div>
-                      <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                      <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
                         {org.plan}
                       </p>
                       {org.billingCycle && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
                           {org.billingCycle === 'MONTHLY' ? 'Mensuel' : 'Annuel'}
                         </p>
                       )}
@@ -245,25 +245,25 @@ export default function AdminOrganizationsPage() {
                             ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300'
                             : org.subscriptionStatus === 'TRIAL'
                             ? 'bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300'
-                            : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                            : 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300'
                         }`}
                       >
                         {org.subscriptionStatus}
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-4 py-3 text-sm text-neutral-700 dark:text-neutral-300">
                     {org.projectsCount}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-4 py-3 text-sm text-neutral-700 dark:text-neutral-300">
                     {org.usersCount}
                   </td>
-                  <td className="px-4 py-3 text-xs text-gray-500 dark:text-gray-400">
+                  <td className="px-4 py-3 text-xs text-neutral-500 dark:text-neutral-400">
                     {org.defaultLanguage}
                   </td>
                   <td className="px-4 py-3">
                     <select
-                      className="rounded-lg border px-3 py-1.5 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50"
+                      className="rounded-lg border px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-50"
                       value={org.planSlug || ''}
                       onChange={(e) => {
                         if (e.target.value) {

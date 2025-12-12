@@ -42,11 +42,11 @@ export function ProjectDocumentsCard({ projectId, documents, totalCount }: Proje
       <Card.Header>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-gray-600" />
+            <FileText className="h-5 w-5 text-neutral-600" />
             <Card.Title>Documents récents</Card.Title>
           </div>
           {totalCount && totalCount > 0 && (
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-neutral-500">
               {totalCount} document{totalCount > 1 ? 's' : ''}
             </span>
           )}
@@ -56,8 +56,8 @@ export function ProjectDocumentsCard({ projectId, documents, totalCount }: Proje
       <Card.Content className="space-y-4">
         {documents.length === 0 ? (
           <div className="text-center py-8">
-            <FileText className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-sm text-gray-500 mb-4">Aucun document récent</p>
+            <FileText className="h-12 w-12 text-neutral-300 mx-auto mb-3" />
+            <p className="text-sm text-neutral-500 mb-4">Aucun document récent</p>
             <Link to={`/projects/${projectId}/documents`}>
               <Button size="sm" variant="outline" className="gap-2">
                 <Upload className="h-4 w-4" />
@@ -76,16 +76,16 @@ export function ProjectDocumentsCard({ projectId, documents, totalCount }: Proje
                     key={doc.id}
                     to={`/projects/${projectId}/documents/${doc.id}`}
                   >
-                    <div className="group flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div className="group flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors cursor-pointer">
                       <div className="flex-shrink-0 p-2 bg-brand-50 rounded-lg group-hover:bg-brand-100 transition-colors">
                         <Icon className="h-4 w-4 text-brand-600" />
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate group-hover:text-brand-600 transition-colors">
+                        <p className="text-sm font-medium text-neutral-900 truncate group-hover:text-brand-600 transition-colors">
                           {doc.name}
                         </p>
-                        <div className="flex items-center gap-2 text-xs text-gray-500 mt-0.5">
+                        <div className="flex items-center gap-2 text-xs text-neutral-500 mt-0.5">
                           <Clock className="h-3 w-3" />
                           <span>{formatRelativeTime(doc.uploaded_at)}</span>
                           {doc.size && (
@@ -108,7 +108,7 @@ export function ProjectDocumentsCard({ projectId, documents, totalCount }: Proje
               })}
             </div>
 
-            <div className="pt-4 border-t border-gray-100 flex gap-2">
+            <div className="pt-4 border-t border-neutral-100 flex gap-2">
               <Link to={`/projects/${projectId}/documents`} className="flex-1">
                 <Button variant="outline" className="w-full">
                   Tous les documents

@@ -34,7 +34,7 @@ export function MetricCard({
   loading = false
 }: MetricCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-6 hover:shadow-lg transition-all duration-200">
+    <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg transition-all duration-200">
       <div className={`absolute inset-0 bg-gradient-to-br ${colorClasses[color]} opacity-0 group-hover:opacity-5 transition-opacity duration-200`} />
 
       <div className="relative z-10">
@@ -62,15 +62,15 @@ export function MetricCard({
         <div>
           {loading ? (
             <>
-              <div className="h-8 bg-gray-200 dark:bg-gray-800 rounded animate-pulse mb-2" />
-              <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded animate-pulse w-2/3" />
+              <div className="h-8 bg-neutral-200 dark:bg-neutral-800 rounded animate-pulse mb-2" />
+              <div className="h-4 bg-neutral-200 dark:bg-neutral-800 rounded animate-pulse w-2/3" />
             </>
           ) : (
             <>
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              <div className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">
                 {value}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-neutral-600 dark:text-neutral-400">
                 {subtitle || title}
               </div>
             </>

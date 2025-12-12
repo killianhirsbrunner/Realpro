@@ -28,8 +28,8 @@ export default function ProjectHealthPage() {
       />
 
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Santé du Projet</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-neutral-900">Santé du Projet</h1>
+        <p className="text-neutral-600 mt-2">
           Surveillez les risques et alertes du projet
         </p>
       </div>
@@ -48,7 +48,7 @@ export default function ProjectHealthPage() {
             ) : (
               <AlertTriangle className={`w-6 h-6 ${criticalRisks > 0 ? 'text-red-600' : 'text-yellow-600'}`} />
             )}
-            <p className="text-sm font-medium text-gray-700">État global</p>
+            <p className="text-sm font-medium text-neutral-700">État global</p>
           </div>
           <p className={`text-2xl font-bold ${
             totalIssues === 0
@@ -61,31 +61,31 @@ export default function ProjectHealthPage() {
           </p>
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <AlertTriangle className="w-6 h-6 text-red-600" />
-            <p className="text-sm font-medium text-gray-600">Risques</p>
+            <p className="text-sm font-medium text-neutral-600">Risques</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{health.risks.length}</p>
+          <p className="text-3xl font-bold text-neutral-900">{health.risks.length}</p>
           {criticalRisks > 0 && (
             <p className="text-sm text-red-600 mt-1">{criticalRisks} critique(s)</p>
           )}
         </div>
 
-        <div className="p-6 bg-white rounded-xl border border-gray-200">
+        <div className="p-6 bg-white rounded-xl border border-neutral-200">
           <div className="flex items-center gap-3 mb-2">
             <Info className="w-6 h-6 text-yellow-600" />
-            <p className="text-sm font-medium text-gray-600">Alertes</p>
+            <p className="text-sm font-medium text-neutral-600">Alertes</p>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{health.alerts.length}</p>
+          <p className="text-3xl font-bold text-neutral-900">{health.alerts.length}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <ProjectHealth health={health} />
 
-        <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
-          <h3 className="font-semibold text-lg text-gray-900">Recommandations</h3>
+        <div className="bg-white rounded-xl border border-neutral-200 p-6 space-y-4">
+          <h3 className="font-semibold text-lg text-neutral-900">Recommandations</h3>
 
           {totalIssues === 0 ? (
             <div className="p-4 bg-green-50 rounded-xl border border-green-200">
@@ -117,8 +117,8 @@ export default function ProjectHealthPage() {
           )}
 
           <div className="mt-6 space-y-3">
-            <p className="font-medium text-gray-900">Actions suggérées:</p>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <p className="font-medium text-neutral-900">Actions suggérées:</p>
+            <ul className="space-y-2 text-sm text-neutral-600">
               <li className="flex items-start gap-2">
                 <span className="text-brand-600">•</span>
                 <span>Planifier une réunion de coordination hebdomadaire</span>

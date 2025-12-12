@@ -11,11 +11,11 @@ export default function ProjectFinancesSummaryCard({ projectId }: ProjectFinance
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl border border-gray-200 p-6 animate-pulse">
-        <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+      <div className="bg-white rounded-xl border border-neutral-200 p-6 animate-pulse">
+        <div className="h-6 bg-neutral-200 rounded w-1/3 mb-4"></div>
         <div className="space-y-3">
-          <div className="h-4 bg-gray-200 rounded"></div>
-          <div className="h-4 bg-gray-200 rounded"></div>
+          <div className="h-4 bg-neutral-200 rounded"></div>
+          <div className="h-4 bg-neutral-200 rounded"></div>
         </div>
       </div>
     );
@@ -28,15 +28,15 @@ export default function ProjectFinancesSummaryCard({ projectId }: ProjectFinance
     : 0;
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6">
+    <div className="bg-white rounded-xl border border-neutral-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
             <Wallet className="w-5 h-5 text-green-600" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Finances</h3>
-            <p className="text-sm text-gray-500">Budget & Trésorerie</p>
+            <h3 className="text-lg font-semibold text-neutral-900">Finances</h3>
+            <p className="text-sm text-neutral-500">Budget & Trésorerie</p>
           </div>
         </div>
         <Link
@@ -85,22 +85,22 @@ export default function ProjectFinancesSummaryCard({ projectId }: ProjectFinance
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-50 rounded-lg p-3">
+          <div className="bg-neutral-50 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-1">
-              <FileText className="w-3 h-3 text-gray-600" />
-              <span className="text-xs font-medium text-gray-700">Contrats</span>
+              <FileText className="w-3 h-3 text-neutral-600" />
+              <span className="text-xs font-medium text-neutral-700">Contrats</span>
             </div>
-            <p className="text-lg font-bold text-gray-900">{data.contracts.total}</p>
-            <p className="text-xs text-gray-600">{data.contracts.active} actifs</p>
+            <p className="text-lg font-bold text-neutral-900">{data.contracts.total}</p>
+            <p className="text-xs text-neutral-600">{data.contracts.active} actifs</p>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-3">
+          <div className="bg-neutral-50 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-1">
-              <CreditCard className="w-3 h-3 text-gray-600" />
-              <span className="text-xs font-medium text-gray-700">Factures</span>
+              <CreditCard className="w-3 h-3 text-neutral-600" />
+              <span className="text-xs font-medium text-neutral-700">Factures</span>
             </div>
-            <p className="text-lg font-bold text-gray-900">{data.invoices.total}</p>
-            <p className="text-xs text-gray-600">{data.invoices.paid} payées</p>
+            <p className="text-lg font-bold text-neutral-900">{data.invoices.total}</p>
+            <p className="text-xs text-neutral-600">{data.invoices.paid} payées</p>
           </div>
         </div>
 
@@ -113,13 +113,13 @@ export default function ProjectFinancesSummaryCard({ projectId }: ProjectFinance
           </div>
         )}
 
-        <div className="pt-3 border-t border-gray-200">
-          <div className="text-sm text-gray-600">Acomptes acheteurs</div>
+        <div className="pt-3 border-t border-neutral-200">
+          <div className="text-sm text-neutral-600">Acomptes acheteurs</div>
           <div className="flex items-baseline gap-2 mt-1">
             <span className="text-lg font-bold text-green-600">
               {(data.buyerInstallments.receivedAmount / 1000).toFixed(0)}K
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-neutral-500">
               / {(data.buyerInstallments.expectedAmount / 1000).toFixed(0)}K CHF
             </span>
           </div>

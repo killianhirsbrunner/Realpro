@@ -194,9 +194,9 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
       case 'company':
         return <Briefcase className="w-5 h-5 text-orange-500" />;
       case 'document':
-        return <FileText className="w-5 h-5 text-gray-500" />;
+        return <FileText className="w-5 h-5 text-neutral-500" />;
       default:
-        return <Search className="w-5 h-5 text-gray-400" />;
+        return <Search className="w-5 h-5 text-neutral-400" />;
     }
   };
 
@@ -204,9 +204,9 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 bg-black/50">
-      <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-lg shadow-2xl">
-        <div className="flex items-center px-4 border-b border-gray-200 dark:border-gray-700">
-          <Search className="w-5 h-5 text-gray-400" />
+      <div className="w-full max-w-2xl bg-white dark:bg-neutral-800 rounded-lg shadow-2xl">
+        <div className="flex items-center px-4 border-b border-neutral-200 dark:border-neutral-700">
+          <Search className="w-5 h-5 text-neutral-400" />
           <input
             ref={inputRef}
             type="text"
@@ -217,7 +217,7 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
           />
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+            className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
           >
             <X className="w-5 h-5" />
           </button>
@@ -226,13 +226,13 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
         {query.trim().length >= 2 && (
           <div className="max-h-96 overflow-y-auto">
             {loading && (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-neutral-500">
                 Recherche en cours...
               </div>
             )}
 
             {!loading && results.length === 0 && (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-neutral-500">
                 Aucun résultat trouvé
               </div>
             )}
@@ -246,21 +246,21 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
                     className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
                       index === selectedIndex
                         ? 'bg-blue-50 dark:bg-blue-900/20'
-                        : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                        : 'hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
                     }`}
                   >
                     {getIcon(result.type)}
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-gray-900 dark:text-white truncate">
+                      <div className="font-medium text-neutral-900 dark:text-white truncate">
                         {result.title}
                       </div>
                       {result.subtitle && (
-                        <div className="text-sm text-gray-500 truncate">
+                        <div className="text-sm text-neutral-500 truncate">
                           {result.subtitle}
                         </div>
                       )}
                     </div>
-                    <div className="text-xs text-gray-400 capitalize">
+                    <div className="text-xs text-neutral-400 capitalize">
                       {result.type}
                     </div>
                   </button>
@@ -271,13 +271,13 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
         )}
 
         {query.trim().length < 2 && (
-          <div className="p-8 text-center text-gray-500 text-sm">
+          <div className="p-8 text-center text-neutral-500 text-sm">
             <div className="mb-2">Tapez au moins 2 caractères pour rechercher</div>
-            <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
-              <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">↑</kbd>
-              <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">↓</kbd>
+            <div className="flex items-center justify-center gap-2 text-xs text-neutral-400">
+              <kbd className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded">↑</kbd>
+              <kbd className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded">↓</kbd>
               <span>pour naviguer</span>
-              <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">Enter</kbd>
+              <kbd className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded">Enter</kbd>
               <span>pour sélectionner</span>
             </div>
           </div>

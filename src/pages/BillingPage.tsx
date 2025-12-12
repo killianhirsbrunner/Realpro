@@ -264,7 +264,7 @@ export function BillingPage() {
   if (error && !data) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-8">
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-white">
           Facturation & abonnement
         </h1>
         <Card className="mt-4">
@@ -285,13 +285,13 @@ export function BillingPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-8">
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-gray-400 dark:text-gray-500">
+        <p className="text-xs uppercase tracking-wide text-neutral-400 dark:text-neutral-500">
           Administration - Facturation
         </p>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-white">
           Facturation & abonnement
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400">
           Gerez votre abonnement, vos plans et les moyens de paiement pour votre
           organisation
         </p>
@@ -321,20 +321,20 @@ export function BillingPage() {
       <Card>
         <div className="space-y-4">
           <div>
-            <p className="text-sm font-semibold text-gray-900 dark:text-white">Organisation</p>
-            <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">{data.organization.name}</p>
+            <p className="text-sm font-semibold text-neutral-900 dark:text-white">Organisation</p>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300 mt-1">{data.organization.name}</p>
           </div>
 
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+          <div className="border-t border-neutral-200 dark:border-neutral-700 pt-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                <p className="text-xs uppercase tracking-wide text-neutral-400 dark:text-neutral-500">
                   Abonnement actuel
                 </p>
                 {current ? (
                   <div className="mt-2 space-y-1">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                      <p className="text-sm font-medium text-neutral-900 dark:text-white">
                         {current.planName}
                       </p>
                       <Badge variant={getStatusVariant(current.status)}>
@@ -344,7 +344,7 @@ export function BillingPage() {
                         {current.billingCycle === 'YEARLY' ? 'Annuel' : 'Mensuel'}
                       </Badge>
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">
                       Periode du {formatDate(current.currentPeriodStart)} au{' '}
                       {formatDate(current.currentPeriodEnd)}
                     </p>
@@ -355,24 +355,24 @@ export function BillingPage() {
                     )}
                   </div>
                 ) : (
-                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
                     Aucun abonnement actif. Choisissez un plan ci-dessous pour demarrer
                   </p>
                 )}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-neutral-600 dark:text-neutral-400">
                 <div className="flex gap-4">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {data.usage.projectsCount}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Projets</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Projets</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {data.usage.usersCount}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Utilisateurs</p>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Utilisateurs</p>
                   </div>
                 </div>
               </div>
@@ -384,10 +384,10 @@ export function BillingPage() {
       <Card>
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <CreditCard className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-            <p className="text-sm font-semibold text-gray-900 dark:text-white">Moyen de paiement</p>
+            <CreditCard className="w-5 h-5 text-neutral-400 dark:text-neutral-500" />
+            <p className="text-sm font-semibold text-neutral-900 dark:text-white">Moyen de paiement</p>
           </div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             Configurez un moyen de paiement via Datatrans pour le prelevement
             automatique de vos abonnements
           </p>
@@ -403,8 +403,8 @@ export function BillingPage() {
 
       <section className="space-y-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Plans disponibles</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Plans disponibles</h2>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
             Selectionnez le plan qui correspond le mieux a vos besoins
           </p>
         </div>
@@ -415,7 +415,7 @@ export function BillingPage() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               billingCycle === 'MONTHLY'
                 ? 'bg-brand-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-300'
             }`}
           >
             Mensuel
@@ -425,7 +425,7 @@ export function BillingPage() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               billingCycle === 'YEARLY'
                 ? 'bg-brand-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300'
+                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-300'
             }`}
           >
             Annuel <span className="text-green-600 font-bold ml-1">(-17%)</span>
@@ -448,25 +448,25 @@ export function BillingPage() {
                 <div className="flex-1 space-y-4">
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <p className="text-sm font-semibold text-gray-900">
+                      <p className="text-sm font-semibold text-neutral-900">
                         {plan.name}
                       </p>
                       {plan.slug === 'professional' && (
                         <Badge variant="success">Recommandé</Badge>
                       )}
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-neutral-500 mt-1">
                       {plan.description?.fr || ''}
                     </p>
                   </div>
 
                   <div>
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                      <span className="text-3xl font-bold text-neutral-900 dark:text-white">
                         {formatCurrency(price)}
                       </span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">{periodLabel}</p>
+                    <p className="text-xs text-neutral-500 mt-1">{periodLabel}</p>
                     {plan.trialDays > 0 && (
                       <p className="text-xs text-brand-600 font-medium mt-1">
                         {plan.trialDays} jours d'essai gratuit
@@ -479,14 +479,14 @@ export function BillingPage() {
                       {plan.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2">
                           <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-xs text-gray-600 dark:text-gray-400">{feature}</span>
+                          <span className="text-xs text-neutral-600 dark:text-neutral-400">{feature}</span>
                         </div>
                       ))}
                     </div>
                   )}
 
                   {plan.limits && (
-                    <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400 border-t pt-3">
+                    <div className="space-y-1 text-xs text-neutral-600 dark:text-neutral-400 border-t pt-3">
                       {plan.limits.projects_max === -1 ? (
                         <div>Projets illimités</div>
                       ) : (

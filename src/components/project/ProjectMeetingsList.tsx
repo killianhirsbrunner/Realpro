@@ -23,7 +23,7 @@ const typeColors = {
   coordination: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'Coordination' },
   pilotage: { bg: 'bg-brand-100', text: 'text-brand-700', label: 'Pilotage' },
   bureau: { bg: 'bg-green-100', text: 'text-green-700', label: 'Bureau' },
-  autre: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'Autre' },
+  autre: { bg: 'bg-neutral-100', text: 'text-neutral-700', label: 'Autre' },
 };
 
 export default function ProjectMeetingsList({
@@ -37,7 +37,7 @@ export default function ProjectMeetingsList({
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-neutral-900 mb-4">
           Réunions à venir ({upcomingMeetings.length})
         </h3>
         <div className="space-y-3">
@@ -52,13 +52,13 @@ export default function ProjectMeetingsList({
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <p className="font-semibold text-gray-900">{meeting.title}</p>
+                      <p className="font-semibold text-neutral-900">{meeting.title}</p>
                       <span className={`px-2 py-1 ${typeStyle.bg} ${typeStyle.text} rounded text-xs font-medium`}>
                         {typeStyle.label}
                       </span>
                     </div>
 
-                    <div className="space-y-2 text-sm text-gray-600">
+                    <div className="space-y-2 text-sm text-neutral-600">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         <span>{meeting.date} à {meeting.time}</span>
@@ -83,13 +83,13 @@ export default function ProjectMeetingsList({
           })}
 
           {upcomingMeetings.length === 0 && (
-            <p className="text-gray-500 text-sm py-4">Aucune réunion planifiée</p>
+            <p className="text-neutral-500 text-sm py-4">Aucune réunion planifiée</p>
           )}
         </div>
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-neutral-900 mb-4">
           Réunions passées ({pastMeetings.length})
         </h3>
         <div className="space-y-3">
@@ -98,18 +98,18 @@ export default function ProjectMeetingsList({
             return (
               <div
                 key={meeting.id}
-                className="p-5 bg-gray-50 border border-gray-200 rounded-xl hover:bg-white transition-colors"
+                className="p-5 bg-neutral-50 border border-neutral-200 rounded-xl hover:bg-white transition-colors"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <p className="font-medium text-gray-900">{meeting.title}</p>
+                      <p className="font-medium text-neutral-900">{meeting.title}</p>
                       <span className={`px-2 py-1 ${typeStyle.bg} ${typeStyle.text} rounded text-xs font-medium`}>
                         {typeStyle.label}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-neutral-600">
                       <Calendar className="w-4 h-4" />
                       <span>{meeting.date}</span>
                     </div>
@@ -133,7 +133,7 @@ export default function ProjectMeetingsList({
           })}
 
           {pastMeetings.length === 0 && (
-            <p className="text-gray-500 text-sm py-4">Aucune réunion passée</p>
+            <p className="text-neutral-500 text-sm py-4">Aucune réunion passée</p>
           )}
         </div>
       </div>

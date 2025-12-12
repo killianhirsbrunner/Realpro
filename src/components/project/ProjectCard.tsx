@@ -135,7 +135,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="space-y-4 px-2 pb-2">
         <div>
           <Link to={`/projects/${project.id}`}>
-            <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-realpro-turquoise transition-colors">
               {project.name}
             </h3>
           </Link>
@@ -208,7 +208,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <Link to={`/projects/${project.id}`} className="block">
             <RealProButton
               variant="outline"
-              className="w-full group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600 transition-all"
+              className="w-full group-hover:bg-realpro-turquoise group-hover:text-white group-hover:border-realpro-turquoise transition-all"
             >
               Ouvrir le projet
             </RealProButton>

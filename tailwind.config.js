@@ -19,17 +19,18 @@ export default {
           950: '#0d0d0d',
         },
         brand: {
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63',
-          950: '#083344',
+          // Mapped to realpro-turquoise palette for consistency
+          50: '#e8f7fa',
+          100: '#d1eff5',
+          200: '#a3dfeb',
+          300: '#75cfe1',
+          400: '#5BC4D6',
+          500: '#3DAABD',  // realpro-turquoise
+          600: '#3DAABD',  // realpro-turquoise (primary)
+          700: '#2E8A9A',  // realpro-turquoise-dark
+          800: '#236a76',
+          900: '#184a52',
+          950: '#0d2a2e',
         },
         secondary: {
           50: '#f0fdfa',

@@ -104,7 +104,7 @@ export function ReportingOverview() {
   if (error || !data) {
     return (
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-4">
+        <h1 className="text-2xl font-semibold text-neutral-900 mb-4">
           Reporting multi-projets
         </h1>
         <Card className="bg-red-50 border-red-200">
@@ -123,13 +123,13 @@ export function ReportingOverview() {
     <div className="mx-auto max-w-7xl px-4 py-8 space-y-8">
       <header className="flex items-center justify-between">
         <div className="space-y-2">
-          <p className="text-xs uppercase tracking-wide text-gray-400">
+          <p className="text-xs uppercase tracking-wide text-neutral-400">
             Direction · Vue multi-projets
           </p>
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-semibold text-neutral-900">
             Reporting multi-projets
           </h1>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Synthèse de votre portefeuille : ventes, CFC, dossiers notaire, soumissions
           </p>
         </div>
@@ -166,44 +166,44 @@ export function ReportingOverview() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-base font-semibold text-gray-900">
+        <h2 className="text-base font-semibold text-neutral-900">
           Projets de l'organisation
         </h2>
         <Card>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-neutral-200">
+              <thead className="bg-neutral-50">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Projet
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Statut
                   </th>
-                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Lots (vendus/total)
                   </th>
-                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Budget CFC
                   </th>
-                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Engagé
                   </th>
-                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Facturé
                   </th>
-                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                  <th className="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-neutral-500">
                     Payé
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
+              <tbody className="divide-y divide-neutral-200 bg-white">
                 {projects.map((p) => (
-                  <tr key={p.id} className="hover:bg-gray-50">
+                  <tr key={p.id} className="hover:bg-neutral-50">
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex flex-col">
-                        <span className="font-medium text-gray-900">{p.name}</span>
-                        <span className="text-xs text-gray-500">
+                        <span className="font-medium text-neutral-900">{p.name}</span>
+                        <span className="text-xs text-neutral-500">
                           {p.city || '—'} · {renderStatusLabel(p.status)}
                         </span>
                       </div>
@@ -213,24 +213,24 @@ export function ReportingOverview() {
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap text-right">
                       <div className="flex flex-col items-end">
-                        <span className="font-medium text-gray-900 tabular-nums">
+                        <span className="font-medium text-neutral-900 tabular-nums">
                           {p.lots.sold}/{p.lots.total}
                         </span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-neutral-500">
                           {(p.soldRatio * 100).toFixed(0)}% vendus
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-right font-medium text-gray-900 tabular-nums">
+                    <td className="px-4 py-3 whitespace-nowrap text-right font-medium text-neutral-900 tabular-nums">
                       {formatCurrency(p.cfc.budget)}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-right tabular-nums text-gray-600">
+                    <td className="px-4 py-3 whitespace-nowrap text-right tabular-nums text-neutral-600">
                       {formatCurrency(p.cfc.engagement)}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-right tabular-nums text-gray-600">
+                    <td className="px-4 py-3 whitespace-nowrap text-right tabular-nums text-neutral-600">
                       {formatCurrency(p.cfc.invoiced)}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-right tabular-nums text-gray-600">
+                    <td className="px-4 py-3 whitespace-nowrap text-right tabular-nums text-neutral-600">
                       {formatCurrency(p.cfc.paid)}
                     </td>
                   </tr>
@@ -241,11 +241,11 @@ export function ReportingOverview() {
 
           {projects.length === 0 && (
             <div className="text-center py-12">
-              <Building2 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <Building2 className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-neutral-900 mb-2">
                 Aucun projet
               </h3>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Les projets apparaîtront ici une fois créés
               </p>
             </div>
@@ -270,13 +270,13 @@ function KpiCard({
   return (
     <Card>
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-gray-50">{icon}</div>
+        <div className="p-2 rounded-lg bg-neutral-50">{icon}</div>
         <div className="flex-1">
-          <p className="text-xs uppercase tracking-wide text-gray-500">{label}</p>
-          <p className="mt-1 text-xl font-semibold text-gray-900 tabular-nums">
+          <p className="text-xs uppercase tracking-wide text-neutral-500">{label}</p>
+          <p className="mt-1 text-xl font-semibold text-neutral-900 tabular-nums">
             {value}
           </p>
-          {helper && <p className="mt-1 text-xs text-gray-500">{helper}</p>}
+          {helper && <p className="mt-1 text-xs text-neutral-500">{helper}</p>}
         </div>
       </div>
     </Card>

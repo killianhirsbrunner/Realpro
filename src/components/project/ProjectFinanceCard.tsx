@@ -30,8 +30,8 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
     {
       label: 'Budget CFC',
       value: formatCHF(finance.cfc_budget),
-      color: 'text-gray-900',
-      bg: 'bg-gray-50',
+      color: 'text-neutral-900',
+      bg: 'bg-neutral-50',
     },
     {
       label: 'Engagé',
@@ -61,7 +61,7 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
       <Card.Header>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-gray-600" />
+            <DollarSign className="h-5 w-5 text-neutral-600" />
             <Card.Title>Budget & Finances</Card.Title>
           </div>
           {(isOverBudget || isNearBudget) && (
@@ -77,12 +77,12 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {metrics.map((metric) => (
             <div key={metric.label} className={`p-4 rounded-xl ${metric.bg}`}>
-              <p className="text-xs text-gray-600 mb-1">{metric.label}</p>
+              <p className="text-xs text-neutral-600 mb-1">{metric.label}</p>
               <p className={`text-lg font-bold ${metric.color}`}>
                 {metric.value}
               </p>
               {metric.percent !== undefined && (
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-neutral-500 mt-1">
                   {formatPercent(metric.percent)}
                 </p>
               )}
@@ -92,7 +92,7 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
 
         <div className="space-y-3">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">Utilisation du budget</span>
+            <span className="text-neutral-600">Utilisation du budget</span>
             <span className={`text-lg font-bold ${
               isOverBudget ? 'text-red-600' : isNearBudget ? 'text-yellow-600' : 'text-green-600'
             }`}>
@@ -100,7 +100,7 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
             </span>
           </div>
 
-          <div className="relative w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+          <div className="relative w-full bg-neutral-100 h-3 rounded-full overflow-hidden">
             <div
               className={`absolute inset-y-0 left-0 transition-all duration-700 ${
                 isOverBudget
@@ -126,17 +126,17 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
           )}
         </div>
 
-        <div className="pt-4 border-t border-gray-100 space-y-3">
+        <div className="pt-4 border-t border-neutral-100 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">Chiffre d'affaires ventes</span>
-            <span className="text-base font-semibold text-gray-900">
+            <span className="text-sm text-neutral-600">Chiffre d'affaires ventes</span>
+            <span className="text-base font-semibold text-neutral-900">
               {formatCHF(finance.sales_revenue)}
             </span>
           </div>
 
           {finance.pending_payments > 0 && (
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Paiements en attente</span>
+              <span className="text-sm text-neutral-600">Paiements en attente</span>
               <span className="text-base font-semibold text-brand-600">
                 {formatCHF(finance.pending_payments)}
               </span>
@@ -144,8 +144,8 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
           )}
 
           {finance.budget_variance !== undefined && finance.budget_variance !== 0 && (
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <span className="text-sm text-gray-600 flex items-center gap-2">
+            <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
+              <span className="text-sm text-neutral-600 flex items-center gap-2">
                 {finance.budget_variance > 0 ? (
                   <TrendingUp className="h-4 w-4 text-red-500" />
                 ) : (
@@ -162,7 +162,7 @@ export function ProjectFinanceCard({ projectId, finance }: ProjectFinanceCardPro
           )}
         </div>
 
-        <div className="pt-4 border-t border-gray-100 flex gap-2">
+        <div className="pt-4 border-t border-neutral-100 flex gap-2">
           <Link to={`/projects/${projectId}/cfc`} className="flex-1">
             <Button variant="outline" className="w-full">
               Détail CFC

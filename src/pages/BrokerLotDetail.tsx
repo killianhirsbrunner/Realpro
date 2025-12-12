@@ -201,7 +201,7 @@ export function BrokerLotDetail() {
   if (!data) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-8">
-        <p className="text-sm text-gray-500">Dossier lot introuvable</p>
+        <p className="text-sm text-neutral-500">Dossier lot introuvable</p>
       </div>
     );
   }
@@ -222,18 +222,18 @@ export function BrokerLotDetail() {
       </div>
 
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-wide text-gray-400">
+        <p className="text-xs uppercase tracking-wide text-neutral-400">
           Espace courtiers · Dossier lot
         </p>
-        <h1 className="text-2xl font-semibold text-gray-900">
+        <h1 className="text-2xl font-semibold text-neutral-900">
           Lot {lot.lotNumber}
           {lot.roomsLabel && (
-            <span className="text-sm font-normal text-gray-500 ml-2">
+            <span className="text-sm font-normal text-neutral-500 ml-2">
               ({lot.roomsLabel})
             </span>
           )}
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-neutral-500">
           Suivi complet du dossier : acheteur, réservation, acte, notaire
         </p>
       </header>
@@ -252,33 +252,33 @@ export function BrokerLotDetail() {
           <div className="flex items-start gap-3 mb-4">
             <Home className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
-              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
+              <h2 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-3">
                 Informations lot
               </h2>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Bâtiment</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-neutral-600">Bâtiment</span>
+                  <span className="font-medium text-neutral-900">
                     {lot.building || '—'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Étage</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-neutral-600">Étage</span>
+                  <span className="font-medium text-neutral-900">
                     {lot.floor || '—'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Surface habitable</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-neutral-600">Surface habitable</span>
+                  <span className="font-medium text-neutral-900">
                     {lot.surfaceHabitable
                       ? `${lot.surfaceHabitable.toFixed(1)} m²`
                       : '—'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Prix</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-neutral-600">Prix</span>
+                  <span className="font-medium text-neutral-900">
                     {formatCurrency(lot.priceVat || lot.priceQpt)}
                   </span>
                 </div>
@@ -287,13 +287,13 @@ export function BrokerLotDetail() {
           </div>
 
           <div className="pt-4 border-t">
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
+            <label className="block text-xs font-semibold text-neutral-700 uppercase tracking-wide mb-2">
               Statut
             </label>
             <select
               value={statusValue}
               onChange={(e) => handleStatusChange(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
+              className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
             >
               <option value="FREE">Disponible</option>
               <option value="RESERVED">Réservé</option>
@@ -307,31 +307,31 @@ export function BrokerLotDetail() {
           <div className="flex items-start gap-3">
             <User className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
-              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
+              <h2 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-3">
                 Acheteur
               </h2>
               {buyer ? (
                 <div className="space-y-2 text-sm">
                   <div>
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-neutral-900">
                       {buyer.firstName} {buyer.lastName}
                     </p>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Email</span>
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Email</span>
+                    <span className="text-neutral-900">
                       {buyer.email || 'Non renseigné'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Téléphone</span>
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Téléphone</span>
+                    <span className="text-neutral-900">
                       {buyer.phone || 'Non renseigné'}
                     </span>
                   </div>
                 </div>
               ) : (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-neutral-500">
                   Aucun acheteur encore associé à ce lot
                 </p>
               )}
@@ -345,34 +345,34 @@ export function BrokerLotDetail() {
           <div className="flex items-start gap-3">
             <Calendar className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
-              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
+              <h2 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-3">
                 Réservation
               </h2>
               {reservation ? (
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Période</span>
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Période</span>
+                    <span className="text-neutral-900">
                       {formatDate(reservation.startDate)} – {formatDate(reservation.endDate)}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Signature</span>
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Signature</span>
+                    <span className="text-neutral-900">
                       {reservation.signedAt
                         ? formatDate(reservation.signedAt)
                         : 'Non signée'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Statut</span>
+                    <span className="text-neutral-600">Statut</span>
                     <Badge variant={reservation.status === 'SIGNED' ? 'success' : 'warning'}>
                       {reservation.status}
                     </Badge>
                   </div>
                 </div>
               ) : (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-neutral-500">
                   Aucune réservation enregistrée
                 </p>
               )}
@@ -384,22 +384,22 @@ export function BrokerLotDetail() {
           <div className="flex items-start gap-3">
             <FileText className="w-5 h-5 text-brand-600 mt-0.5" />
             <div className="flex-1">
-              <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
+              <h2 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-3">
                 Acte de vente
               </h2>
               {salesContract ? (
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Signature acte</span>
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Signature acte</span>
+                    <span className="text-neutral-900">
                       {salesContract.signedAt
                         ? formatDate(salesContract.signedAt)
                         : 'Non signé'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Entrée en vigueur</span>
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Entrée en vigueur</span>
+                    <span className="text-neutral-900">
                       {salesContract.effectiveAt
                         ? formatDate(salesContract.effectiveAt)
                         : 'Non renseignée'}
@@ -407,7 +407,7 @@ export function BrokerLotDetail() {
                   </div>
                 </div>
               ) : (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-neutral-500">
                   Aucun contrat de vente encore attaché
                 </p>
               )}
@@ -417,31 +417,31 @@ export function BrokerLotDetail() {
       </div>
 
       {salesContract && (
-        <Card className="bg-gray-50">
-          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">
+        <Card className="bg-neutral-50">
+          <h3 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-4">
             Mettre à jour les dates de signature
           </h3>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-xs text-gray-600 mb-1">
+              <label className="block text-xs text-neutral-600 mb-1">
                 Date signature réservation
               </label>
               <input
                 type="date"
                 value={reservationDate}
                 onChange={(e) => setReservationDate(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs text-gray-600 mb-1">
+              <label className="block text-xs text-neutral-600 mb-1">
                 Date signature acte
               </label>
               <input
                 type="date"
                 value={actDate}
                 onChange={(e) => setActDate(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
               />
             </div>
           </div>
@@ -459,13 +459,13 @@ export function BrokerLotDetail() {
 
       {salesContract && (
         <Card>
-          <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">
+          <h2 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-4">
             Notaire & Documents
           </h2>
           <div className="space-y-3 text-sm">
             {salesContract.document && (
               <div>
-                <span className="text-gray-600">Contrat signé:</span>{' '}
+                <span className="text-neutral-600">Contrat signé:</span>{' '}
                 <a
                   href={salesContract.document.downloadUrl}
                   className="text-brand-600 hover:underline"
@@ -480,18 +480,18 @@ export function BrokerLotDetail() {
             {salesContract.notary ? (
               <>
                 <div>
-                  <span className="text-gray-600">Statut notaire:</span>{' '}
+                  <span className="text-neutral-600">Statut notaire:</span>{' '}
                   <Badge variant="default">{salesContract.notary.status}</Badge>
                 </div>
 
                 {salesContract.notary.notaryName && (
                   <div>
-                    <span className="text-gray-600">Notaire:</span>{' '}
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Notaire:</span>{' '}
+                    <span className="text-neutral-900">
                       {salesContract.notary.notaryName}
                     </span>
                     {salesContract.notary.notaryContact && (
-                      <span className="text-gray-500 ml-2">
+                      <span className="text-neutral-500 ml-2">
                         ({salesContract.notary.notaryContact})
                       </span>
                     )}
@@ -500,7 +500,7 @@ export function BrokerLotDetail() {
 
                 {salesContract.notary.lastAct && (
                   <div>
-                    <span className="text-gray-600">Dernière version acte:</span>{' '}
+                    <span className="text-neutral-600">Dernière version acte:</span>{' '}
                     <a
                       href={salesContract.notary.lastAct.downloadUrl}
                       className="text-brand-600 hover:underline"
@@ -514,12 +514,12 @@ export function BrokerLotDetail() {
 
                 {salesContract.notary.lastAppointment && (
                   <div>
-                    <span className="text-gray-600">Dernier RDV signature:</span>{' '}
-                    <span className="text-gray-900">
+                    <span className="text-neutral-600">Dernier RDV signature:</span>{' '}
+                    <span className="text-neutral-900">
                       {formatDate(salesContract.notary.lastAppointment.date)}
                     </span>
                     {salesContract.notary.lastAppointment.location && (
-                      <span className="text-gray-500 ml-2">
+                      <span className="text-neutral-500 ml-2">
                         · {salesContract.notary.lastAppointment.location}
                       </span>
                     )}
@@ -527,17 +527,17 @@ export function BrokerLotDetail() {
                 )}
               </>
             ) : (
-              <p className="text-gray-500">
+              <p className="text-neutral-500">
                 Aucun dossier notaire encore créé pour ce lot
               </p>
             )}
 
             {buyerFile && (
               <div className="pt-3 border-t">
-                <span className="text-gray-600">Dossier acheteur:</span>{' '}
+                <span className="text-neutral-600">Dossier acheteur:</span>{' '}
                 <Badge variant="default">{buyerFile.status}</Badge>
                 {buyerFile.notaryName && (
-                  <span className="text-gray-500 ml-2">
+                  <span className="text-neutral-500 ml-2">
                     · {buyerFile.notaryName}
                   </span>
                 )}

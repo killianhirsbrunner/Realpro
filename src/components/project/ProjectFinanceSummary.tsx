@@ -16,8 +16,8 @@ export default function ProjectFinanceSummary({ finance }: ProjectFinanceSummary
   const paidPercent = finance.cfcBudget > 0 ? (finance.paid / finance.cfcBudget) * 100 : 0;
 
   return (
-    <div className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm space-y-6">
-      <h3 className="font-semibold text-lg text-gray-900">Finances</h3>
+    <div className="p-6 bg-white rounded-xl border border-neutral-200 shadow-sm space-y-6">
+      <h3 className="font-semibold text-lg text-neutral-900">Finances</h3>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="p-4 bg-brand-50 rounded-lg">
@@ -38,48 +38,48 @@ export default function ProjectFinanceSummary({ finance }: ProjectFinanceSummary
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-600">Engagé</span>
-            <span className="font-semibold text-gray-900">{engagedPercent.toFixed(1)}%</span>
+            <span className="text-neutral-600">Engagé</span>
+            <span className="font-semibold text-neutral-900">{engagedPercent.toFixed(1)}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-neutral-200 rounded-full h-2">
             <div
               className="h-full bg-brand-500 rounded-full transition-all duration-500"
               style={{ width: `${engagedPercent}%` }}
             />
           </div>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-neutral-500 mt-1">
             CHF {finance.engaged.toLocaleString('fr-CH')}
           </p>
         </div>
 
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-600">Facturé</span>
-            <span className="font-semibold text-gray-900">{invoicedPercent.toFixed(1)}%</span>
+            <span className="text-neutral-600">Facturé</span>
+            <span className="font-semibold text-neutral-900">{invoicedPercent.toFixed(1)}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-neutral-200 rounded-full h-2">
             <div
               className="h-full bg-yellow-500 rounded-full transition-all duration-500"
               style={{ width: `${invoicedPercent}%` }}
             />
           </div>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-neutral-500 mt-1">
             CHF {finance.invoiced.toLocaleString('fr-CH')}
           </p>
         </div>
 
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-600">Payé</span>
-            <span className="font-semibold text-gray-900">{paidPercent.toFixed(1)}%</span>
+            <span className="text-neutral-600">Payé</span>
+            <span className="font-semibold text-neutral-900">{paidPercent.toFixed(1)}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-neutral-200 rounded-full h-2">
             <div
               className="h-full bg-green-500 rounded-full transition-all duration-500"
               style={{ width: `${paidPercent}%` }}
             />
           </div>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-neutral-500 mt-1">
             CHF {finance.paid.toLocaleString('fr-CH')}
           </p>
         </div>

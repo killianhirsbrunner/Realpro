@@ -14,11 +14,11 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
         className={clsx(
           'inline-flex items-center justify-center font-medium rounded-full',
           {
-            'bg-gray-100 text-gray-700': variant === 'default',
-            'bg-green-100 text-green-700': variant === 'success',
-            'bg-yellow-100 text-yellow-700': variant === 'warning',
-            'bg-red-100 text-red-700': variant === 'danger',
-            'bg-brand-100 text-brand-700': variant === 'info',
+            'bg-neutral-100 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200': variant === 'default',
+            'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400': variant === 'success',
+            'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400': variant === 'warning',
+            'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400': variant === 'danger',
+            'bg-realpro-turquoise/10 text-realpro-turquoise': variant === 'info',
             'px-2 py-0.5 text-xs h-5': size === 'sm',
             'px-2.5 py-1 text-xs h-6': size === 'md',
           },

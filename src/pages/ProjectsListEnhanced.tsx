@@ -102,7 +102,7 @@ export function ProjectsListEnhanced() {
           </p>
         </div>
         <Link to="/projects/wizard">
-          <Button variant="primary" size="lg" className="gap-2 shadow-lg shadow-brand-600/20">
+          <Button variant="primary" size="lg" className="gap-2 shadow-lg shadow-realpro-turquoise/20">
             <Plus className="w-5 h-5" />
             Nouveau projet
           </Button>
@@ -252,7 +252,7 @@ export function ProjectsListEnhanced() {
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded transition-colors ${
                     viewMode === 'grid'
-                      ? 'bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400'
+                      ? 'bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 text-realpro-turquoise'
                       : 'text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300'
                   }`}
                   title="Vue grille"
@@ -263,7 +263,7 @@ export function ProjectsListEnhanced() {
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded transition-colors ${
                     viewMode === 'list'
-                      ? 'bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400'
+                      ? 'bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 text-realpro-turquoise'
                       : 'text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300'
                   }`}
                   title="Vue liste"
@@ -308,7 +308,7 @@ export function ProjectsListEnhanced() {
                       setCantonFilter('ALL');
                       setTypeFilter('ALL');
                     }}
-                    className="text-xs text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors"
+                    className="text-xs text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium transition-colors"
                   >
                     Réinitialiser
                   </button>

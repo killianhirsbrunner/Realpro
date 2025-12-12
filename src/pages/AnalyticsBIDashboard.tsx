@@ -261,7 +261,7 @@ export default function AnalyticsBIDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-realpro-turquoise border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Chargement des analytics...</p>
+          <p className="text-neutral-600 dark:text-neutral-400">Chargement des analytics...</p>
         </div>
       </div>
     );
@@ -271,15 +271,15 @@ export default function AnalyticsBIDashboard() {
     <div className="p-6 max-w-7xl mx-auto space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Analytics & BI</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Vue d'ensemble des performances</p>
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Analytics & BI</h1>
+          <p className="text-neutral-600 dark:text-neutral-400 mt-1">Vue d'ensemble des performances</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(Number(e.target.value))}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="px-4 py-2 border border-neutral-300 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           >
             <option value={7}>7 derniers jours</option>
             <option value={30}>30 derniers jours</option>
@@ -290,7 +290,7 @@ export default function AnalyticsBIDashboard() {
           <button
             onClick={handleRefresh}
             disabled={refreshing}
-            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
           >
             <RefreshCw className={`w-5 h-5 ${refreshing ? 'animate-spin' : ''}`} />
             Actualiser
@@ -310,7 +310,7 @@ export default function AnalyticsBIDashboard() {
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon;
           return (
-            <div key={index} className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+            <div key={index} className="bg-white dark:bg-neutral-900 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className={`w-12 h-12 ${kpi.color} rounded-xl flex items-center justify-center`}>
                   <Icon className="w-6 h-6 text-white" />
@@ -324,18 +324,18 @@ export default function AnalyticsBIDashboard() {
                   </div>
                 )}
               </div>
-              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">{kpi.title}</h3>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">{kpi.value}</p>
+              <h3 className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-1">{kpi.title}</h3>
+              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{kpi.value}</p>
             </div>
           );
         })}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+        <div className="bg-white dark:bg-neutral-900 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <LineChart className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Activité commerciale</h2>
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Activité commerciale</h2>
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <RechartsLineChart data={salesData}>
@@ -351,10 +351,10 @@ export default function AnalyticsBIDashboard() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+        <div className="bg-white dark:bg-neutral-900 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <Activity className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Workflows</h2>
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Workflows</h2>
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={workflowData}>
@@ -372,10 +372,10 @@ export default function AnalyticsBIDashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+        <div className="bg-white dark:bg-neutral-900 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <BarChart3 className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Activité utilisateurs</h2>
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Activité utilisateurs</h2>
           </div>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={userActivityData}>
@@ -388,10 +388,10 @@ export default function AnalyticsBIDashboard() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+        <div className="bg-white dark:bg-neutral-900 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <PieChartIcon className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Repartition projets</h2>
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Repartition projets</h2>
           </div>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
@@ -414,20 +414,20 @@ export default function AnalyticsBIDashboard() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+        <div className="bg-white dark:bg-neutral-900 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
           <div className="flex items-center gap-2 mb-4">
             <Activity className="w-5 h-5 text-realpro-turquoise" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Evenements</h2>
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Evenements</h2>
           </div>
           <div className="space-y-3">
             {eventsByType.length === 0 ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-8">Aucun evenement</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center py-8">Aucun evenement</p>
             ) : (
               eventsByType.map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{item.name}</span>
+                  <span className="text-sm text-neutral-700 dark:text-neutral-300">{item.name}</span>
                   <div className="flex items-center gap-2">
-                    <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="w-24 h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-realpro-turquoise rounded-full"
                         style={{
@@ -435,7 +435,7 @@ export default function AnalyticsBIDashboard() {
                         }}
                       />
                     </div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white w-12 text-right">{item.value}</span>
+                    <span className="text-sm font-medium text-neutral-900 dark:text-white w-12 text-right">{item.value}</span>
                   </div>
                 </div>
               ))

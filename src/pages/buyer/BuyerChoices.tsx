@@ -66,10 +66,10 @@ export function BuyerChoices() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       <header className="space-y-1">
-        <h1 className="text-xl font-semibold text-gray-900">
+        <h1 className="text-xl font-semibold text-neutral-900">
           Mes choix & modifications
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-neutral-500">
           Visualisez vos choix de finitions et le suivi de vos demandes
           spécifiques.
         </p>
@@ -77,9 +77,9 @@ export function BuyerChoices() {
 
       {/* Choices */}
       <section className="space-y-4">
-        <h2 className="text-sm font-semibold text-gray-900">Choix</h2>
+        <h2 className="text-sm font-semibold text-neutral-900">Choix</h2>
         {categories.length === 0 ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Les choix n'ont pas encore été ouverts pour ce projet. Vous serez
             informé dès que la sélection des matériaux sera disponible.
           </p>
@@ -87,7 +87,7 @@ export function BuyerChoices() {
           <div className="space-y-4">
             {categories.map((cat) => (
               <div key={cat.id} className="space-y-2">
-                <p className="text-sm font-medium text-gray-900">{cat.name}</p>
+                <p className="text-sm font-medium text-neutral-900">{cat.name}</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {cat.options.map((opt) => (
                     <div
@@ -99,15 +99,15 @@ export function BuyerChoices() {
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <p className="font-medium text-gray-900">{opt.name}</p>
-                        <span className="text-xs text-gray-600">
+                        <p className="font-medium text-neutral-900">{opt.name}</p>
+                        <span className="text-xs text-neutral-600">
                           {opt.is_standard
                             ? 'Inclus'
                             : `+ ${formatCHF(opt.extra_price)}`}
                         </span>
                       </div>
                       {opt.description && (
-                        <p className="mt-1 text-xs text-gray-500">
+                        <p className="mt-1 text-xs text-neutral-500">
                           {opt.description}
                         </p>
                       )}
@@ -128,16 +128,16 @@ export function BuyerChoices() {
       {/* Modification Requests */}
       <section className="space-y-3">
         <div className="flex items-center justify-between gap-2">
-          <h2 className="text-sm font-semibold text-gray-900">
+          <h2 className="text-sm font-semibold text-neutral-900">
             Demandes de modifications
           </h2>
-          <button className="rounded-full border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+          <button className="rounded-full border px-3 py-1 text-xs font-medium text-neutral-700 hover:bg-neutral-50 transition-colors">
             Nouvelle demande
           </button>
         </div>
 
         {change_requests.length === 0 ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             Vous n'avez encore soumis aucune demande de modification.
           </p>
         ) : (
@@ -148,10 +148,10 @@ export function BuyerChoices() {
                 className="rounded-2xl border bg-white px-4 py-3 text-sm"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <p className="font-medium text-gray-900">{cr.description}</p>
+                  <p className="font-medium text-neutral-900">{cr.description}</p>
                   <ChangeRequestStatusPill status={cr.status} />
                 </div>
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-neutral-500">
                   {cr.extra_price != null
                     ? `Impact estimé : ${formatCHF(cr.extra_price)}`
                     : 'Impact financier en cours d\'estimation.'}
@@ -168,7 +168,7 @@ export function BuyerChoices() {
 function ChangeRequestStatusPill({ status }: { status: string }) {
   const s = status.toUpperCase();
   let label = status;
-  let styles = 'bg-gray-100 text-gray-700';
+  let styles = 'bg-neutral-100 text-neutral-700';
 
   if (s === 'REQUESTED' || s === 'PENDING') {
     label = 'En cours d\'étude';

@@ -213,7 +213,7 @@ export function ModificationOfferWizard({
                       ? 'bg-realpro-turquoise border-realpro-turquoise text-white scale-110'
                       : isCompleted
                       ? 'bg-green-500 border-green-500 text-white'
-                      : 'bg-white border-gray-300 text-gray-400'
+                      : 'bg-white border-neutral-300 text-neutral-400'
                   }`}
                 >
                   {isCompleted ? (
@@ -229,12 +229,12 @@ export function ModificationOfferWizard({
                         ? 'text-realpro-turquoise'
                         : isCompleted
                         ? 'text-green-600'
-                        : 'text-gray-500'
+                        : 'text-neutral-500'
                     }`}
                   >
                     {step.title}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1 hidden md:block">
+                  <div className="text-xs text-neutral-500 mt-1 hidden md:block">
                     {step.description}
                   </div>
                 </div>
@@ -242,7 +242,7 @@ export function ModificationOfferWizard({
               {index < WIZARD_STEPS.length - 1 && (
                 <div
                   className={`h-0.5 flex-1 mx-2 transition-colors ${
-                    isCompleted ? 'bg-green-500' : 'bg-gray-300'
+                    isCompleted ? 'bg-green-500' : 'bg-neutral-300'
                   }`}
                 />
               )}
@@ -255,10 +255,10 @@ export function ModificationOfferWizard({
 
   const renderStep1 = () => (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900">Informations générales</h3>
+      <h3 className="text-xl font-semibold text-neutral-900">Informations générales</h3>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Titre de l'offre *
         </label>
         <input
@@ -266,7 +266,7 @@ export function ModificationOfferWizard({
           value={formData.title}
           onChange={(e) => updateFormData({ title: e.target.value })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-            errors.title ? 'border-red-500' : 'border-gray-300'
+            errors.title ? 'border-red-500' : 'border-neutral-300'
           }`}
           placeholder="Ex: Modification cuisine - Remplacement plan de travail"
         />
@@ -276,7 +276,7 @@ export function ModificationOfferWizard({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Description détaillée *
         </label>
         <textarea
@@ -284,7 +284,7 @@ export function ModificationOfferWizard({
           onChange={(e) => updateFormData({ description: e.target.value })}
           rows={5}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-            errors.description ? 'border-red-500' : 'border-gray-300'
+            errors.description ? 'border-red-500' : 'border-neutral-300'
           }`}
           placeholder="Décrivez en détail la modification demandée..."
         />
@@ -295,13 +295,13 @@ export function ModificationOfferWizard({
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Catégorie
           </label>
           <select
             value={formData.category}
             onChange={(e) => updateFormData({ category: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           >
             <option value="finitions">Finitions</option>
             <option value="equipements">Équipements</option>
@@ -316,13 +316,13 @@ export function ModificationOfferWizard({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Priorité
           </label>
           <select
             value={formData.priority}
             onChange={(e) => updateFormData({ priority: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           >
             <option value="low">Basse</option>
             <option value="medium">Moyenne</option>
@@ -336,17 +336,17 @@ export function ModificationOfferWizard({
 
   const renderStep2 = () => (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900">Client et Lot</h3>
+      <h3 className="text-xl font-semibold text-neutral-900">Client et Lot</h3>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Client *
         </label>
         <select
           value={formData.buyerId}
           onChange={(e) => updateFormData({ buyerId: e.target.value })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-            errors.buyerId ? 'border-red-500' : 'border-gray-300'
+            errors.buyerId ? 'border-red-500' : 'border-neutral-300'
           }`}
         >
           <option value="">Sélectionnez un client</option>
@@ -362,14 +362,14 @@ export function ModificationOfferWizard({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Lot concerné *
         </label>
         <select
           value={formData.lotId}
           onChange={(e) => updateFormData({ lotId: e.target.value })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-            errors.lotId ? 'border-red-500' : 'border-gray-300'
+            errors.lotId ? 'border-red-500' : 'border-neutral-300'
           }`}
         >
           <option value="">Sélectionnez un lot</option>
@@ -404,17 +404,17 @@ export function ModificationOfferWizard({
 
   const renderStep3 = () => (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900">Fournisseur</h3>
+      <h3 className="text-xl font-semibold text-neutral-900">Fournisseur</h3>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Fournisseur *
         </label>
         <select
           value={formData.supplierId}
           onChange={(e) => updateFormData({ supplierId: e.target.value })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-            errors.supplierId ? 'border-red-500' : 'border-gray-300'
+            errors.supplierId ? 'border-red-500' : 'border-neutral-300'
           }`}
         >
           <option value="">Sélectionnez un fournisseur</option>
@@ -431,41 +431,41 @@ export function ModificationOfferWizard({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Contact
           </label>
           <input
             type="text"
             value={formData.supplierContact}
             onChange={(e) => updateFormData({ supplierContact: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
             placeholder="Nom du contact"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Email
           </label>
           <input
             type="email"
             value={formData.supplierEmail}
             onChange={(e) => updateFormData({ supplierEmail: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
             placeholder="contact@fournisseur.ch"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Téléphone
         </label>
         <input
           type="tel"
           value={formData.supplierPhone}
           onChange={(e) => updateFormData({ supplierPhone: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+          className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           placeholder="+41 XX XXX XX XX"
         />
       </div>
@@ -474,11 +474,11 @@ export function ModificationOfferWizard({
 
   const renderStep4 = () => (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900">Montants</h3>
+      <h3 className="text-xl font-semibold text-neutral-900">Montants</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Montant HT (CHF) *
           </label>
           <input
@@ -487,7 +487,7 @@ export function ModificationOfferWizard({
             value={formData.amountHT}
             onChange={(e) => updateFormData({ amountHT: parseFloat(e.target.value) || 0 })}
             className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-              errors.amountHT ? 'border-red-500' : 'border-gray-300'
+              errors.amountHT ? 'border-red-500' : 'border-neutral-300'
             }`}
             placeholder="0.00"
           />
@@ -497,13 +497,13 @@ export function ModificationOfferWizard({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Taux TVA (%)
           </label>
           <select
             value={formData.vatRate}
             onChange={(e) => updateFormData({ vatRate: parseFloat(e.target.value) })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           >
             <option value="8.1">8.1% (taux normal)</option>
             <option value="3.8">3.8% (taux réduit)</option>
@@ -513,7 +513,7 @@ export function ModificationOfferWizard({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Montant TVA (CHF)
           </label>
           <input
@@ -521,14 +521,14 @@ export function ModificationOfferWizard({
             step="0.01"
             value={formData.amountVAT.toFixed(2)}
             readOnly
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg bg-neutral-50"
           />
         </div>
       </div>
 
       <div className="p-4 bg-realpro-turquoise bg-opacity-10 border-2 border-realpro-turquoise rounded-lg">
         <div className="flex items-center justify-between">
-          <span className="text-lg font-semibold text-gray-900">
+          <span className="text-lg font-semibold text-neutral-900">
             Montant Total TTC
           </span>
           <span className="text-2xl font-bold text-realpro-turquoise">
@@ -539,7 +539,7 @@ export function ModificationOfferWizard({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Échéance *
           </label>
           <input
@@ -547,7 +547,7 @@ export function ModificationOfferWizard({
             value={formData.deadline}
             onChange={(e) => updateFormData({ deadline: e.target.value })}
             className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent ${
-              errors.deadline ? 'border-red-500' : 'border-gray-300'
+              errors.deadline ? 'border-red-500' : 'border-neutral-300'
             }`}
           />
           {errors.deadline && (
@@ -556,13 +556,13 @@ export function ModificationOfferWizard({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Conditions de paiement
           </label>
           <select
             value={formData.paymentTerms}
             onChange={(e) => updateFormData({ paymentTerms: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           >
             <option value="immediate">Immédiat</option>
             <option value="15_days">15 jours</option>
@@ -577,11 +577,11 @@ export function ModificationOfferWizard({
 
   const renderStep5 = () => (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900">Documents</h3>
+      <h3 className="text-xl font-semibold text-neutral-900">Documents</h3>
 
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-        <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-        <p className="text-sm text-gray-600 mb-4">
+      <div className="border-2 border-dashed border-neutral-300 rounded-lg p-8 text-center">
+        <Upload className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+        <p className="text-sm text-neutral-600 mb-4">
           Glissez-déposez vos fichiers ici ou cliquez pour parcourir
         </p>
         <input
@@ -602,26 +602,26 @@ export function ModificationOfferWizard({
           <Upload className="w-5 h-5" />
           Choisir des fichiers
         </label>
-        <p className="text-xs text-gray-500 mt-4">
+        <p className="text-xs text-neutral-500 mt-4">
           Formats acceptés: PDF, JPG, PNG, Excel, Word (max 10 MB par fichier)
         </p>
       </div>
 
       {formData.documents.length > 0 && (
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-gray-700">
+          <h4 className="text-sm font-medium text-neutral-700">
             Fichiers sélectionnés ({formData.documents.length})
           </h4>
           {formData.documents.map((file, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+              className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg"
             >
               <div className="flex items-center gap-3">
-                <FileText className="w-5 h-5 text-gray-400" />
+                <FileText className="w-5 h-5 text-neutral-400" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm font-medium text-neutral-900">{file.name}</p>
+                  <p className="text-xs text-neutral-500">
                     {(file.size / 1024 / 1024).toFixed(2)} MB
                   </p>
                 </div>
@@ -641,14 +641,14 @@ export function ModificationOfferWizard({
       )}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
           Notes complémentaires
         </label>
         <textarea
           value={formData.notes}
           onChange={(e) => updateFormData({ notes: e.target.value })}
           rows={4}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+          className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
           placeholder="Ajoutez des notes ou commentaires..."
         />
       </div>
@@ -662,7 +662,7 @@ export function ModificationOfferWizard({
 
     return (
       <div className="space-y-6">
-        <h3 className="text-xl font-semibold text-gray-900">Révision et Confirmation</h3>
+        <h3 className="text-xl font-semibold text-neutral-900">Révision et Confirmation</h3>
 
         <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
           <div className="flex items-start gap-3">
@@ -678,24 +678,24 @@ export function ModificationOfferWizard({
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg divide-y">
+        <div className="bg-white border border-neutral-200 rounded-lg divide-y">
           {/* General Info */}
           <div className="p-4">
-            <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <h4 className="font-semibold text-neutral-900 mb-3 flex items-center gap-2">
               <FileText className="w-5 h-5 text-realpro-turquoise" />
               Informations générales
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Titre:</span>
+                <span className="text-neutral-600">Titre:</span>
                 <span className="font-medium">{formData.title}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Catégorie:</span>
+                <span className="text-neutral-600">Catégorie:</span>
                 <span className="font-medium capitalize">{formData.category}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Priorité:</span>
+                <span className="text-neutral-600">Priorité:</span>
                 <span className="font-medium capitalize">{formData.priority}</span>
               </div>
             </div>
@@ -703,19 +703,19 @@ export function ModificationOfferWizard({
 
           {/* Client & Lot */}
           <div className="p-4">
-            <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <h4 className="font-semibold text-neutral-900 mb-3 flex items-center gap-2">
               <User className="w-5 h-5 text-realpro-turquoise" />
               Client et Lot
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Client:</span>
+                <span className="text-neutral-600">Client:</span>
                 <span className="font-medium">
                   {selectedBuyer ? `${selectedBuyer.first_name} ${selectedBuyer.last_name}` : 'N/A'}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Lot:</span>
+                <span className="text-neutral-600">Lot:</span>
                 <span className="font-medium">
                   {selectedLot ? `${selectedLot.reference} - ${selectedLot.name}` : 'N/A'}
                 </span>
@@ -725,18 +725,18 @@ export function ModificationOfferWizard({
 
           {/* Supplier */}
           <div className="p-4">
-            <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <h4 className="font-semibold text-neutral-900 mb-3 flex items-center gap-2">
               <Building className="w-5 h-5 text-realpro-turquoise" />
               Fournisseur
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Nom:</span>
+                <span className="text-neutral-600">Nom:</span>
                 <span className="font-medium">{selectedSupplier?.name || 'N/A'}</span>
               </div>
               {formData.supplierContact && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Contact:</span>
+                  <span className="text-neutral-600">Contact:</span>
                   <span className="font-medium">{formData.supplierContact}</span>
                 </div>
               )}
@@ -745,27 +745,27 @@ export function ModificationOfferWizard({
 
           {/* Amounts */}
           <div className="p-4">
-            <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+            <h4 className="font-semibold text-neutral-900 mb-3 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-realpro-turquoise" />
               Montants
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Montant HT:</span>
+                <span className="text-neutral-600">Montant HT:</span>
                 <span className="font-medium">{formData.amountHT.toFixed(2)} CHF</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">TVA ({formData.vatRate}%):</span>
+                <span className="text-neutral-600">TVA ({formData.vatRate}%):</span>
                 <span className="font-medium">{formData.amountVAT.toFixed(2)} CHF</span>
               </div>
               <div className="flex justify-between border-t pt-2">
-                <span className="text-gray-900 font-semibold">Total TTC:</span>
+                <span className="text-neutral-900 font-semibold">Total TTC:</span>
                 <span className="font-bold text-realpro-turquoise text-lg">
                   {formData.amountTotal.toFixed(2)} CHF
                 </span>
               </div>
               <div className="flex justify-between mt-3">
-                <span className="text-gray-600">Échéance:</span>
+                <span className="text-neutral-600">Échéance:</span>
                 <span className="font-medium">
                   {new Date(formData.deadline).toLocaleDateString('fr-CH')}
                 </span>
@@ -776,15 +776,15 @@ export function ModificationOfferWizard({
           {/* Documents */}
           {formData.documents.length > 0 && (
             <div className="p-4">
-              <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <h4 className="font-semibold text-neutral-900 mb-3 flex items-center gap-2">
                 <Upload className="w-5 h-5 text-realpro-turquoise" />
                 Documents ({formData.documents.length})
               </h4>
               <div className="space-y-1 text-sm">
                 {formData.documents.map((doc, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-700">{doc.name}</span>
+                    <FileText className="w-4 h-4 text-neutral-400" />
+                    <span className="text-neutral-700">{doc.name}</span>
                   </div>
                 ))}
               </div>
@@ -814,10 +814,10 @@ export function ModificationOfferWizard({
       <div className="bg-white rounded-lg shadow-lg p-8">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-3xl font-bold text-neutral-900">
             Nouvelle Offre de Modification
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-neutral-600 mt-2">
             Suivez les étapes pour créer une offre complète
           </p>
         </div>
@@ -839,7 +839,7 @@ export function ModificationOfferWizard({
         <div className="flex items-center justify-between mt-8 pt-6 border-t">
           <button
             onClick={onCancel}
-            className="px-6 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-6 py-2 text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors"
           >
             Annuler
           </button>
@@ -848,7 +848,7 @@ export function ModificationOfferWizard({
             {currentStep > 1 && (
               <button
                 onClick={prevStep}
-                className="flex items-center gap-2 px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+                className="flex items-center gap-2 px-6 py-2 bg-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-300 transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Précédent

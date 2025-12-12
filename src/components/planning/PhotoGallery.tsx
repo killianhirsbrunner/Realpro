@@ -62,7 +62,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
         >
           <button
             onClick={() => setSelectedPhoto(null)}
-            className="absolute top-4 right-4 p-2 bg-white/80 hover:bg-white rounded-full text-gray-900 transition"
+            className="absolute top-4 right-4 p-2 bg-white/80 hover:bg-white rounded-full text-neutral-900 transition"
           >
             <X className="w-6 h-6" />
           </button>

@@ -29,13 +29,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           'focus:outline-none focus:ring-2 focus:ring-offset-2',
           'disabled:opacity-50 disabled:cursor-not-allowed',
           {
-            'bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500':
+            'bg-realpro-turquoise text-white hover:bg-realpro-turquoise/90 focus:ring-realpro-turquoise/50':
               variant === 'primary',
-            'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500':
+            'bg-neutral-600 text-white hover:bg-neutral-700 focus:ring-neutral-500':
               variant === 'secondary',
-            'border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-neutral-700 focus:ring-gray-500':
+            'border-2 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700 focus:ring-neutral-500':
               variant === 'outline',
-            'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-800 focus:ring-gray-500':
+            'text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:ring-neutral-500':
               variant === 'ghost',
             'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500':
               variant === 'danger',

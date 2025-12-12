@@ -145,13 +145,13 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
             <Archive className="h-5 w-5 text-brand-600 dark:text-brand-400" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
               Export légal du projet
             </h2>
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
               Génère un fichier ZIP contenant tous les documents, données structurées, tickets SAV et historiques du projet.
             </p>
-            <div className="mt-2 flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-500">
+            <div className="mt-2 flex flex-wrap gap-2 text-xs text-neutral-500 dark:text-neutral-500">
               <span className="flex items-center gap-1">
                 <FileText className="h-3 w-3" />
                 Documents juridiques
@@ -191,7 +191,7 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
       </div>
 
       <div className="mt-6">
-        <h3 className="mb-3 text-sm font-medium text-gray-900 dark:text-gray-50">
+        <h3 className="mb-3 text-sm font-medium text-neutral-900 dark:text-neutral-50">
           Historique des exports
         </h3>
 
@@ -200,12 +200,12 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
             <LoadingSpinner size="md" />
           </div>
         ) : exports.length === 0 ? (
-          <div className="rounded-lg border border-dashed border-gray-300 py-12 text-center dark:border-gray-700">
-            <FileArchive className="mx-auto h-12 w-12 text-gray-400" />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="rounded-lg border border-dashed border-neutral-300 py-12 text-center dark:border-neutral-700">
+            <FileArchive className="mx-auto h-12 w-12 text-neutral-400" />
+            <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
               Aucun export généré pour l'instant
             </p>
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
               Cliquez sur "Nouveau export" pour créer votre premier export
             </p>
           </div>
@@ -218,7 +218,7 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
               return (
                 <div
                   key={exp.id}
-                  className="rounded-lg border bg-white p-4 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+                  className="rounded-lg border bg-white p-4 transition-shadow hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
@@ -229,10 +229,10 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
                               ? 'text-green-600 dark:text-green-400'
                               : exp.status === 'FAILED'
                               ? 'text-red-600 dark:text-red-400'
-                              : 'text-gray-600 dark:text-gray-400'
+                              : 'text-neutral-600 dark:text-neutral-400'
                           }`}
                         />
-                        <p className="font-medium text-gray-900 dark:text-gray-50">
+                        <p className="font-medium text-neutral-900 dark:text-neutral-50">
                           Export du {formatDate(exp.created_at)}
                         </p>
                         <Badge
@@ -252,7 +252,7 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
                       </div>
 
                       {exp.status === 'SUCCESS' && (
-                        <div className="mt-2 flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-400">
+                        <div className="mt-2 flex flex-wrap gap-4 text-xs text-neutral-600 dark:text-neutral-400">
                           <span>{formatFileSize(exp.file_size)}</span>
                           {exp.total_lots > 0 && <span>• {exp.total_lots} lots</span>}
                           {exp.total_buyers > 0 && <span>• {exp.total_buyers} acheteurs</span>}
@@ -261,7 +261,7 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
                       )}
 
                       {exp.status === 'PROCESSING' && (
-                        <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+                        <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
                           Génération en cours... Veuillez patienter.
                         </p>
                       )}
@@ -273,7 +273,7 @@ export default function ProjectExportPanel({ projectId }: ProjectExportPanelProp
                       )}
 
                       {exp.completed_at && (
-                        <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+                        <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
                           Complété le {formatDate(exp.completed_at)}
                         </p>
                       )}

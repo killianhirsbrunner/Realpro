@@ -131,10 +131,10 @@ export function TemplatesManager() {
     <div className="mx-auto flex max-w-7xl gap-6 px-4 py-8">
       <aside className="w-72 flex-shrink-0 space-y-4">
         <div>
-          <h1 className="text-lg font-semibold text-gray-900">
+          <h1 className="text-lg font-semibold text-neutral-900">
             Modèles de documents
           </h1>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-neutral-500 mt-1">
             Configurez les modèles utilisés pour générer automatiquement vos documents
           </p>
         </div>
@@ -143,8 +143,8 @@ export function TemplatesManager() {
           <div className="space-y-1">
             {templates.length === 0 ? (
               <div className="text-center py-8">
-                <FileText className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                <p className="text-xs text-gray-500">
+                <FileText className="w-10 h-10 text-neutral-300 mx-auto mb-3" />
+                <p className="text-xs text-neutral-500">
                   Aucun template disponible
                 </p>
               </div>
@@ -157,14 +157,14 @@ export function TemplatesManager() {
                   className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm transition-colors ${
                     selected?.id === template.id
                       ? 'bg-brand-50 text-brand-700 font-medium'
-                      : 'hover:bg-gray-50 text-gray-700'
+                      : 'hover:bg-neutral-50 text-neutral-700'
                   }`}
                 >
                   <div className="flex items-center gap-2 flex-1 min-w-0">
                     <FileText className="w-4 h-4 flex-shrink-0" />
                     <span className="truncate">{template.name}</span>
                   </div>
-                  <span className="text-[10px] uppercase text-gray-400 font-semibold flex-shrink-0">
+                  <span className="text-[10px] uppercase text-neutral-400 font-semibold flex-shrink-0">
                     {template.language}
                   </span>
                 </button>
@@ -177,11 +177,11 @@ export function TemplatesManager() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Code className="w-4 h-4 text-brand-600" />
-              <p className="text-xs font-semibold text-gray-900">
+              <p className="text-xs font-semibold text-neutral-900">
                 Variables disponibles
               </p>
             </div>
-            <div className="text-[11px] text-gray-700 space-y-1 font-mono">
+            <div className="text-[11px] text-neutral-700 space-y-1 font-mono">
               <p>{'{{project.name}}'}</p>
               <p>{'{{project.address}}'}</p>
               <p>{'{{lot.lotNumber}}'}</p>
@@ -218,11 +218,11 @@ export function TemplatesManager() {
         {!selected ? (
           <Card>
             <div className="text-center py-16">
-              <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <FileText className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-neutral-900 mb-2">
                 Sélectionnez un template
               </h3>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Choisissez un template dans la liste de gauche pour le modifier
               </p>
             </div>
@@ -232,12 +232,12 @@ export function TemplatesManager() {
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <label className="text-xs font-medium text-gray-700 block mb-1">
+                  <label className="text-xs font-medium text-neutral-700 block mb-1">
                     Nom du modèle
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
+                    className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                     value={selected.name}
                     onChange={(e) =>
                       setSelected({ ...selected, name: e.target.value })
@@ -246,11 +246,11 @@ export function TemplatesManager() {
                 </div>
 
                 <div className="w-32">
-                  <label className="text-xs font-medium text-gray-700 block mb-1">
+                  <label className="text-xs font-medium text-neutral-700 block mb-1">
                     Langue
                   </label>
                   <select
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
+                    className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                     value={selected.language}
                     onChange={(e) =>
                       setSelected({ ...selected, language: e.target.value })
@@ -266,18 +266,18 @@ export function TemplatesManager() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs font-medium text-gray-700 mb-1">
+                  <p className="text-xs font-medium text-neutral-700 mb-1">
                     Code
                   </p>
-                  <p className="text-sm text-gray-900 font-mono bg-gray-50 px-3 py-2 rounded-lg">
+                  <p className="text-sm text-neutral-900 font-mono bg-neutral-50 px-3 py-2 rounded-lg">
                     {selected.code}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-700 mb-1">
+                  <p className="text-xs font-medium text-neutral-700 mb-1">
                     Portée
                   </p>
-                  <p className="text-sm text-gray-900 bg-gray-50 px-3 py-2 rounded-lg">
+                  <p className="text-sm text-neutral-900 bg-neutral-50 px-3 py-2 rounded-lg">
                     {selected.scope}
                   </p>
                 </div>
@@ -285,22 +285,22 @@ export function TemplatesManager() {
 
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <label className="text-xs font-medium text-gray-700">
+                  <label className="text-xs font-medium text-neutral-700">
                     Contenu du modèle
                   </label>
-                  <p className="text-[11px] text-gray-500">
+                  <p className="text-[11px] text-neutral-500">
                     {selected.content.length} caractères
                   </p>
                 </div>
-                <p className="text-[11px] text-gray-500 mb-2">
+                <p className="text-[11px] text-neutral-500 mb-2">
                   Utilisez les variables comme{' '}
-                  <code className="rounded bg-gray-100 px-1 py-0.5">
+                  <code className="rounded bg-neutral-100 px-1 py-0.5">
                     {'{{project.name}}'}
                   </code>{' '}
                   pour insérer des données dynamiques
                 </p>
                 <textarea
-                  className="w-full h-[28rem] rounded-lg border border-gray-300 px-3 py-3 text-sm font-mono focus:border-brand-500 focus:ring-1 focus:ring-brand-500 resize-none"
+                  className="w-full h-[28rem] rounded-lg border border-neutral-300 px-3 py-3 text-sm font-mono focus:border-brand-500 focus:ring-1 focus:ring-brand-500 resize-none"
                   value={selected.content}
                   onChange={(e) =>
                     setSelected({ ...selected, content: e.target.value })
@@ -329,22 +329,22 @@ export function TemplatesManager() {
         )}
 
         {selected && (
-          <Card className="bg-gray-50">
+          <Card className="bg-neutral-50">
             <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-gray-900">
+              <h3 className="text-sm font-semibold text-neutral-900">
                 Comment utiliser ce template ?
               </h3>
-              <ol className="text-xs text-gray-700 space-y-1 list-decimal list-inside">
+              <ol className="text-xs text-neutral-700 space-y-1 list-decimal list-inside">
                 <li>Modifiez le contenu en utilisant les variables disponibles</li>
                 <li>Sauvegardez vos modifications avec le bouton ci-dessus</li>
                 <li>Générez un document via l'API POST /templates/generate</li>
                 <li>Le système remplacera automatiquement les variables par les vraies données</li>
               </ol>
-              <div className="mt-3 pt-3 border-t border-gray-200">
-                <p className="text-xs font-medium text-gray-700 mb-2">
+              <div className="mt-3 pt-3 border-t border-neutral-200">
+                <p className="text-xs font-medium text-neutral-700 mb-2">
                   Exemple d'appel API:
                 </p>
-                <pre className="text-[11px] bg-gray-800 text-gray-100 p-3 rounded-lg overflow-x-auto">
+                <pre className="text-[11px] bg-neutral-800 text-neutral-100 p-3 rounded-lg overflow-x-auto">
 {`POST /templates/generate
 {
   "templateId": "${selected.id}",

@@ -165,10 +165,10 @@ export default function SupplierTimeSlots() {
             <ArrowLeft className="w-4 h-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
               {t('supplier.slots.title') || 'Créneaux horaires'}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">{showroom.name}</p>
+            <p className="text-neutral-600 dark:text-neutral-400">{showroom.name}</p>
           </div>
         </div>
         <Button onClick={() => setShowForm(!showForm)}>
@@ -180,13 +180,13 @@ export default function SupplierTimeSlots() {
       {showForm && (
         <Card>
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-white">
               {t('supplier.slots.new') || 'Créer un créneau'}
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('supplier.category') || 'Catégorie'}
                 </label>
                 <Select
@@ -203,7 +203,7 @@ export default function SupplierTimeSlots() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('supplier.slots.startAt') || 'Début'}
                 </label>
                 <Input
@@ -215,7 +215,7 @@ export default function SupplierTimeSlots() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('supplier.slots.endAt') || 'Fin'}
                 </label>
                 <Input
@@ -227,7 +227,7 @@ export default function SupplierTimeSlots() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   {t('supplier.slots.capacity') || 'Capacité'}
                 </label>
                 <Input
@@ -254,12 +254,12 @@ export default function SupplierTimeSlots() {
 
       <Card>
         <div className="p-6">
-          <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-4">
+          <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-4">
             {t('supplier.slots.list') || 'Créneaux disponibles'}
           </h3>
 
           {slots.length === 0 ? (
-            <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+            <div className="text-center py-12 text-neutral-500 dark:text-neutral-400">
               {t('supplier.slots.empty') || 'Aucun créneau créé'}
             </div>
           ) : (
@@ -267,18 +267,18 @@ export default function SupplierTimeSlots() {
               {slots.map((slot) => (
                 <div
                   key={slot.id}
-                  className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                  className="flex items-center justify-between p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg"
                 >
                   <div className="flex items-center space-x-4">
                     <Badge variant="blue">{getCategoryLabel(slot.category)}</Badge>
-                    <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center space-x-2 text-sm text-neutral-600 dark:text-neutral-400">
                       <Calendar className="w-4 h-4" />
                       <span>{formatDateTime(slot.start_at)}</span>
                       <span>→</span>
                       <Clock className="w-4 h-4" />
                       <span>{formatDateTime(slot.end_at)}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center space-x-2 text-sm text-neutral-600 dark:text-neutral-400">
                       <Users className="w-4 h-4" />
                       <span>
                         {t('supplier.slots.capacity') || 'Capacité'}: {slot.capacity}

@@ -49,22 +49,22 @@ export function ChantierHome() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="flex items-center justify-center min-h-screen bg-neutral-900">
         <div className="text-center">
           <LoadingSpinner size="lg" />
-          <p className="mt-4 text-gray-400">Chargement...</p>
+          <p className="mt-4 text-neutral-400">Chargement...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white pb-20">
+    <div className="min-h-screen bg-neutral-900 text-white pb-20">
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold">Mode Chantier</h1>
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-neutral-400 mt-1">
               {user?.email}
             </p>
           </div>
@@ -116,7 +116,7 @@ export function ChantierHome() {
         <div className="grid grid-cols-2 gap-4">
           <Link
             to="/chantier/journal"
-            className="flex flex-col items-center gap-3 p-6 bg-gray-800 rounded-2xl hover:bg-gray-750 transition-colors"
+            className="flex flex-col items-center gap-3 p-6 bg-neutral-800 rounded-2xl hover:bg-neutral-750 transition-colors"
           >
             <Camera className="h-10 w-10 text-brand-400" />
             <span className="text-sm font-medium text-center">Journal de chantier</span>
@@ -124,7 +124,7 @@ export function ChantierHome() {
 
           <Link
             to="/chantier/sav"
-            className="flex flex-col items-center gap-3 p-6 bg-gray-800 rounded-2xl hover:bg-gray-750 transition-colors"
+            className="flex flex-col items-center gap-3 p-6 bg-neutral-800 rounded-2xl hover:bg-neutral-750 transition-colors"
           >
             <Hammer className="h-10 w-10 text-brand-400" />
             <span className="text-sm font-medium text-center">Tickets SAV</span>
@@ -132,7 +132,7 @@ export function ChantierHome() {
 
           <Link
             to="/chantier/messages"
-            className="flex flex-col items-center gap-3 p-6 bg-gray-800 rounded-2xl hover:bg-gray-750 transition-colors"
+            className="flex flex-col items-center gap-3 p-6 bg-neutral-800 rounded-2xl hover:bg-neutral-750 transition-colors"
           >
             <MessageSquare className="h-10 w-10 text-green-400" />
             <span className="text-sm font-medium text-center">Messages</span>
@@ -140,9 +140,9 @@ export function ChantierHome() {
 
           <Link
             to="/"
-            className="flex flex-col items-center gap-3 p-6 bg-gray-800 rounded-2xl hover:bg-gray-750 transition-colors"
+            className="flex flex-col items-center gap-3 p-6 bg-neutral-800 rounded-2xl hover:bg-neutral-750 transition-colors"
           >
-            <Home className="h-10 w-10 text-gray-400" />
+            <Home className="h-10 w-10 text-neutral-400" />
             <span className="text-sm font-medium text-center">Mode bureau</span>
           </Link>
         </div>
@@ -151,21 +151,21 @@ export function ChantierHome() {
           <h2 className="text-lg font-semibold">Projets en cours</h2>
 
           {projects.length === 0 ? (
-            <Card className="bg-gray-800 border-gray-700">
+            <Card className="bg-neutral-800 border-neutral-700">
               <Card.Content className="py-12 text-center">
-                <Home className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">Aucun projet en cours</p>
+                <Home className="h-12 w-12 text-neutral-600 mx-auto mb-4" />
+                <p className="text-neutral-400">Aucun projet en cours</p>
               </Card.Content>
             </Card>
           ) : (
             projects.map(project => (
               <Link key={project.id} to={`/chantier/projects/${project.id}`}>
-                <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors">
+                <Card className="bg-neutral-800 border-neutral-700 hover:bg-neutral-750 transition-colors">
                   <Card.Content className="py-4">
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="font-semibold text-lg">{project.name}</h3>
-                        <p className="text-sm text-gray-400">{project.city}</p>
+                        <p className="text-sm text-neutral-400">{project.city}</p>
                       </div>
                       <Badge variant="info">{project.status}</Badge>
                     </div>
@@ -176,7 +176,7 @@ export function ChantierHome() {
           )}
         </div>
 
-        <div className="pt-6 text-center text-xs text-gray-500">
+        <div className="pt-6 text-center text-xs text-neutral-500">
           <p>Mode PWA - Fonctionne hors ligne</p>
           <p className="mt-1">Version 1.0.0</p>
         </div>

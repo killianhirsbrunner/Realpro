@@ -48,7 +48,7 @@ export function DocumentSignature({ documentId }: DocumentSignatureProps) {
       case 'CANCELLED':
         return 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300';
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
+        return 'bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-300';
     }
   };
 
@@ -58,7 +58,7 @@ export function DocumentSignature({ documentId }: DocumentSignatureProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <FileSignature className="h-5 w-5 text-brand-600 dark:text-brand-400" />
-            <h3 className="font-medium text-gray-900 dark:text-gray-50">
+            <h3 className="font-medium text-neutral-900 dark:text-neutral-50">
               {t('signature.title')}
             </h3>
           </div>
@@ -101,11 +101,11 @@ export function DocumentSignature({ documentId }: DocumentSignatureProps) {
         )}
 
         {loading ? (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             {t('common.loading')}
           </p>
         ) : signatures.length === 0 ? (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             {t('signature.noRequests')}
           </p>
         ) : (
@@ -113,13 +113,13 @@ export function DocumentSignature({ documentId }: DocumentSignatureProps) {
             {signatures.map((sig) => (
               <div
                 key={sig.id}
-                className="flex items-center justify-between rounded-lg border border-gray-200 p-3 dark:border-gray-700"
+                className="flex items-center justify-between rounded-lg border border-neutral-200 p-3 dark:border-neutral-700"
               >
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                  <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
                     {sig.signer_email}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
                     {new Date(sig.created_at).toLocaleDateString('fr-CH')}
                   </p>
                 </div>

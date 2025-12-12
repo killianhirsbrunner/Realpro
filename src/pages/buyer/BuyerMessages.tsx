@@ -122,8 +122,8 @@ export function BuyerMessages() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 space-y-6">
       <header className="space-y-1">
-        <h1 className="text-xl font-semibold text-gray-900">Messages</h1>
-        <p className="text-sm text-gray-500">
+        <h1 className="text-xl font-semibold text-neutral-900">Messages</h1>
+        <p className="text-sm text-neutral-500">
           Échanges entre vous et l'équipe en charge du projet, {buyer.first_name}{' '}
           {buyer.last_name}.
         </p>
@@ -133,7 +133,7 @@ export function BuyerMessages() {
       <section className="space-y-3">
         <div className="rounded-2xl border bg-white px-4 py-3 h-72 overflow-y-auto">
           {messages.length === 0 ? (
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               Aucun message pour l'instant. Posez votre première question
               ci-dessous.
             </p>
@@ -150,7 +150,7 @@ export function BuyerMessages() {
                     className={`max-w-[80%] rounded-2xl px-3 py-2 ${
                       msg.author_type === 'BUYER'
                         ? 'bg-brand-600 text-white'
-                        : 'bg-gray-100 text-gray-900'
+                        : 'bg-neutral-100 text-neutral-900'
                     }`}
                   >
                     <p className="text-xs opacity-80 mb-0.5">
@@ -175,7 +175,7 @@ export function BuyerMessages() {
           onSubmit={handleSubmit}
           className="space-y-2 rounded-2xl border bg-white px-4 py-3"
         >
-          <label className="text-sm font-medium text-gray-900">
+          <label className="text-sm font-medium text-neutral-900">
             Écrire un message
           </label>
           <textarea

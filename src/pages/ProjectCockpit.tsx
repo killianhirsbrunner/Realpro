@@ -98,7 +98,7 @@ function CockpitStatCard({ label, value, icon: Icon, variant = 'default' }: {
     default: 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400',
     success: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400',
     warning: 'bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400',
-    info: 'bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400',
+    info: 'bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 text-realpro-turquoise',
   };
 
   return (
@@ -124,7 +124,7 @@ function MiniKPICard({ label, value, color = 'default' }: {
 }) {
   const colors = {
     default: 'text-neutral-900 dark:text-neutral-100',
-    brand: 'text-brand-600 dark:text-brand-400',
+    brand: 'text-realpro-turquoise',
     success: 'text-green-600 dark:text-green-400',
   };
 
@@ -388,7 +388,7 @@ export function ProjectCockpit() {
             </p>
             <Link
               to={`/projects/${project.id}/lots`}
-              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+              className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
             >
               Voir le programme de vente
               <ArrowRight className="w-4 h-4" />
@@ -419,8 +419,8 @@ export function ProjectCockpit() {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">Dossiers signés</p>
                 <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{notary.signed_files}</p>
               </div>
-              <div className="p-3 bg-brand-100 dark:bg-brand-900/30 rounded-xl">
-                <Users className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+              <div className="p-3 bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 rounded-xl">
+                <Users className="h-6 w-6 text-realpro-turquoise" />
               </div>
             </div>
           </RealProCard>
@@ -478,7 +478,7 @@ export function ProjectCockpit() {
           <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
             <Link
               to={`/projects/${project.id}/notary`}
-              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+              className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
             >
               Voir tous les dossiers notaire
               <ArrowRight className="w-4 h-4" />
@@ -535,14 +535,14 @@ export function ProjectCockpit() {
               <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700 flex flex-wrap gap-4">
                 <Link
                   to={`/projects/${project.id}/cfc`}
-                  className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+                  className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
                 >
                   Voir le détail CFC
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to={`/projects/${project.id}/finances`}
-                  className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+                  className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
                 >
                   Voir les contrats entreprises
                   <ArrowRight className="w-4 h-4" />
@@ -570,7 +570,7 @@ export function ProjectCockpit() {
           </div>
           <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-3">
             <div
-              className="bg-brand-600 h-3 rounded-full transition-all"
+              className="bg-realpro-turquoise h-3 rounded-full transition-all"
               style={{ width: `${construction.overall_progress}%` }}
             />
           </div>
@@ -607,7 +607,7 @@ export function ProjectCockpit() {
             <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
               <Link
                 to={`/projects/${project.id}/construction`}
-                className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+                className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
               >
                 Voir le planning détaillé
                 <ArrowRight className="w-4 h-4" />
@@ -644,7 +644,7 @@ export function ProjectCockpit() {
             <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
               <Link
                 to={`/projects/${project.id}/submissions`}
-                className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+                className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
               >
                 Gérer les soumissions
                 <ArrowRight className="w-4 h-4" />
@@ -666,7 +666,7 @@ export function ProjectCockpit() {
             <div className="space-y-4">
               {activities.map(activity => (
                 <div key={activity.id} className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-brand-600 dark:bg-brand-400" />
+                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-realpro-turquoise" />
                   <div className="flex-1">
                     <p className="text-sm text-neutral-900 dark:text-neutral-100">{activity.action}</p>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
@@ -680,7 +680,7 @@ export function ProjectCockpit() {
           <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-700">
             <Link
               to={`/projects/${project.id}/communication`}
-              className="text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium inline-flex items-center gap-1"
+              className="text-sm text-realpro-turquoise hover:text-realpro-turquoise/80 font-medium inline-flex items-center gap-1"
             >
               Voir tous les messages
               <ArrowRight className="w-4 h-4" />

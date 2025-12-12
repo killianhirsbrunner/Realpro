@@ -70,10 +70,10 @@ function UnauthorizedMessage() {
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-2xl font-semibold text-neutral-900 dark:text-white">
             Accès refusé
           </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
             Vous n'avez pas les permissions nécessaires pour accéder à cette page ou fonctionnalité.
           </p>
         </div>

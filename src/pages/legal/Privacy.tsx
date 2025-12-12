@@ -3,31 +3,31 @@ import { Shield } from 'lucide-react';
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="flex items-center gap-3 mb-8">
           <Shield className="w-8 h-8 text-brand-600 dark:text-brand-400" />
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
             Politique de confidentialité
           </h1>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 space-y-8">
-          <div className="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
-            <p className="text-gray-600 dark:text-gray-400">
+        <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-sm p-8 space-y-8">
+          <div className="text-center border-b border-neutral-200 dark:border-neutral-700 pb-6">
+            <p className="text-neutral-600 dark:text-neutral-400">
               <strong>Realpro SA</strong> s'engage à protéger la vie privée de ses utilisateurs
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+            <p className="text-sm text-neutral-500 dark:text-neutral-500 mt-2">
               Dernière mise à jour : 3 décembre 2025
             </p>
           </div>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               1. Responsable du traitement
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
-              <p className="font-semibold text-gray-900 dark:text-white">Realpro SA</p>
+            <div className="text-neutral-700 dark:text-neutral-300">
+              <p className="font-semibold text-neutral-900 dark:text-white">Realpro SA</p>
               <p>Yverdon-les-Bains</p>
               <p>Canton de Vaud, Suisse</p>
               <p className="mt-3">
@@ -37,10 +37,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               2. Cadre légal
             </h3>
-            <div className="space-y-3 text-gray-700 dark:text-gray-300">
+            <div className="space-y-3 text-neutral-700 dark:text-neutral-300">
               <p>
                 La présente politique de confidentialité est établie conformément à :
               </p>
@@ -53,12 +53,12 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               3. Données collectées
             </h3>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.1 Données d'identification</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.1 Données d'identification</h4>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Nom, prénom</li>
                   <li>Adresse email professionnelle</li>
@@ -68,7 +68,7 @@ export default function Privacy() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.2 Données de connexion</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.2 Données de connexion</h4>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Adresse IP</li>
                   <li>Logs de connexion (date, heure)</li>
@@ -76,7 +76,7 @@ export default function Privacy() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.3 Données métiers</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.3 Données métiers</h4>
                 <ul className="list-disc list-inside space-y-1 ml-4">
                   <li>Projets immobiliers créés et gérés</li>
                   <li>Documents téléversés (plans, contrats, factures)</li>
@@ -85,11 +85,11 @@ export default function Privacy() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">3.4 Données de paiement</h4>
+                <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">3.4 Données de paiement</h4>
                 <p>
                   Les paiements sont traités par <strong>Datatrans SA</strong>, prestataire de services de paiement agréé en Suisse.
                 </p>
-                <p className="font-semibold text-gray-900 dark:text-white mt-2">
+                <p className="font-semibold text-neutral-900 dark:text-white mt-2">
                   Realpro SA ne stocke AUCUNE donnée de carte bancaire.
                 </p>
               </div>
@@ -97,10 +97,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               4. Finalités du traitement
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-3">Les données sont collectées pour :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Fournir l'accès et l'utilisation du logiciel RealPro</li>
@@ -115,10 +115,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               5. Base légale du traitement
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-3">Le traitement des données repose sur :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li><strong>L'exécution du contrat</strong> : fourniture du service SaaS</li>
@@ -130,11 +130,11 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               6. Partage des données
             </h3>
-            <div className="space-y-3 text-gray-700 dark:text-gray-300">
-              <p className="font-semibold text-gray-900 dark:text-white">
+            <div className="space-y-3 text-neutral-700 dark:text-neutral-300">
+              <p className="font-semibold text-neutral-900 dark:text-white">
                 Realpro SA ne vend JAMAIS vos données à des tiers.
               </p>
               <p>Les données peuvent être partagées uniquement avec :</p>
@@ -156,10 +156,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               7. Sécurité des données
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-3">Realpro SA met en œuvre des mesures de sécurité techniques et organisationnelles :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Chiffrement SSL/TLS pour toutes les connexions</li>
@@ -173,10 +173,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               8. Conservation des données
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-3">Les données sont conservées :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li><strong>Données de compte</strong> : pendant toute la durée du contrat + 30 jours après résiliation</li>
@@ -184,17 +184,17 @@ export default function Privacy() {
                 <li><strong>Logs de connexion</strong> : 12 mois maximum</li>
                 <li><strong>Données métiers</strong> : 30 jours après résiliation (possibilité d'export préalable)</li>
               </ul>
-              <p className="mt-3 font-semibold text-gray-900 dark:text-white">
+              <p className="mt-3 font-semibold text-neutral-900 dark:text-white">
                 Après ce délai, les données sont supprimées de manière irréversible.
               </p>
             </div>
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               9. Vos droits
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-3">Conformément à la LPD et au RGPD, vous disposez des droits suivants :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
@@ -217,10 +217,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               10. Transferts internationaux
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p>
                 Les données sont hébergées en <strong>Europe (Suisse ou UE)</strong> conformément au RGPD.
               </p>
@@ -231,10 +231,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               11. Cookies et technologies similaires
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-3">RealPro utilise des cookies strictement nécessaires au fonctionnement du service :</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Cookie de session (authentification)</li>
@@ -247,10 +247,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               12. Modifications de la politique
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p>
                 Realpro SA se réserve le droit de modifier la présente politique de confidentialité à tout moment.
               </p>
@@ -264,14 +264,14 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               13. Autorité de contrôle
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p className="mb-2">
                 En cas de litige, vous pouvez déposer une plainte auprès de :
               </p>
-              <p className="font-semibold text-gray-900 dark:text-white">
+              <p className="font-semibold text-neutral-900 dark:text-white">
                 Préposé fédéral à la protection des données et à la transparence (PFPDT)
               </p>
               <p className="mt-2">
@@ -294,10 +294,10 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-4">
               14. Contact
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
+            <div className="text-neutral-700 dark:text-neutral-300">
               <p>Pour toute question concernant cette politique de confidentialité :</p>
               <p className="mt-3">
                 <strong>Realpro SA</strong><br />
@@ -313,8 +313,8 @@ export default function Privacy() {
             </div>
           </section>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+            <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
               <a
                 href="/legal/cgu"
                 className="text-brand-600 dark:text-brand-400 hover:underline"
@@ -336,7 +336,7 @@ export default function Privacy() {
                 Mentions légales
               </a>
             </p>
-            <p className="text-center text-xs text-gray-500 dark:text-gray-500 mt-4">
+            <p className="text-center text-xs text-neutral-500 dark:text-neutral-500 mt-4">
               © 2025 Realpro SA, Yverdon-les-Bains (VD), Suisse. Tous droits réservés.
             </p>
           </div>

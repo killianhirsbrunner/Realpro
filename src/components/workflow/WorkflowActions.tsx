@@ -103,8 +103,8 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
   // Don't show actions if workflow is not active
   if (instance.status !== 'active') {
     return (
-      <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
-        <p className="text-sm text-gray-600">
+      <div className="p-4 bg-neutral-50 border border-neutral-200 rounded-lg">
+        <p className="text-sm text-neutral-600">
           Ce workflow est {instance.status === 'completed' ? 'terminé' : 'inactif'}.
         </p>
       </div>
@@ -138,10 +138,10 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
           <div className="flex items-start gap-3 mb-4">
             <AlertCircle className="w-6 h-6 text-realpro-turquoise flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <h4 className="text-lg font-semibold text-gray-900">
+              <h4 className="text-lg font-semibold text-neutral-900">
                 Approbation requise
               </h4>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-neutral-600 mt-1">
                 L'étape actuelle "<span className="font-medium">{currentStep.step_name}</span>" nécessite votre approbation pour continuer.
               </p>
             </div>
@@ -149,11 +149,11 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
 
           {/* Comment input */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 mb-2">
               Commentaire (optionnel)
             </label>
             <textarea
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-realpro-turquoise focus:border-transparent"
               rows={3}
               placeholder="Ajoutez un commentaire..."
               value={approveComment}
@@ -191,7 +191,7 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
       <div className="flex justify-end">
         <button
           onClick={() => setShowCancelDialog(true)}
-          className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+          className="px-4 py-2 text-sm text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors"
         >
           Annuler le workflow
         </button>
@@ -201,14 +201,14 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
       {showRejectDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">
               Rejeter l'étape
             </h3>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-neutral-600 mb-4">
               Veuillez indiquer la raison du rejet. Le workflow sera annulé.
             </p>
             <textarea
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent mb-4"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent mb-4"
               rows={4}
               placeholder="Raison du rejet..."
               value={rejectReason}
@@ -221,7 +221,7 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
                   setShowRejectDialog(false);
                   setRejectReason('');
                 }}
-                className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors"
               >
                 Annuler
               </button>
@@ -246,14 +246,14 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
       {showCancelDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">
               Annuler le workflow
             </h3>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-neutral-600 mb-4">
               Êtes-vous sûr de vouloir annuler ce workflow ? Cette action est irréversible.
             </p>
             <textarea
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent mb-4"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500 focus:border-transparent mb-4"
               rows={3}
               placeholder="Raison de l'annulation..."
               value={cancelReason}
@@ -266,14 +266,14 @@ export function WorkflowActions({ instance, onActionComplete }: WorkflowActionsP
                   setShowCancelDialog(false);
                   setCancelReason('');
                 }}
-                className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 rounded-lg transition-colors"
               >
                 Retour
               </button>
               <button
                 onClick={handleCancel}
                 disabled={cancelling || !cancelReason.trim()}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-4 py-2 bg-neutral-600 hover:bg-neutral-700 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {cancelling ? (
                   <Loader2 className="w-4 h-4 animate-spin" />

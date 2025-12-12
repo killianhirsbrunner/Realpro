@@ -48,7 +48,7 @@ export function TrialBanner({ className }: TrialBannerProps) {
         {
           'bg-gradient-to-r from-red-600 to-red-700 text-white': isUrgent,
           'bg-gradient-to-r from-amber-500 to-orange-500 text-white': isWarning,
-          'bg-gradient-to-r from-brand-600 to-brand-700 text-white': !isUrgent && !isWarning,
+          'bg-realpro-turquoise text-white': !isUrgent && !isWarning,
         },
         className
       )}
@@ -84,7 +84,7 @@ export function TrialBanner({ className }: TrialBannerProps) {
             {
               'bg-white text-red-600 hover:bg-red-50': isUrgent,
               'bg-white text-amber-600 hover:bg-amber-50': isWarning,
-              'bg-white text-brand-600 hover:bg-brand-50': !isUrgent && !isWarning,
+              'bg-white text-realpro-turquoise hover:bg-realpro-turquoise/5': !isUrgent && !isWarning,
             }
           )}
         >

@@ -16,7 +16,7 @@ import { fr } from 'date-fns/locale';
 
 const WEATHER_OPTIONS = [
   { value: 'sunny', label: 'Ensoleille', icon: Sun, color: 'text-yellow-500' },
-  { value: 'cloudy', label: 'Nuageux', icon: Cloud, color: 'text-gray-500' },
+  { value: 'cloudy', label: 'Nuageux', icon: Cloud, color: 'text-neutral-500' },
   { value: 'rainy', label: 'Pluvieux', icon: CloudRain, color: 'text-blue-500' },
   { value: 'snowy', label: 'Neigeux', icon: Snowflake, color: 'text-cyan-500' },
   { value: 'windy', label: 'Venteux', icon: Wind, color: 'text-teal-500' },
@@ -101,7 +101,7 @@ export default function ProjectPlanningReports() {
 
   const getWeatherIcon = (weather: string | null) => {
     const found = WEATHER_OPTIONS.find(w => w.value === weather);
-    if (!found) return { Icon: Cloud, color: 'text-gray-400' };
+    if (!found) return { Icon: Cloud, color: 'text-neutral-400' };
     return { Icon: found.icon, color: found.color };
   };
 
@@ -143,7 +143,7 @@ export default function ProjectPlanningReports() {
             <ArrowLeft className="w-4 h-4 mr-1" />
             Retour au planning
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white flex items-center gap-3">
             <div className="p-2 bg-realpro-turquoise/10 rounded-xl">
               <FileText className="w-8 h-8 text-realpro-turquoise" />
             </div>
@@ -167,8 +167,8 @@ export default function ProjectPlanningReports() {
               <FileText className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Total rapports</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">{entries.length}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Total rapports</p>
+              <p className="text-xl font-bold text-neutral-900 dark:text-white">{entries.length}</p>
             </div>
           </div>
         </Card>
@@ -179,8 +179,8 @@ export default function ProjectPlanningReports() {
               <Users className="h-5 w-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Ouvriers total</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">{totalWorkers}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Ouvriers total</p>
+              <p className="text-xl font-bold text-neutral-900 dark:text-white">{totalWorkers}</p>
             </div>
           </div>
         </Card>
@@ -191,8 +191,8 @@ export default function ProjectPlanningReports() {
               <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
             </div>
             <div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Problemes ouverts</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">{openIssues}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Problemes ouverts</p>
+              <p className="text-xl font-bold text-neutral-900 dark:text-white">{openIssues}</p>
             </div>
           </div>
         </Card>
@@ -201,27 +201,27 @@ export default function ProjectPlanningReports() {
       {showNewForm && (
         <Card className="p-6 border-2 border-realpro-turquoise">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">Nouveau rapport journalier</h2>
-            <button onClick={() => setShowNewForm(false)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+            <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Nouveau rapport journalier</h2>
+            <button onClick={() => setShowNewForm(false)} className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
               <X className="h-5 w-5" />
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 Date du rapport
               </label>
               <input
                 type="date"
                 value={newEntry.entry_date}
                 onChange={(e) => setNewEntry({ ...newEntry, entry_date: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+                className="w-full px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                 Meteo
               </label>
               <div className="flex gap-2">
@@ -235,7 +235,7 @@ export default function ProjectPlanningReports() {
                       className={`flex-1 p-3 rounded-lg border transition-all ${
                         newEntry.weather === option.value
                           ? 'border-realpro-turquoise bg-realpro-turquoise/10'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-400'
+                          : 'border-neutral-200 dark:border-neutral-700 hover:border-neutral-400'
                       }`}
                       title={option.label}
                     >
@@ -248,13 +248,13 @@ export default function ProjectPlanningReports() {
           </div>
 
           <div className="mt-6">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
               Notes et observations
             </label>
             <textarea
               value={newEntry.notes}
               onChange={(e) => setNewEntry({ ...newEntry, notes: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+              className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900"
               rows={4}
               placeholder="Activités réalisées, observations..."
             />
@@ -262,7 +262,7 @@ export default function ProjectPlanningReports() {
 
           <div className="mt-6">
             <div className="flex items-center justify-between mb-3">
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Main d'œuvre présente
               </label>
               <Button variant="outline" size="sm" onClick={addWorkforceRow}>
@@ -272,7 +272,7 @@ export default function ProjectPlanningReports() {
             </div>
 
             {newEntry.workforce.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-4">Aucune main d'oeuvre enregistree</p>
+              <p className="text-sm text-neutral-500 text-center py-4">Aucune main d'oeuvre enregistree</p>
             ) : (
               <div className="space-y-2">
                 {newEntry.workforce.map((w, idx) => (
@@ -286,7 +286,7 @@ export default function ProjectPlanningReports() {
                         updated[idx].company = e.target.value;
                         setNewEntry({ ...newEntry, workforce: updated });
                       }}
-                      className="flex-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm"
+                      className="flex-1 px-3 py-2 rounded border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm"
                     />
                     <input
                       type="number"
@@ -297,7 +297,7 @@ export default function ProjectPlanningReports() {
                         updated[idx].workers = parseInt(e.target.value) || 0;
                         setNewEntry({ ...newEntry, workforce: updated });
                       }}
-                      className="w-24 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm"
+                      className="w-24 px-3 py-2 rounded border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm"
                     />
                     <input
                       type="number"
@@ -308,7 +308,7 @@ export default function ProjectPlanningReports() {
                         updated[idx].hours = parseInt(e.target.value) || 0;
                         setNewEntry({ ...newEntry, workforce: updated });
                       }}
-                      className="w-20 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm"
+                      className="w-20 px-3 py-2 rounded border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm"
                     />
                     <button
                       onClick={() => {
@@ -325,7 +325,7 @@ export default function ProjectPlanningReports() {
             )}
           </div>
 
-          <div className="flex items-center justify-end gap-3 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-end gap-3 mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700">
             <Button variant="outline" onClick={() => setShowNewForm(false)}>
               Annuler
             </Button>
@@ -339,8 +339,8 @@ export default function ProjectPlanningReports() {
 
       {entries.length === 0 ? (
         <Card className="text-center py-16">
-          <FileText className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-4">Aucun rapport journalier disponible</p>
+          <FileText className="h-16 w-16 text-neutral-300 mx-auto mb-4" />
+          <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-4">Aucun rapport journalier disponible</p>
           <Button onClick={() => setShowNewForm(true)}>
             <Plus className="w-4 h-4 mr-2" />
             Creer le premier rapport
@@ -359,24 +359,24 @@ export default function ProjectPlanningReports() {
             return (
               <Card key={entry.id} className="overflow-hidden">
                 <div
-                  className="p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                  className="p-6 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors"
                   onClick={() => setExpandedEntryId(isExpanded ? null : entry.id)}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
                       <div className="text-center">
-                        <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                        <p className="text-3xl font-bold text-neutral-900 dark:text-white">
                           {format(new Date(entry.entry_date), 'd')}
                         </p>
-                        <p className="text-sm text-gray-500 uppercase">
+                        <p className="text-sm text-neutral-500 uppercase">
                           {format(new Date(entry.entry_date), 'MMM', { locale: fr })}
                         </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 dark:text-white capitalize">
+                        <p className="font-semibold text-neutral-900 dark:text-white capitalize">
                           {formatEntryDate(entry.entry_date)}
                         </p>
-                        <div className="flex items-center gap-4 mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        <div className="flex items-center gap-4 mt-1 text-sm text-neutral-600 dark:text-neutral-400">
                           <span className="flex items-center gap-1">
                             <WeatherIcon className={`h-4 w-4 ${weatherColor}`} />
                             {WEATHER_OPTIONS.find(w => w.value === entry.weather)?.label || 'N/A'}
@@ -405,40 +405,40 @@ export default function ProjectPlanningReports() {
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
-                      {isExpanded ? <ChevronUp className="h-5 w-5 text-gray-400" /> : <ChevronDown className="h-5 w-5 text-gray-400" />}
+                      {isExpanded ? <ChevronUp className="h-5 w-5 text-neutral-400" /> : <ChevronDown className="h-5 w-5 text-neutral-400" />}
                     </div>
                   </div>
                 </div>
 
                 {isExpanded && (
-                  <div className="px-6 pb-6 pt-2 border-t border-gray-100 dark:border-gray-800">
+                  <div className="px-6 pb-6 pt-2 border-t border-neutral-100 dark:border-neutral-800">
                     {entry.notes && (
                       <div className="mb-4">
-                        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Notes</h4>
-                        <p className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{entry.notes}</p>
+                        <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Notes</h4>
+                        <p className="text-neutral-600 dark:text-neutral-400 whitespace-pre-wrap">{entry.notes}</p>
                       </div>
                     )}
 
                     {workforce && workforce.length > 0 && (
                       <div className="mb-4">
-                        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Main d'oeuvre</h4>
-                        <div className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden">
+                        <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Main d'oeuvre</h4>
+                        <div className="bg-neutral-50 dark:bg-neutral-800 rounded-lg overflow-hidden">
                           <table className="w-full text-sm">
                             <thead>
-                              <tr className="border-b border-gray-200 dark:border-gray-700">
-                                <th className="text-left py-2 px-3 text-gray-600 dark:text-gray-400">Entreprise</th>
-                                <th className="text-right py-2 px-3 text-gray-600 dark:text-gray-400">Ouvriers</th>
-                                <th className="text-right py-2 px-3 text-gray-600 dark:text-gray-400">Heures</th>
-                                <th className="text-right py-2 px-3 text-gray-600 dark:text-gray-400">Total H.</th>
+                              <tr className="border-b border-neutral-200 dark:border-neutral-700">
+                                <th className="text-left py-2 px-3 text-neutral-600 dark:text-neutral-400">Entreprise</th>
+                                <th className="text-right py-2 px-3 text-neutral-600 dark:text-neutral-400">Ouvriers</th>
+                                <th className="text-right py-2 px-3 text-neutral-600 dark:text-neutral-400">Heures</th>
+                                <th className="text-right py-2 px-3 text-neutral-600 dark:text-neutral-400">Total H.</th>
                               </tr>
                             </thead>
                             <tbody>
                               {workforce.map((w: any, idx: number) => (
-                                <tr key={idx} className="border-b border-gray-100 dark:border-gray-700 last:border-0">
-                                  <td className="py-2 px-3 text-gray-900 dark:text-white">{w.company}</td>
-                                  <td className="py-2 px-3 text-right text-gray-900 dark:text-white">{w.workers}</td>
-                                  <td className="py-2 px-3 text-right text-gray-900 dark:text-white">{w.hours}h</td>
-                                  <td className="py-2 px-3 text-right font-semibold text-gray-900 dark:text-white">{w.workers * w.hours}h</td>
+                                <tr key={idx} className="border-b border-neutral-100 dark:border-neutral-700 last:border-0">
+                                  <td className="py-2 px-3 text-neutral-900 dark:text-white">{w.company}</td>
+                                  <td className="py-2 px-3 text-right text-neutral-900 dark:text-white">{w.workers}</td>
+                                  <td className="py-2 px-3 text-right text-neutral-900 dark:text-white">{w.hours}h</td>
+                                  <td className="py-2 px-3 text-right font-semibold text-neutral-900 dark:text-white">{w.workers * w.hours}h</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -449,16 +449,16 @@ export default function ProjectPlanningReports() {
 
                     {issues && issues.length > 0 && (
                       <div>
-                        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Problemes signales</h4>
+                        <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Problemes signales</h4>
                         <div className="space-y-2">
                           {issues.map((issue: any, idx: number) => (
-                            <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <div key={idx} className="flex items-center gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                               {issue.resolved ? (
                                 <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                               ) : (
                                 <AlertTriangle className="h-5 w-5 text-red-500 flex-shrink-0" />
                               )}
-                              <p className={`flex-1 ${issue.resolved ? 'line-through text-gray-500' : 'text-gray-900 dark:text-white'}`}>
+                              <p className={`flex-1 ${issue.resolved ? 'line-through text-neutral-500' : 'text-neutral-900 dark:text-white'}`}>
                                 {issue.description}
                               </p>
                               <Badge variant={issue.resolved ? 'success' : issue.severity === 'high' ? 'error' : 'warning'}>

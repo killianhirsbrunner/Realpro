@@ -35,8 +35,8 @@ export function ModernCard({
     <div
       className={clsx(
         'relative overflow-hidden rounded-2xl',
-        'bg-white dark:bg-gray-900',
-        'border border-gray-200 dark:border-gray-800',
+        'bg-white dark:bg-neutral-900',
+        'border border-neutral-200 dark:border-neutral-800',
         'transition-all duration-200',
         {
           'hover:shadow-2xl hover:border-realpro-turquoise hover:-translate-y-1': hover,
@@ -60,12 +60,12 @@ export function ModernCard({
               )}
               <div>
                 {title && (
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     {title}
                   </h3>
                 )}
                 {subtitle && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
                     {subtitle}
                   </p>
                 )}

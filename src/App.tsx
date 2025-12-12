@@ -13,7 +13,6 @@ import { OrganizationProvider } from './contexts/OrganizationContext';
 import { RealProToaster } from './components/ui/Toast';
 
 import { Landing } from './pages/public/Landing';
-import { LandingEnhanced } from './pages/public/LandingEnhanced';
 import { Pricing } from './pages/public/Pricing';
 import { Features } from './pages/public/Features';
 import { Contact } from './pages/public/Contact';

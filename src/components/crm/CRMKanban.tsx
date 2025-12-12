@@ -100,7 +100,7 @@ export default function CRMKanban({ pipeline, projectId }: CRMKanbanProps) {
             <div className={`flex-1 p-4 ${col.color} rounded-b-xl space-y-3 min-h-[500px] border-l border-r border-b ${col.borderColor}`}>
               {items.length === 0 ? (
                 <div className="text-center py-8">
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
                     Aucun contact
                   </p>
                 </div>

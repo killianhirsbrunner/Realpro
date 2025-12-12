@@ -126,15 +126,15 @@ export function BrokerSalesContractDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-gray-500">Chargement du contrat...</div>
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+        <div className="text-neutral-500">Chargement du contrat...</div>
       </div>
     );
   }
 
   if (!contract) {
     return (
-      <div className="min-h-screen bg-gray-50 p-8">
+      <div className="min-h-screen bg-neutral-50 p-8">
         <Card className="max-w-2xl mx-auto p-6">
           <div className="flex items-start gap-3">
             <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
@@ -159,7 +159,7 @@ export function BrokerSalesContractDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6">
           <Button
@@ -172,10 +172,10 @@ export function BrokerSalesContractDetail() {
           </Button>
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-3xl font-bold text-neutral-900">
                 Contrat de vente – Lot {contract.lot.code}
               </h1>
-              <p className="mt-2 text-gray-600">{contract.project.name}</p>
+              <p className="mt-2 text-neutral-600">{contract.project.name}</p>
             </div>
             {contract.signed_at && (
               <Badge variant="success" className="text-base px-4 py-2">
@@ -202,7 +202,7 @@ export function BrokerSalesContractDetail() {
 
             <Card>
               <div className="p-6 border-b">
-                <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                <h2 className="text-lg font-semibold text-neutral-900 flex items-center gap-2">
                   <FileText className="h-5 w-5 text-brand-600" />
                   Informations du contrat
                 </h2>
@@ -210,7 +210,7 @@ export function BrokerSalesContractDetail() {
               <form onSubmit={handleSubmit} className="p-6 space-y-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
                       Date de signature
                     </label>
                     <Input
@@ -221,7 +221,7 @@ export function BrokerSalesContractDetail() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
                       Date d'effet
                     </label>
                     <Input
@@ -233,7 +233,7 @@ export function BrokerSalesContractDetail() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     ID du document (acte signé)
                   </label>
                   <Input
@@ -256,14 +256,14 @@ export function BrokerSalesContractDetail() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     Notes
                   </label>
                   <textarea
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     rows={4}
-                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
+                    className="block w-full rounded-lg border-neutral-300 shadow-sm focus:border-brand-500 focus:ring-brand-500"
                     placeholder="Notes internes..."
                   />
                 </div>
@@ -279,22 +279,22 @@ export function BrokerSalesContractDetail() {
 
           <div className="space-y-6">
             <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <Building2 className="h-5 w-5 text-gray-600" />
+              <h3 className="font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                <Building2 className="h-5 w-5 text-neutral-600" />
                 Détails du lot
               </h3>
               <dl className="space-y-3 text-sm">
                 <div>
-                  <dt className="text-gray-600">Code</dt>
-                  <dd className="font-medium text-gray-900">{contract.lot.code}</dd>
+                  <dt className="text-neutral-600">Code</dt>
+                  <dd className="font-medium text-neutral-900">{contract.lot.code}</dd>
                 </div>
                 <div>
-                  <dt className="text-gray-600">Type</dt>
-                  <dd className="font-medium text-gray-900">{contract.lot.type}</dd>
+                  <dt className="text-neutral-600">Type</dt>
+                  <dd className="font-medium text-neutral-900">{contract.lot.type}</dd>
                 </div>
                 <div>
-                  <dt className="text-gray-600">Prix total</dt>
-                  <dd className="font-medium text-gray-900">
+                  <dt className="text-neutral-600">Prix total</dt>
+                  <dd className="font-medium text-neutral-900">
                     {formatCurrency(contract.lot.price_total)}
                   </dd>
                 </div>
@@ -302,21 +302,21 @@ export function BrokerSalesContractDetail() {
             </Card>
 
             <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <User className="h-5 w-5 text-gray-600" />
+              <h3 className="font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                <User className="h-5 w-5 text-neutral-600" />
                 Acheteur
               </h3>
               <dl className="space-y-3 text-sm">
                 <div>
-                  <dt className="text-gray-600">Nom</dt>
-                  <dd className="font-medium text-gray-900">
+                  <dt className="text-neutral-600">Nom</dt>
+                  <dd className="font-medium text-neutral-900">
                     {contract.buyer.first_name} {contract.buyer.last_name}
                   </dd>
                 </div>
                 {contract.buyer.email && (
                   <div>
-                    <dt className="text-gray-600">Email</dt>
-                    <dd className="font-medium text-gray-900">{contract.buyer.email}</dd>
+                    <dt className="text-neutral-600">Email</dt>
+                    <dd className="font-medium text-neutral-900">{contract.buyer.email}</dd>
                   </div>
                 )}
               </dl>
@@ -324,20 +324,20 @@ export function BrokerSalesContractDetail() {
 
             {contract.notary_file && (
               <Card className="p-6">
-                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <Briefcase className="h-5 w-5 text-gray-600" />
+                <h3 className="font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                  <Briefcase className="h-5 w-5 text-neutral-600" />
                   Dossier notaire
                 </h3>
                 <dl className="space-y-3 text-sm">
                   <div>
-                    <dt className="text-gray-600">Statut</dt>
+                    <dt className="text-neutral-600">Statut</dt>
                     <dd className="mt-1">
                       {getNotaryFileStatusBadge(contract.notary_file.status)}
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-gray-600">ID</dt>
-                    <dd className="font-mono text-xs text-gray-900 break-all">
+                    <dt className="text-neutral-600">ID</dt>
+                    <dd className="font-mono text-xs text-neutral-900 break-all">
                       {contract.notary_file.id}
                     </dd>
                   </div>
@@ -354,17 +354,17 @@ export function BrokerSalesContractDetail() {
             )}
 
             <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Métadonnées</h3>
+              <h3 className="font-semibold text-neutral-900 mb-4">Métadonnées</h3>
               <dl className="space-y-3 text-sm">
                 <div>
-                  <dt className="text-gray-600">Créé le</dt>
-                  <dd className="font-medium text-gray-900">
+                  <dt className="text-neutral-600">Créé le</dt>
+                  <dd className="font-medium text-neutral-900">
                     {formatDateTime(contract.created_at)}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-gray-600">Modifié le</dt>
-                  <dd className="font-medium text-gray-900">
+                  <dt className="text-neutral-600">Modifié le</dt>
+                  <dd className="font-medium text-neutral-900">
                     {formatDateTime(contract.updated_at)}
                   </dd>
                 </div>

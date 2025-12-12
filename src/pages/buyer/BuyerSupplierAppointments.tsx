@@ -116,11 +116,11 @@ export default function BuyerSupplierAppointments({
       <header className="space-y-2">
         <div className="flex items-center gap-2">
           <Calendar className="h-6 w-6 text-brand-600" />
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50">
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
             Rendez-vous fournisseurs
           </h1>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
           Planifiez vos rendez-vous chez les fournisseurs pour choisir vos matériaux et finitions.
         </p>
       </header>
@@ -134,7 +134,7 @@ export default function BuyerSupplierAppointments({
               'rounded-full px-4 py-2 text-sm font-medium transition-colors',
               selectedCategory === cat.value
                 ? 'bg-brand-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700',
+                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700',
             ].join(' ')}
           >
             <span className="mr-1">{cat.icon}</span>
@@ -146,7 +146,7 @@ export default function BuyerSupplierAppointments({
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
               Créneaux disponibles
             </h2>
             {loadingSlots && <LoadingSpinner size="sm" />}
@@ -154,11 +154,11 @@ export default function BuyerSupplierAppointments({
 
           {availableSlots.length === 0 && !loadingSlots && (
             <Card className="p-6 text-center">
-              <AlertCircle className="mx-auto h-12 w-12 text-gray-400" />
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <AlertCircle className="mx-auto h-12 w-12 text-neutral-400" />
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                 Aucun créneau disponible pour cette catégorie.
               </p>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+              <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-500">
                 Contactez votre promoteur pour plus d'informations.
               </p>
             </Card>
@@ -170,12 +170,12 @@ export default function BuyerSupplierAppointments({
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 space-y-2">
                     <div className="flex items-start gap-2">
-                      <Building2 className="mt-0.5 h-4 w-4 text-gray-400" />
+                      <Building2 className="mt-0.5 h-4 w-4 text-neutral-400" />
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-gray-50">
+                        <p className="font-medium text-neutral-900 dark:text-neutral-50">
                           {slot.showroom?.name}
                         </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
                           {slot.showroom?.company?.name}
                         </p>
                       </div>
@@ -183,16 +183,16 @@ export default function BuyerSupplierAppointments({
 
                     {slot.showroom?.address && (
                       <div className="flex items-start gap-2">
-                        <MapPin className="mt-0.5 h-4 w-4 text-gray-400" />
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                        <MapPin className="mt-0.5 h-4 w-4 text-neutral-400" />
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           {slot.showroom.address}, {slot.showroom.city}
                         </p>
                       </div>
                     )}
 
                     <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-gray-400" />
-                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                      <Clock className="h-4 w-4 text-neutral-400" />
+                      <p className="text-sm text-neutral-700 dark:text-neutral-300">
                         {formatDateTime(slot.start_at)} - {formatTime(slot.end_at)}
                       </p>
                     </div>
@@ -217,7 +217,7 @@ export default function BuyerSupplierAppointments({
 
         <section className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
               Mes rendez-vous
             </h2>
             {loadingAppointments && <LoadingSpinner size="sm" />}
@@ -225,8 +225,8 @@ export default function BuyerSupplierAppointments({
 
           {myAppointments.length === 0 && !loadingAppointments && (
             <Card className="p-6 text-center">
-              <Calendar className="mx-auto h-12 w-12 text-gray-400" />
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <Calendar className="mx-auto h-12 w-12 text-neutral-400" />
+              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                 Vous n'avez pas encore de rendez-vous planifié.
               </p>
             </Card>
@@ -239,12 +239,12 @@ export default function BuyerSupplierAppointments({
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <p className="font-medium text-gray-900 dark:text-gray-50">
+                        <p className="font-medium text-neutral-900 dark:text-neutral-50">
                           {appointment.showroom?.name}
                         </p>
                         <AppointmentStatusBadge status={appointment.status} />
                       </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">
                         {appointment.showroom?.company?.name}
                       </p>
                     </div>
@@ -252,8 +252,8 @@ export default function BuyerSupplierAppointments({
 
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-2 text-xs">
-                      <Clock className="h-3.5 w-3.5 text-gray-400" />
-                      <span className="text-gray-700 dark:text-gray-300">
+                      <Clock className="h-3.5 w-3.5 text-neutral-400" />
+                      <span className="text-neutral-700 dark:text-neutral-300">
                         {formatDateTime(appointment.time_slot?.start_at)} -{' '}
                         {formatTime(appointment.time_slot?.end_at)}
                       </span>
@@ -261,8 +261,8 @@ export default function BuyerSupplierAppointments({
 
                     {appointment.showroom?.address && (
                       <div className="flex items-start gap-2 text-xs">
-                        <MapPin className="mt-0.5 h-3.5 w-3.5 text-gray-400" />
-                        <span className="text-gray-600 dark:text-gray-400">
+                        <MapPin className="mt-0.5 h-3.5 w-3.5 text-neutral-400" />
+                        <span className="text-neutral-600 dark:text-neutral-400">
                           {appointment.showroom.address}, {appointment.showroom.city}
                         </span>
                       </div>
@@ -274,11 +274,11 @@ export default function BuyerSupplierAppointments({
                   </div>
 
                   {appointment.buyer_note && (
-                    <div className="rounded-lg bg-gray-50 p-2 text-xs dark:bg-gray-800">
-                      <p className="font-medium text-gray-700 dark:text-gray-300">
+                    <div className="rounded-lg bg-neutral-50 p-2 text-xs dark:bg-neutral-800">
+                      <p className="font-medium text-neutral-700 dark:text-neutral-300">
                         Votre message :
                       </p>
-                      <p className="mt-0.5 text-gray-600 dark:text-gray-400">
+                      <p className="mt-0.5 text-neutral-600 dark:text-neutral-400">
                         {appointment.buyer_note}
                       </p>
                     </div>
