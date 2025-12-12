@@ -68,9 +68,9 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
 
   if (buyers.length === 0) {
     return (
-      <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-        <p className="text-gray-500 dark:text-gray-400">Aucun acheteur pour le moment</p>
-        <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+      <div className="text-center py-12 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <p className="text-neutral-500 dark:text-neutral-400">Aucun acheteur pour le moment</p>
+        <p className="text-sm text-neutral-400 dark:text-neutral-500 mt-1">
           Les prospects convertis apparaîtront ici
         </p>
       </div>
@@ -78,30 +78,30 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
   }
 
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden bg-white dark:bg-gray-800">
+    <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm overflow-hidden bg-white dark:bg-neutral-800">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+          <thead className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
             <tr>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Acheteur
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Lot
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Prix
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Statut
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Dossier
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Date
               </th>
-              <th className="p-4 text-right font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-right font-semibold text-neutral-900 dark:text-white">
                 Actions
               </th>
             </tr>
@@ -118,14 +118,14 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
               return (
                 <tr
                   key={buyer.id}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                  className="hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-colors"
                 >
                   <td className="p-4">
                     <div>
-                      <div className="font-medium text-gray-900 dark:text-white">
+                      <div className="font-medium text-neutral-900 dark:text-white">
                         {buyer.name}
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
                         {buyer.email}
                       </div>
                     </div>
@@ -133,15 +133,15 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
 
                   <td className="p-4">
                     <div className="flex items-center gap-2">
-                      <Home className="w-4 h-4 text-gray-500" />
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <Home className="w-4 h-4 text-neutral-500" />
+                      <span className="font-medium text-neutral-900 dark:text-white">
                         Lot {buyer.lotNumber}
                       </span>
                     </div>
                   </td>
 
                   <td className="p-4">
-                    <div className="font-semibold text-gray-900 dark:text-white">
+                    <div className="font-semibold text-neutral-900 dark:text-white">
                       {formatCurrency(buyer.salePrice)}
                     </div>
                   </td>
@@ -159,11 +159,11 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
                     {buyer.completedDocuments !== undefined && buyer.totalDocuments !== undefined ? (
                       <div className="space-y-1">
                         <div className="flex items-center gap-2 text-xs">
-                          <span className="text-gray-600 dark:text-gray-400">
+                          <span className="text-neutral-600 dark:text-neutral-400">
                             {buyer.completedDocuments}/{buyer.totalDocuments}
                           </span>
                         </div>
-                        <div className="w-24 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                        <div className="w-24 bg-neutral-200 dark:bg-neutral-700 rounded-full h-1.5">
                           <div
                             className="bg-brand-600 h-full rounded-full"
                             style={{ width: `${docsProgress}%` }}
@@ -171,11 +171,11 @@ export default function BuyersTable({ buyers, projectId }: BuyersTableProps) {
                         </div>
                       </div>
                     ) : (
-                      <span className="text-xs text-gray-500 dark:text-gray-400">-</span>
+                      <span className="text-xs text-neutral-500 dark:text-neutral-400">-</span>
                     )}
                   </td>
 
-                  <td className="p-4 text-gray-600 dark:text-gray-400">
+                  <td className="p-4 text-neutral-600 dark:text-neutral-400">
                     {formatDate(buyer.contractDate || buyer.reservationDate)}
                   </td>
 

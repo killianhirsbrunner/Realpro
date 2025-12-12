@@ -96,9 +96,9 @@ export default function ContactDetail() {
       case 'meeting':
         return <Calendar className="w-5 h-5 text-purple-500" />;
       case 'note':
-        return <MessageSquare className="w-5 h-5 text-gray-500" />;
+        return <MessageSquare className="w-5 h-5 text-neutral-500" />;
       default:
-        return <MessageSquare className="w-5 h-5 text-gray-500" />;
+        return <MessageSquare className="w-5 h-5 text-neutral-500" />;
     }
   };
 
@@ -113,8 +113,8 @@ export default function ContactDetail() {
   if (!contact) {
     return (
       <div className="text-center py-12">
-        <User className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+        <User className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-2">
           Contact introuvable
         </h3>
         <button
@@ -132,7 +132,7 @@ export default function ContactDetail() {
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate('/contacts')}
-          className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
         >
           <ArrowLeft className="w-5 h-5" />
           Retour aux contacts
@@ -157,7 +157,7 @@ export default function ContactDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 border border-neutral-200 dark:border-neutral-700">
             <div className="flex items-center justify-center mb-6">
               <div className="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
                 <span className="text-4xl font-medium text-blue-600 dark:text-blue-400">
@@ -167,11 +167,11 @@ export default function ContactDetail() {
             </div>
 
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-1">
                 {contact.first_name} {contact.last_name}
               </h2>
               {contact.position && (
-                <p className="text-gray-600 dark:text-gray-400">{contact.position}</p>
+                <p className="text-neutral-600 dark:text-neutral-400">{contact.position}</p>
               )}
               {contact.is_primary && (
                 <span className="inline-block mt-2 px-3 py-1 text-sm bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 rounded-full">
@@ -183,7 +183,7 @@ export default function ContactDetail() {
             <div className="space-y-4">
               {contact.email && (
                 <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-gray-400" />
+                  <Mail className="w-5 h-5 text-neutral-400" />
                   <a
                     href={`mailto:${contact.email}`}
                     className="text-blue-600 hover:underline"
@@ -195,10 +195,10 @@ export default function ContactDetail() {
 
               {contact.phone && (
                 <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-gray-400" />
+                  <Phone className="w-5 h-5 text-neutral-400" />
                   <a
                     href={`tel:${contact.phone}`}
-                    className="text-gray-900 dark:text-white hover:underline"
+                    className="text-neutral-900 dark:text-white hover:underline"
                   >
                     {contact.phone}
                   </a>
@@ -207,10 +207,10 @@ export default function ContactDetail() {
 
               {contact.mobile && (
                 <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-gray-400" />
+                  <Phone className="w-5 h-5 text-neutral-400" />
                   <a
                     href={`tel:${contact.mobile}`}
-                    className="text-gray-900 dark:text-white hover:underline"
+                    className="text-neutral-900 dark:text-white hover:underline"
                   >
                     {contact.mobile}
                   </a>
@@ -219,8 +219,8 @@ export default function ContactDetail() {
 
               {(contact.address_street || contact.address_city) && (
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-gray-400 mt-1" />
-                  <div className="text-gray-900 dark:text-white">
+                  <MapPin className="w-5 h-5 text-neutral-400 mt-1" />
+                  <div className="text-neutral-900 dark:text-white">
                     {contact.address_street && <div>{contact.address_street}</div>}
                     {contact.address_city && (
                       <div>
@@ -234,8 +234,8 @@ export default function ContactDetail() {
 
               {contact.company_id && (
                 <div className="flex items-center gap-3">
-                  <Building2 className="w-5 h-5 text-gray-400" />
-                  <span className="text-gray-900 dark:text-white">
+                  <Building2 className="w-5 h-5 text-neutral-400" />
+                  <span className="text-neutral-900 dark:text-white">
                     Entreprise liée
                   </span>
                 </div>
@@ -243,8 +243,8 @@ export default function ContactDetail() {
 
               {contact.department && (
                 <div className="flex items-center gap-3">
-                  <Briefcase className="w-5 h-5 text-gray-400" />
-                  <span className="text-gray-900 dark:text-white">
+                  <Briefcase className="w-5 h-5 text-neutral-400" />
+                  <span className="text-neutral-900 dark:text-white">
                     {contact.department}
                   </span>
                 </div>
@@ -252,15 +252,15 @@ export default function ContactDetail() {
             </div>
 
             {contact.tags && contact.tags.length > 0 && (
-              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   Tags
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {contact.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
+                      className="px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded"
                     >
                       {tag}
                     </span>
@@ -270,21 +270,21 @@ export default function ContactDetail() {
             )}
 
             {contact.notes && (
-              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   Notes
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{contact.notes}</p>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">{contact.notes}</p>
               </div>
             )}
           </div>
         </div>
 
         <div className="lg:col-span-2">
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
+            <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
                   Historique des interactions
                 </h3>
                 <button
@@ -298,14 +298,14 @@ export default function ContactDetail() {
             </div>
 
             {showNewInteraction && (
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-                <h4 className="font-medium text-gray-900 dark:text-white mb-4">
+              <div className="p-6 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
+                <h4 className="font-medium text-neutral-900 dark:text-white mb-4">
                   Nouvelle interaction
                 </h4>
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                         Type
                       </label>
                       <select
@@ -313,7 +313,7 @@ export default function ContactDetail() {
                         onChange={(e) =>
                           setInteractionForm({ ...interactionForm, interaction_type: e.target.value })
                         }
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                        className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                       >
                         <option value="call">Appel</option>
                         <option value="email">Email</option>
@@ -322,7 +322,7 @@ export default function ContactDetail() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                         Date
                       </label>
                       <input
@@ -331,12 +331,12 @@ export default function ContactDetail() {
                         onChange={(e) =>
                           setInteractionForm({ ...interactionForm, interaction_date: e.target.value })
                         }
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                        className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                       Sujet *
                     </label>
                     <input
@@ -345,12 +345,12 @@ export default function ContactDetail() {
                       onChange={(e) =>
                         setInteractionForm({ ...interactionForm, subject: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                      className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                       placeholder="Sujet de l'interaction"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                       Description
                     </label>
                     <textarea
@@ -358,13 +358,13 @@ export default function ContactDetail() {
                       onChange={(e) =>
                         setInteractionForm({ ...interactionForm, description: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                      className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                       rows={3}
                       placeholder="Détails de l'interaction"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                       Résultat
                     </label>
                     <input
@@ -373,13 +373,13 @@ export default function ContactDetail() {
                       onChange={(e) =>
                         setInteractionForm({ ...interactionForm, outcome: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                      className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                       placeholder="Résultat ou décision"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                         Prochaine action
                       </label>
                       <input
@@ -388,12 +388,12 @@ export default function ContactDetail() {
                         onChange={(e) =>
                           setInteractionForm({ ...interactionForm, next_action: e.target.value })
                         }
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                        className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                         placeholder="Action à faire"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                         Date prochaine action
                       </label>
                       <input
@@ -402,14 +402,14 @@ export default function ContactDetail() {
                         onChange={(e) =>
                           setInteractionForm({ ...interactionForm, next_action_date: e.target.value })
                         }
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+                        className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800"
                       />
                     </div>
                   </div>
                   <div className="flex gap-2 justify-end">
                     <button
                       onClick={() => setShowNewInteraction(false)}
-                      className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                      className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700"
                     >
                       Annuler
                     </button>
@@ -427,8 +427,8 @@ export default function ContactDetail() {
             <div className="p-6">
               {interactions.length === 0 ? (
                 <div className="text-center py-12">
-                  <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <MessageSquare className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+                  <p className="text-neutral-600 dark:text-neutral-400">
                     Aucune interaction enregistrée
                   </p>
                 </div>
@@ -437,7 +437,7 @@ export default function ContactDetail() {
                   {interactions.map((interaction) => (
                     <div
                       key={interaction.id}
-                      className="flex gap-4 pb-6 border-b border-gray-200 dark:border-gray-700 last:border-0"
+                      className="flex gap-4 pb-6 border-b border-neutral-200 dark:border-neutral-700 last:border-0"
                     >
                       <div className="flex-shrink-0">
                         {getInteractionIcon(interaction.interaction_type)}
@@ -445,30 +445,30 @@ export default function ContactDetail() {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <div>
-                            <h4 className="font-medium text-gray-900 dark:text-white">
+                            <h4 className="font-medium text-neutral-900 dark:text-white">
                               {interaction.subject}
                             </h4>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-neutral-500">
                               {format(new Date(interaction.interaction_date), 'dd/MM/yyyy')} •{' '}
                               <span className="capitalize">{interaction.interaction_type}</span>
                             </p>
                           </div>
                         </div>
                         {interaction.description && (
-                          <p className="text-gray-600 dark:text-gray-400 mb-2">
+                          <p className="text-neutral-600 dark:text-neutral-400 mb-2">
                             {interaction.description}
                           </p>
                         )}
                         {interaction.outcome && (
                           <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                            <p className="text-sm text-gray-700 dark:text-gray-300">
+                            <p className="text-sm text-neutral-700 dark:text-neutral-300">
                               <strong>Résultat:</strong> {interaction.outcome}
                             </p>
                           </div>
                         )}
                         {interaction.next_action && (
                           <div className="mt-2 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-                            <p className="text-sm text-gray-700 dark:text-gray-300">
+                            <p className="text-sm text-neutral-700 dark:text-neutral-300">
                               <strong>Prochaine action:</strong> {interaction.next_action}
                               {interaction.next_action_date && (
                                 <span className="ml-2">

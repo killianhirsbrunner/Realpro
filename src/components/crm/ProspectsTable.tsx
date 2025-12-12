@@ -37,14 +37,14 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
       broker: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
     };
 
-    return colors[source] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+    return colors[source] || 'bg-neutral-100 text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200';
   };
 
   if (prospects.length === 0) {
     return (
-      <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-        <p className="text-gray-500 dark:text-gray-400">Aucun prospect pour le moment</p>
-        <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+      <div className="text-center py-12 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <p className="text-neutral-500 dark:text-neutral-400">Aucun prospect pour le moment</p>
+        <p className="text-sm text-neutral-400 dark:text-neutral-500 mt-1">
           Ajoutez votre premier prospect pour commencer
         </p>
       </div>
@@ -52,27 +52,27 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
   }
 
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden bg-white dark:bg-gray-800">
+    <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm overflow-hidden bg-white dark:bg-neutral-800">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+          <thead className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
             <tr>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Nom
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Contact
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Intérêt
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Source
               </th>
-              <th className="p-4 text-left font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-left font-semibold text-neutral-900 dark:text-white">
                 Ajouté le
               </th>
-              <th className="p-4 text-right font-semibold text-gray-900 dark:text-white">
+              <th className="p-4 text-right font-semibold text-neutral-900 dark:text-white">
                 Actions
               </th>
             </tr>
@@ -82,14 +82,14 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
             {prospects.map((prospect) => (
               <tr
                 key={prospect.id}
-                className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                className="hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-colors"
               >
                 <td className="p-4">
-                  <div className="font-medium text-gray-900 dark:text-white">
+                  <div className="font-medium text-neutral-900 dark:text-white">
                     {prospect.name}
                   </div>
                   {prospect.notes && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate max-w-xs">
+                    <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 truncate max-w-xs">
                       {prospect.notes}
                     </div>
                   )}
@@ -97,12 +97,12 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
 
                 <td className="p-4">
                   <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                       <Mail className="w-3 h-3" />
                       <span className="text-xs">{prospect.email}</span>
                     </div>
                     {prospect.phone && (
-                      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                         <Phone className="w-3 h-3" />
                         <span className="text-xs">{prospect.phone}</span>
                       </div>
@@ -113,13 +113,13 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
                 <td className="p-4">
                   {prospect.targetLot ? (
                     <div className="flex items-center gap-2">
-                      <Home className="w-4 h-4 text-gray-500" />
-                      <span className="text-gray-900 dark:text-white">
+                      <Home className="w-4 h-4 text-neutral-500" />
+                      <span className="text-neutral-900 dark:text-white">
                         Lot {prospect.targetLot}
                       </span>
                     </div>
                   ) : (
-                    <span className="text-gray-500 dark:text-gray-400 text-xs">
+                    <span className="text-neutral-500 dark:text-neutral-400 text-xs">
                       Non défini
                     </span>
                   )}
@@ -135,7 +135,7 @@ export default function ProspectsTable({ prospects, projectId }: ProspectsTableP
                   </span>
                 </td>
 
-                <td className="p-4 text-gray-600 dark:text-gray-400">
+                <td className="p-4 text-neutral-600 dark:text-neutral-400">
                   {formatDate(prospect.createdAt)}
                 </td>
 

@@ -39,16 +39,16 @@ export default function ProjectCRMBuyers() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
             Acheteurs
           </h1>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
             {filteredBuyers.length} acheteur{filteredBuyers.length !== 1 ? 's' : ''}
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          <button className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors">
             <Download className="w-4 h-4" />
             Exporter
           </button>
@@ -68,7 +68,7 @@ export default function ProjectCRMBuyers() {
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'all'
               ? 'bg-brand-600 text-white'
-              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+              : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700'
           }`}
         >
           Tous ({statusCounts.all})
@@ -78,7 +78,7 @@ export default function ProjectCRMBuyers() {
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'RESERVED'
               ? 'bg-yellow-600 text-white'
-              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+              : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700'
           }`}
         >
           Réservés ({statusCounts.RESERVED})
@@ -88,7 +88,7 @@ export default function ProjectCRMBuyers() {
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'CONTRACT_SIGNED'
               ? 'bg-brand-600 text-white'
-              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+              : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700'
           }`}
         >
           Contrat signé ({statusCounts.CONTRACT_SIGNED})
@@ -98,7 +98,7 @@ export default function ProjectCRMBuyers() {
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'NOTARY_IN_PROGRESS'
               ? 'bg-brand-600 text-white'
-              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+              : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700'
           }`}
         >
           Chez notaire ({statusCounts.NOTARY_IN_PROGRESS})
@@ -108,7 +108,7 @@ export default function ProjectCRMBuyers() {
           className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
             statusFilter === 'COMPLETED'
               ? 'bg-green-600 text-white'
-              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+              : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700'
           }`}
         >
           Finalisés ({statusCounts.COMPLETED})
@@ -118,16 +118,16 @@ export default function ProjectCRMBuyers() {
       {/* Search Bar */}
       <div className="flex items-center gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
           <input
             type="text"
             placeholder="Rechercher par nom, email ou numéro de lot..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-900 dark:text-white"
+            className="w-full pl-10 pr-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 text-neutral-900 dark:text-white"
           />
         </div>
-        <button className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+        <button className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors">
           <Filter className="w-4 h-4" />
           Plus de filtres
         </button>
