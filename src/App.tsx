@@ -121,6 +121,7 @@ import { ProjectSAVEnhanced } from './pages/ProjectSAVEnhanced';
 import { ProjectQualityControlEnhanced } from './pages/ProjectQualityControlEnhanced';
 import { ProjectCRMPipelineEnhanced } from './pages/ProjectCRMPipelineEnhanced';
 import ProjectConstructionProgressEnhanced from './pages/ProjectConstructionProgressEnhanced';
+import ProjectMaterialSelectionsEnhanced from './pages/ProjectMaterialSelectionsEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -245,6 +246,7 @@ function App() {
                     <Route path="/projects/:projectId/reporting" element={<ProjectReportingPage />} />
                     <Route path="/projects/:projectId/modifications" element={<ProjectModificationsPage />} />
                     <Route path="/projects/:projectId/materials" element={<ProjectMaterialsSelections />} />
+                    <Route path="/projects/:projectId/materials/dashboard" element={<ProjectMaterialSelectionsEnhanced />} />
                     <Route path="/projects/:projectId/materials/catalogue" element={<ProjectMaterialsCatalogManager />} />
                     <Route path="/projects/:projectId/materials/lots/:lotId" element={<ProjectMaterialsLotChoices />} />
                     <Route path="/projects/:projectId/materials/lots/:lotId/appointments" element={<ProjectMaterialsAppointments />} />
