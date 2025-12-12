@@ -122,6 +122,7 @@ import { ProjectQualityControlEnhanced } from './pages/ProjectQualityControlEnha
 import { ProjectCRMPipelineEnhanced } from './pages/ProjectCRMPipelineEnhanced';
 import ProjectConstructionProgressEnhanced from './pages/ProjectConstructionProgressEnhanced';
 import ProjectMaterialSelectionsEnhanced from './pages/ProjectMaterialSelectionsEnhanced';
+import ProjectCFCBudgetEnhanced from './pages/ProjectCFCBudgetEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -280,6 +281,7 @@ function App() {
                     <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboardEnhanced />} />
                     <Route path="/projects/:projectId/finances/dashboard" element={<ProjectFinancesDashboardEnhanced />} />
                     <Route path="/projects/:projectId/finances/cfc" element={<ProjectFinancesCFC />} />
+                    <Route path="/projects/:projectId/finances/cfc-budget" element={<ProjectCFCBudgetEnhanced />} />
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
