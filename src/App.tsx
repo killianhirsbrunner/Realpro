@@ -91,6 +91,7 @@ import { BuyerChoices } from './pages/buyer/BuyerChoices';
 
 import { ProjectLots } from './pages/ProjectLots';
 import { ProjectLotDetail } from './pages/ProjectLotDetail';
+import ProjectLotDetailEnhanced from './pages/ProjectLotDetailEnhanced';
 import { ProjectBuyers } from './pages/ProjectBuyers';
 import { BuyerDetail } from './pages/BuyerDetail';
 import { ProjectDocuments } from './pages/ProjectDocuments';
@@ -257,7 +258,8 @@ function App() {
                     <Route path="/projects/:projectId/messages" element={<ProjectMessages />} />
                     <Route path="/projects/:projectId/setup" element={<ProjectCreationWizard />} />
                     <Route path="/projects/:projectId/lots" element={<ProjectLots />} />
-                    <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetail />} />
+                    <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetailEnhanced />} />
+                    <Route path="/projects/:projectId/lots/:lotId/classic" element={<ProjectLotDetail />} />
                     <Route path="/projects/:projectId/buyers" element={<ProjectBuyers />} />
                     <Route path="/projects/:projectId/buyers/:buyerId" element={<BuyerDetail />} />
                     <Route path="/projects/:projectId/documents" element={<ProjectDocuments />} />
