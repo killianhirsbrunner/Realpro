@@ -91,8 +91,10 @@ import { BuyerChoices } from './pages/buyer/BuyerChoices';
 
 import { ProjectLots } from './pages/ProjectLots';
 import { ProjectLotDetail } from './pages/ProjectLotDetail';
+import ProjectLotDetailEnhanced from './pages/ProjectLotDetailEnhanced';
 import { ProjectBuyers } from './pages/ProjectBuyers';
 import { BuyerDetail } from './pages/BuyerDetail';
+import BuyerDetailEnhanced from './pages/BuyerDetailEnhanced';
 import { ProjectDocuments } from './pages/ProjectDocuments';
 import { DocumentViewer } from './pages/DocumentViewer';
 import { ProjectSubmissions } from './pages/ProjectSubmissions';
@@ -118,6 +120,11 @@ import { ProjectFinancesInvoices } from './pages/ProjectFinancesInvoices';
 import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDetail';
 import { ProjectSAV } from './pages/ProjectSAV';
 import { ProjectSAVEnhanced } from './pages/ProjectSAVEnhanced';
+import { ProjectQualityControlEnhanced } from './pages/ProjectQualityControlEnhanced';
+import { ProjectCRMPipelineEnhanced } from './pages/ProjectCRMPipelineEnhanced';
+import ProjectConstructionProgressEnhanced from './pages/ProjectConstructionProgressEnhanced';
+import ProjectMaterialSelectionsEnhanced from './pages/ProjectMaterialSelectionsEnhanced';
+import ProjectCFCBudgetEnhanced from './pages/ProjectCFCBudgetEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -237,10 +244,12 @@ function App() {
                     <Route path="/projects/:projectId/planning/reports" element={<ProjectPlanningReports />} />
                     <Route path="/projects/:projectId/planning/buyers" element={<ProjectPlanningBuyersProgress />} />
                     <Route path="/projects/:projectId/construction" element={<ProjectConstructionPage />} />
+                    <Route path="/projects/:projectId/construction/progress" element={<ProjectConstructionProgressEnhanced />} />
                     <Route path="/projects/:projectId/communication" element={<ProjectCommunicationPage />} />
                     <Route path="/projects/:projectId/reporting" element={<ProjectReportingPage />} />
                     <Route path="/projects/:projectId/modifications" element={<ProjectModificationsPage />} />
                     <Route path="/projects/:projectId/materials" element={<ProjectMaterialsSelections />} />
+                    <Route path="/projects/:projectId/materials/dashboard" element={<ProjectMaterialSelectionsEnhanced />} />
                     <Route path="/projects/:projectId/materials/catalogue" element={<ProjectMaterialsCatalogManager />} />
                     <Route path="/projects/:projectId/materials/lots/:lotId" element={<ProjectMaterialsLotChoices />} />
                     <Route path="/projects/:projectId/materials/lots/:lotId/appointments" element={<ProjectMaterialsAppointments />} />
@@ -250,9 +259,11 @@ function App() {
                     <Route path="/projects/:projectId/messages" element={<ProjectMessages />} />
                     <Route path="/projects/:projectId/setup" element={<ProjectCreationWizard />} />
                     <Route path="/projects/:projectId/lots" element={<ProjectLots />} />
-                    <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetail />} />
+                    <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetailEnhanced />} />
+                    <Route path="/projects/:projectId/lots/:lotId/classic" element={<ProjectLotDetail />} />
                     <Route path="/projects/:projectId/buyers" element={<ProjectBuyers />} />
-                    <Route path="/projects/:projectId/buyers/:buyerId" element={<BuyerDetail />} />
+                    <Route path="/projects/:projectId/buyers/:buyerId" element={<BuyerDetailEnhanced />} />
+                    <Route path="/projects/:projectId/buyers/:buyerId/classic" element={<BuyerDetail />} />
                     <Route path="/projects/:projectId/documents" element={<ProjectDocuments />} />
                     <Route path="/projects/:projectId/documents/:documentId" element={<DocumentViewer />} />
                     <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
@@ -274,14 +285,16 @@ function App() {
                     <Route path="/projects/:projectId/finances" element={<ProjectFinancesDashboardEnhanced />} />
                     <Route path="/projects/:projectId/finances/dashboard" element={<ProjectFinancesDashboardEnhanced />} />
                     <Route path="/projects/:projectId/finances/cfc" element={<ProjectFinancesCFC />} />
+                    <Route path="/projects/:projectId/finances/cfc-budget" element={<ProjectCFCBudgetEnhanced />} />
                     <Route path="/projects/:projectId/finances/invoices" element={<ProjectFinancesInvoices />} />
                     <Route path="/projects/:projectId/finances/invoices/:invoiceId" element={<ProjectFinancesInvoiceDetail />} />
                     <Route path="/projects/:projectId/finance/buyers/:buyerId" element={<BuyerFinance />} />
                     <Route path="/projects/:projectId/sav" element={<ProjectSAVEnhanced />} />
+                    <Route path="/projects/:projectId/quality-control" element={<ProjectQualityControlEnhanced />} />
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
                     <Route path="/projects/:projectId/notary" element={<ProjectNotary />} />
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
-                    <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipeline />} />
+                    <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipelineEnhanced />} />
                     <Route path="/projects/:projectId/crm/reservations" element={<ProjectReservations />} />
                     <Route path="/projects/:projectId/crm/reservations/new" element={<ProjectCRMReservationNew />} />
                     <Route path="/projects/:projectId/crm/reservations/:reservationId" element={<ProjectCRMReservationDetail />} />
