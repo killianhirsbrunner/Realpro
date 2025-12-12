@@ -94,6 +94,7 @@ import { ProjectLotDetail } from './pages/ProjectLotDetail';
 import ProjectLotDetailEnhanced from './pages/ProjectLotDetailEnhanced';
 import { ProjectBuyers } from './pages/ProjectBuyers';
 import { BuyerDetail } from './pages/BuyerDetail';
+import BuyerDetailEnhanced from './pages/BuyerDetailEnhanced';
 import { ProjectDocuments } from './pages/ProjectDocuments';
 import { DocumentViewer } from './pages/DocumentViewer';
 import { ProjectSubmissions } from './pages/ProjectSubmissions';
@@ -261,7 +262,8 @@ function App() {
                     <Route path="/projects/:projectId/lots/:lotId" element={<ProjectLotDetailEnhanced />} />
                     <Route path="/projects/:projectId/lots/:lotId/classic" element={<ProjectLotDetail />} />
                     <Route path="/projects/:projectId/buyers" element={<ProjectBuyers />} />
-                    <Route path="/projects/:projectId/buyers/:buyerId" element={<BuyerDetail />} />
+                    <Route path="/projects/:projectId/buyers/:buyerId" element={<BuyerDetailEnhanced />} />
+                    <Route path="/projects/:projectId/buyers/:buyerId/classic" element={<BuyerDetail />} />
                     <Route path="/projects/:projectId/documents" element={<ProjectDocuments />} />
                     <Route path="/projects/:projectId/documents/:documentId" element={<DocumentViewer />} />
                     <Route path="/projects/:projectId/submissions" element={<ProjectSubmissions />} />
