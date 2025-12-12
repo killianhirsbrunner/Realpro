@@ -119,6 +119,7 @@ import { ProjectFinancesInvoiceDetail } from './pages/ProjectFinancesInvoiceDeta
 import { ProjectSAV } from './pages/ProjectSAV';
 import { ProjectSAVEnhanced } from './pages/ProjectSAVEnhanced';
 import { ProjectQualityControlEnhanced } from './pages/ProjectQualityControlEnhanced';
+import { ProjectCRMPipelineEnhanced } from './pages/ProjectCRMPipelineEnhanced';
 import { ProjectSettingsComplete } from './pages/ProjectSettingsComplete';
 
 import SupplierShowrooms from './pages/SupplierShowrooms';
@@ -283,7 +284,7 @@ function App() {
                     <Route path="/projects/:projectId/brokers" element={<ProjectBrokers />} />
                     <Route path="/projects/:projectId/notary" element={<ProjectNotary />} />
                     <Route path="/projects/:projectId/notary/:dossierId" element={<ProjectNotaryDetail />} />
-                    <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipeline />} />
+                    <Route path="/projects/:projectId/crm/pipeline" element={<ProjectCRMPipelineEnhanced />} />
                     <Route path="/projects/:projectId/crm/reservations" element={<ProjectReservations />} />
                     <Route path="/projects/:projectId/crm/reservations/new" element={<ProjectCRMReservationNew />} />
                     <Route path="/projects/:projectId/crm/reservations/:reservationId" element={<ProjectCRMReservationDetail />} />
