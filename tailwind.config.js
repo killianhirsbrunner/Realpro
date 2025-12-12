@@ -49,8 +49,9 @@ export default {
           teal: '#14b8a6',
           warm: '#eeede9',
         },
-        'realpro-turquoise': '#0891b2',
-        'realpro-blue': '#1e40af',
+        'realpro-turquoise': '#3DAABD',
+        'realpro-turquoise-dark': '#2E8A9A',
+        'realpro-turquoise-light': '#5BC4D6',
         neutral: {
           50: '#f8f8f7',
           100: '#f2f2f0',
@@ -79,8 +80,8 @@ export default {
         'soft': '0 4px 12px rgba(0, 0, 0, 0.08)',
         'card': '0 8px 18px rgba(0, 0, 0, 0.12)',
         'panel': '0 12px 35px rgba(0, 0, 0, 0.18)',
-        'glow': '0 0 20px rgba(8, 145, 178, 0.3)',
-        'glow-turquoise': '0 0 20px rgba(8, 145, 178, 0.4)',
+        'glow': '0 0 20px rgba(61, 170, 189, 0.3)',
+        'glow-turquoise': '0 0 20px rgba(61, 170, 189, 0.4)',
         'glow-teal': '0 0 20px rgba(20, 184, 166, 0.3)',
       },
       letterSpacing: {

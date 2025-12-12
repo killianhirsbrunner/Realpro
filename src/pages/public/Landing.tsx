@@ -234,7 +234,7 @@ export function Landing() {
 
             <FadeIn delay={300}>
               <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-400 mb-10 max-w-3xl mx-auto leading-relaxed">
-                RealPro centralise la gestion de vos projets, ventes, finances et communications
+                Realpro centralise la gestion de vos projets, ventes, finances et communications
                 sur une plateforme unique. Connectez architectes, courtiers, acquéreurs et
                 fournisseurs pour une collaboration fluide et une visibilité totale.
               </p>
@@ -540,7 +540,7 @@ export function Landing() {
                 Conçu pour le marché suisse
               </h2>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-                RealPro est développé en Suisse, pour les professionnels suisses,
+                Realpro est développé en Suisse, pour les professionnels suisses,
                 avec une parfaite compréhension des spécificités locales.
               </p>
             </div>
@@ -584,10 +584,10 @@ export function Landing() {
               Prêt à optimiser la gestion de vos{' '}
               <span className="text-realpro-turquoise">promotions</span> ?
             </h2>
-            <p className="text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Rejoignez les promoteurs immobiliers qui ont choisi RealPro pour centraliser
-              leurs opérations et améliorer leur productivité.
-            </p>
+              <p className="text-lg text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Rejoignez les promoteurs immobiliers qui ont choisi Realpro pour centraliser
+                leurs opérations et améliorer leur productivité.
+              </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/register">
@@ -629,7 +629,7 @@ export function Landing() {
                 <RealProLogo variant="full" size="sm" />
               </Link>
               <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                La plateforme de gestion complète pour les promoteurs immobiliers en Suisse.
+                La plateforme de gestion complète pour piloter vos promotions immobilières en Suisse.
               </p>
             </div>
 
@@ -662,7 +662,7 @@ export function Landing() {
 
           <div className="pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              2024-2025 Realpro SA. Tous droits réservés.
+              © 2024-2025 Realpro SA. Tous droits réservés.
             </p>
             <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
               <div className="flex items-center justify-center w-6 h-6 bg-red-600 rounded">

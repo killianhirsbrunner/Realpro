@@ -10,10 +10,10 @@ export const designTokens = {
       accent: '#6b7280',
       border: '#d7d6d2',
 
-      // Brand colors - Bleu Turquoise
-      brand: '#0891b2',
-      brandLight: '#06b6d4',
-      brandDark: '#0e7490',
+      // Brand colors - Realpro Turquoise Official: #3DAABD
+      brand: '#3DAABD',
+      brandLight: '#5BC4D6',
+      brandDark: '#2E8A9A',
 
       // Semantic colors
       success: '#10b981',
@@ -35,10 +35,10 @@ export const designTokens = {
       accent: '#d1d5db',
       border: '#2e2e2e',
 
-      // Brand colors - Bleu Turquoise
-      brand: '#06b6d4',
-      brandLight: '#22d3ee',
-      brandDark: '#0891b2',
+      // Brand colors - Realpro Turquoise Official: #3DAABD
+      brand: '#5BC4D6',
+      brandLight: '#7DD4E5',
+      brandDark: '#3DAABD',
 
       // Semantic colors
       success: '#10b981',
@@ -99,8 +99,8 @@ export const designTokens = {
     soft: '0 4px 12px rgba(0, 0, 0, 0.08)',
     card: '0 8px 18px rgba(0, 0, 0, 0.12)',
     panel: '0 12px 35px rgba(0, 0, 0, 0.18)',
-    glow: '0 0 20px rgba(8, 145, 178, 0.3)',
-    glowTurquoise: '0 0 20px rgba(8, 145, 178, 0.4)',
+    glow: '0 0 20px rgba(61, 170, 189, 0.3)',
+    glowTurquoise: '0 0 20px rgba(61, 170, 189, 0.4)',
   },
 
   typography: {

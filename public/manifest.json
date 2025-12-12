@@ -1,7 +1,7 @@
 {
-  "name": "RealPro - Gestion Immobilière Suisse",
-  "short_name": "RealPro",
-  "description": "Plateforme SaaS de gestion de projets immobiliers suisses",
+  "name": "Realpro - Gestion de promotions immobilières",
+  "short_name": "Realpro",
+  "description": "La plateforme suisse pour piloter vos promotions immobilières",
   "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#ffffff",

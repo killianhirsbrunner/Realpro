@@ -6,6 +6,7 @@ import { useCurrentUser } from '../../hooks/useCurrentUser';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { ThemeToggle } from '../ThemeToggle';
 import { NotificationBell } from '../NotificationBell';
+import { RealproLogo } from '../branding/RealProLogo';
 import { supabase } from '../../lib/supabase';
 import clsx from 'clsx';
 
@@ -140,7 +141,7 @@ function getPageInfo(pathname: string): { title: string; subtitle?: string; sect
     return { title: 'Paramètres', subtitle: 'Configuration', section: 'Administration' };
   }
 
-  return { title: 'RealPro', section: 'Accueil' };
+  return { title: 'Realpro', section: 'Accueil' };
 }
 
 export function Topbar() {
@@ -171,7 +172,7 @@ export function Topbar() {
   return (
     <header className="h-16 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex items-center px-6">
       <div className="flex items-center gap-6 flex-1">
-        <span className="font-bold text-lg text-neutral-900 dark:text-white hidden lg:block">RealPro</span>
+        <RealproLogo variant="text" size="xs" className="hidden lg:flex" />
 
         <div className="hidden lg:block h-8 w-px bg-neutral-200 dark:bg-neutral-800" />
 

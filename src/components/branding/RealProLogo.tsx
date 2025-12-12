@@ -1,10 +1,10 @@
 /**
- * RealPro | Official Logo Component
+ * Realpro | Official Logo Component
  * © 2024-2025 Realpro SA. Tous droits réservés.
  * Modern Cloud Design
  */
 
-interface RealProLogoProps {
+interface RealproLogoProps {
   variant?: 'full' | 'icon' | 'text';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
@@ -19,17 +19,17 @@ const sizeConfig = {
   xl: { height: 64, iconSize: 64 },
 };
 
-// RealPro brand colors
+// Realpro brand colors - Official: #3DAABD
 const BRAND_COLOR = '#3DAABD';
 const BRAND_COLOR_DARK = '#2E8A9A';
 const BRAND_COLOR_LIGHT = '#5BC4D6';
 
-export function RealProLogo({
+export function RealproLogo({
   variant = 'full',
   size = 'md',
   className = '',
   theme = 'auto'
-}: RealProLogoProps) {
+}: RealproLogoProps) {
   const config = sizeConfig[size];
 
   // Determine text colors based on theme
@@ -40,7 +40,7 @@ export function RealProLogo({
     return 'currentColor';
   };
 
-  const RealProIconSVG = ({ iconSize }: { iconSize: number }) => (
+  const RealproIconSVG = ({ iconSize }: { iconSize: number }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 50 50"
@@ -84,7 +84,7 @@ export function RealProLogo({
   if (variant === 'icon') {
     return (
       <div className={className}>
-        <RealProIconSVG iconSize={config.iconSize} />
+        <RealproIconSVG iconSize={config.iconSize} />
       </div>
     );
   }
@@ -94,16 +94,10 @@ export function RealProLogo({
     return (
       <div className={`flex items-center ${className}`}>
         <span
-          className="font-bold text-neutral-900 dark:text-neutral-300"
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          Real
-        </span>
-        <span
           className="font-bold"
           style={{ fontSize: `${fontSize}px`, color: BRAND_COLOR }}
         >
-          Pro
+          Realpro
         </span>
       </div>
     );
@@ -112,35 +106,31 @@ export function RealProLogo({
   // Full variant: icon + text
   const fontSize = config.height * 0.55;
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
-      <RealProIconSVG iconSize={config.iconSize * 0.8} />
-      <div className="flex items-center">
-        <span
-          className="font-bold text-neutral-900 dark:text-neutral-300"
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          Real
-        </span>
-        <span
-          className="font-bold"
-          style={{ fontSize: `${fontSize}px`, color: BRAND_COLOR }}
-        >
-          Pro
-        </span>
-      </div>
+    <div className={`flex items-center gap-2 ${className}`}>
+      <RealproIconSVG iconSize={config.iconSize * 0.8} />
+      <span
+        className="font-bold"
+        style={{ fontSize: `${fontSize}px`, color: BRAND_COLOR }}
+      >
+        Realpro
+      </span>
     </div>
   );
 }
 
 // Simplified icon component for backwards compatibility
-export function RealProIcon({
+export function RealproIcon({
   className = '',
   size = 'md'
 }: {
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }) {
-  return <RealProLogo variant="icon" size={size} className={className} />;
+  return <RealproLogo variant="icon" size={size} className={className} />;
 }
 
-export default RealProLogo;
+// Backwards compatibility aliases
+export const RealProLogo = RealproLogo;
+export const RealProIcon = RealproIcon;
+
+export default RealproLogo;
