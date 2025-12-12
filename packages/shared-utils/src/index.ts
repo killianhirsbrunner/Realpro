@@ -17,3 +17,6 @@ export * from './storage';
 
 // HTTP utilities
 export * from './http';
+
+// API utilities
+export * from './api';
