@@ -16,6 +16,8 @@ import { Landing } from './pages/public/Landing';
 import { Pricing } from './pages/public/Pricing';
 import { Features } from './pages/public/Features';
 import { Contact } from './pages/public/Contact';
+import { AppsPage } from './pages/public/AppsPage';
+import { AppLauncher } from './pages/public/AppLauncher';
 
 import { Login } from './pages/Login';
 import { ForgotPassword } from './pages/ForgotPassword';
@@ -181,9 +183,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/apps" element={<AppsPage />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/features" element={<Features />} />
           <Route path="/contact" element={<Contact />} />
+
+          {/* App Launchers */}
+          <Route path="/app/:appId/*" element={<AppLauncher />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterCompany />} />
