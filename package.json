@@ -2,16 +2,27 @@
   "name": "realpro-suite",
   "private": true,
   "version": "1.0.0",
-  "description": "Plateforme SaaS de gestion de projets immobiliers suisses",
+  "description": "Plateforme SaaS de gestion de projets immobiliers suisses - Monorepo",
   "author": "Realpro SA <contact@realpro.ch>",
   "license": "PROPRIETARY",
   "type": "module",
+  "packageManager": "pnpm@8.15.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "vite",
+    "dev:legacy": "vite",
     "build": "vite build",
+    "build:legacy": "vite build",
     "lint": "eslint .",
+    "lint:all": "turbo run lint",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "typecheck:all": "turbo run typecheck",
+    "clean": "rm -rf node_modules/.cache dist .turbo",
+    "clean:all": "turbo run clean && rm -rf node_modules"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
@@ -31,6 +42,7 @@
     "zustand": "^4.5.7"
   },
   "devDependencies": {
+    "turbo": "^2.0.0",
     "@eslint/js": "^9.9.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",

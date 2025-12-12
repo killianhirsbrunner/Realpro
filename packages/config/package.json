@@ -1,0 +1,16 @@
+{
+  "name": "@realpro/config",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Shared configuration for Realpro Suite (ESLint, TypeScript, Prettier)",
+  "type": "module",
+  "exports": {
+    "./eslint": "./src/eslint.config.js",
+    "./typescript": "./src/tsconfig.base.json",
+    "./prettier": "./src/prettier.config.js",
+    "./tailwind": "./src/tailwind.preset.js"
+  },
+  "files": [
+    "src"
+  ]
+}

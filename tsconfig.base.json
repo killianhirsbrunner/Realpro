@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Path aliases - apps will extend and customize */
+    "baseUrl": ".",
+    "paths": {
+      "@realpro/ui": ["packages/ui/src/index.ts"],
+      "@realpro/ui/*": ["packages/ui/src/*"],
+      "@realpro/auth": ["packages/auth/src/index.ts"],
+      "@realpro/auth/*": ["packages/auth/src/*"],
+      "@realpro/i18n": ["packages/i18n/src/index.ts"],
+      "@realpro/i18n/*": ["packages/i18n/src/*"],
+      "@realpro/config": ["packages/config/src/index.ts"],
+      "@realpro/config/*": ["packages/config/src/*"],
+      "@realpro/shared-utils": ["packages/shared-utils/src/index.ts"],
+      "@realpro/shared-utils/*": ["packages/shared-utils/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build"]
+}
