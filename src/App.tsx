@@ -69,6 +69,7 @@ import ProjectReservations from './pages/ProjectReservations';
 import ProjectCRMReservationNew from './pages/ProjectCRMReservationNew';
 import ProjectCRMReservationDetail from './pages/ProjectCRMReservationDetail';
 import { PromoterDashboard } from './pages/PromoterDashboard';
+import { InvestorPortfolioEnhanced } from './pages/InvestorPortfolioEnhanced';
 import { ChantierHome } from './pages/ChantierHome';
 
 import { BrokerDashboard } from './pages/BrokerDashboard';
@@ -302,6 +303,8 @@ function App() {
                     <Route path="/modules" element={<ModulesHub />} />
                     <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
                     <Route path="/promoter" element={<PromoterDashboard />} />
+                    <Route path="/investor" element={<InvestorPortfolioEnhanced />} />
+                    <Route path="/investor/portfolio" element={<InvestorPortfolioEnhanced />} />
 
                     {/* ═══════════════════════════════════════════════════════════════
                         COMMERCIAL - CRM, Ventes, Courtiers
