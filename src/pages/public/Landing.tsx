@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { Button } from '../../components/ui/Button';
-import { ThemeToggle } from '../../components/ThemeToggle';
-import { RealProLogo } from '../../components/branding/RealProLogo';
+import { PublicHeader } from '../../components/layout/PublicHeader';
+import { PublicFooter } from '../../components/layout/PublicFooter';
 import { ScrollReveal, FadeIn } from '../../components/ui/PageTransition';
 import {
   Building2,
@@ -15,35 +14,20 @@ import {
   Check,
   BarChart3,
   Shield,
-  Sparkles,
-  Menu,
-  X,
   Layers,
   Calculator,
-  Hammer,
   FileCheck,
   Calendar,
   Package,
   Globe,
   Lock,
   Headphones,
-  ChevronRight,
-  Workflow,
   Zap,
   Target,
   PieChart
 } from 'lucide-react';
 
 export function Landing() {
-  const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const coreModules = [
     {
       icon: Building2,
@@ -157,58 +141,7 @@ export function Landing() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
-      <header className="sticky top-0 z-50 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-16 flex items-center justify-between">
-            <Link to="/" className="flex items-center">
-              <RealProLogo variant="full" size="sm" />
-            </Link>
-
-            <nav className="hidden lg:flex items-center gap-1">
-              <Link to="/features" className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all">
-                Fonctionnalités
-              </Link>
-              <Link to="/pricing" className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all">
-                Tarifs
-              </Link>
-              <Link to="/contact" className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-all">
-                Contact
-              </Link>
-            </nav>
-
-            <div className="flex items-center gap-2">
-              <ThemeToggle />
-              <Link to="/login" className="hidden md:block">
-                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white">
-                  Connexion
-                </Button>
-              </Link>
-              <Link to="/register">
-                <Button size="sm" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white border-0 shadow-sm">
-                  Essai gratuit
-                </Button>
-              </Link>
-              <button
-                className="lg:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 py-3 px-6">
-            <nav className="flex flex-col gap-1">
-              <Link to="/features" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">Fonctionnalités</Link>
-              <Link to="/pricing" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">Tarifs</Link>
-              <Link to="/contact" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">Contact</Link>
-              <Link to="/login" className="py-2.5 px-3 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors md:hidden">Connexion</Link>
-            </nav>
-          </div>
-        )}
-      </header>
+      <PublicHeader />
 
       <section className="relative py-20 lg:py-32 bg-gradient-to-b from-blue-50/50 via-white to-white dark:from-blue-950/20 dark:via-neutral-950 dark:to-neutral-950">
         <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -596,58 +529,7 @@ export function Landing() {
         </div>
       </section>
 
-      <footer className="py-12 bg-white dark:bg-neutral-950 border-t border-neutral-200/80 dark:border-neutral-800/80">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-5 gap-8 mb-10">
-            <div className="md:col-span-2">
-              <Link to="/">
-                <RealProLogo variant="full" size="sm" />
-              </Link>
-              <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xs">
-                La plateforme suisse pour piloter vos promotions immobilières.
-              </p>
-              <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-950/30 border border-red-200/80 dark:border-red-900/50">
-                <div className="flex items-center justify-center w-5 h-5 bg-red-600 rounded">
-                  <span className="text-white text-[10px] font-bold">+</span>
-                </div>
-                <span className="text-xs font-medium text-red-700 dark:text-red-400">Made in Switzerland</span>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 text-sm">Produit</h4>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/features" className="hover:text-realpro-turquoise transition-colors">Fonctionnalités</Link></li>
-                <li><Link to="/pricing" className="hover:text-realpro-turquoise transition-colors">Tarifs</Link></li>
-                <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 text-sm">Ressources</h4>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Support</Link></li>
-                <li><Link to="/contact" className="hover:text-realpro-turquoise transition-colors">Documentation</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 text-sm">Légal</h4>
-              <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <li><Link to="/legal/cgu" className="hover:text-realpro-turquoise transition-colors">CGU</Link></li>
-                <li><Link to="/legal/cgv" className="hover:text-realpro-turquoise transition-colors">CGV</Link></li>
-                <li><Link to="/legal/privacy" className="hover:text-realpro-turquoise transition-colors">Confidentialité</Link></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80">
-            <p className="text-xs text-neutral-500 dark:text-neutral-500">
-              © 2024-2025 Realpro SA. Tous droits réservés. Hébergement des données en Suisse.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <PublicFooter />
     </div>
   );
 }
