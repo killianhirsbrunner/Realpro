@@ -15,7 +15,7 @@ export function LoadingSpinner({ size = 'md', className }: LoadingSpinnerProps) 
   return (
     <div
       className={clsx(
-        'animate-spin rounded-full border-gray-300 border-t-brand-600',
+        'animate-spin rounded-full border-neutral-300 dark:border-neutral-600 border-t-realpro-turquoise',
         sizeClasses[size],
         className
       )}
@@ -31,7 +31,7 @@ export function LoadingState({ message = 'Loading...' }: LoadingStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4">
       <LoadingSpinner size="lg" />
-      <p className="mt-4 text-sm text-gray-500">{message}</p>
+      <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">{message}</p>
     </div>
   );
 }
