@@ -251,11 +251,11 @@ export function Features() {
       <PublicHeader />
 
       {/* Hero */}
-      <section className="relative py-16 lg:py-20 bg-gradient-to-b from-neutral-50 via-white to-white dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-950">
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-neutral-50 via-white to-white dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-950">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/8 dark:bg-blue-500/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-emerald-500/8 dark:bg-emerald-500/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 w-64 h-64 bg-purple-500/8 dark:bg-purple-500/20 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
@@ -263,7 +263,7 @@ export function Features() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white leading-tight tracking-tight mb-6">
               Fonctionnalités <span className="text-realpro-turquoise">par application</span>
             </h1>
-            <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-12">
+            <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto mb-12">
               Découvrez les fonctionnalités métier de chaque application de la suite Realpro.
             </p>
 
@@ -306,19 +306,19 @@ export function Features() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-900/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {currentFeatures.map((feature, index) => (
               <ScrollReveal key={`${selectedApp}-${index}`}>
-                <div className="group p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full flex flex-col">
-                  <div className={`w-12 h-12 rounded-xl ${currentApp.lightBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <feature.icon className={`w-6 h-6 ${currentApp.textColor}`} />
+                <div className="group p-6 rounded-2xl bg-white dark:bg-neutral-800/70 border border-neutral-200 dark:border-neutral-700/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                  <div className={`w-11 h-11 rounded-xl ${currentApp.lightBg} flex items-center justify-center mb-4 group-hover:scale-105 transition-transform`}>
+                    <feature.icon className={`w-5 h-5 ${currentApp.textColor}`} />
                   </div>
-                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-white mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed flex-1">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed flex-1">
                     {feature.description}
                   </p>
                 </div>
@@ -354,18 +354,18 @@ export function Features() {
       </section>
 
       {/* Common Features */}
-      <section className="py-20 bg-white dark:bg-neutral-950">
+      <section className="py-24 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-realpro-turquoise/10 text-realpro-turquoise text-xs font-semibold mb-4 border border-realpro-turquoise/20">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="text-center mb-14">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 text-realpro-turquoise text-sm font-semibold mb-4 border border-realpro-turquoise/25">
+                <Sparkles className="w-4 h-4" />
                 Inclus dans toutes les applications
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
                 Fonctionnalités communes
               </h2>
-              <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+              <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
                 Quelle que soit l'application choisie, vous bénéficiez de notre socle technologique commun.
               </p>
             </div>
@@ -374,15 +374,15 @@ export function Features() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {commonFeatures.map((feature, index) => (
               <ScrollReveal key={index}>
-                <div className="flex items-start gap-4 p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-realpro-turquoise/50 transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-realpro-turquoise/10 flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-6 h-6 text-realpro-turquoise" />
+                <div className="flex items-start gap-4 p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/80 hover:border-realpro-turquoise/50 transition-colors">
+                  <div className="w-11 h-11 rounded-xl bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-5 h-5 text-realpro-turquoise" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -394,7 +394,7 @@ export function Features() {
       </section>
 
       {/* Why Realpro */}
-      <section className="py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-20 bg-neutral-50 dark:bg-neutral-900/50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-12">
@@ -414,11 +414,11 @@ export function Features() {
                 'Interface intuitive et moderne',
                 'Expertise métier immobilier suisse',
               ].map((benefit, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
+                <div key={index} className="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-neutral-800/70 border border-neutral-200 dark:border-neutral-700/80">
                   <div className="w-6 h-6 rounded-full bg-realpro-turquoise flex items-center justify-center flex-shrink-0">
                     <Check className="w-3.5 h-3.5 text-white" />
                   </div>
-                  <span className="text-neutral-700 dark:text-neutral-300">{benefit}</span>
+                  <span className="text-neutral-800 dark:text-neutral-200">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -427,17 +427,17 @@ export function Features() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-neutral-900 dark:bg-neutral-950">
+      <section className="py-24 bg-neutral-900 dark:bg-neutral-950">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             Prêt à transformer votre gestion immobilière ?
           </h2>
-          <p className="text-lg text-neutral-400 mb-8">
+          <p className="text-lg text-neutral-300 mb-10">
             Essayez gratuitement pendant 14 jours, sans engagement.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/register">
-              <Button size="lg" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white">
+              <Button size="lg" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white font-medium">
                 Commencer gratuitement
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>

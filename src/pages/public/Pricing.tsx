@@ -316,22 +316,22 @@ export function Pricing() {
       <PublicHeader />
 
       {/* Hero */}
-      <section className="relative py-16 lg:py-20 bg-gradient-to-b from-neutral-50 via-white to-white dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-950">
+      <section className="relative py-20 lg:py-24 bg-gradient-to-b from-neutral-50 via-white to-white dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-950">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-realpro-turquoise/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-realpro-turquoise/8 dark:bg-realpro-turquoise/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-blue-500/8 dark:bg-blue-500/20 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-realpro-turquoise/10 text-realpro-turquoise text-xs font-semibold mb-6 border border-realpro-turquoise/20">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 text-realpro-turquoise text-sm font-semibold mb-6 border border-realpro-turquoise/25">
+              <Sparkles className="w-4 h-4" />
               14 jours d'essai gratuit
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white leading-tight tracking-tight mb-6">
               Tarifs <span className="text-realpro-turquoise">simples et transparents</span>
             </h1>
-            <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-12">
+            <p className="text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto mb-12">
               Choisissez l'application qui correspond à votre activité ou optez pour la suite complète.
             </p>
 
@@ -357,10 +357,10 @@ export function Pricing() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-16 bg-white dark:bg-neutral-950">
+      <section className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
-            <p className="text-center text-neutral-600 dark:text-neutral-400 mb-12">
+            <p className="text-center text-neutral-600 dark:text-neutral-300 mb-14 text-lg">
               {currentPricing.description}
             </p>
           </ScrollReveal>
@@ -456,13 +456,13 @@ export function Pricing() {
       )}
 
       {/* FAQ */}
-      <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-900/50">
+      <section className="py-20 md:py-24 bg-neutral-50 dark:bg-neutral-900/50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4 text-center">
               Questions fréquentes
             </h2>
-            <p className="text-neutral-600 dark:text-neutral-400 text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-neutral-600 dark:text-neutral-300 text-center mb-14 max-w-2xl mx-auto">
               Tout ce que vous devez savoir sur nos plans et notre facturation
             </p>
 
@@ -493,12 +493,12 @@ export function Pricing() {
                   a: 'Tous les prix sont HT. La TVA suisse (8.1%) est ajoutée automatiquement pour les entreprises suisses.',
                 },
               ].map((faq, index) => (
-                <div key={index} className="p-6 rounded-2xl bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700">
-                  <h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
-                    <span className="text-realpro-turquoise mt-1">●</span>
+                <div key={index} className="p-6 rounded-2xl bg-white dark:bg-neutral-800/70 border border-neutral-200 dark:border-neutral-700/80">
+                  <h3 className="font-semibold text-base text-neutral-900 dark:text-white mb-3 flex items-start gap-2">
+                    <span className="text-realpro-turquoise mt-0.5">●</span>
                     {faq.q}
                   </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+                  <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">
                     {faq.a}
                   </p>
                 </div>
@@ -509,17 +509,17 @@ export function Pricing() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-neutral-900 dark:bg-neutral-950">
+      <section className="py-24 bg-neutral-900 dark:bg-neutral-950">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             Besoin d'un plan personnalisé ?
           </h2>
-          <p className="text-lg text-neutral-400 mb-8">
+          <p className="text-lg text-neutral-300 mb-10">
             Pour les grandes organisations, contactez-nous pour un devis sur mesure.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/contact">
-              <Button size="lg" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white">
+              <Button size="lg" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white font-medium">
                 Contacter l'équipe commerciale
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
