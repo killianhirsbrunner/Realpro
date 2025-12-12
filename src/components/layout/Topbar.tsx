@@ -170,82 +170,67 @@ export function Topbar() {
   };
 
   return (
-    <header className="h-16 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex items-center px-6">
-      <div className="flex items-center gap-6 flex-1">
-        <RealproLogo variant="text" size="xs" className="hidden lg:flex" />
-
-        <div className="hidden lg:block h-8 w-px bg-neutral-200 dark:bg-neutral-800" />
-
-        <div className="flex flex-col">
-          {/* Section badge */}
+    <header className="h-14 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-950 flex items-center px-5">
+      <div className="flex items-center gap-4 flex-1">
+        {/* Page Info */}
+        <div className="flex items-center gap-2">
           {pageInfo.section && (
-            <span className="text-[10px] font-semibold text-realpro-turquoise uppercase tracking-wider mb-0.5">
+            <span className="text-[10px] font-semibold text-realpro-turquoise uppercase tracking-wider px-2 py-0.5 bg-realpro-turquoise/10 rounded">
               {pageInfo.section}
             </span>
           )}
-          <div className="flex items-center gap-2">
-            <h1 className="text-lg font-semibold text-neutral-900 dark:text-white leading-tight">
-              {pageInfo.title}
-            </h1>
-          </div>
-          {pageInfo.subtitle && (
-            <span className="text-xs text-neutral-500 dark:text-neutral-400">
-              {pageInfo.subtitle}
-            </span>
-          )}
+          <h1 className="text-base font-semibold text-neutral-900 dark:text-white">
+            {pageInfo.title}
+          </h1>
         </div>
 
-        <div className="h-8 w-px bg-neutral-200 dark:bg-neutral-800" />
-
-        <div className="flex-1 max-w-xl">
+        {/* Search */}
+        <div className="flex-1 max-w-md ml-4">
           <div className="relative group">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400 group-focus-within:text-realpro-turquoise transition-colors" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400 group-focus-within:text-realpro-turquoise transition-colors" />
             <input
               type="text"
-              placeholder="Rechercher projets, lots, acquéreurs..."
-              className="w-full h-10 pl-10 pr-20 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-realpro-turquoise/20 focus:border-realpro-turquoise focus:bg-white dark:focus:bg-neutral-800 transition-all duration-200"
+              placeholder="Rechercher..."
+              className="w-full h-9 pl-9 pr-16 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-realpro-turquoise/20 focus:border-realpro-turquoise focus:bg-white dark:focus:bg-neutral-800 transition-all duration-150"
             />
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-neutral-400">
-              <kbd className="hidden sm:flex h-5 items-center gap-0.5 rounded border border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-800 px-1.5 text-[10px] font-medium">
-                <Command className="h-3 w-3" />K
+            <div className="absolute right-2.5 top-1/2 -translate-y-1/2">
+              <kbd className="hidden sm:flex h-5 items-center gap-0.5 rounded border border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-800 px-1.5 text-[10px] font-medium text-neutral-400">
+                <Command className="h-2.5 w-2.5" />K
               </kbd>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5">
         <NotificationBell />
         <ThemeToggle />
         <LanguageSwitcher />
 
-        <div className="ml-2 h-8 w-px bg-neutral-200 dark:bg-neutral-800" />
+        <div className="ml-2 h-6 w-px bg-neutral-200 dark:bg-neutral-800" />
 
-        <div className="relative ml-2" ref={menuRef}>
+        <div className="relative ml-1.5" ref={menuRef}>
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center gap-3 h-10 pl-2 pr-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200"
+            className="flex items-center gap-2 h-9 pl-1.5 pr-2.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-150"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-realpro-turquoise to-realpro-turquoise/70 flex items-center justify-center text-white text-sm font-semibold shadow-sm">
+            <div className="w-7 h-7 rounded-md bg-realpro-turquoise flex items-center justify-center text-white text-xs font-semibold">
               {user?.first_name?.[0]?.toUpperCase() || 'U'}
             </div>
             <div className="hidden sm:flex flex-col items-start">
               <span className="text-sm font-medium text-neutral-900 dark:text-white leading-tight">
                 {user?.first_name || 'Utilisateur'}
               </span>
-              <span className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-tight">
-                {user?.role || 'Admin'}
-              </span>
             </div>
-            <ChevronDown className={clsx('h-4 w-4 text-neutral-400 transition-transform duration-200', {
+            <ChevronDown className={clsx('h-3.5 w-3.5 text-neutral-400 transition-transform duration-150', {
               'rotate-180': showUserMenu,
             })} />
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-neutral-900 rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-800 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-              <div className="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
-                <p className="text-sm font-semibold text-neutral-900 dark:text-white">
+            <div className="absolute right-0 mt-1.5 w-56 bg-white dark:bg-neutral-900 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-800 py-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="px-3 py-2 border-b border-neutral-200 dark:border-neutral-800">
+                <p className="text-sm font-medium text-neutral-900 dark:text-white">
                   {user?.first_name} {user?.last_name}
                 </p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{user?.email}</p>
@@ -254,7 +239,7 @@ export function Topbar() {
               <div className="py-1">
                 <button
                   onClick={() => navigate('/settings')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center gap-3 transition-colors duration-150"
+                  className="w-full text-left px-3 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center gap-2.5 transition-colors duration-150"
                 >
                   <User className="w-4 h-4" />
                   <span>Mon profil</span>
@@ -264,7 +249,7 @@ export function Topbar() {
               <div className="border-t border-neutral-200 dark:border-neutral-800 py-1">
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-3 transition-colors duration-150"
+                  className="w-full text-left px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2.5 transition-colors duration-150"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Déconnexion</span>
