@@ -4,7 +4,7 @@
  */
 
 import { format, formatDistanceToNow, parseISO } from 'date-fns';
-import { fr, de, enGB, it } from 'date-fns/locale';
+import { fr, de, enGB, it, type Locale } from 'date-fns/locale';
 
 // Locale map
 const locales: Record<string, Locale> = {
