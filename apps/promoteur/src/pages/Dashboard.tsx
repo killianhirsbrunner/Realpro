@@ -1,5 +1,9 @@
-import { Card, CardHeader, CardContent, Badge, Progress } from '@realpro/ui';
+import { Link } from 'react-router-dom';
+import { Card, CardHeader, CardContent, Badge, Progress, Skeleton } from '@realpro/ui';
 import { Building2, TrendingUp, Users, Calendar } from 'lucide-react';
+import { useProjects } from '@/features/projects';
+import { formatCurrency } from '@realpro/shared-utils';
+import { PROJECT_STATUS_LABELS, type ProjectStatus } from '@realpro/entities';
 
 interface StatCardProps {
   title: string;
@@ -7,16 +11,21 @@ interface StatCardProps {
   subtitle?: string;
   icon: React.ReactNode;
   trend?: { value: number; isPositive: boolean };
+  loading?: boolean;
 }
 
-function StatCard({ title, value, subtitle, icon, trend }: StatCardProps) {
+function StatCard({ title, value, subtitle, icon, trend, loading }: StatCardProps) {
   return (
     <Card>
       <CardContent className="p-6">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{title}</p>
-            <p className="mt-2 text-3xl font-bold text-neutral-900 dark:text-white">{value}</p>
+            {loading ? (
+              <Skeleton className="h-9 w-20 mt-2" />
+            ) : (
+              <p className="mt-2 text-3xl font-bold text-neutral-900 dark:text-white">{value}</p>
+            )}
             {subtitle && (
               <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">{subtitle}</p>
             )}
@@ -35,54 +44,25 @@ function StatCard({ title, value, subtitle, icon, trend }: StatCardProps) {
   );
 }
 
-interface ProjectSummary {
-  id: string;
-  name: string;
-  location: string;
-  progress: number;
-  status: 'planning' | 'construction' | 'commercialization' | 'delivered';
-  unitsTotal: number;
-  unitsSold: number;
-}
-
-const mockProjects: ProjectSummary[] = [
-  {
-    id: '1',
-    name: 'Résidence du Lac',
-    location: 'Lausanne, VD',
-    progress: 75,
-    status: 'construction',
-    unitsTotal: 24,
-    unitsSold: 18,
-  },
-  {
-    id: '2',
-    name: 'Les Terrasses de Morges',
-    location: 'Morges, VD',
-    progress: 30,
-    status: 'planning',
-    unitsTotal: 16,
-    unitsSold: 4,
-  },
-  {
-    id: '3',
-    name: 'Éco-Quartier Soleil',
-    location: 'Nyon, VD',
-    progress: 95,
-    status: 'commercialization',
-    unitsTotal: 32,
-    unitsSold: 28,
-  },
-];
-
-const statusLabels: Record<string, { label: string; variant: 'info' | 'warning' | 'success' | 'neutral' }> = {
-  planning: { label: 'Planification', variant: 'info' },
-  construction: { label: 'Construction', variant: 'warning' },
-  commercialization: { label: 'Commercialisation', variant: 'success' },
-  delivered: { label: 'Livré', variant: 'neutral' },
+const statusVariants: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'default'> = {
+  PLANNING: 'info',
+  CONSTRUCTION: 'warning',
+  SELLING: 'success',
+  COMPLETED: 'default',
+  ARCHIVED: 'default',
 };
 
 export function DashboardPage() {
+  const { data: projects, isLoading, error } = useProjects();
+
+  // Calculate stats from projects
+  const stats = {
+    activeProjects: projects?.filter(p => ['PLANNING', 'CONSTRUCTION', 'SELLING'].includes(p.status)).length || 0,
+    totalLots: projects?.reduce((sum, p) => sum + (p.total_lots || 0), 0) || 0,
+    soldLots: projects?.reduce((sum, p) => sum + (p.sold_lots || 0), 0) || 0,
+    totalRevenue: projects?.reduce((sum, p) => sum + (p.total_revenue || 0), 0) || 0,
+  };
+
   return (
     <div className="space-y-8">
       {/* Page Header */}
@@ -99,75 +79,116 @@ export function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
           title="Projets actifs"
-          value={8}
+          value={stats.activeProjects}
           icon={<Building2 className="w-6 h-6 text-primary-600" />}
-          trend={{ value: 12, isPositive: true }}
+          loading={isLoading}
         />
         <StatCard
           title="Unités vendues"
-          value={142}
-          subtitle="sur 198 disponibles"
+          value={stats.soldLots}
+          subtitle={`sur ${stats.totalLots} disponibles`}
           icon={<TrendingUp className="w-6 h-6 text-primary-600" />}
-          trend={{ value: 8, isPositive: true }}
+          loading={isLoading}
         />
         <StatCard
-          title="Prospects"
-          value={67}
-          subtitle="ce mois"
+          title="Chiffre d'affaires"
+          value={formatCurrency(stats.totalRevenue)}
+          subtitle="ventes confirmées"
           icon={<Users className="w-6 h-6 text-primary-600" />}
-          trend={{ value: 23, isPositive: true }}
+          loading={isLoading}
         />
         <StatCard
-          title="Visites planifiées"
-          value={12}
-          subtitle="cette semaine"
+          title="Taux de vente"
+          value={stats.totalLots > 0 ? `${Math.round((stats.soldLots / stats.totalLots) * 100)}%` : '0%'}
+          subtitle="tous projets confondus"
           icon={<Calendar className="w-6 h-6 text-primary-600" />}
+          loading={isLoading}
         />
       </div>
 
       {/* Projects Overview */}
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
-            Projets en cours
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
+              Projets en cours
+            </h2>
+            <Link
+              to="/projects"
+              className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+            >
+              Voir tous les projets
+            </Link>
+          </div>
         </CardHeader>
         <CardContent>
-          <div className="space-y-6">
-            {mockProjects.map((project) => (
-              <div
-                key={project.id}
-                className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg gap-4"
+          {isLoading ? (
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-20 w-full" />
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center py-8 text-neutral-500">
+              <p>Erreur lors du chargement des projets</p>
+              <p className="text-sm mt-1">{error.message}</p>
+            </div>
+          ) : projects && projects.length > 0 ? (
+            <div className="space-y-4">
+              {projects.slice(0, 5).map((project) => {
+                const progress = project.total_lots > 0
+                  ? Math.round((project.sold_lots / project.total_lots) * 100)
+                  : 0;
+
+                return (
+                  <Link
+                    key={project.id}
+                    to={`/projects/${project.id}`}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg gap-4 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-medium text-neutral-900 dark:text-white truncate">
+                          {project.name}
+                        </h3>
+                        <Badge variant={statusVariants[project.status]}>
+                          {PROJECT_STATUS_LABELS[project.status]}
+                        </Badge>
+                      </div>
+                      <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+                        {project.city || 'Localisation non définie'}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-6">
+                      <div className="text-right">
+                        <p className="text-sm font-medium text-neutral-900 dark:text-white">
+                          {project.sold_lots}/{project.total_lots} unités
+                        </p>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                          vendues
+                        </p>
+                      </div>
+                      <div className="w-32 flex items-center gap-2">
+                        <Progress value={progress} size="md" />
+                        <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">{progress}%</span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-neutral-500">
+              <Building2 className="w-12 h-12 mx-auto mb-3 opacity-50" />
+              <p>Aucun projet pour le moment</p>
+              <Link
+                to="/projects"
+                className="mt-2 inline-block text-sm text-primary-600 hover:text-primary-700 font-medium"
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-medium text-neutral-900 dark:text-white truncate">
-                      {project.name}
-                    </h3>
-                    <Badge variant={statusLabels[project.status].variant}>
-                      {statusLabels[project.status].label}
-                    </Badge>
-                  </div>
-                  <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-                    {project.location}
-                  </p>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-neutral-900 dark:text-white">
-                      {project.unitsSold}/{project.unitsTotal} unités
-                    </p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                      vendues
-                    </p>
-                  </div>
-                  <div className="w-32">
-                    <Progress value={project.progress} size="md" showValue />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                Créer votre premier projet
+              </Link>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

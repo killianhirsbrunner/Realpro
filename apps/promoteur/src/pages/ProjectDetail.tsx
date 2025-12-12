@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Card,
@@ -10,33 +11,128 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
+  Skeleton,
+  EmptyState,
 } from '@realpro/ui';
-import { ArrowLeft, Building2, MapPin, Calendar, Users, Edit2 } from 'lucide-react';
+import {
+  ArrowLeft,
+  Building2,
+  MapPin,
+  Calendar,
+  Users,
+  Edit2,
+  AlertCircle,
+  Plus,
+  Home,
+  DollarSign,
+  Ruler,
+  UserCheck,
+  Target,
+  CreditCard,
+  ChevronRight,
+} from 'lucide-react';
+import {
+  PROJECT_STATUS_LABELS,
+  LOT_STATUS_LABELS,
+  LOT_TYPE_LABELS,
+  type ProjectStatus,
+  type LotStatus,
+} from '@realpro/entities';
+import { useProject } from '@/features/projects/hooks/useProjects';
+import { useLots } from '@/features/lots/hooks/useLots';
+
+const STATUS_VARIANT: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'default'> = {
+  PLANNING: 'info',
+  CONSTRUCTION: 'warning',
+  SELLING: 'success',
+  COMPLETED: 'default',
+  ARCHIVED: 'default',
+};
+
+const LOT_STATUS_VARIANT: Record<LotStatus, 'success' | 'info' | 'warning' | 'default'> = {
+  AVAILABLE: 'success',
+  RESERVED: 'info',
+  OPTION: 'warning',
+  SOLD: 'default',
+  DELIVERED: 'default',
+};
+
+function formatCurrency(value: number | null | undefined): string {
+  if (value == null) return '-';
+  return new Intl.NumberFormat('fr-CH', {
+    style: 'currency',
+    currency: 'CHF',
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
+function formatSurface(value: number | null | undefined): string {
+  if (value == null) return '-';
+  return `${value} m²`;
+}
 
 export function ProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>();
+  const [activeTab, setActiveTab] = useState('units');
 
-  // Mock data - in real app, fetch from API
-  const project = {
-    id: projectId,
-    name: 'Résidence du Lac',
-    location: 'Lausanne, VD',
-    address: 'Chemin du Lac 15, 1007 Lausanne',
-    description: 'Un projet de standing situé au bord du lac Léman, offrant des appartements lumineux avec vue imprenable sur les Alpes.',
-    progress: 75,
-    status: 'construction' as const,
-    unitsTotal: 24,
-    unitsSold: 18,
-    startDate: '2023-03-01',
-    expectedDelivery: '2025-06-01',
-  };
+  const { data: project, isLoading: projectLoading, error: projectError } = useProject(projectId);
+  const { lots, stats, isLoading: lotsLoading } = useLots(projectId);
 
-  const statusConfig = {
-    planning: { label: 'Planification', variant: 'info' as const },
-    construction: { label: 'Construction', variant: 'warning' as const },
-    commercialization: { label: 'Commercialisation', variant: 'success' as const },
-    delivered: { label: 'Livré', variant: 'neutral' as const },
-  };
+  // Loading state
+  if (projectLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-5 w-32" />
+        </div>
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="lg:w-1/3">
+            <Skeleton className="aspect-video rounded-xl" />
+          </div>
+          <div className="lg:w-2/3 space-y-4">
+            <Skeleton className="h-8 w-64" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i}>
+                  <Skeleton className="h-4 w-20 mb-2" />
+                  <Skeleton className="h-5 w-24" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Skeleton className="h-32 w-full rounded-xl" />
+      </div>
+    );
+  }
+
+  // Error state
+  if (projectError || !project) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          {projectError ? 'Erreur de chargement' : 'Projet introuvable'}
+        </h2>
+        <p className="text-neutral-500 dark:text-neutral-400 text-center max-w-md mb-4">
+          {projectError
+            ? 'Impossible de charger les détails du projet.'
+            : 'Ce projet n\'existe pas ou a été supprimé.'}
+        </p>
+        <Link to="/projects">
+          <Button variant="outline" leftIcon={<ArrowLeft className="w-4 h-4" />}>
+            Retour aux projets
+          </Button>
+        </Link>
+      </div>
+    );
+  }
+
+  const completionPercent = stats
+    ? Math.round((stats.sold / (stats.total || 1)) * 100)
+    : 0;
 
   return (
     <div className="space-y-6">
@@ -57,49 +153,64 @@ export function ProjectDetailPage() {
       {/* Project Header */}
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="lg:w-1/3">
-          <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
-            <Building2 className="w-20 h-20 text-neutral-300 dark:text-neutral-600" />
-          </div>
+          {project.image_url ? (
+            <img
+              src={project.image_url}
+              alt={project.name}
+              className="aspect-video object-cover rounded-xl"
+            />
+          ) : (
+            <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
+              <Building2 className="w-20 h-20 text-neutral-300 dark:text-neutral-600" />
+            </div>
+          )}
         </div>
         <div className="lg:w-2/3">
           <div className="flex items-start gap-3">
             <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">
               {project.name}
             </h1>
-            <Badge variant={statusConfig[project.status].variant}>
-              {statusConfig[project.status].label}
+            <Badge variant={STATUS_VARIANT[project.status]}>
+              {PROJECT_STATUS_LABELS[project.status]}
             </Badge>
           </div>
-          <p className="mt-2 text-neutral-600 dark:text-neutral-300">
-            {project.description}
-          </p>
+          {project.description && (
+            <p className="mt-2 text-neutral-600 dark:text-neutral-300">
+              {project.description}
+            </p>
+          )}
           <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">Localisation</p>
               <p className="mt-1 font-medium text-neutral-900 dark:text-white flex items-center gap-1">
                 <MapPin className="w-4 h-4" />
-                {project.location}
+                {project.city || 'Non définie'}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">Livraison prévue</p>
               <p className="mt-1 font-medium text-neutral-900 dark:text-white flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                {new Date(project.expectedDelivery).toLocaleDateString('fr-CH', { month: 'long', year: 'numeric' })}
+                {project.end_date
+                  ? new Date(project.end_date).toLocaleDateString('fr-CH', {
+                      month: 'long',
+                      year: 'numeric',
+                    })
+                  : 'Non définie'}
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">Unités</p>
               <p className="mt-1 font-medium text-neutral-900 dark:text-white flex items-center gap-1">
                 <Building2 className="w-4 h-4" />
-                {project.unitsTotal} logements
+                {stats?.total || 0} logements
               </p>
             </div>
             <div>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">Vendues</p>
               <p className="mt-1 font-medium text-neutral-900 dark:text-white flex items-center gap-1">
                 <Users className="w-4 h-4" />
-                {project.unitsSold} ({Math.round((project.unitsSold / project.unitsTotal) * 100)}%)
+                {stats?.sold || 0} ({completionPercent}%)
               </p>
             </div>
           </div>
@@ -111,20 +222,104 @@ export function ProjectDetailPage() {
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-neutral-900 dark:text-white">
-              Avancement du projet
+              Avancement commercial
             </h3>
             <span className="text-2xl font-bold text-primary-600">
-              {project.progress}%
+              {completionPercent}%
             </span>
           </div>
-          <Progress value={project.progress} size="lg" />
+          <Progress value={completionPercent} size="lg" />
+          {stats && (
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-4 text-sm">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-green-600">{stats.available}</p>
+                <p className="text-neutral-500">Disponibles</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-blue-600">{stats.reserved}</p>
+                <p className="text-neutral-500">Réservés</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-amber-600">{stats.option}</p>
+                <p className="text-neutral-500">En option</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-neutral-600">{stats.sold}</p>
+                <p className="text-neutral-500">Vendus</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-neutral-400">{stats.delivered}</p>
+                <p className="text-neutral-500">Livrés</p>
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
+      {/* Quick Navigation Modules */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <Link to={`/projects/${projectId}/buyers`}>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors">
+                <UserCheck className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-neutral-900 dark:text-white">
+                  Acheteurs
+                </h4>
+                <p className="text-sm text-neutral-500">
+                  Gestion des acquéreurs
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link to={`/projects/${projectId}/crm`}>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
+                <Target className="w-6 h-6 text-purple-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-neutral-900 dark:text-white">
+                  Pipeline CRM
+                </h4>
+                <p className="text-sm text-neutral-500">
+                  Suivi des prospects
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link to={`/projects/${projectId}/finance`}>
+          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg group-hover:bg-green-200 dark:group-hover:bg-green-900/50 transition-colors">
+                <CreditCard className="w-6 h-6 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-neutral-900 dark:text-white">
+                  Finances
+                </h4>
+                <p className="text-sm text-neutral-500">
+                  Paiements et factures
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
+
       {/* Tabs */}
-      <Tabs defaultValue="units">
+      <Tabs value={activeTab} onChange={setActiveTab}>
         <TabsList>
-          <TabsTrigger value="units">Unités</TabsTrigger>
+          <TabsTrigger value="units">Unités ({stats?.total || 0})</TabsTrigger>
           <TabsTrigger value="documents">Documents</TabsTrigger>
           <TabsTrigger value="timeline">Planning</TabsTrigger>
           <TabsTrigger value="prospects">Prospects</TabsTrigger>
@@ -132,15 +327,94 @@ export function ProjectDetailPage() {
 
         <TabsContent value="units">
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between">
               <h3 className="font-semibold text-neutral-900 dark:text-white">
                 Liste des unités
               </h3>
+              <Button size="sm" leftIcon={<Plus className="w-4 h-4" />}>
+                Ajouter
+              </Button>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-500 dark:text-neutral-400">
-                La gestion des unités sera disponible dans une prochaine version.
-              </p>
+              {lotsLoading ? (
+                <div className="space-y-3">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Skeleton key={i} className="h-12 w-full" />
+                  ))}
+                </div>
+              ) : lots.length === 0 ? (
+                <EmptyState
+                  icon={Home}
+                  title="Aucune unité"
+                  description="Ajoutez des unités (appartements, parkings, etc.) à ce projet."
+                  action={{
+                    label: 'Ajouter une unité',
+                    onClick: () => {},
+                  }}
+                />
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-neutral-200 dark:border-neutral-700">
+                        <th className="text-left py-3 px-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          Code
+                        </th>
+                        <th className="text-left py-3 px-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          Type
+                        </th>
+                        <th className="text-left py-3 px-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          Pièces
+                        </th>
+                        <th className="text-left py-3 px-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          <div className="flex items-center gap-1">
+                            <Ruler className="w-3 h-3" />
+                            Surface
+                          </div>
+                        </th>
+                        <th className="text-left py-3 px-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          <div className="flex items-center gap-1">
+                            <DollarSign className="w-3 h-3" />
+                            Prix
+                          </div>
+                        </th>
+                        <th className="text-left py-3 px-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          Statut
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {lots.map((lot) => (
+                        <tr
+                          key={lot.id}
+                          className="border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 cursor-pointer"
+                        >
+                          <td className="py-3 px-2 font-medium text-neutral-900 dark:text-white">
+                            {lot.code}
+                          </td>
+                          <td className="py-3 px-2 text-neutral-600 dark:text-neutral-300">
+                            {LOT_TYPE_LABELS[lot.type]}
+                          </td>
+                          <td className="py-3 px-2 text-neutral-600 dark:text-neutral-300">
+                            {lot.rooms_count ? `${lot.rooms_count} pcs` : '-'}
+                          </td>
+                          <td className="py-3 px-2 text-neutral-600 dark:text-neutral-300">
+                            {formatSurface(lot.surface_living)}
+                          </td>
+                          <td className="py-3 px-2 font-medium text-neutral-900 dark:text-white">
+                            {formatCurrency(lot.price_total)}
+                          </td>
+                          <td className="py-3 px-2">
+                            <Badge variant={LOT_STATUS_VARIANT[lot.status]} size="sm">
+                              {LOT_STATUS_LABELS[lot.status]}
+                            </Badge>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -153,9 +427,11 @@ export function ProjectDetailPage() {
               </h3>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-500 dark:text-neutral-400">
-                La gestion documentaire sera disponible dans une prochaine version.
-              </p>
+              <EmptyState
+                icon={Building2}
+                title="À venir"
+                description="La gestion documentaire sera disponible dans une prochaine version."
+              />
             </CardContent>
           </Card>
         </TabsContent>
@@ -168,9 +444,11 @@ export function ProjectDetailPage() {
               </h3>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-500 dark:text-neutral-400">
-                Le planning de construction sera disponible dans une prochaine version.
-              </p>
+              <EmptyState
+                icon={Calendar}
+                title="À venir"
+                description="Le planning de construction sera disponible dans une prochaine version."
+              />
             </CardContent>
           </Card>
         </TabsContent>
@@ -183,9 +461,11 @@ export function ProjectDetailPage() {
               </h3>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-500 dark:text-neutral-400">
-                La gestion des prospects sera disponible dans une prochaine version.
-              </p>
+              <EmptyState
+                icon={Users}
+                title="À venir"
+                description="La gestion des prospects sera disponible dans une prochaine version."
+              />
             </CardContent>
           </Card>
         </TabsContent>

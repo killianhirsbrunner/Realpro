@@ -1,6 +1,5 @@
 import { type ReactNode, useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
-import { ChevronDown } from 'lucide-react';
 
 export interface DropdownProps {
   trigger: ReactNode;

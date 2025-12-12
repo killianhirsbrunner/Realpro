@@ -68,6 +68,18 @@ export {
 } from './shared';
 
 // ============================================================================
+// Entity exports from individual modules (for backward compatibility)
+// ============================================================================
+
+export * from './organization';
+export * from './user';
+export * from './project';
+export * from './lot';
+export * from './buyer';
+export * from './prospect';
+export * from './finance';
+
+// ============================================================================
 // LEGACY EXPORTS (backward compatibility - will be deprecated)
 // ============================================================================
 

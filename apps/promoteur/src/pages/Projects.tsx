@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Card,
@@ -8,92 +8,83 @@ import {
   Badge,
   Progress,
   EmptyState,
+  Skeleton,
 } from '@realpro/ui';
-import { Search, Plus, Building2, MapPin, Calendar } from 'lucide-react';
+import { Search, Plus, Building2, MapPin, Calendar, AlertCircle } from 'lucide-react';
+import { PROJECT_STATUS_LABELS, type ProjectStatus } from '@realpro/entities';
+import { useProjects } from '@/features/projects/hooks/useProjects';
 
-interface Project {
-  id: string;
-  name: string;
-  location: string;
-  address: string;
-  progress: number;
-  status: 'planning' | 'construction' | 'commercialization' | 'delivered';
-  unitsTotal: number;
-  unitsSold: number;
-  startDate: string;
-  expectedDelivery: string;
-  imageUrl?: string;
-}
-
-const mockProjects: Project[] = [
-  {
-    id: '1',
-    name: 'Résidence du Lac',
-    location: 'Lausanne, VD',
-    address: 'Chemin du Lac 15',
-    progress: 75,
-    status: 'construction',
-    unitsTotal: 24,
-    unitsSold: 18,
-    startDate: '2023-03-01',
-    expectedDelivery: '2025-06-01',
-  },
-  {
-    id: '2',
-    name: 'Les Terrasses de Morges',
-    location: 'Morges, VD',
-    address: 'Avenue des Alpes 42',
-    progress: 30,
-    status: 'planning',
-    unitsTotal: 16,
-    unitsSold: 4,
-    startDate: '2024-01-15',
-    expectedDelivery: '2026-03-01',
-  },
-  {
-    id: '3',
-    name: 'Éco-Quartier Soleil',
-    location: 'Nyon, VD',
-    address: 'Route de Genève 88',
-    progress: 95,
-    status: 'commercialization',
-    unitsTotal: 32,
-    unitsSold: 28,
-    startDate: '2022-06-01',
-    expectedDelivery: '2024-12-01',
-  },
-  {
-    id: '4',
-    name: 'Villa Bella Vista',
-    location: 'Montreux, VD',
-    address: 'Chemin de la Vue 5',
-    progress: 100,
-    status: 'delivered',
-    unitsTotal: 8,
-    unitsSold: 8,
-    startDate: '2021-09-01',
-    expectedDelivery: '2023-12-01',
-  },
-];
-
-const statusConfig: Record<string, { label: string; variant: 'info' | 'warning' | 'success' | 'neutral' }> = {
-  planning: { label: 'Planification', variant: 'info' },
-  construction: { label: 'Construction', variant: 'warning' },
-  commercialization: { label: 'Commercialisation', variant: 'success' },
-  delivered: { label: 'Livré', variant: 'neutral' },
+const STATUS_VARIANT: Record<ProjectStatus, 'info' | 'warning' | 'success' | 'default'> = {
+  PLANNING: 'info',
+  CONSTRUCTION: 'warning',
+  SELLING: 'success',
+  COMPLETED: 'default',
+  ARCHIVED: 'default',
 };
 
 export function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<ProjectStatus | null>(null);
 
-  const filteredProjects = mockProjects.filter((project) => {
-    const matchesSearch =
-      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.location.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = !statusFilter || project.status === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
+  const { data: projects, isLoading, error } = useProjects();
+
+  const filteredProjects = useMemo(() => {
+    if (!projects) return [];
+
+    return projects.filter((project) => {
+      const matchesSearch =
+        project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (project.city?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
+      const matchesStatus = !statusFilter || project.status === statusFilter;
+      return matchesSearch && matchesStatus;
+    });
+  }, [projects, searchQuery, statusFilter]);
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <Skeleton className="h-8 w-32" />
+            <Skeleton className="h-4 w-64 mt-2" />
+          </div>
+          <Skeleton className="h-10 w-36" />
+        </div>
+        <div className="flex gap-4">
+          <Skeleton className="h-10 flex-1 max-w-md" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <Card key={i} className="h-full">
+              <Skeleton className="aspect-video rounded-t-xl" />
+              <CardContent className="p-4 space-y-3">
+                <Skeleton className="h-5 w-3/4" />
+                <Skeleton className="h-4 w-1/2" />
+                <Skeleton className="h-4 w-2/3" />
+                <Skeleton className="h-2 w-full mt-4" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16">
+        <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">
+          Erreur de chargement
+        </h2>
+        <p className="text-neutral-500 dark:text-neutral-400 text-center max-w-md">
+          Impossible de charger les projets. Veuillez réessayer ultérieurement.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -130,58 +121,81 @@ export function ProjectsPage() {
           >
             Tous
           </Button>
-          {Object.entries(statusConfig).map(([key, { label }]) => (
-            <Button
-              key={key}
-              variant={statusFilter === key ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => setStatusFilter(key)}
-            >
-              {label}
-            </Button>
-          ))}
+          {(Object.keys(PROJECT_STATUS_LABELS) as ProjectStatus[])
+            .filter((status) => status !== 'ARCHIVED')
+            .map((status) => (
+              <Button
+                key={status}
+                variant={statusFilter === status ? 'primary' : 'outline'}
+                size="sm"
+                onClick={() => setStatusFilter(status)}
+              >
+                {PROJECT_STATUS_LABELS[status]}
+              </Button>
+            ))}
         </div>
       </div>
 
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
         <EmptyState
-          icon={<Building2 className="w-12 h-12" />}
-          title="Aucun projet trouvé"
-          description="Modifiez vos critères de recherche ou créez un nouveau projet."
-          action={
-            <Button leftIcon={<Plus className="w-4 h-4" />}>
-              Nouveau projet
-            </Button>
+          icon={Building2}
+          title={projects?.length === 0 ? 'Aucun projet' : 'Aucun projet trouvé'}
+          description={
+            projects?.length === 0
+              ? 'Commencez par créer votre premier projet de promotion.'
+              : 'Modifiez vos critères de recherche ou créez un nouveau projet.'
           }
+          action={{
+            label: 'Nouveau projet',
+            onClick: () => {},
+          }}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
             <Link key={project.id} to={`/projects/${project.id}`}>
               <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
-                <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-t-xl flex items-center justify-center">
-                  <Building2 className="w-16 h-16 text-neutral-300 dark:text-neutral-600" />
-                </div>
+                {project.image_url ? (
+                  <img
+                    src={project.image_url}
+                    alt={project.name}
+                    className="aspect-video object-cover rounded-t-xl"
+                  />
+                ) : (
+                  <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-t-xl flex items-center justify-center">
+                    <Building2 className="w-16 h-16 text-neutral-300 dark:text-neutral-600" />
+                  </div>
+                )}
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-neutral-900 dark:text-white">
                       {project.name}
                     </h3>
-                    <Badge variant={statusConfig[project.status].variant} size="sm">
-                      {statusConfig[project.status].label}
+                    <Badge variant={STATUS_VARIANT[project.status]} size="sm">
+                      {PROJECT_STATUS_LABELS[project.status]}
                     </Badge>
                   </div>
 
                   <div className="mt-3 space-y-2 text-sm text-neutral-500 dark:text-neutral-400">
                     <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      <span>{project.location}</span>
+                      <MapPin className="w-4 h-4 flex-shrink-0" />
+                      <span className="truncate">
+                        {[project.city, project.postal_code].filter(Boolean).join(', ') || 'Adresse non définie'}
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>Livraison: {new Date(project.expectedDelivery).toLocaleDateString('fr-CH', { month: 'short', year: 'numeric' })}</span>
-                    </div>
+                    {project.end_date && (
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 flex-shrink-0" />
+                        <span>
+                          Livraison:{' '}
+                          {new Date(project.end_date).toLocaleDateString('fr-CH', {
+                            month: 'short',
+                            year: 'numeric',
+                          })}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
@@ -190,10 +204,10 @@ export function ProjectsPage() {
                         Avancement
                       </span>
                       <span className="text-sm font-medium text-neutral-900 dark:text-white">
-                        {project.unitsSold}/{project.unitsTotal} unités vendues
+                        {project.sold_lots}/{project.total_lots} unités vendues
                       </span>
                     </div>
-                    <Progress value={project.progress} size="sm" />
+                    <Progress value={project.completion_percent} size="sm" />
                   </div>
                 </CardContent>
               </Card>
