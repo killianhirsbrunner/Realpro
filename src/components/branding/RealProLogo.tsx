@@ -104,7 +104,7 @@ export function RealproLogo({
   // Full variant: icon + text
   const fontSize = config.height * 0.55;
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-1 ${className}`}>
       <RealproIconSVG iconSize={config.iconSize * 0.8} />
       <span className="font-bold" style={{ fontSize: `${fontSize}px` }}>
         <span className="text-neutral-900 dark:text-white">Real</span>
