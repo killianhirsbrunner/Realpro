@@ -11,18 +11,6 @@ import {
   ArrowRight,
   Check,
   Users,
-  Calendar,
-  Calculator,
-  FileText,
-  Wrench,
-  Key,
-  Receipt,
-  LogIn,
-  Wallet,
-  TrendingUp,
-  HardHat,
-  DollarSign,
-  FileCheck,
   Sparkles,
   Shield,
   Zap,
@@ -36,11 +24,11 @@ const apps = [
     description: 'La solution complète pour les administrateurs de biens en PPE. Gérez efficacement vos immeubles en copropriété.',
     icon: Building2,
     color: 'from-blue-500 to-blue-600',
-    bgColor: 'bg-blue-500',
-    hoverBg: 'hover:bg-blue-600',
-    lightBg: 'bg-blue-50 dark:bg-blue-900/20',
-    textColor: 'text-blue-600 dark:text-blue-400',
-    borderColor: 'border-blue-200 dark:border-blue-800',
+    bgColor: 'bg-blue-600',
+    hoverBg: 'hover:bg-blue-700',
+    lightBg: 'bg-blue-100 dark:bg-blue-900/30',
+    textColor: 'text-blue-700 dark:text-blue-300',
+    borderColor: 'border-blue-300 dark:border-blue-700',
     ringColor: 'ring-blue-500',
     features: [
       'Gestion des copropriétaires',
@@ -51,8 +39,8 @@ const apps = [
       'Portail copropriétaire',
     ],
     pricing: {
-      monthly: 89,
-      yearly: 890,
+      monthly: 349,
+      yearly: 2990,
       perUnit: 'par immeuble/mois',
     },
   },
@@ -63,11 +51,11 @@ const apps = [
     description: 'Pilotez votre parc locatif de A à Z. Une application conçue pour les régies et gérants immobiliers.',
     icon: Home,
     color: 'from-emerald-500 to-emerald-600',
-    bgColor: 'bg-emerald-500',
-    hoverBg: 'hover:bg-emerald-600',
-    lightBg: 'bg-emerald-50 dark:bg-emerald-900/20',
-    textColor: 'text-emerald-600 dark:text-emerald-400',
-    borderColor: 'border-emerald-200 dark:border-emerald-800',
+    bgColor: 'bg-emerald-600',
+    hoverBg: 'hover:bg-emerald-700',
+    lightBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    textColor: 'text-emerald-700 dark:text-emerald-300',
+    borderColor: 'border-emerald-300 dark:border-emerald-700',
     ringColor: 'ring-emerald-500',
     features: [
       'Gestion des baux',
@@ -78,9 +66,9 @@ const apps = [
       'Portail locataire',
     ],
     pricing: {
-      monthly: 79,
-      yearly: 790,
-      perUnit: 'par bien/mois',
+      monthly: 249,
+      yearly: 2090,
+      perUnit: 'par 50 biens/mois',
     },
   },
   {
@@ -90,11 +78,11 @@ const apps = [
     description: 'Centralisez tous vos projets de promotion immobilière. De la commercialisation à la livraison.',
     icon: Briefcase,
     color: 'from-purple-500 to-purple-600',
-    bgColor: 'bg-purple-500',
-    hoverBg: 'hover:bg-purple-600',
-    lightBg: 'bg-purple-50 dark:bg-purple-900/20',
-    textColor: 'text-purple-600 dark:text-purple-400',
-    borderColor: 'border-purple-200 dark:border-purple-800',
+    bgColor: 'bg-purple-600',
+    hoverBg: 'hover:bg-purple-700',
+    lightBg: 'bg-purple-100 dark:bg-purple-900/30',
+    textColor: 'text-purple-700 dark:text-purple-300',
+    borderColor: 'border-purple-300 dark:border-purple-700',
     ringColor: 'ring-purple-500',
     features: [
       'Pipeline de ventes',
@@ -105,8 +93,8 @@ const apps = [
       'Portail acquéreur',
     ],
     pricing: {
-      monthly: 149,
-      yearly: 1490,
+      monthly: 490,
+      yearly: 4190,
       perUnit: 'par projet/mois',
     },
   },
@@ -119,7 +107,6 @@ export function AppsPage() {
 
   const handleSelectApp = (appId: string) => {
     setSelectedApp(appId);
-    // Scroll to pricing section smoothly
     document.getElementById('pricing-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -156,8 +143,41 @@ export function AppsPage() {
         </div>
       </section>
 
+      {/* Billing Toggle */}
+      <section className="py-8 bg-white dark:bg-neutral-950">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-center">
+            <div className="inline-flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-full p-1.5 shadow-inner">
+              <button
+                onClick={() => setBillingPeriod('monthly')}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+                  billingPeriod === 'monthly'
+                    ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white shadow-md'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                }`}
+              >
+                Mensuel
+              </button>
+              <button
+                onClick={() => setBillingPeriod('yearly')}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+                  billingPeriod === 'yearly'
+                    ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white shadow-md'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                }`}
+              >
+                Annuel
+                <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-xs font-bold">
+                  -30%
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* App Selection Cards */}
-      <section className="py-16 bg-white dark:bg-neutral-950">
+      <section className="py-12 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {apps.map((app) => (
@@ -167,7 +187,7 @@ export function AppsPage() {
                   className={`relative bg-white dark:bg-neutral-900 rounded-2xl border-2 transition-all duration-300 cursor-pointer overflow-hidden group ${
                     selectedApp === app.id
                       ? `${app.borderColor} ring-2 ${app.ringColor} shadow-xl`
-                      : 'border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-lg'
+                      : 'border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 hover:shadow-lg'
                   }`}
                 >
                   {/* Gradient Header */}
@@ -183,12 +203,12 @@ export function AppsPage() {
                       )}
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-1">{app.name}</h3>
-                    <p className="text-white/80">{app.tagline}</p>
+                    <p className="text-white/90">{app.tagline}</p>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
-                    <p className="text-neutral-600 dark:text-neutral-400 mb-6">
+                    <p className="text-neutral-600 dark:text-neutral-300 mb-6">
                       {app.description}
                     </p>
 
@@ -198,30 +218,31 @@ export function AppsPage() {
                           <div className={`w-5 h-5 rounded-full ${app.lightBg} flex items-center justify-center flex-shrink-0`}>
                             <Check className={`w-3 h-3 ${app.textColor}`} />
                           </div>
-                          <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
+                          <span className="text-neutral-700 dark:text-neutral-200">{feature}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800">
+                    <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700">
                       <div className="flex items-baseline gap-1 mb-1">
+                        <span className="text-sm text-neutral-500 dark:text-neutral-400">dès</span>
                         <span className="text-3xl font-bold text-neutral-900 dark:text-white">
                           CHF {billingPeriod === 'yearly' ? Math.round(app.pricing.yearly / 12) : app.pricing.monthly}
                         </span>
-                        <span className="text-neutral-500">/mois</span>
+                        <span className="text-neutral-500 dark:text-neutral-400">/mois</span>
                       </div>
-                      <p className="text-sm text-neutral-500 mb-4">{app.pricing.perUnit}</p>
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">{app.pricing.perUnit}</p>
 
-                      <Button
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleSubscribe(app.id);
                         }}
-                        className={`w-full ${app.bgColor} ${app.hoverBg} text-white`}
+                        className={`w-full py-3 px-4 rounded-lg font-medium text-white ${app.bgColor} ${app.hoverBg} transition-colors flex items-center justify-center gap-2`}
                       >
                         Commencer avec {app.name}
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -231,64 +252,34 @@ export function AppsPage() {
         </div>
       </section>
 
-      {/* Billing Toggle & Features */}
-      <section id="pricing-section" className="py-16 bg-neutral-50 dark:bg-neutral-900/50">
+      {/* Features */}
+      <section id="pricing-section" className="py-16 bg-neutral-50 dark:bg-neutral-900">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          {/* Billing Toggle */}
-          <div className="flex items-center justify-center mb-12">
-            <div className="inline-flex items-center bg-white dark:bg-neutral-800 rounded-full p-1 shadow-sm border border-neutral-200 dark:border-neutral-700">
-              <button
-                onClick={() => setBillingPeriod('monthly')}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-                  billingPeriod === 'monthly'
-                    ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
-                }`}
-              >
-                Mensuel
-              </button>
-              <button
-                onClick={() => setBillingPeriod('yearly')}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
-                  billingPeriod === 'yearly'
-                    ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
-                }`}
-              >
-                Annuel
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-xs">
-                  -17%
-                </span>
-              </button>
-            </div>
-          </div>
-
-          {/* Features */}
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="p-6">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-realpro-turquoise/10 flex items-center justify-center">
+            <div className="p-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 flex items-center justify-center">
                 <Zap className="w-6 h-6 text-realpro-turquoise" />
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Essai gratuit 14 jours</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-300">
                 Testez toutes les fonctionnalités sans engagement ni carte bancaire.
               </p>
             </div>
-            <div className="p-6">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-realpro-turquoise/10 flex items-center justify-center">
+            <div className="p-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 flex items-center justify-center">
                 <Shield className="w-6 h-6 text-realpro-turquoise" />
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Données sécurisées</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-300">
                 Hébergement en Suisse, conformité RGPD et chiffrement de bout en bout.
               </p>
             </div>
-            <div className="p-6">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-realpro-turquoise/10 flex items-center justify-center">
+            <div className="p-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-realpro-turquoise/10 dark:bg-realpro-turquoise/20 flex items-center justify-center">
                 <Users className="w-6 h-6 text-realpro-turquoise" />
               </div>
               <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Support dédié</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-300">
                 Accompagnement personnalisé et formation incluse.
               </p>
             </div>
@@ -297,23 +288,27 @@ export function AppsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-800 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
+      <section className="py-20 bg-neutral-900 dark:bg-black">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             Prêt à transformer votre gestion immobilière ?
           </h2>
-          <p className="text-lg text-neutral-400 mb-8">
+          <p className="text-lg text-neutral-300 mb-8">
             Rejoignez les professionnels suisses qui ont déjà adopté RealPro.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/register">
-              <Button size="lg" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white">
+              <Button size="lg" className="bg-realpro-turquoise hover:bg-realpro-turquoise-dark text-white font-medium">
                 Démarrer l'essai gratuit
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-neutral-600 text-white hover:bg-neutral-800">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-neutral-500 text-white bg-transparent hover:bg-white/10 hover:border-white"
+              >
                 Demander une démo
               </Button>
             </Link>
