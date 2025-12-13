@@ -17,7 +17,12 @@ import {
   ChevronRight,
   Star,
   Quote,
-  Play
+  Play,
+  HelpCircle,
+  Info,
+  Scale,
+  CreditCard,
+  MessageCircle
 } from 'lucide-react';
 import { RealproLogo } from '../../../../src/components/branding/RealProLogo';
 
@@ -745,6 +750,119 @@ export function LandingPage() {
                   <span className="font-medium text-gray-900">Support local</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Section - Links to other pages */}
+      <section className="py-24 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1 rounded-full bg-[#3DAABD]/10 text-[#3DAABD] text-sm font-medium mb-4">
+              Ressources
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Tout ce qu'il faut savoir
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Découvrez notre entreprise, nos tarifs et trouvez les réponses à vos questions
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* About */}
+            <Link
+              to="/about"
+              className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-[#3DAABD]/30 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Info className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">À propos</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Notre histoire, notre équipe et notre mission pour l'immobilier suisse.
+              </p>
+              <span className="inline-flex items-center text-[#3DAABD] font-medium text-sm group-hover:gap-2 transition-all">
+                En savoir plus
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </span>
+            </Link>
+
+            {/* Pricing */}
+            <Link
+              to="/pricing"
+              className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-[#3DAABD]/30 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <CreditCard className="h-6 w-6 text-emerald-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Tarifs</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Des plans adaptés à chaque taille d'entreprise, transparents et sans surprise.
+              </p>
+              <span className="inline-flex items-center text-[#3DAABD] font-medium text-sm group-hover:gap-2 transition-all">
+                Voir les tarifs
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </span>
+            </Link>
+
+            {/* FAQ */}
+            <Link
+              to="/faq"
+              className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-[#3DAABD]/30 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <HelpCircle className="h-6 w-6 text-purple-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">FAQ</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Trouvez rapidement les réponses à toutes vos questions sur Realpro.
+              </p>
+              <span className="inline-flex items-center text-[#3DAABD] font-medium text-sm group-hover:gap-2 transition-all">
+                Consulter la FAQ
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </span>
+            </Link>
+
+            {/* Contact */}
+            <Link
+              to="/contact"
+              className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-[#3DAABD]/30 transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <MessageCircle className="h-6 w-6 text-amber-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Contact</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Une question ? Besoin d'une démo ? Notre équipe est là pour vous.
+              </p>
+              <span className="inline-flex items-center text-[#3DAABD] font-medium text-sm group-hover:gap-2 transition-all">
+                Nous contacter
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </span>
+            </Link>
+          </div>
+
+          {/* Legal links */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              <Link to="/legal/terms" className="flex items-center gap-2 text-gray-500 hover:text-[#3DAABD] transition-colors">
+                <Scale className="h-4 w-4" />
+                Conditions générales
+              </Link>
+              <Link to="/legal/privacy" className="flex items-center gap-2 text-gray-500 hover:text-[#3DAABD] transition-colors">
+                <Shield className="h-4 w-4" />
+                Politique de confidentialité
+              </Link>
+              <Link to="/legal/cookies" className="flex items-center gap-2 text-gray-500 hover:text-[#3DAABD] transition-colors">
+                <FileText className="h-4 w-4" />
+                Cookies
+              </Link>
+              <Link to="/legal/legal-notice" className="flex items-center gap-2 text-gray-500 hover:text-[#3DAABD] transition-colors">
+                <Info className="h-4 w-4" />
+                Mentions légales
+              </Link>
             </div>
           </div>
         </div>
