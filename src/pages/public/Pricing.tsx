@@ -4,7 +4,7 @@ import { Button } from '../../components/ui/Button';
 import { PublicHeader } from '../../components/layout/PublicHeader';
 import { PublicFooter } from '../../components/layout/PublicFooter';
 import { ScrollReveal, FadeIn } from '../../components/ui/PageTransition';
-import { Check, ArrowRight, Sparkles, Building2, Home, Briefcase, Users, FileText, Calculator, Wrench, Key, Receipt, TrendingUp, HardHat } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, Building2, Home, Briefcase } from 'lucide-react';
 
 type AppId = 'ppe-admin' | 'regie' | 'promoteur' | 'suite';
 
@@ -410,7 +410,7 @@ export function Pricing() {
                           ? `${currentApp.bgColor} hover:opacity-90 text-white border-0 shadow-lg`
                           : ''
                       }`}
-                      variant={plan.highlighted ? 'default' : 'outline'}
+                      variant={plan.highlighted ? 'primary' : 'outline'}
                       size="lg"
                     >
                       Commencer l'essai
