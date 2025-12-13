@@ -124,30 +124,124 @@ const platformFeatures = [
   },
 ];
 
-// Testimonials
+// Testimonials with photo-like avatars
 const testimonials = [
   {
-    quote: "Realpro a transformé notre façon de gérer les copropriétés. Un gain de temps considérable.",
+    quote: "Realpro a transformé notre façon de gérer les copropriétés. Un gain de temps considérable au quotidien.",
     author: "Marc Schneider",
     role: "Directeur",
     company: "Schneider Immobilier SA",
-    avatar: "MS"
+    location: "Genève",
+    // Professional man, 50s, grey hair
+    avatarStyle: { bg: 'from-slate-600 to-slate-700', skin: '#E8BEAC', hair: '#9CA3AF', shirt: '#1E40AF' }
   },
   {
-    quote: "Enfin une solution suisse qui comprend les spécificités de notre marché.",
+    quote: "Enfin une solution suisse qui comprend les spécificités de notre marché. L'équipe est très réactive.",
     author: "Sophie Durand",
     role: "Responsable gérance",
     company: "Régie du Léman",
-    avatar: "SD"
+    location: "Lausanne",
+    // Professional woman, 40s, brown hair
+    avatarStyle: { bg: 'from-rose-400 to-rose-500', skin: '#FDBCB4', hair: '#78350F', shirt: '#7C3AED' }
   },
   {
     quote: "Le module promoteur nous permet de suivre nos projets en temps réel avec une clarté inégalée.",
     author: "Pierre Müller",
     role: "CEO",
     company: "Müller Développement",
-    avatar: "PM"
+    location: "Zürich",
+    // Professional man, 45s, dark hair
+    avatarStyle: { bg: 'from-blue-500 to-blue-600', skin: '#DEB887', hair: '#1C1917', shirt: '#059669' }
   },
 ];
+
+// Team members
+const teamMembers = [
+  {
+    name: "Thomas Weber",
+    role: "CEO & Fondateur",
+    bio: "20 ans d'expérience dans l'immobilier suisse",
+    avatarStyle: { bg: 'from-[#3DAABD] to-[#2E8A9A]', skin: '#E8BEAC', hair: '#44403C', shirt: '#1E293B' }
+  },
+  {
+    name: "Marie Fontaine",
+    role: "Directrice Produit",
+    bio: "Ex-responsable digital chez une grande régie genevoise",
+    avatarStyle: { bg: 'from-purple-500 to-purple-600', skin: '#FDBCB4', hair: '#7C2D12', shirt: '#0F766E' }
+  },
+  {
+    name: "Lucas Bernasconi",
+    role: "CTO",
+    bio: "Architecte logiciel, spécialiste PropTech",
+    avatarStyle: { bg: 'from-emerald-500 to-emerald-600', skin: '#DEB887', hair: '#1C1917', shirt: '#4338CA' }
+  },
+  {
+    name: "Anna Keller",
+    role: "Head of Customer Success",
+    bio: "10 ans en gestion de copropriétés",
+    avatarStyle: { bg: 'from-amber-500 to-amber-600', skin: '#E8BEAC', hair: '#B45309', shirt: '#BE185D' }
+  },
+];
+
+// Avatar component for realistic portraits
+function PersonAvatar({ style, size = 'md' }: {
+  style: { bg: string; skin: string; hair: string; shirt: string };
+  size?: 'sm' | 'md' | 'lg';
+}) {
+  const sizeClasses = {
+    sm: 'w-12 h-12',
+    md: 'w-16 h-16',
+    lg: 'w-20 h-20'
+  };
+
+  return (
+    <div className={`${sizeClasses[size]} rounded-full bg-gradient-to-br ${style.bg} overflow-hidden relative`}>
+      <svg viewBox="0 0 100 100" className="w-full h-full">
+        {/* Background */}
+        <defs>
+          <linearGradient id={`bg-${style.hair}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={style.bg.includes('slate') ? '#475569' : '#3DAABD'} />
+            <stop offset="100%" stopColor={style.bg.includes('slate') ? '#334155' : '#2E8A9A'} />
+          </linearGradient>
+        </defs>
+
+        {/* Neck */}
+        <ellipse cx="50" cy="95" rx="18" ry="15" fill={style.skin} />
+
+        {/* Shirt/Collar */}
+        <path d="M25 100 Q35 85 50 82 Q65 85 75 100 L75 100 L25 100 Z" fill={style.shirt} />
+        <path d="M42 82 L50 90 L58 82" fill="none" stroke={style.shirt} strokeWidth="3" />
+
+        {/* Face */}
+        <ellipse cx="50" cy="50" rx="28" ry="32" fill={style.skin} />
+
+        {/* Hair */}
+        <ellipse cx="50" cy="28" rx="26" ry="18" fill={style.hair} />
+        <path d="M24 35 Q24 20 50 18 Q76 20 76 35 Q76 45 50 42 Q24 45 24 35" fill={style.hair} />
+
+        {/* Ears */}
+        <ellipse cx="22" cy="52" rx="5" ry="8" fill={style.skin} />
+        <ellipse cx="78" cy="52" rx="5" ry="8" fill={style.skin} />
+
+        {/* Eyes */}
+        <ellipse cx="38" cy="50" rx="5" ry="3" fill="white" />
+        <ellipse cx="62" cy="50" rx="5" ry="3" fill="white" />
+        <circle cx="38" cy="50" r="2" fill="#1E293B" />
+        <circle cx="62" cy="50" r="2" fill="#1E293B" />
+
+        {/* Eyebrows */}
+        <path d="M32 44 Q38 42 44 44" fill="none" stroke={style.hair} strokeWidth="2" strokeLinecap="round" />
+        <path d="M56 44 Q62 42 68 44" fill="none" stroke={style.hair} strokeWidth="2" strokeLinecap="round" />
+
+        {/* Nose */}
+        <path d="M50 52 L50 60 Q48 62 50 62 Q52 62 50 60" fill="none" stroke={style.skin} strokeWidth="1" opacity="0.5" />
+
+        {/* Smile */}
+        <path d="M40 68 Q50 75 60 68" fill="none" stroke="#B45309" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      </svg>
+    </div>
+  );
+}
 
 // Trust badges
 const trustBadges = [
@@ -473,29 +567,102 @@ export function LandingPage() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 hover:border-[#3DAABD]/50 transition-colors"
+                className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:border-[#3DAABD]/50 transition-colors group"
               >
-                <Quote className="h-8 w-8 text-[#3DAABD]/50 mb-4" />
-                <p className="text-slate-300 mb-6 leading-relaxed">
+                {/* Stars at top */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+
+                <Quote className="h-10 w-10 text-[#3DAABD]/30 mb-4" />
+                <p className="text-slate-300 mb-8 leading-relaxed text-lg">
                   "{testimonial.quote}"
                 </p>
+
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#3DAABD] to-[#2E8A9A] flex items-center justify-center text-white font-semibold">
-                    {testimonial.avatar}
-                  </div>
+                  <PersonAvatar style={testimonial.avatarStyle} size="md" />
                   <div>
-                    <div className="font-semibold text-white">{testimonial.author}</div>
+                    <div className="font-semibold text-white text-lg">{testimonial.author}</div>
                     <div className="text-sm text-slate-400">{testimonial.role}</div>
                     <div className="text-sm text-[#3DAABD]">{testimonial.company}</div>
+                    <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      {testimonial.location}
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-1 mt-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  ))}
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Client logos */}
+          <div className="mt-16 pt-16 border-t border-slate-800">
+            <p className="text-center text-slate-500 text-sm mb-8">
+              Plus de 100 entreprises nous font confiance
+            </p>
+            <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60">
+              {['Régie Zimmermann', 'Naef Immobilier', 'SPG Intercity', 'Wincasa', 'Livit'].map((company) => (
+                <div key={company} className="text-slate-400 font-semibold text-lg">
+                  {company}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1 rounded-full bg-[#3DAABD]/10 text-[#3DAABD] text-sm font-medium mb-4">
+              Notre équipe
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Des experts à votre service
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Une équipe passionnée qui combine expertise immobilière et innovation technologique
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-6 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-shadow group"
+              >
+                <div className="mb-4 flex justify-center">
+                  <div className="relative">
+                    <PersonAvatar style={member.avatarStyle} size="lg" />
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center">
+                      <CheckCircle className="w-3 h-3 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="font-bold text-gray-900 text-lg">{member.name}</h3>
+                <p className="text-[#3DAABD] font-medium text-sm">{member.role}</p>
+                <p className="text-gray-500 text-sm mt-2">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-gray-600 mb-4">
+              Basée à Genève, notre équipe de 15 personnes est dédiée à votre succès.
+            </p>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 text-[#3DAABD] font-semibold hover:underline"
+            >
+              En savoir plus sur notre histoire
+              <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
