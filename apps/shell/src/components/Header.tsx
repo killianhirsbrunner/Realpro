@@ -6,8 +6,9 @@ import { RealproLogo } from '../../../../src/components/branding/RealProLogo';
 const navigation = [
   { name: 'Accueil', href: '/' },
   { name: 'Applications', href: '/apps' },
-  { name: 'Fonctionnalités', href: '/features' },
+  { name: 'À propos', href: '/about' },
   { name: 'Tarifs', href: '/pricing' },
+  { name: 'FAQ', href: '/faq' },
   { name: 'Contact', href: '/contact' },
 ];
 

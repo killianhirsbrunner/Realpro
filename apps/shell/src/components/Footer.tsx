@@ -7,22 +7,24 @@ const footerLinks = {
     { name: 'PPE Admin', href: '/ppe' },
     { name: 'Promoteur', href: '/promoteur' },
     { name: 'Régie', href: '/regie' },
+    { name: 'Toutes les apps', href: '/apps' },
   ],
   entreprise: [
     { name: 'À propos', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Fonctionnalités', href: '/features' },
     { name: 'Tarifs', href: '/pricing' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
   ],
   legal: [
-    { name: 'Conditions générales', href: '/legal/cgu' },
-    { name: 'Politique de confidentialité', href: '/legal/privacy' },
-    { name: 'Mentions légales', href: '/legal/mentions' },
+    { name: 'Conditions générales', href: '/legal/terms' },
+    { name: 'Confidentialité', href: '/legal/privacy' },
+    { name: 'Cookies', href: '/legal/cookies' },
+    { name: 'Mentions légales', href: '/legal/legal-notice' },
   ],
   support: [
-    { name: 'Centre d\'aide', href: '/help' },
-    { name: 'Documentation', href: '/docs' },
-    { name: 'Status', href: '/status' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Centre d\'aide', href: '/faq' },
+    { name: 'Nous contacter', href: '/contact' },
   ],
 };
 
@@ -129,12 +131,12 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-slate-400 hover:text-[#3DAABD] transition-colors text-sm"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -148,12 +150,12 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-slate-400 hover:text-[#3DAABD] transition-colors text-sm"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
