@@ -1,11 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Building2, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { RealproLogo } from '../../../../src/components/branding/RealProLogo';
 
 const navigation = [
   { name: 'Accueil', href: '/' },
   { name: 'Applications', href: '/apps' },
-  { name: 'Fonctionnalites', href: '/features' },
+  { name: 'Fonctionnalités', href: '/features' },
   { name: 'Tarifs', href: '/pricing' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -13,29 +14,56 @@ const navigation = [
 export function Header() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Check if we're on the landing page (for transparent header)
+  const isLandingPage = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Determine header styling based on scroll and page
+  const headerBg = isLandingPage && !scrolled
+    ? 'bg-transparent'
+    : 'bg-white/95 backdrop-blur-md shadow-sm';
+
+  const textColor = isLandingPage && !scrolled
+    ? 'text-white'
+    : 'text-gray-700';
+
+  const activeColor = isLandingPage && !scrolled
+    ? 'text-[#5BC4D6]'
+    : 'text-[#3DAABD]';
+
+  const logoTheme = isLandingPage && !scrolled ? 'dark' : 'light';
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 lg:h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <Building2 className="h-8 w-8 text-primary-600" />
-              <span className="text-xl font-bold text-gray-900">Realpro Suite</span>
+              <RealproLogo size="md" theme={logoTheme} />
             </Link>
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex md:items-center md:gap-x-8">
+          <div className="hidden lg:flex lg:items-center lg:gap-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-colors hover:opacity-80 ${
                   location.pathname === item.href
-                    ? 'text-primary-600'
-                    : 'text-gray-700 hover:text-primary-600'
+                    ? activeColor
+                    : textColor
                 }`}
               >
                 {item.name}
@@ -44,26 +72,28 @@ export function Header() {
           </div>
 
           {/* CTA buttons */}
-          <div className="hidden md:flex md:items-center md:gap-x-4">
+          <div className="hidden lg:flex lg:items-center lg:gap-x-4">
             <a
-              href="/login"
-              className="text-sm font-medium text-gray-700 hover:text-primary-600"
+              href="/apps"
+              className={`text-sm font-medium transition-colors hover:opacity-80 ${textColor}`}
             >
               Connexion
             </a>
-            <a
-              href="/register"
-              className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white hover:bg-primary-700 transition-colors"
+            <Link
+              to="/contact"
+              className="rounded-xl bg-gradient-to-r from-[#3DAABD] to-[#2E8A9A] px-5 py-2.5 text-sm font-semibold text-white hover:shadow-lg hover:shadow-[#3DAABD]/25 transition-all duration-300"
             >
               Essai gratuit
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button
               type="button"
-              className="text-gray-700"
+              className={`p-2 rounded-lg transition-colors ${textColor} ${
+                isLandingPage && !scrolled ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+              }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
@@ -77,15 +107,15 @@ export function Header() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t">
-            <div className="space-y-2">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-t shadow-xl">
+            <div className="px-4 py-6 space-y-2">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`block px-3 py-2 rounded-lg text-base font-medium ${
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                     location.pathname === item.href
-                      ? 'bg-primary-50 text-primary-600'
+                      ? 'bg-[#3DAABD]/10 text-[#3DAABD]'
                       : 'text-gray-700 hover:bg-gray-50'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
@@ -93,19 +123,21 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-4 border-t mt-4 space-y-2">
+              <div className="pt-4 border-t mt-4 space-y-3">
                 <a
-                  href="/login"
-                  className="block px-3 py-2 text-base font-medium text-gray-700"
+                  href="/apps"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-xl"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Connexion
                 </a>
-                <a
-                  href="/register"
-                  className="block px-3 py-2 rounded-lg bg-primary-600 text-white text-center font-medium"
+                <Link
+                  to="/contact"
+                  className="block px-4 py-3 rounded-xl bg-gradient-to-r from-[#3DAABD] to-[#2E8A9A] text-white text-center font-semibold"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Essai gratuit
-                </a>
+                </Link>
               </div>
             </div>
           </div>

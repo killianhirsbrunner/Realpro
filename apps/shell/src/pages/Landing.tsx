@@ -1,82 +1,292 @@
 import { Link } from 'react-router-dom';
-import { Building2, Users, Home, ArrowRight, CheckCircle } from 'lucide-react';
+import {
+  Building2,
+  Users,
+  Home,
+  ArrowRight,
+  CheckCircle,
+  Shield,
+  Server,
+  Clock,
+  Zap,
+  BarChart3,
+  FileText,
+  Bell,
+  Lock,
+  Globe,
+  ChevronRight,
+  Star,
+  Quote,
+  Play
+} from 'lucide-react';
+import { RealproLogo } from '../../../../src/components/branding/RealProLogo';
 
+// App definitions with extended info
 const apps = [
   {
+    id: 'ppe-admin',
     name: 'PPE Admin',
-    description: 'Gestion de coproprietes (syndic)',
+    tagline: 'Syndic & Copropriétés',
+    description: 'Gérez vos copropriétés avec une solution complète et intuitive. Assemblées, charges, fonds de rénovation.',
     icon: Building2,
     href: '/ppe',
-    color: 'bg-blue-500',
-    features: ['Assemblees generales', 'Charges & decomptes', 'Fonds de renovation'],
+    color: 'from-blue-500 to-blue-600',
+    lightColor: 'bg-blue-50',
+    textColor: 'text-blue-600',
+    borderColor: 'border-blue-200',
+    features: [
+      'Assemblées générales digitalisées',
+      'Répartition automatique des charges',
+      'Gestion des fonds de rénovation',
+      'Portail copropriétaires',
+      'Documents & PV en ligne'
+    ],
   },
   {
+    id: 'promoteur',
     name: 'Promoteur',
-    description: 'Promotion immobiliere',
+    tagline: 'Promotion Immobilière',
+    description: 'Pilotez vos projets de promotion de A à Z. Ventes, suivi chantier, relation acquéreurs.',
     icon: Home,
     href: '/promoteur',
-    color: 'bg-emerald-500',
-    features: ['Gestion de projets', 'CRM & ventes', 'Suivi chantier'],
+    color: 'from-emerald-500 to-emerald-600',
+    lightColor: 'bg-emerald-50',
+    textColor: 'text-emerald-600',
+    borderColor: 'border-emerald-200',
+    features: [
+      'Gestion multi-projets',
+      'CRM acquéreurs intégré',
+      'Suivi avancement chantier',
+      'Configurateur en ligne',
+      'Tableaux de bord financiers'
+    ],
   },
   {
-    name: 'Regie',
-    description: 'Gerance immobiliere',
+    id: 'regie',
+    name: 'Régie',
+    tagline: 'Gérance Immobilière',
+    description: 'Optimisez la gestion de votre parc locatif. Baux, encaissements, maintenance, états des lieux.',
     icon: Users,
     href: '/regie',
-    color: 'bg-purple-500',
-    features: ['Baux & locataires', 'Loyers & encaissements', 'Etats des lieux'],
+    color: 'from-purple-500 to-purple-600',
+    lightColor: 'bg-purple-50',
+    textColor: 'text-purple-600',
+    borderColor: 'border-purple-200',
+    features: [
+      'Gestion des baux & locataires',
+      'Encaissements automatisés',
+      'États des lieux digitaux',
+      'Portail locataire',
+      'Gestion technique & maintenance'
+    ],
   },
 ];
 
+// Stats with icons
 const stats = [
-  { value: '500+', label: 'Immeubles geres' },
-  { value: '10k+', label: 'Utilisateurs actifs' },
-  { value: '99.9%', label: 'Disponibilite' },
-  { value: 'CH', label: 'Heberge en Suisse' },
+  { value: '500+', label: 'Immeubles gérés', icon: Building2 },
+  { value: '10\'000+', label: 'Utilisateurs actifs', icon: Users },
+  { value: '99.9%', label: 'Disponibilité', icon: Clock },
+  { value: '100%', label: 'Hébergé en Suisse', icon: Shield },
+];
+
+// Platform features
+const platformFeatures = [
+  {
+    icon: Shield,
+    title: 'Sécurité maximale',
+    description: 'Données chiffrées, authentification forte, conformité RGPD/LPD.'
+  },
+  {
+    icon: Server,
+    title: 'Hébergement suisse',
+    description: 'Vos données restent en Suisse, dans des datacenters certifiés.'
+  },
+  {
+    icon: Zap,
+    title: 'Performance',
+    description: 'Interface rapide et réactive, même avec de gros volumes.'
+  },
+  {
+    icon: BarChart3,
+    title: 'Analytics avancés',
+    description: 'Tableaux de bord et rapports personnalisables.'
+  },
+  {
+    icon: FileText,
+    title: 'Documents automatisés',
+    description: 'Génération automatique de contrats, PV, décomptes.'
+  },
+  {
+    icon: Bell,
+    title: 'Notifications intelligentes',
+    description: 'Alertes par email, SMS et push selon vos préférences.'
+  },
+];
+
+// Testimonials
+const testimonials = [
+  {
+    quote: "Realpro a transformé notre façon de gérer les copropriétés. Un gain de temps considérable.",
+    author: "Marc Schneider",
+    role: "Directeur",
+    company: "Schneider Immobilier SA",
+    avatar: "MS"
+  },
+  {
+    quote: "Enfin une solution suisse qui comprend les spécificités de notre marché.",
+    author: "Sophie Durand",
+    role: "Responsable gérance",
+    company: "Régie du Léman",
+    avatar: "SD"
+  },
+  {
+    quote: "Le module promoteur nous permet de suivre nos projets en temps réel avec une clarté inégalée.",
+    author: "Pierre Müller",
+    role: "CEO",
+    company: "Müller Développement",
+    avatar: "PM"
+  },
+];
+
+// Trust badges
+const trustBadges = [
+  { icon: Lock, label: 'SSL/TLS' },
+  { icon: Shield, label: 'ISO 27001' },
+  { icon: Globe, label: '100% Swiss' },
+  { icon: Server, label: 'RGPD/LPD' },
 ];
 
 export function LandingPage() {
   return (
-    <div>
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              La suite logicielle
-              <br />
-              <span className="text-primary-200">pour l'immobilier suisse</span>
-            </h1>
-            <p className="mt-6 text-xl text-primary-100 max-w-2xl mx-auto">
-              3 applications independantes pour gerer vos coproprietes,
-              projets de promotion et portefeuilles de gerance.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/apps"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-lg font-semibold text-primary-600 hover:bg-primary-50 transition-colors"
-              >
-                Decouvrir les apps
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-              <a
-                href="/register"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white px-6 py-3 text-lg font-semibold text-white hover:bg-white/10 transition-colors"
-              >
-                Essai gratuit 30 jours
-              </a>
+    <div className="overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#3DAABD]/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/2 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-20 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBoMXYxaC0xek0wIDBoMXYxSDB6TTYwIDBoMXYxaC0xek0wIDYwaDFWNjFIMHpNNjAgNjBoMXYxaC0xeiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvZz48L3N2Zz4=')] opacity-40" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Content */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-white/80 mb-8">
+                <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                Solution 100% suisse
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                La suite logicielle
+                <span className="block mt-2 bg-gradient-to-r from-[#3DAABD] to-[#5BC4D6] bg-clip-text text-transparent">
+                  pour l'immobilier suisse
+                </span>
+              </h1>
+
+              <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-xl mx-auto lg:mx-0">
+                3 applications indépendantes et spécialisées pour gérer vos copropriétés,
+                projets de promotion et portefeuilles de gérance.
+              </p>
+
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link
+                  to="/apps"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#3DAABD] to-[#2E8A9A] px-8 py-4 text-lg font-semibold text-white hover:shadow-lg hover:shadow-[#3DAABD]/25 transition-all duration-300"
+                >
+                  Découvrir les applications
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-white hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+                >
+                  <Play className="h-5 w-5" />
+                  Voir la démo
+                </button>
+              </div>
+
+              {/* Trust badges */}
+              <div className="mt-12 flex flex-wrap gap-6 justify-center lg:justify-start">
+                {trustBadges.map((badge) => (
+                  <div key={badge.label} className="flex items-center gap-2 text-slate-400">
+                    <badge.icon className="h-4 w-4" />
+                    <span className="text-sm">{badge.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Right: App preview cards */}
+            <div className="relative hidden lg:block">
+              <div className="relative">
+                {/* Floating app cards */}
+                <div className="absolute top-0 left-0 w-64 bg-white rounded-2xl shadow-2xl p-4 transform -rotate-6 hover:rotate-0 transition-transform duration-500">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                      <Building2 className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">PPE Admin</div>
+                      <div className="text-xs text-gray-500">12 immeubles</div>
+                    </div>
+                  </div>
+                  <div className="h-20 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg" />
+                </div>
+
+                <div className="absolute top-20 right-0 w-64 bg-white rounded-2xl shadow-2xl p-4 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <Home className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">Promoteur</div>
+                      <div className="text-xs text-gray-500">3 projets actifs</div>
+                    </div>
+                  </div>
+                  <div className="h-20 bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-lg" />
+                </div>
+
+                <div className="absolute top-48 left-10 w-64 bg-white rounded-2xl shadow-2xl p-4 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                      <Users className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">Régie</div>
+                      <div className="text-xs text-gray-500">156 locataires</div>
+                    </div>
+                  </div>
+                  <div className="h-20 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg" />
+                </div>
+
+                {/* Central glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#3DAABD]/30 rounded-full blur-3xl" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <div className="w-1 h-2 bg-white/50 rounded-full animate-pulse" />
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-white py-12 border-b">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Stats Section */}
+      <section className="relative -mt-16 z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold text-primary-600">{stat.value}</div>
+              <div key={stat.label} className="text-center group">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#3DAABD]/10 text-[#3DAABD] mb-3 group-hover:scale-110 transition-transform">
+                  <stat.icon className="h-6 w-6" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
                 <div className="text-sm text-gray-600 mt-1">{stat.label}</div>
               </div>
             ))}
@@ -84,41 +294,59 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* Apps Grid */}
+      {/* Apps Section */}
       <section className="py-24 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900">3 applications, 1 suite</h2>
-            <p className="mt-4 text-lg text-gray-600">
-              Chaque application est independante et specialisee pour son metier.
+            <span className="inline-block px-4 py-1 rounded-full bg-[#3DAABD]/10 text-[#3DAABD] text-sm font-medium mb-4">
+              Nos applications
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              3 applications, 1 suite complète
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Chaque application est indépendante et spécialisée pour son métier.
+              Choisissez celles dont vous avez besoin.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-8">
             {apps.map((app) => (
               <div
-                key={app.name}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                key={app.id}
+                className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className={`${app.color} p-6 text-white`}>
-                  <app.icon className="h-12 w-12 mb-4" />
-                  <h3 className="text-2xl font-bold">{app.name}</h3>
-                  <p className="text-white/80 mt-1">{app.description}</p>
+                {/* Header */}
+                <div className={`bg-gradient-to-r ${app.color} p-6 text-white relative overflow-hidden`}>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+                  <div className="relative">
+                    <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <app.icon className="h-7 w-7" />
+                    </div>
+                    <h3 className="text-2xl font-bold">{app.name}</h3>
+                    <p className="text-white/80 mt-1">{app.tagline}</p>
+                  </div>
                 </div>
+
+                {/* Content */}
                 <div className="p-6">
-                  <ul className="space-y-3">
+                  <p className="text-gray-600 mb-6">{app.description}</p>
+
+                  <ul className="space-y-3 mb-6">
                     {app.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-gray-700">
-                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                        {feature}
+                      <li key={feature} className="flex items-start gap-3">
+                        <CheckCircle className={`h-5 w-5 ${app.textColor} flex-shrink-0 mt-0.5`} />
+                        <span className="text-gray-700 text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
+
                   <a
                     href={app.href}
-                    className="mt-6 block text-center py-3 px-4 rounded-lg border-2 border-gray-200 font-medium text-gray-700 hover:border-primary-500 hover:text-primary-600 transition-colors"
+                    className={`group/btn flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl border-2 ${app.borderColor} ${app.textColor} font-medium hover:bg-gradient-to-r ${app.color} hover:text-white hover:border-transparent transition-all duration-300`}
                   >
-                    Acceder a {app.name}
+                    Accéder à {app.name}
+                    <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </div>
@@ -127,22 +355,235 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-primary-600 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white">
-            Pret a moderniser votre gestion immobiliere ?
+      {/* Platform Features */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Content */}
+            <div>
+              <span className="inline-block px-4 py-1 rounded-full bg-[#3DAABD]/10 text-[#3DAABD] text-sm font-medium mb-4">
+                Plateforme
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Une infrastructure pensée pour les professionnels
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                Realpro Suite est construite sur une architecture moderne, sécurisée
+                et performante pour répondre aux exigences des professionnels de l'immobilier.
+              </p>
+
+              <div className="mt-10 grid sm:grid-cols-2 gap-6">
+                {platformFeatures.map((feature) => (
+                  <div key={feature.title} className="flex gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#3DAABD]/10 flex items-center justify-center">
+                      <feature.icon className="h-5 w-5 text-[#3DAABD]" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{feature.title}</h3>
+                      <p className="text-sm text-gray-600 mt-1">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Visual */}
+            <div className="relative">
+              <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-3xl overflow-hidden">
+                {/* Dashboard mockup */}
+                <div className="absolute inset-4 bg-white rounded-2xl shadow-lg overflow-hidden">
+                  {/* Top bar */}
+                  <div className="h-12 bg-slate-800 flex items-center px-4 gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-400" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                      <div className="w-3 h-3 rounded-full bg-green-400" />
+                    </div>
+                    <div className="flex-1 flex justify-center">
+                      <div className="bg-slate-700 rounded-md px-4 py-1 text-xs text-slate-400">
+                        app.realpro.ch
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-4 space-y-4">
+                    {/* Header */}
+                    <div className="flex items-center gap-4">
+                      <RealproLogo size="sm" theme="light" />
+                      <div className="flex-1" />
+                      <div className="w-8 h-8 rounded-full bg-[#3DAABD]" />
+                    </div>
+
+                    {/* Cards */}
+                    <div className="grid grid-cols-3 gap-3">
+                      <div className="h-20 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100" />
+                      <div className="h-20 rounded-lg bg-gradient-to-br from-emerald-50 to-emerald-100" />
+                      <div className="h-20 rounded-lg bg-gradient-to-br from-purple-50 to-purple-100" />
+                    </div>
+
+                    {/* Chart placeholder */}
+                    <div className="h-32 rounded-lg bg-gray-50 border border-gray-100" />
+
+                    {/* Table placeholder */}
+                    <div className="space-y-2">
+                      <div className="h-8 rounded bg-gray-50" />
+                      <div className="h-8 rounded bg-gray-50" />
+                      <div className="h-8 rounded bg-gray-50" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating elements */}
+              <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-3 flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                </div>
+                <span className="text-sm font-medium text-gray-700">Synchronisé</span>
+              </div>
+
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-3">
+                <div className="flex items-center gap-2 text-sm">
+                  <Shield className="h-4 w-4 text-[#3DAABD]" />
+                  <span className="font-medium text-gray-700">Données chiffrées</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-slate-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1 rounded-full bg-[#3DAABD]/20 text-[#3DAABD] text-sm font-medium mb-4">
+              Témoignages
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Ils nous font confiance
+            </h2>
+            <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
+              Découvrez ce que nos clients disent de Realpro Suite
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 hover:border-[#3DAABD]/50 transition-colors"
+              >
+                <Quote className="h-8 w-8 text-[#3DAABD]/50 mb-4" />
+                <p className="text-slate-300 mb-6 leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#3DAABD] to-[#2E8A9A] flex items-center justify-center text-white font-semibold">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">{testimonial.author}</div>
+                    <div className="text-sm text-slate-400">{testimonial.role}</div>
+                    <div className="text-sm text-[#3DAABD]">{testimonial.company}</div>
+                  </div>
+                </div>
+                <div className="flex gap-1 mt-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Swiss Quality Section */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-3xl p-12 relative overflow-hidden">
+            {/* Swiss cross pattern */}
+            <div className="absolute top-8 right-8 w-24 h-24">
+              <div className="w-full h-full relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-red-600 rounded-sm" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-6 h-14 bg-white rounded-sm" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-14 h-6 bg-white rounded-sm" />
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-3xl">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Qualité suisse, pour l'immobilier suisse
+              </h2>
+              <p className="text-lg text-gray-700 mb-8">
+                Realpro est une solution 100% suisse, développée à Genève par des experts
+                qui connaissent les spécificités du marché immobilier helvétique :
+                PPE, gérance, droit du bail, et réglementations cantonales.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+                    <Server className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="font-medium text-gray-900">Hébergement suisse</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+                    <Shield className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="font-medium text-gray-900">Conforme LPD</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+                    <Users className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="font-medium text-gray-900">Support local</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#3DAABD] to-[#2E8A9A]" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBoMXYxaC0xek0wIDBoMXYxSDB6TTYwIDBoMXYxaC0xek0wIDYwaDFWNjFIMHpNNjAgNjBoMXYxaC0xeiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PC9nPjwvc3ZnPg==')] opacity-30" />
+
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Prêt à moderniser votre gestion immobilière ?
           </h2>
-          <p className="mt-4 text-lg text-primary-100">
+          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
             Essayez Realpro Suite gratuitement pendant 30 jours.
+            Aucune carte de crédit requise.
           </p>
-          <a
-            href="/register"
-            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-primary-600 hover:bg-primary-50 transition-colors"
-          >
-            Commencer maintenant
-            <ArrowRight className="h-5 w-5" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/register"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-semibold text-[#3DAABD] hover:bg-gray-100 transition-colors"
+            >
+              Commencer l'essai gratuit
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-white hover:bg-white/20 transition-colors"
+            >
+              Demander une démo
+            </Link>
+          </div>
+          <p className="mt-6 text-white/60 text-sm">
+            Plus de 500 professionnels nous font déjà confiance
+          </p>
         </div>
       </section>
     </div>
