@@ -13,16 +13,25 @@
   },
   "scripts": {
     "dev": "vite",
-    "dev:legacy": "vite",
+    "dev:ppe": "turbo run dev --filter=@realpro/ppe-admin",
+    "dev:promoteur": "turbo run dev --filter=@realpro/promoteur",
+    "dev:regie": "turbo run dev --filter=@realpro/regie",
+    "dev:shell": "turbo run dev --filter=@realpro/shell",
     "build": "vite build",
-    "build:legacy": "vite build",
+    "build:ppe": "turbo run build --filter=@realpro/ppe-admin",
+    "build:promoteur": "turbo run build --filter=@realpro/promoteur",
+    "build:regie": "turbo run build --filter=@realpro/regie",
+    "build:shell": "turbo run build --filter=@realpro/shell",
+    "build:all": "turbo run build",
     "lint": "eslint .",
     "lint:all": "turbo run lint",
+    "lint:boundaries": "turbo run lint:boundaries",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
     "typecheck:all": "turbo run typecheck",
     "clean": "rm -rf node_modules/.cache dist .turbo",
-    "clean:all": "turbo run clean && rm -rf node_modules"
+    "clean:all": "turbo run clean && rm -rf node_modules",
+    "validate": "pnpm lint:boundaries && pnpm typecheck:all"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
