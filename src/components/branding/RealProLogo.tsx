@@ -94,7 +94,7 @@ export function RealproLogo({
     return (
       <div className={`flex items-center ${className}`}>
         <span className="font-bold" style={{ fontSize: `${fontSize}px` }}>
-          <span style={{ color: '#FFFFFF' }}>Real</span>
+          <span className="text-neutral-900 dark:text-white">Real</span>
           <span style={{ color: BRAND_COLOR }}>pro</span>
         </span>
       </div>
@@ -107,7 +107,7 @@ export function RealproLogo({
     <div className={`flex items-center gap-2 ${className}`}>
       <RealproIconSVG iconSize={config.iconSize * 0.8} />
       <span className="font-bold" style={{ fontSize: `${fontSize}px` }}>
-        <span style={{ color: '#FFFFFF' }}>Real</span>
+        <span className="text-neutral-900 dark:text-white">Real</span>
         <span style={{ color: BRAND_COLOR }}>pro</span>
       </span>
     </div>

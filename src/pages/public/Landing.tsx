@@ -226,7 +226,7 @@ export function Landing() {
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button size="lg" variant="outline" className="h-13 px-8 text-base">
+                  <Button size="lg" variant="outline" className="h-13 px-8 text-base border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800">
                     Demander une démo
                   </Button>
                 </Link>
@@ -339,7 +339,7 @@ export function Landing() {
                     </button>
                   </Link>
                   <Link to="/contact">
-                    <Button variant="outline">
+                    <Button variant="outline" className="border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800">
                       Demander une démo
                     </Button>
                   </Link>
