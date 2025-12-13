@@ -132,7 +132,7 @@ const testimonials = [
     role: "Directeur",
     company: "Schneider Immobilier SA",
     location: "Genève",
-    // Professional man, 50s, grey hair
+    gender: 'male' as const,
     avatarStyle: { bg: 'from-slate-600 to-slate-700', skin: '#E8BEAC', hair: '#9CA3AF', shirt: '#1E40AF' }
   },
   {
@@ -141,7 +141,7 @@ const testimonials = [
     role: "Responsable gérance",
     company: "Régie du Léman",
     location: "Lausanne",
-    // Professional woman, 40s, brown hair
+    gender: 'female' as const,
     avatarStyle: { bg: 'from-rose-400 to-rose-500', skin: '#FDBCB4', hair: '#78350F', shirt: '#7C3AED' }
   },
   {
@@ -150,7 +150,7 @@ const testimonials = [
     role: "CEO",
     company: "Müller Développement",
     location: "Zürich",
-    // Professional man, 45s, dark hair
+    gender: 'male' as const,
     avatarStyle: { bg: 'from-blue-500 to-blue-600', skin: '#DEB887', hair: '#1C1917', shirt: '#059669' }
   },
 ];
@@ -161,32 +161,37 @@ const teamMembers = [
     name: "Thomas Weber",
     role: "CEO & Fondateur",
     bio: "20 ans d'expérience dans l'immobilier suisse",
+    gender: 'male' as const,
     avatarStyle: { bg: 'from-[#3DAABD] to-[#2E8A9A]', skin: '#E8BEAC', hair: '#44403C', shirt: '#1E293B' }
   },
   {
     name: "Marie Fontaine",
     role: "Directrice Produit",
     bio: "Ex-responsable digital chez une grande régie genevoise",
+    gender: 'female' as const,
     avatarStyle: { bg: 'from-purple-500 to-purple-600', skin: '#FDBCB4', hair: '#7C2D12', shirt: '#0F766E' }
   },
   {
     name: "Lucas Bernasconi",
     role: "CTO",
     bio: "Architecte logiciel, spécialiste PropTech",
+    gender: 'male' as const,
     avatarStyle: { bg: 'from-emerald-500 to-emerald-600', skin: '#DEB887', hair: '#1C1917', shirt: '#4338CA' }
   },
   {
     name: "Anna Keller",
     role: "Head of Customer Success",
     bio: "10 ans en gestion de copropriétés",
+    gender: 'female' as const,
     avatarStyle: { bg: 'from-amber-500 to-amber-600', skin: '#E8BEAC', hair: '#B45309', shirt: '#BE185D' }
   },
 ];
 
-// Avatar component for realistic portraits
-function PersonAvatar({ style, size = 'md' }: {
+// Avatar component for realistic portraits - Using photo-style illustrations
+function PersonAvatar({ style, size = 'md', gender = 'male' }: {
   style: { bg: string; skin: string; hair: string; shirt: string };
   size?: 'sm' | 'md' | 'lg';
+  gender?: 'male' | 'female';
 }) {
   const sizeClasses = {
     sm: 'w-12 h-12',
@@ -194,50 +199,75 @@ function PersonAvatar({ style, size = 'md' }: {
     lg: 'w-20 h-20'
   };
 
+  // Use a unique ID based on hair color to avoid SVG gradient conflicts
+  const uniqueId = style.hair.replace('#', '');
+
   return (
-    <div className={`${sizeClasses[size]} rounded-full bg-gradient-to-br ${style.bg} overflow-hidden relative`}>
+    <div className={`${sizeClasses[size]} rounded-full bg-gradient-to-br ${style.bg} overflow-hidden relative shadow-lg`}>
       <svg viewBox="0 0 100 100" className="w-full h-full">
-        {/* Background */}
         <defs>
-          <linearGradient id={`bg-${style.hair}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={style.bg.includes('slate') ? '#475569' : '#3DAABD'} />
-            <stop offset="100%" stopColor={style.bg.includes('slate') ? '#334155' : '#2E8A9A'} />
+          <linearGradient id={`skinGrad-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={style.skin} />
+            <stop offset="100%" stopColor={style.skin} stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id={`shirtGrad-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={style.shirt} />
+            <stop offset="100%" stopColor={style.shirt} stopOpacity="0.8" />
           </linearGradient>
         </defs>
 
+        {/* Shoulders/Shirt */}
+        <ellipse cx="50" cy="115" rx="45" ry="30" fill={`url(#shirtGrad-${uniqueId})`} />
+
         {/* Neck */}
-        <ellipse cx="50" cy="95" rx="18" ry="15" fill={style.skin} />
+        <rect x="40" y="75" width="20" height="20" rx="3" fill={`url(#skinGrad-${uniqueId})`} />
 
-        {/* Shirt/Collar */}
-        <path d="M25 100 Q35 85 50 82 Q65 85 75 100 L75 100 L25 100 Z" fill={style.shirt} />
-        <path d="M42 82 L50 90 L58 82" fill="none" stroke={style.shirt} strokeWidth="3" />
+        {/* Face - oval shape */}
+        <ellipse cx="50" cy="48" rx="30" ry="35" fill={`url(#skinGrad-${uniqueId})`} />
 
-        {/* Face */}
-        <ellipse cx="50" cy="50" rx="28" ry="32" fill={style.skin} />
+        {/* Hair - back layer */}
+        <ellipse cx="50" cy="30" rx="32" ry="25" fill={style.hair} />
 
-        {/* Hair */}
-        <ellipse cx="50" cy="28" rx="26" ry="18" fill={style.hair} />
-        <path d="M24 35 Q24 20 50 18 Q76 20 76 35 Q76 45 50 42 Q24 45 24 35" fill={style.hair} />
+        {/* Hair - top styled */}
+        {gender === 'male' ? (
+          <>
+            <path d="M20 40 Q20 12 50 10 Q80 12 80 40 Q75 35 50 32 Q25 35 20 40" fill={style.hair} />
+            <path d="M25 38 Q30 25 50 22 Q70 25 75 38" fill={style.hair} opacity="0.8" />
+          </>
+        ) : (
+          <>
+            <path d="M15 50 Q15 10 50 8 Q85 10 85 50 Q80 45 50 35 Q20 45 15 50" fill={style.hair} />
+            <ellipse cx="20" cy="55" rx="8" ry="15" fill={style.hair} />
+            <ellipse cx="80" cy="55" rx="8" ry="15" fill={style.hair} />
+          </>
+        )}
 
         {/* Ears */}
-        <ellipse cx="22" cy="52" rx="5" ry="8" fill={style.skin} />
-        <ellipse cx="78" cy="52" rx="5" ry="8" fill={style.skin} />
-
-        {/* Eyes */}
-        <ellipse cx="38" cy="50" rx="5" ry="3" fill="white" />
-        <ellipse cx="62" cy="50" rx="5" ry="3" fill="white" />
-        <circle cx="38" cy="50" r="2" fill="#1E293B" />
-        <circle cx="62" cy="50" r="2" fill="#1E293B" />
+        <ellipse cx="20" cy="50" rx="4" ry="7" fill={style.skin} />
+        <ellipse cx="80" cy="50" rx="4" ry="7" fill={style.skin} />
 
         {/* Eyebrows */}
-        <path d="M32 44 Q38 42 44 44" fill="none" stroke={style.hair} strokeWidth="2" strokeLinecap="round" />
-        <path d="M56 44 Q62 42 68 44" fill="none" stroke={style.hair} strokeWidth="2" strokeLinecap="round" />
+        <path d="M32 40 Q38 37 44 40" fill="none" stroke={style.hair} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+        <path d="M56 40 Q62 37 68 40" fill="none" stroke={style.hair} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+
+        {/* Eyes - more detailed */}
+        <ellipse cx="38" cy="48" rx="7" ry="5" fill="white" />
+        <ellipse cx="62" cy="48" rx="7" ry="5" fill="white" />
+        <circle cx="38" cy="48" r="3.5" fill="#3B2F2F" />
+        <circle cx="62" cy="48" r="3.5" fill="#3B2F2F" />
+        <circle cx="39" cy="47" r="1.5" fill="white" opacity="0.8" />
+        <circle cx="63" cy="47" r="1.5" fill="white" opacity="0.8" />
 
         {/* Nose */}
-        <path d="M50 52 L50 60 Q48 62 50 62 Q52 62 50 60" fill="none" stroke={style.skin} strokeWidth="1" opacity="0.5" />
+        <path d="M50 52 L50 60 C48 63 52 63 50 60" fill="none" stroke="#C4A484" strokeWidth="1.5" opacity="0.4" />
 
-        {/* Smile */}
-        <path d="M40 68 Q50 75 60 68" fill="none" stroke="#B45309" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+        {/* Mouth - friendly smile */}
+        <path d="M42 68 Q50 75 58 68" fill="none" stroke="#C17F7F" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M44 68 Q50 72 56 68" fill="#E8A0A0" opacity="0.3" />
+
+        {/* Cheeks - subtle blush */}
+        <circle cx="30" cy="58" r="6" fill="#FFB6C1" opacity="0.2" />
+        <circle cx="70" cy="58" r="6" fill="#FFB6C1" opacity="0.2" />
       </svg>
     </div>
   );
@@ -582,7 +612,7 @@ export function LandingPage() {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <PersonAvatar style={testimonial.avatarStyle} size="md" />
+                  <PersonAvatar style={testimonial.avatarStyle} size="md" gender={testimonial.gender} />
                   <div>
                     <div className="font-semibold text-white text-lg">{testimonial.author}</div>
                     <div className="text-sm text-slate-400">{testimonial.role}</div>
@@ -639,7 +669,7 @@ export function LandingPage() {
               >
                 <div className="mb-4 flex justify-center">
                   <div className="relative">
-                    <PersonAvatar style={member.avatarStyle} size="lg" />
+                    <PersonAvatar style={member.avatarStyle} size="lg" gender={member.gender} />
                     <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center">
                       <CheckCircle className="w-3 h-3 text-white" />
                     </div>
