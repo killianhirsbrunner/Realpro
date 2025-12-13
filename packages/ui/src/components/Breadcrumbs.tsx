@@ -58,10 +58,8 @@ export function Breadcrumbs({
 
   // Handle collapsing if maxItems is set
   let displayItems = items;
-  let isCollapsed = false;
 
   if (maxItems && items.length > maxItems) {
-    isCollapsed = true;
     const firstItem = items[0];
     const lastItems = items.slice(-(maxItems - 1));
     displayItems = [firstItem, { label: '...', isCurrent: false }, ...lastItems];

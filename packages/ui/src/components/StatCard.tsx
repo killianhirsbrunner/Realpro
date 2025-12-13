@@ -171,7 +171,7 @@ export function StatCard({
           {/* Trend */}
           {trend && trendIcon && (
             <div className={clsx('flex items-center gap-1 mt-2', trendColorClass)}>
-              {trendIcon && <trendIcon className="h-3.5 w-3.5" />}
+              {trendIcon && (() => { const TrendIcon = trendIcon; return <TrendIcon className="h-3.5 w-3.5" />; })()}
               <span className={clsx(styles.trend, 'font-medium')}>
                 {formatTrendValue(trend.value)}
               </span>

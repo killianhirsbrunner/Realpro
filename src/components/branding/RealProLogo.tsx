@@ -33,10 +33,10 @@ export function RealproLogo({
   const config = sizeConfig[size];
 
   // Determine text colors based on theme
-  const getTextColor = () => {
-    if (theme === 'light') return '#1A1A1A';
-    if (theme === 'dark') return '#A8B5BD';
-    // Auto: use CSS for dark mode detection
+  const getRealColor = () => {
+    if (theme === 'light') return '#1A1A1A'; // Dark text on light background
+    if (theme === 'dark') return '#FFFFFF';  // White text on dark background
+    // Auto: use currentColor to inherit from parent
     return 'currentColor';
   };
 
@@ -91,10 +91,11 @@ export function RealproLogo({
 
   if (variant === 'text') {
     const fontSize = config.height * 0.6;
+    const realColor = getRealColor();
     return (
       <div className={`flex items-center ${className}`}>
         <span className="font-bold" style={{ fontSize: `${fontSize}px` }}>
-          <span style={{ color: '#FFFFFF' }}>Real</span>
+          <span style={{ color: realColor }}>Real</span>
           <span style={{ color: BRAND_COLOR }}>pro</span>
         </span>
       </div>
@@ -103,11 +104,12 @@ export function RealproLogo({
 
   // Full variant: icon + text
   const fontSize = config.height * 0.55;
+  const realColor = getRealColor();
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <RealproIconSVG iconSize={config.iconSize * 0.8} />
       <span className="font-bold" style={{ fontSize: `${fontSize}px` }}>
-        <span style={{ color: '#FFFFFF' }}>Real</span>
+        <span style={{ color: realColor }}>Real</span>
         <span style={{ color: BRAND_COLOR }}>pro</span>
       </span>
     </div>

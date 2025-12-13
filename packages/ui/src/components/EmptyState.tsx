@@ -1,12 +1,13 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, isValidElement } from 'react';
 import { type LucideIcon } from 'lucide-react';
 import clsx from 'clsx';
 import { Button } from './Button';
 
 export interface EmptyStateProps {
-  icon?: LucideIcon;
+  /** Icon component (LucideIcon) or rendered ReactNode */
+  icon?: LucideIcon | ReactNode;
   title: string;
-  description: string;
+  description?: string;
   action?: {
     label: string;
     onClick: () => void;
@@ -20,7 +21,7 @@ export interface EmptyStateProps {
 }
 
 export function EmptyState({
-  icon: Icon,
+  icon,
   title,
   description,
   action,
@@ -28,11 +29,22 @@ export function EmptyState({
   className,
   children,
 }: EmptyStateProps) {
+  // Determine if icon is a component (LucideIcon) or already rendered element
+  const renderIcon = () => {
+    if (!icon) return null;
+    if (isValidElement(icon)) {
+      return icon;
+    }
+    // It's a LucideIcon component
+    const Icon = icon as LucideIcon;
+    return <Icon className="h-8 w-8 text-neutral-400 dark:text-neutral-500" />;
+  };
+
   return (
     <div className={clsx('flex flex-col items-center justify-center py-12 px-4', className)}>
-      {Icon && (
+      {icon && (
         <div className="mb-4 rounded-full bg-neutral-100 dark:bg-neutral-800 p-4">
-          <Icon className="h-8 w-8 text-neutral-400 dark:text-neutral-500" />
+          {renderIcon()}
         </div>
       )}
       <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2 text-center">

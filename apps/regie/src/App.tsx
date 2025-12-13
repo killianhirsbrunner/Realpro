@@ -1,7 +1,79 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Spinner } from '@realpro/ui';
 import { RegieLayout } from './layouts/RegieLayout';
+import { LoginPage } from './pages/Login';
+import { checkAppAccess, type AccessCheckResult } from '../../../src/subscriptions';
+
+// Check subscription access
+function RequireSubscription({ children }: { children: React.ReactNode }) {
+  const [accessResult, setAccessResult] = useState<AccessCheckResult | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const result = checkAppAccess('regie');
+    setAccessResult(result);
+
+    if (!result.hasAccess) {
+      // Redirect to shell apps page with message
+      window.location.href = '/apps?access_denied=regie';
+    }
+  }, [navigate]);
+
+  if (accessResult === null) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
+
+  if (!accessResult.hasAccess) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center p-8">
+          <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Accès requis</h1>
+          <p className="text-gray-600 mb-6">
+            Vous n'avez pas d'abonnement actif pour Régie.
+          </p>
+          <a
+            href="/apps"
+            className="inline-flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+          >
+            Voir les options d'abonnement
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+}
+
+// Simple auth check (TODO: replace with @realpro/auth)
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = localStorage.getItem('regie_auth') === 'true';
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+}
+
+// Combined guard: subscription + auth
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  return (
+    <RequireSubscription>
+      <RequireAuth>
+        {children}
+      </RequireAuth>
+    </RequireSubscription>
+  );
+}
 
 // Lazy loaded pages for code splitting
 const DashboardPage = lazy(() => import('./pages/Dashboard').then((m) => ({ default: m.DashboardPage })));
@@ -29,7 +101,15 @@ function PageLoader() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<RegieLayout />}>
+      {/* Public routes */}
+      <Route path="/login" element={
+        <RequireSubscription>
+          <LoginPage />
+        </RequireSubscription>
+      } />
+
+      {/* Protected routes */}
+      <Route path="/" element={<ProtectedRoute><RegieLayout /></ProtectedRoute>}>
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route
           path="dashboard"

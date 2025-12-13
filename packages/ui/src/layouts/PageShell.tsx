@@ -207,6 +207,8 @@ export interface ContentCardProps {
   children: ReactNode;
   /** Padding size */
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  /** Click handler */
+  onClick?: () => void;
   /** Additional classes */
   className?: string;
 }
@@ -218,6 +220,7 @@ export function ContentCard({
   footer,
   children,
   padding = 'md',
+  onClick,
   className,
 }: ContentCardProps) {
   const paddingClasses = {
@@ -227,12 +230,17 @@ export function ContentCard({
     lg: 'p-6',
   };
 
+  const Component = onClick ? 'button' : 'div';
+
   return (
-    <div
+    <Component
+      type={onClick ? 'button' : undefined}
+      onClick={onClick}
       className={clsx(
         'bg-white dark:bg-neutral-900 rounded-xl',
         'border border-neutral-200 dark:border-neutral-800',
         'shadow-sm',
+        onClick && 'cursor-pointer hover:border-brand-300 hover:shadow-md transition-all text-left w-full',
         className
       )}
     >
@@ -273,6 +281,6 @@ export function ContentCard({
           {footer}
         </div>
       )}
-    </div>
+    </Component>
   );
 }
