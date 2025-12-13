@@ -1,17 +1,34 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import clsx from 'clsx';
 
 export interface TabsProps {
-  value: string;
-  onChange: (value: string) => void;
+  /** Controlled value */
+  value?: string;
+  /** Default value (uncontrolled) */
+  defaultValue?: string;
+  /** Change handler (alias: onValueChange) */
+  onChange?: (value: string) => void;
+  /** Change handler (alternative API) */
+  onValueChange?: (value: string) => void;
   children: ReactNode;
   className?: string;
 }
 
-export function Tabs({ value, onChange, children, className }: TabsProps) {
+export function Tabs({ value, defaultValue, onChange, onValueChange, children, className }: TabsProps) {
+  const [internalValue, setInternalValue] = useState(defaultValue || '');
+
+  const currentValue = value !== undefined ? value : internalValue;
+  const handleChange = (newValue: string) => {
+    if (value === undefined) {
+      setInternalValue(newValue);
+    }
+    onChange?.(newValue);
+    onValueChange?.(newValue);
+  };
+
   return (
     <div className={clsx('w-full', className)}>
-      <TabsContext.Provider value={{ value, onChange }}>
+      <TabsContext.Provider value={{ value: currentValue, onChange: handleChange }}>
         {children}
       </TabsContext.Provider>
     </div>

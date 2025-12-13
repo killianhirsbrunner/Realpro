@@ -23,11 +23,14 @@ export function AppShell({
   sidebar,
   header,
   children,
-  sidebarWidth = '256px',
-  sidebarCollapsedWidth = '64px',
+  sidebarWidth: _sidebarWidth = '256px',
+  sidebarCollapsedWidth: _sidebarCollapsedWidth = '64px',
   responsiveSidebar = true,
   className,
 }: AppShellProps) {
+  // Note: sidebarWidth and sidebarCollapsedWidth are reserved for future CSS variable support
+  void _sidebarWidth;
+  void _sidebarCollapsedWidth;
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   return (

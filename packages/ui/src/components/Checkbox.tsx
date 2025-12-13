@@ -2,7 +2,7 @@ import { forwardRef, type InputHTMLAttributes, useId } from 'react';
 import clsx from 'clsx';
 import { Check, Minus } from 'lucide-react';
 
-export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /** Checkbox label */
   label?: string;
   /** Description text below label */
