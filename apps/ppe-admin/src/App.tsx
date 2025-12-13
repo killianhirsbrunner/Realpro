@@ -2,6 +2,16 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Spinner } from '@realpro/ui';
 import { PPEAdminLayout } from './layouts/PPEAdminLayout';
+import { LoginPage } from './pages/Login';
+
+// Simple auth check (TODO: replace with @realpro/auth)
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = localStorage.getItem('ppe_admin_auth') === 'true';
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+}
 
 // Lazy loaded pages for code splitting
 const DashboardPage = lazy(() => import('./pages/Dashboard').then((m) => ({ default: m.DashboardPage })));
@@ -31,7 +41,11 @@ function PageLoader() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<PPEAdminLayout />}>
+      {/* Public routes */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Protected routes */}
+      <Route path="/" element={<RequireAuth><PPEAdminLayout /></RequireAuth>}>
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route
           path="dashboard"
