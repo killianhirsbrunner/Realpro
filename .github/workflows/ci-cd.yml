@@ -1,12 +1,11 @@
 # =================================================================
-# RealPro Suite - CI/CD Pipeline
+# RealPro Suite - Multi-App CI/CD Pipeline
 # =================================================================
-# Continuous Integration and Deployment workflow for Vite + React
-#
-# This workflow:
-# 1. Runs linting and type checking
-# 2. Builds the application
-# 3. Optionally deploys to Vercel/Netlify (configure secrets)
+# Independent CI/CD for each application:
+# - Shell (site vitrine) → realpro.ch
+# - PPE Admin → ppe.realpro.ch
+# - Promoteur → promoteur.realpro.ch
+# - Régie → regie.realpro.ch
 # =================================================================
 
 name: CI/CD Pipeline
@@ -19,155 +18,365 @@ on:
 
 env:
   NODE_VERSION: "20.x"
+  PNPM_VERSION: "9"
+
+# Prevent concurrent runs on the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
+  # -----------------------------------------------------------------
+  # Detect which apps have changes
+  # -----------------------------------------------------------------
+  detect-changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      shell: ${{ steps.changes.outputs.shell }}
+      ppe-admin: ${{ steps.changes.outputs.ppe-admin }}
+      promoteur: ${{ steps.changes.outputs.promoteur }}
+      regie: ${{ steps.changes.outputs.regie }}
+      packages: ${{ steps.changes.outputs.packages }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for changes
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            shell:
+              - 'apps/shell/**'
+              - 'packages/**'
+            ppe-admin:
+              - 'apps/ppe-admin/**'
+              - 'packages/**'
+            promoteur:
+              - 'apps/promoteur/**'
+              - 'src/**'
+              - 'packages/**'
+            regie:
+              - 'apps/regie/**'
+              - 'packages/**'
+            packages:
+              - 'packages/**'
+
   # -----------------------------------------------------------------
   # Quality Checks (Lint + TypeScript)
   # -----------------------------------------------------------------
   quality:
     name: Quality Checks
     runs-on: ubuntu-latest
+    needs: detect-changes
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run ESLint
-        run: npm run lint
+        run: pnpm lint
 
       - name: Run TypeScript check
-        run: npm run typecheck
+        run: pnpm typecheck
 
   # -----------------------------------------------------------------
-  # Build Application
+  # Build Shell (Site Vitrine)
   # -----------------------------------------------------------------
-  build:
-    name: Build
+  build-shell:
+    name: Build Shell
     runs-on: ubuntu-latest
-    needs: quality
+    needs: [quality, detect-changes]
+    if: needs.detect-changes.outputs.shell == 'true' || needs.detect-changes.outputs.packages == 'true'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
-      - name: Build application
-        run: npm run build
+      - name: Build Shell
+        run: pnpm build:shell
+        env:
+          VITE_APP_ENV: production
+
+      - name: Upload Shell artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: shell-dist
+          path: apps/shell/dist/
+          retention-days: 7
+
+  # -----------------------------------------------------------------
+  # Build PPE Admin
+  # -----------------------------------------------------------------
+  build-ppe:
+    name: Build PPE Admin
+    runs-on: ubuntu-latest
+    needs: [quality, detect-changes]
+    if: needs.detect-changes.outputs.ppe-admin == 'true' || needs.detect-changes.outputs.packages == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build PPE Admin
+        run: pnpm build:ppe
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_APP_ENV: production
 
-      - name: Upload build artifacts
+      - name: Upload PPE artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: ppe-dist
+          path: apps/ppe-admin/dist/
           retention-days: 7
 
   # -----------------------------------------------------------------
-  # Build Docker Image (Optional)
+  # Build Promoteur
   # -----------------------------------------------------------------
-  docker:
-    name: Build Docker Image
+  build-promoteur:
+    name: Build Promoteur
     runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [quality, detect-changes]
+    if: needs.detect-changes.outputs.promoteur == 'true' || needs.detect-changes.outputs.packages == 'true'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Container Registry
-        if: ${{ secrets.DOCKER_USERNAME != '' }}
-        uses: docker/login-action@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: Build Docker image
-        uses: docker/build-push-action@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          context: .
-          push: false
-          tags: realpro-frontend:latest
-          build-args: |
-            VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
-            VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}
-            VITE_APP_ENV=production
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Promoteur
+        run: pnpm build:promoteur
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_APP_ENV: production
+
+      - name: Upload Promoteur artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: promoteur-dist
+          path: apps/promoteur/dist/
+          retention-days: 7
 
   # -----------------------------------------------------------------
-  # Deploy to Vercel (Uncomment and configure secrets)
+  # Build Régie
   # -----------------------------------------------------------------
-  # deploy-vercel:
-  #   name: Deploy to Vercel
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-  #
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #
-  #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: dist
-  #         path: dist/
-  #
-  #     - name: Deploy to Vercel
-  #       uses: amondnet/vercel-action@v25
-  #       with:
-  #         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-  #         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-  #         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-  #         vercel-args: '--prod'
+  build-regie:
+    name: Build Régie
+    runs-on: ubuntu-latest
+    needs: [quality, detect-changes]
+    if: needs.detect-changes.outputs.regie == 'true' || needs.detect-changes.outputs.packages == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Régie
+        run: pnpm build:regie
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_APP_ENV: production
+
+      - name: Upload Régie artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: regie-dist
+          path: apps/regie/dist/
+          retention-days: 7
 
   # -----------------------------------------------------------------
-  # Deploy to Netlify (Uncomment and configure secrets)
+  # Deploy Shell to Vercel (realpro.ch)
   # -----------------------------------------------------------------
-  # deploy-netlify:
-  #   name: Deploy to Netlify
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-  #
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #
-  #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: dist
-  #         path: dist/
-  #
-  #     - name: Deploy to Netlify
-  #       uses: netlify/actions/cli@master
-  #       with:
-  #         args: deploy --dir=dist --prod
-  #       env:
-  #         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-  #         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+  deploy-shell:
+    name: Deploy Shell
+    runs-on: ubuntu-latest
+    needs: build-shell
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production-shell
+      url: https://realpro.ch
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Shell artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: shell-dist
+          path: apps/shell/dist/
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_SHELL }}
+          vercel-args: '--prod'
+          working-directory: apps/shell
+
+  # -----------------------------------------------------------------
+  # Deploy PPE Admin to Vercel (ppe.realpro.ch)
+  # -----------------------------------------------------------------
+  deploy-ppe:
+    name: Deploy PPE Admin
+    runs-on: ubuntu-latest
+    needs: build-ppe
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production-ppe
+      url: https://ppe.realpro.ch
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download PPE artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ppe-dist
+          path: apps/ppe-admin/dist/
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_PPE }}
+          vercel-args: '--prod'
+          working-directory: apps/ppe-admin
+
+  # -----------------------------------------------------------------
+  # Deploy Promoteur to Vercel (promoteur.realpro.ch)
+  # -----------------------------------------------------------------
+  deploy-promoteur:
+    name: Deploy Promoteur
+    runs-on: ubuntu-latest
+    needs: build-promoteur
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production-promoteur
+      url: https://promoteur.realpro.ch
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Promoteur artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: promoteur-dist
+          path: apps/promoteur/dist/
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_PROMOTEUR }}
+          vercel-args: '--prod'
+          working-directory: apps/promoteur
+
+  # -----------------------------------------------------------------
+  # Deploy Régie to Vercel (regie.realpro.ch)
+  # -----------------------------------------------------------------
+  deploy-regie:
+    name: Deploy Régie
+    runs-on: ubuntu-latest
+    needs: build-regie
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production-regie
+      url: https://regie.realpro.ch
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Régie artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: regie-dist
+          path: apps/regie/dist/
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_REGIE }}
+          vercel-args: '--prod'
+          working-directory: apps/regie

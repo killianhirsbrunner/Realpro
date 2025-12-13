@@ -19,6 +19,15 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@legacy/*": ["../../src/*"],
+      "@legacy/components/*": ["../../src/components/*"],
+      "@legacy/pages/*": ["../../src/pages/*"],
+      "@legacy/hooks/*": ["../../src/hooks/*"],
+      "@legacy/contexts/*": ["../../src/contexts/*"],
+      "@legacy/lib/*": ["../../src/lib/*"],
+      "@legacy/shared/*": ["../../src/shared/*"],
       "@realpro/ui": ["../../packages/ui/src/index.ts"],
       "@realpro/ui/*": ["../../packages/ui/src/*"],
       "@realpro/auth": ["../../packages/auth/src/index.ts"],
@@ -30,6 +39,6 @@
       "@realpro/core/*": ["../../packages/core/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../../src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
