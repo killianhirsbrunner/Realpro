@@ -40,7 +40,7 @@ const apps = [
     ],
     pricing: {
       monthly: 349,
-      yearly: 2990,
+      yearly: 3770,
       perUnit: 'par immeuble/mois',
     },
   },
@@ -67,7 +67,7 @@ const apps = [
     ],
     pricing: {
       monthly: 249,
-      yearly: 2090,
+      yearly: 2690,
       perUnit: 'par 50 biens/mois',
     },
   },
@@ -94,7 +94,7 @@ const apps = [
     ],
     pricing: {
       monthly: 490,
-      yearly: 4190,
+      yearly: 5290,
       perUnit: 'par projet/mois',
     },
   },
@@ -168,7 +168,7 @@ export function AppsPage() {
               >
                 Annuel
                 <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-xs font-bold">
-                  -30%
+                  -10%
                 </span>
               </button>
             </div>
