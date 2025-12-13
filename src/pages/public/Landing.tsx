@@ -57,7 +57,7 @@ const apps = [
     bgColor: 'bg-blue-500',
     lightBg: 'bg-blue-50 dark:bg-blue-900/20',
     textColor: 'text-blue-600 dark:text-blue-400',
-    href: '/app/ppe-admin',
+    href: '/apps#ppe-admin',
     features: [
       { icon: Users, label: 'Gestion des copropriétaires' },
       { icon: Calendar, label: 'Assemblées générales' },
@@ -77,7 +77,7 @@ const apps = [
     bgColor: 'bg-emerald-500',
     lightBg: 'bg-emerald-50 dark:bg-emerald-900/20',
     textColor: 'text-emerald-600 dark:text-emerald-400',
-    href: '/app/regie',
+    href: '/apps#regie',
     features: [
       { icon: Key, label: 'Gestion des baux' },
       { icon: Receipt, label: 'Encaissements & rappels' },
@@ -97,7 +97,7 @@ const apps = [
     bgColor: 'bg-purple-500',
     lightBg: 'bg-purple-50 dark:bg-purple-900/20',
     textColor: 'text-purple-600 dark:text-purple-400',
-    href: '/app/promoteur',
+    href: '/apps#promoteur',
     features: [
       { icon: TrendingUp, label: 'Pipeline de ventes' },
       { icon: HardHat, label: 'Suivi de chantier' },
@@ -263,7 +263,7 @@ export function Landing() {
                       {app.tagline}
                     </p>
                     <div className="flex items-center gap-2 text-sm font-semibold text-realpro-turquoise group-hover:text-white transition-colors">
-                      Accéder à l'app
+                      Découvrir
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
@@ -340,9 +340,9 @@ export function Landing() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <Link to={selectedApp.href}>
+                  <Link to={`/register?app=${selectedApp.id}`}>
                     <Button className={`${selectedApp.bgColor} hover:opacity-90 text-white border-0`}>
-                      Accéder à {selectedApp.name}
+                      Essayer {selectedApp.name} gratuitement
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
@@ -472,9 +472,9 @@ export function Landing() {
                       ))}
                     </div>
 
-                    <Link to={app.href} className="block">
+                    <Link to={`/register?app=${app.id}`} className="block">
                       <Button className={`w-full ${app.bgColor} hover:opacity-90 text-white border-0 font-medium`}>
-                        Ouvrir {app.name}
+                        Essayer gratuitement
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </Link>
