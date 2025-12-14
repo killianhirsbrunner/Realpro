@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import { PublicHeader } from '../../components/layout/PublicHeader';
-import { Building2, Home, Briefcase, ExternalLink, ArrowRight, Loader2 } from 'lucide-react';
+import { Building2, Home, Briefcase, ExternalLink, ArrowRight, Loader2, Clock } from 'lucide-react';
 
 const appConfig = {
   'ppe-admin': {
@@ -11,7 +11,8 @@ const appConfig = {
     icon: Building2,
     color: 'from-blue-500 to-blue-600',
     bgColor: 'bg-blue-500',
-    url: 'http://localhost:5173',
+    devUrl: 'http://localhost:3002',
+    prodUrl: '', // À remplir quand l'app sera déployée sur Vercel
   },
   'regie': {
     name: 'Régie',
@@ -19,7 +20,8 @@ const appConfig = {
     icon: Home,
     color: 'from-emerald-500 to-emerald-600',
     bgColor: 'bg-emerald-500',
-    url: 'http://localhost:5174',
+    devUrl: 'http://localhost:3003',
+    prodUrl: '', // À remplir quand l'app sera déployée sur Vercel
   },
   'promoteur': {
     name: 'Promoteur',
@@ -27,23 +29,43 @@ const appConfig = {
     icon: Briefcase,
     color: 'from-purple-500 to-purple-600',
     bgColor: 'bg-purple-500',
-    url: 'http://localhost:5175',
+    devUrl: 'http://localhost:3001',
+    prodUrl: '', // À remplir quand l'app sera déployée sur Vercel
   },
 };
+
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 export function AppLauncher() {
   const { appId } = useParams<{ appId: string }>();
   const app = appConfig[appId as keyof typeof appConfig];
+  const [isAvailable, setIsAvailable] = useState(false);
+
+  const appUrl = isDevelopment ? app?.devUrl : app?.prodUrl;
 
   useEffect(() => {
-    // Auto-redirect after 2 seconds if app exists
     if (app) {
+      // En développement, utiliser l'URL locale
+      // En production, vérifier si l'URL prod existe
+      if (isDevelopment && app.devUrl) {
+        setIsAvailable(true);
+      } else if (!isDevelopment && app.prodUrl) {
+        setIsAvailable(true);
+      } else {
+        setIsAvailable(false);
+      }
+    }
+  }, [app]);
+
+  useEffect(() => {
+    // Auto-redirect after 2 seconds if app exists and is available
+    if (app && isAvailable && appUrl) {
       const timer = setTimeout(() => {
-        window.location.href = app.url;
+        window.location.href = appUrl;
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [app]);
+  }, [app, isAvailable, appUrl]);
 
   if (!app) {
     return (
@@ -71,6 +93,46 @@ export function AppLauncher() {
 
   const Icon = app.icon;
 
+  // En production sans URL configurée : afficher "Bientôt disponible"
+  if (!isAvailable) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-neutral-950">
+        <PublicHeader />
+
+        <div className="flex items-center justify-center min-h-[70vh]">
+          <div className="text-center max-w-md mx-auto px-6">
+            <div className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${app.color} flex items-center justify-center mx-auto mb-8 shadow-2xl`}>
+              <Icon className="w-12 h-12 text-white" />
+            </div>
+
+            <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+              {app.name}
+            </h1>
+            <p className="text-neutral-500 dark:text-neutral-400 mb-8">
+              {app.tagline}
+            </p>
+
+            <div className="flex items-center justify-center gap-2 text-amber-600 dark:text-amber-400 mb-8">
+              <Clock className="w-5 h-5" />
+              <span className="font-medium">Bientôt disponible</span>
+            </div>
+
+            <p className="text-neutral-500 dark:text-neutral-400 mb-8">
+              Cette application est en cours de développement et sera disponible prochainement.
+            </p>
+
+            <Link to="/apps" className="block">
+              <Button size="lg" variant="outline" className="w-full">
+                Voir toutes les applications
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       <PublicHeader />
@@ -94,7 +156,7 @@ export function AppLauncher() {
           </div>
 
           <div className="space-y-3">
-            <a href={app.url} className="block">
+            <a href={appUrl} className="block">
               <Button size="lg" className={`w-full ${app.bgColor} hover:opacity-90 text-white border-0`}>
                 Ouvrir {app.name}
                 <ExternalLink className="w-4 h-4 ml-2" />
