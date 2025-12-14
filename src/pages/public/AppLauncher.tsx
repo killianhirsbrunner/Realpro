@@ -11,7 +11,7 @@ const appConfig = {
     icon: Building2,
     color: 'from-blue-500 to-blue-600',
     bgColor: 'bg-blue-500',
-    url: 'http://localhost:5173',
+    url: 'http://localhost:3002',
   },
   'regie': {
     name: 'Régie',
@@ -19,7 +19,7 @@ const appConfig = {
     icon: Home,
     color: 'from-emerald-500 to-emerald-600',
     bgColor: 'bg-emerald-500',
-    url: 'http://localhost:5174',
+    url: 'http://localhost:3003',
   },
   'promoteur': {
     name: 'Promoteur',
@@ -27,7 +27,7 @@ const appConfig = {
     icon: Briefcase,
     color: 'from-purple-500 to-purple-600',
     bgColor: 'bg-purple-500',
-    url: 'http://localhost:5175',
+    url: 'http://localhost:3001',
   },
 };
 
