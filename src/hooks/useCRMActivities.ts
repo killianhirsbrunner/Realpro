@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
+import { useOrganizationContext } from '../contexts/OrganizationContext';
 
 export interface CRMActivity {
   id: string;
+  organization_id?: string;
   project_id?: string;
   type: 'call' | 'email' | 'meeting' | 'note' | 'task' | 'visit' | 'demo';
   subject: string;
@@ -34,15 +36,23 @@ export function useCRMActivities(params?: {
   buyerId?: string;
   assignedTo?: string;
 }) {
+  const { currentOrganization } = useOrganizationContext();
   const [activities, setActivities] = useState<CRMActivity[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
+    if (!currentOrganization) {
+      setActivities([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       let query = supabase
         .from('crm_activities')
         .select('*')
+        .eq('organization_id', currentOrganization.id)
         .order('created_at', { ascending: false });
 
       if (params?.projectId) {
@@ -71,11 +81,11 @@ export function useCRMActivities(params?: {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentOrganization, params?.projectId, params?.prospectId, params?.contactId, params?.buyerId, params?.assignedTo]);
 
   useEffect(() => {
     fetchActivities();
-  }, [params?.projectId, params?.prospectId, params?.contactId, params?.buyerId, params?.assignedTo]);
+  }, [fetchActivities]);
 
   const createActivity = async (activityData: Partial<CRMActivity>) => {
     try {

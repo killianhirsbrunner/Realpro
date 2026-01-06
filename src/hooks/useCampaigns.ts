@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
+import { useOrganizationContext } from '../contexts/OrganizationContext';
 
 export interface Campaign {
   id: string;
@@ -30,15 +31,23 @@ export interface Campaign {
 }
 
 export function useCampaigns(projectId?: string) {
+  const { currentOrganization } = useOrganizationContext();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchCampaigns = async () => {
+  const fetchCampaigns = useCallback(async () => {
+    if (!currentOrganization) {
+      setCampaigns([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       let query = supabase
         .from('crm_campaigns')
         .select('*')
+        .eq('organization_id', currentOrganization.id)
         .order('created_at', { ascending: false });
 
       if (projectId) {
@@ -55,11 +64,11 @@ export function useCampaigns(projectId?: string) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentOrganization, projectId]);
 
   useEffect(() => {
     fetchCampaigns();
-  }, [projectId]);
+  }, [fetchCampaigns]);
 
   const createCampaign = async (campaignData: Partial<Campaign>) => {
     try {
